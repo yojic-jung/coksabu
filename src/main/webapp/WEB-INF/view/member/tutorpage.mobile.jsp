@@ -1,0 +1,428 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<title>튜터페이지 콕사부</title>
+    <meta charset="utf-8">
+     <meta name="description" content="선생님 프로필 및 레슨정보" />
+    <link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
+<style>
+@charset "UTF-8";
+    .top-ul a {
+            text-decoration:none;
+            color :black
+          }
+         
+          .update,.delete{
+           border-radius:10px;
+           border:1px solid gray; 
+           background:gray; 
+           color:white; 
+           text-decoration:none;
+           padding:15px;
+           cursor:pointer;
+           margin-right:30px;
+          }
+        
+        .lesson-make2{
+            background:rgb(224, 223, 223);
+        }
+        .div-title{
+            width:80%; margin:20px auto 0px auto; padding:30px 0px 20px 10px;
+             font-family:'JejuGothic'; color:rgb(97, 96, 96);
+             font-size:25px;
+        }
+
+        .menu td{
+        font-family: 'JejuGothic'; 
+        width:100px;
+        float:left;
+        text-align:center;
+        padding:10px;
+      }
+      .menu-td{
+        background:rgb(63, 63, 61);
+        color:white;
+      }
+      .td-trans{
+        background:white;
+        color:rgb(63, 63, 61);
+        border-top: 5px solid rgb(63, 63, 61);
+      }
+      .btn{
+        font-size:13px;
+        border-radius:5px;
+        padding:5px;
+        cursor:pointer;
+        background:rgb(75, 74, 74);
+        color:white;
+        float:right;
+      }
+      .btnc{
+        font-size:13px;
+        border-radius:5px;
+        padding:5px;
+        background:rgb(75, 74, 74);
+        color:white;
+        cursor:pointer;
+      }
+      .x-btn{
+      	margin-left:10px;
+      	font-size:10px;
+      	padding:2px;
+      	border-radius:5px;
+      	background:rgb(63, 63, 61);
+        color:white;
+        cursor:pointer;
+      }
+      .service-cate {
+        width:120px; padding:5px;
+        font-size:14px; border-radius:2px;
+        margin-top:10px;
+      }
+      .seg-cate{
+      	width:500px; padding:5px;
+        font-size:12px; border-radius:2px;
+        line-height:170%;
+        margin-top:10px;
+      }
+
+      .teacher-intr{
+        font-family: 'JejuGothic'; 
+        width:480px;
+        min-height:400px;
+        margin:30px auto;
+        line-height:130%;
+      }
+      .career-op, .career-op1, .career-op2, .career-op3, .career-op4 {
+        padding:3px;
+        font-size:13px;
+        margin-top:10px;
+      }
+
+      .career-disc{
+        width:180px;
+      }
+	
+	  .career-box{
+		border:0.5px solid gray; 
+		width:430px;
+		min-height:50px; 
+		margin-top:20px;
+		font-size:13px;
+		padding:6px;
+		color:gray;
+		}
+      .del-btn{
+        color:white;
+        background:rgb(63, 63, 61);
+        border-radius:3px;
+        padding:3px;
+      }
+
+    .td-locale{
+        color:black;
+        margin-right:10px;
+        font-size:22px;
+        line-height:150%;
+    }
+
+
+.list{
+    	width:100%;
+    	margin:auto;
+    	border-spacing:0px 30px;
+    }
+.list td{
+	padding-bottom:20px;
+	border-bottom:1px solid gray;
+}
+
+.list a{
+	text-decoration:none;
+	color:black; 
+}
+#pst{
+		vertical-align:top;padding:0px; width:100%;
+		position: relative
+	}
+
+	#categories{
+		width:100%; 
+		font-family:'JejuGothic';
+		font-weight:bold;
+		font-size:30px;
+		padding:10px 60px;
+		color:Grey;
+		overflow:hidden;
+		white-space:nowrap;
+		text-overflow:ellipsis;
+	}
+
+    #name{
+		font-family:'JejuGothic';
+		font-weight:bold;
+		font-size:30px;
+		color: DimGrey;
+		padding:10px 20px;
+	}
+	
+	#title{
+		font-family:'JejuGothic';
+		font-weight:bold;
+		color: black;
+		font-size: 30px;
+		padding:10px 20px;
+	}
+	#universe{
+		font-family:'JejuGothic';
+		font-weight:bold;
+		color: dimgray;
+		font-size: 30px;
+		padding:10px 20px;
+	}
+#price{
+		font-family:Arial;
+		font-weight:bold;
+		font-size:30px;
+		margin-top:5px;
+		padding:10px 20px;
+		color:black;
+}
+
+
+
+    .foot{
+      width:100%;
+    }
+    .foot-align{
+      margin:auto;
+      width:1000px;
+      min-width:1000px;
+    }
+    .foot-align>div{
+      float:left;
+      margin:20px;
+    }
+    .foot p{
+      font-size:12px;
+      line-height:150%;
+      text-decoration:none;
+    }
+    #pst:hover{
+box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
+}
+
+</style>
+</head>
+<body>
+  
+        <section>
+            
+            <div style="background:rgb(233, 232, 232); padding:30px 30px 250px 30px;min-height:1400px;">
+            
+            <c:if test="${certify == 0 }" >
+            	<div style="min-height:250px; padding:50px">
+            		<div style="width:90%; margin:auto;font-size:30px">
+            			"레슨"을 만들기 위해서는 콕사부 인증정보를 설정하셔야 합니다. 
+            			<br/><br/>
+            			<div style="width:100px; margin:auto;">
+            			<a href="./lessoncertify"><button style="padding:5px; font-size:16px;">인증하기</button></a>
+            			</div>
+            		</div>
+            	</div>
+            </c:if>
+            <c:if test="${pro ==null && certify!=0 }">
+            <div class="div-title">프로필</div>
+                <div style="width:90%; background:white; margin: auto; padding:40px;text-align:center;">
+                <div style="margin-top:30px;">프로필을 작성하지 않으셨습니다. <a href="./profile" style="text-decoration:none; color:black;"><b>"프로필"</b></a>을 작성해주세요.</div>
+                <div style="text-align:center; padding:30px">
+                <a href="./profile" style="text-decoration:none;"><button style="width:200px; padding:10px; color:white; background:dimgray;border-radius:10px;">지금 프로필 작성하기</button></a>
+                </div>
+                </div>
+            </c:if>
+            <c:if test="${pro !=null }">
+                <div class="div-title">프로필</div>
+                <div style="width:90%; background:white; margin: auto; padding:40px;">
+                        <table style="font-family:JejuGothic; font-size: 30px;border-spacing:30px; ">
+                            <tr>
+                                <td rowspan="2"> <img style="width:140px; height:140px; border-radius:70px;" 
+                                src="<c:url value="/img/profileImg/${pro.imgPath}" />"  alt="본인 프로필 이미지"/></td>
+                                <td style="color:rgb(87, 87, 87); padding:0px 5px 0px 20px;font-size:32px">${pro.name}님 (${pro.birth})</td>
+                            </tr>
+                            <tr>
+                                <td style="line-height:160%;color:rgb(151, 149, 149);padding:0px 5px 0px 20px;">
+                                ${pro.universe} ${pro.univsub}<br/>경력 <c:if test="${pro.career!=0}">${pro.career}년이상</c:if><c:if test="${pro.career==0}">1년미만</c:if>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td  colspan="2" class="locale" style="padding:0px 5px 0px 20px;line-height:40px;">${pro.locales}</td>
+                            </tr>
+                        </table>
+                        <div style="color:#FFBB00;font-size:30px; text-align:center;">
+                        	<c:if test="${pro.certify==0}" >
+                          		<b>본인/학력인증을 해주세요.<br/>
+                          		인증이 완료되어야 레슨이 노출되며 지원서 발송도 가능합니다.</b>
+                            </c:if>
+                            <c:if test="${pro.certify==1}" >
+                          	<b style="color:rgb(212, 210, 77)">본인인증완료&nbsp;&nbsp;학력인증완료&nbsp;&nbsp;</b>
+                            </c:if>
+                            
+                            <c:if test="${pro.certify==2}" >
+                          <b><span style="color: #FF3636">인증 실패.</span> 프로필 확인후 정확한 증명서 제출하기 바랍니다.&nbsp;&nbsp;</b>
+                            </c:if>
+                        </div>
+                        <div style="text-align:right;font-size:24px;line-height:250%; color:rgb(117, 116, 116);margin-top:20px;">
+                            <span class="certify" style="cursor:pointer; border-radius:13px; padding:15px; border:1px solid rgb(117, 116, 116); background:dimgray; color:white;">
+                                  	 <b> 본인/학력 인증 </b>
+                            </span>
+                            &nbsp;&nbsp;
+                            <a href="./profile"  style="text-decoration:none;color:black">
+                            <span class="profile" style="border-radius:13px; padding:15px; border:1px solid rgb(117, 116, 116); background:dimgray; color:white;">
+                                  	  <b> 프로필 수정하기 </b>
+                            </span>
+                            </a>
+                        </div>
+                        
+                </div>
+                <div class="div-title">레슨 목록 (${size}/3)</div>
+                        <div style="width:100%; background:white; margin:auto; padding:40px;">
+                            <div class="lesson-make lesson-permit" href="#lesson" style="margin:auto; width: 80%; border:1px dashed gray;cursor:pointer">
+                               <div style="text-align:center; margin:15px auto; font-size:30px; color:rgb(158, 158, 158)">
+                                    
+                                    <b>
+                                    	<span style="font-size:23px;" >레슨은 최대 3개까지 만들기가 가능합니다.</span>
+                                    <br/>
+                                    +<br/>
+                                    	레슨 만들기
+                                    </b>
+                               </div>
+                            </div>
+						<c:if test="${size != 0}" >
+                            <div style="min-height:300px;width:100%">
+						
+					<table style="border-spacing:0px 40px;width:100%">
+						
+						<c:forEach var="lesson" items="${list}" >
+						<tr>
+							<td colspan="2" style="position:relative;">
+							<c:if test="${lesson.visible==0 }">
+							<div style="position:absolute;top:100px;z-index:3;font-weight:bolder;line-height:150%; font-size:30px;color:#FF5E00">
+							판매중단,<br/>
+							삭제요청된 수업으로 진행중인 거래가 있는지 확인 후 삭제 처리됩니다.
+							</div>
+							</c:if>
+							</td>
+						</tr>
+						<c:choose>
+							<c:when test="${lesson.visible!=0 }">
+								<tr>		
+							</c:when>
+							<c:otherwise>
+								<tr style="opacity:0.2;">		
+							</c:otherwise>
+						</c:choose>
+							<td style="width:30%;">
+								<a href="./boardread?postId=${lesson.id}" style="text-decoration:none;">
+								<img src="<c:url value='/img/representImg/${lesson.represent}' />" style="width:100%; height:250px;border-radius:20px; "/><br/>
+								</a>
+						</td>
+						<td>
+							<a href="./boardread?postId=${lesson.id}" style="text-decoration:none;">
+							<div>
+							<div id="title"> ${lesson.title}</div>
+							<div id="name">${lesson.name}(${lesson.birth}, ${lesson.sexual})&nbsp;&nbsp;경력 <c:if test="${lesson.career!=0}">${lesson.career}년</c:if><c:if test="${lesson.career==0}">1년미만</c:if></div>
+							<div id="universe"> ${lesson.universe} ${lesson.univsub}</div>
+							<div id="price" > ${lesson.subCate0} ${lesson.price3}원 <c:if test="${lesson.subCate1 !='nonevalue' }">/ ${lesson.subCate1} ${lesson.opt1price3}원</c:if> <c:if test="${lesson.subCate2!='nonevalue' }">/ ${lesson.subCate2} ${lesson.opt2price3}원</c:if></div>
+							</div>
+							</a>
+						</td>
+						</tr>
+
+						<tr>
+							<td colspan="2" style="border-bottom:1px solid gray;">
+							<c:if test="${lesson.visible==1 }">
+							<div style="font-size:22px;margin:30px auto 100px auto;padding:0px;text-align:center;">
+							<span class="update">수정하기<input type="text" class="idval" style="display:none;" value="${lesson.id}" ></span>
+							<a class="delete-a" href="./deletelesson?id=${lesson.id} " style="text-decoration:none;"><span class="delete">삭제하기</span></a></div>
+							</c:if>
+							</td>
+						</tr>
+   		 				</c:forEach>
+    				
+   		 			</table>
+                            
+                            </div>
+                            </c:if>
+                        </div>
+            </c:if>
+            
+            <div style="height:300px;"></div>
+            </div>
+            
+        </section>
+      
+        <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+        <script src="resources/colorbox-master/colorbox-master/jquery.colorbox.js"></script>
+        <script src="resources/jquery-number-master/jquery.number.min.js"></script>
+        <script>
+          $(document).ready(function(){
+        	
+        	  $('.tutor2').css('color','orange');
+        	  
+        	  var error = "<c:out value="${error}" />";
+        	  
+        	  if(error == "error"){
+        		  alert("레슨은 최대 3개까지만 등록 가능합니다.")
+        	  }
+        	  
+        	  var delError = "<c:out value="${delError}" />";
+        	  
+        	  if(delError=="delError"){
+        		  alert("삭제 처리가 되지 않았습니다. 새로고침 후에 다시 시도해 주시기 바랍니다.");
+        	  }
+        	  
+        	  
+        	  
+            $('.lesson-make').hover(function(){
+                $(this).addClass('lesson-make2');
+            }, function(){
+                $(this).removeClass('lesson-make2');
+            });
+
+          $('.lesson-make').click(function(){
+        	 window.location= './lessonWrite';
+          });
+            
+          
+          $('.update').click(function(){
+        	 var updateUrl = './update?id='+$(this).find('.idval').val();
+        	 window.location = updateUrl;
+          });
+          
+          var email = "<c:out value="${email}" />";
+          
+          $('.certify').click(function(){
+         	 var url = './certify?email='+email;
+         	 window.location = url;
+           });
+          
+          
+          $('.delete-a').click(function(){
+        	    var confirmflag = confirm("해당하는 레슨을 삭제하시겠습까?");
+
+        	    if(confirmflag){
+        			return true;
+        	       //확인 버튼 클릭 true 
+        	    }else{
+        			return false;
+        	      //취소 버튼 클릭 false
+        	    }
+        	});
+          
+         });
+        </script>
+</body>
+</html>

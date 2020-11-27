@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lesson.member.dao.MemberDao">
+		
+	<select id="checkEmail" resultType="Integer" >
+		select count(*) from members where email=#{email}
+	</select>
+	
+	<select id="checkPhone" resultType="Integer" >
+		select count(*) from members where phone=#{phone}
+	</select>
+	
+	<select id="checkPassword" parameterType="lesson.member.model.Login" resultType="String" >
+		select password from members where email= #{email}
+	</select>
+	
+	<select id="takeImgUniv" resultType="lesson.member.model.Profile">
+		select imgPath, universe, univsub from profile where email=#{email} 
+	</select>
+	
+	<update id="updateCertify">
+	 	update profile set certify=0, certifydate=now() where email=#{email}
+	</update>
+	
+	<update id="giveMembersipToZero">
+	 	update members set membership=0 where email=#{email}
+	</update>
+	
+	<select id="confirmCertify" resultType="Integer">
+		select count(*) from lessoncertify where email= #{email}
+	</select>
+	
+	<insert id="signUp" parameterType="lesson.member.model.MemberInfo" >
+		insert into members (email, password, name, birth, phone, logindate, membership, enabled, authority, human_status, fail_count, fail_time, imgpath) values (#{email}, #{password}, #{name}, #{birth}, #{phone}, #{loginDate}, 0, 1, 'user', 0, 0, 0, 'pro.png')
+	</insert>
+	
+	<select id="checkImgPath" resultType="Integer">
+		select count(*) from profile where email = #{email}
+	</select>
+
+	<select id="takeImgPath" resultType="String">
+		select imgpath from profile where email = #{email}
+	</select>
+	
+	<insert id="writeProfile" parameterType="lesson.member.model.TeacherDB" >
+		insert into profile (email, imgpath, locales, universe, univsub, universer, career, sexual, academy, academyd, nation, nationy, toeic, tofle, teps, hsk, jpt, singular, certify) values 
+		(#{email}, #{imgPath}, #{locales}, #{universe}, #{univsub}, #{universer}, #{career}, #{sexual}, #{academy}, #{academyd}, #{nation}, #{nationy}, #{toeic}, #{tofle}, #{teps}, #{hsk}, #{jpt}, #{singular}, 0)
+	</insert>
+	
+	<update id="updateMembersImgpath"  parameterType="String">
+		update members set imgpath=#{imgpath} where email=#{email}
+	</update>
+	
+	
+	<update id="updateProfile"  parameterType="lesson.member.model.TeacherDB">
+		update profile as A, members as B set A.imgpath=#{imgPath}, A.locales=#{locales}, A.sexual=#{sexual}, A.universe=#{universe}, 
+		A.univsub=#{univsub}, A.universer=#{universer}, A.career=#{career} , A.academy=#{academy}, A.academyd = #{academyd},
+		 nation=#{nation}, A.nationy=#{nationy}, A.toeic=#{toeic}, A.tofle=#{tofle}, A.teps=#{teps}, A.hsk=#{hsk}, A.jpt=#{jpt}, 
+		 A.singular=#{singular}, B.imgpath=#{imgPath} where A.email=#{email} and B.email=#{email}
+	</update>
+	
+	<select id="takeProfile" resultType="lesson.member.model.Profile" >
+		select A.name, A.birth ,B.imgpath, B.locales, B.universe, B.univsub, B.career, B.sexual, B.certify from members as A, profile as B where A.email =#{email} and B.email=#{email}
+	</select>
+	
+	<select id="takeProfileList" resultType="lesson.member.model.Profile" >
+		<foreach collection="list" item="item" separator="union all">
+			(select name, imgpath from members where email=#{item})
+		</foreach>
+	</select>
+
+	<select id="takeTeacherDB" resultType="lesson.member.model.TeacherDB" >
+		select imgpath, locales, universe, universer, career, univsub, sexual, academy, academyd,
+		nation, nationy, toeic, tofle, teps, hsk, jpt, singular, certify from profile where email=#{email}
+	</select>
+	
+	<select id="univSearch" resultType="String" >
+		select * from universe where universe like concat('%',#{universe},'%')  limit #{firstRow}, #{endRow}
+	</select>
+	
+	<select id="univCount" resultType="int" >
+		select count(*) from universe where universe like concat('%',#{universe},'%')
+	</select>
+	
+	<update id="updateImgUpload" parameterType="lesson.member.model.CertifyDB" >
+		update profile set certifyimg=#{certifyimg}, certify=0, certifydate=now() where email=#{email}
+	</update>
+	
+	<select id="tekeCertify" resultType="String">
+		select certifyimg from profile where email=#{email}
+	</select>
+	
+	<select id="readMemberInfo" resultType="lesson.member.model.MemberInfo" >
+		select email, name, birth, phone from members where email=#{email}
+	</select>
+	
+	<update id="updatePhone" parameterType="lesson.member.model.MemberInfo" >
+		update members set phone=#{phone} where email=#{email}
+	</update>
+	
+	<select id="takePassword" resultType="String" >
+		select password from members where email=#{email}
+	</select>
+	
+	<update id="updatePassword" parameterType="lesson.member.model.Password" >
+		update members set password=#{password2}, human_status=0 where email=#{email}
+	</update>
+	
+	<update id="updatePassword2" parameterType="lesson.member.model.Password" >
+		update members set password=#{password2}, human_status=1, enabled=1, fail_count=0, fail_time=0  where email=#{email}
+	</update>
+	
+	<insert id="insertQna" parameterType="lesson.member.model.Qna" >
+		insert into qna (email, title, content, visible, date) values (#{email}, #{title}, #{content}, 1, #{date})
+	</insert>
+	
+	<insert id="insertLessonCertify" parameterType="lesson.member.model.LessonCertify" >
+		insert into lessoncertify (name, account, accountNumber, serviceAgree, myAgree, email)values (#{name}, #{account}, #{accountNumber}, #{serviceAgree}, #{myAgree}, #{email} )
+	</insert>
+	
+	<select id="readLessonCertify" resultType="lesson.member.model.LessonCertify" >
+		select name, account, accountnumber, serviceagree, myagree from lessoncertify where email=#{email}
+	</select>
+	
+	<select id="readName" resultType="String" >
+		select name from members where email=#{email}
+	</select>
+	
+	<select id="countEmail" parameterType="lesson.member.model.EmailInfo" resultType="Integer">
+		select count(*) from members where name=#{name} and phone=#{phone}
+	</select>
+	
+	<select id="takeEmail" parameterType="lesson.member.model.EmailInfo" resultType="String">
+		select email from members where name=#{name} and phone=#{phone}
+	</select>
+	
+	<update id="updateLoginTime" >
+		update members set logindate=#{date}, fail_count=0, fail_time=0 where email=#{email}
+	</update>
+	
+	<insert id="insertApplyCount">
+		insert into applycount (email, count) values (#{email}, 0)
+	</insert>
+	
+	<select id="countMyQna" resultType="int">
+		select count(*) from qna where email=#{email}
+	</select>
+	
+	<select id="myQnaList" resultType="lesson.member.model.Qna">
+		select title, content, id, answer, date from qna where email=#{email} order by id desc limit #{firstRow}, #{endRow}
+	</select>
+	
+	<select id="takeHumanStatus" resultType="int">
+		select human_status from members where email=#{email}
+	</select>
+	
+	<select id="takeFailCount" resultType="int">
+		select fail_count from members where email=#{email}
+	</select>
+	
+	<select id="takeFailTime" resultType="Date">
+		select fail_time from members where email=#{email}
+	</select>
+	
+	<update id="addFailCount">
+		update members set fail_count= fail_count+1 where email=#{email}
+	</update>
+	
+	<update id="loginDisabled" parameterType="java.util.HashMap">
+		update members set fail_count = fail_count+1, enabled=0, fail_time=date_add(now(), interval 15 minute) where email=#{email}
+	</update>
+	
+	<update id="failReset">
+		update members set fail_count =0, enabled=1, fail_time=0 where email=#{email}
+	</update>
+	
+	<update id="addFailTime">
+		update members set fail_time = date_add(now(), interval 15 minute) where email=#{email}
+	</update>
+	
+	
+</mapper>

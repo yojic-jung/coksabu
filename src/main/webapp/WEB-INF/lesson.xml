@@ -1,0 +1,100 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/websocket
+        http://www.springframework.org/schema/websocket/spring-websocket.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/task 
+		http://www.springframework.org/schema/task/spring-task.xsd">
+
+	<mvc:view-controller path="/companyInfo" view-name="main/companyInfo" />	
+			
+	<bean class="lesson.member.controller.MemberController" />
+	
+	<bean class="lesson.board.controller.BoardController" />
+	
+	<bean class="lesson.apply.controller.ApplyController" />
+	
+	<bean class="lesson.deal.controller.DealController" />
+	
+	<bean class="lesson.admin.controller.AdminController" />
+	
+	<bean class="test.TestController" />
+	
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<mvc:resources mapping="/resources/**" location="/resources/theme/" />
+	<mvc:resources mapping="/img/**" location="/resources/theme/" />	
+ 	<mvc:resources mapping="/sitemap.xml" location="WEB-INF/sitemap.xml" />
+ 	<mvc:resources mapping="/rss.xml" location="WEB-INF/rss.xml" />
+ 	<mvc:resources mapping="/robots.txt" location="WEB-INF/robots.txt" />
+ 	<mvc:resources mapping="/naver10c8586cf37b51d0fd1b0bf918126397.html" location="naver10c8586cf37b51d0fd1b0bf918126397.html" />
+ 	
+ 	<mvc:annotation-driven>
+    <mvc:argument-resolvers>
+        <bean class="org.springframework.mobile.device.DeviceWebArgumentResolver" />
+    </mvc:argument-resolvers>
+	</mvc:annotation-driven>
+ 	
+ 	<mvc:interceptors>
+    <mvc:interceptor>
+        <mvc:mapping path="/**"/>
+		<bean class="org.springframework.mobile.device.DeviceResolverHandlerInterceptor"></bean>
+	</mvc:interceptor>
+	
+	 <mvc:interceptor>
+        <mvc:mapping path="/**"/>
+		<bean class="org.springframework.mobile.device.switcher.SiteSwitcherHandlerInterceptor" factory-method="mDot">
+    	<constructor-arg index="0" type="java.lang.String" value="coksabu.com"/>
+    	<constructor-arg index="1" type="java.lang.Boolean" value="true"/>
+  		</bean>
+	</mvc:interceptor>
+	</mvc:interceptors>
+	
+<!-- 유효성 에러 메세지 -->	
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>message.error</value>
+			</list>
+		</property>
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+	
+<!-- 파일 업로드  -->	
+	<bean id="multipartResolver" 
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+		
+	<context:annotation-config/>
+	
+	<context:component-scan base-package="test.webconfig" />	
+		
+	<task:annotation-driven />
+<!-- 웹소켓  -->	
+	<websocket:handlers>
+			<websocket:mapping handler="echoHandler" path="/echo-ws" />
+			<websocket:mapping handler="chatHandler" path="/chat-ws" />
+			<websocket:sockjs/>
+	</websocket:handlers>
+	
+	<bean id="echoHandler" class="net.madvirus.spring4.chap09.ws.EchoHandler" />
+	<bean id="chatHandler" class="net.madvirus.spring4.chap09.ws.ChatWebSocketHandler" />
+	
+	<bean class="test.controller.ChatAppController" />
+	<bean class="test.webconfig.WebSocketConfig" />
+	
+</beans>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<sec:http pattern="/resources/**" security="none" />
+	<sec:http pattern="/img/**" security="none" />
+
+	<sec:http use-expressions="true">
+		
+		<sec:headers>
+          <sec:frame-options disabled="true"></sec:frame-options>
+   		</sec:headers>
+		
+		<sec:intercept-url pattern="/mypage**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/purchaselist**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/proposal**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/wishlist**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/tutorpage**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/profile**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/lessoncertify**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/saleslist**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/usersetting**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/passwordsetting**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/secession**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/myroom**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/lessonWrite**" access="hasAuthority('user')" />
+		
+		<sec:intercept-url pattern="/applysuccess**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/lessonapply**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/teacherForm**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/cusultTeacher**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/lessonPurchase**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/purchaseSuccess**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/update**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/myqna**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/qna**" access="hasAuthority('user')" />
+		
+		<sec:intercept-url pattern="/certify**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/teacherApply**" access="hasAuthority('user')" />
+		
+		<sec:intercept-url pattern="/message**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/chatroom**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/chatmyroom**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/tutorprofile**" access="hasAuthority('user')" />
+		
+		<sec:intercept-url pattern="/orderInfo**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/sellerorderInfo**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/refund**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/refundM**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/seller**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/buyerRefundComplete**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/sellerRefundComplete**" access="hasAuthority('user')" />
+		
+		
+		<sec:intercept-url pattern="/admin**" access="hasAuthority('admin')" />
+		<sec:intercept-url pattern="/complete**" access="hasAuthority('admin')" />
+		<sec:intercept-url pattern="/adminCertifyFail**" access="hasAuthority('admin')" />
+		<sec:intercept-url pattern="/listqna**" access="hasAuthority('admin')" />
+		<sec:intercept-url pattern="/adminTransaction**" access="hasAuthority('admin')" />
+		<sec:intercept-url pattern="/adminOrderInfo**" access="hasAuthority('admin')" />
+		<sec:intercept-url pattern="/changeProposalOrderStatus**" access="hasAuthority('admin')" />
+		<sec:intercept-url pattern="/changeOrderStatus**" access="hasAuthority('admin')" />
+		<sec:intercept-url pattern="/depositConfirmRecord**" access="hasAuthority('admin')" />
+		<sec:intercept-url pattern="/depositConfirmProposalRecord**" access="hasAuthority('admin')" />
+		<sec:intercept-url pattern="/cancelStatusProposal**" access="hasAuthority('admin')" />
+		<sec:intercept-url pattern="/cancelDepositStatus**" access="hasAuthority('admin')" />
+		
+		<sec:intercept-url pattern="/myproposal**" access="hasAnyRole('user, admin')" />
+
+		<sec:intercept-url pattern="/**" access="permitAll"/>
+		
+		
+		<sec:csrf disabled = "true" /> 
+		
+		<sec:form-login 
+		login-page="/login"
+		login-processing-url="/loginprocess"
+		authentication-success-handler-ref="loginSuccessHandler"
+		authentication-failure-handler-ref="loginFailureHandler"
+		username-parameter="email" password-parameter="password"
+		/>
+		<sec:logout delete-cookies="JSESSIONID,remember-me" logout-url="/j_spring_security_logout" logout-success-url="/" invalidate-session="true"/>
+		
+		<sec:remember-me key="wmoskey" token-validity-seconds="14515200" authentication-success-handler-ref="autoLoginSuccessHandler"/><!-- 24주 대략 6개월 -->
+
+	</sec:http>
+
+	<sec:authentication-manager alias="authenticationManager">
+		<sec:authentication-provider>
+			<sec:jdbc-user-service data-source-ref="dataSource" users-by-username-query="select email, password, enabled from members where email=?" 
+			authorities-by-username-query="select email, authority from members where email=?" />
+			<sec:password-encoder ref="passwordEncoder" />
+		</sec:authentication-provider>
+	</sec:authentication-manager>
+	
+	<bean id="autoLoginSuccessHandler" class="com.dywlr.handler.AutoLoginSuccessHandler" />
+	
+	<bean id="loginSuccessHandler" class="com.dywlr.handler.LoginSuccessHandler">
+	    <property name="loginidname" value="email"/>
+	    <property name="defaultUrl" value="/"/>
+	</bean>
+
+	<bean id="loginFailureHandler" class="com.dywlr.handler.LoginFailureHandler">
+   		<property name="loginidname" value="email"/>
+    	<property name="loginpwdname" value="password"/>
+   		<property name="errormsgname" value="ERRORMSG"/>
+    	<property name="defaultFailureUrl" value="/login?error=true"/>
+	</bean>
+
+</beans>

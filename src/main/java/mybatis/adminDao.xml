@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lesson.admin.dao.AdminDao">
+
+	<select id="checkId" resultType="Integer" >
+		select count(*) from adminlogin where id=#{id}
+	</select>
+	
+	<select id="checkPassword" resultType="Integer" >
+		select count(*) from adminlogin where password=#{password}
+	</select>
+	
+	<select id="imgList" resultType="lesson.admin.model.ImgList" >
+		select A.name, A.birth, B.email, B.certifyimg, B.universe, B.univsub,  B.academy, B.academyd from members as A, profile as B where A.email=B.email and certify=0 and certifyimg !='' order by B.certifydate asc limit 2
+	</select>
+	
+	<update id="inspectComplete" >
+		update profile set certify=1 where email=#{email}
+	</update>
+	
+	<update id="inspectFail" >
+		update profile set certify=2 where email=#{email}
+	</update>
+	
+	<update id="qualifyMembership">
+		update members set membership=1 where email=#{email}
+	</update>
+	
+	<select id="certifyCount" resultType="Integer">
+		select count(*) from profile where certify=0 and certifyimg !=''
+	</select>
+	
+	
+	<select id="countQna" resultType="Integer">
+		select count(*) from qna where visible=1
+	</select>
+	
+	<select id="listQna" resultType="lesson.member.model.Qna">
+		select * from qna where visible=1 limit #{firstRow}, #{endRow}
+	</select>
+	
+	<update id="visibleQna" >
+		update qna set visible=0 where id=#{id}
+	</update>
+	
+	<update id="qnaAnswer" >
+		update qna set visible=0, answer=#{answer} where id=#{id} and email=#{email}
+	</update>
+	
+	<select id="adminTransaction" resultType="lesson.board.model.PurchaseHistory">
+		select * from purchasehistory where orderstatus = #{status} and orderdate between date_add(now(), interval-14 day) and now() order by orderId asc
+	</select>
+	
+	<select id="adminTransaction2" resultType="lesson.board.model.PurchaseHistory" parameterType="lesson.admin.model.TranSearch">
+		select * from purchasehistory where depositor like concat('%',#{depositor},'%') and buyername like concat('%',#{buyerName},'%') and bank like concat('%',#{bank},'%') and orderstatus like concat('%',#{orderstatus},'%') and orderdate between #{startDate} and #{endDate} order by orderId desc 
+	</select>
+	
+	<select id="adminChatTransaction" resultType="test.model.ChatPurchase">
+		select * from chat_transaction where orderstatus = #{status} and purchase_day between date_add(now(), interval-14 day) and now() order by id asc
+	</select>
+	
+	<select id="adminChatTransaction2" resultType="test.model.ChatPurchase" parameterType="lesson.admin.model.TranSearch">
+		select * from chat_transaction where depositor like concat('%',#{depositor},'%') and buyername like concat('%',#{buyerName},'%') and bank like concat('%',#{bank},'%') and orderstatus like concat('%',#{orderstatus},'%') and purchase_day between #{startDate} and #{endDate} order by id asc 
+	</select>
+	
+	
+	<insert id="insertOrderStatusRecord" parameterType="lesson.admin.model.OrderStatusRecord" >
+		insert into orderstatusrecord (orderid, postid, buyerName, depositor, bank, price, recordtime) 
+		values (#{orderId}, #{postId}, #{buyerName}, #{depositor}, #{bank} ,#{price}, #{recordtime})
+	</insert>
+	
+	<insert id="insertProposalOrderStatusRecord" parameterType="lesson.admin.model.OrderStatusRecord" >
+		insert into orderstatusrecordproposal (chattranid, buyerName, depositor, bank, price, recordtime) 
+		values (#{chatTranId}, #{buyerName}, #{depositor}, #{bank} ,#{price}, #{recordtime})
+	</insert>
+	
+	<update id="updateOrderStatus" parameterType="lesson.admin.model.OrderStatusRecord" >
+		update purchasehistory set orderstatus=#{orderstatus} where orderid=#{orderId}
+	</update>
+	
+	<update id="updateOrderStatusPro" parameterType="lesson.admin.model.OrderStatusRecord" >
+		update chat_transaction set orderstatus=#{orderstatus} where id=#{orderId}
+	</update>
+	
+	<update id="updateProposalOrderStatus" parameterType="lesson.admin.model.OrderStatusRecord" >
+		update chat_transaction set orderstatus=#{orderstatus} where id=#{chatTranId}
+	</update>
+	
+	<update id="updateRefundOrderStatus" parameterType="lesson.admin.model.OrderStatusRecord" >
+		update refundlist set orderstatus=#{orderstatus} where orderid=#{orderId}
+	</update>
+	
+	<update id="updateRefundOrderStatusPro" parameterType="lesson.admin.model.OrderStatusRecord" >
+		update refundprolist set orderstatus=#{orderstatus} where orderid=#{orderId}
+	</update>
+	
+	<update id="cancelDepositStatus" >
+		update purchasehistory set orderstatus=#{orderstatus} where orderid=#{orderId}
+	</update>
+	
+	<update id="cancelDepositStatusProposal" >
+		update chat_transaction set orderstatus=#{orderstatus} where id=#{id}
+	</update>
+	
+	<select id="depositConfirmRecord" resultType="lesson.admin.model.OrderStatusRecord">
+		select * from orderstatusrecord where recordtime between date_add(now(), interval-14 day) and now() order by id desc
+	</select>
+	
+	<select id="depositConfirmRecord2" resultType="lesson.admin.model.OrderStatusRecord" parameterType="lesson.admin.model.TranSearch">
+		select * from orderstatusrecord where depositor like concat('%',#{depositor},'%') and buyername like concat('%',#{buyerName},'%') and bank like concat('%',#{bank},'%') and recordtime between #{startDate} and #{endDate} order by id desc
+	</select>
+	
+	<select id="depositConfirmProposalRecord" resultType="lesson.admin.model.OrderStatusRecord">
+		select * from orderstatusrecordproposal where recordtime between date_add(now(), interval-14 day) and now() order by id desc
+	</select>
+		
+	<select id="depositConfirmProposalRecord2" resultType="lesson.admin.model.OrderStatusRecord" parameterType="lesson.admin.model.TranSearch">
+		select * from orderstatusrecordproposal where depositor like concat('%',#{depositor},'%') and buyername like concat('%',#{buyerName},'%') and bank like concat('%',#{bank},'%') and recordtime between #{startDate} and #{endDate} order by id desc
+	</select>
+
+	
+	<select id="adminRefund" resultType="lesson.deal.model.RefundContent">
+		select * from refundlist where orderstatus=#{orderstatus} order by id asc
+	</select>
+	
+	<select id="adminRefundSearch" parameterType="lesson.admin.model.RefundSearch" resultType="lesson.deal.model.RefundContent">
+		select * from refundlist where orderstatus=#{orderStatus} and applicantName like concat('%',#{applicantName},'%') order by id asc
+	</select>
+	
+	<select id="adminProRefund" resultType="lesson.deal.model.RefundContent">
+		select * from refundprolist where orderstatus=#{orderstatus} order by id asc
+	</select>
+	
+	<select id="adminProRefundSearch" parameterType="lesson.admin.model.RefundSearch" resultType="lesson.deal.model.RefundContent">
+		select * from refundprolist where orderstatus=#{orderStatus} and applicantName like concat('%',#{applicantName},'%') order by id asc
+	</select>
+	
+	
+	<select id="orderInfo" resultType="lesson.board.model.PurchaseHistory">
+		select * from purchasehistory where orderid=#{id}
+	</select>
+
+	<select id="orderInfoPro" resultType="test.model.ChatPurchase">
+		select * from chat_transaction where id=#{id}
+	</select>
+	
+	<select id="refundContent" resultType="lesson.deal.model.RefundContent">
+		select * from refundlist where orderid=#{id} and applicant=#{applicant}
+	</select>
+	
+	<select id="refundContentPro" resultType="lesson.deal.model.RefundContent">
+		select * from refundprolist where orderid=#{id} and applicant=#{applicant}
+	</select>
+	
+	<select id="takeOrderStatus" resultType="String">
+		select orderstatus from purchasehistory where orderid=#{orderId}
+	</select>
+	
+	<select id="takeOrderStatusProposal" resultType="String">
+		select orderstatus from chat_transaction where id=#{id}
+	</select>
+	
+	<insert id="refundComplete" parameterType="lesson.admin.model.RefundComplete" >
+		insert into refundcomplete (orderid, progresslesson, remainlesson, price1, buyeremail, buyername, buyerbank, buyeraccount, buyerprice, buyeraccountholder, selleremail, sellername, sellerbank, selleraccount, sellerprice, selleraccountholder, refunddetail, recordtime, fees, finalPrice ) 
+		values (#{orderId}, #{progressLesson}, #{remainLesson}, #{price1}, #{buyerEmail}, #{buyerName}, #{buyerBank}, #{buyerAccount}, #{buyerPrice}, #{buyerAccountHolder}, #{sellerEmail}, #{sellerName}, #{sellerBank}, #{sellerAccount}, #{sellerPrice}, #{sellerAccountHolder}, #{refundDetail}, now(), #{fees}, #{finalPrice})
+	</insert>
+	
+	<insert id="refundCompletePro" parameterType="lesson.admin.model.RefundComplete" >
+		insert into refundcompletepro (orderid, progresslesson, remainlesson, price1, buyeremail, buyername, buyerbank, buyeraccount, buyerprice, buyeraccountholder, selleremail, sellername, sellerbank, selleraccount, sellerprice, selleraccountholder, refunddetail, recordtime, fees, finalPrice ) 
+		values (#{orderId}, #{progressLesson}, #{remainLesson}, #{price1}, #{buyerEmail}, #{buyerName}, #{buyerBank}, #{buyerAccount}, #{buyerPrice}, #{buyerAccountHolder}, #{sellerEmail}, #{sellerName}, #{sellerBank}, #{sellerAccount}, #{sellerPrice}, #{sellerAccountHolder}, #{refundDetail}, now(), #{fees}, #{finalPrice})
+	</insert>
+	
+	<select id="takeBirthList" resultType="String">
+		<foreach collection="list" item="item" separator="union all">
+		(select birth from members where email=#{item})
+		</foreach>
+	</select>
+	
+	<select id="adminRefundConfirm" resultType="lesson.admin.model.RefundComplete">
+		select * from refundcomplete where recordtime  between date_add(now(), interval-14 day) and now()   order by id desc
+	</select>
+	
+	<select id="adminRefundConfirm2" resultType="lesson.admin.model.RefundComplete" parameterType="lesson.admin.model.RefundSearch">
+		select * from refundcomplete where (sellername like concat('%',#{applicantName},'%') or buyername like concat('%',#{applicantName},'%') ) and recordtime between #{startDate} and #{endDate} order by id desc
+	</select>
+	
+	<select id="adminRefundConfirmPro" resultType="lesson.admin.model.RefundComplete">
+		select * from refundcompletepro where recordtime  between date_add(now(), interval-14 day) and now() order by id desc
+	</select>
+	
+	<select id="adminRefundConfirmPro2" resultType="lesson.admin.model.RefundComplete" parameterType="lesson.admin.model.RefundSearch">
+		select * from refundcompletepro where (sellername like concat('%',#{applicantName},'%') or buyername like concat('%',#{applicantName},'%') ) and recordtime between #{startDate} and #{endDate} order by id desc
+	</select>
+	
+	<select id="refundCompleteInfo" resultType="lesson.admin.model.RefundComplete">
+		select * from refundcomplete where orderid=#{orderId}  
+	</select>
+	
+	<select id="refundProCompleteInfo" resultType="lesson.admin.model.RefundComplete">
+		select * from refundcompletepro where orderid=#{orderId}  
+	</select>
+	
+	<select id="refundListById" resultType="lesson.deal.model.RefundContent">
+		select * from refundlist where orderid=#{orderId}  
+	</select>
+	
+	<select id="refundProListById" resultType="lesson.deal.model.RefundContent">
+		select * from refundprolist where orderid=#{orderId}  
+	</select>
+	
+	<insert id="insertRefundCancel" parameterType="lesson.deal.model.RefundContent" >
+		insert into refundcancel (orderid, applicant, applicantname, refunddetail, recordtime, orderstatus) 
+		values (#{orderId}, #{applicant}, #{applicantname}, #{refunddetail}, now(), #{orderStatus})
+	</insert>
+	
+	<delete id="deleteRefundList" parameterType="lesson.deal.model.RefundContent" >
+		delete from refundlist where orderid=#{orderId}
+	</delete>
+	
+	<insert id="insertRefundProCancel" parameterType="lesson.deal.model.RefundContent" >
+		insert into refundcancelpro (orderid, applicant, applicantname, refunddetail, recordtime, orderstatus) 
+		values (#{orderId}, #{applicant}, #{applicantname}, #{refunddetail}, now(), #{orderStatus})
+	</insert>
+	
+	<delete id="deleteRefundProList" parameterType="lesson.deal.model.RefundContent" >
+		delete from refundprolist where orderid=#{orderId}
+	</delete>
+	
+	<select id="adminRefundCancelList" resultType="lesson.deal.model.RefundContent">
+		select * from refundcancel
+	</select>
+	
+	<select id="adminRefundProCancelList" resultType="lesson.deal.model.RefundContent">
+		select * from refundcancelpro
+	</select>
+	
+	<select id="delWaitingList" resultType="lesson.admin.model.DelWaiting">
+		select * from delwaitinglist order by id asc
+	</select>
+	
+	<select id="takePurchaseList" resultType="lesson.board.model.PurchaseHistory">
+		select buyeremail, buyername,buyerphone, orderdate, orderstatus, enddate  from purchasehistory where postid=#{postId}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	<select id="takeLesson" resultType="lesson.board.model.LessonCardDB">
+		select email, represent, contentimg, title, cate, subcate, lesson, description, careerdb, price1, price2, price3, day, gawe, trial from lesson where id=#{postId}
+	</select>
+	
+	
+	<insert id="putDelLesson" parameterType="lesson.board.model.LessonCardDB" >
+		insert into delcompletelesson (email, title, cate, subcate, lesson, description, careerdb, price1, price2, price3, day, gawe, trial, recorddate) 
+		values (#{email}, #{title}, #{cate}, #{subCate}, #{lesson}, #{description}, #{careerDB}, #{price1}, #{price2}, #{price3}, #{day}, #{gawe}, #{trial}, now())
+	</insert>
+	
+	<select id="confirmApplyWish" resultType="Integer">
+		select count(*) from wishlist where postId=#{postId}
+	</select>
+	
+	<delete id="deleteWishList">
+		delete from wishlist where postId=#{postId}
+	</delete>
+	
+	<delete id="removeDelWaitingList">
+		delete from delwaitinglist where id=#{id}
+	</delete>
+	
+	<delete id="deleteLesson" >
+		delete from lesson where id = #{postId}
+	</delete>
+</mapper>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- default directory 설정 -->
+<decorators defaultdir="/WEB-INF/view">
+
+	<!-- sample -->
+	<decorator name="sampleLayout" page="lessonking_decorator.jsp">
+		<pattern>/boarder*</pattern>
+		<pattern>/applylist*</pattern>
+		<pattern>/lessonapply*</pattern>
+		<pattern>/companyInfo*</pattern>
+		<pattern>/customer*</pattern>
+		<pattern>/qna*</pattern>
+		<pattern>/myqna*</pattern>
+	</decorator>
+	
+	<decorator name="applyLayout" page="apply_decorator.jsp">
+		<pattern>/boardread*</pattern>
+		<pattern>/apply*</pattern>
+		<pattern>/applysuccess*</pattern>
+	</decorator>
+	
+	<decorator name="messageLayout" page="message_decorator.jsp">
+		<pattern>/message*</pattern>
+	</decorator>
+	
+	<decorator name="mypageLayout" page="mypage_decorator.jsp">
+		<pattern>/mypage*</pattern>
+		<pattern>/purchaselist*</pattern>
+		<pattern>/proposalpurchase*</pattern>
+		<pattern>/wishlist*</pattern>
+	</decorator>
+	
+	<decorator name="tutorLayout" page="tutor_decorator.jsp">
+		<pattern>/tutorpage*</pattern>
+		<pattern>/lessoncertify*</pattern>
+		<pattern>/saleslist*</pattern>
+		<pattern>/proposalsell*</pattern>
+	</decorator>
+	
+	<decorator name="userLayout" page="user_decorator.jsp">
+		<pattern>/teacherForm*</pattern>
+	</decorator>
+
+	<decorator name="myroomLayout" page="myroom_decorator.jsp">
+		<pattern>/myroom*</pattern>
+	</decorator>
+	
+	<decorator name="category" page="category_decorator.jsp">
+		<pattern>/category*</pattern>
+	</decorator>
+	
+	<decorator name="titleLayout" page="title_decorator.jsp">
+		<pattern>/signup*</pattern>
+		<pattern>/login*</pattern>
+		<pattern>/private*</pattern>
+		<pattern>/service*</pattern>
+		<pattern>/emailPassFind*</pattern>
+		<pattern>/privateData*</pattern>
+	</decorator>
+	
+	
+	<decorator name="backLayout" page="back_decorator.jsp">
+		<pattern>/usersetting*</pattern>
+		<pattern>/passwordsetting*</pattern>
+		<pattern>/secession*</pattern>
+		<pattern>/certify*</pattern>
+		<pattern>/lessonWrite*</pattern>
+		<pattern>/update*</pattern>
+		<pattern>/teacherApply*</pattern>
+		
+		<pattern>/lessonPurchase*</pattern>
+		<pattern>/profile*</pattern>
+		<pattern>/tutorprofile*</pattern>
+		<pattern>/myproposal*</pattern>
+	</decorator>
+	
+	<decorator name="chatLayout" page="chat_decorator.jsp">
+		<pattern>/chatroom*</pattern>
+		<pattern>/chatmyroom*</pattern>
+	</decorator>
+	
+	<decorator name="noneLayout" page="none_decorator.jsp">
+		<pattern>/purchaseSuccess*</pattern>
+		<pattern>/subCheckForm*</pattern>
+		<pattern>/orderInfo*</pattern>
+		<pattern>/sellerorderInfo*</pattern>
+		<pattern>/refund*</pattern>
+		<pattern>/refundM*</pattern>
+		<pattern>/sellerrefundM*</pattern>
+		<pattern>/buyerRefundCompleteInfo*</pattern>
+		<pattern>/sellerRefundCompleteInfo*</pattern>
+	</decorator>
+	
+</decorators>
+

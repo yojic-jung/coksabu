@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lesson.board.dao.BoardDao">
+
+	<select id="takeRepresent" resultType="String">
+		select represent from lesson where id = #{id} and email=#{email}
+	</select>
+	
+	<select id="takeImgName" resultType="lesson.board.model.ImgFileName">
+		select represent, contentimg from lesson where id = #{id}
+	</select>
+	
+	<select id="readEmail" resultType="String">
+		select email from lesson where id = #{id}
+	</select>
+	
+	<insert id="write" parameterType="lesson.board.model.LessonCardDB" >
+		insert into lesson (cate, subcate, represent, title, lesson, description, contentimg, careerDB, subcate0, price1, price2, price3, subcate1, opt1price1, opt1price2, opt1price3, subcate2, opt2price1, opt2price2, opt2price3, email, postingdate, readcount, day, gawe, trial, visible) 
+		values (#{cate}, #{subCate}, #{represent}, #{title}, #{lesson}, #{description}, #{contentimg}, 
+		#{careerDB}, #{subCate0},#{price1}, #{price2},#{price3}, #{subCate1},#{opt1price1}, #{opt1price2},#{opt1price3},#{subCate2},#{opt2price1}, #{opt2price2},#{opt2price3}, #{email}, #{postingdate}, #{readCount}, #{day}, #{gawe}, #{trial}, 1)
+	</insert>
+
+	<update id="update" parameterType="lesson.board.model.LessonCardDB" >
+		update lesson set represent=#{represent},title=#{title}, lesson=#{lesson}
+		, description=#{description}, careerDB=#{careerDB}, day=#{day}, gawe=#{gawe}, trial=#{trial}, contentimg=#{contentimg} where id=#{id}
+	</update>
+	
+	<update id="readCount">
+		update lesson set readcount=readcount+1 where id=#{id}
+	</update>
+	
+	<select id="countLesson" parameterType="lesson.board.model.LessonCardDB" resultType="Integer" >
+		select count(*) from lesson where email=#{email}
+	</select>
+
+	<select id="checkLesson" resultType="Integer">
+		select count(*) from lesson where email=#{email}
+	</select>
+	<!-- 수정 -->
+	<select id="read" resultType="lesson.board.model.LessonCardDB2" >
+		select cate, subcate, title, lesson, description, careerdb, email, id, subcate0, price1, price2, price3, subcate1, opt1price1, opt1price2, opt1price3, subcate2, opt2price1, opt2price2, opt2price3, represent, day, gawe, contentimg from lesson where id=#{id} and email=#{email}
+	</select>
+	
+	<delete id="deleteLesson" >
+		delete from lesson where id = #{id} and email=#{email}
+	</delete>
+	
+	<update id="deleteImg" >
+		update lesson set 
+		<choose>
+   		    <when test = 'imgpath.equals("1")' >
+			 imgpath1=null
+			 </when>
+			<when test = 'imgpath.equals("2")' >
+			 imgpath2=null
+			 </when>
+			 <when test = 'imgpath.equals("3")' >
+			 imgpath3=null
+			 </when>
+			 <when test = 'imgpath.equals("4")' >
+			 imgpath4=null
+			 </when>
+		</choose>
+		where id=#{id}
+	</update>
+	
+	<select id="confirmApplyWish" resultType="Integer">
+		select count(*) from wishlist where postId=#{id}
+	</select>
+	
+	<delete id="deleteApply">
+		delete from applylist where lessonId=#{id}
+	</delete>
+	
+	<delete id="deleteWishList">
+		delete from wishlist where postId=#{id}
+	</delete>
+	
+	<select id="myLessonList" resultType="lesson.board.model.PostView">
+		select A.name, A.birth, A.phone, B.universe, B.univsub ,  B.sexual, B.career,C.cate, C.subcate, C.represent, C.title, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.visible
+		from members as A, profile as B, lesson as C where A.email = #{email} and B.email = #{email} and C.email = #{email}
+	</select>
+	
+	<select id="myLessonListFromTutorProfile" resultType="lesson.board.model.PostView">
+		select A.name, A.birth, A.phone, B.universe, B.univsub ,  B.sexual, B.career,C.cate, C.subcate, C.represent, C.title, C.price3, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3,C.id
+		from members as A, profile as B, lesson as C where A.email = #{email} and B.email = #{email} and C.email = #{email} and A.membership=1 and C.visible=1
+	</select>
+	
+	<select id="countSubject" resultType="int">
+		select count(*) from members as A, lesson as B 
+		<choose>
+   		    <when test = 'subject!=null and (subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("자소서/입시"))' >
+			 where A.membership=1 and B.visible=1 and B.cate=#{subject} and A.email=B.email
+			 </when>
+			 <otherwise>
+			 where A.membership=1 and B.visible=1 and B.subcate like concat('%',#{subject},'%') and A.email=B.email
+			 </otherwise>
+		</choose>
+	</select>
+	
+	<select id="listPost" resultType="lesson.board.model.PostView">
+		select A.name, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career, C.subcate, C.represent, C.title, C.subcate0, C.price1, C.price3, C.subcate1, C.opt1price3 , C.subcate2, C.opt2price3 ,C.id, C.readcount
+		from members as A, profile as B, lesson as C where A.email=B.email and B.email=C.email and A.membership=1 and C.visible=1
+		<choose>
+			<when test = 'subject!=null and (subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("자소서/입시"))' >
+			 and C.cate=#{subject} order by readcount desc limit #{firstRow}, #{endRow}
+			 </when>
+			 <otherwise>
+			 and C.subcate like concat('%',#{subject},'%') order by readcount desc limit #{firstRow}, #{endRow}
+			 </otherwise>
+		</choose>
+	</select>
+	
+	<select id="listNewPost" resultType="lesson.board.model.PostView">
+		select A.name, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career, C.title, C.subcate0, C.price1, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3 , C.id
+		from members as A, profile as B, lesson as C where A.email=B.email and B.email=C.email and A.membership=1 and C.visible=1
+		<choose>
+			<when test = 'subject!=null and (subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("자소서/입시"))' >
+			 and C.cate=#{subject} order by postingdate desc limit 10
+			 </when>
+			 <otherwise>
+			 and C.subcate like concat('%',#{subject},'%') order by postingdate desc limit 10
+			 </otherwise>
+		</choose>
+	</select>
+	
+	<select id="countForm" resultType="int">
+		select count(*) from lesson as A, profile as B, members as C where C.membership=1 and A.visible=1 and B.locales like concat('%',#{locale},'%') and B.career>=#{career}
+		 and B.sexual like concat('%',#{sexual},'%') and A.email = B.email and C.email = B.email
+		<choose>
+   		    <when test = '(subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("자소서/입시"))' >
+			   and A.cate=#{subject} 
+			 </when>
+			 <otherwise>
+			  and A.subcate like concat('%',#{subject},'%')
+			 </otherwise>
+		</choose>
+	</select>
+	
+	
+	<select id="listForm" resultType="lesson.board.model.PostView">
+		select A.name, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career, C.subcate, C.represent, C.title, C.subcate0, C.price1, C.price3, C.subcate1, C.opt1price3 , C.subcate2, C.opt2price3 , C.id, C.readcount
+		from members as A, profile as B, lesson as C where A.email=B.email and B.email=C.email and A.membership=1 and C.visible=1 and B.locales like concat('%',#{locale},'%') and B.career>=#{career} 
+		 and B.sexual like concat('%',#{sexual},'%')
+		<choose>
+   		    <when test = 'array.equals("id") and (subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("자소서/입시"))' >
+			 	and C.cate=#{subject}  order by id desc limit #{firstRow}, #{endRow}
+			 </when>
+			 
+			 <when test = 'array.equals("readcount") and (subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("자소서/입시"))' >
+			 	and C.cate=#{subject}  order by readcount desc limit #{firstRow}, #{endRow}
+			 </when>
+			 
+			 <when test = 'array.equals("id") and !(subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("자소서/입시"))' >
+			 	and C.subcate like concat('%',#{subject},'%')  order by id desc limit #{firstRow}, #{endRow}
+			 </when>
+			 
+			 <when test = 'array.equals("readcount") and !(subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("자소서/입시"))' >
+			 	and C.subcate like concat('%',#{subject},'%')  order by readcount desc limit #{firstRow}, #{endRow}
+			 </when>
+		</choose>
+	</select>
+	
+	<select id="readProfilePost" resultType="lesson.member.model.Profile">
+		select A.email, A.name, A.birth, B.imgpath, B.locales, B.universe, B.univsub, B.universer, B.career, B.sexual, B.academy, B.academyd, B.nation, B.nationy, B.toeic, B.tofle, B.teps, B.hsk, B.jpt, B.singular, B.certify
+		from members as A, profile as B where A.email = #{email} and B.email=#{email}
+	</select>
+	<!-- 수정 -->
+	<select id="readLessonPost" resultType="lesson.board.model.LessonCardDB2">
+		select cate, subcate, represent, title, lesson, description, contentimg, careerDB, subcate0, price1, price2, price3, subcate1, opt1price1, opt1price2, opt1price3, subcate2, opt2price1, opt2price2, opt2price3, postingdate, readcount, day, gawe, trial, visible from lesson where id=#{id}
+	</select>
+	
+	<select id="listMain" resultType="lesson.board.model.PostView">
+		(select A.name, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
+		from members as A, profile as B, lesson as C where A.email = B.email and B.email=C.email and A.membership=1 and C.visible=1
+		and cate='수학' order by C.readcount desc limit 3) 
+		union all
+		(select A.name, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title,  C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
+		from members as A, profile as B, lesson as C where A.email = B.email and B.email=C.email and A.membership=1 and C.visible=1
+		and cate='외국어' order by C.readcount desc limit 3) 
+		union all
+		(select A.name, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
+		from members as A, profile as B, lesson as C where A.email = B.email and B.email=C.email and A.membership=1 and C.visible=1
+		and cate='국어' order by C.readcount desc limit 3) 
+		union all
+		(select A.name, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title,  C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
+		from members as A, profile as B, lesson as C where A.email = B.email and B.email=C.email and A.membership=1 and C.visible=1
+		and cate='사회' order by C.readcount desc limit 3) 
+		union all
+		(select A.name, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title,  C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
+		from members as A, profile as B, lesson as C where A.email = B.email and B.email=C.email and A.membership=1 and C.visible=1
+		and cate='과학' order by C.readcount desc limit 3) 
+		union all
+		(select A.name, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
+		from members as A, profile as B, lesson as C where A.email = B.email and B.email=C.email and A.membership=1 and C.visible=1
+		and cate='예체능' order by C.readcount desc limit 3) 
+		union all
+		(select A.name, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
+		from members as A, profile as B, lesson as C where A.email = B.email and B.email=C.email and A.membership=1 and C.visible=1
+		and cate='자소서/입시' order by C.readcount desc limit 3) 
+	</select>
+	
+	<select id="purchaseRead" resultType="lesson.board.model.PurchaseRead">
+		select A.email, A.name, A.phone ,B.sexual, C.represent, C.title, C.cate, C.subcate, C.gawe, C.trial, C.visible ,
+		<choose>
+   		    <when test ='subcate.equals("first")'>
+   		     C.subCate0, C.price1, C.price2, C.price3 from members as A, profile as B, lesson as C where A.email=#{email} and B.email=#{email} and C.id=#{id}
+   		    </when>
+   		    <when test ='subcate.equals("second")'>
+   		     C.subCate1, C.opt1price1, C.opt1price2, C.opt1price3 from members as A, profile as B, lesson as C where A.email=#{email} and B.email=#{email} and C.id=#{id}
+   		    </when>
+   		    <when test ='subcate.equals("third")'>
+   		     C.subCate2, C.opt2price1, C.opt2price2, C.opt2price3 from members as A, profile as B, lesson as C where A.email=#{email} and B.email=#{email} and C.id=#{id}
+   		    </when>
+    	</choose>
+	</select>
+	
+	<select id="phoneNumber" resultType="String">
+		select phone from members where email=#{email}
+	</select>
+	
+	<select id="readBuyerName" resultType="String">
+		select name from members where email=#{email}
+	</select>
+	
+	<insert id="insertPurchaseHistory" parameterType="lesson.board.model.PurchaseHistory">
+		insert into purchasehistory (buyerEmail, buyerName, buyerPhone, sellerEmail, sellerName, sellerPhone, orderDate, postId, price1, price2, price3, trial, gawe, startDate, endDate, orderstatus, title, cate, subcate, bank, depositor) 
+		values (#{buyerEmail}, #{buyerName}, #{buyerPhone}, #{sellerEmail}, #{sellerName}, #{sellerPhone}, #{orderDate}, #{postId}, #{price1}, #{price2}, #{price3}, #{trial}, #{gawe}, #{startDate}, #{endDate}, #{orderstatus}, #{title}, #{cate}, #{subcate}, #{bank}, #{depositor} )
+	</insert>
+		
+	<select id="takeSellerImg" resultType="String">
+		select imgpath from profile where email=#{email}
+	</select>	
+	
+	<select id="takeNamePhone" resultType="String">
+		(select name from members where email=#{email}) union all (select phone from members where email=#{email})
+	</select>	
+	
+	<insert id="insertCunsultList" parameterType="lesson.board.model.CunsultForm">
+		insert into cunsult (lessonid, cate, subcate, title, teachername, teacheremail, buyeremail, buyername, buyerphone, message, date, cunsultid) 
+		values (#{lessonid}, #{cate}, #{subcate}, #{title}, #{teachername}, #{teacheremail}, #{buyeremail}, #{buyername}, #{buyerphone}, #{message}, #{date},#{cunsultid} )
+	</insert>
+	
+	<select id="takeTeachEmail" resultType="String">
+		select email from lesson where id=#{id}
+	</select>	
+	
+	<select id="takeTeacher" resultType="lesson.board.model.PostView" parameterType="lesson.board.model.PostView">
+		select A.name, A.email, B.cate, B.subcate, B.title from members as A, lesson as B where A.email=B.email and A.email=#{email} and id=#{id}
+	</select>	
+	
+	
+	<select id="confirmCunsultCount" resultType="Integer">
+		select count from cunsultcount where email=#{email}
+	</select>
+	
+	<update id="increamentCunsultCount">
+		update cunsultcount set count=count+1 where email=#{email}
+	</update>
+	
+	
+	<select id="takeImgPath" resultType="String">
+		select contentimg from lesson where id=#{id} and email=#{email}
+	</select>
+	
+	<update id="updateImgUpload">
+		update lesson set contentimg=#{newname} where id=#{id}
+	</update>
+	
+	<select id="checkPurchaseHistory" resultType="Integer">
+		select count(*) from purchasehistory where postid = #{postId} 
+	</select>
+	
+	<update id="giveVisibleZero">
+		update lesson set visible=0 where id=#{postId}
+	</update>
+	
+	
+	<insert id="addDelWatinglist" >
+		insert into delwaitinglist (postid, email, recordtime) 
+		values (#{id}, #{email}, now() )
+	</insert>
+</mapper>

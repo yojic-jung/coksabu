@@ -1,0 +1,102 @@
+@charset "UTF-8";
+ html, body, section{overflow:hidden }
+ 
+ .top-ul a {
+            text-decoration:none;
+            color :black
+          }
+
+	.subject{
+		 	margin:12px 0px 0px 0px;
+            padding: 0px;
+            list-style:none;
+           	display:inline-block;
+	}
+	
+	.search{
+			width:25%;padding:10px;color:orange;font-weight:bolder;
+			font-size:25px;
+	}
+
+	.search-table td{
+			padding:15px 0px;;
+	}
+	.list{
+		width:100%;margin:0px;
+	}
+	.list td {
+		width:50%;
+	}
+	#name{
+			color:dimgray;
+			font-size:20px;
+			font-family:'JejuGothic';
+			font-weight:bolder;
+			margin-bottom:15px;
+	}
+	
+	#grade{
+			font-size:25px;
+			color:dimgray;
+			font-weight:bolder;
+			margin-bottom:15px;
+	}
+	
+	#subcate{
+			font-size:25px;
+			color: white;	
+			font-family:'JejuGothic';
+			border-radius:4px;
+			padding:4px;
+			background:dimgray;
+			margin-bottom:15px;
+	}
+	
+	#locale{
+			font-size:25px;
+			font-family:'JejuGothic';
+			color:gray;
+			margin-bottom:15px;
+			overflow:hidden;
+			white-space:nowrap;
+			text-overflow:ellipsis;
+	}
+	
+	#price{
+		font-size:20px;
+		font-family:'JejuGothic';
+		color:gray;
+		margin-bottom:15px;
+	}
+	.cate1, .cate2, .cate3, .cate4, .cate5, .cate6, .cate7{
+		width:25px; height:25px;
+	}
+	.locale-main, .locale, #gradeform, #sexualform{
+		font-size:25px;
+		padding:20px;
+	}
+	.pagemove{
+		text-align:center;
+    	width:30%x;
+    	margin:auto;
+    	color:dimgray;
+    	font-size:30px;
+    }
+    
+	.apply-table{
+		width:100%;
+		margin:10px auto;
+	}
+	
+	.apply-table td{
+		width:30%;
+		padding:20px;
+		min-height:30px;
+		font-size:30px;
+		color: black;
+		text-align:center;
+		border-right:0.2px solid lightgray;
+	}
+	.c-box-close{
+		padding:20px;
+	}

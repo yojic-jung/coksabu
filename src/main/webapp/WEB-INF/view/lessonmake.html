@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="colorbox.css" />
+        <meta charset="utf-8">
+        <script src="file://C:/Users/dywlr/Desktop/js/plugin/jquery-3.3.1.js" ></script>
+        <script src="file://C:/Users/dywlr/Desktop/js/plugin/jquery.colorbox.js"></script>
+        <script>
+          $(document).ready(function(){
+
+            $('.teacher-intr').each(function(idx, item){
+                  if(idx !=0){
+                    $(this).hide();
+                  }
+                });
+
+                $('.lesson-permit').colorbox({
+                  inline:true,
+                  overlayOpacity:0.5,
+                  onOpen:function(){
+                    $('.menu td:first').trigger('click');
+                  },
+                  onClose:function(){
+                    $('.save').trigger('click');
+                  }
+                });
+
+                $('.menu td').click(function(){
+                  $('.td-trans').removeClass('td-trans');
+                  $(this).addClass('td-trans');
+                  var tdIdx = $(this).index();
+                  $('.teacher-intr').each(function(idx, item){
+                    if(tdIdx==idx){
+                      $('.teacher-intr').eq(idx).show();
+                    }else{
+                      $('.teacher-intr').eq(idx).hide();
+                    }
+                  });
+                });
+
+                $('.btn1').click(function(){
+                  $('.menu td').eq(1).trigger('click');
+                })
+
+                $('.btn2').click(function(){
+                  $('.menu td').eq(2).trigger('click');
+                })
+
+                $('.btn3').click(function(){
+                  $('.menu td').eq(3).trigger('click');
+                })
+
+                $('.btn4').click(function(){
+                  $('.menu td').eq(4).trigger('click');
+                })
+
+            $('.service-cate').change(function(){
+              $('.seg-cate').hide();
+              var opIndex = $('.service-cate>option:selected').index();
+              
+              if(opIndex==0){
+                $('.seg-cate').hide();
+              }else{
+                $('.seg-cate').eq(opIndex-1).show();
+              }
+            });
+
+            var a ='<select class="career-op">';
+            for(var i=1990; i<2020; i++){
+              a+='<option>'+i+'</option>';
+            }
+            a+='</select>';
+
+          var b='<select class="career-op">';
+            for(var i=1; i<12; i++){
+              b +='<option>'+i+'</option>';
+            }
+            b+='</select>';
+            
+            document.getElementById('career').innerHTML+='<div class="career-line">'
+            + a+'-'+b +' ~ '+a+'-'+b +' <input class="career-op career-disc" id="career-disc" type="text" /> <span class="del-btn">x</span></div>';
+
+            $('.career-add').click(function(){
+              document.getElementById('career').innerHTML+= '<div class="career-line">'
+              +a+'-'+b +' ~ '+a+'-'+b +' <input class="career-op career-disc" type="text" id="career-disc" /> <span class="del-btn">x</span></div>';
+            })
+
+           
+          });
+
+          $(document).on('click','.del-btn',function(){
+            var idx = $('.del-btn').index(this);
+              $('.career-line').eq(idx).remove();
+          });
+         
+         function checkLesson(member){
+
+          var re1 = /^.{1,20}$/;
+          var re2 = /^[0-9]{1,}$/;
+          
+          var serviceCate = document.getElementById('service-cate');
+          var teacherInt = document.getElementById('teacher-int');
+          var lessonTitle = document.getElementById('lesson-title');
+          var lessonIntr = document.getElementById('lesson-intr');
+          var price = document.getElementById('price');
+
+          if(serviceCate.value=='--선택--'){
+            alert('[선생님소개]페이지의 서비스카테고리를 입력하지 않으셨습니다. 서비스 카테고리를 입력해주세요.')
+            return false;
+          }
+
+          if(!check(re1, lessonTitle, "[선생님소개]페이지의 제목을 20글자 내외로 작성해주세요.")) {
+	           return false;
+	       }
+
+          if(teacherInt.value==""){
+            alert('[선생님소개]페이지의 선생님 소개글을 작성해주세요.')
+            return false;
+          }
+
+          if(lessonIntr.value==""){
+            alert('[수업소개]페이지의 수업소개글을 작성해주세요.');
+            return false;
+          }
+
+          var bool=true;
+          $('#career-disc').each(function(){
+            if(this.value==''){
+              alert('경력사항을 기재하여 주시기 바랍니다.\n 경력이 없으신 경우 [경력사항]페이지의 작은 x버튼을 눌러주시기 바랍니다.');
+              bool = false;
+              return bool;
+            }
+          });
+          if(bool==false){
+            return false;
+          }
+          if(!check(re2, price, "숫자만 포함하여 가격을 입력해주세요.")) {
+	           return false;
+	       }
+         
+         }  
+
+         function check(re, what, message) {
+            if(re.test(what.value)) {
+              return true;
+            }
+            alert(message);
+            what.value = "";
+            what.focus();
+            //return false;
+         }
+        </script>
+        <style>
+        @font-face { font-family: 'JejuGothic'; 
+      src: url(./JejuGothic-Regular.ttf) format('truetype'); 
+      } 
+          *{
+            margin:0px; padding:0px;
+          }
+
+      .menu td{
+        font-family: 'JejuGothic'; 
+        width:100px;
+        float:left;
+        text-align:center;
+        padding:10px;
+      }
+      .menu-td{
+        background:rgb(63, 63, 61);
+        color:white;
+      }
+      .td-trans{
+        background:white;
+        color:rgb(63, 63, 61);
+        border-top: 5px solid rgb(63, 63, 61);
+      }
+      .btn{
+        font-size:13px;
+        border-radius:5px;
+        padding:5px;
+        background:rgb(75, 74, 74);
+        color:white;
+        float:right;
+      }
+      .service-cate, .seg-cate{
+        width:120px; padding:5px;
+        font-size:14px; border-radius:2px;
+        margin-top:10px;
+      }
+
+      .teacher-intr{
+        font-family: 'JejuGothic'; 
+        width:500px;
+        margin:30px auto;
+        line-height:130%;
+      }
+      .career-op{
+        padding:3px;
+        font-size:13px;
+        margin-top:10px;
+      }
+
+      .career-disc{
+        width:180px;
+      }
+
+      .del-btn{
+        color:white;
+        background:rgb(63, 63, 61);
+        border-radius:3px;
+        padding:3px;
+      }
+
+        </style>
+    </head>
+    <body>
+        <div class="lesson-permit"  href="#lesson" style="width:600px; height:300px; background:gray;">
+        </div>
+
+        <div style="display:none; font-size:15px; color:gray; ">
+            <div id="lesson" >
+                <div style="list-style:none;width:620px; ">    
+                   
+                  <!-- 메뉴 -->
+                  <div>
+                    <table class="menu">
+                      <tr>
+                      <td class="menu-td">선생님소개</td>
+                      <td class="menu-td">수업소개</td>
+                      <td class="menu-td">경력사항</td>
+                      <td class="menu-td">미디어</td>
+                      <td class="menu-td">가격</td>
+                      </tr>
+                    </table>
+
+                  </div>
+
+                  <form onSubmit="return checkLesson(this)">
+
+                  <!-- 선생님 소개 -->
+                    <div class="teacher-intr" >
+                        <div>
+                          서비스 카테고리<br/>
+                          <select class="service-cate" id="service-cate">
+                            <option>--선택--</option>
+                            <option>학업/입시</option>
+                            <option>외국어</option>
+                            <option>프로그래밍</option>
+                            <option>음악/악기</option>
+                            <option>스포츠레슨</option>
+                            <option>미술/뷰티</option>
+                            <option>영상/편집</option>
+                          </select>
+                          <select class="seg-cate" style="display:none">
+                            <option>영어</option>
+                            <option>수학</option>
+                            <option>국어</option>
+                            <option>사회</option>
+                            <option>과학</option>
+                            <option>입시/자소서</option>
+                          </select>
+
+                          <select class="seg-cate" style="display:none">
+                            <option>toeic/tofle/teps</option>
+                            <option>중국어</option>
+                            <option>일본어</option>
+                            <option>기타</option>
+                          </select>
+
+                          <select class="seg-cate" style="display:none">
+                            <option>프로그래밍 전체</option>
+                          </select>
+
+                          <select class="seg-cate" style="display:none">
+                              <option>음악/악기 전체</option>
+                          </select>
+
+                          <select class="seg-cate" style="display:none">
+                            <option>헬스</option>
+                            <option>축구레슨</option>
+                            <option>야구레슨</option>
+                            <option>농구레슨</option>
+                            <option>기타</option>
+                          </select>
+
+                          <select class="seg-cate" style="display:none">
+                            <option>미술/뷰티 전체</option>
+                          </select>
+
+                          <select class="seg-cate" style="display:none">
+                            <option>영상/편집 전체</option>
+                          </select>
+                        </div>
+                      <div>
+                        <br/>
+                        제목<br/>
+                        <input id="lesson-title" type="text" style="margin-top:10px;width:450px; padding:5px; font-size:15px;" placeholder="수업제목을 20자 내외로 적어주세요." />
+                      </div>
+                      <div>
+                        <br/>
+                        선생님 소개<br/>
+                        <textarea id="teacher-int" rows="10" cols="60" style="margin-top:10px"
+                        placeholder="선생님에 대해 자세하게 적어주세요."></textarea>
+                      </div>
+                      <br/>
+                      <span class="btn1 btn">다음단계</span>
+                    </div>
+                  <!-- 수업 소개 -->
+                    <div class="teacher-intr" >
+                        수업 소개 <br/>
+                        <textarea id="lesson-intr" rows="15" cols="60" style="margin-top:10px;"
+                        placeholder="선생님의 수업방식과 커리큘럼에 대해 자세히 적어주세요."></textarea>
+                        <br/><br/>
+                        <span class="btn2 btn">다음단계</span>
+                    </div>
+                   
+                  <!-- 경력사항 -->
+                    <div class="teacher-intr" style="width:500px;" >
+                        경력 사항<br/>
+                        <span style="color:gray; font-size:13px;">경력이 없으신 경우 x버튼을 눌러주시기 바랍니다.</span><br/>
+                        <div class="career"  id="career" >
+                        </div>
+                        <br/>
+                        <span class="btn career-add">경력추가</span>
+                        <br/>
+                        <br/>
+                        경력 설명<br/>
+                        <span style="color:gray; font-size:13px; margin-top:10px">경력이 없으신 경우 생략가능합니다.</span><br/>
+                        <textarea rows="10" cols="60" placeholder="위의 경력에 대해 자세하게 설명해주세요."
+                        style="margin-top:10px;"></textarea>
+                        <br/><br/>    
+                        <span class="btn3 btn">다음단계</span>
+                    </div>
+                   
+                  <!-- 미디어 -->
+                    <div class="teacher-intr" id="teacher-intr" >
+                      <input type="file" />
+                      <br/><br/>
+                          <span class="btn4 btn">다음단계</span>
+                    </div>
+                  <!-- 가격 -->
+                    <div class="teacher-intr" >
+                      수업기준&nbsp;
+                      <select>
+                        <option>한달 12회 기준</option>
+                        <option>한달 8회 기준</option>
+                        <option>한달 4회 기준</option>
+                        <option>1회 기준</option>
+                      </select>
+                      &nbsp;&nbsp;회당 수업시간  
+                      <select>
+                          <option>60분</option>
+                          <option>90분</option>
+                          <option>2시간</option>
+                          <option>2시간 30분</option>
+                          <option>3시간</option>
+                          <option>4시간</option>
+                        </select>
+                        <br/>
+                        <br/>
+                      가격 <input type="text" id="price" />&nbsp;숫자만 입력 ex) 400000 
+                      <br/>
+                      <div>
+                          <input class="save btn" type="submit" value="저장하기"/> 
+                        </div>
+                    </div>
+
+                  </form>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

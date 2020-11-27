@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean id="passwordEncoder"
+          class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+          
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl"
+			value="jdbc:mysql://localhost/coksabu?characterEncoding=utf8" />
+		<property name="user" value="dywlr" />
+		<property name="password" value="1111" />
+		<property name="idleConnectionTestPeriod" value="60" />
+    	<property name="preferredTestQuery" value="SELECT 1" />
+    	<property name="testConnectionOnCheckin" value="true" />
+    	<property name="testConnectionOnCheckout" value="false" />
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:/mybatis/memberDao.xml</value>
+				<value>classpath:/mybatis/boardDao.xml</value>
+				<value>classpath:/mybatis/applyDao.xml</value>
+				<value>classpath:/mybatis/adminDao.xml</value>
+				<value>classpath:/mybatis/dealDao.xml</value>
+				<value>classpath:/mybatis/cronDao.xml</value>
+				<value>classpath:/mybatis/chatDao.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+
+	<bean id="chatDao" class="org.mybatis.spring.mapper.MapperFactoryBean" >
+		<property name="mapperInterface" value="test.dao.ChatDao" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+
+	<bean id="chattingService"
+		class="test.service.ChattingService">
+		<property name="chatDao" ref="chatDao"/>
+	</bean>	
+
+	<bean id="chatDealService"
+		class="test.service.ChatDealService">
+		<property name="chatDao" ref="chatDao"/>
+	</bean>	
+
+	<bean id="memberDao" class="org.mybatis.spring.mapper.MapperFactoryBean" >
+		<property name="mapperInterface" value="lesson.member.dao.MemberDao" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+
+	<bean id="boardDao" class="org.mybatis.spring.mapper.MapperFactoryBean" >
+		<property name="mapperInterface" value="lesson.board.dao.BoardDao" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean id="adminDao" class="org.mybatis.spring.mapper.MapperFactoryBean" >
+		<property name="mapperInterface" value="lesson.admin.dao.AdminDao" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean id="applyDao" class="org.mybatis.spring.mapper.MapperFactoryBean" >
+		<property name="mapperInterface" value="lesson.apply.dao.ApplyDao" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean id="dealDao" class="org.mybatis.spring.mapper.MapperFactoryBean" >
+		<property name="mapperInterface" value="lesson.deal.dao.DealDao" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean id="cronDao" class="org.mybatis.spring.mapper.MapperFactoryBean" >
+		<property name="mapperInterface" value="lesson.cron.dao.CronDao" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean id="checkAndInsertService"
+		class="lesson.member.service.CheckAndInsertService">
+		<property name="memberDao" ref="memberDao"/>
+		<property name="passwordEncoder" ref="passwordEncoder"/>
+	</bean>
+
+	<bean id="checkAndImgPath"
+		class="lesson.member.service.CheckAndImgPath">
+		<property name="memberDao" ref="memberDao"/>
+	</bean>		
+	
+	<bean id="writeProfileService"
+		class="lesson.member.service.WriteProfileService">
+		<property name="memberDao" ref="memberDao"/>
+	</bean>	
+	
+	<bean id="loginCheckService"
+		class="lesson.member.service.LoginCheckService">
+		<property name="memberDao" ref="memberDao"/>
+	</bean>	
+
+	<bean id="readProfileService"
+		class="lesson.member.service.ReadProfileService">
+		<property name="memberDao" ref="memberDao"/>
+	</bean>	
+	
+	<bean id="univSearchService"
+		class="lesson.member.service.UnivSearchService">
+		<property name="memberDao" ref="memberDao"/>
+	</bean>	
+	
+	<bean id="certifyService"
+		class="lesson.member.service.CertifyService">
+		<property name="memberDao" ref="memberDao"/>
+	</bean>	
+	
+	<bean id="memberService"
+		class="lesson.member.service.MemberService">
+		<property name="memberDao" ref="memberDao"/>
+		<property name="passwordEncoder" ref="passwordEncoder"/>
+	</bean>	
+	
+	<bean id="lessonCertifyService"
+		class="lesson.member.service.LessonCertifyService">
+		<property name="memberDao" ref="memberDao"/>
+	</bean>
+	
+	<bean id="emailPassFindService"
+		class="lesson.member.service.EmailPassFindService">
+		<property name="memberDao" ref="memberDao"/>
+		<property name="passwordEncoder" ref="passwordEncoder"/>
+	</bean>
+	
+	<bean id="writeLessonService"
+		class="lesson.board.service.WriteLessonService">
+		<property name="boardDao" ref="boardDao"/>
+	</bean>
+				
+	<bean id="readLessonService"
+		class="lesson.board.service.ReadLessonService">
+		<property name="boardDao" ref="boardDao"/>
+	</bean>
+	
+	<bean id="listService"
+		class="lesson.board.service.ListService">
+		<property name="boardDao" ref="boardDao"/>
+	</bean>
+	
+	<bean id="readPostService"
+		class="lesson.board.service.ReadPostService">
+		<property name="boardDao" ref="boardDao"/>
+	</bean>
+	
+	<bean id="deleteLessonService"
+		class="lesson.board.service.DeleteLessonService">
+		<property name="boardDao" ref="boardDao"/>
+	</bean>
+	
+	<bean id="purchaseService"
+		class="lesson.board.service.PurchaseService">
+		<property name="boardDao" ref="boardDao"/>
+	</bean>
+
+	<bean id="cunsultService"
+		class="lesson.board.service.CunsultService">
+		<property name="boardDao" ref="boardDao"/>
+	</bean>
+
+	<bean id="applyService"
+		class="lesson.apply.service.ApplyService">
+		<property name="applyDao" ref="applyDao"/>
+	</bean>
+	
+	<bean id="listApplyService"
+		class="lesson.apply.service.ListApplyService">
+		<property name="applyDao" ref="applyDao"/>
+	</bean>
+		
+	<bean id="teacherApplyService"
+		class="lesson.apply.service.TeacherApplyService">
+		<property name="applyDao" ref="applyDao"/>
+	</bean>
+	
+	<bean id="applyShowService"
+		class="lesson.apply.service.ApplyShowService">
+		<property name="applyDao" ref="applyDao"/>
+	</bean>
+	
+	<bean id="myApplyListService"
+		class="lesson.apply.service.MyApplyListService">
+		<property name="applyDao" ref="applyDao"/>
+	</bean>
+	
+	<bean id="adminService"
+		class="lesson.admin.service.AdminService">
+		<property name="adminDao" ref="adminDao"/>
+	</bean>
+	
+	<bean id="adminAdditionService"
+		class="lesson.admin.service.AdminAdditionService">
+		<property name="adminDao" ref="adminDao"/>
+	</bean>
+	
+	<bean id="dealPurchaseService"
+		class="lesson.deal.service.DealPurchaseService">
+		<property name="dealDao" ref="dealDao"/>
+	</bean>
+	
+	<bean id="dealSaleService"
+		class="lesson.deal.service.DealSaleService">
+		<property name="dealDao" ref="dealDao"/>
+	</bean>
+	
+	<bean id="dealRefundService"
+		class="lesson.deal.service.DealRefundService">
+		<property name="dealDao" ref="dealDao"/>
+	</bean>
+	
+	<bean id="myCunsultListService"
+		class="lesson.deal.service.MyCunsultListService">
+		<property name="dealDao" ref="dealDao"/>
+	</bean>
+
+	<bean id="cronService"
+		class="lesson.cron.job.CronService">
+		<property name="cronDao" ref="cronDao"/>
+	</bean>
+		
+</beans>

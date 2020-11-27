@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+    
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-5level %d{HH:mm:ss.SSS} [%thread %F:%L] %method - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 파일 경로 -->
+        <file>C:\Users\82108\eclipse-workspace\coksabu\src\main\webapp\WEB-INF\logback\logback.log</file>
+        <!-- 출력패턴 -->
+        <encoder>
+            <pattern>%-5level %d{HH:mm:ss.SSS} [%thread %F:%L] %method - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- .gz,.zip 등을 넣으면 자동으로 일자별 로그파일 압축 -->
+            <fileNamePattern>C:\Users\82108\eclipse-workspace\coksabu\src\main\webapp\WEB-INF\logback\logback.%d{yyyy-MM-dd}_%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- 파일당 최고 용량 10MB -->
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- 일자별 로그파일 최대 보관주기(일단위) 만약 해당 설정일 이상된 파일은 자동으로 제거-->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+    
+    <appender name="ROLLING_APPLY_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 파일 경로 -->
+        <file>C:\Users\82108\eclipse-workspace\coksabu\src\main\webapp\WEB-INF\logback\apply\logback.log</file>
+        <!-- 출력패턴 -->
+        <encoder>
+            <pattern>%-5level %d{HH:mm:ss.SSS} [%thread %F:%L] %method - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- .gz,.zip 등을 넣으면 자동으로 일자별 로그파일 압축 -->
+            <fileNamePattern>C:\Users\82108\eclipse-workspace\coksabu\src\main\webapp\WEB-INF\logback\apply\logback.%d{yyyy-MM-dd}_%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- 파일당 최고 용량 10MB -->
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- 일자별 로그파일 최대 보관주기(일단위) 만약 해당 설정일 이상된 파일은 자동으로 제거-->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+    
+    <appender name="ROLLING_MEMBER_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 파일 경로 -->
+        <file>C:\Users\82108\eclipse-workspace\coksabu\src\main\webapp\WEB-INF\logback\member\logback.log</file>
+        <!-- 출력패턴 -->
+        <encoder>
+            <pattern>%-5level %d{HH:mm:ss.SSS} [%thread %F:%L] %method - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- .gz,.zip 등을 넣으면 자동으로 일자별 로그파일 압축 -->
+            <fileNamePattern>C:\Users\82108\eclipse-workspace\coksabu\src\main\webapp\WEB-INF\logback\member\logback.%d{yyyy-MM-dd}_%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- 파일당 최고 용량 10MB -->
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- 일자별 로그파일 최대 보관주기(일단위) 만약 해당 설정일 이상된 파일은 자동으로 제거-->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+    
+    <appender name="ROLLING_BOARD_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 파일 경로 -->
+        <file>C:\Users\82108\eclipse-workspace\coksabu\src\main\webapp\WEB-INF\logback\board\logback.log</file>
+        <!-- 출력패턴 -->
+        <encoder>
+            <pattern>%-5level %d{HH:mm:ss.SSS} [%thread %F:%L] %method - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- .gz,.zip 등을 넣으면 자동으로 일자별 로그파일 압축 -->
+            <fileNamePattern>C:\Users\82108\eclipse-workspace\coksabu\src\main\webapp\WEB-INF\logback\board\logback.%d{yyyy-MM-dd}_%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- 파일당 최고 용량 10MB -->
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- 일자별 로그파일 최대 보관주기(일단위) 만약 해당 설정일 이상된 파일은 자동으로 제거-->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+    
+    <appender name="ROLLING_DEAL_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 파일 경로 -->
+        <file>C:\Users\82108\eclipse-workspace\coksabu\src\main\webapp\WEB-INF\logback\deal\logback.log</file>
+        <!-- 출력패턴 -->
+        <encoder>
+            <pattern>%-5level %d{HH:mm:ss.SSS} [%thread %F:%L] %method - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- .gz,.zip 등을 넣으면 자동으로 일자별 로그파일 압축 -->
+            <fileNamePattern>C:\Users\82108\eclipse-workspace\coksabu\src\main\webapp\WEB-INF\logback\deal\logback.%d{yyyy-MM-dd}_%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- 파일당 최고 용량 10MB -->
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- 일자별 로그파일 최대 보관주기(일단위) 만약 해당 설정일 이상된 파일은 자동으로 제거-->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+    
+    <appender name="ROLLING_CHAT_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 파일 경로 -->
+        <file>C:\Users\82108\eclipse-workspace\coksabu\src\main\webapp\WEB-INF\logback\chat\logback.log</file>
+        <!-- 출력패턴 -->
+        <encoder>
+            <pattern>%-5level %d{HH:mm:ss.SSS} [%thread %F:%L] %method - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- .gz,.zip 등을 넣으면 자동으로 일자별 로그파일 압축 -->
+            <fileNamePattern>C:\Users\82108\eclipse-workspace\coksabu\src\main\webapp\WEB-INF\logback\chat\logback.%d{yyyy-MM-dd}_%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- 파일당 최고 용량 10MB -->
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- 일자별 로그파일 최대 보관주기(일단위) 만약 해당 설정일 이상된 파일은 자동으로 제거-->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+    
+    <appender name="ROLLING_CRON_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 파일 경로 -->
+        <file>C:\Users\82108\eclipse-workspace\coksabu\src\main\webapp\WEB-INF\logback\cron\logback.log</file>
+        <!-- 출력패턴 -->
+        <encoder>
+            <pattern>%-5level %d{HH:mm:ss.SSS} [%thread %F:%L] %method - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- .gz,.zip 등을 넣으면 자동으로 일자별 로그파일 압축 -->
+            <fileNamePattern>C:\Users\82108\eclipse-workspace\coksabu\src\main\webapp\WEB-INF\logback\cron\logback.%d{yyyy-MM-dd}_%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- 파일당 최고 용량 10MB -->
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- 일자별 로그파일 최대 보관주기(일단위) 만약 해당 설정일 이상된 파일은 자동으로 제거-->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+    
+    
+    <appender name="ROLLING_CHAT_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 파일 경로 -->
+        <file>C:\Users\82108\eclipse-workspace\coksabu\src\main\webapp\WEB-INF\logback\chat\logback.log</file>
+        <!-- 출력패턴 -->
+        <encoder>
+            <pattern>%-5level %d{HH:mm:ss.SSS} [%thread %F:%L] %method - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- .gz,.zip 등을 넣으면 자동으로 일자별 로그파일 압축 -->
+            <fileNamePattern>C:\Users\82108\eclipse-workspace\coksabu\src\main\webapp\WEB-INF\logback\chat\logback.%d{yyyy-MM-dd}_%i.log.gz</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- 파일당 최고 용량 10MB -->
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <!-- 일자별 로그파일 최대 보관주기(일단위) 만약 해당 설정일 이상된 파일은 자동으로 제거-->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+    </appender>
+ 
+ 
+	 <logger name="lesson.apply" level="WARN">
+        <appender-ref ref="ROLLING_APPLY_FILE" />
+    </logger>
+	<logger name="lesson.member" level="WARN">
+        <appender-ref ref="ROLLING_MEMBER_FILE" />
+    </logger>
+    <logger name="lesson.board" level="WARN">
+        <appender-ref ref="ROLLING_BOARD_FILE" />
+    </logger>
+    <logger name="lesson.deal" level="WARN">
+        <appender-ref ref="ROLLING_DEAL_FILE" />
+    </logger>
+    <logger name="test" level="WARN">
+        <appender-ref ref="ROLLING_CHAT_FILE" />
+    </logger>
+    <logger name="lesson.cron" level="WARN">
+        <appender-ref ref="ROLLING_CRON_FILE" />
+    </logger>
+    
+    
+    <root level="INFO">
+        <appender-ref ref="ROLLING_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+    
+</configuration>

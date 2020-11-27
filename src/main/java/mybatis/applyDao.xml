@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="lesson.apply.dao.ApplyDao">
+
+	<select id="takeApplyEmail" resultType="String" >
+		select email from apply where id=#{applyId}
+	</select>
+
+	<insert id="apply" parameterType="lesson.apply.model.ApplyForm" >
+		insert into apply (email, cate, subcate, grade,sexual, day, time, locale, locale3, month, gawetime,price1, price2, message, postingdate, visible) 
+		values (#{email}, #{cate}, #{subcate}, #{grade}, #{sexual}, #{day}, #{time}, #{locale}, #{locale3}, #{month}, #{gawetime}, #{price1}, #{price2}, #{message}, #{postingdate}, #{visible})
+	</insert>
+	
+	<select id="takeApplyService" resultType="Integer">
+		(select membership from members where email=#{email}) union all (select count(*) from applylist where apply_id=#{apply_id} and teacheremail=#{email}) union all (select count(*) from applylist where apply_id=#{apply_id})
+	</select>
+	
+	<insert id="teacherApply" parameterType="lesson.apply.model.ApplyTeacher">
+		insert into applylist (apply_id, message, teacheremail, applyDate, applicantemail) values (#{apply_id}, #{message}, #{teacherEmail}, #{applyDate}, #{applicantEmail})
+	</insert>
+	
+	<delete id="deleteApply">
+		delete from apply where id=#{id} and email=#{email}
+	</delete>
+	
+	<delete id="deleteApplylist">
+		delete from applylist where apply_id=#{id} and applicantemail=#{email}
+	</delete>
+	
+	<select id="countApply" resultType="Integer" >
+		select count(*) from apply
+	</select>
+	
+	<select id="confirmProfileExist" resultType="Integer" >
+		select count(*) from profile where email=#{email}
+	</select>
+	
+	<select id="countMyApply" resultType="Integer" >
+		select count(*) from apply where email = #{email}
+	</select>
+	
+	<select id="countSearchApply" resultType="Integer" >
+		select count(*) from apply where locale like concat('%',#{locale},'%') and cate=#{cate} and grade like concat('%',#{grade},'%') and sexual like concat('%',#{sexual},'%')
+	</select>
+	
+	<select id="studentInfo" resultType="lesson.apply.model.ApplyForm">
+		select A.name,A.email, B.* from members as A, apply as B where A.email = B.email and B.id=#{id}
+	</select>
+	
+	<select id="listApplyForm" resultType="lesson.apply.model.ApplyForm">
+		select A.name, A.email, B.subcate, B.grade, B.locale, B.locale3, B.month, B.gawetime, B.price1, B.price2, B.day, B.time, B.message , B.sexual, B.id, B.visible from members as A, apply as B where A.email = B.email order by id desc limit #{firstRow}, #{endRow}
+	</select>
+	
+	<select id="listSearchApplyForm" resultType="lesson.apply.model.ApplyForm">
+		select A.name,A.email, B.subcate, B.grade, B.locale, B.locale3, B.month, B.gawetime, B.price1, B.price2,B.day, B.time, B.message , B.sexual,B.id,  B.visible from members as A, apply as B where locale like concat('%',#{locale},'%') and cate=#{cate} and grade like concat('%',#{grade},'%') and sexual like concat('%',#{sexual},'%') and A.email = B.email order by id desc limit #{firstRow}, #{endRow}
+	</select>
+	
+	<select id="myApplyList" resultType="lesson.apply.model.ApplyForm">
+		select A.name, B.subcate, B.grade, B.locale, B.locale3, B.month, B.gawetime, B.price1, B.price2, B.day, B.time, B.message , B.sexual, B.id from members as A, apply as B where A.email = B.email and B.email = #{email}
+	</select>
+	
+	<select id="myTeacherEmail" resultType="lesson.apply.model.ApplyTeacher">
+		select apply_id, teacheremail, teacher_id, message, applydate  from applylist where apply_id=#{id} and applicantemail=#{email}
+	</select>
+	
+	<select id="myLessonList" resultType="lesson.apply.model.ApplyTeacher">
+		<foreach collection="list" item="item" separator="union all">
+		(select A.teacher_id, A.teacheremail, A.message, A.applydate, B.name, B.birth, C.imgpath, C.sexual, C.locales, C.universe, C.univsub, C.career, C.certify  
+		from applylist as A, members as B, profile as C where A.teacher_id = #{item.teacherid} and B.email = #{item.email} and C.email = #{item.email} )
+		</foreach> 
+	</select>
+	
+	<update id="setVisible"  parameterType="Integer">
+		update apply set visible=0 where id=#{id}
+	</update>
+	
+	
+	<update id="increaseApplyCount">
+		update applycount set count=count+1 where email = #{email}
+	</update>
+	
+	<select id="teacherApplyCount" resultType="Integer">
+		select count from applycount where email=#{email} 
+	</select>
+	
+	<select id="takeEmail" resultType="String">
+		select teacheremail from applylist where teacher_id=#{teacher_id} 
+	</select>
+	
+</mapper>

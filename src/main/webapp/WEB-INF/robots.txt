@@ -1,0 +1,8 @@
+User-agent: *
+allow:/
+Disallow:/admin
+Disallow:/listqna
+Disallow:/admininspect
+Disallow:/adminPage
+
+DaumWebMasterTool:8cd644e6a8e8e3d871cb4274a7ff1a96a3bea8963bfd2f09a405ce5dc021568d:mpp07/RgAJHI8X+K1YyEYg==

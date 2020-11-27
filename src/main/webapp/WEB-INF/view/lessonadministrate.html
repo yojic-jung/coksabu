@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css">
+  
+    <style>
+      @font-face { font-family: 'JejuGothic'; 
+      src: url(./JejuGothic-Regular.ttf) format('truetype'); } 
+
+        * { margin:0px; padding:0px; box-sizing: border-box;}
+        body {
+            margin: 0px;
+            padding: 0px;
+          }
+          .jbMenu {
+            z-index:3;
+            display: inline-block;
+            background-color: white;
+            padding: 0px;
+            width: 100%;
+            min-width:550px;
+            border-bottom : solid 2px black;
+          }
+          .top-title{
+            float:left;
+            height:100%;
+            border-right : 2px solid black;
+            text-align:center;
+          }
+          .jbMenu > ul {
+            margin:12px 0px 0px 0px;
+            padding: 0px;
+            list-style:none;
+            float:right;
+          }
+          .jbMenu li{
+            display :inline;
+            margin-right:20px;
+          }
+          .top-ul a {
+            text-decoration:none;
+            color :black
+          }
+
+          .mypage{
+              list-style:none;
+              padding:20px;
+          }
+        .mypage>li{
+            font-family: 'JejuGothic';
+            padding:20px;
+            display:inline;
+        }
+
+
+    .foot{
+      width:100%;
+    }
+    
+    .foot-align{
+      margin:auto;
+      width:1000px;
+      min-width:1000px;
+    }
+
+    .foot-align>div{
+      float:left;
+      margin:20px;
+    }
+    .foot p{
+      font-size:12px;
+      line-height:150%;
+      text-decoration:none;
+    }
+    </style>
+    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
+</head>
+<body>
+  <header>
+        <div class="jbMenu">
+                <div class="top-title"><img src="logo.png" /></div>
+                <ul class="top-ul">
+                    <li><a href="#">수업찾기</a></li>
+                    <li><a href="#">마이페이지</a></li>
+                    <li><a href="#">로그아웃</a></li>
+                </ul>
+          </div>
+  </header>
+        <section>
+            <div style="background:rgb(46, 46, 46); color:rgb(219, 218, 218); font-size:14px;">
+                <ul class="mypage">
+                    <li>프로필</li>
+                    <li>레슨관리</li>
+                    <li>서비스가입</li>
+                    <li>계정설정</li>
+                </ul>
+                <div style="text-align:center; font-size:30px;padding-bottom:30px;">
+                    나의 레슨 목록
+                </div>
+            </div>
+            
+        </section>
+          
+        <footer>
+          <div class="foot">
+            <hr/>
+            <div class="foot-align">
+            <div>
+              <img src="logo.png" />
+            </div>
+            <div>
+              <p>상호 : 레슨왕 <br/>
+                대표자 : 정요직<br/> 
+                주소 : 서울특별시 노원구 석계로13길 <br/>
+                TEL. 02-000-0000<br/> 
+                  사업자 등록번호 : 000-00-00000 <br/>
+                  EMAIL. aaa777@naver.com<br/>
+                  Copyright(c) 레슨왕. All Rights Reserved.<br/>
+                </p>
+            </div>
+            <div>
+                <p>
+                  <b>카테고리</b><br/>
+                  외국어<br/>
+                  수학<br/> 
+                  국어<br/>
+                  사회/과학<br/>
+                  프로그래밍<br/>
+                  예체능<br/>
+                  입시/자소서<br/>
+                </p>
+              </div>
+            <div>
+                <p>
+                  회사소개<br/>
+                  이용안내<br/>
+                  FAQ <br/> 
+                </p>
+              </div>
+            
+            <div>
+              <p>
+                고객센터<br/>
+                02-000-0000<br/>
+                평일 10:00 ~ 16:00 <br/> 
+                (점심 13:00 ~ 14:00)
+              </p>
+            </div>
+          </div>
+          </div>
+        </footer>
+</body>
+</html>
