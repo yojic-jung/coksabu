@@ -7,7 +7,7 @@
 <title>콕사부</title>
 <meta charset="utf-8">
 <meta name="description" content="내가 찾던 레슨을 만나는 곳, 콕사부입니다." />
-<meta name="naver-site-verification" content="0f04a0bd345d491c42653f775e006069087daa62" />
+<meta name="naver-site-verification" content="d8a12dcb95b21f0d459e1385826becb35a921218" />
 <meta property="og:type" content="website">
 <meta property="og:title" content="콕사부">
 <meta property="og:site_name" content="콕사부">

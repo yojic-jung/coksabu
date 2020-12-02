@@ -41,7 +41,7 @@
  	<mvc:resources mapping="/sitemap.xml" location="WEB-INF/sitemap.xml" />
  	<mvc:resources mapping="/rss.xml" location="WEB-INF/rss.xml" />
  	<mvc:resources mapping="/robots.txt" location="WEB-INF/robots.txt" />
- 	<mvc:resources mapping="/naver10c8586cf37b51d0fd1b0bf918126397.html" location="naver10c8586cf37b51d0fd1b0bf918126397.html" />
+ 	<mvc:resources mapping="/naverb0b268e8b7ca8c117edf242a7f1467bf.html" location="naverb0b268e8b7ca8c117edf242a7f1467bf.html" />
  	
  	<mvc:annotation-driven>
     <mvc:argument-resolvers>

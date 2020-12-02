@@ -22,7 +22,6 @@ public class CronService {
 	public void service() {
 		int a = cronDao.resetApplyCount();
 		int b = cronDao.resetCunsultCount();
-		cronDao.resetMembership();
 		logger.info("하루 레슨지원 횟수 리셋="+a+"개, "+"하루 상담지원 횟수 리셋="+b+"개");
 	}
 	

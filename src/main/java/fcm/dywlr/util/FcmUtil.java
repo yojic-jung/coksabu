@@ -1,7 +1,10 @@
 package fcm.dywlr.util;
 
+
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,9 +13,12 @@ import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.messaging.AndroidConfig;
+import com.google.firebase.messaging.BatchResponse;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingException;
 import com.google.firebase.messaging.Message;
+import com.google.firebase.messaging.MulticastMessage;
+import com.google.firebase.messaging.SendResponse;
 
 public class FcmUtil {
 	
@@ -21,11 +27,11 @@ public class FcmUtil {
 	//주제구독 방식으로 같은 topic을 구독한 사용자에 여러기기에 푸시알림 전송
 	public void send_FCMtopic(String title, String content) throws IOException, FirebaseMessagingException {
 		
-				FileInputStream serviceAccount = new FileInputStream("/home/ec2-user/lessonwang-android-firebase-adminsdk-shu6p-7f9ad4f830.json");
+				FileInputStream serviceAccount = new FileInputStream("/home/ec2-user/coksabu-firebase-firebase-adminsdk-agbhe-29ab472828.json");
 				
-				FirebaseOptions options = new FirebaseOptions.Builder()
+				FirebaseOptions options = FirebaseOptions.builder()
 				  .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-				  .setDatabaseUrl("https://lessonwang-android.firebaseio.com")
+				  .setDatabaseUrl("https://coksabu-firebase.firebaseio.com")
 				  .build();
 				
 				if(FirebaseApp.getApps().isEmpty()) {
@@ -51,14 +57,14 @@ public class FcmUtil {
 	}
 	
 	//해당 토큰 사용자 1명에게 전송
-	public void send_FCMtoken(String tokenId, String title, String content) throws IOException, FirebaseMessagingException {
+	public void send_FCMtoken(String tokenId, String title, String content, String link) throws IOException, FirebaseMessagingException {
 		
 		//비공개 키 저장파일, 상대경로로 바꾸기
-		FileInputStream serviceAccount = new FileInputStream("/home/ec2-user/lessonwang-android-firebase-adminsdk-shu6p-7f9ad4f830.json");
+		FileInputStream serviceAccount = new FileInputStream("/home/ec2-user/coksabu-firebase-firebase-adminsdk-agbhe-29ab472828.json");
 		
-		FirebaseOptions options = new FirebaseOptions.Builder()
+		FirebaseOptions options = FirebaseOptions.builder()
 		  .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-		  .setDatabaseUrl("https://lessonwang-android.firebaseio.com")
+		  .setDatabaseUrl("https://coksabu-firebase.firebaseio.com")
 		  .build();
 		
 		if(FirebaseApp.getApps().isEmpty()) {
@@ -77,13 +83,52 @@ public class FcmUtil {
 						.build())
 				.putData("title", title)
 				.putData("content", content)
+				.putData("link", link)
 				.setToken(registrationToken)
 				.build();
 		
 		String response = FirebaseMessaging.getInstance().send(msg);
 		
-		logger.warn("Successfully sent message: "+ response);
+		logger.info("Successfully sent message: "+ response);
+	}
+	
+	
+	public void send_Multi_FCMtoken(List<String> registrationTokens, String title, String content,String link) throws IOException, FirebaseMessagingException {
+		FileInputStream serviceAccount = new FileInputStream("/home/ec2-user/coksabu-firebase-firebase-adminsdk-agbhe-29ab472828.json");
 		
-}
+		FirebaseOptions options = FirebaseOptions.builder()
+		  .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+		  .setDatabaseUrl("https://coksabu-firebase.firebaseio.com")
+		  .build();
+		
+		if(FirebaseApp.getApps().isEmpty()) {
+			FirebaseApp.initializeApp(options);
+		}
+		
+		for(String token : registrationTokens) {
+			logger.warn("푸시알림 타겟 토큰"+token);
+		}
+		MulticastMessage message = MulticastMessage.builder()
+			    .putData("title", title)
+			    .putData("content",content)
+			    .putData("link",link)
+			    .addAllTokens(registrationTokens)
+			    .build();
+			
+				BatchResponse response = FirebaseMessaging.getInstance().sendMulticast(message);	
+				
+				if (response.getFailureCount() > 0) {
+					  List<SendResponse> responses = response.getResponses();
+					  List<String> failedTokens = new ArrayList<>();
+					  for (int i = 0; i < responses.size(); i++) {
+					    if (!responses.get(i).isSuccessful()) {
+					      // The order of responses corresponds to the order of the registration tokens.
+					      failedTokens.add(registrationTokens.get(i));
+					    }
+					  }
+
+					  logger.warn("List of tokens that caused failures: " + failedTokens);
+				}
+	}
 
 }

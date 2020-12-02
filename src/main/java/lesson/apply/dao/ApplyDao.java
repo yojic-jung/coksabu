@@ -45,10 +45,15 @@ public interface ApplyDao {
 	
 	public int setVisible(int id);
 	
-	
 	public void increaseApplyCount(String email);
 	
 	public int teacherApplyCount(String email);
 	
 	public List<Integer> takeApplyService(HashMap<String, Object> map);
+	
+	public List<String> takeEmailForPushTarget(HashMap<String, String> map);
+	
+	public List<String> takeTokenForPushTarget(List<String> item);
+	
+	public String takePushForOneTarget(String email);
 }

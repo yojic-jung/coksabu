@@ -14,13 +14,11 @@
 <meta property="og:image" content="https://www.coksabu.com/resources/images/logo.png">
 <meta property="og:url" content="https://www.coksabu.com">
     
-    <meta name="naver-site-verification" content="7ce87558488c36187afe977cd978d7566354ec0e" />
-    <meta name="google-site-verification" content="IzvkCZqQG-dylwzYyOapsy3q0q3hd6Glcw2XK67Hp4U" />
-    
+    <meta name="naver-site-verification" content="e6966f55fdf78bcca4b767ce7d213cd6f820ac9a" />
+    <meta name="google-site-verification" content="p08VIDL4nCSNtPHj4o5tkE5_kxA34KzlSkwzGyOTTzk" />
     <link rel="stylesheet" type="text/css" href= "<c:url value="/resources/slick/slick.css" />" >
   <link rel="stylesheet" type="text/css" href= "<c:url value="/resources/slick/slick-theme.css" />">
   <link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
-  <link rel="canonical" href="https://coksabu.com/">
     <style>
      @font-face { font-family: 'JejuGothic'; 
       src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 

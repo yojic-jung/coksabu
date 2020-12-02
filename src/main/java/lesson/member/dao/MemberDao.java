@@ -102,4 +102,7 @@ public interface MemberDao {
 	public void addFailTime(String email);
 	
 	public void giveMembersipToZero(String email);
+	
+	public int registerAndroidToken(HashMap<String, String> map);
+	
 }

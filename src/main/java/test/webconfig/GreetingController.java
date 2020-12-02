@@ -1,5 +1,6 @@
 package test.webconfig;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Map;
 
@@ -17,6 +18,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.google.firebase.messaging.FirebaseMessagingException;
 
 import test.model.Greeting;
 import test.model.Message;
@@ -47,7 +50,7 @@ public class GreetingController {
     @MessageMapping("/message")
     public void handleSubscribe(Message message, @Header("name") String chatroom_id,
     		@Headers Map<String, Object> headers,
-    		@Header("simpSessionId") String sessionId) {
+    		@Header("simpSessionId") String sessionId) throws FirebaseMessagingException, IOException {
     	  String configLocation = "classpath:applicationContext.xml";
   		 AbstractApplicationContext ctx = new GenericXmlApplicationContext(
   				configLocation);
@@ -57,8 +60,6 @@ public class GreetingController {
           
           SimpleDateFormat format1 = new SimpleDateFormat ( "MM/dd HH:mm");
           		
-          logger.warn(status);
-          		
           String time1 = format1.format(message.getMessage_time());
           message.setMessage_time2(time1);
           if(status.equals("ON")) {
@@ -67,7 +68,6 @@ public class GreetingController {
         	  message.setMessage_read2("안읽음");
         	  int unReadCount = chattingService.takeUnReadCount(message.getMessage_sender(), message.getMessage_receiver());
         	  message.setUnReadCount(unReadCount);
-        	  logger.warn(message.getMessage_receiver());
         	  this.simpMessagingTemplate.convertAndSend("/queue/chatlist-"+message.getMessage_receiver() ,message);
           }
           ctx.close();
@@ -75,7 +75,7 @@ public class GreetingController {
     }
     
     
-    public void chatdeal(Message message, @Header("name") String name) {
+    public void chatdeal(Message message, @Header("name") String name) throws FirebaseMessagingException, IOException {
     	  String configLocation = "classpath:applicationContext.xml";
   		 AbstractApplicationContext ctx = new GenericXmlApplicationContext(
   				configLocation);

@@ -133,6 +133,11 @@
 		<property name="passwordEncoder" ref="passwordEncoder"/>
 	</bean>	
 	
+	<bean id="tokenRegisterService"
+		class="lesson.member.service.TokenRegisterService">
+		<property name="memberDao" ref="memberDao"/>
+	</bean>	
+	
 	<bean id="lessonCertifyService"
 		class="lesson.member.service.LessonCertifyService">
 		<property name="memberDao" ref="memberDao"/>

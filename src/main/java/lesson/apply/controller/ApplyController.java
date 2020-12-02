@@ -56,18 +56,27 @@ public class ApplyController extends DeviceSwitcherController{
 			apply.setLocale2(" ");//공백 지우면 안됨.
 		}
 		apply.setLocale(apply.getLocale1()+" "+apply.getLocale2());
-		int applySuccess = applyService.apply(apply);
-		ctx.close();
+		String applyStatus = applyService.apply(apply);
 		String email = (String)session.getAttribute("email");
-		if(applySuccess >= 3) {
+		if(applyStatus.equals("limit")) {
+			ctx.close();
 			model.addAttribute("limit","limit");
 			return forward("apply/lessonapply");
-		}else if(applySuccess == 0) {
+		}else if(applyStatus.equals("none")) {
+			ctx.close();
 			model.addAttribute("error", "error");
 			model.addAttribute("email", email);
 			return forward("apply/lessonapply");
+		//학생요청 성공
+		}else {
+			TeacherApplyService teacherApplyService = ctx.getBean("teacherApplyService", TeacherApplyService.class );
+			String locale= apply.getLocale1()+" "+apply.getLocale2();
+			String link = "https://m.coksabu.com/teacherApply?id="+applyStatus;
+			teacherApplyService.sendPushNotificationTarget(locale,apply.getCate(), link);
+			ctx.close();
+			return "redirect:applysuccess";
 		}
-		return "redirect:applysuccess";
+		
 	}
 	
 	//통과
@@ -129,8 +138,6 @@ public class ApplyController extends DeviceSwitcherController{
 		}
 		
 		
-		
-		
 		ctx.close();
 		request.setAttribute("listModel", applyList);
 		if(applyList.getTotalPageCount() > 0){
@@ -143,8 +150,6 @@ public class ApplyController extends DeviceSwitcherController{
 			request.setAttribute("beginPage", beginPageNumber);
 			request.setAttribute("endPage", endPageNumber);
 		}
-		String email = (String)session.getAttribute("email");
-		model.addAttribute("email", email);
 		return forward("apply/applyList");
 	}
 	
@@ -175,9 +180,6 @@ public class ApplyController extends DeviceSwitcherController{
 		}
 		model.addAttribute("form", form);
 		
-		String email = (String)session.getAttribute("email");
-		model.addAttribute("email", email);
-		
 		return forward("apply/applyList");
 	}
 	
@@ -188,14 +190,12 @@ public class ApplyController extends DeviceSwitcherController{
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
 		ApplyShowService applyShowService = ctx.getBean(ApplyShowService.class);
 		String id = (String)request.getParameter("id");
-		String email = (String)session.getAttribute("email");
 		
 		ApplyForm applyForm = applyShowService.list(Integer.parseInt(id));
 		String name= applyForm.getName().substring(0,1)+" O O";
 		applyForm.setName(name);
 		model.addAttribute("apply",applyForm);
 		ctx.close();
-		model.addAttribute("email", email);
 		return forward("apply/teacherApply");
 	}
 	//통과
@@ -204,17 +204,30 @@ public class ApplyController extends DeviceSwitcherController{
 	public String apply6(ApplyTeacher apply, HttpServletRequest request, Model model,HttpSession session) {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
 		TeacherApplyService teacherApplyService = ctx.getBean(TeacherApplyService.class);
+		String email = (String)session.getAttribute("email");
 		
+		apply.setTeacherEmail(email);
 		String status = teacherApplyService.teacherApply(apply);
 
 		model.addAttribute("status", status);
-			ApplyShowService applyShowService = ctx.getBean(ApplyShowService.class);
-			int id = apply.getApply_id();
-			ApplyForm applyForm = applyShowService.list(id);
-			ctx.close();
-			model.addAttribute("apply",applyForm);
-			model.addAttribute("status", status);
-			return forward("apply/teacherApply");
+		
+		ApplyShowService applyShowService = ctx.getBean(ApplyShowService.class);
+		int id = apply.getApply_id();
+		ApplyForm applyForm = applyShowService.list(id);
+		
+		
+		//정상적으로 지원이 된 경우, 푸시알림보내기
+		if(status.equals("true")) {
+			try {
+				teacherApplyService.sendPushForOneTarget(id);
+			}catch(Exception e) {}
+		}
+		ctx.close();
+		
+		
+		model.addAttribute("apply",applyForm);
+		model.addAttribute("status", status);
+		return forward("apply/teacherApply");
 	}
 	
 	//통과

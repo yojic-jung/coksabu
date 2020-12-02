@@ -17,14 +17,18 @@ public class ApplyService {
 	}
 	
 	@Transactional(rollbackFor= {Exception.class})
-	public int apply(ApplyForm apply) {
+	public String apply(ApplyForm apply) {
 		apply.setPostingdate(new Date());
 		
 		int myApply = applyDao.countMyApply(apply.getEmail());
 		if(myApply >= 3) {
-			return myApply;
-		}else {
-			return applyDao.apply(apply);
+			return "limit";
 		}
+		int changeStatus = applyDao.apply(apply);
+		if(changeStatus==0) {
+			return "none";
+		}
+		return String.valueOf(apply.getId());
+		
 	}
 }

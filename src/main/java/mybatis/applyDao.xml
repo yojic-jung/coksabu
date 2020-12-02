@@ -10,7 +10,7 @@
 		select email from apply where id=#{applyId}
 	</select>
 
-	<insert id="apply" parameterType="lesson.apply.model.ApplyForm" >
+	<insert id="apply" parameterType="lesson.apply.model.ApplyForm" useGeneratedKeys="true" keyProperty="id">
 		insert into apply (email, cate, subcate, grade,sexual, day, time, locale, locale3, month, gawetime,price1, price2, message, postingdate, visible) 
 		values (#{email}, #{cate}, #{subcate}, #{grade}, #{sexual}, #{day}, #{time}, #{locale}, #{locale3}, #{month}, #{gawetime}, #{price1}, #{price2}, #{message}, #{postingdate}, #{visible})
 	</insert>
@@ -89,6 +89,21 @@
 	
 	<select id="takeEmail" resultType="String">
 		select teacheremail from applylist where teacher_id=#{teacher_id} 
+	</select>
+	
+	<select id="takeEmailForPushTarget" resultType="String">
+		select A.email from profile as A, lesson as B, members as C where A.locales like concat('%',#{locale},'%') and B.cate like concat('%',#{cate},'%') and A.email=B.email and A.email=C.email order by C.logindate desc limit 500
+	</select>
+	
+	<select id="takeTokenForPushTarget" resultType="String">
+		<foreach collection="list" item="item" separator="union all">
+		( select token from members where push='ON' and email=#{item} and token is not null and logindate > DATE_SUB(now(), INTERVAL 3 MONTH) )
+		</foreach>
+	</select>
+	
+	
+	<select id="takePushForOneTarget" resultType="String">
+		select token from members where email=#{email} and push='ON'
 	</select>
 	
 </mapper>

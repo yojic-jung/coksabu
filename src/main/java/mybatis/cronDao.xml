@@ -34,10 +34,6 @@
 		update cunsultcount set count=0
 	</update>
 	
-	<update id="resetMembership">
-		update members set membership=0 where membership=1 and enddate &lt; now()
-	</update>
-	
 	<update id="resetEndDateService">
 		update purchasehistory set orderstatus=#{val} where orderstatus=#{condition} and DATE_ADD(enddate, INTERVAL 6 DAY) &lt; now() 
 	</update>

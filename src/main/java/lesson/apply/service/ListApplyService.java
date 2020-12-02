@@ -24,7 +24,7 @@ public class ListApplyService {
 		this.applyDao = applyDao;
 	}
 	
-	public static final int COUNT_PER_PAGE = 1;
+	public static final int COUNT_PER_PAGE = 16;
 	
 	//통과
 	@Transactional(rollbackFor= {Exception.class})

@@ -68,6 +68,7 @@ import lesson.member.service.EmailPassFindService;
 import lesson.member.service.LessonCertifyService;
 import lesson.member.service.MemberService;
 import lesson.member.service.ReadProfileService;
+import lesson.member.service.TokenRegisterService;
 import lesson.member.service.UnivSearchService;
 import lesson.member.service.WriteProfileService;
 
@@ -75,7 +76,58 @@ import lesson.member.service.WriteProfileService;
 public class MemberController extends DeviceSwitcherController {
 	
 	private static final  Logger logger = LoggerFactory.getLogger(MemberController.class);
-
+	
+	//통과
+	@RequestMapping("")
+	public String main(Model model, Device device)  throws Exception{
+		String configLocation = "classpath:applicationContext.xml";
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
+				configLocation);
+		ReadPostService readPostService = ctx.getBean("readPostService", ReadPostService.class );
+		
+		List<PostView> list = readPostService.listMain();
+		ctx.close();
+		model.addAttribute("list", list);
+		
+		return forward("main/index");
+	}
+	
+	@RequestMapping("giveToAndroidValue")
+	@ResponseBody
+	public Map<String, String> giveToAndroid(@RequestBody byte buffers[],HttpServletRequest request,HttpSession session) throws Exception{
+		String configLocation = "classpath:applicationContext.xml";
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
+				configLocation);
+		TokenRegisterService tokenRegisterService = ctx.getBean("tokenRegisterService", TokenRegisterService.class );
+		String email = (String)session.getAttribute("email");
+		String token = new String(buffers,"UTF-8");
+		token = URLDecoder.decode(token,"UTF-8");
+		token = token.substring(0, token.length()-1);
+		
+		String status = tokenRegisterService.registerAndroidToken(email, token);
+		ctx.close();
+		
+		HashMap<String, String> map = new HashMap<>();
+		map.put("status", status);
+		map.put("email", email);
+		map.put("token", token);
+		logger.info(token);
+		
+		return map;
+	}
+	
+	@RequestMapping(value="topicsubscribe", method=RequestMethod.GET)
+	public @ResponseBody String topicsubscribe(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+		String title = "주제구독";
+		String content = "스프링에서 푸시알림 성공";
+		
+		FcmUtil FcmUtil = new FcmUtil();
+		FcmUtil.send_FCMtopic(title, content);
+		
+		return "fcmtest";
+	}
+	
+	
 	@RequestMapping("myroom")
 	public String myroom( HttpSession session, Model model) {
 		String configLocation = "classpath:applicationContext.xml";
@@ -94,59 +146,24 @@ public class MemberController extends DeviceSwitcherController {
 	}
 	
 	//통과
-	@RequestMapping("")
-	public String main(Model model, Device device)  throws Exception{
-		String configLocation = "classpath:applicationContext.xml";
-		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
-				configLocation);
-		ReadPostService readPostService = ctx.getBean("readPostService", ReadPostService.class );
-		
-		List<PostView> list = readPostService.listMain();
-		ctx.close();
-		model.addAttribute("list", list);
-		
-		return forward("main/index");
+	@RequestMapping("404error")
+	public String error404() {
+		return forward("main/404error");
 	}
-	
-	//DB에 디바이스 값 저장
-	@RequestMapping("giveToAndroidValue")
-	@ResponseBody
-	public Map<String, String> giveToAndroid(@RequestBody byte buffers[],HttpServletRequest request,HttpSession session) throws Exception{
-		String email = (String)session.getAttribute("email");
-		
-		String token = new String(buffers,"UTF-8");
-		token = URLDecoder.decode(token,"UTF-8");
-		token = token.substring(0, token.length()-1);
-		HashMap<String, String> map = new HashMap<>();
-		map.put("token", token);
-		logger.warn(token);
-		String title = "토큰 푸시알림2";
-		String content = "스프링에서 푸시알림 성공2";
-		
-		FcmUtil FcmUtil = new FcmUtil();
-		FcmUtil.send_FCMtoken(token, title, content);
-		
-		return map;
-	}
-	
-	@RequestMapping(value="topicsubscribe", method=RequestMethod.GET)
-	public @ResponseBody String topicsubscribe(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
-		String title = "주제구독";
-		String content = "스프링에서 푸시알림 성공";
-		
-		FcmUtil FcmUtil = new FcmUtil();
-		FcmUtil.send_FCMtopic(title, content);
-		
-		return "fcmtest";
-	}
-	
 	
 	//통과
-		@RequestMapping("404error")
-		public String error() {
-			return forward("main/404error");
-		}
+	@RequestMapping("400error")
+	public String error400() {
+		return forward("main/400error");
+	}
 	
+
+	//통과
+	@RequestMapping("error")
+	public String error() {
+		return forward("main/500error");
+	}
+
 	//통과
 	@RequestMapping(value="signup", method=RequestMethod.GET)
 	public String singUp(MemberInfo mem, Model model) {	

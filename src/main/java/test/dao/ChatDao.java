@@ -78,4 +78,6 @@ public interface ChatDao {
 	public void changeChatStatusToON(HashMap<String, String> map);
 	
 	public void changeReadOrNot(HashMap<String, String> map);
+	
+	public String takeTokenForReceiver(String email);
 }

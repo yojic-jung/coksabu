@@ -35,7 +35,7 @@
 	</select>
 	
 	<insert id="signUp" parameterType="lesson.member.model.MemberInfo" >
-		insert into members (email, password, name, birth, phone, logindate, membership, enabled, authority, human_status, fail_count, fail_time, imgpath) values (#{email}, #{password}, #{name}, #{birth}, #{phone}, #{loginDate}, 0, 1, 'user', 0, 0, 0, 'pro.png')
+		insert into members (email, password, name, birth, phone, logindate, membership, enabled, authority, human_status, fail_count, fail_time, imgpath, push) values (#{email}, #{password}, #{name}, #{birth}, #{phone}, #{loginDate}, 0, 1, 'user', 0, 0, 0, 'pro.png', 'ON')
 	</insert>
 	
 	<select id="checkImgPath" resultType="Integer">
@@ -182,5 +182,8 @@
 		update members set fail_time = date_add(now(), interval 15 minute) where email=#{email}
 	</update>
 	
+	<update id="registerAndroidToken">
+		update members set token=#{token} where email=#{email}
+	</update>
 	
 </mapper>

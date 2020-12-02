@@ -99,6 +99,7 @@ background:rgb(245, 244, 244);
 </head>
 <body>
 <table class="student" style="width:80%;">
+<tr><td colspan="2">${apply.cate}(${apply.subcate})</td></tr>
 <tr><td colspan="2">${apply.name}(${apply.sexual}) ${apply.grade}</td></tr>
 <tr><td colspan="2">${apply.locale} ${apply.locale3}</td></tr>
 <tr><td>과외가능 요일<br/> ${apply.day}</td><td>과외가능 시간대 <br/>${apply.time}</td></tr>
@@ -114,14 +115,13 @@ background:rgb(245, 244, 244);
 <div style="text-align:center;">
 <div style="margin:10px 0px;font-size:25px;">학생에게 남기시고 싶은 말을 적어주시기 바랍니다.<span style="font-size:20px; color:dimgray;">(300글자미만, <span class="message-length">0</span>/300)</span>
 </div>
-<textarea id="message" name="message" rows="7" cols="40" style="font-size:30px; line-height:160%;">
+<textarea id="message" name="message" rows="7" cols="40" style="font-size:30px; line-height:160%;padding:10px;">
 </textarea>
 </div>
 <br/><br/>
 			<table style="margin:auto;">
 						<tr>
 							<td id="lesson-td">
-							<input name="teacherEmail" type="text" style="display:none" id="teacherEmail" value="${email}" />
 							<input name="apply_id" type="text" style="display:none" id="applyId" value="${apply.id}" />
 							<input type="submit" class="btn" style="color:white; font-size:30px;padding:10px;cursor:pointer; border-radius:5px;background:dimgray;" value="지원하기"/>
 							</td>

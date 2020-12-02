@@ -264,9 +264,9 @@
      </dependency>
      <!-- 파이어베이스 푸시알림 -->
      <dependency>
-		<groupId>com.google.firebase</groupId>
-		<artifactId>firebase-admin</artifactId>
-		<version>6.7.0</version>
+ 		 <groupId>com.google.firebase</groupId>
+ 		 <artifactId>firebase-admin</artifactId>
+ 		 <version>7.0.1</version>
 	</dependency>
 </dependencies>
 

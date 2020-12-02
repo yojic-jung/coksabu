@@ -767,7 +767,7 @@ $(document).on('click','.applybtn',function(){
 		return false;
 	}
 	<% }else{ %>
-	var url = 'teacherApply?id='+$(this).find('.lessonId').val()+'&email='+"<c:out value="${email}" />"
+	var url = 'teacherApply?id='+$(this).find('.lessonId').val()
 	 window.open(url,'', 'width=700, height=500');
 	 <% } %>
 });

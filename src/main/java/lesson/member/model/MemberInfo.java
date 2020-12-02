@@ -53,4 +53,5 @@ public class MemberInfo {
 	public void setLoginDate(Date loginDate) {
 		this.loginDate=loginDate;
 	}
+	
 }

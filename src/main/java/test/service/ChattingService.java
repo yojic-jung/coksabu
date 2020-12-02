@@ -1,5 +1,6 @@
 package test.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.google.firebase.messaging.FirebaseMessagingException;
+
+import fcm.dywlr.util.FcmUtil;
 import test.dao.ChatDao;
 import test.model.Message;
 import test.model.MyRoom;
@@ -105,15 +109,32 @@ public class ChattingService {
 		return a;
 	}
 	@Transactional(rollbackFor= {Exception.class})
-	public String insertMessage(Message mes) {
+	public String insertMessage(Message mes) throws FirebaseMessagingException, IOException {
 		chatDao.updateLastTime(mes.getChatroom_id());
 		
 		String status = chatDao.takeChatMemberStatus(mes);
 		
+		//메세지 읽음 상태
 		if(status.equals("ON")) {
 			chatDao.insertChatMessageRead(mes);
+		
+		//메세지 안읽음 상태
 		}else {
 			chatDao.insertChatMessageReadNot(mes);
+			
+			//메세지를 안읽음 상태일때만 푸시알림 보내기
+			String title = "메세지(수업문의)가 왔습니다";
+			String content = mes.getMessage_content();
+			String link = "https://m.coksabu.com/chatmyroom?id="+mes.getChatroom_id();
+			
+			String token = chatDao.takeTokenForReceiver(mes.getMessage_receiver());
+			if(token !=null) {
+				FcmUtil fcm = new FcmUtil();
+				fcm.send_FCMtoken(token, title, content, link);
+			}else {
+				logger.warn("토큰 : "+token);
+			}
+			
 		}
 		return status;
 	}
