@@ -18,6 +18,7 @@ import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 
 import lesson.member.service.LoginCheckService;
+import lesson.member.service.MemberService;
 
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     
@@ -39,6 +40,19 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 				configLocation);
 		LoginCheckService loginCheckService = ctx.getBean("loginCheckService", LoginCheckService.class );
 		int humanStatus = loginCheckService.updateLoginTime(email);
+		
+		//메세지 카운
+		MemberService memberService = ctx.getBean("memberService", MemberService.class );
+		int messageCount = memberService.takeUnreadMessageCount(authentication.getName());
+		
+		String messageStatus;
+		if(messageCount==0) {
+			messageStatus="none";
+		}else {
+			messageStatus="exist";
+		}
+		
+		session.setAttribute("messageStatus", messageStatus);
 		
 		if(humanStatus==1) {
 			ctx.close();

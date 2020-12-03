@@ -105,4 +105,6 @@ public interface MemberDao {
 	
 	public int registerAndroidToken(HashMap<String, String> map);
 	
+	public int takeUnReadCount(String email);
+	
 }

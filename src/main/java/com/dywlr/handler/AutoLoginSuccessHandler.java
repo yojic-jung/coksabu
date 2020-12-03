@@ -1,7 +1,6 @@
 package com.dywlr.handler;
 
 import java.io.IOException;
-import java.security.Principal;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
@@ -9,10 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import lesson.member.service.MemberService;
 
 public class AutoLoginSuccessHandler implements AuthenticationSuccessHandler  {
 	
@@ -24,6 +27,20 @@ public class AutoLoginSuccessHandler implements AuthenticationSuccessHandler  {
 		HttpSession session = request.getSession(true);
 		if(authentication.getName()!=null) {
 			session.setAttribute("email", authentication.getName());
+			String configLocation = "classpath:applicationContext.xml";
+			AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
+			MemberService memberService = ctx.getBean("memberService", MemberService.class );
+			int messageCount = memberService.takeUnreadMessageCount(authentication.getName());
+			ctx.close();
+			
+			String messageStatus;
+			if(messageCount==0) {
+				messageStatus="none";
+			}else {
+				messageStatus="exist";
+			}
+			
+			session.setAttribute("messageStatus", messageStatus);
 		}else {
 			session.setAttribute("email", null);
 		}

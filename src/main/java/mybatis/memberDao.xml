@@ -186,4 +186,8 @@
 		update members set token=#{token} where email=#{email}
 	</update>
 	
+	<select id="takeUnReadCount" resultType="int">
+		select count(*) from message where message_receiver=#{email} and message_read=1
+	</select>
+	
 </mapper>

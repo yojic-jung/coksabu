@@ -131,4 +131,8 @@ public class MemberService {
 		return pageCount;
 	}
 	
+	public int takeUnreadMessageCount(String email) {
+		return memberDao.takeUnReadCount(email);
+	}
+	
 }

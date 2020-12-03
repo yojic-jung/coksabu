@@ -32,6 +32,7 @@ public class CronService {
 		logger.info("일주일 지난 장바구니 삭제 갯수="+a+"개, "+"1년 지난 상담내역 삭제 갯수="+b+"개");
 	}
 	
+	//삭제 고민	
 	@Transactional(rollbackFor= {Exception.class})
 	public void service3() {
 		int a = cronDao.deleteOldLessonApply();

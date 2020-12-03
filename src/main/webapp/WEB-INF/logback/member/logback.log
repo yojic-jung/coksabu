@@ -1,3 +1,13 @@
 WARN  17:48:04.351 [http-bio-8080-exec-44 MemberController.java:103] main - warn 멤버 로그
 WARN  17:48:04.510 [http-bio-8080-exec-49 MemberController.java:103] main - warn 멤버 로그
 WARN  18:07:01.454 [http-bio-8080-exec-65 MemberController.java:103] main - warn 멤버 로그
+WARN  15:12:45.616 [http-bio-8080-exec-47 MemberController.java:92] main - none
+WARN  15:12:59.677 [http-bio-8080-exec-50 MemberController.java:92] main - 메세지 카운트 세션 상태 : none
+WARN  15:14:33.981 [http-bio-8080-exec-55 MemberController.java:92] main - 메세지 카운트 세션 상태 : null
+WARN  15:15:03.276 [http-bio-8080-exec-46 MemberController.java:92] main - 메세지 카운트 세션 상태 : none
+WARN  15:15:08.929 [http-bio-8080-exec-48 MemberController.java:92] main - 메세지 카운트 세션 상태 : null
+WARN  15:15:16.137 [http-bio-8080-exec-56 MemberController.java:92] main - 메세지 카운트 세션 상태 : none
+WARN  15:17:24.036 [http-bio-8080-exec-62 MemberController.java:92] main - 메세지 카운트 세션 상태 : none
+WARN  15:17:42.341 [http-bio-8080-exec-62 MemberController.java:92] main - 메세지 카운트 세션 상태 : null
+WARN  15:17:57.785 [http-bio-8080-exec-62 MemberController.java:92] main - 메세지 카운트 세션 상태 : none
+WARN  15:18:01.368 [http-bio-8080-exec-62 MemberController.java:92] main - 메세지 카운트 세션 상태 : none

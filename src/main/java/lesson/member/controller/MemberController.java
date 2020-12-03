@@ -92,6 +92,25 @@ public class MemberController extends DeviceSwitcherController {
 		return forward("main/index");
 	}
 	
+	
+	@RequestMapping("badgecount")
+	@ResponseBody
+	public Map<String, Integer> badgecount(HttpServletRequest request,HttpSession session) throws Exception{
+		String configLocation = "classpath:applicationContext.xml";
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
+				configLocation);
+		TokenRegisterService tokenRegisterService = ctx.getBean("tokenRegisterService", TokenRegisterService.class );
+		String email = (String)session.getAttribute("email");
+		int badgecount = tokenRegisterService.takeBadgeCount(email);
+		ctx.close();
+		
+		HashMap<String, Integer> map = new HashMap<>();
+		map.put("badgecount", badgecount);
+		
+		return map;
+	}
+	
+	
 	@RequestMapping("giveToAndroidValue")
 	@ResponseBody
 	public Map<String, String> giveToAndroid(@RequestBody byte buffers[],HttpServletRequest request,HttpSession session) throws Exception{

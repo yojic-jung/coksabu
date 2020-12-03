@@ -152,4 +152,8 @@
 	<select id="takeTokenForReceiver" resultType="String">
         select token from members where email=#{email} and push='ON'
 	</select>
+	
+	<select id="takeUnReadCountTotal" resultType="int">
+		select count(*) from message where message_receiver=#{email} and message_read=1
+	</select>
 </mapper>

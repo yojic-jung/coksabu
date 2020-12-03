@@ -125,7 +125,7 @@ public class ChattingService {
 			//메세지를 안읽음 상태일때만 푸시알림 보내기
 			String title = "메세지(수업문의)가 왔습니다";
 			String content = mes.getMessage_content();
-			String link = "https://m.coksabu.com/chatmyroom?id="+mes.getChatroom_id();
+			String link = "https://m.coksabu.com/message";
 			
 			String token = chatDao.takeTokenForReceiver(mes.getMessage_receiver());
 			if(token !=null) {
@@ -139,23 +139,25 @@ public class ChattingService {
 		return status;
 	}
 	
-	public List<Message> takeMessage( int chatroom_id, String email) {
-		HashMap<String, String> map = new HashMap<>();
-		map.put("chatroom_id", String.valueOf(chatroom_id));
-		map.put("email", email);
-		chatDao.changeReadOrNot(map);
-		List<Message> mesList = chatDao.takeMessage(chatroom_id);
-		return mesList;
-	}
 	
 	public List<Message> takeMyChat(String id, String email) {
 		HashMap<String, String> map = new HashMap<>();
 		map.put("chatroom_id", id);
 		map.put("email", email);
 		chatDao.changeReadOrNot(map);
-		int a = Integer.parseInt(id);
-		List<Message> mesList = chatDao.takeMessage(a);
+		int chatroom_id = Integer.parseInt(id);
+		List<Message> mesList = chatDao.takeMessage(chatroom_id);
 		return mesList;
+	}
+	
+	public String unReadMessageStatus(String email) {
+		int count = chatDao.takeUnReadCountTotal(email);
+		
+		if(count==0) {
+			return "none";
+		}else {
+			return "exist";
+		}
 	}
 	
 	public String takeReceiver(String id) {

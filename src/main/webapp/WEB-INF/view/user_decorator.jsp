@@ -157,7 +157,7 @@ color:#A6A6A6;
                     <li><a href="./applylist">요청목록</a></li>
                     <li><a href="./lessonapply">레슨요청</a></li>
                     <li><a href="./myroom">마이페이지</a></li>
-                    <li><a href="./message">메세지</a></li>
+                    <li><a href="./message" class="message-notify">메세지</a></li>
                     <li><a href="<c:url value='j_spring_security_logout' />">로그아웃</a></li>
                 </ul>
             </sec:authorize>
@@ -182,7 +182,7 @@ color:#A6A6A6;
 					<tr>
 					<td><a href="./">홈</a></td>
 					<td><a href="./category">카테고리</a></td>
-					<td><a href="./message">메시지</a></td>
+					<td><a href="./message" class="m-message-notify">메시지</a></td>
 					<td><a href="./myroom" style="color:orange">마이페이지</a></td>
 					</tr>
 				</table>
@@ -255,6 +255,19 @@ $(document).ready(function(){
 
 $('.progressbar').hide();
 </script>
+        
+       <%
+       session=request.getSession();
+       String messageStatus = (String)session.getAttribute("messageStatus");
+       if(messageStatus!=null && messageStatus.equals("exist")){
+       %>
+       <script>
+       $('.message-notify').after('<span style="display:inline-block;vertical-align:top;width:6px;height:6px;border-radius:3px;background:red;"></span>');
+       $('.m-message-notify').after('<span style="display:inline-block;vertical-align:top;width:16px;height:16px;border-radius:8px;background:red;"></span>');
+       </script>
+       <%
+       }
+       %> 
         
 </body>
 </html>

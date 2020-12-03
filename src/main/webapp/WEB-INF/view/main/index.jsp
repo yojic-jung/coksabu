@@ -418,7 +418,7 @@
                     <li><a href="./applylist">요청목록</a></li>
                     <li><a href="./lessonapply">레슨요청</a></li>
                     <li><a href="./myroom">마이페이지</a></li>
-                    <li><a href="./message">메세지</a></li>
+                    <li><a href="./message" class="message-notify">메세지</a></li>
                     <li><a href="<c:url value='j_spring_security_logout' />">로그아웃</a></li>
                 </ul>
               </sec:authorize>
@@ -876,5 +876,16 @@
           </div>
         </footer>
        </div>
+       <%
+       session=request.getSession();
+       String messageStatus = (String)session.getAttribute("messageStatus");
+       if(messageStatus!=null && messageStatus.equals("exist")){
+       %>
+       <script>
+       $('.message-notify').after('<span style="display:inline-block;vertical-align:top;width:6px;height:6px;border-radius:3px;background:red;"></span>');
+       </script>
+       <%
+       }
+       %>
 </body>
 </html>

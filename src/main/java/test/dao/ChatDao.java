@@ -80,4 +80,6 @@ public interface ChatDao {
 	public void changeReadOrNot(HashMap<String, String> map);
 	
 	public String takeTokenForReceiver(String email);
+	
+	public int takeUnReadCountTotal(String email);
 }

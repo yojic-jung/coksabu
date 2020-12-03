@@ -94,10 +94,10 @@ public class ChatAppController extends DeviceSwitcherController {
 		
 		String root = (String)request.getParameter("root");
 		
-		String sender = (String)session.getAttribute("email");
+		String email = (String)session.getAttribute("email");
 		String postId = request.getParameter("id");
 	
-		logger.info(sender+"센더 아이디");
+		logger.info(email+"센더 아이디");
 		
 		String receiver;
 		// 레슨요청내역에서 선생님 지원목록에서 열람하는 경우
@@ -113,23 +113,26 @@ public class ChatAppController extends DeviceSwitcherController {
 		String receiverName = chattingService.takeName(receiver);
 		
 		
-		if(sender.equals(receiver)) {
+		if(email.equals(receiver)) {
 			ctx.close();
 			return "chat/chat-error";
 		}
 		
 		// 방이 없으면 0 있으면 방 번호 리턴
-		int chatroom_id = chattingService.checkRoom(sender, receiver);
+		int chatroom_id = chattingService.checkRoom(email, receiver);
 		
 		logger.info(chatroom_id+"챗룸아이디");
 		
 		if(chatroom_id==0) {//대화방이 없는경우
 			//대화방 만들고 방번호 리턴
-			int roomNum = chattingService.makeRoom(sender, receiver);
+			int roomNum = chattingService.makeRoom(email, receiver);
 			model.addAttribute("chatroom_id",roomNum);
 			model.addAttribute("count",0);
 		}else {//대화방이 있는 경우
-			List<Message> mesList = chattingService.takeMessage(chatroom_id, sender);
+			List<Message> mesList = chattingService.takeMyChat(String.valueOf(chatroom_id), email);
+			String messageStatus = chattingService.unReadMessageStatus(email);
+			
+			session.setAttribute("messageStatus", messageStatus);
 			
 			for(Iterator<Message> itr = mesList.iterator(); itr.hasNext();) {
 				Message msg = itr.next();
@@ -150,7 +153,7 @@ public class ChatAppController extends DeviceSwitcherController {
 		
 		
 		model.addAttribute("receiverName",receiverName);
-		model.addAttribute("sender",sender);
+		model.addAttribute("sender",email);
 		
 		return forward("chat/chat-ws");
 	}
@@ -169,6 +172,9 @@ public class ChatAppController extends DeviceSwitcherController {
 		//대화방이 있는 경우
 		List<Message> mesList = chattingService.takeMyChat(id, email);
 		String receiver = chattingService.takeReceiver(id);
+		String messageStatus = chattingService.unReadMessageStatus(email);
+		
+		session.setAttribute("messageStatus", messageStatus);
 		
 		String[] users = receiver.split(",");
 		

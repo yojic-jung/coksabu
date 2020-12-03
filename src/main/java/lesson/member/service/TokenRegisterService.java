@@ -26,4 +26,8 @@ public class TokenRegisterService {
 		}
 	}
 	
+	public int takeBadgeCount(String email) {
+		return memberDao.takeUnReadCount(email);
+	}
+	
 }

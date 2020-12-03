@@ -2512,3 +2512,7 @@ WARN  10:09:44.710 [MessageBroker-1 ChattingService.java:165] changeChatMemberSt
 WARN  10:09:44.710 [MessageBroker-1 ChattingService.java:166] changeChatMemberStatus - 내 user tkdwns@naver.com
 WARN  10:09:44.710 [MessageBroker-1 ChattingService.java:167] changeChatMemberStatus - 내 roomnumber 14
 WARN  10:53:03.271 [http-bio-8080-exec-15 ChatAppController.java:297] chatmemberstatus - 소켓 연결성공
+WARN  15:15:19.873 [http-bio-8080-exec-56 ChatAppController.java:297] chatmemberstatus - 소켓 연결성공
+WARN  15:15:20.875 [http-bio-8080-exec-56 ChatAppController.java:297] chatmemberstatus - 소켓 연결성공
+WARN  15:15:21.895 [http-bio-8080-exec-56 ChatAppController.java:297] chatmemberstatus - 소켓 연결성공
+WARN  15:15:22.920 [http-bio-8080-exec-56 ChatAppController.java:297] chatmemberstatus - 소켓 연결성공
