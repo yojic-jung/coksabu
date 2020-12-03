@@ -240,11 +240,6 @@
 		(select name from members where email=#{email}) union all (select phone from members where email=#{email})
 	</select>	
 	
-	<insert id="insertCunsultList" parameterType="lesson.board.model.CunsultForm">
-		insert into cunsult (lessonid, cate, subcate, title, teachername, teacheremail, buyeremail, buyername, buyerphone, message, date, cunsultid) 
-		values (#{lessonid}, #{cate}, #{subcate}, #{title}, #{teachername}, #{teacheremail}, #{buyeremail}, #{buyername}, #{buyerphone}, #{message}, #{date},#{cunsultid} )
-	</insert>
-	
 	<select id="takeTeachEmail" resultType="String">
 		select email from lesson where id=#{id}
 	</select>	
@@ -252,16 +247,6 @@
 	<select id="takeTeacher" resultType="lesson.board.model.PostView" parameterType="lesson.board.model.PostView">
 		select A.name, A.email, B.cate, B.subcate, B.title from members as A, lesson as B where A.email=B.email and A.email=#{email} and id=#{id}
 	</select>	
-	
-	
-	<select id="confirmCunsultCount" resultType="Integer">
-		select count from cunsultcount where email=#{email}
-	</select>
-	
-	<update id="increamentCunsultCount">
-		update cunsultcount set count=count+1 where email=#{email}
-	</update>
-	
 	
 	<select id="takeImgPath" resultType="String">
 		select contentimg from lesson where id=#{id} and email=#{email}

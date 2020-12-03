@@ -15,13 +15,9 @@ public interface CronDao {
 	
 	public int deleteOldLessonApplyList();
 	
-	public int deleteOldCunsult();
-	
 	public int deleteOldPurchase();
 	
 	public int resetApplyCount();
-	
-	public int resetCunsultCount();
 	
 	public int resetMembership();
 	

@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import lesson.board.model.CunsultForm;
 import lesson.board.model.ImgFileName;
 import lesson.board.model.LessonCardDB;
 import lesson.board.model.LessonCardDB2;
@@ -45,7 +44,6 @@ public interface BoardDao {
 	public int deleteLesson(HashMap<String, Object> map);
 	
 	public int deleteImg(HashMap<String, Object> map);
-	
 
 	public LessonCardDB2 read(HashMap<String, Object> map);
 	
@@ -79,15 +77,9 @@ public interface BoardDao {
 	
 	public List<String> takeNamePhone(String email);
 	
-	public void insertCunsultList(CunsultForm cunsult);
-	
 	public String takeTeachEmail(int id);
 	
 	public PostView takeTeacher(PostView post);
-	
-	public int confirmCunsultCount(String email);
-	
-	public void increamentCunsultCount(String email);
 	
 	public String takeImgPath(HashMap<String, Object> map);
 	

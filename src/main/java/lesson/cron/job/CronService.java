@@ -21,15 +21,13 @@ public class CronService {
 	@Transactional(rollbackFor= {Exception.class})
 	public void service() {
 		int a = cronDao.resetApplyCount();
-		int b = cronDao.resetCunsultCount();
-		logger.info("하루 레슨지원 횟수 리셋="+a+"개, "+"하루 상담지원 횟수 리셋="+b+"개");
+		logger.info("하루 레슨지원 횟수 리셋="+a+"개");
 	}
 	
 	@Transactional(rollbackFor= {Exception.class})
 	public void service2() {
 		int a = cronDao.deleteOldWish();
-		int b = cronDao.deleteOldCunsult();
-		logger.info("일주일 지난 장바구니 삭제 갯수="+a+"개, "+"1년 지난 상담내역 삭제 갯수="+b+"개");
+		logger.info("일주일 지난 장바구니 삭제 갯수="+a+"개");
 	}
 	
 	//삭제 고민	

@@ -18,20 +18,12 @@
 		delete from applylist where DATE_ADD(applydate, INTERVAL '1' year) &lt; now()
 	</delete>
 	
-	<delete id="deleteOldCunsult">
-		delete from cunsult where DATE_ADD(date, INTERVAL '1' year) &lt; now()
-	</delete>
-	
 	<update id="resetApplyCount">
 		update applycount set count=0
 	</update>
 	
 	<update id="resetLoginFailCount">
 		update members set fail_count = 0
-	</update>
-	
-	<update id="resetCunsultCount">
-		update cunsultcount set count=0
 	</update>
 	
 	<update id="resetEndDateService">

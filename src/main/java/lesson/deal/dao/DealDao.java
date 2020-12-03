@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import lesson.board.model.CunsultForm;
 import lesson.board.model.PostView;
 import lesson.board.model.PurchaseHistory;
 import lesson.deal.model.RefundComplete;
@@ -45,12 +44,6 @@ public interface DealDao {
 	public int countMySaleList(String email);
 	
 	public List<PurchaseHistory> mySaleList(String email);
-	
-	public int countTutorCunsultForm(String email);
-	
-	public int countStudentCunsultForm(String email);
-	
-	public List<CunsultForm> myStudentCunsultForm(String email);
 	
 	public void testImgUpload(ImgUploadDB img);
 	

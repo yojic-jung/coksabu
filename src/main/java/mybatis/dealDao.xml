@@ -71,19 +71,6 @@
 		</foreach>
 	</select>
 	
-	<select id="countTutorCunsultForm" resultType="Integer">
-		select count(*) from cunsult where teacheremail=#{email}
-	</select>
-
-	
-	<select id="countStudentCunsultForm" resultType="Integer">
-		select count(*) from cunsult where buyeremail=#{email}
-	</select>
-
-	
-	<select id="myStudentCunsultForm" resultType="lesson.board.model.CunsultForm">
-		select date, lessonid, cate, subcate, title, teachername, message from cunsult where buyeremail=#{email}
-	</select>
 	
 	<insert id="testImgUpload" parameterType="test.model.ImgUploadDB">
 		insert into imgupload (img) values (#{img}) 
