@@ -27,7 +27,7 @@ public class CronService {
 	@Transactional(rollbackFor= {Exception.class})
 	public void service2() {
 		int a = cronDao.deleteOldWish();
-		logger.info("일주일 지난 장바구니 삭제 갯수="+a+"개");
+		logger.info("장바구니 보관기간 14일 지난 장바구니 삭제 갯수="+a+"개");
 	}
 	
 	//삭제 고민	

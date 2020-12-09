@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="canonical" href="https://coksabu.com/404error">
 <title>에러페이지 콕사부</title>
 <style>
      @font-face { font-family: 'JejuGothic'; 

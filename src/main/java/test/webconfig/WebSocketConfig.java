@@ -62,8 +62,8 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer im
                     		}else {
                     			email = email.substring(0, andIndex);
                     		}
-                    		logger.warn( "내 roomnumber "+roomnumber );
-                    		logger.warn( "내 email "+email );
+                    		logger.info( "내 roomnumber "+roomnumber );
+                    		logger.info( "내 email "+email );
                     		
                     		String configLocation = "classpath:applicationContext.xml";
                     		AbstractApplicationContext ctx = new GenericXmlApplicationContext(

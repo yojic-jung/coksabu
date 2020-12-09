@@ -6,9 +6,10 @@
 <head>
 <title>장바구니 거래 콕사부</title>
 <meta charset="utf-8">
- <meta name="description" content="나의 레슨 찜 목록" />
+ <meta name="description" content="나의 수업 찜 목록" />
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /> 
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /> 
+<link rel="canonical" href="https://coksabu.com/wishlist">
 <style>
 @charset "UTF-8";
 @font-face { font-family: 'JejuGothic'; 
@@ -111,7 +112,7 @@ width:100%;
  	
 
  	<div >
- 	<div style="font-size:30px; font-family:'JejuGothic';padding:30px;">장바구니 목록은 일주일만 보관됩니다.</div>
+ 	<div style="font-size:30px; font-family:'JejuGothic';padding:30px;">장바구니 목록은 14일간 보관됩니다.</div>
  	<table class="wish-table" style="font-family:'JejuGothic';">
  	
 <c:choose>	

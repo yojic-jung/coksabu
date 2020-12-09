@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>레슨요청목록 콕사부</title>
+<title>수업요청목록 콕사부</title>
 <meta charset="utf-8">
- <meta name="description" content="학생 회원들의 레슨 요청 목록 페이지" />
+ <meta name="description" content="학생 회원들의 수업 요청 목록 페이지" />
  <meta property="og:type" content="website">
 <meta property="og:title" content="학생 수업 요청목록">
 <meta property="og:site_name" content="학생 수업 요청목록">
@@ -194,7 +194,7 @@
 	<section>
 		<div style="padding:20px 150px;background:rgb(241, 241, 239)">
 		<div style="font-family:'JejuGothic'; font-size:20px; width:600px; margin:auto;">
-		학생들의 "레슨요청"에 선생님들의 지원서를 넣어보세요.
+		학생들의 "수업요청"에 선생님들의 지원서를 넣어보세요.
 		</div>
 		<br/>
 		<div style="width:600px; margin:auto;font-family:'JejuGothic'; font-size:13px; color:gray;">
@@ -617,7 +617,7 @@
 	<c:when test="${listModel.hasList == false }" >
 	 <div style="min-height:200px;">
 	 <div style="width:400px;margin:auto; margin-top:100px;font-size:20px; font-family:'JejuGothic';">
-	 해당하는 조건의 "레슨요청"이 없습니다.
+	 해당하는 조건의 "수업요청"이 없습니다.
 	 </div>
 	 </div>
 	</c:when>

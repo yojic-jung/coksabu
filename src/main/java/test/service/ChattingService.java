@@ -132,7 +132,7 @@ public class ChattingService {
 				FcmUtil fcm = new FcmUtil();
 				fcm.send_FCMtoken(token, title, content, link);
 			}else {
-				logger.warn("토큰 : "+token);
+				logger.info("토큰 : "+token);
 			}
 			
 		}
@@ -185,9 +185,9 @@ public class ChattingService {
 	
 	public void changeChatMemberStatus(HashMap<String, String> map) {
 		int a = chatDao.changeChatMemberStatus(map);
-		logger.warn( " 변화된 칼럼 "+a );
-		logger.warn( "내 user "+map.get("user") );
-		logger.warn( "내 roomnumber "+map.get("roomnumber") );
+		logger.info( " 변화된 칼럼 "+a );
+		logger.info( "내 user "+map.get("user") );
+		logger.info( "내 roomnumber "+map.get("roomnumber") );
 	}
 	
 	public void changeChatStatusToON(String chatroom_id, String email) {

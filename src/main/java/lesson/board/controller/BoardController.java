@@ -377,7 +377,7 @@ public class BoardController extends DeviceSwitcherController  {
 			String[] bank1 = pur.getBank().split(" ");
 			model.addAttribute("bank1", bank1[0]);
 			model.addAttribute("bank2", bank1[1]);
-			
+			model.addAttribute("bank3", bank1[2]);
 			return forward("boarder/purchaseSuccess");	
 		}else {
 			ctx.close();

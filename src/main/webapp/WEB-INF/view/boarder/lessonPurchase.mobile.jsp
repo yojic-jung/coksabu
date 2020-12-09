@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>구매하기 레슨목록 콕사부</title>
-<meta name="description" content="레슨 구매페이지" />
+<title>구매하기 수업목록 콕사부</title>
+<meta name="description" content="수업 구매페이지" />
 <meta charset="utf-8">
-
+<link rel="canonical" href="https://coksabu.com/lessonPurchase?postId=171&subCate=first">
 <link rel="stylesheet" href="<c:url value="/resources/css/jquery-ui.css" />" type="text/css" /> 
 <style>
 .represent-img{
@@ -124,10 +124,7 @@
 		<td>
 		<select id="bank" name="bank" style="padding:10px;font-size:30px;height:50px;">
 			<option>--은행선택--</option>
-			<option>국민은행 3020092810491</option>
-			<option>하나은행 3020092810491</option>
-			<option>농협은행 3020092810491</option>
-			<option>기업은행 3020092810491</option>
+			<option value="농협은행 351-1087-9782-73 정요직(콕사부)">농협은행 351-1087-9782-73</option>
 		</select>
 		</td>
 		</tr>

@@ -133,7 +133,7 @@
 
 <tr>
 <td class="first">예금주</td>
-<td class="second">콕사부</td>
+<td class="second">${bank3 }</td>
 </tr>
 
 <tr>

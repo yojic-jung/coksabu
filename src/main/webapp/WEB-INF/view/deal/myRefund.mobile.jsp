@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="canonical" href="https://coksabu.com/refund">
 <title>서비스 환불 콕사부</title>
 <style>
 body{
@@ -60,8 +61,8 @@ margin-bottom:50px;
 <c:when test="${size!=0}">
 <textarea class="refunddetail" name="refunddetail" cols="40" rows="10" style="font-size:35px;line-height:180%;">${content.refunddetail}</textarea></c:when>
 <c:otherwise>
-				<textarea class="refunddetail" name="refunddetail" cols="40" rows="10" style="font-size:35px;line-height:180%;">진행한 레슨횟수 :
-남아있는 레슨횟수 :
+				<textarea class="refunddetail" name="refunddetail" cols="40" rows="10" style="font-size:35px;line-height:180%;">진행한 수업횟수 :
+남아있는 수업횟수 :
 핸드폰 번호 :
 환불 계좌(은행,계좌번호,예금주) :
 기타 환불신청내용 :

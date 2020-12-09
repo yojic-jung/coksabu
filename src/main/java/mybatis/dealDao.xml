@@ -129,7 +129,7 @@
 	</select>
 	
 	<select id="proposalOrderInfo" resultType="test.model.ChatPurchase">
-		select * from chat_transaction where id=#{orderId} and 
+		select * from chat_transaction where id=#{orderId} and buyer=#{email}
 	</select>
 	
 	<select id="sellerProposalOrderInfo" resultType="test.model.ChatPurchase">

@@ -4,8 +4,9 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>레슨요청 콕사부</title>
- <meta name="description" content="학생의 레슨요청으로 가기 위한 설명페이지" />
+<title>수업요청 콕사부</title>
+ <meta name="description" content="학생의 수업요청으로 가기 위한 설명페이지" />
+ <link rel="canonical" href="https://coksabu.com/lessonapply">
 	<style>
 	 html, body { height:100%; overflow:hidden }
 	.teacher{
@@ -44,9 +45,9 @@ $(document).ready(function(){
 
 			<div class="teacher">
 			<div class="char">
-			"레슨요청"을 통해 <br/>
+			"수업요청"을 통해 <br/>
 			선생님들의 <span style="font-weight:bold;font-size:40px;">"지원서"</span>를 받아볼 수<br/> 있습니다.</div>
-			<div style="text-align:center;"><a style="text-decoration:none;" href="./apply"><span class="btn" >지금 "레슨요청"하기</span></a></div>
+			<div style="text-align:center;"><a style="text-decoration:none;" href="./apply"><span class="btn" >지금 "수업요청"하기</span></a></div>
 			</div>
 
 </body>

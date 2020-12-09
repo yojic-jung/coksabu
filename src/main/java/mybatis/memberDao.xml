@@ -118,9 +118,17 @@
 		insert into qna (email, title, content, visible, date) values (#{email}, #{title}, #{content}, 1, #{date})
 	</insert>
 	
+	<select id="countLessonCertify" resultType="Integer" >
+		select count(*) from lessoncertify where email=#{email}
+	</select>
+	
 	<insert id="insertLessonCertify" parameterType="lesson.member.model.LessonCertify" >
-		insert into lessoncertify (name, account, accountNumber, serviceAgree, myAgree, email)values (#{name}, #{account}, #{accountNumber}, #{serviceAgree}, #{myAgree}, #{email} )
+		insert into lessoncertify (name, account, accountNumber, serviceAgree, myAgree, email) values (#{name}, #{account}, #{accountNumber}, #{serviceAgree}, #{myAgree}, #{email} )
 	</insert>
+	
+	<update id="updateLessonCertify" parameterType="lesson.member.model.LessonCertify" >
+		update lessoncertify set account=#{account}, accountNumber=#{accountNumber} where email = #{email}
+	</update>
 	
 	<select id="readLessonCertify" resultType="lesson.member.model.LessonCertify" >
 		select name, account, accountnumber, serviceagree, myagree from lessoncertify where email=#{email}

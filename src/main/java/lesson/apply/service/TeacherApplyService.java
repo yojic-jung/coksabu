@@ -110,7 +110,7 @@ public class TeacherApplyService {
 		if(token !=null) {
 			FcmUtil fcm = new FcmUtil();
 			
-			logger.warn("이메일 : "+email+" , 아이디 : "+id);
+			logger.info("이메일 : "+email+" , 아이디 : "+id);
 			
 			
 			String title = "선생님 지원서가 도착하였습니다.";
@@ -118,7 +118,7 @@ public class TeacherApplyService {
 			String link = "https://m.coksabu.com/teacherForm?id="+id;
 			fcm.send_FCMtoken(token, title, content, link);
 		}else {
-			logger.warn("토큰 : "+token);
+			logger.info("토큰 : "+token);
 		}
 		
 	}

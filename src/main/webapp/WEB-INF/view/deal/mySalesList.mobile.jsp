@@ -5,8 +5,9 @@
 <head>
 <title>판매목록 거래 콕사부</title>
 <meta charset="utf-8">
- <meta name="description" content="나의 레슨 판매내역" />
- <link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+ <meta name="description" content="나의 수업 판매내역" />
+ <link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /> 
+ <link rel="canonical" href="https://coksabu.com/saleslist"> 
  <style>
  @font-face { font-family: 'JejuGothic'; 
       src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 
@@ -53,7 +54,7 @@ border:1px solid gray; padding:5px 30px;cursor:pointer;font-size:30px;
         	  var none = "<c:out value="${none}" />"
         	  
         	  if(none=='none'){
-        		  alert('프로필과 레슨을 모두 작성해주세요.')
+        		  alert('프로필과 수업을 모두 작성해주세요.')
         		  window.location='./tutorpage';
         	  }
         	  
@@ -87,7 +88,7 @@ border:1px solid gray; padding:5px 30px;cursor:pointer;font-size:30px;
  <table style="border-spacing:0px 40px;width:100%; margin:auto;">
  	<tr style="font-size:22px;font-weight:bold;text-align:center;">
  	<td style="border-bottom:1px solid orange;padding:10px;">입금상태</td>
- 	<td style="border-bottom:1px solid orange;padding:10px;">레슨명</td>
+ 	<td style="border-bottom:1px solid orange;padding:10px;">수업명</td>
  	<td style="border-bottom:1px solid orange;padding:10px;">주문정보</td>
  	</tr>
  	

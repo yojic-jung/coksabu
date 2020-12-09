@@ -51,7 +51,7 @@ padding:10px 5px;;
 		<table style="border-spacing:0px;width:100%; margin:auto;">
 		<tr style="font-size:18px;font-weight:bold;">
  		<td style="border-bottom:1px solid orange;padding:10px;">날짜</td>
- 		<td style="border-bottom:1px solid orange;padding:10px;">상담신청 레슨</td>
+ 		<td style="border-bottom:1px solid orange;padding:10px;">상담신청 수업</td>
  		<td style="border-bottom:1px solid orange;padding:10px;">신청한 학생</td>
  		<td style="border-bottom:1px solid orange;padding:10px;">메세지</td>
  		</tr>
@@ -118,7 +118,7 @@ padding:10px 5px;;
 	 var none = "<c:out value="${none}" />"
 	  
 	  if(none=='none'){
-		  alert('프로필과 레슨을 모두 작성해주세요.')
+		  alert('프로필과 수업을 모두 작성해주세요.')
 		  window.location='./tutorpage';
 	  }
        

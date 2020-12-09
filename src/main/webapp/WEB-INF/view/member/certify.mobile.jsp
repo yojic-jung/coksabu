@@ -7,6 +7,7 @@
 <title>본인/학력 인증하기 콕사부</title>
 <meta charset="utf-8">
 <meta name="description" content="본인 인증 및 학력 인증하기" />
+<link rel="canonical" href="https://coksabu.com/certify">
 <style>
  @font-face { font-family: 'JejuGothic'; 
       src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 

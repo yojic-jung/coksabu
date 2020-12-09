@@ -20,7 +20,13 @@ public class LessonCertifyService {
 		if(!certify.getName().equals(memberDao.readName(certify.getEmail()))){
 			return -1;
 		}else {
-			return memberDao.insertLessonCertify(certify);
+			int exist = memberDao.countLessonCertify(certify.getEmail());
+			if(exist==1) {
+				return memberDao.updateLessonCertify(certify);
+			}else {
+				return memberDao.insertLessonCertify(certify);
+			}
+			
 		}
 		
 	}

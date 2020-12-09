@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="canonical" href="https://coksabu.com/error">
 <title>에러페이지 콕사부</title>
 <style>
 
@@ -19,6 +20,7 @@
 <div style="font-size:20px;text-align:center;">
 <div style="color:orange;margin-top:30px;">서비스에 접속 할 수 없습니다.</div>
 <div style="font-size:15px;margin-top:30px;">죄송합니다.<br/> 서버 내부 문제로 접속이 원활하지 않습니다.<br/> 잠시후 다시 이용 부탁드리며 이용에 불편을 드려 사과드립니다.</div>
+<div style="font-size:15px;margin-top:30px;">고객센터. 02-959-1176</div>
 </div>
 
 <div style="margin-top:150px; text-align:center;">

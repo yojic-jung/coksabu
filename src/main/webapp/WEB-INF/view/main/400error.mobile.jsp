@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="canonical" href="https://coksabu.com/400error">
 <title>에러페이지 콕사부</title>
 <style>
      @font-face { font-family: 'JejuGothic'; 
@@ -15,8 +16,8 @@
 <div style="vertical-align:middle;display:table-cell">!</div>
 </div>
 <div style="width:60%;margin:30px auto 0px auto;text-align:center;font-family:'JejuGothic'; ">
-페이지가 존재하지 않거나, 사용할 수 없는 페이지입니다.<br/>
-비정상적인 접근일 가능성이 있습니다.
+페이지가 존재하지 않거나, 비정상적인 접근일 가능성이 있습니다.<br/>
+요청을 처리할 수 없습니다.
 </div>
 <div style="margin-top:150px; text-align:center;">
 <a href="javascript:history.back()" style="text-decoration:none"><span style="padding:10px;color:white;background:orange;border-radius:10px;font-size:30px;">뒤로가기</span></a>

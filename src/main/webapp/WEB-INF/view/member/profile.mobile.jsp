@@ -6,7 +6,8 @@
 <head>
 <title>프로필 튜터페이지 콕사부</title>
   <meta name="description" content="선생님 프로필 설정하기" />
-    <meta charset="utf-8">
+  <meta charset="utf-8">
+  <link rel="canonical" href="https://coksabu.com/profile">  
     <style>
           .mypage{
               list-style:none;

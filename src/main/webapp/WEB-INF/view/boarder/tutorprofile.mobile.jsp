@@ -7,8 +7,9 @@
 <head>
 <title>튜터페이지 콕사부</title>
     <meta charset="utf-8">
-     <meta name="description" content="선생님 프로필 및 레슨정보" />
+     <meta name="description" content="선생님 프로필 및 수업정보" />
     <link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
+    <link rel="canonical" href="https://coksabu.com/tutorprofile?id=8&root=chat">
     <style>
 
           .top-ul a {
@@ -242,7 +243,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                            
                         </div>
                 </div>
-                <div class="div-title">레슨 목록 (${size}/3)</div>
+                <div class="div-title">수업 목록 (${size}/3)</div>
                          <div style="width:100%; background:white; margin:auto; padding:0px 40px;">
                             
 						<c:if test="${size != 0}" >

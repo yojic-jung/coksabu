@@ -6,12 +6,12 @@
 <head>
 <title>콕사부</title>
 <meta charset="utf-8">
-<meta name="description" content="내가 찾던 레슨을 만나는 곳, 콕사부입니다." />
+<meta name="description" content="내가 찾던 수업을 만나는 곳, 콕사부입니다." />
 <meta name="naver-site-verification" content="d8a12dcb95b21f0d459e1385826becb35a921218" />
 <meta property="og:type" content="website">
 <meta property="og:title" content="콕사부">
 <meta property="og:site_name" content="콕사부">
-<meta property="og:description" content="내가 찾던 레슨을 만나는 곳, 콕사부입니다.">
+<meta property="og:description" content="내가 찾던 수업을 만나는 곳, 콕사부입니다.">
 <meta property="og:image" content="https://www.coksabu.com/resources/images/logo.png">
 <meta property="og:url" content="https://www.coksabu.com">
 
@@ -236,15 +236,15 @@ width:100%;margin:auto
 			 <sec:authorize access="!isAuthenticated()">
 			<a href="./login" class="m-menu-href" ><div class="m-menu-content">로그인</div></a>
 			<a href="./signup" class="m-menu-href"><div class="m-menu-content">회원가입</div></a>
-			<a href="./boarder?main=11&subject=11" class="m-menu-href"><div class="m-menu-content">레슨목록</div></a>
+			<a href="./boarder?main=11&subject=11" class="m-menu-href"><div class="m-menu-content">수업목록</div></a>
 			<a href="./applylist" class="m-menu-href"><div class="m-menu-content">요청목록</div></a>
 			 </sec:authorize>
 			 <sec:authorize access="isAuthenticated()">
               <a href="./message" class="m-menu-href"><div class="m-menu-content">메세지</div></a>
               <a href="./myroom" class="m-menu-href"><div class="m-menu-content">마이페이지</div></a>
-              <a href="./boarder?main=11&subject=11" class="m-menu-href"><div class="m-menu-content">레슨목록</div></a>
+              <a href="./boarder?main=11&subject=11" class="m-menu-href"><div class="m-menu-content">수업목록</div></a>
               <a href="./applylist" class="m-menu-href"><div class="m-menu-content">요청목록</div></a>
-              <a href="./lessonapply" class="m-menu-href"><div class="m-menu-content">레슨요청</div></a>
+              <a href="./lessonapply" class="m-menu-href"><div class="m-menu-content">수업요청</div></a>
          	  <a href="./customer" class="m-menu-href"><div class="m-menu-content">고객센터</div></a>
          	 </sec:authorize>
 	</div> 
@@ -257,13 +257,13 @@ width:100%;margin:auto
 	
 	 <ul id="inner-fade">
             
-            <li><img class="fadeImg" src="<c:url value="/resources/img/Mmain2.png" />"  alt="메인이미지1"/></li>
-            <li><img class="fadeImg" src="<c:url value="/resources/img/Mmain3.png" />"  alt="메인이미지2"/></li>
-            <li><img class="fadeImg" src="<c:url value="/resources/img/main1.png" />"  alt="메인이미지3"/></li>
+            <li><img class="fadeImg" src="<c:url value="/resources/img/main6.png" />"  alt="메인이미지1"/></li>
+            <li><img class="fadeImg" src="<c:url value="/resources/img/main7.png" />"  alt="메인이미지2"/></li>
+            <li><img class="fadeImg" src="<c:url value="/resources/img/Mmain8.png" />"  alt="메인이미지3"/></li>
         </ul>
         
 	<div style="width:100%;padding:90px 20px;">
-	<table class="img-ui" style="border-spacing:70px 0px;text-align:center; font-size:35px;font-weight:bolder">
+	<table class="img-ui" style="border-spacing:70px 0px;text-align:center; font-size:30px;font-weight:bolder">
 		<tr>
 			<td><a href="./boarder?main=11&subject=11"><img src="<c:url value="/resources/images/ui1m.png" />" style="width:100%; height:120px;" alt="1"/></a></td>
 			<td><a href="./boarder?main=21&subject=21"><img src="<c:url value="/resources/images/ui2m.png" />" style="width:100%; height:120px;" alt="1"/></a></td>
@@ -332,7 +332,7 @@ width:100%;margin:auto
 
             <div>
             고객센터.02-959-1176 | 
-                평일 10:00 ~ 16:00 (점심 13:00 ~ 14:00) | <a href="./companyInfo" style="color:black; text-decoration:none;">회사소개</a>
+                평일 10:00 ~ 17:00 (점심 13:00 ~ 14:00) | <a href="./companyInfo" style="color:black; text-decoration:none;">회사소개</a>
             </div>
             <br/>
             <div style="clear:left; text-align:center;">
@@ -401,7 +401,7 @@ width:100%;margin:auto
                 $("#inner-fade").innerfade({
                     animationtype:'fade',
                     speed:750,
-                    timeout:5000,
+                    timeout:8000,
                     type:'sequence',
                     containerheight:'500px'
                 });

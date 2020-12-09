@@ -7,7 +7,7 @@
 <head>
 <title>튜터페이지 콕사부</title>
     <meta charset="utf-8">
-     <meta name="description" content="선생님 프로필 및 레슨정보" />
+     <meta name="description" content="선생님 프로필 및 수업정보" />
     <link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
     <style>
 		body{
@@ -218,7 +218,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                            
                         </div>
                 </div>
-                <div class="div-title">레슨 목록 (${size}/3)</div>
+                <div class="div-title">수업 목록 (${size}/3)</div>
                         <div style="width:800px; background:white; margin:auto; padding:20px;">
                             
 						<c:if test="${size != 0}" >
@@ -230,7 +230,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 								<td>
 								<a href="<c:url value="./boardread?postId=${lesson.id}"/>">
 								<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;">
-								<img src="<c:url value='/img/representImg/${lesson.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="레슨대표이미지"/>
+								<img src="<c:url value='/img/representImg/${lesson.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="수업대표이미지"/>
 								</div>
 								</a>
 								</td>

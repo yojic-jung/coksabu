@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="canonical" href="https://coksabu.com/proposalOrderInfo?id=24">
 <title>주문정보 콕사부</title>
 <style>
 body{

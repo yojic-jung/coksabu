@@ -300,7 +300,7 @@ public class ChatAppController extends DeviceSwitcherController {
 		
 		String email = (String)session.getAttribute("email");
 		chattingService.changeChatStatusToON(chatroom_id,email);
-		logger.warn("소켓 연결성공");
+		logger.info("소켓 연결성공");
 		ctx.close();
 		
 	}

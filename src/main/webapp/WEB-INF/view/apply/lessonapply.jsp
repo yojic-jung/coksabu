@@ -5,13 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>레슨요청 학생전용 콕사부</title>
+<title>수업요청 학생전용 콕사부</title>
     <meta charset="utf-8">
-     <meta name="description" content="선생님에게 레슨요청을 작성하는 페이지" />
+     <meta name="description" content="선생님에게 수업요청을 작성하는 페이지" />
  <meta property="og:type" content="website">
-<meta property="og:title" content="레슨요청">
-<meta property="og:site_name" content="레슨요청 하기">
-<meta property="og:description" content="학생들이 새로운 수업과 새로운 선생님을 찾기 위해  레슨신청서를 작성하는 곳입니다.">
+<meta property="og:title" content="수업요청">
+<meta property="og:site_name" content="수업요청 하기">
+<meta property="og:description" content="학생들이 새로운 수업과 새로운 선생님을 찾기 위해  수업신청서를 작성하는 곳입니다.">
 <meta property="og:image" content="https://www.coksabu.com/resources/images/logo.png">
 <meta property="og:url" content="https://www.coksabu.com/apply">
      
@@ -117,10 +117,10 @@ window.location="./";
             <div style="background:rgb(46, 46, 46); color:rgb(219, 218, 218); font-size:14px;">
                
                 <div style="text-align:center; font-size:30px;padding-top:30px">
-                   레슨 요청
+                   수업 요청
                 </div>
                 <div style="font-size:20px; padding:30px; text-align:center">
-                  레슨 요청을 통해 수업 가능한 선생님들의 레슨카드 지원서를 받아볼 수 있습니다. 
+                  수업 요청을 통해 수업 가능한 선생님들의 지원서를 받아볼 수 있습니다. 
                 </div>
             </div>
             
@@ -139,7 +139,7 @@ window.location="./";
             </div>
             <div class="content">
             <br/>
-            학생이 받고 싶은 레슨은 무엇인가요?<br/>
+            학생이 받고 싶은 수업은 무엇인가요?<br/>
             <br/>
             <table class="catetable">
             <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="수학" />수학</label></td></tr>
@@ -166,7 +166,7 @@ window.location="./";
             </div>
             <div class="content">
             <br/>
-            세부 레슨을 정해주세요.<br/>
+            세부 수업을 정해주세요.<br/>
             <br/>
             <table class="catetable">
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="초등수학" />초등수학</label></td></tr>
@@ -193,7 +193,7 @@ window.location="./";
             </div>
             <div class="content">
             <br/>
-            세부 레슨을 정해주세요.<br/>
+            세부 수업을 정해주세요.<br/>
             <br/>
             <table class="catetable">
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="초등영어" />초등영어</label></td></tr>
@@ -219,7 +219,7 @@ window.location="./";
             </div>
             <div class="content">
             <br/>
-            세부 레슨을 정해주세요.<br/>
+            세부 수업을 정해주세요.<br/>
             <br/>
             <table class="catetable">
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="초등국어" />초등국어</label></td></tr>
@@ -242,7 +242,7 @@ window.location="./";
             </div>
             <div class="content">
             <br/>
-            세부 레슨을 정해주세요.<br/>
+            세부 수업을 정해주세요.<br/>
             <br/>
             <table class="catetable">
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="초등사회" />초등사회</label></td></tr>
@@ -265,7 +265,7 @@ window.location="./";
             </div>
             <div class="content">
             <br/>
-            세부 레슨을 정해주세요.<br/>
+            세부 수업을 정해주세요.<br/>
             <br/>
             <table class="catetable">
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="초등과학" />초등과학</label></td></tr>
@@ -290,7 +290,7 @@ window.location="./";
             </div>
             <div class="content">
             <br/>
-            세부 레슨을 정해주세요.<br/>
+            세부 수업을 정해주세요.<br/>
             <br/>
             <table class="catetable">
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="미술" />미술</label></td></tr>
@@ -311,7 +311,7 @@ window.location="./";
             </div>
             <div class="content">
             <br/>
-            세부 레슨을 정해주세요.<br/>
+            세부 수업을 정해주세요.<br/>
             <br/>
             <table class="catetable">
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="자소서첨삭" />자소서첨삭</label></td></tr>
@@ -867,13 +867,13 @@ window.location="./";
 	 var error = "<c:out value="${error}" />";
 	  
 	  if(error == "error"){
-		  alert("레슨 요청이 실패 되었습니다. 다시 시도해주세요.")
+		  alert("수업 요청이 실패 되었습니다. 다시 시도해주세요.")
 	  }
 	 
  		var limit = "<c:out value="${limit}" />";
 	  
 	  if(limit == "limit"){
-		  alert("레슨 요청은 3개까지만 가능합니다. [마이페이지][레슨요청내역]에서 기존 레슨요청을 삭제하고 다시 요청해주시기 바랍니다.");
+		  alert("수업 요청은 3개까지만 가능합니다. [마이페이지][수업요청내역]에서 기존 수업요청을 삭제하고 다시 요청해주시기 바랍니다.");
 	  }
 	 
 	  $(document).on('keyup','.message',function(){
@@ -890,7 +890,7 @@ window.location="./";
 			}
 		})
 		if(idx=="-1"){
-			alert("원하시는 레슨을 체크 해주세요.")				
+			alert("원하시는 수업을 체크 해주세요.")				
 		}else{
 			$('.subcate').attr('name', '');
 			$('.step1').hide();
@@ -909,9 +909,9 @@ window.location="./";
 	
 	$('.btn2').click(function(){
 		if($('input[name="subcate"]:checked').index()=="-1"){
-			alert("레슨을 선택해주세요.")
+			alert("수업을 선택해주세요.")
 		}else if($('input[name="subcate"]:checked').length > "3"){
-			alert("레슨은 3개까지 선택할 수 있습니다.")
+			alert("수업은 3개까지 선택할 수 있습니다.")
 		}else{
 		$('.step2').hide();
 		$('.step3').show();

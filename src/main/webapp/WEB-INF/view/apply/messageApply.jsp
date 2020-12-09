@@ -5,7 +5,7 @@
 
 <title>수업지원하기 선생님전용 콕사부</title>
 <meta charset="utf-8">
- <meta name="description" content="선생님이 학생의 레슨요청에 본인의 레슨을 지원하는 페이지" />
+ <meta name="description" content="선생님이 학생의 수업요청에 본인의 수업을 지원하는 페이지" />
 </head>
 <body>
   <% if(session.getAttribute("email")==null) {

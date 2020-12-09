@@ -6,15 +6,15 @@
 <head>
 <meta charset="utf-8">
 <title>선생님 이력 목록 콕사부</title>
- <meta name="description" content="레슨요청에 응답한 선생님 목록" />
+ <meta name="description" content="수업요청에 응답한 선생님 목록" />
  <meta property="og:type" content="website">
 <meta property="og:title" content="응답선생님">
 <meta property="og:site_name" content="응답선생님">
-<meta property="og:description" content="나의 레슨 요청에 지원한 선생님 목록">
+<meta property="og:description" content="나의 수업 요청에 지원한 선생님 목록">
 <meta property="og:image" content="https://www.coksabu.com/resources/images/logo.png">
 <meta property="og:url" content="https://www.coksabu.com/teacherForm">
 
-<link rel="canonical" href="https://www.coksabu.com/teacherForm?id=37">
+<link rel="canonical" href="https://www.coksabu.com/teacherForm?id=100">
 <style>
 @font-face { font-family: 'JejuGothic'; 
       src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 
@@ -91,7 +91,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 </style>
 </head>
 <body>
-<div style="background:orange; color:white;padding:20px;margin:15px; text-align:center; font-family:'JejuGothic';">선생님 레슨카드 지원 목록(${size}/10)</div>
+<div style="background:orange; color:white;padding:20px;margin:15px; text-align:center; font-family:'JejuGothic';">선생님 지원 목록(${size}/10)</div>
 <c:if test="${size==0}">
 <div style="font-size:25px; text-align:center;line-height:180%;font-family:'JejuGothic'; margin-top:140px;">
 현재 지원하신 선생님이 없습니다. <br/>

@@ -31,7 +31,7 @@
 	<div id="categories">콕사부 서비스정책과 환불정책을 이행함</div>
 	<div id="categories">가격 : ${post.price}</div>
 	<c:if test="${post.customer=='판매자'}">
-	<div>레슨 구매하기</div>
+	<div>수업 구매하기</div>
 	</c:if>
 	<c:if test="${post.customer=='구매자'}">
 	<div><span class="accept-proposal">거래 제안서 승낙</span></div>

@@ -6,7 +6,7 @@
 <head>
 <title>구매목록 거래 콕사부</title>
 <meta charset="utf-8">
-<meta name="description" content="나의 레슨 구매내역" />
+<meta name="description" content="나의 수업 구매내역" />
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /> 
 <style>
 @font-face { font-family: 'JejuGothic'; 

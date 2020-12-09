@@ -6,7 +6,7 @@
 <head>
 <title>장바구니 거래 콕사부</title>
 <meta charset="utf-8">
- <meta name="description" content="나의 레슨 찜 목록" />
+ <meta name="description" content="나의 수업 찜 목록" />
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /> 
 <style>
 @font-face { font-family: 'JejuGothic'; 
@@ -90,7 +90,7 @@ width:350px;
  	
 
  	<div >
- 	<div style="font-size:12px; font-family:'JejuGothic';">장바구니 목록은 일주일만 보관됩니다.</div>
+ 	<div style="font-size:12px; font-family:'JejuGothic';">장바구니 목록은 14일간 보관됩니다.</div>
  	<table style="border-spacing:0px 10px; font-family:'JejuGothic';">
  	
 			<c:choose>	
@@ -107,7 +107,7 @@ width:350px;
 								<td>
 								<a href="<c:url value="./boardread?postId=${lesson.id}"/>">
 								<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;">
-								<img src="<c:url value='/img/representImg/${lesson.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="레슨대표이미지"/>
+								<img src="<c:url value='/img/representImg/${lesson.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="수업대표이미지"/>
 								</div>
 								</a>
 								</td>

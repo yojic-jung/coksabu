@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="canonical" href="https://coksabu.com/sellerRefundCompleteInfo?orderid=53">
 <title>구매자 환불완료정보 콕사부</title>
 <style>
 	.order-title{

@@ -7,7 +7,7 @@
 <mapper namespace="lesson.cron.dao.CronDao">
 	
 	<delete id="deleteOldWish">
-		delete from wishlist where DATE_ADD(wishdate, INTERVAL '7' DAY) &lt; now()
+		delete from wishlist where DATE_ADD(wishdate, INTERVAL '14' DAY) &lt; now()
 	</delete>
 	
 	<delete id="deleteOldLessonApply">

@@ -271,7 +271,7 @@ public class MemberController extends DeviceSwitcherController {
 		String configLocation = "classpath:applicationContext.xml";
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
 				configLocation);
-		LessonCertifyService lessonCertify  = ctx.getBean("lessonCertifyService", LessonCertifyService.class );
+		LessonCertifyService lessonCertify  = ctx.getBean("lessonCertifyService", LessonCertifyService.class);
 		LessonCertify certify = lessonCertify.certifyRead((String)session.getAttribute("email"));
 		ctx.close();
 		model.addAttribute("certify", certify);
@@ -292,7 +292,7 @@ public class MemberController extends DeviceSwitcherController {
 			return forward("member/lessoncertify");
 		}
 		ctx.close();
-		return "redirect:profile";
+		return forward("member/lessoncertifySuccess");
 	}
 	
 	

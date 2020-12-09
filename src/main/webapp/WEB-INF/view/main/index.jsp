@@ -6,11 +6,11 @@
 <head>
 <title>콕사부</title>
 <meta charset="utf-8">
-<meta name="description" content="내가 찾던 레슨을 만나는 곳, 콕사부입니다." />
+<meta name="description" content="내가 찾던 수업을 만나는 곳, 콕사부입니다." />
 <meta property="og:type" content="website">
 <meta property="og:title" content="콕사부">
 <meta property="og:site_name" content="콕사부">
-<meta property="og:description" content="내가 찾던 레슨을 만나는 곳, 콕사부입니다.">
+<meta property="og:description" content="내가 찾던 수업을 만나는 곳, 콕사부입니다.">
 <meta property="og:image" content="https://www.coksabu.com/resources/images/logo.png">
 <meta property="og:url" content="https://www.coksabu.com">
     
@@ -107,7 +107,7 @@
             position:absolute;
             left:50%; 
             transform:translateX(-50%);
-            top:300px;
+            top:330px;
             z-index: 2;
             min-width:600px;
           }
@@ -325,7 +325,7 @@
             $("#inner-fade").innerfade({
                 animationtype:'fade',
                 speed:750,
-                timeout:5000,
+                timeout:8000,
                 type:'sequence',
                 containerheight:'450px'
             });
@@ -406,7 +406,7 @@
                 
             <sec:authorize access="!isAuthenticated()">
                 <ul class="top-ul">
-                    <li><a href="./boarder?main=11&subject=11">레슨목록</a></li>
+                    <li><a href="./boarder?main=11&subject=11">수업목록</a></li>
                     <li><a href="./applylist">요청목록</a></li>
                     <li><a href="./login">로그인</a></li>
                     <li><a href="./signup">회원가입</a></li>
@@ -414,9 +414,9 @@
              </sec:authorize>
              <sec:authorize access="isAuthenticated()">
                 <ul class="top-ul">
-                    <li><a href="./boarder?main=11&subject=11">레슨목록</a></li>
+                    <li><a href="./boarder?main=11&subject=11">수업목록</a></li>
                     <li><a href="./applylist">요청목록</a></li>
-                    <li><a href="./lessonapply">레슨요청</a></li>
+                    <li><a href="./lessonapply">수업요청</a></li>
                     <li><a href="./myroom">마이페이지</a></li>
                     <li><a href="./message" class="message-notify">메세지</a></li>
                     <li><a href="<c:url value='j_spring_security_logout' />">로그아웃</a></li>
@@ -478,9 +478,9 @@
 
         <ul id="inner-fade">
             
-            <li><img class="fadeImg" src="<c:url value="/resources/img/main5.png" />"  alt="메인이미지1"/></li>
-            <li><img class="fadeImg" src="<c:url value="/resources/img/main3.png" />"  alt="메인이미지2"/></li>
-            <li><img class="fadeImg" src="<c:url value="/resources/img/main1.png" />"  alt="메인이미지3"/></li>
+            <li><img class="fadeImg" src="<c:url value="/resources/img/main6.png" />"  alt="메인이미지1"/></li>
+            <li><img class="fadeImg" src="<c:url value="/resources/img/main7.png" />"  alt="메인이미지2"/></li>
+              <li><img class="fadeImg" src="<c:url value="/resources/img/main8.png" />"  alt="메인이미지3"/></li>
         </ul>
       <nav>
         <table class="category">
@@ -516,7 +516,7 @@
 							<td>
 							<a href="<c:url value="./boardread?postId=${post.id}"/>">
 							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;">
-							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="레슨대표이미지"/>
+							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="수업대표이미지"/>
 							</div>
 							</a>
 							</td>
@@ -556,7 +556,7 @@
 							<td>
 							<a href="<c:url value="./boardread?postId=${post.id}"/>">
 							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;">
-							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="레슨대표이미지"/>
+							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="수업대표이미지"/>
 							</div>
 							</a>
 							</td>
@@ -593,7 +593,7 @@
 							<td>
 							<a href="<c:url value="./boardread?postId=${post.id}"/>">
 							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;">
-							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="레슨대표이미지"/>
+							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="수업대표이미지"/>
 							</div>
 							</a>
 							</td>
@@ -631,7 +631,7 @@
 							<td>
 							<a href="<c:url value="./boardread?postId=${post.id}"/>">
 							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;">
-							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="레슨대표이미지"/>
+							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="수업대표이미지"/>
 							</div>
 							</a>
 							</td>
@@ -671,7 +671,7 @@
 							<td>
 							<a href="<c:url value="./boardread?postId=${post.id}"/>">
 							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;">
-							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="레슨대표이미지"/>
+							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="수업대표이미지"/>
 							</div>
 							</a>
 							</td>
@@ -708,7 +708,7 @@
 							<td>
 							<a href="<c:url value="./boardread?postId=${post.id}"/>">
 							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;">
-							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="레슨대표이미지"/>
+							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="수업대표이미지"/>
 							</div>
 							</a>
 							</td>
@@ -742,7 +742,7 @@
 							<td>
 							<a href="<c:url value="./boardread?postId=${post.id}"/>">
 							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;">
-							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="레슨대표이미지"/>
+							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="수업대표이미지"/>
 							</div>
 							</a>
 							</td>
@@ -866,7 +866,7 @@
               
                <a href="./qna" style="text-decoration:none;font-weight:bolder; color:black;"> 고객센터</a><br/>
                 02-959-1176<br/>
-                평일 10:00 ~ 16:00 <br/> 
+                평일 10:00 ~ 17:00 <br/> 
                 (점심 13:00 ~ 14:00)
               </p>
             </div>

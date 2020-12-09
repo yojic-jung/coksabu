@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>구매하기 레슨목록 콕사부</title>
- <meta name="description" content="레슨 구매페이지" />
+<title>구매하기 수업목록 콕사부</title>
+ <meta name="description" content="수업 구매페이지" />
 <meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
@@ -203,10 +203,7 @@
 		<td>
 		<select id="bank" name="bank" style="padding:5px;font-size:15px;height:30px;">
 			<option>--은행선택--</option>
-			<option>국민은행 3020092810491</option>
-			<option>하나은행 3020092810491</option>
-			<option>농협은행 3020092810491</option>
-			<option>기업은행 3020092810491</option>
+			<option value="농협은행 351-1087-9782-73 정요직(콕사부)">농협은행 351-1087-9782-73</option>
 		</select>
 		</td>
 		</tr>

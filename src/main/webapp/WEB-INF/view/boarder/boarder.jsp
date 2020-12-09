@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>레슨목록 콕사부</title>
- <meta name="description" content="선생님 레슨 목록" />
+ <title>수업목록 콕사부</title>
+ <meta name="description" content="선생님 수업 목록" />
 <meta property="og:type" content="website">
-<meta property="og:title" content="선생님 레슨목록">
-<meta property="og:site_name" content="선생님 레슨목록">
-<meta property="og:description" content="선생님이 올린 레슨 목록 페이지">
+<meta property="og:title" content="선생님 수업목록">
+<meta property="og:site_name" content="선생님 수업목록">
+<meta property="og:description" content="선생님이 올린 수업 목록 페이지">
 <meta property="og:image" content="https://www.coksabu.com/resources/images/logo.png">
 <meta property="og:url" content="https://coksabu.com/boarder?main=11&subject=11">
      <meta charset="utf-8">
@@ -767,7 +767,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 							<td>
 							<a href="<c:url value="./boardread?postId=${post.id}"/>">
 							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;">
-							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="레슨대표이미지"/>
+							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="수업대표이미지"/>
 							</div>
 							</a>
 							</td>
@@ -794,7 +794,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 	
 	
 	<div class="right">
-	<div class="right-title">최신 등록 레슨</div>
+	<div class="right-title">최신 등록 수업</div>
 	<table border="0" class="new">
 	<c:forEach var="post" items="${postNewList}">
 	<tr>

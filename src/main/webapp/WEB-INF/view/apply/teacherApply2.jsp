@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <title>콕사부</title>
- <meta name="description" content="선생님 레슨지원" />
+ <meta name="description" content="선생님 수업지원" />
 <style>
 @font-face { font-family: 'JejuGothic'; 
       src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 
@@ -99,17 +99,17 @@ background:rgb(245, 244, 244);
 </table>
 <br/>
 <div style="text-align:center; font-size:17px;color:orange; font-family:'JejuGothic'">
-<span style="font-weight:bolder; font-size:20px;">${apply.subcate}</span>을 제공하는 레슨의 경우 지원 가능합니다.</div>
+<span style="font-weight:bolder; font-size:20px;">${apply.subcate}</span>을 제공하는 수업의 경우 지원 가능합니다.</div>
 <br/>
 
 
 <br/><br/>
-<div style="margin-left:50px;">지원할 레슨카드 선택하기</div>
+<div style="margin-left:50px;">지원할 수업카드 선택하기</div>
 <br/>
 <c:if test="${bool}">
 <div style="font-size:14px;color:dimgray; width:500px; margin:auto; margin-bottom:50px;line-height:150%">
-현재 등록되어있는 레슨이 없습니다.<br/>
- 레슨을 지원하기 위해 [마이페이지][레슨만들기] 페이지를 통해 레슨을 등록해 주세요.
+현재 등록되어있는 수업이 없습니다.<br/>
+ 수업을 지원하기 위해 [마이페이지][수업만들기] 페이지를 통해 수업을 등록해 주세요.
 </div>
 </c:if>
 <c:if test="${!bool}">
@@ -122,7 +122,7 @@ background:rgb(245, 244, 244);
 							<form method="post" onSubmit="return checkApply(this)">
 							<div id="pst" style="border:1px solid silver;vertical-align:top;padding:0px; width:210px; height:300px; margin:5px">
 							<div id="categories">${lesson.subcate}</div>
-							<img src="<c:url value='/img/images/${lesson.represent}' />" style="width:208px; height:150px; magin-top:0px;" alt="레슨대표이미지"/>
+							<img src="<c:url value='/img/images/${lesson.represent}' />" style="width:208px; height:150px; magin-top:0px;" alt="수업대표이미지"/>
 							<div style="width:190px; margin:auto;">
 							<div id="name"> ${lesson.name}(${lesson.birth}세, ${lesson.sexual})&nbsp;&nbsp;경력 <c:if test="${lesson.career!=0}">${lesson.career}년</c:if><c:if test="${lesson.career==0}">1년미만</c:if></div>
 							<div id="universe"> ${lesson.universe} ${lesson.univsub}</div>
@@ -167,7 +167,7 @@ background:rgb(245, 244, 244);
         $(document).ready(function(){
 		  var status = "<c:out value="${status}" />";
        	  if(status == "limit"){
-       		  alert("이미 마감된 레슨입니다.");
+       		  alert("이미 마감된 수업입니다.");
        	  }else if(status == "duplicate"){
        		  alert("이미 지원하셨습니다.");
        	  }
@@ -191,7 +191,7 @@ background:rgb(245, 244, 244);
 				}
 				
 				if(!bool){
-					alert(subcate+'를 제공하는 레슨만 지원가능합니다.');
+					alert(subcate+'를 제공하는 수업만 지원가능합니다.');
 					return false;
 				}
 			});

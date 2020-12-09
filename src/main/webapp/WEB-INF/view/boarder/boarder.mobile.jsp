@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>레슨목록 콕사부</title>
- <meta name="description" content="선생님 레슨 목록" />
+ <title>수업목록 콕사부</title>
+ <meta name="description" content="선생님 수업 목록" />
 <meta property="og:type" content="website">
-<meta property="og:title" content="선생님 레슨목록">
-<meta property="og:site_name" content="선생님 레슨목록">
-<meta property="og:description" content="선생님이 올린 레슨 목록 페이지">
+<meta property="og:title" content="선생님 수업목록">
+<meta property="og:site_name" content="선생님 수업목록">
+<meta property="og:description" content="선생님이 올린 수업 목록 페이지">
 <meta property="og:image" content="https://www.coksabu.com/resources/images/logo.png">
 <meta property="og:url" content="https://coksabu.com/boarder?main=11&subject=11">
      <meta charset="utf-8">
@@ -354,7 +354,7 @@ width:80%;
 <body>
 
   	<div style="padding:50px 0px 30px 50px;background:rgb(238, 238, 238);padding-bottom:60px;">
-  	<div style="margin:0px 0px 60px 0px; font-size:40px;font-family:JejuGothic;">원하시는 레슨을 찾아보세요.</div>
+  	<div style="margin:0px 0px 60px 0px; font-size:40px;font-family:JejuGothic;">원하시는 수업을 찾아보세요.</div>
   	<span class="m-cate-btn">카테고리</span> <span class="m-locale-btn">지역:전체</span> <span class="m-filter-btn">상세검색</span>
   	</div>
   	

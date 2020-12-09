@@ -9,7 +9,6 @@
 <title>카테고리 콕사부</title>
 <meta charset="utf-8">
 <meta name="description" content="본인 인증 및 학력 인증하기" />
-  <link rel="canonical" href="https://coksabu.com/">
 <style>
 .img-ui{
 width:100%;margin:auto
@@ -58,7 +57,7 @@ width:100%;margin:auto
 
 
 
-<div class="subheading">레슨목록</div>
+<div class="subheading">수업목록</div>
 	<div style="width:100%;padding:90px 20px;">
 	<table class="img-ui" style="border-spacing:70px 0px;text-align:center; font-size:25px;font-weight:bolder">
 		<tr>
@@ -94,7 +93,7 @@ width:100%;margin:auto
 
 
 <div class="subheading" >
-레슨 요청하기<br/>
+수업 요청하기<br/>
 <div style="text-align:center;padding:50px;">
 <a href="./lessonapply" style="text-decoration:none;"><span class="cate-btn">선생님 지원서 받기</span></a><br/>
 <div style="text-align:center;margin:30px 0px 50px 0px; color:gray;">원하는 수업이 가능한 선생님의 지원서를 받아 보세요.</div>

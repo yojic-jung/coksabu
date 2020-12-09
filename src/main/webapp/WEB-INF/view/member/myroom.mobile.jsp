@@ -9,9 +9,7 @@
 <title>마이페이지 콕사부</title>
 <meta charset="utf-8">
 <meta name="description" content="본인 인증 및 학력 인증하기" />
-  <link rel="canonical" href="https://coksabu.com/">
-
-
+  <link rel="canonical" href="https://coksabu.com/myroom">
 
 <style>
 @font-face { font-family: 'JejuGothic'; 
@@ -72,11 +70,11 @@ body {
 <div class="headline">고객메뉴</div>
 <div class="subheading"><a href="./purchaselist">구매목록</a></div>
 <div class="subheading"><a href="./proposalpurchase">거래제안서(구매)</a></div>
-<div class="subheading"><a href="./mypage">레슨요청내역</a></div>
+<div class="subheading"><a href="./mypage">수업요청내역</a></div>
 <div class="subheading"><a href="./wishlist">장바구니</a></div>
 <div class="headline">튜터메뉴</div>
 <div class="subheading"><a href="./lessoncertify">인증정보</a></div>
-<div class="subheading"><a href="./tutorpage">프로필/레슨 관리</a></div>
+<div class="subheading"><a href="./tutorpage">프로필/수업 관리</a></div>
 <div class="subheading"><a href="./saleslist">판매목록</a></div>
 <div class="subheading"><a href="./proposalsell">거래제안서(판매)</a></div>
 

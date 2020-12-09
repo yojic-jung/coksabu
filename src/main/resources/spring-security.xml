@@ -56,7 +56,7 @@
 		<sec:intercept-url pattern="/seller**" access="hasAuthority('user')" />
 		<sec:intercept-url pattern="/buyerRefundComplete**" access="hasAuthority('user')" />
 		<sec:intercept-url pattern="/sellerRefundComplete**" access="hasAuthority('user')" />
-		
+		<sec:intercept-url pattern="/myproposal**" access="hasAuthority('user')" />
 		
 		<sec:intercept-url pattern="/admin**" access="hasAuthority('admin')" />
 		<sec:intercept-url pattern="/complete**" access="hasAuthority('admin')" />
@@ -70,8 +70,6 @@
 		<sec:intercept-url pattern="/depositConfirmProposalRecord**" access="hasAuthority('admin')" />
 		<sec:intercept-url pattern="/cancelStatusProposal**" access="hasAuthority('admin')" />
 		<sec:intercept-url pattern="/cancelDepositStatus**" access="hasAuthority('admin')" />
-		
-		<sec:intercept-url pattern="/myproposal**" access="hasAnyRole('user, admin')" />
 
 		<sec:intercept-url pattern="/**" access="permitAll"/>
 		

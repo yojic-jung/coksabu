@@ -3,16 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>레슨요청목록 콕사부</title>
+<title>수업요청목록 콕사부</title>
 <meta charset="utf-8">
- <meta name="description" content="학생 회원들의 레슨 요청 목록 페이지" />
+ <meta name="description" content="학생 회원들의 수업 요청 목록 페이지" />
  <meta property="og:type" content="website">
 <meta property="og:title" content="학생 수업 요청목록">
 <meta property="og:site_name" content="학생 수업 요청목록">
 <meta property="og:description" content="학생들이 새로운 수업과 새로운 선생님을 찾기 위해 신청한 목록입니다.">
 <meta property="og:image" content="https://www.coksabu.com/resources/images/logo.png">
 <meta property="og:url" content="https://www.coksabu.com/applylist">
-
+<link rel="canonical" href="https://coksabu.com/applylist">
 <link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
 <style>
 @charset "UTF-8";
@@ -207,7 +207,7 @@
 	<section>
 		<div style="padding:50px;width:100%;background:rgb(241, 241, 239)">
 		<div style="font-family:'JejuGothic'; font-size:30px; width:100%;text-align:center">
-		학생의 "레슨요청"에 선생님의 지원서를 넣어보세요.
+		학생의 "수업요청"에 선생님의 지원서를 넣어보세요.
 		</div>
 		<br/>
 		<div style="width:80%;margin:auto;font-family:'JejuGothic'; font-size:30px; color:gray;">
@@ -630,7 +630,7 @@
 	<c:when test="${listModel.hasList == false }" >
 	 <div style="min-height:600px;">
 	 <div style="width:100%;margin:auto; margin-top:100px;font-size:50px; font-family:'JejuGothic';">
-	 해당하는 조건의 "레슨요청"이 없습니다.
+	 해당하는 조건의 "수업요청"이 없습니다.
 	 </div>
 	 </div>
 	</c:when>

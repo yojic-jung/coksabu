@@ -7,7 +7,7 @@
 <head>
 <title>튜터페이지 콕사부</title>
     <meta charset="utf-8">
-     <meta name="description" content="선생님 프로필 및 레슨정보" />
+     <meta name="description" content="선생님 프로필 및 수업정보" />
     <link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
     <style>
 
@@ -203,7 +203,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
             <c:if test="${certify == 0 }" >
             	<div style="min-height:250px; padding:50px">
             		<div style="width:600px; margin:auto;font-size:20px">
-            			"레슨"을 만들기 위해서는 콕사부 인증정보를 설정하셔야 합니다. 
+            			"수업"을 만들기 위해서는 콕사부 인증정보를 설정하셔야 합니다. 
             			<br/><br/>
             			<div style="width:100px; margin:auto;">
             			<a href="./lessoncertify"><button style="padding:5px; font-size:16px;">인증하기</button></a>
@@ -264,7 +264,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                         <div style="text-align:center;margin-top:20px;line-height:180%;">
                         
                             <c:if test="${pro.certify==0}" >
-                          <b style="color: orange;font-size:15px;">인증이 완료되어야 레슨이 노출되며 지원서 발송도 가능합니다.</b>
+                          <b style="color: orange;font-size:15px;">인증이 완료되어야 수업이 노출되며 지원서 발송도 가능합니다.</b>
                             </c:if>
                             <c:if test="${pro.certify==2}" >
                           <b style="font-size:15px;">프로필 확인후 정확한 증명서 제출하시기 바랍니다.</b>
@@ -272,16 +272,16 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                             
                          </div>
                 </div>
-                <div class="div-title">레슨 목록 (${size}/3)</div>
+                <div class="div-title">수업 목록 (${size}/3)</div>
                         <div style="width:800px; background:white; margin:auto; padding:20px;">
                             <div class="lesson-make lesson-permit" href="#lesson" style="margin:auto; width: 690px; border:1px dashed gray;cursor:pointer">
                                <div style="text-align:center; margin:15px auto; font-size:20px; color:rgb(158, 158, 158)">
                                     
                                     <b>
-                                    	<span style="font-size:13px;" >레슨은 최대 3개까지 만들기가 가능합니다.</span>
+                                    	<span style="font-size:13px;" >수업은 최대 3개까지 만들기가 가능합니다.</span>
                                     <br/>
                                     +<br/>
-                                    	레슨 만들기
+                                    	수업 만들기
                                     </b>
                                </div>
                             </div>
@@ -313,7 +313,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 								<td>
 								<a href="<c:url value="./boardread?postId=${lesson.id}"/>">
 								<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;">
-								<img src="<c:url value='/img/representImg/${lesson.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="레슨대표이미지"/>
+								<img src="<c:url value='/img/representImg/${lesson.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="수업대표이미지"/>
 								</div>
 								</a>
 								</td>
@@ -360,7 +360,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
         	  var error = "<c:out value="${error}" />";
         	  
         	  if(error == "error"){
-        		  alert("레슨은 최대 3개까지만 등록 가능합니다.")
+        		  alert("수업은 최대 3개까지만 등록 가능합니다.")
         	  }
         	  
         	  var delError = "<c:out value="${delError}" />";
@@ -396,9 +396,9 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
           
           
           $('.delete-a').click(function(){
-        	    var confirmflag = confirm("해당하는 레슨을 삭제하시겠습까?");
+        	    var confirmflag = prompt("해당하는 수업을 삭제하시려면 \'삭제\' 라고 입력해주세요");
 
-        	    if(confirmflag){
+        	    if(confirmflag=='삭제'){
         			return true;
         	       //확인 버튼 클릭 true 
         	    }else{

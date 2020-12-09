@@ -9,6 +9,7 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+<link rel="canonical" href="https://coksabu.com/message">
 <title></title>
 <style>
  @font-face { font-family: 'JejuGothic'; 

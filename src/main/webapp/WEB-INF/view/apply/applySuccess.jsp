@@ -4,7 +4,7 @@
 <html>
 <head>
 <title>요청완료 콕사부</title>
- <meta name="description" content="레슨 요청 완료" />
+ <meta name="description" content="수업 요청 완료" />
  <link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
     <style>
     
@@ -21,7 +21,7 @@
         <section>
             <div style="background:rgb(46, 46, 46); color:rgb(219, 218, 218); font-size:14px;">
                 <div style="text-align:center; font-size:30px;padding:35px">
-                   레슨 요청완료
+                   수업 요청완료
                 </div>
             </div>
             
@@ -29,7 +29,7 @@
             <div style="width:800px;ackground:white; margin: auto; padding:80px 20px 150px 20px;">
             <div style="width:800px;font-size:25px; margin:50px auto;line-height:150%;text-align:center;">
             <div style="font-family:'JejuGothic'">
-            	"레슨요청"이 완료 되었습니다.<br/><br/>
+            	"수업요청"이 완료 되었습니다.<br/><br/>
                 <a href="./mypage" style="color:gray;font-weight:bolder;cursor:pointer">마이페이지</a> 신청내역을 통해 선생님들과 상담해보세요. 
             </div>
             <br/>

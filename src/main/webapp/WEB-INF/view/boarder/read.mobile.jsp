@@ -4,11 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>선생님 레슨정보, 레슨목록 콕사부</title>
- <meta name="description" content="선생님 레슨 정보 자세히 보기" />
+<title>선생님 수업정보, 수업목록 콕사부</title>
+ <meta name="description" content="선생님 수업 정보 자세히 보기" />
     <meta charset="utf-8">
    	<link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+<link rel="canonical" href="https://coksabu.com/boardread?postId=171">
 <style>
 @charset "UTF-8";
   body{
@@ -247,7 +248,7 @@
 			<div style="text-align:right;margin:20px;"><span id="wishlist" href="#dialog" style="font-size:30px;">장바구니</span></div> 
              <div class="left">
 			<c:if test="${empty lesson.title}">
-				<div style="font-size:40px; text-align:center;margin-bottom:30px;">삭제된 레슨입니다.</div>
+				<div style="font-size:40px; text-align:center;margin-bottom:30px;">삭제된 수업입니다.</div>
 			</c:if>
              
                <c:if test="${lesson.visible==0}">
@@ -256,7 +257,7 @@
 			</c:if>
                
                 <div style="width:100%;">
-                	<img style="width:100%" src="<c:url value="/img/representImg/${lesson.represent}" />"  alt="레슨대표이미지"/>
+                	<img style="width:100%" src="<c:url value="/img/representImg/${lesson.represent}" />"  alt="수업대표이미지"/>
                 </div>
 			<div class="title" style="line-height:150%;">${lesson.title}</div>
 			<div class="subcate">
@@ -318,7 +319,7 @@
 					</table>
 				</div>
 		
-		
+		<div style="margin:20px 0px;padding:10px;font-size:30px;line-height:200%;">콕사부 안내 : 제공하는 수업 외에도 채팅창에서 새로운 수업을 작성하여 거래할 수 있습니다.</div>
 		
 			
                 <div>
@@ -328,7 +329,7 @@
 				<br/>${pro.name}(${pro.birth}, ${pro.sexual})
 				</div>
                 
-                <div style="color:orange; "> <c:if test="${pro.certify == 1}">본인인증완료 &nbsp; &nbsp; 학력인증완료 </c:if></div>
+                <c:if test="${pro.certify == 1}"> <div style="margin-top:30px;color:orange; text-align:center;font-size:30px;">본인인증완료 &nbsp; &nbsp; 학력인증완료 </div></c:if>
                 <br/>
                 <div style="width:70%; margin:auto;font-size:30px;line-height:230%">
                <span class="info" style="margin-right:20px;">학교</span>${pro.universe} ${pro.univsub} (${pro.universer}) <br/>
@@ -377,24 +378,24 @@
 
 <div class="subtitle" >취소 및 환불 규정</div>
 <div class="content">
- 가. 레슨 환불기준 원칙<br/>
+ 가. 수업 환불기준 원칙<br/>
 학원의 설립/운영 및 과외교습에 관한 법률 제 18조(교습비 등의 반환 등)<br/>
 - 학원설립, 운영자, 교습자 및 개인과외교습자는 학습자가 수강을 계속할 수 없는 경우 또는 학원의 등록말소, 교습소 폐지 등으로 교습을 계속할 수 없는 경우에는 학습자로부터 받은
 교습비를 반환하는 등 학습자를 보호하기 위하여 필요한 조치를 하여야 한다.<br/>
 <br/>
-1. 레슨을 제공할 수 없거나, 레슨 장소를 제공할 수 없게 된 날 : 이미 납부한 레슨비 등을 일한 계산한 금액 환불<br/>
+1. 수업을 제공할 수 없거나, 수업 장소를 제공할 수 없게 된 날 : 이미 납부한 수업비 등을 일한 계산한 금액 환불<br/>
 <br/>
-2. 레슨기간이 1개월 이내의 경우<br/>
-- 레슨 시작전 : 이미 납부한 레슨비 전액 환불<br/>
-- 총 레슨 시간의 1/3 경과전 : 이미 납부한 레슨비의 2/3에 해당액 환불<br/>
-- 총 레슨 시간의 1/2 경과전 : 이미 납부한 레슨비용의 1/2에 해당액 환불<br/>
-- 총 레슨시간의 1/2 경과후 : 반환하지 않음<br/>
+2. 수업기간이 1개월 이내의 경우<br/>
+- 수업 시작전 : 이미 납부한 수업비 전액 환불<br/>
+- 총 수업 시간의 1/3 경과전 : 이미 납부한 수업비의 2/3에 해당액 환불<br/>
+- 총 수업 시간의 1/2 경과전 : 이미 납부한 수업비용의 1/2에 해당액 환불<br/>
+- 총 수업시간의 1/2 경과후 : 반환하지 않음<br/>
 <br/>
-3.레슨 기간이 1개월을 초과하는 경우<br/>
-- 레슨 시작전 : 이미 납부한 레슨비 전액 환불<br/>
-- 레슨 시작후 : 반환사유가 발생한 당해 월의 반환 대상 레슨비(레슨비 징수기간이 1개월 이내인 경우에 따라 산출된 수강료를 말한다)와 나머지 월의 레슨비 전액을 합산한 금액 환불
+3.수업 기간이 1개월을 초과하는 경우<br/>
+- 수업 시작전 : 이미 납부한 수업비 전액 환불<br/>
+- 수업 시작후 : 반환사유가 발생한 당해 월의 반환 대상 수업비(수업비 징수기간이 1개월 이내인 경우에 따라 산출된 수강료를 말한다)와 나머지 월의 수업비 전액을 합산한 금액 환불
 
-* 총 레슨 시간의 레슨비 징수기간 중의 총레슨시간을 말하며, 반환 금액의 산정은 반환 사유가 발생한 날까지 경과 된 레슨시간을 기준으로 함<br/>
+* 총 수업 시간의 수업비 징수기간 중의 총수업시간을 말하며, 반환 금액의 산정은 반환 사유가 발생한 날까지 경과 된 수업시간을 기준으로 함<br/>
 </div>
 </div>
  </div>          	

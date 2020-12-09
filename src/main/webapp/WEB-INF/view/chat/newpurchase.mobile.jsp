@@ -148,7 +148,7 @@
 <div style="text-align:right;font-size:50px;"><span class="close-btn" style="padding:30px;margin:30px;">x</span></div>
 <div class="main-1">
 	<div class="content" style="font-size:50px;padding:30px;line-height:180%;width:80%;margin:auto;word-break:keep-all;">
-	선생님이 판매하는 레슨이<br/>고객의 요구와 맞지 않아 변동이 필요한 경우
+	선생님이 판매하는 수업이<br/>고객의 요구와 맞지 않아 변동이 필요한 경우
 	고객의 요구에 맞춘 1대1 맞춤형 거래 양식을 새롭게 작성하여 거래 할 수 있습니다.
 	</div>
 	<div class="down">

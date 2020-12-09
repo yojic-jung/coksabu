@@ -5,15 +5,16 @@
 <html>
 <head>
 
-<title>레슨 지원하기 선생님전용 콕사부</title>
+<title>수업 지원하기 선생님전용 콕사부</title>
 <meta charset="utf-8">
- <meta name="description" content="선생님의 레슨 지원" />
+ <meta name="description" content="선생님의 수업 지원" />
  <meta property="og:type" content="website">
 <meta property="og:title" content="수업 신청">
 <meta property="og:site_name" content="수업신청">
-<meta property="og:description" content="학생의 레슨요청에 선생님이 자신의 레슨을 지원할수 있습니다.">
+<meta property="og:description" content="학생의 수업요청에 선생님이 자신의 수업을 지원할수 있습니다.">
 <meta property="og:image" content="https://www.coksabu.com/resources/images/logo.png">
 <meta property="og:url" content="httpss://www.coksabu.com/teacherApply">
+<link rel="canonical" href="https://coksabu.com/teacherApply?id=118">
 <style>
 @font-face { font-family: 'JejuGothic'; 
       src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 
@@ -109,7 +110,7 @@ background:rgb(245, 244, 244);
 </table>
 <br/>
 <div style="text-align:center; font-size:25px;color:orange; font-family:'JejuGothic'">
-<span style="font-weight:bolder; font-size:30px;">${apply.subcate}</span>을 제공하는 레슨의 경우 지원 가능합니다.</div>
+<span style="font-weight:bolder; font-size:30px;">${apply.subcate}</span>을 제공하는 수업의 경우 지원 가능합니다.</div>
 <br/>
 			<form method="post" onSubmit="return checkApply(this)">
 <div style="text-align:center;">
@@ -139,7 +140,7 @@ background:rgb(245, 244, 244);
 		  if(status == "noMembership"){
 			  alert("본인인증, 학력인증을 완료 후 가능합니다.");
 		  }else if(status == "limit"){
-       		  alert("이미 마감된 레슨입니다.");
+       		  alert("이미 마감된 수업입니다.");
        	  }else if(status == "duplicate"){
        		  alert("이미 지원하셨습니다.");
        	  }else if(status == "noProfile"){

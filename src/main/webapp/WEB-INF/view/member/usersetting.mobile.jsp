@@ -6,6 +6,7 @@
 <title>회원 설정 콕사부</title>
 <meta charset="utf-8">
  <meta name="description" content="회원 정보 페이지" />
+ <link rel="canonical" href="https://coksabu.com/usersetting">
 <style>
 body{
 background:#F6F6F6; 

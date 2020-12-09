@@ -71,6 +71,10 @@ public interface MemberDao {
 	
 	public int insertLessonCertify(LessonCertify certify);
 	
+	public int countLessonCertify(String email);
+	
+	public int updateLessonCertify(LessonCertify certify);
+	
 	public LessonCertify readLessonCertify(String email);
 	
 	public String readName(String email);
@@ -106,5 +110,7 @@ public interface MemberDao {
 	public int registerAndroidToken(HashMap<String, String> map);
 	
 	public int takeUnReadCount(String email);
+	
+	
 	
 }

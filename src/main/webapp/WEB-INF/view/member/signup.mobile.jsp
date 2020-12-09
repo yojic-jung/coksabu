@@ -11,7 +11,8 @@
     <meta charset="utf-8">
      <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap&subset=korean" rel="stylesheet">
-    <style>
+<link rel="canonical" href="https://coksabu.com/signup">   
+<style>
       @font-face { font-family: 'JejuGothic'; 
       src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 
 
@@ -205,9 +206,10 @@
      
       $(document).on('click','.phoneCertify',function(){
     	  var merchant_uid1 = "<c:out value="${merchant_uid}" />";
-    	  
+    	  //혹시나 오류나면 new Date()부분 없애기
+    	  merchant_uid1 = merchant_uid1+ new Date();
     	  IMP.certification({ // param
-    		    merchant_uid: merchant_uid1
+    		  merchant_uid: merchant_uid1
     		  }, function (rsp) { // callback
     		    if (rsp.success) {
     		      // 인증 성공 시 로직,

@@ -6,6 +6,7 @@
 <title>이메일/비밀번호 찾기 콕사부</title>
 <meta charset="utf-8">
 <meta name="description" content="이메일 및 비밀번호 찾기 선택 페이지" />
+<link rel="canonical" href="https://coksabu.com/emailPassFind">
 <style>
  @font-face { font-family: 'JejuGothic'; 
       src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 

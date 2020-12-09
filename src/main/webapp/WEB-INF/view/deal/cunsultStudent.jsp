@@ -46,7 +46,7 @@ padding:10px 5px;;
 		<table style="border-spacing:0px;width:700px; margin:auto;">
 		<tr style="font-size:12px;font-weight:bold;">
  		<td style="border-bottom:1px solid orange;padding:10px;">날짜</td>
- 		<td style="border-bottom:1px solid orange;padding:10px;">상담신청 레슨</td>
+ 		<td style="border-bottom:1px solid orange;padding:10px;">상담신청 수업</td>
  		<td style="border-bottom:1px solid orange;padding:10px;">선생님 성함</td>
  		<td style="border-bottom:1px solid orange;padding:10px;">보낸 메세지</td>
  		</tr>

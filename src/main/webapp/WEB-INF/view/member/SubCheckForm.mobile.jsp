@@ -6,6 +6,7 @@
     <title>대학검색 콕사부</title>
      <meta name="description" content="선생님 대학교 목록 " />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="canonical" href="https://coksabu.com/subCheckForm">
     <style type="text/css">
     body{
     	background-color:#F6F6F6;

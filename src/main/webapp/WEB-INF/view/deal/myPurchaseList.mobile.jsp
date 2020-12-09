@@ -6,8 +6,9 @@
 <head>
 <title>구매목록 거래 콕사부</title>
 <meta charset="utf-8">
-<meta name="description" content="나의 레슨 구매내역" />
+<meta name="description" content="나의 수업 구매내역" />
 <link rel="stylesheet" href="<c:url value="/resources/css/jquery-ui.css" />" type="text/css" /> 
+<link rel="canonical" href="https://coksabu.com/purchaselist">
 <style>
 @font-face { font-family: 'JejuGothic'; 
       src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 

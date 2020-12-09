@@ -6,14 +6,15 @@
 <head>
 <title>선생님 이력목록 콕사부</title>
  <meta charset="utf-8">
- <meta name="description" content="나의 레슨에 응답한 선생님 리스트" />
+ <meta name="description" content="나의 수업에 응답한 선생님 리스트" />
  <meta property="og:type" content="website">
-<meta property="og:title" content="나의 레슨 요청 내역">
-<meta property="og:site_name" content="레슨요청내역">
-<meta property="og:description" content="학생의 레슨요청 내역 리스트입니다.">
+<meta property="og:title" content="나의 수업 요청 내역">
+<meta property="og:site_name" content="수업요청내역">
+<meta property="og:description" content="학생의 수업요청 내역 리스트입니다.">
 <meta property="og:image" content="https://www.coksabu.com/resources/images/logo.png">
 <meta property="og:url" content="https://www.coksabu.com/mypage">
 <link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
+<link rel="canonical" href="https://coksabu.com/mypage">
 <style>
 	.div-title{
             width:800px; margin:auto; padding:0px 0px 10px 10px;
@@ -109,20 +110,20 @@ width:100%;
 <body>
 
 <div style="min-height:300px; background:rgb(233, 232, 232); padding:30px;">
-<div class="div-title" style="margin-top:50px;font-size:25px;">나의 레슨 요청 내역</div>
+<div class="div-title" style="margin-top:50px;font-size:25px;">나의 수업 요청 내역</div>
  	<div style="width:90%; background:white; margin: auto; padding:20px;min-height:200px;">
  	
  		
  		<c:choose>
  		<c:when test="${bool}">
  			<div style="font-size:30px; font-family:'JejuGothic'; text-align:center;margin-top:50px;line-height:150%;">
- 			현재 레슨 요청 내역이 없습니다.<br/>
- 			선생님을 찾고 계신다면 <a href="./apply" style="text-decoration:none; color:rgb(226, 193, 6); font-size:30px">[레슨요청]</a> 을 해보세요.
+ 			현재 수업 요청 내역이 없습니다.<br/>
+ 			선생님을 찾고 계신다면 <a href="./apply" style="text-decoration:none; color:rgb(226, 193, 6); font-size:30px">[수업요청]</a> 을 해보세요.
  			</div>
  		</c:when>
  		<c:otherwise>
  			<div style="margin:20px; text-align:center;font-size:30px;">
-선생님을 찾고 계신다면 <a href="./apply" style=" color:rgb(226, 193, 6); font-size:35px">[레슨요청]</a> 을 해보세요.
+선생님을 찾고 계신다면 <a href="./apply" style=" color:rgb(226, 193, 6); font-size:35px">[수업요청]</a> 을 해보세요.
 		</div>
  		</c:otherwise>
  		
@@ -194,7 +195,7 @@ width:100%;
  		</tr>
  		</c:forEach>
  		</table>
- 	<div style="text-align:right; font-size:22px;margin-top:30px;">레슨요청내역은 최근 1년간 목록만 공개됩니다.</div>
+ 	<div style="text-align:right; font-size:22px;margin-top:30px;">수업요청내역은 최근 1년간 목록만 공개됩니다.</div>
  		<div style="display:none; font-size:25px; color:gray; ">
             <div id="applyform" ></div>
         </div>
@@ -267,7 +268,7 @@ width:100%;
   
   
   $('.delete').click(function(){
-    var confirmflag = confirm("해당하는 레슨요청을 삭제하시겠습까?");
+    var confirmflag = confirm("해당하는 수업요청을 삭제하시겠습까?");
 
     if(confirmflag){
     	window.location='./myapply/delete';

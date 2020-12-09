@@ -223,7 +223,7 @@ $(document).ready(function(){
                 
             <sec:authorize access="!isAuthenticated()">
                 <ul class="top-ul">
-                    <li><a href="./boarder?main=11&subject=11">레슨목록</a></li>
+                    <li><a href="./boarder?main=11&subject=11">수업목록</a></li>
                     <li><a href="./applylist">요청목록</a></li>
                     <li><a href="./login">로그인</a></li>
                     <li><a href="./signup">회원가입</a></li>
@@ -231,9 +231,9 @@ $(document).ready(function(){
              </sec:authorize>
              <sec:authorize access="isAuthenticated()">
                 <ul class="top-ul">
-                    <li><a href="./boarder?main=11&subject=11">레슨목록</a></li>
+                    <li><a href="./boarder?main=11&subject=11">수업목록</a></li>
                     <li><a href="./applylist">요청목록</a></li>
-                    <li><a href="./lessonapply">레슨요청</a></li>
+                    <li><a href="./lessonapply">수업요청</a></li>
                     <li><a href="./myroom">마이페이지</a></li>
                     <li><a href="./message" class="message-notify">메세지</a></li>
                     <li><a href="<c:url value='j_spring_security_logout' />">로그아웃</a></li>
@@ -313,7 +313,7 @@ $(document).ready(function(){
               <p>
          <a href="./qna" style="text-decoration:none;font-weight:bolder; color:black;"> 고객센터</a><br/>
                 02-959-1176<br/>
-                평일 10:00 ~ 16:00 <br/> 
+                평일 10:00 ~ 17:00 <br/> 
                 (점심 13:00 ~ 14:00)
               </p>
             </div>

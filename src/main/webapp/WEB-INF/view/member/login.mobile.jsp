@@ -11,7 +11,7 @@
   <meta name="description" content="로그인 하기" />
   <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href= "<c:url value="/resources/css/loginM.css" />" />
-  
+  <link rel="canonical" href="https://coksabu.com/login">   
 
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
     <script>

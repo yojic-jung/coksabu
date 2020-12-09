@@ -6,7 +6,7 @@
 <title>비밀번호 정보 변경</title>
 <meta charset="utf-8">
   <meta name="description" content="비밀번호 설정" />
-  
+  <link rel="canonical" href="https://coksabu.com/passwordsetting">
   <style>
 body{
 background:#F6F6F6;

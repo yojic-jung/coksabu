@@ -5,6 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="user-scalable=no">
+<link rel="canonical" href="https://coksabu.com/chatroom?id=195&root=read">
 <title>채팅</title>
 
  <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
@@ -365,7 +366,7 @@ font-size:20px;color:gray; margin:10px 10px 0px 10px ;float:right;
    </div>
    <div style="background:white;padding:20px 0px 0px 0px">
    		<div class="purchase purchase-title" >
-		거래하기
+		거래 제안서 작성
 		</div>
 	</div>
 	<div style="background:white;padding:20px 0px 0px 0px">
@@ -430,13 +431,13 @@ font-size:20px;color:gray; margin:10px 10px 0px 10px ;float:right;
 <!-- 거래 제안서 작성 및 수정 -->
 <div class="newPurchase" style="display:none;">
 <div style="width:100%; text-align:center; font-size:60px;padding:30px;border-bottom:1px solid gray;font-weight:bolder;">
-거래 작성하기
+거래 제안서 작성
 </div>
 <span class="close-btn" style="position:absolute;left:80px; top:30px;font-size:60px;">&lt;</span>
 <div class="main-1">
 	<div class="content" style="font-size:50px;padding:30px;line-height:180%;width:80%;margin:auto;word-break:keep-all;">
-	선생님이 판매하는 레슨이<br/>고객의 요구와 맞지 않아 변동이 필요한 경우
-	고객의 요구에 맞춘 1대1 맞춤형 거래 양식을 새롭게 작성하여 거래 할 수 있습니다.
+	선생님이 판매하는 수업이<br/>고객의 요구와 맞지 않아 변동이 필요한 경우
+	고객의 요구에 맞춘 1대1 맞춤형 수업을 만들어 안전거래를 할 수 있습니다.
 	<div style="text-align:center;margin-top:60px;">
 	<img src="<c:url value="/resources/images/newpurchase.png" />" alt="거래 이미지" style="width:60%;height:300px;"/>
 	</div>
@@ -558,29 +559,29 @@ font-size:20px;color:gray; margin:10px 10px 0px 10px ;float:right;
 		<div class="refund-content" style="display:none;">
                 <div style="overflow:scroll;font-size:25px; line-height:140%;margin:20px auto;height:600px;border:1px solid black; padding:10px;">
 				<div style="text-align:right; "><span class="refund-close" style="background:black;color:white;padding:10px">닫기</span></div>
-				가. 레슨 환불기준 원칙<br/>
+				가. 수업 환불기준 원칙<br/>
 				<br/>
 				학원의 설립/운영 및 과외교습에 관한 법률 제 18조(교습비 등의 반환 등)<br/>
 				- 학원설립, 운영자, 교습자 및 개인과외교습자는 학습자가 수강을 계속할 수 없는 경우 또는 학원의 등록말소, 교습소 폐지 등으로 교습을 계속할 수 없는 경우에는 학습자로부터 받은 교습비를 반환하는 등 학습자를 보호하기 위하여 필요한 조치를 하여야 한다.<br/>
 				<br/>
-				1. 레슨을 제공할 수 없거나, 레슨 장소를 제공할 수 없게 된 날 : 이미 납부한 레슨비 등을 일한 계산한 금액 환불<br/>
+				1. 수업을 제공할 수 없거나, 수업 장소를 제공할 수 없게 된 날 : 이미 납부한 수업비 등을 일한 계산한 금액 환불<br/>
 				<br/>
-				2. 레슨기간이 1개월 이내의 경우<br/>
-				- 레슨 시작전 : 이미 납부한 레슨비 전액 환불<br/>
-				- 총 레슨 시간의 1/3 경과전 : 이미 납부한 레슨비의 2/3에 해당액 환불<br/>
-				- 총 레슨 시간의 1/2 경과전 : 이미 납부한 레슨비용의 1/2에 해당액 환불<br/>
-				- 총 레슨시간의 1/2 경과후 : 반환하지 않음<br/>
+				2. 수업기간이 1개월 이내의 경우<br/>
+				- 수업 시작전 : 이미 납부한 수업비 전액 환불<br/>
+				- 총 수업 시간의 1/3 경과전 : 이미 납부한 수업비의 2/3에 해당액 환불<br/>
+				- 총 수업 시간의 1/2 경과전 : 이미 납부한 수업비용의 1/2에 해당액 환불<br/>
+				- 총 수업시간의 1/2 경과후 : 반환하지 않음<br/>
 				<br/>
-				3.레슨 기간이 1개월을 초과하는 경우<br/>
-				- 레슨 시작전 : 이미 납부한 레슨비 전액 환불<br/>
-				- 레슨 시작후 : 반환사유가 발생한 당해 월의 반환 대상 레슨비(레슨비 징수기간이 1개월 이내인 경우에 따라 산출된 수강료를 말한다)와 나머지 월의 레슨비 전액을 합산한 금액 환불 * 총 레슨 시간의 레슨비 징수기간 중의 총레슨시간을 말하며, 반환 금액의 산정은 반환 사유가 발생한 날까지 경과 된 레슨시간을 기준으로 함<br/>
+				3.수업 기간이 1개월을 초과하는 경우<br/>
+				- 수업 시작전 : 이미 납부한 수업비 전액 환불<br/>
+				- 수업 시작후 : 반환사유가 발생한 당해 월의 반환 대상 수업비(수업비 징수기간이 1개월 이내인 경우에 따라 산출된 수강료를 말한다)와 나머지 월의 수업비 전액을 합산한 금액 환불 * 총 수업 시간의 수업비 징수기간 중의 총수업시간을 말하며, 반환 금액의 산정은 반환 사유가 발생한 날까지 경과 된 수업시간을 기준으로 함<br/>
 				</div>
 				<div style="height:300px;"></div>
 		</div>
 		
 		<div class="second">
         <div class="previous4">이전</div>
-        <div class="next4">거래 작성</div>
+        <div class="next4">작성 완료</div>
         </div>
         </div>
 </div>
@@ -597,7 +598,7 @@ font-size:20px;color:gray; margin:10px 10px 0px 10px ;float:right;
 	</div>
 	
 	<div class="purchase-update" style="font-size:40px; margin:60px;text-align:center; text-decoration:underline;">
-	새로운 거래 제안서 작성
+	거래 제안서 수정하기
 	</div>
 	
 	<div style="margin:50px; font-size:40px; padding:20px;line-height:180%;">
@@ -616,22 +617,22 @@ font-size:20px;color:gray; margin:10px 10px 0px 10px ;float:right;
 		<div class="refund-content2" style="display:none;">
                 <div style="overflow:scroll;font-size:25px; line-height:140%;margin:20px auto;height:600px;border:1px solid black; padding:10px;">
 				<div style="text-align:right; "><span class="refund-close2"  style="background:black;color:white;padding:10px">닫기</span></div>
-				가. 레슨 환불기준 원칙<br/>
+				가. 수업 환불기준 원칙<br/>
 				<br/>
 				학원의 설립/운영 및 과외교습에 관한 법률 제 18조(교습비 등의 반환 등)<br/>
 				- 학원설립, 운영자, 교습자 및 개인과외교습자는 학습자가 수강을 계속할 수 없는 경우 또는 학원의 등록말소, 교습소 폐지 등으로 교습을 계속할 수 없는 경우에는 학습자로부터 받은 교습비를 반환하는 등 학습자를 보호하기 위하여 필요한 조치를 하여야 한다.<br/>
 				<br/>
-				1. 레슨을 제공할 수 없거나, 레슨 장소를 제공할 수 없게 된 날 : 이미 납부한 레슨비 등을 일한 계산한 금액 환불<br/>
+				1. 수업을 제공할 수 없거나, 수업 장소를 제공할 수 없게 된 날 : 이미 납부한 수업비 등을 일한 계산한 금액 환불<br/>
 				<br/>
-				2. 레슨기간이 1개월 이내의 경우<br/>
-				- 레슨 시작전 : 이미 납부한 레슨비 전액 환불<br/>
-				- 총 레슨 시간의 1/3 경과전 : 이미 납부한 레슨비의 2/3에 해당액 환불<br/>
-				- 총 레슨 시간의 1/2 경과전 : 이미 납부한 레슨비용의 1/2에 해당액 환불<br/>
-				- 총 레슨시간의 1/2 경과후 : 반환하지 않음<br/>
+				2. 수업기간이 1개월 이내의 경우<br/>
+				- 수업 시작전 : 이미 납부한 수업비 전액 환불<br/>
+				- 총 수업 시간의 1/3 경과전 : 이미 납부한 수업비의 2/3에 해당액 환불<br/>
+				- 총 수업 시간의 1/2 경과전 : 이미 납부한 수업비용의 1/2에 해당액 환불<br/>
+				- 총 수업시간의 1/2 경과후 : 반환하지 않음<br/>
 				<br/>
-				3.레슨 기간이 1개월을 초과하는 경우<br/>
-				- 레슨 시작전 : 이미 납부한 레슨비 전액 환불<br/>
-				- 레슨 시작후 : 반환사유가 발생한 당해 월의 반환 대상 레슨비(레슨비 징수기간이 1개월 이내인 경우에 따라 산출된 수강료를 말한다)와 나머지 월의 레슨비 전액을 합산한 금액 환불 * 총 레슨 시간의 레슨비 징수기간 중의 총레슨시간을 말하며, 반환 금액의 산정은 반환 사유가 발생한 날까지 경과 된 레슨시간을 기준으로 함<br/>
+				3.수업 기간이 1개월을 초과하는 경우<br/>
+				- 수업 시작전 : 이미 납부한 수업비 전액 환불<br/>
+				- 수업 시작후 : 반환사유가 발생한 당해 월의 반환 대상 수업비(수업비 징수기간이 1개월 이내인 경우에 따라 산출된 수강료를 말한다)와 나머지 월의 수업비 전액을 합산한 금액 환불 * 총 수업 시간의 수업비 징수기간 중의 총수업시간을 말하며, 반환 금액의 산정은 반환 사유가 발생한 날까지 경과 된 수업시간을 기준으로 함<br/>
 				</div>
 		</div>
 		
@@ -646,11 +647,7 @@ font-size:20px;color:gray; margin:10px 10px 0px 10px ;float:right;
 			<td>
 			<select class="bank" name="bank" style="padding:10px;font-size:25px;">
 				<option>--- 은행선택 ---</option>
-				<option>농협은행 3020092810491 (예금주:레슨왕)</option>
-				<option>국민은행 3020092810491 (예금주:레슨왕)</option>
-				<option>하나은행 3020092810491 (예금주:레슨왕)</option>
-				<option>신한은행 3020092810491 (예금주:레슨왕)</option>
-				<option>기업은행 3020092810491 (예금주:레슨왕)</option>
+				<option value="농협은행 351-1087-9782-73 정요직(콕사부)">농협은행 351-1087-9782-73</option>
 			</select>
 			</td>
 		</tr>
@@ -933,7 +930,7 @@ $(document).ready(function(){
 		    		       },
 		    		  success:function(data){
 		    			  if(data=='success'){
-		    				  alert('거래 제안서가 정상적으로 작성되셨습니다.')
+		    				  alert('거래제안서를 정상적으로 작성하였습니다.')
 		    			  }
 		    			  
 		    			$('.close-btn').trigger('click');
@@ -941,7 +938,7 @@ $(document).ready(function(){
 		    			$('.purchase').hide();
 		    			
 		    			var mes = {};
-		    			mes.message_content = "새로운 거래제안이 있습니다.<br/>거래 제안서를 확인해보세요.<div class='proposal purchase-box'>거래 제안서 보기</div>";
+		    			mes.message_content = "새로운 거래 제안서를 작성하였습니다.<br/>수업을 확인하고 안전거래 해보세요.<div class='proposal purchase-box'>거래 제안서 보기</div>";
 		    			mes.message_sender = sender
 		    			mes.chatroom_id = chatroom_id
 		    			mes.message_time = new Date();
@@ -1023,12 +1020,13 @@ $(document).on("click", ".purchase-box", function(){
 			
 			
 			if(data.customer=="구매자"){
-				$('.proposal-customer').text("서비스 요청");
+				$('.proposal-customer').text("수업 요청");
 				$('.purchase-bank').hide();
-				$('.customer-div').html('<div style="text-align:center;margin-top:50px;"><span class="accept-proposal" style="cursor:pointer; text-decoration:underline;color:orange;font-weight:bolder;font-size:50px;">거래 제안서 승낙</span></div><div>수업을 제공하는 선생님이 거래 제안서를 승낙하면 해당하는 내용으로 서비스를 거래할 수 있습니다.</div>');
+				$('.customer-div').html('<div style="text-align:center;margin-top:50px;"><span class="accept-proposal" style="cursor:pointer; text-decoration:underline;color:orange;font-weight:bolder;font-size:50px;">거래 제안서 승낙</span></div><div>수업을 제공하는 선생님이 거래 제안서를 승낙 하면 해당하는 내용의 수업 거래가 가능합니다.</div>');
+				$('.customer-cont').html('');
 			}else if(data.customer=="판매자"){
 				$('.proposal-customer').text("판매자");
-				$('.customer-div').html('<div class="lesson-purchase" style="text-align:center;margin-top:50px;font-weight:bolder;font-size:50px;padding:20px;color:white;border-radius:10px; background:orange;">레슨 구매하기</div>');
+				$('.customer-div').html('<div class="lesson-purchase" style="text-align:center;margin-top:50px;font-weight:bolder;font-size:50px;padding:20px;color:white;border-radius:10px; background:orange;">수업 구매하기</div>');
 				$('.customer-cont').html('콕사부는 고객님의 휴대폰 번호를 공개적으로 공개하지 않습니다.<br/>서비스 결제전 상대방과 합의 후 연락처를 공유하시는걸 추천드립니다.');
 				$('.proposal_id').text(data.proposal_id);
 				$('.purchase-bank').show();
@@ -1051,13 +1049,13 @@ $(document).on('click','.accept-proposal',function(){
 		  },
 		  success:function(data){
 			  if(data=="fail"){
-				  alert("본인의 거래제안서에 본인이 승낙 할수는 없습니다.");
+				  alert("본인의 거래 제안서에 본인이 승낙 할수는 없습니다.");
 			  }else if(data=="success"){
-				  alert("성공적으로 거래를 승낙 하였습니다.");
+				  alert("성공적으로 거래 제안서를 승낙 하였습니다.");
 				  $('.close-btn2').trigger('click');
 				  
 				  var mes = {};
-	    			mes.message_content = "거래제안을 승낙했습니다.<br/>서비스를 구매하실  수 있습니다. <div class='proposal purchase-box'>거래 제안서 보기</div>";
+	    			mes.message_content = "거래 제안서를 승낙했습니다.<br/>서비스를 구매하실  수 있습니다. <div class='proposal purchase-box'>거래 제안서 보기</div>";
 	    			mes.message_sender = sender
 	    			mes.chatroom_id = chatroom_id
 	    			mes.message_time = new Date();
@@ -1102,7 +1100,7 @@ $(document).on('click','.lesson-purchase',function(){
 		    			mes.message_time = new Date();
 		    			stompClient.send("/app/message", {atytopic:"message", name: chatroom_id}, JSON.stringify(mes));
 					  }else if(data=='fail')
-					  	alert('자기자신의 거래 제안서는 구매할 수 없습니다.');
+					  	alert('자기자신의 수업은 구매할 수 없습니다.');
 				  }
 			  });
 		}

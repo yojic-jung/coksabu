@@ -30,12 +30,11 @@
 	border-radius:15px;
 	background:dimgray;
 	color:white;
-	font-size:24px;
-	width:300px;
+	font-size:30px;
 	}
 </style>
 <meta charset="utf-8">
-
+<link rel="canonical" href="https://coksabu.com/lessoncertify">
 </head>
 <body>
 <section>
@@ -47,9 +46,9 @@
 			<div class="left" style="line-height:180%;font-size:28px;">
 			<br/>
 			실명 <br/>
-			<input class="inp name" type="text" name="name" <c:if test="${certify.name !=null}">value="${certify.name}" disabled</c:if> /><br/>
+			<input class="inp name" type="text" name="name" <c:if test="${certify.name !=null}">value="${certify.name}" style="background:#D5D5D5;" readonly</c:if> /><br/>
 			<br/>
-			게좌<br/> 
+			계좌 (판매대금 입금받을 계좌)<br/> 
 			<select class="account" style="padding:10px;font-size:28px;" name="account">
 			<option>--선택--</option>
 			<option>농협</option>
@@ -65,16 +64,15 @@
 			<option>광주은행</option>
 			<option>경남은행</option>
 			</select>
-			<input style="padding:10px; width:300px;font-size:28px;" type="text" class="accountnumber" name="accountNumber"  placeholder=" '-' 없이  입력해주세요."  <c:if test="${certify.accountNumber !=null}">value="${certify.accountNumber}" disabled</c:if>/><br/>
-			<br/>
+			<input style="padding:10px; width:300px;font-size:28px;" type="text" class="accountnumber" name="accountNumber"  placeholder=" '-' 없이  입력해주세요." <c:if test="${certify.accountNumber !=null}">value="${certify.accountNumber}"</c:if> /><br/>
 			</div>
-			
+			<br/><br/>
 			<div class="right">
 				<div style="margin-top:20px;font-size:24px;">콕사부 서비스 정책</div>
 				<div style="margin-top:20px; line-height:180%;overflow:scroll;font-size:20px; padding:10px;height:250px;background:white;border:1px solid black; ">
-			콕사부를을 통해 선생님들은 레슨을 판매할 수 있습니다.<br/>
-			 콕사부를 통해 판매되는 수익금은 거래 수수료 10%를 제외한 거래금액의 90%가 선생님에게 전달됩니다.<br/>
-			  다만, 서비스의 안전한 거래를 위하여 판매금을 서비스가 종료된 날짜를 기준으로 5~7일 후에 입금됨을 알립니다.(후불입금)<br/>
+			콕사부를을 통해 선생님들은 수업을 판매할 수 있습니다.<br/>
+			 콕사부를 통해 판매되는 수익금은 거래 수수료 25%를 제외한 거래금액의 75%가 선생님에게 전달됩니다.(수수료가 15만원이 넘게 발생되는 60만원 이상의 거래는 수수료를 15만원으로 일괄 적용합니다.)<br/>
+			  다만, 서비스의 안전한 거래를 위하여 판매금을 서비스가 종료된 날짜를 기준으로 1-3일 후에 입금됨을 알립니다.(후불입금)<br/>
 			 <br/>
 			 콕사부를 통해 서비스를 제공하는 선생님들은 법에 의거한 환불정책을 준수해야 합니다.<br/>
 			「학원의 설립·운영 및 과외교습에 관한 법률」제18조,<br/>
@@ -83,7 +81,7 @@
 			총 교습시간의 1/2 경과 전 환불을 신청한 경우, 이미 납부한 교습비등의 1/2에 해당하는 금액,<br/>
 			총 교습시간의 1/2 경과 후 환불을 신청한 경우, 반환하지 않습니다.<br/>
 			위는 학생이 환불을 신청한 경우에 선생님이 제공하는 환불정책에 해당하는 내용이며 <br/>
-			선생님이 중도 서비스 중지 또는 해지를 원하는 경우에는 제공한 레슨 횟수에 해당하는 판매금을 받고 나머지 금액은 학생에게 전달됩니다.
+			선생님이 중도 서비스 중지 또는 해지를 원하는 경우에는 제공한 수업 횟수에 해당하는 판매금을 받고 나머지 금액은 학생에게 전달됩니다.
 			
 				</div>
 			</div>
@@ -148,7 +146,7 @@
 <br/>
 제 11조 [대금정산]<br/>
 1. 총판매 대금에서 판매 수수료를 제외한 금액을 판매자에게 수익금으로 정산하고, 판매 수수료의 요율은 내부정책에 따릅니다.<br/>
-2. 구매자가 구매를 확정한 즉시 수수료를 제외한 금액이 수익금으로 전환됩니다.<br/>
+2. 구매자가 구매를 확정한 즉시 수수료를 제외한 금액이 수익금으로 전환됩니다.(수익금 입금은 서비스 종료 1-3일 후)<br/>
 3. 판매자는 수익금에 대하여 출금 신청을 할 수 있으며 출금이 신청된 수익금은 2영업일 이내에 등록해주신 판매자의 계좌로 출금됩니다. 단, 출금신청 및 취소 가능 시간은 9시에서 17시까지로 제한됩니다.<br/>
 4. 판매자가 계약관련 하여 관계법령이나 이 약관의 위반을 포함한 서비스 이행에 문제가 발생한 경우 회사는 해결 시까지 대금지급을 보류 할 수 있습니다.<br/>
 5. 자연재해 또는 금융사의 전산이슈 발생으로 인한 수익금 입금지연에 대하여서는 회사가 별도 책임을 부담하지 않습니다.<br/>
@@ -212,7 +210,11 @@
 			</div>
 			<div style="text-align:center">
 			<br/><br/><br/>
-			<c:if test="${certify.name ==null}"><input class="btn" type="submit" value="동의하고 프로필 작성하기" /></div></c:if>
+			<c:choose>
+			<c:when test="${certify.name ==null}"><input class="btn" type="submit" value="동의하고 프로필 작성하기" /></c:when>
+			<c:otherwise><input class="btn" type="submit" value="계좌변경하기" /></c:otherwise>
+			</c:choose>
+			</div>
 	</form>
 	</div>
 	
@@ -239,7 +241,6 @@ $(document).ready(function(){
 	$('.account').find('option').each(function(){
 		if($(this).val()==account){
 			$(this).prop('selected', 'true');
-			$('.account').prop('disabled','true');
 		}
 	});
 	
@@ -267,7 +268,6 @@ function CheckForm(){
 			alert('계좌번호는 -없이 입력해주시기 바랍니다.');
 			 return false;
 		}
-		
 		if(!$('.serviceagree').is(":checked")){
 			alert('서비스 정책 동의에 체크해주시기 바랍니다.');
 			 return false;

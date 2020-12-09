@@ -171,7 +171,8 @@
      
       $(document).on('click','.phoneCertify',function(){
     	  var merchant_uid1 = "<c:out value="${merchant_uid}" />";
-    	  
+    	  //혹시나 오류나면 new Date()부분 없애기
+    	  merchant_uid1 = merchant_uid1+ new Date();
     	  IMP.certification({ // param
     		    merchant_uid: merchant_uid1
     		  }, function (rsp) { // callback

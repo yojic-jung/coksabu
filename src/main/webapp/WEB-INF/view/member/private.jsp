@@ -5,6 +5,7 @@
 <title>개인정보 방침 콕사부</title>
 <meta charset="utf-8">
   <meta name="description" content="개인정보 내용" />
+  <link rel="canonical" href="https://coksabu.com/private">
   <style>
   .content{
   font-size:25px;

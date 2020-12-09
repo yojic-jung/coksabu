@@ -6,6 +6,7 @@
 <head>
 <title>거래제안서(판매) 콕사부</title>
 <meta charset="utf-8">
+<link rel="canonical" href="https://coksabu.com/proposalsell">
  <style>
   @font-face { font-family: 'JejuGothic'; 
       src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 

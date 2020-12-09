@@ -12,7 +12,6 @@
 <meta property="og:description" content="콕사부가 모르는 것을 해결해드립니다.">
 <meta property="og:image" content="https://www.coksabu.com/resources/images/logo.png">
 <meta property="og:url" content="https://www.coksabu.com/myqna">
-<link rel="canonical" href="https://coksabu.com/myqna">
 <style>
 
 .div-title{

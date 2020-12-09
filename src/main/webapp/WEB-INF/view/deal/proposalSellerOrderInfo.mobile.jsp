@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="canonical" href="https://coksabu.com/sellerProposalOrderInfo?id=26">
 <title>주문정보 콕사부</title>
 <style>
 	table{

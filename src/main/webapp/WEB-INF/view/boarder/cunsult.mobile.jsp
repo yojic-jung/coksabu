@@ -5,7 +5,7 @@
 <html>
 <head>
 <title>상담목록 학생전용 콕사부</title>
-<meta name="description" content="학생회원의 선생님 레슨에 상담신청하기" />
+<meta name="description" content="학생회원의 선생님 수업에 상담신청하기" />
 <meta charset="utf-8">
 <title>상담신청</title>
 <style>
@@ -59,7 +59,7 @@ $(document).ready(function(){
 		alert("상담신청이 성공적으로 진행되었습니다. \n연락 확인 후 선생님에게서 연락이 갈 것입니다. ");
 		 window.history.go(-2);
 	}else if(status=="limit"){
-		alert("하루 최대 신청횟수는 3회입니다. \n[레슨요청]페이지를 통해 레슨을 요청하면 신청횟수에 상관없이 \n선생님들의 지원서와 연락처를 받아볼 수 있습니다.  ");
+		alert("하루 최대 신청횟수는 3회입니다. \n[수업요청]페이지를 통해 수업을 요청하면 신청횟수에 상관없이 \n선생님들의 지원서와 연락처를 받아볼 수 있습니다.  ");
 		 window.history.go(-2);
 	}
 	
