@@ -693,7 +693,7 @@
                     	<tr>
                     		<td><label style="cursor:pointer"><input type="checkbox" name="singular" id="singular" value="학원강사경력" />학원강사경력</label></td>
                     		<td><label style="cursor:pointer"><input type="checkbox" name="singular" id="singular" value="특목고 졸업"/>특목고 졸업</label></td>
-                    		<td><label style="cursor:pointer"><input type="checkbox" name="singular" id="singular" value="특목고 졸업"/>특목고 졸업</label></td>
+                    		<td><label style="cursor:pointer"><input type="checkbox" name="singular" id="singular" value="외고 졸업"/>외고 졸업</label></td>
                     	</tr>
                     	<tr>
                     		<td><label style="cursor:pointer"><input type="checkbox" name="singular" id="singular" value="영어경시대회"/>영어경시대회</label> </td>
@@ -701,7 +701,6 @@
                     		<td><label style="cursor:pointer"><input type="checkbox" name="singular" id="singular" value="예술고 졸업"/>예술고 졸업</label></td>
                     	</tr>
                     	<tr>
-                    		<td><label style="cursor:pointer"><input type="checkbox" name="singular" id="singular" value="외고 졸업"/>외고 졸업</label></td>
                     		<td><label style="cursor:pointer"><input type="checkbox" name="singular" id="singular" value="수학경시대회"/>수학경시대회 </label></td>
                     		<td><label style="cursor:pointer"><input type="checkbox" name="singular" id="singular" value="논술대회"/>논술대회 </label></td>
                     	</tr>
@@ -909,26 +908,6 @@
          if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp'){
          }else{
         	 alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
-         }
-         
-    	var maxSize  = 2048 * 1024    //2MB
-    	var fileSize = 0;
-
- 		// 브라우저 확인
- 		var browser=navigator.appName;
- 		// 익스플로러일 경우
- 		if (browser=="Microsoft Internet Explorer"){
- 			var oas = new ActiveXObject("Scripting.FileSystemObject");
- 			fileSize = oas.getFile( obj.value ).size;
- 		// 익스플로러가 아닐경우
- 		}else{
- 			fileSize = obj.files[0].size;
- 		}
-
-         if(fileSize > maxSize){
-             alert("첨부파일 사이즈는 2MB 이내로 등록 가능합니다.");
-             $('#img').val('');
-             return false;
          }
     }            
       </script>

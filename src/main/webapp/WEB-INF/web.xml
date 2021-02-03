@@ -25,62 +25,6 @@
 		</listener-class>
 	</listener>
 	
-	<error-page>
-		<error-code>400</error-code>
-		<location>/400error</location>
-	</error-page>
-
-	<error-page>
-		<error-code>401</error-code>
-		<location>/400error</location>
-	</error-page>
-
-	<error-page>
-		<error-code>402</error-code>
-		<location>/400error</location>
-	</error-page>
-
-	<error-page>
-		<error-code>403</error-code>
-		<location>/400error</location>
-	</error-page>
-
-	<error-page>
-		<error-code>404</error-code>
-		<location>/404error</location>
-	</error-page>
-
-	<error-page>
-		<error-code>405</error-code>
-		<location>/400error</location>
-	</error-page>
-
-	<error-page>
-		<error-code>406</error-code>
-		<location>/400error</location>
-	</error-page>
-
-	<error-page>
-		<error-code>407</error-code>
-		<location>/400error</location>
-	</error-page>
-
-	<error-page>
-		<error-code>408</error-code>
-		<location>/400error</location>
-	</error-page>
-
-	<error-page>
-		<error-code>409</error-code>
-		<location>/400error</location>
-	</error-page>
-
-
-	<error-page>
-		<location>/error</location>
-	</error-page>
-	
-	
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -149,4 +93,23 @@
 		<async-supported>true</async-supported>
 	</filter>
 	
+	<filter>
+		<filter-name>multipartFilter</filter-name>
+		<filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>multipartFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter> 
+		<filter-name>xssEscapeServletFilter</filter-name> 
+		<filter-class>com.navercorp.lucy.security.xss.servletfilter.XssEscapeServletFilter</filter-class> 
+	</filter> 
+	<filter-mapping> 
+		<filter-name>xssEscapeServletFilter</filter-name> 
+		<url-pattern>/*</url-pattern> 
+	</filter-mapping>
+
+
 </web-app>

@@ -10,6 +10,7 @@
 
 	<sec:http pattern="/resources/**" security="none" />
 	<sec:http pattern="/img/**" security="none" />
+	<sec:http pattern="/favicon.ico" security="none" />
 
 	<sec:http use-expressions="true">
 		
@@ -27,6 +28,7 @@
 		<sec:intercept-url pattern="/saleslist**" access="hasAuthority('user')" />
 		<sec:intercept-url pattern="/usersetting**" access="hasAuthority('user')" />
 		<sec:intercept-url pattern="/passwordsetting**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/myaccountinfo**" access="hasAuthority('user')" />
 		<sec:intercept-url pattern="/secession**" access="hasAuthority('user')" />
 		<sec:intercept-url pattern="/myroom**" access="hasAuthority('user')" />
 		<sec:intercept-url pattern="/lessonWrite**" access="hasAuthority('user')" />
@@ -56,7 +58,8 @@
 		<sec:intercept-url pattern="/seller**" access="hasAuthority('user')" />
 		<sec:intercept-url pattern="/buyerRefundComplete**" access="hasAuthority('user')" />
 		<sec:intercept-url pattern="/sellerRefundComplete**" access="hasAuthority('user')" />
-		<sec:intercept-url pattern="/myproposal**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/myproposal**" access="hasAuthority('user') or hasAuthority('admin')"  />
+
 		
 		<sec:intercept-url pattern="/admin**" access="hasAuthority('admin')" />
 		<sec:intercept-url pattern="/complete**" access="hasAuthority('admin')" />
@@ -72,7 +75,6 @@
 		<sec:intercept-url pattern="/cancelDepositStatus**" access="hasAuthority('admin')" />
 
 		<sec:intercept-url pattern="/**" access="permitAll"/>
-		
 		
 		<sec:csrf disabled = "true" /> 
 		

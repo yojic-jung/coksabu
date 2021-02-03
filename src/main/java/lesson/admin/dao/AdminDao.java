@@ -20,10 +20,6 @@ import test.model.ChatPurchase;
 @Repository
 public interface AdminDao {
 	
-	public int checkId(String id);
-	
-	public int checkPassword(String password);
-	
 	public List<ImgList> imgList();
 	
 	public void inspectComplete(String email);
@@ -135,8 +131,6 @@ public interface AdminDao {
 	public List<PurchaseHistory> takePurchaseList(int postId);
 	
 	
-	
-	
 	public LessonCardDB takeLesson(int postId);
 
 	public void putDelLesson(LessonCardDB card);
@@ -149,4 +143,9 @@ public interface AdminDao {
 	
 	public int deleteLesson(int postId);
 	
+	public int delLessonCount();
+	
+	public List<Integer> takeLessonCount(List<String> item);
+	
+	public List<Integer> takeChatCount(List<String> item);
 }

@@ -91,17 +91,17 @@
 	<form:errors path="email" />
     
     
-    <form:password class="permit" id="password" placeholder="비밀번호" path="password" value="${memberInfo.password}"/><br/>
+    <form:password class="permit" id="password" placeholder="비밀번호(문자, 숫자, 특수문자 포함 8-15자)" path="password"/><br/>
     <form:errors path="password" />
     
     <input class="permit" id="password2" type="password" placeholder="비밀번호 확인" /><br/>
     
     
-    <form:input class="permit name" id="name" placeholder="이름" path="name" value="정요직" />
+    <form:input class="permit name" id="name" placeholder="이름" path="name" value="${memberInfo.name}"/>
     <form:errors path="name" />
     
     
-    <form:input class="permit birth" id="birth"  placeholder="생년월일 ex)920123" path="birth" value="930727" />
+    <form:input class="permit birth" id="birth"  placeholder="생년월일 ex)920123" path="birth" value="${memberInfo.birth}"/>
    	<form:errors path="birth" />
     <table style="border:1px solid rgb(209, 209, 209);width:350px;margin:10px;border-spacing:0px;border-radius:5px;">
     <tr>
@@ -141,6 +141,8 @@
     	  
     	  var iamport = "<c:out value="${iamport}" />";
     	  
+    	  var status = "<c:out value="${status}" />";
+    	  
           if(ex == 'exception'){
           	alert("이미 가입된 이메일 입니다.");
           }else if(ex == 'phone'){
@@ -151,6 +153,11 @@
           
           IMP.init(iamport);
           
+          
+          if(status=='success'){
+        	  alert("감사합니다. 정상적으로 회원가입을 완료하였습니다.\n가입한 이메일로 로그인을 해주시기 바랍니다. ")
+        	  window.location.href="/login";
+          }
           
           $('.phoneCertify').hover(function(){
         	  $(this).css('background','rgb(115, 115, 117)');
@@ -193,7 +200,7 @@
 	        			 $('.name').val(data.name);
 	        			 $('.birth').val(data.birth);
 	        			 $('.phone').val(data.phone);
-	        			 $('.U_checkAgreement2').attr('checked', true) ;
+	        			 $('.U_checkAgreement2').prop('checked', true) ;
 
 	        		  }
     		          });

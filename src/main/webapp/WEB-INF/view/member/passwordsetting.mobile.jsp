@@ -67,7 +67,7 @@ margin:20px;
 <div>
 
 
-<div class="main-title">비밀번호 변경</div>
+<div class="main-title"><a href="/" style="color:dimgray;">홈으로 가기</a></div>
 
 <form method='post'  commandName='memberInfo' onSubmit='return CheckForm(this)'>
 <div class='content'>

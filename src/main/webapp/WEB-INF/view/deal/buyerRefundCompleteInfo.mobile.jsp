@@ -5,30 +5,11 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="user-scalable=yes" />
 <link rel="canonical" href="https://coksabu.com/buyerRefundCompleteInfo?orderid=62">
 <title>구매자 환불완료정보 콕사부</title>
 <style>
 
-	.order-title{
-text-align:center;
-font-weight:bolder; background: #353535;
-color:white;
-margin-bottom:50px;
-
-     width:100%;
-     padding:30px; 
-     font-size:80px;
-     font-family:'Do Hyeon'; 
-     border-bottom:1px solid gray; 
-     z-index:3;
-     text-align:center;
-}
-.m-back{	
-	   	   	 position:absolute;
-	   	 left:0%; 
-	   	 color:#A6A6A6;
-	   	 padding:0px 50px;
-	}
 
 .title{
 width:80%;
@@ -39,44 +20,36 @@ margin:auto;
 	font-weight:bolder;
 }
 
-table{
+.lesson-table{
 	width:80%;
 	margin:auto;
 }
 
 
-table td{
+.lesson-table td{
 	background:#eaeaea;
-	font-size:30px;
+	font-size:35px;
 	text-align:center;
 	padding:20px;
 }
 .content{
 	width:80%;
 	margin:auto;
-	font-size:30px;
+	font-size:35px;
 }
 
-.small-title{
-	font-size:30px;
-}
 
 </style>
 </head>
 <body>
 <div>
-<header class="m-header">
-  <div class="order-title">환불완료 정보
-    <span class="m-back">&lt;</span>
-   </div>
-</header>
 
 <div class='title'>수업정보</div>
-	<table>
+	<table class="lesson-table">
 		<tr>
-			<td class="small-title">전체 수업횟수</td>
-			<td class="small-title">진행한 수업횟수</td>
-			<td class="small-title">남은 수업횟수</td>
+			<td>전체 수업횟수</td>
+			<td>진행한 수업횟수</td>
+			<td>남은 수업횟수</td>
 		</tr>
 		<tr>
 			<td>${refund.price1}</td>
@@ -86,7 +59,20 @@ table td{
 	</table>
 	
 	<div class='title'>환불계좌정보</div>
-	<div class="content"><span class="small-title">은행</span> : ${refund.buyerBank} | <span class="small-title">계좌번호 : </span> ${refund.buyerAccount}</div>
+	<div class="content">
+		<table style="border-spacing:10px;">
+		<tr>
+			<td>은행 : </td>
+			<td >${refund.buyerBank}</td>
+			<td>계좌번호 : </td>
+			<td>${refund.buyerAccount}</td>
+		</tr>
+		<tr>
+			<td>예금주 : </td>
+			<td>${refund.buyerAccountHolder}</td>
+		</tr>
+	</table>
+	</div>
 	
 	<div class='title'>환불금액</div>
 	<div class="content" > ${refund.buyerPrice }원</div>
@@ -95,16 +81,7 @@ table td{
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <script>
 $(document).ready(function(){
-
-	$('.m-back').click(function(){
-		var referpage = document.referrer;
-		
-		if(referpage==''){
-			location.href = './';
-		}else{
-			history.back();
-		}
-	});
+	$('.m-jbMenu').append("환불완료 정보");
 });
 </script>
 </body>

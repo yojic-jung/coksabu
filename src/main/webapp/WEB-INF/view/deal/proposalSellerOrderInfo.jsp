@@ -27,7 +27,7 @@
 		<td colspan="4" style="border-top:2px solid black;"></td>
 	</tr>
 	<tr>
-	<td>주문날짜</td><td>수업제목</td><td>수업시수</td><td>선생님 이름</td>
+	<td>주문날짜</td><td>서비스</td><td>수업시수</td><td>선생님 이름</td>
 	</tr>
 	<tr>
 		<td colspan="4" style="border-bottom:1px solid gray;"></td>
@@ -35,7 +35,7 @@
 	<tr>
 	<td>${pur.purchase_dayS}</td>
 	<td>${pur.cate}</td>
-	<td>${pur.lessonCount}회분<br/>1회당 ${pur.lessonTime} 수업</td>
+	<td>${pur.lessonCount}회분<br/>회당 ${pur.lessonTime} 수업</td>
 	<td>${pur.sellerName}</td>
 	</tr>
 	<tr>
@@ -59,7 +59,7 @@
 		<td colspan="4" style="border-top:2px solid black;"></td>
 	</tr>
 	<tr>
-	<td>구매자이름</td><td>주문상태</td>
+	<td>구매자 이름</td><td>주문상태</td>
 	</tr>
 	<tr>
 		<td colspan="4" style="border-bottom:1px solid gray;"></td>
@@ -67,6 +67,18 @@
 	<tr>
 	<td>${pur.buyerName}</td>
 	<td>${pur.orderstatus}</td>
+	</tr>
+	<tr>
+		<td colspan="4" style="border-bottom:1px solid gray;"></td>
+	</tr>
+	<tr>
+	<td>가격</td>
+	</tr>
+	<tr>
+		<td colspan="4" style="border-bottom:1px solid gray;"></td>
+	</tr>
+	<tr>
+	<td>${pur.price}</td>
 	</tr>
 </table>
 </body>

@@ -6,9 +6,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
+import lesson.board.model.PurchaseHistory;
 import lesson.deal.dao.DealDao;
 import lesson.deal.model.RefundComplete;
 import lesson.deal.model.RefundContent;
+import test.model.ChatPurchase;
 
 public class DealRefundService {
 	
@@ -21,15 +23,53 @@ public class DealRefundService {
 	}
 	
 	@Transactional(rollbackFor= {Exception.class})
-	public RefundContent myRefundContent(int orderId, String email) {
+	public HashMap<String, Object> myRefundContent(int orderId, String email) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("orderId", orderId);
 		map.put("email", email);
-		int a = dealDao.countMyRefundContent(map);
-		if(a==0) {
-			return null;
+		
+		PurchaseHistory pur = dealDao.takePurchaseEmail(orderId);
+		
+		
+		//환불 당사자들이 아닌 다른 사람들이 url을 변경하여 정보를 볼수 없게 하기 위해서
+		if(email.equals(pur.getBuyerEmail()) || email.equals(pur.getSellerEmail()) ) {
+		}else {
+			map.put("refund", null);
+			map.put("applicant", "notAllowAccess");
+			return map;
 		}
-		return dealDao.myRefundContent(map);
+		
+		int a = dealDao.countMyRefundContent(map);
+				
+		
+		//내가 신청한 환불내역이 없을때
+		if(a==0) {
+			
+			int b = dealDao.countRefundContent(orderId);
+			
+			//내가 신청한 환불내역은 없지만 상대방이 환불요청한경우
+			if(b==1) {
+				//진행한 수업횟수, 남아있는 수업횟수만 가져오기
+				RefundContent refund = dealDao.takeRefundContent(orderId);
+				map.put("refund", refund);
+				map.put("applicant", "counter");
+				return map;
+			
+			//환불내역이 아에 없음
+			}else {
+				map.put("applicant", "noOne");
+				map.put("refund", null);
+				return map;
+			}
+			
+		
+		//내가 환불신청 당사자일때
+		}else {
+			RefundContent refund = dealDao.myRefundContent(map);
+			map.put("applicant", "me");
+			map.put("refund", refund);
+			return map;
+		}
 	}
 	
 	@Transactional(rollbackFor= {Exception.class})
@@ -37,19 +77,20 @@ public class DealRefundService {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("orderId", content.getOrderId());
 		map.put("email", content.getApplicant());
-		int a = dealDao.countMyRefundContent(map);
-		
-		String myName = dealDao.myName(content.getApplicant());
-		content.setApplicantname(myName);
-		
-		content.setOrderStatus("환불대기");
-		if(a==0) {
-			logger.info("인서트로 들어옴");
-			dealDao.insertRefund(content);
-		}else {
-			logger.info("업데이트로 들어옴");
-			dealDao.updateRefund(content);
+		String orderStatus = dealDao.takeOrderStatus(content.getOrderId());
+		if(!orderStatus.equals("결제완료")) {
+			return ;
 		}
+		int a = dealDao.countRefundContent(content.getOrderId());
+		
+		
+		if(a==0) {
+			String myName = dealDao.myName(content.getApplicant());
+			content.setApplicantname(myName);
+			content.setOrderStatus("환불대기");
+			dealDao.insertRefund(content);
+		}
+		
 		map.put("orderstatus", "환불대기");
 		dealDao.updateOrderstatus(map);
 		
@@ -57,15 +98,48 @@ public class DealRefundService {
 	
 	
 	@Transactional(rollbackFor= {Exception.class})
-	public RefundContent proMyRefundContent(int orderId, String email) {
+	public HashMap<String, Object> proMyRefundContent(int orderId, String email) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("orderId", orderId);
 		map.put("email", email);
-		int a = dealDao.proCountMyRefundContent(map);
-		if(a==0) {
-			return null;
+		
+		ChatPurchase pur = dealDao.takeProposalEmail(orderId);
+		
+		//환불 당사자들이 아닌 다른 사람들이 url을 변경하여 정보를 볼수 없게 하기 위해서
+		if(email.equals(pur.getBuyer()) || email.equals(pur.getSeller()) ) {
+		}else {
+			map.put("refund", null);
+			map.put("applicant", "notAllowAccess");
+			return map;
 		}
-		return dealDao.proMyRefundContent(map);
+		
+		int a = dealDao.proCountMyRefundContent(map);
+		
+		//내가 신청한 환불내역이 없을때
+		if(a==0) {
+			int b = dealDao.proCountRefundContent(orderId);
+			
+			//내가 신청한 환불내역은 없지만 상대방이 환불요청한경우
+			if(b==1) {
+				//진행한 수업횟수, 남아있는 수업횟수만 가져오기
+				RefundContent refund = dealDao.takeProRefundContent(orderId);
+				map.put("refund", refund);
+				map.put("applicant", "counter");
+				return map;
+			
+			//환불내역이 아에 없음
+			}else {
+				map.put("applicant", "noOne");
+				map.put("refund", null);
+				return map;
+			}
+		//내가 환불신청 당사자일때
+		}else {
+			RefundContent refund = dealDao.myProRefundContent(map);
+			map.put("applicant", "me");
+			map.put("refund", refund);
+			return map;
+		}
 	}
 	
 	@Transactional(rollbackFor= {Exception.class})
@@ -73,18 +147,18 @@ public class DealRefundService {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("orderId", content.getOrderId());
 		map.put("email", content.getApplicant());
-		int a = dealDao.proCountMyRefundContent(map);
+		String orderStatus = dealDao.takeProOrderStatus(content.getOrderId());
+		if(!orderStatus.equals("결제완료")) {
+			return ;
+		}
 		
-		String myName = dealDao.myName(content.getApplicant());
-		content.setApplicantname(myName);
+		int a = dealDao.proCountRefundContent(content.getOrderId());
 		
-		content.setOrderStatus("환불대기");
 		if(a==0) {
-			logger.info("인서트로 들어옴");
+			String myName = dealDao.myName(content.getApplicant());
+			content.setApplicantname(myName);
+			content.setOrderStatus("환불대기");
 			dealDao.insertProRefund(content);
-		}else {
-			logger.info("업데이트로 들어옴");
-			dealDao.updateProRefund(content);
 		}
 		map.put("orderstatus", "환불대기");
 		dealDao.updateProOrderstatus(map);

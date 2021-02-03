@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href= "<c:url value="/resources/slick/slick.css" />" >
   <link rel="stylesheet" type="text/css" href= "<c:url value="/resources/slick/slick-theme.css" />">
   <link rel="canonical" href="https://coksabu.com/boarder?main=11&subject=11">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
     <style>
     
 
@@ -117,6 +118,8 @@ margin-top:5px;
 color: black;
 }
 .list td{
+	line-height:200%;
+	padding-bottom:15px;
 	border-bottom:1px solid gray;
 } 
 
@@ -127,7 +130,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
     .right{
     float:left;
     clear:right;
-    width:200px;
+    width:230px;
     background:rgb(241, 241, 241);
     padding:5px;
     border-radius:15px;
@@ -143,7 +146,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 	width:180px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
 	}
 	.right-content{
-	width:120px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;padding-left:5px;ling-height:160%;
+	width:150px;overflow:hidden; text-overflow:ellipsis; white-space:nowrap;padding-left:5px;ling-height:160%;
 	}
 	 .pagemove{
     	clear:both;width:220px;margin:50px auto;
@@ -155,8 +158,8 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 		border:0.5px solid gray;
 	}
     </style>
-    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-  
+  <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
     <script>
        $(document).ready(function(){
         var jbOffset = $( '.jbMenu' ).offset(); //상단메뉴 좌표 가져오는 코드
@@ -329,7 +332,17 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                         <li><a href="./boarder?main=41&subject=42">초등사회</a></li>
                         <li><a href="./boarder?main=41&subject=43">중등사회</a></li>
                         <li><a href="./boarder?main=41&subject=44">고등사회</a></li>
-                        <li><a href="./boarder?main=41&subject=45">사회탐구</a></li>
+                        
+                        <li><a href="./boarder?main=41&subject=451">생활과윤리</a></li>
+                        <li><a href="./boarder?main=41&subject=452">사회문화</a></li>
+                        <li><a href="./boarder?main=41&subject=453">한국지리</a></li>
+                        <li><a href="./boarder?main=41&subject=454">세계지리</a></li>
+                        <li><a href="./boarder?main=41&subject=455">윤리와사상</a></li>
+                        <li><a href="./boarder?main=41&subject=456">동아시아사</a></li>
+                        <li><a href="./boarder?main=41&subject=457">법과정치</a></li>
+                        <li><a href="./boarder?main=41&subject=458">세계사</a></li>
+                        <li><a href="./boarder?main=41&subject=459">경제</a></li>
+                        
                         <li><a href="./boarder?main=41&subject=46">한국사</a></li>
                 </ul>
                 <ul class="subcate dispno">
@@ -338,9 +351,13 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 						<li><a href="./boarder?main=51&subject=53">중등과학</a></li>
                         <li><a href="./boarder?main=51&subject=54">고등과학</a></li>
                         <li><a href="./boarder?main=51&subject=55">물리</a></li>
-                        <li><a href="./boarder?main=51&subject=56">생명</a></li>
+                        <li><a href="./boarder?main=51&subject=56">생명과학</a></li>
                         <li><a href="./boarder?main=51&subject=57">화학</a></li>
                         <li><a href="./boarder?main=51&subject=58">지구과학</a></li>
+                        <li><a href="./boarder?main=51&subject=552">물리2</a></li>
+                        <li><a href="./boarder?main=51&subject=562">생명과학2</a></li>
+                        <li><a href="./boarder?main=51&subject=572">화학2</a></li>
+                        <li><a href="./boarder?main=51&subject=582">지구과학2</a></li>
                 </ul>
                 <ul class="subcate dispno">
                 		<li><a href="./boarder?main=61&subject=61">전체</a></li>
@@ -748,14 +765,14 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
         		</div>
             
         
-        <div style="min-height:300px; width:1030px; margin:10px auto; font-size:12px;">
+        <div style="min-height:300px; width:1060px; margin:10px auto; font-size:12px;">
         <div class="left" style="min-height:300px;">
 <c:choose>
 	<c:when test="${listModel.hasList == false }" >
-	<table border="0" class="list">
+	<table border="0" class="list" style="margin-top:50px;font-size:20px;">
 	<tr>
 	<td colspan="4" style="min-height:300px;">
-	게시글이 없습니다.
+	해당 요청에 대한 수업이 없습니다.<br/>더욱 다양한 선생님들을 모시도록 하겠습니다.
 	</td>
 	</tr>
 	</table>
@@ -774,7 +791,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 							<td style="vertical-align:top;padding-top:30px;width:100%;">
 							<a href="<c:url value="./boardread?postId=${post.id}"/>" style="text-decoration:none;">
 							<div id="categories">${post.subcate}</div>
-							<div id="name"> ${post.name}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
+							<div id="name"> ${post.nickname}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
 							<div id="universe"> ${post.universe} ${post.univsub}</div>
 							<div id="title"> ${post.title}</div>
 							<div id="price" >${post.subCate0} ${post.price3}원 <c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if> <c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if></div>
@@ -799,7 +816,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 	<c:forEach var="post" items="${postNewList}">
 	<tr>
 	<td>
-	<div id="newTeacher" style="border-bottom:1px solid silver; vertical-align:top;padding:25px 5px; width:180px; margin:0px auto">
+	<div id="newTeacher" style="border-bottom:1px solid silver; vertical-align:top;padding:25px 5px; width:210px; margin:0px auto">
 	<c:set var="query"
 		value="postId=${post.id}" />
 	
@@ -808,7 +825,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 	<img class="newTeacher-img" src="<c:url value='/img/profileImg/${post.imgpath}' />" style="border-radius:10px;width:50px; height:70px; magin-top:0px;float:left;"/>
 	 </a>
 	
-	<div class="right-content">${post.name}(${post.birth}, ${post.sexual})<br/>
+	<div class="right-content">${post.nickname}(${post.birth}, ${post.sexual})<br/>
 	경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if><br/>
 	${post.universe} ${post.univsub}<br/>
 	${post.subCate0}&nbsp;${post.price3}원<br/>

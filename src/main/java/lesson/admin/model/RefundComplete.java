@@ -24,7 +24,7 @@ public class RefundComplete {
 	private String sellerPrice;
 	private String sellerAccountHolder;
 	
-	private String refundDetail;
+	private String content;
 	
 	private String fees;
 	private String finalPrice;
@@ -145,11 +145,11 @@ public class RefundComplete {
 	}
 	
 	
-	public void setRefundDetail(String refundDetail) {
-		this.refundDetail = refundDetail;
+	public void setContent(String content) {
+		this.content = content;
 	}
-	public String getRefundDetail() {
-		return refundDetail;
+	public String getContent() {
+		return content;
 	}
 	
 	public void setFees(String fees) {

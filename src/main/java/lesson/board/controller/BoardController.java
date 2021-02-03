@@ -42,6 +42,7 @@ import lesson.board.service.PurchaseService;
 import lesson.board.service.ReadLessonService;
 import lesson.board.service.ReadPostService;
 import lesson.board.service.WriteLessonService;
+import lesson.cron.job.CronService;
 import lesson.member.model.Profile;
 import lesson.member.service.ReadProfileService;
 import test.service.ChattingService;
@@ -51,13 +52,13 @@ public class BoardController extends DeviceSwitcherController  {
 	
 	private static final  Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
-	//통과
+	//테스트 완료
 	@RequestMapping(value="lessonWrite", method=RequestMethod.GET)
 	public String write(LessonCard card, Model model, HttpSession session) throws IllegalStateException, IOException {
 		return forward("boarder/lessonWrite");
 	}
 	
-	//통과
+	//테스트 완료
 	@RequestMapping(value="lessonWrite", method=RequestMethod.POST)
 	public String write2(LessonCard card, Model model, HttpSession session, HttpServletRequest request) throws IllegalStateException, IOException {
 		String configLocation = "classpath:applicationContext.xml";
@@ -77,7 +78,7 @@ public class BoardController extends DeviceSwitcherController  {
 		}
 	}
 	
-	//통과
+	//테스트 완료
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="boarder", method=RequestMethod.GET)
 	public String boarder(HttpServletRequest request,Model model) throws UnsupportedEncodingException {
@@ -154,7 +155,7 @@ public class BoardController extends DeviceSwitcherController  {
 			return forward("boarder/boarder");
 	}
 	
-	//통과
+	//테스트 완료
 	@SuppressWarnings("unchecked") //List<PostView>)map.get("postNewList"); list타입 형변황 위해 사용
 	@RequestMapping(value="boarder", method=RequestMethod.POST)
 	public String boarder2(SearchForm form, HttpServletRequest request,Model model) {
@@ -196,7 +197,7 @@ public class BoardController extends DeviceSwitcherController  {
 		return forward("boarder/boarder");
 	}
 
-	//통과
+	//미진행
 	@RequestMapping(value="boardread", method=RequestMethod.GET)
 	public String read(HttpServletRequest request,Model model, HttpSession session, RedirectAttributes redirectAttributes) {
 		String id = (String)request.getParameter("postId");
@@ -240,7 +241,7 @@ public class BoardController extends DeviceSwitcherController  {
 		return forward("boarder/read");
 	}
 	
-	//통과
+	//테스트 완료
 	@RequestMapping(value="update", method = RequestMethod.GET)
 	public String update(HttpServletRequest request, Model model, HttpSession session) {
 		String configLocation = "classpath:applicationContext.xml";
@@ -255,7 +256,7 @@ public class BoardController extends DeviceSwitcherController  {
 		return forward("boarder/update");
 	}
 	
-	//통과
+	//테스트 완료
 	@RequestMapping(value="update", method = RequestMethod.POST)
 	public String update2(LessonCard card, HttpServletRequest request, Model model) throws IllegalStateException, IOException {
 		String configLocation = "classpath:applicationContext.xml";
@@ -273,7 +274,7 @@ public class BoardController extends DeviceSwitcherController  {
 		return forward("boarder/updatesuccess");
 	}
 	
-	//통과
+	//테스트 완료
 	@RequestMapping("deletelesson")
 	public String deleteLesson(HttpServletRequest request, Model model, HttpSession session) {
 		String configLocation = "classpath:applicationContext.xml";
@@ -292,7 +293,7 @@ public class BoardController extends DeviceSwitcherController  {
 		return "redirect:tutorpage";
 	}
 	
-	//통과
+	//테스트 완료
 	@ResponseBody
 	@RequestMapping(value="delimg", method=RequestMethod.GET)
 	public String delImg(HttpServletRequest request, HttpSession session) {
@@ -308,7 +309,8 @@ public class BoardController extends DeviceSwitcherController  {
 		ctx.close();
 		return "";
 	}
-	//수정필요
+	
+	//테스트 완료
 	@RequestMapping(value="lessonPurchase", method=RequestMethod.GET)
 	@Transactional(rollbackFor= {Exception.class})
 	public String lessonPurchase(HttpServletRequest request,HttpSession session, Model model) {
@@ -348,7 +350,8 @@ public class BoardController extends DeviceSwitcherController  {
 		model.addAttribute("subcateIdx", subcate);
 		return forward("boarder/lessonPurchase");
 	}
-	//수정필요
+	
+	//테스트 완료
 	@RequestMapping(value="lessonPurchase", method=RequestMethod.POST)
 	public String lessonPurchase2(PurchaseHistory pur, HttpServletRequest request,HttpSession session,Model model, RedirectAttributes redirectAttributes) throws ParseException {
 		String configLocation = "classpath:applicationContext.xml";
@@ -361,18 +364,20 @@ public class BoardController extends DeviceSwitcherController  {
 		pur.setEndDate(end);
 		Date start = transFormat.parse(pur.getStartDateS());
 		pur.setStartDate(start);
-		int success = purchaseService.insertPurchaseHistory(pur, buyerEmail, pur.getPostId());
-		if(success==1) {
-			String imgpath = purchaseService.success(pur.getPostId());
+		HashMap<String, Object> map = purchaseService.insertPurchaseHistory(pur, buyerEmail, pur.getPostId());
+		String status = (String)map.get("status");
+		if(status.equals("success")) {
+			String imgpath = purchaseService.success((String)map.get("email"));
 			ctx.close();
 			model.addAttribute("postId", pur.getPostId());
 			
 			model.addAttribute("buyername", pur.getBuyerName());
-			model.addAttribute("sellername", pur.getSellerName());
+			model.addAttribute("sellernickname", pur.getSellerNickname());
 			
 			model.addAttribute("depositDay", pur.getStartDateS());
 			model.addAttribute("imgpath", imgpath);
 			model.addAttribute("price3", pur.getPrice3());
+			model.addAttribute("depositor", pur.getDepositor());
 			
 			String[] bank1 = pur.getBank().split(" ");
 			model.addAttribute("bank1", bank1[0]);
@@ -386,6 +391,7 @@ public class BoardController extends DeviceSwitcherController  {
 		
 	}
 	
+	//테스트 완료
 	@Transactional(rollbackFor= {Exception.class})
 	@RequestMapping(value="tutorprofile")
 	public String tutorpage(Model model, HttpSession session, HttpServletRequest request) {
@@ -407,11 +413,6 @@ public class BoardController extends DeviceSwitcherController  {
 			email=email.replace(myEmail,"").replace(",", "").trim();
 		}
 		
-		if(readProfileService.confirmCertify(email)!=1) {
-			model.addAttribute("certify", "0");
-		}
-		
-		
 		Profile pro = readProfileService.readProfile(email);
 		if(pro == null) {
 			model.addAttribute("pro", pro);
@@ -424,7 +425,6 @@ public class BoardController extends DeviceSwitcherController  {
 				post.setPrice3(NumberFormat.getInstance().format(Integer.parseInt(post.getPrice3())));
 			}
 			ctx.close();
-			model.addAttribute("email", email);
 			model.addAttribute("list", list);
 			model.addAttribute("size", list.size());
 		}

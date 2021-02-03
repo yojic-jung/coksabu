@@ -113,7 +113,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 	                            <tr>
                                 <td rowspan="3"> <img style="width:140px; height:140px; border-radius:70px;" 
                                 src="<c:url value="/img/profileImg/${pro.imgPath}" />"  alt="본인 프로필 이미지"/></td>
-                                <td style="color:rgb(87, 87, 87); padding:0px 5px 0px 20px;font-size:22px">${pro.name}(<span class="age">${pro.birth}</span>)</td>
+                                <td style="color:rgb(87, 87, 87); padding:0px 5px 0px 20px;font-size:22px">${pro.nickname}(<span class="age">${pro.birth}</span>)</td>
                             </tr>
                             <tr>
                                 <td style="color:rgb(151, 149, 149);padding:0px 5px 0px 20px;">

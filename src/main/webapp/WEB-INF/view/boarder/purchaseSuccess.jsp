@@ -107,7 +107,7 @@
 <div style="width:700px; margin:60px auto; font-family:'JejuGothic';">
 	<div style="width:190px;float:left;text-align:center;">
 	<img style="width:150px; height:150px;border-radius:75px;" src="<c:url value="/img/profileImg/${imgpath}" />"  alt="선생님 프로필이미지"/><br/>
-	${sellername} 선생님
+	${sellernickname} 선생님
 	</div>
 	<div class="message" style="font-size:15px;" >
 	${buyername}님 수업을 신청해주셔서 감사합니다.<br/> 결제 완료되면 서비스가 진행됩니다.<br/> 아래의 결제정보를 확인해주세요.
@@ -144,6 +144,11 @@
 <tr>
 <td class="first">입금기한</td>
 <td class="second">${depositDay}</td>
+</tr>
+
+<tr>
+<td class="first">입금자명</td>
+<td class="second">${depositor}</td>
 </tr>
 
 </table>

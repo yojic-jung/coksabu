@@ -11,7 +11,7 @@
 
 <script>
 alert("환불신청이 정상적으로 등록되었습니다.");
-opener.location.reload();;
+opener.location.reload();
 window.close();
 </script>
 </body>

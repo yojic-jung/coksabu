@@ -1,6 +1,7 @@
 package lesson.cron.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -9,12 +10,14 @@ public interface CronDao {
 
 	public int deleteOldWish();
 	
-	public void resetLoginFailCount();
+	public int resetLoginFailCount();
+	
+	public List<Integer> takeApplyId();
+	
+	public int deleteOldLessonApplyList(List<Integer> item);
 	
 	public int deleteOldLessonApply();
-	
-	public int deleteOldLessonApplyList();
-	
+
 	public int deleteOldPurchase();
 	
 	public int resetApplyCount();

@@ -41,9 +41,15 @@
 			font-family:'malgun-gothic';
 			margin-bottom:10px;
 			font-weight:bolder;
-			word-break:keep-all;
-			word-wrap:break-word;
+			
 		}
+		
+	#subcate-div{
+			width:198px;
+			overflow:hidden;
+			white-space:nowrap;
+			text-overflow:ellipsis;
+	}
 	
 	#locale{
 			font-size:14px;
@@ -139,9 +145,9 @@ width:350px;
 		<div style="padding:0px;font-family:'JejuGothic';;">
 		<div id ="name" class="name">${apply.name} 학생</div>
 		<div id="grade">${apply.grade}</div>
-		<div style="margin-bottom:10px;"><span id="subcate">${apply.subcate}</span></div>
+		<div id="subcate-div" style="margin-bottom:10px;"><span id="subcate">${apply.subcate}</span></div>
 		<div id="locale">${apply.locale} ${apply.locale3}</div>
-		<div id="price">희망가격 <span style="color:black;font-size:16px;font-weight:bold">${apply.price1} ~ ${apply.price2}</span></div>
+		<div id="price">희망가격 <span style="color:black;font-size:15px;font-weight:bold">${apply.price1} ~ ${apply.price2}</span></div>
 		
 		
 		<!-- 컬러박스 -->

@@ -10,6 +10,27 @@
  <style>
   @font-face { font-family: 'JejuGothic'; 
       src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 
+  .div-title{
+            width:90%; margin:50px auto 0px auto;
+             font-family:'JejuGothic'; color:dimgray;
+             font-size:30px;
+        }
+
+.inner-main{
+			display:inline-block;
+			background:white;
+			padding:40px;
+			border-radius: 20px 20px 0px 0px;
+			border:3px solid gray;
+			border-bottom:3px solid white;
+			 font-size:35px;
+}
+.inner-sub{
+			display:inline-block;
+			background:white;
+			padding:40px;
+			border-radius: 20px 20px 0px 0px;
+}
  .table-title{
 		padding:10px;
 		text-align:center;
@@ -56,24 +77,36 @@ border:1px solid gray; width:150px; padding:15px 0px; text-align:center; margin:
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 <script>
           $(document).ready(function(){
-        	  $('.tutor5').css('color','orange');
+        	  $('.tutor3').css('color','orange');
           });
 </script>
- <div style="width:90%; background:white; margin: auto; padding:40px 0px;text-align:center;">
+ <div style="background:rgb(233, 232, 232); padding:30px 30px 250px 30px;min-height:1800px;">
+<div class="div-title">
+ 
+  <div class="inner-sub">
+  <a href="/saleslist" style="color: gray;text-decoration:none;">일반거래 판매내역</a>
+  </div>
+  <div class="inner-main">
+  <a href="/proposalsell" style="color: black;font-weight:bolder;">거래제안서 판매내역</a>
+  </div>
+
+ </div>
+
+ <div style="width:90%; background:white; margin: auto; padding:40px;border:3px solid gray;">
  <div style="width:100%;">
  	
 <c:choose>
 	<c:when test="${size==0 }">
-	<div style="text-align:center;margin-top:150px;font-weight:bolder;font-size:30px;">거래 제안서를 통한 판매 내역이 없습니다.</div>
+	<div style="text-align:center;margin:150px 0px 150px 0px;font-weight:bolder;font-size:30px;">거래 제안서를 통한 판매 내역이 없습니다.</div>
 	</c:when>
 	<c:otherwise>
 	<div class="table-title" >거래제안서를 통해 판매한 내역이 공개됩니다.</div>
 	<table style="border-spacing:30px;width:100%;font-size:30px;">
 	<c:forEach var="list" items="${purchase}">
 	<tr class="tr">
-		<td rowspan="5" style="text-align:center;font-size:30px;font-family: 'JejuGothic';color:orange">${list.orderstatus }</td>
-		<td colspan="3"></td>
-		<td rowspan="5" >
+		<td rowspan="7" style="text-align:center;font-size:30px;font-family: 'JejuGothic';color:orange;width:160px;">${list.orderstatus }</td>
+		<td colspan="2"></td>
+		<td rowspan="7" >
 <div class="orderInfo"><a href="./myproposal?id=${list.id}" style="color:black;text-decoration:none;">제안서 보기</a></div>
 <div class="proposalOrderInfo"><a href="./sellerProposalOrderInfo?id=${list.id}" style="color:black;text-decoration:none;">주문정보</a></div>
 		<c:choose>	
@@ -90,19 +123,26 @@ border:1px solid gray; width:150px; padding:15px 0px; text-align:center; margin:
 		</td>
 	</tr>
 	<tr class="tr">
-		<td class="td-stl">판매자</td><td class="td-stl">서비스</td><td class="td-stl">주문날짜</td>
+		<td class="td-stl">주문날짜</td><td class="td-stl">서비스</td>
 	</tr>
 	<tr class="tr" style="font-size:25px;">
-		<td>${list.buyer }</td><td>${list.cate }</td><td>${list.purchase_dayS }</td>
+		<td>${list.purchase_dayS }</td><td>${list.cate }</td>
 	</tr>
+	
 	<tr class="tr">	
-		<td class="td-stl">가격</td><td class="td-stl">횟수</td><td class="td-stl">수업시간</td>
+		<td class="td-stl">횟수</td><td class="td-stl">수업시간</td>
 	</tr>
 	<tr class="tr" style="font-size:25px;">	
-		<td>${list.price}</td><td>${list.lessonCount }</td><td>회당 ${list.lessonTime }</td>
+		<td>${list.lessonCount }</td><td>회당 ${list.lessonTime }</td>
 	</tr>
 	<tr class="tr">
-		<td colspan="5" style="border:1px solid lightgray;"></td>
+		<td class="td-stl">구매자</td><td class="td-stl">가격</td>
+	</tr>
+	<tr class="tr" style="font-size:25px;">
+		<td>${list.buyer }</td><td>${list.price}</td>
+	</tr>
+	<tr class="tr">
+		<td colspan="4" style="border:1px solid lightgray;"></td>
 	</tr>
 	</c:forEach>
 	</table>
@@ -112,10 +152,12 @@ border:1px solid gray; width:150px; padding:15px 0px; text-align:center; margin:
  	
  </div>
  </div>
- <div style="height:300px;"></div>
+    <div style="height:500px;"></div>
+ </div>
+
   <script>
  $(function(){
-	 $(".tr").slice(0, 30).show(); // 최초 5개 선택
+	 $(".tr").slice(0, 40).show(); // 최초 5개 선택
 	 
 	 $("#load").click(function(e){ // Load More를 위한 클릭 이벤트e
 	 		e.preventDefault();
@@ -123,7 +165,7 @@ border:1px solid gray; width:150px; padding:15px 0px; text-align:center; margin:
 	 			alert("더 이상 항목이 없습니다"); // 더 이상 로드할 항목이 없는 경우 경고
 	 		}
 	 		
-		 		$(".tr:hidden").slice(0, 30).show(); // 숨김 설정된 다음 10개를 선택하여 표시
+		 		$(".tr:hidden").slice(0, 40).show(); // 숨김 설정된 다음 10개를 선택하여 표시
 	});
 });
  </script>

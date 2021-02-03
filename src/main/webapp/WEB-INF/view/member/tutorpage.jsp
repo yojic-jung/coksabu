@@ -202,11 +202,11 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
             
             <c:if test="${certify == 0 }" >
             	<div style="min-height:250px; padding:50px">
-            		<div style="width:600px; margin:auto;font-size:20px">
+            		<div style="width:600px; margin:auto;font-size:20px;">
             			"수업"을 만들기 위해서는 콕사부 인증정보를 설정하셔야 합니다. 
             			<br/><br/>
-            			<div style="width:100px; margin:auto;">
-            			<a href="./lessoncertify"><button style="padding:5px; font-size:16px;">인증하기</button></a>
+            			<div style="text-align:center;">
+            			<a href="./lessoncertify"><button style="padding:5px; font-size:20px;background:white;">인증하기</button></a>
             			</div>
             		</div>
             	</div>
@@ -227,7 +227,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                             <tr>
                                 <td rowspan="3"> <img style="width:140px; height:140px; border-radius:70px;" 
                                 src="<c:url value="/img/profileImg/${pro.imgPath}" />"  alt="본인 프로필 이미지"/></td>
-                                <td style="color:rgb(87, 87, 87); padding:0px 5px 0px 20px;font-size:22px">${pro.name}님 (${pro.birth})</td>
+                                <td style="color:rgb(87, 87, 87); padding:0px 5px 0px 20px;font-size:22px">${pro.nickname}님 (${pro.birth})</td>
                             </tr>
                             <tr>
                                 <td style="color:rgb(151, 149, 149);padding:0px 5px 0px 20px;">
@@ -239,14 +239,17 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                             </tr>
                         </table>
                         <div style="text-align:right;font-size:15px; margin-top:25px;color:rgb(117, 116, 116);">
+                          <c:if test="${pro.certify==0}" >
+                          	<b style="color: orange">본인 학력 인증을 해주세요.&nbsp;&nbsp;</b>
+                           </c:if>
                           <c:if test="${pro.certify==1}" >
                           	<b style="color:rgb(212, 210, 77)">본인인증완료&nbsp;&nbsp;학력인증완료&nbsp;&nbsp;</b>
                           </c:if>
-                          <c:if test="${pro.certify==0}" >
-                          <b style="color: orange">본인 학력 인증을 해주세요.&nbsp;&nbsp;</b>
-                            </c:if>
                           <c:if test="${pro.certify==2}" >
-                          	<b><span style="color: #FF3636">"인증 실패"</span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;</b>
+                          	<b><span style="color: #FF3636">&quot;인증 실패&quot;</span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;</b>
+                           </c:if>
+                           <c:if test="${pro.certify==3}" >
+                            <b><span style="color: orange">&quot;심사 중&quot;</span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;</b>
                            </c:if>
                             <span class="certify" style="cursor:pointer; border-radius:3px; padding:5px; border:1px solid rgb(117, 116, 116); background:dimgray; color:white;">
                                   	 <b> 본인/학력 인증 </b>
@@ -264,12 +267,14 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                         <div style="text-align:center;margin-top:20px;line-height:180%;">
                         
                             <c:if test="${pro.certify==0}" >
-                          <b style="color: orange;font-size:15px;">인증이 완료되어야 수업이 노출되며 지원서 발송도 가능합니다.</b>
+                          		<b style="color: orange;font-size:15px;">인증이 완료되어야 수업이 노출되며 지원서 발송도 가능합니다.</b>
                             </c:if>
                             <c:if test="${pro.certify==2}" >
-                          <b style="font-size:15px;">프로필 확인후 정확한 증명서 제출하시기 바랍니다.</b>
+                          		<b style="font-size:15px;">프로필 확인후 정확한 증명서 제출하시기 바랍니다.</b>
                             </c:if>
-                            
+                            <c:if test="${pro.certify==3}" >
+                          		<b style="font-size:15px;">인증 심사에는 1~2일 정도 걸릴 수 있습니다.</b>
+                            </c:if>
                          </div>
                 </div>
                 <div class="div-title">수업 목록 (${size}/3)</div>
@@ -320,8 +325,8 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 								<td style="vertical-align:top;padding-top:30px;width:100%;">
 								<a href="<c:url value="./boardread?postId=${lesson.id}"/>" style="text-decoration:none;">
 								<div id="categories">${lesson.subcate}</div>
-								<div id="name"> ${lesson.name}(${lesson.birth}, ${lesson.sexual})&nbsp;&nbsp;경력 <c:if test="${lesson.career!=0}">${lesson.career}년</c:if><c:if test="${post.lesson==0}">1년미만</c:if></div>
-								<div id="universe"> ${lesson.universe} ${post.univsub}</div>
+								<div id="name"> ${lesson.nickname}(${lesson.birth}, ${lesson.sexual})&nbsp;&nbsp;경력 <c:if test="${lesson.career!=0}">${lesson.career}년</c:if><c:if test="${post.lesson==0}">1년미만</c:if></div>
+								<div id="universe"> ${lesson.universe} ${lesson.univsub}</div>
 								<div id="title"> ${lesson.title}</div>
 								<div id="price" >${lesson.subCate0} ${lesson.price3}원 <c:if test="${lesson.subCate1 !='nonevalue' }">/ ${lesson.subCate1} ${lesson.opt1price3}원</c:if> <c:if test="${lesson.subCate2!='nonevalue' }">/ ${lesson.subCate2} ${lesson.opt2price3}원</c:if></div>
 								</a>

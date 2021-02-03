@@ -4,5 +4,14 @@ Disallow:/admin
 Disallow:/listqna
 Disallow:/admininspect
 Disallow:/adminPage
+Disallow:/applylist
+Disallow:/img/representImg
+Disallow:/img/profileImg
+Disallow:/img/certifyImg
+Disallow:/img/mediaImg
+Disallow:/resources/representImg
+Disallow:/resources/profileImg
+Disallow:/resources/certifyImg
+Disallow:/resources/mediaImg
 
 DaumWebMasterTool:b1fcb46cf32b4989da3be84769bb6fdf94a30b7d0a01440248787812d8ed9e3b:BzzYLoy8HrpzJot7Ssd07w==

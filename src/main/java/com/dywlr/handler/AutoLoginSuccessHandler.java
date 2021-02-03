@@ -17,6 +17,8 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 
 import lesson.member.service.MemberService;
 
+
+//테스트 완료
 public class AutoLoginSuccessHandler implements AuthenticationSuccessHandler  {
 	
 	 private RedirectStrategy redirectStratgy = new DefaultRedirectStrategy();

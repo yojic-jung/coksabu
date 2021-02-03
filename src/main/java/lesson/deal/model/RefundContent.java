@@ -7,11 +7,17 @@ public class RefundContent {
 	
 	private String applicant;
 	private String applicantname;
-	private String refunddetail;
 	private Date recordtime;
 	private String recordtimeS;
 	private String orderStatus;
 	private String birth;
+	private int processCount;
+	private int remainCount;
+	
+	private String content;
+	private String phone;
+	private String account;
+	
 	
 	public void setOrderId(int orderId) {
 		this.orderId=orderId;
@@ -32,12 +38,6 @@ public class RefundContent {
 	}
 	public String getApplicantname() {
 		return applicantname;
-	}
-	public void setRefunddetail(String refunddetail) {
-		this.refunddetail=refunddetail;
-	}
-	public String getRefunddetail() {
-		return refunddetail;
 	}
 	public void setRecordtime(Date recordtime) {
 		this.recordtime=recordtime;
@@ -65,4 +65,39 @@ public class RefundContent {
 		return birth;
 	}
 	
+	public void setProcessCount (int processCount ) {
+		this.processCount =processCount ;
+	}
+	public int getProcessCount () {
+		return processCount ;
+	}
+	
+	
+	public void setRemainCount(int remainCount) {
+		this.remainCount=remainCount;
+	}
+	public int getRemainCount() {
+		return remainCount;
+	}
+	
+	public void setContent(String content) {
+		this.content=content;
+	}
+	public String getContent() {
+		return content;
+	}
+	
+	public void setPhone(String phone) {
+		this.phone=phone;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	
+	public void setAccount (String account ) {
+		this.account =account;
+	}
+	public String getAccount () {
+		return account ;
+	}
 }

@@ -114,7 +114,7 @@ width:350px;
 								<td style="vertical-align:top;padding-top:30px;width:100%;">
 								<a href="<c:url value="./boardread?postId=${lesson.id}"/>" style="text-decoration:none;">
 								<div id="categories">${lesson.subcate}</div>
-								<div id="name"> ${lesson.name}(${lesson.birth}, ${lesson.sexual})&nbsp;&nbsp;경력 <c:if test="${lesson.career!=0}">${lesson.career}년</c:if><c:if test="${post.lesson==0}">1년미만</c:if></div>
+								<div id="name"> ${lesson.nickname}(${lesson.birth}, ${lesson.sexual})&nbsp;&nbsp;경력 <c:if test="${lesson.career!=0}">${lesson.career}년</c:if><c:if test="${post.lesson==0}">1년미만</c:if></div>
 								<div id="universe"> ${lesson.universe} ${post.univsub}</div>
 								<div id="title"> ${lesson.title}</div>
 								<div id="price" >${lesson.subCate0} ${lesson.price3}원 <c:if test="${lesson.subCate1 !='nonevalue' }">/ ${lesson.subCate1} ${lesson.opt1price3}원</c:if> <c:if test="${lesson.subCate2!='nonevalue' }">/ ${lesson.subCate2} ${lesson.opt2price3}원</c:if></div>

@@ -6,9 +6,19 @@
 <title>이메일/비밀번호 찾기 콕사부</title>
 <meta charset="utf-8">
 <meta name="description" content="이메일 및 비밀번호 찾기 선택 페이지" />
+<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
 <style>
  @font-face { font-family: 'JejuGothic'; 
       src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 
+      .title-goHome{
+  		  margin:10px;
+  		  text-align:center; 
+  		  padding : 0px 20px;
+          font-family:'Do Hyeon'; 
+          color:orange; 
+          text-decoration:none;
+          font-size:40px;
+  		  }
 .emailFind, .passFind{
 border-spacing:0px;
 border:1px solid gray; 
@@ -19,8 +29,8 @@ width:400px;text-align:center;
 
 .emailFind-title, .passFind-title{
 margin-top:50px;
-width:400px;text-align:center;
-font-size:25px;
+text-align:center;
+font-size:20px;
 font-weight:bolder;
 }
 
@@ -54,16 +64,17 @@ font-weight:bolder;
   			border:0.5px solid rgb(115, 115, 117);
   			border-radius:3px;
   		  }
+  		  
 </style>
 
 </head>
 <body>
-<div style="text-align:center;margin:10px;font-family: 'JejuGothic'; color:dimgray;font-size:25px; font-weigth:bold;">
-<a href="./"><img style="width:100px;" src="<c:url value="/resources/images/logo.png" />" alt="로고" /></a>
-아이디 / 비밀번호를 잊어버리셨나요
-</div>
+<div style="text-align:center;"><a class="title-goHome" href="./">콕사부 홈으로</a></div>
+
+
 <hr/>
-	<div style="width:300px; margin:auto;">
+	<div style="margin-top:30px;text-align:center;font-family: 'JejuGothic'; color:dimgray;font-size:25px; font-weigth:bold;">아이디 / 비밀번호를 잊어버리셨나요</div>
+	<div >
 		<div class="emailFind-title">이메일 찾기</div>
 		<table class="emailFind">
 			<tr>
@@ -111,6 +122,12 @@ font-weight:bolder;
 	$('.email-btn').click(function(){
 		var name  = $('.name').val();
 		var phone = $('.phone').val();
+		
+		if(isNaN(phone)){
+			alert("휴대폰 번호는 숫자만 입력해주시기 바랍니다.");
+			return false;
+		}
+		
 		$.ajax({
   		  url:'./emailFind?name='+name+'&phone='+phone,
   		  type:'get',

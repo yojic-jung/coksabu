@@ -65,18 +65,18 @@ font-size:40px;
 			<td class="sub-title">생년월일</td><td class="sub-value">${member.birth}</td>
 		</tr>
 		<tr>
-			<td class="sub-title">핸드폰 번호</td>
-			<td>
-			<span class="sub-value">${member.phone}</span>
-			
-			</td>
+			<td class="sub-title">핸드폰 번호</td><td><span class="sub-value">${member.phone}</span></td>
 		</tr>
-
+		<tr>
+			<td class="sub-title">닉네임</td><td class="sub-value">${member.nickname} &nbsp;&nbsp;<a class="akak" href="/nicknameUpdate">수정</a></td>
+		</tr>
 </table>
 <div style="width:500px; margin:70px auto;text-align:center;">
 <div class='phoneUpdate'>핸드폰 번호 변경</div><br/><br/><br/><br/>
 <div><a href="./passwordsetting" class="akak">비밀번호 수정하기</a></div><br/><br/><br/><br/>
+<div><a href="./myaccountinfo" class="akak">계좌정보 입력하기</a></div><br/><br/><br/><br/>
 <a href="./secession" class="akak">회원 탈퇴</a>
+<div style="margin-top:200px;text-align:center;"><a style="font-size:30px;color:dimgray;text-decoration:none;" href="<c:url value='j_spring_security_logout' />">로그아웃</a></div>
 </div>
 </div>
 
@@ -90,8 +90,8 @@ font-size:40px;
         	  var iamport = "<c:out value="${iamport}" />";
         	  
         	  IMP.init(iamport);
-        	  
-        	  $('.m-jbMenu').append("계정 설정");
+        	  //핸드폰 변경시 뒤로가기 굉장히 많이 눌러야 뒤로가지기 대문에 홈으로 가는 키 하나 만듦 
+        	  $('.m-jbMenu').append("<a href='/' style='color:black;'>홈으로</a>");
         	  
           });
           
@@ -117,7 +117,7 @@ font-size:40px;
       	        		  },
       	        		  	success:function(data){
     	        			 if(data=='success'){
-    	        				 alert('정상적으로 비밀번호를 변경하였습니다.');
+    	        				 alert('정상적으로 핸드폰 번호를 변경하였습니다.');
     	        				 window.location.reload();
     	        			 }else{
     	        				 alert('회원가입시 등록된 본인정보(이름,생년)와 다른 정보로 변경은 불가능합니다.');

@@ -51,7 +51,8 @@ font-size:40px;
 </style>
 </head>
 <body>
-<div class="main-title">계정설정</div>
+<!-- 핸드폰 변경시 뒤로가기 굉장히 많이 눌러야 뒤로가지기 대문에 홈으로 가는 키 하나 만듦 -->
+<div class="main-title"><a href='/' style='color:black;'>홈으로</a></div>
 <div>
 	<table style="width:650px; margin:auto;border-spacing:30px;">
 		<tr>
@@ -64,17 +65,16 @@ font-size:40px;
 			<td class="sub-title">생년월일</td><td class="sub-value">${member.birth}</td>
 		</tr>
 		<tr>
-			<td class="sub-title">핸드폰 번호</td>
-			<td>
-			<span class="sub-value">${member.phone}</span>
-			
-			</td>
+			<td class="sub-title">핸드폰 번호</td><td><span class="sub-value">${member.phone}</span></td>
 		</tr>
-
+		<tr>
+			<td class="sub-title">닉네임</td><td class="sub-value">${member.nickname} &nbsp;&nbsp;<a class="akak" href="/nicknameUpdate">수정</a></td>
+		</tr>
 </table>
-<div style="width:500px; margin:70px auto;text-align:center;">
+<div style="width:700px; margin:70px auto;text-align:center;">
 <span class='phoneUpdate'>핸드폰 번호 변경</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="./passwordsetting" class="akak">비밀번호 수정하기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="./myaccountinfo" class="akak">계좌정보 입력하기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="./secession" class="akak">회원 탈퇴</a>
 </div>
 </div>
@@ -86,14 +86,10 @@ font-size:40px;
  	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.4.js"></script>
         <script>
           $(document).ready(function(){
-        	  $('.my6').css('color','orange');
         	  var iamport = "<c:out value="${iamport}" />";
         	  
         	  IMP.init(iamport);
         	  
-        	  $('.menu-title').append("계정설정");
-        	  
-          
           });
           
           
@@ -118,7 +114,7 @@ font-size:40px;
       	        		  },
       	        		  	success:function(data){
     	        			 if(data=='success'){
-    	        				 alert('정상적으로 비밀번호를 변경하였습니다.');
+    	        				 alert('정상적으로 핸드폰 번호를 변경하였습니다.');
     	        				 window.location.reload();
     	        			 }else{
     	        				 alert('회원가입시 등록된 본인정보(이름,생년)와 다른 정보로 변경은 불가능합니다.');

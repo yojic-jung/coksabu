@@ -21,12 +21,13 @@
     //this line.
     function connect() {
     	//파라미터 이름, 순서 바뀌면 안됨 , afterConnectionClosed메서드에서 참조함
-        var socket = new SockJS("https://coksabu.com/hello?chatroom_id="+chatroom_id+"&username="+sender);
+        var socket = new SockJS("http://localhost:8080/hello?chatroom_id="+chatroom_id+"&username="+sender);
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function(frame) {
             stompClient.subscribe('/queue/message-'+chatroom_id, function(greeting){
             	
             	//실제 message_receiver와 관계없음, 딱히 저장해서 보낼만한 곳이 없어 receiver에 저장, 새롭게 만들면 null 오류 생길수도 있으므로
+            	//안읽음 메세지 읽음처리해주기 위해서
             	if(JSON.parse(greeting.body).message_receiver=="연결접속완료"){
             		if(JSON.parse(greeting.body).message_sender!=sender){
             			$('.readOrNot').remove();	
@@ -38,18 +39,10 @@
             });
         });
         setTimeout(function(){
-        	$.ajax({
-    			  url:'./chatmemberstatus?id='+chatroom_id,
-      		  type:'get',
-      		  error:function(request,status,error){
-      		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-      		       },
-      		  success:function(data){
       			  var message = {};
       			  message.message_sender = sender;
+      			//안읽음 메세지 읽음처리해주기 위해서
       			  stompClient.send("/app/newconnect", {atytopic:"message", name: chatroom_id}, JSON.stringify(message));
-      		  }
-      		  });
         },1000);
         	
         
@@ -84,7 +77,7 @@
 	function appendMessage(msg) {
 		if(JSON.parse(msg.body).message_sender==sender){
 			$("#chatMessageArea").append("<div><div class='senderMessage'>"+JSON.parse(msg.body).message_content+"</div><p style='clear:both'></p>"+
-			"<div class='msg_time'>"+"<span class='readOrNot'>"+JSON.parse(msg.body).message_read2+" </span>"+JSON.parse(msg.body).message_time2+"</div></div>");
+			"<div class='msg_time' style='text-align:right;'>"+"<span class='readOrNot'>"+JSON.parse(msg.body).message_read2+" </span>"+JSON.parse(msg.body).message_time2+"</div></div>");
 			var chatAreaHeight = $("#chatArea").height();
 			var maxScroll = $("#chatMessageArea").height() - chatAreaHeight;
 			$("#chatArea").scrollTop(maxScroll);
@@ -441,9 +434,10 @@ font-size:12px;color:gray
 <span class="close-btn" style="cursor:pointer;padding:10px;position:absolute;top:10px; left:30px;font-size:50px;cursor:pointer">&lt;</span>
 </div>
 <div class="main-1">
-	<div class="content" style="font-size:25px;font-weight:bolder;padding:30px;line-height:180%;width:70%;margin:auto;word-break:keep-all;">
+	<div class="content" style="font-size:20px;font-weight:bolder;padding:30px;line-height:180%;width:70%;margin:auto;word-break:keep-all;">
 	선생님이 판매하는 수업이<br/>고객의 요구와 맞지 않아 변동이 필요한 경우
-	고객의 요구에 맞춘 1대1 맞춤형 수업을 만들어 안전거래를 할 수 있습니다.
+	고객의 요구에 맞춘 1대1 맞춤형 수업을 만들어 안전거래를 할 수 있습니다.<br/>
+	(거래제안서는 실명으로 작성되며 작성된 제안서에 실명이 표기됩니다.)
 	<div style="text-align:center;margin-top:100px;">
 	<img src="<c:url value="/resources/images/newpurchase.png" />" alt="거래 이미지" style="width:30%;height:200px;"/>
 	</div>
@@ -463,7 +457,7 @@ font-size:12px;color:gray
 							<input  class="customer-seller" type="radio" name="customer" value="판매자"/>판매자
 						</div>
 						
-                          	<div style="font-weight:bolder;font-size:30px;">
+                          	<div style="font-weight:bolder;font-size:25px;">
                           		<span class="buyer-show">제공받을 </span>
                           		<span class="seller-show">제공하시는 </span>
                           		서비스를 선택해주세요.
@@ -546,11 +540,11 @@ font-size:12px;color:gray
         </div>
 </div>
 <div class="main-5">
-		<div class="content" style="font-weight:bolder;width:70%;margin:40px auto 0px auto;">
-		<div style="font-size:30px;">기타 추가사항(선택)</div>
+		<div class="content" style="font-weight:bolder;width:70%;margin:0px auto 0px auto;">
+		<div style="font-size:25px;">기타 추가사항(선택)</div>
 		<div style="font-size:20px;margin:40px 0px 20px 0px;line-height:170%;">추가로 필요한 거래 계약사항이 있으시면 거래 당사자간 협의된 사항을 적어주세요.</div>
 		<div style="width:100%;text-align:center;">
-			<textarea name="moreDetail" class="fix-hide" rows="10" style="width:70%;font-size:20px;border:1px solid black;padding:20px;"></textarea>
+			<textarea name="moreDetail" class="fix-hide" rows="7" style="width:70%;font-size:20px;border:1px solid black;padding:20px;"></textarea>
 		</div>
 		<div style="margin-top:40px;font-size:20px;font-weight:bolder;line-height:170%;width:100%;word-break:keep-all;">
 		<input class="permit" type="checkbox" name="permit" style="zoom:2.0;" /> 콕사부 서비스정책과 학원법에 의거한 <span class="refund" style="text-decoration:underline;cursor:pointer">환불정책</span>을 이행할 것에 동의합니다.
@@ -579,7 +573,7 @@ font-size:12px;color:gray
 				</div>
 				<div style="height:200px;"></div>
 		</div>
-		
+		<div style="height:150px;"></div>
 		
 		<div class="second">
         <div class="previous4">이전</div>
@@ -599,7 +593,7 @@ font-size:12px;color:gray
 
 <div style="width:70%;margin:auto;">
 
-<div class="purchase-update" style="text-align:center;font-size:20px; margin:20px;cursor:pointer;text-decoration:underline">거래 제안서 수정하기</div>
+<div class="purchase-update" style="text-align:center;font-size:20px; margin:20px;cursor:pointer;text-decoration:underline">거래 제안서 새로 작성하기</div>
 <div style="font-size:35px; font-weight:bolder;text-align:center;">거래 제안서</div>
 	<div style="margin:50px;font-size:20px;line-height:180%;width:80%;font-weight:bolder;">
 		(<span class="proposal-customer cont-stl"></span>)
@@ -897,7 +891,7 @@ $(document).ready(function(){
 		    			$('.purchase').hide();
 		    			
 		    			var mes = {};
-		    			mes.message_content = "새로운 거래 제안서를 작성하였습니다.<br/>수업을 확인하고 안전거래 해보세요.<div class='proposal purchase-box' style='cursor:pointer'>거래 제안서 보기</div>";
+		    			mes.message_content = "새로운 거래 제안서를 작성하였습니다.수업을 확인하고 안전거래 해보세요.<div class='proposal purchase-box' style='cursor:pointer'>거래 제안서 보기</div>";
 		    			mes.message_sender = sender
 		    			mes.chatroom_id = chatroom_id
 		    			mes.message_time = new Date();
@@ -1012,7 +1006,7 @@ $(document).on('click','.accept-proposal',function(){
 				  $('.close-btn2').trigger('click');
 				  
 				  var mes = {};
-	    			mes.message_content = "거래 제안서를 승낙했습니다.<br/>서비스를 구매하실  수 있습니다. <div class='proposal purchase-box' style='cursor:pointer'>거래 제안서 보기</div>";
+	    			mes.message_content = "거래 제안서를 승낙했습니다. 서비스를 구매하실  수 있습니다. <div class='proposal purchase-box' style='cursor:pointer'>거래 제안서 보기</div>";
 	    			mes.message_sender = sender
 	    			mes.chatroom_id = chatroom_id
 	    			mes.message_time = new Date();
@@ -1052,7 +1046,7 @@ $(document).on('click','.lesson-purchase',function(){
 					$('.close-btn2').trigger('click');
 					
 					var mes = {};
-	    			mes.message_content = "서비스를 구매하였습니다.<br/>서비스를 진행해주세요.";
+	    			mes.message_content = "서비스를 구매하였습니다. 결제가 완료되면 서비스를 진행해주세요.";
 	    			mes.message_sender = sender
 	    			mes.chatroom_id = chatroom_id
 	    			mes.message_time = new Date();

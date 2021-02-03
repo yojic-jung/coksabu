@@ -11,9 +11,31 @@
  @font-face { font-family: 'JejuGothic'; 
       src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 
 .div-title{
-            width:800px; margin:auto; padding:30px 0px 20px 10px;
+            width:800px; margin:auto;
              font-family:'JejuGothic'; color:rgb(97, 96, 96);
+             font-size:16px;
         }
+.inner-main{
+			display:inline-block;
+			background:white;
+			padding:20px;
+			border-radius: 10px 10px 0px 0px;
+			border:2px solid gray;
+			border-bottom:2px solid white;
+}
+.inner-sub{
+			display:inline-block;
+			background:white;
+			padding:20px;
+			border-radius: 10px 10px 0px 0px;
+}
+.div-title-inner{
+			display:inline-block;
+			background:white;
+			padding:20px;
+			border-radius: 10px 10px 0px 0px;
+			border:1px solid lightgray;
+}
 #load{
 		padding:20px;
 		width:80%;
@@ -91,8 +113,17 @@ border:1px solid gray; padding:5px 30px;cursor:pointer;font-size:15px;
        		});
 		</script>
  <div style="background:rgb(233, 232, 232); padding:30px;min-height:300px;">
- <div class="div-title">판매관리</div>
- <div style="width:800px; background:white; margin: auto; padding:20px;">
+ <div class="div-title">
+
+  <div class="inner-main">
+  <a href="/saleslist" style="color: black;font-weight:bolder;font-size:18px;">일반거래 판매내역</a>
+  </div>
+  <div class="inner-sub">
+  <a href="/proposalsell" style="color: gray;text-decoration:none;">거래제안서 판매내역</a>
+  </div>
+  
+ </div>
+ <div style="width:800px; background:white; margin: auto; padding:20px;border:2px solid gray;">
  <div style="width:700px; margin:auto;">
  
  <table style="border-spacing:0px 20px;width:700px; margin:auto;">

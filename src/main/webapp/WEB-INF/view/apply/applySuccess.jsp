@@ -5,7 +5,6 @@
 <head>
 <title>요청완료 콕사부</title>
  <meta name="description" content="수업 요청 완료" />
- <link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
     <style>
     
           .top-ul a {
@@ -30,7 +29,7 @@
             <div style="width:800px;font-size:25px; margin:50px auto;line-height:150%;text-align:center;">
             <div style="font-family:'JejuGothic'">
             	"수업요청"이 완료 되었습니다.<br/><br/>
-                <a href="./mypage" style="color:gray;font-weight:bolder;cursor:pointer">마이페이지</a> 신청내역을 통해 선생님들과 상담해보세요. 
+                <a href="./mypage" style="color:gray;font-weight:bolder;cursor:pointer">[마이페이지] [수업요청내역]</a>을 통해 선생님 지원서 내역을<br/>확인할 수 있습니다. 
             </div>
             <br/>
             <br/>
@@ -39,7 +38,7 @@
            <b style="color: rgb(226, 193, 6);">환불 정책</b>과 콕사부의 <b style="color: rgb(226, 193, 6);">소비자 보호정책</b>을 받을 수 있습니다. <br/>
             <div style="font-size:24px; color:gray ">
             <br/>
-          	<b>tip.콕사부 사이트를 통해 결제하지 않는 경우 해당 되지 않습니다.</b><br/>
+          	<b>tip.콕사부를 통해 결제하지 않고 직거래하는 경우,<br/>환불 및 소비자 보호정책을 받기 어렵습니다.</b><br/>
           	</div>
           	</div>
             </div>

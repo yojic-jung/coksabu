@@ -21,13 +21,11 @@ public class LessonCertifyService {
 			return -1;
 		}else {
 			int exist = memberDao.countLessonCertify(certify.getEmail());
-			if(exist==1) {
-				return memberDao.updateLessonCertify(certify);
-			}else {
+			if(exist==0) {
 				return memberDao.insertLessonCertify(certify);
+			}else {
+				return 1;
 			}
-			
 		}
-		
 	}
 }

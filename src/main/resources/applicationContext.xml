@@ -16,7 +16,7 @@
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl"
-			value="jdbc:mysql://localhost/coksabu?characterEncoding=utf8" />
+			value="jdbc:mysql://localhost/coksabu?characterEncoding=utf8&amp;allowMultiQueries=true" />
 		<property name="user" value="dywlr" />
 		<property name="password" value="1111" />
 		<property name="idleConnectionTestPeriod" value="60" />

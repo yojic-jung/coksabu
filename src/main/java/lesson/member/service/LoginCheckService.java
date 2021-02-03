@@ -50,15 +50,12 @@ public class LoginCheckService {
 				//enabled=1, fail_count=0, fail_time=0 으로 다시 수정
 				memberDao.failReset(email);
 				return 5;
-				
 			//15분 전에 로그인 시도
 			}else {
 				// fail_time=현재시각 +15분
 				memberDao.addFailTime(email);
 				return 6;
-				
 			}
-			
 		}else {
 			//fail_count +=1 
 			memberDao.addFailCount(email);

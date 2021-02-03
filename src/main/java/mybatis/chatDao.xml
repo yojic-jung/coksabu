@@ -18,9 +18,14 @@
 		select name from members where email=#{email}
 	</select>
 	
-	<select id="takeNameList" resultType="String" >
+	<select id="takeNickname" resultType="String" >
+		select nickname from members where email=#{email}
+	</select>
+	
+	
+	<select id="takeNicknameList" resultType="String" >
 		<foreach collection="list" item="item" separator="union all">
-		 (select name from members where email=#{item})
+		 (select nickname from members where email=#{item})
 		 </foreach> 
 	</select>	
 	
@@ -28,6 +33,7 @@
 		select id from chat_room where user like concat('%',#{sender},'%') and user like concat('%',#{receiver},'%');
 	</select>
 	
+
 	<insert id="makeRoom" >
 		insert into chat_room (user, lasttime) values (#{user}, now())
 	</insert>
@@ -40,7 +46,7 @@
 		insert into message (chatroom_id, message_content, message_sender, message_receiver, message_time, message_read) values (#{chatroom_id}, #{message_content}, #{message_sender}, #{message_receiver}, now(), 1)
 	</insert>
 	
-	<select id="takeChatMemberStatus" resultType="String" >
+	<select id="takeChatMemberStatus" parameterType="test.model.Message" resultType="String" >
 		select status from chat_member_status where roomnumber=#{chatroom_id} and user=#{message_receiver}
 	</select>
 	
@@ -99,11 +105,11 @@
 	</insert>
 	
 	<select id="myPurchaseProposal" resultType="test.model.ChatPurchase">
-		select seller, buyer, cate, lessoncount, price, moredetail, lessontime, proposal_id, id, purchase_day, orderstatus from chat_transaction where buyer = #{email} order by id desc
+		select seller, buyer, cate, lessoncount, price, lessontime, proposal_id, id, purchase_day, orderstatus from chat_transaction where buyer = #{email} order by id desc
 	</select>
 	
 	<select id="myPurchaseProposalSearch" resultType="test.model.ChatPurchase">
-		select seller, buyer, cate, lessoncount, price, moredetail, lessontime, proposal_id, id, purchase_day, orderstatus from chat_transaction where buyer = #{email} and orderstatus like concat('%',#{orderStatus},'%') and  purchase_day between #{firstDate} and #{lastDate} order by id desc
+		select seller, buyer, cate, lessoncount, price, lessontime, proposal_id, id, purchase_day, orderstatus from chat_transaction where buyer = #{email} and orderstatus like concat('%',#{orderStatus},'%') and  purchase_day between #{firstDate} and #{lastDate} order by id desc
 	</select>
 	
 	

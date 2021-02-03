@@ -46,13 +46,15 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer im
             public WebSocketHandler decorate(final WebSocketHandler handler) {
                 return new WebSocketHandlerDecorator(handler) {
                 	@Override
-                	public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) throws Exception {
+                	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+                		logger.warn("소켓 연결 성공");
                 		String st = session.getUri().toString();
                 		String roomnumber;
                 		int length = st.length();
-
-                		// 채티방에서 생성된 소켓만 실행하는 코드, 대화방목록에서는 실행안되게 하기 위해
+                		
+                		// 채팅방에서 생성된 소켓만 실행하는 코드, 대화방목록에서는 실행안되게 하기 위해
                 		if(st.indexOf("chatroom_id=")!=-1) {
+                			logger.warn("채팅방 접속");
                 			st =  st.substring(st.lastIndexOf("chatroom_id=")+12, length);
                     		String[] s = st.split("&username=");
                     		roomnumber = s[0];
@@ -62,8 +64,39 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer im
                     		}else {
                     			email = email.substring(0, andIndex);
                     		}
-                    		logger.info( "내 roomnumber "+roomnumber );
-                    		logger.info( "내 email "+email );
+                    		
+                    		String configLocation = "classpath:applicationContext.xml";
+                    		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
+                    				configLocation);
+                    		ChattingService chattingService = ctx.getBean("chattingService", ChattingService.class );
+                    		
+                    		chattingService.changeChatStatusToON(roomnumber,email);
+                    		ctx.close();
+                		}
+                		handler.afterConnectionEstablished(session);
+                	}
+                	
+                	@Override
+                	public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) throws Exception {
+                		String st = session.getUri().toString();
+                		String roomnumber;
+                		int length = st.length();
+                		
+                		// 채팅방에서 생성된 소켓만 실행하는 코드, 대화방목록에서는 실행안되게 하기 위해
+                		if(st.indexOf("chatroom_id=")!=-1) {
+                			logger.warn("채팅방 나감");
+                			st =  st.substring(st.lastIndexOf("chatroom_id=")+12, length);
+                    		String[] s = st.split("&username=");
+                    		roomnumber = s[0];
+                    		String email= s[1];
+                    		int andIndex = email.lastIndexOf("&");
+                    		if(andIndex==-1) {
+                    		}else {
+                    			email = email.substring(0, andIndex);
+                    		}
+                    		logger.warn("소켓 연결 종료");
+                    		logger.warn( "내 roomnumber "+roomnumber );
+                    		logger.warn( "내 email "+email );
                     		
                     		String configLocation = "classpath:applicationContext.xml";
                     		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
@@ -117,6 +150,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer im
            }
         }, 1000);
     }
-
+    
+    
 
 }

@@ -43,34 +43,36 @@ public class GreetingController {
     @MessageMapping("/newconnect")
     public void newConnect(Message message, @Header("atytopic") String topic, @Header("name") String chatroom_id) {
     	//실제 message_receiver와 관계없음, 상대방 연결접속완료를 알려주기위한 용도
+    	//안읽음 메세지 읽음처리해주기 위해서
     	message.setMessage_receiver("연결접속완료");
     	this.simpMessagingTemplate.convertAndSend("/queue/message-"+chatroom_id,message);
     }
  
     @MessageMapping("/message")
     public void handleSubscribe(Message message, @Header("name") String chatroom_id,
-    		@Headers Map<String, Object> headers,
-    		@Header("simpSessionId") String sessionId) throws FirebaseMessagingException, IOException {
-    	  String configLocation = "classpath:applicationContext.xml";
+    	@Headers Map<String, Object> headers,
+    	@Header("simpSessionId") String sessionId) throws FirebaseMessagingException, IOException {
+    	 String configLocation = "classpath:applicationContext.xml";
   		 AbstractApplicationContext ctx = new GenericXmlApplicationContext(
   				configLocation);
   		 ChattingService chattingService = ctx.getBean("chattingService", ChattingService.class );
   		 message=chattingService.takeMessage(message);
   		 String status = chattingService.insertMessage(message);
           
-          SimpleDateFormat format1 = new SimpleDateFormat ( "MM/dd HH:mm");
+         SimpleDateFormat format1 = new SimpleDateFormat ( "MM/dd HH:mm");
           		
-          String time1 = format1.format(message.getMessage_time());
-          message.setMessage_time2(time1);
-          if(status.equals("ON")) {
+         String time1 = format1.format(message.getMessage_time());
+         message.setMessage_time2(time1);
+         if(status.equals("ON")) {
         	  message.setMessage_read2("");
-          }else {
+        	  ctx.close();
+         }else {
         	  message.setMessage_read2("안읽음");
         	  int unReadCount = chattingService.takeUnReadCount(message.getMessage_sender(), message.getMessage_receiver());
         	  message.setUnReadCount(unReadCount);
+        	  ctx.close();
         	  this.simpMessagingTemplate.convertAndSend("/queue/chatlist-"+message.getMessage_receiver() ,message);
-          }
-          ctx.close();
+         }
     	 this.simpMessagingTemplate.convertAndSend("/queue/message-"+chatroom_id,message);
     }
     

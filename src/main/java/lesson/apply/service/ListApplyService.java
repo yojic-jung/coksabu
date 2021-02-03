@@ -1,8 +1,6 @@
 package lesson.apply.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -50,18 +48,14 @@ public class ListApplyService {
 			map.put("endRow", endRow-firstRow+1);
 		
 			List<ApplyForm> applyList = applyDao.listApplyForm(map);
-			List<ApplyForm> applyList2 = new ArrayList<ApplyForm>();
 			String name;
-			for(Iterator<ApplyForm> itr = applyList.iterator(); itr.hasNext();) {
-				ApplyForm apply = itr.next();
+			for(ApplyForm apply : applyList ) {
 				name = apply.getName().substring(0,1)+" O O";
 				apply.setName(name);
-				applyList2.add(apply);
-				
 			}
 			
 			ApplyList applyListView = new ApplyList(
-					applyList2, pageNumber, totalPageCount, firstRow, endRow);
+					applyList, pageNumber, totalPageCount, firstRow, endRow);
 			
 			return applyListView;
 	}
@@ -96,17 +90,14 @@ public class ListApplyService {
 			map.put("endRow", endRow-firstRow+1);
 		
 			List<ApplyForm> applyList = applyDao.listSearchApplyForm(map);
-			List<ApplyForm> applyList2 = new ArrayList<ApplyForm>();
 			String name;
-			for(Iterator<ApplyForm> itr = applyList.iterator(); itr.hasNext();) {
-				ApplyForm apply = itr.next();
+			for(ApplyForm apply : applyList ) {
 				name = apply.getName().substring(0,1)+" O O";
 				apply.setName(name);
-				applyList2.add(apply);
-				
 			}
+			
 			ApplyList applyListView = new ApplyList(
-					applyList2, pageNumber, totalPageCount, firstRow, endRow);
+					applyList, pageNumber, totalPageCount, firstRow, endRow);
 			
 			return applyListView;
 	}

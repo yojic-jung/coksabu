@@ -64,8 +64,9 @@
 			color: #4C4C4C;	
 			font-weight:bolder;			
 			font-family:'malgun-gothic';
-			word-break:keep-all;
-			word-wrap:break-word;
+			overflow:hidden;
+			white-space:nowrap;
+			text-overflow:ellipsis;
 	}
 	
 	#locale{
@@ -629,7 +630,7 @@
 <c:choose>
 	<c:when test="${listModel.hasList == false }" >
 	 <div style="min-height:600px;">
-	 <div style="width:100%;margin:auto; margin-top:100px;font-size:50px; font-family:'JejuGothic';">
+	 <div style="width:100%;margin:auto; margin-top:60px;padding:50px;font-size:30px; font-family:'JejuGothic';">
 	 해당하는 조건의 "수업요청"이 없습니다.
 	 </div>
 	 </div>
@@ -637,21 +638,15 @@
 	<c:otherwise>
 	<div style="min-height:600px;">
 	 <table border="0" class="list">
-	<% int i=-1; %>
 	<c:forEach var="apply" items="${listModel.list}">
-	<% i++; %>
-	<c:set var="k" value="<%= i %>" scope="page" />
-	<c:if test="${k%2==0}" >
 	<tr style="width:100%;">
-	</c:if>
-	
 	<td>
 	<c:if test="${apply.visible==0}">
-	<div id="pst" style="border:1px solid silver;background:rgb(231, 231, 231);vertical-align:top;padding:30px; width:90%; margin:30px auto;">
+	<div id="pst" style="border:1px solid silver;background:rgb(231, 231, 231);vertical-align:top;padding:30px; width:70%; margin:30px auto;">
 	</c:if>	
 		
 	<c:if test="${apply.visible!=0}">
-	<div id="pst" style="border:1px solid silver;vertical-align:top;padding:30px; width:90%; margin:30px auto;">
+	<div id="pst" style="border:1px solid silver;vertical-align:top;padding:30px; width:50%; margin:30px auto;">
 	</c:if>
 		
 		<div href="#applyform" class="student" style="text-decoration:none; color:black;cursor:pointer;">
@@ -709,13 +704,7 @@
 	</div>
 	</div>
 	</td>
-	
-	<c:if test="${k%2==1}" >
-	</tr>
-	</c:if>
-	<c:if test="${k%2!=1 && k == listModel.endRow-listModel.startRow}" >
-	</tr>
-	</c:if>
+	</tr>	
 		
 	</c:forEach>
 	</table>
@@ -744,7 +733,7 @@
 	</div>
 	</c:otherwise>
 </c:choose>
-		
+		<div style="height:150px;"></div>
 		<div style="display:none; font-size:30px; color:gray; width:80%;">
             <div id="applyform" >
             </div>

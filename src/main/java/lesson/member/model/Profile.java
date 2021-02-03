@@ -7,6 +7,7 @@ public class Profile {
 	private String birth;
 	private String id;
 	private String name;
+	private String nickname;
 	
 	private String sexual;
 	private String imgPath;
@@ -69,6 +70,12 @@ public class Profile {
 		return name;
 	}
 	
+	public void setNickname(String nickname) {
+		this.nickname=nickname;
+	}
+	public String getNickname() {
+		return nickname;
+	}
 	
 	
 	public String getSexual() {

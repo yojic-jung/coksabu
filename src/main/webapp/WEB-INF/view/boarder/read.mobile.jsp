@@ -7,6 +7,7 @@
 <title>선생님 수업정보, 수업목록 콕사부</title>
  <meta name="description" content="선생님 수업 정보 자세히 보기" />
     <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=yes" />
    	<link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
 <link rel="canonical" href="https://coksabu.com/boardread?postId=171">
@@ -114,6 +115,10 @@
   	}
   	.content{
   	 	width:90%; margin:auto;word-break:break-all;font-size:30px;line-height:50px;
+  	}
+  	
+  	.img-div{
+  		width:90%; margin:auto;
   	}
           #dialog{
           width:100%;
@@ -230,7 +235,7 @@
  	        		var name = 'output'+(i+1);
  	        		var path = ctx+'/resources/mediaImg/'+img[i];
  	        		
- 	        		$('.img-div').append('<img id="'+name+'" style="width:600px; height:500px;" src=""/>');
+ 	        		$('.img-div').append('<img id="'+name+'" style="width:100%; height:600px;" src=""/>');
  	        		var nameId = "#"+name;
  	        		$(nameId).attr('src',path);
  	        	}
@@ -256,8 +261,8 @@
 					<div style="font-size:40px;text-align:center;color:#FFBB00;line-height:150%;font-weight:bolder;">이 수업은 판매자의 요청으로 판매가 중단된 수업입니다.</div>
 			</c:if>
                
-                <div style="width:100%;">
-                	<img style="width:100%" src="<c:url value="/img/representImg/${lesson.represent}" />"  alt="수업대표이미지"/>
+                <div style="width:90%;margin:auto;">
+                	<img style="width:100%;height:700px;" src="<c:url value="/img/representImg/${lesson.represent}" />"  alt="수업대표이미지"/>
                 </div>
 			<div class="title" style="line-height:150%;">${lesson.title}</div>
 			<div class="subcate">
@@ -319,19 +324,19 @@
 					</table>
 				</div>
 		
-		<div style="margin:20px 0px;padding:10px;font-size:30px;line-height:200%;">콕사부 안내 : 제공하는 수업 외에도 채팅창에서 새로운 수업을 작성하여 거래할 수 있습니다.</div>
+		<div style="margin:20px 0px;padding:10px;font-size:30px;line-height:200%;">콕사부 안내 : 제공하는 수업 외에도 &#39;상담 하기&#39;를 통해 채팅창에서 새로운 수업을 작성하여 거래할 수 있습니다.</div>
 		
 			
                 <div>
                 <div class="subtitle">선생님 정보</div>
                 <div style="text-align:center;margin-top:40px;font-size:35px;">
 					<img style="width:400px; height:400px;border-radius:200px;" src="<c:url value="/img/profileImg/${pro.imgPath}" />" alt="선생님 프로필 이미지"/><br/>
-				<br/>${pro.name}(${pro.birth}, ${pro.sexual})
+				<br/>${pro.nickname}(${pro.birth}, ${pro.sexual})
 				</div>
                 
                 <c:if test="${pro.certify == 1}"> <div style="margin-top:30px;color:orange; text-align:center;font-size:30px;">본인인증완료 &nbsp; &nbsp; 학력인증완료 </div></c:if>
                 <br/>
-                <div style="width:70%; margin:auto;font-size:30px;line-height:230%">
+                <div style="width:90%; margin:auto;font-size:30px;line-height:230%">
                <span class="info" style="margin-right:20px;">학교</span>${pro.universe} ${pro.univsub} (${pro.universer}) <br/>
                <span class="info" style="margin-right:20px;">경력</span><c:if test="${pro.career!=0}">${pro.career}년이상</c:if><c:if test="${pro.career==0}">1년미만</c:if><br/>
             	<c:if test="${pro.academy != ''}"><span class="info" style="margin-right:15px;">대학원</span>${pro.academy} ${pro.academyd}<br/></c:if>
@@ -456,9 +461,15 @@
         			  return false;  
         		  }
     	   }else{
-    		   window.location="./lessonPurchase?postId="+postId+'&subCate='+subCateIdx;
+    	        linkLocation = this.href;
+    	        if($(this).attr("href")!="#"){
+    	        	$('.m-page-transit').fadeIn(100);
+    	            setTimeout(function(){
+    	            	 window.location="./lessonPurchase?postId="+postId+'&subCate='+subCateIdx;}, 100);
+    	        }
+    		  
     	   } 
-           });   
+          });   
     	   
     	   
     	   $('.cunsult').click(function(){
@@ -471,7 +482,10 @@
             			  return false;  
             		  }
         	   }else{
-        		   window.location ='./chatroom?id='+postId+'&root=read';
+        		   $('.m-page-transit').fadeIn(100);
+   	            	setTimeout(function(){
+   	            			window.location ='./chatroom?id='+postId+'&root=read';}, 100);
+        		   
         		   
         	   	} 
                });
@@ -499,7 +513,7 @@
            		  	}
     			}
     		});
-    	   
+    		if(email!=''){
     		 $('#wishlist').colorbox({
     	          inline:true,
     	          overlayOpacity:0.5,
@@ -530,7 +544,7 @@
       	        	  });
     	          },
     	        });
-    		
+    		}
     		
     		
     		

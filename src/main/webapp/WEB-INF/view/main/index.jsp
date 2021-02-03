@@ -5,7 +5,7 @@
 <html>
 <head>
 <title>콕사부</title>
-<meta charset="utf-8">
+<meta charset="euc-kr">
 <meta name="description" content="내가 찾던 수업을 만나는 곳, 콕사부입니다." />
 <meta property="og:type" content="website">
 <meta property="og:title" content="콕사부">
@@ -13,12 +13,18 @@
 <meta property="og:description" content="내가 찾던 수업을 만나는 곳, 콕사부입니다.">
 <meta property="og:image" content="https://www.coksabu.com/resources/images/logo.png">
 <meta property="og:url" content="https://www.coksabu.com">
-    
-    <meta name="naver-site-verification" content="e6966f55fdf78bcca4b767ce7d213cd6f820ac9a" />
+ 
+ <!-- 뷰포트 화면깨지면 없애주기  -->
+   <meta name="viewport" content="width=device-width">
+
+   <meta name="naver-site-verification" content="09c0582232b10c99588e1c356cb1c1d08d7c28e0" />
     <meta name="google-site-verification" content="p08VIDL4nCSNtPHj4o5tkE5_kxA34KzlSkwzGyOTTzk" />
+    
+     <link rel="canonical" href="http://www.coksabu.com">
     <link rel="stylesheet" type="text/css" href= "<c:url value="/resources/slick/slick.css" />" >
   <link rel="stylesheet" type="text/css" href= "<c:url value="/resources/slick/slick-theme.css" />">
   <link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
+    <link rel="shortcut icon" href= "/favicon.ico" />
     <style>
      @font-face { font-family: 'JejuGothic'; 
       src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 
@@ -107,7 +113,7 @@
             position:absolute;
             left:50%; 
             transform:translateX(-50%);
-            top:330px;
+            top:280px;
             z-index: 2;
             min-width:600px;
           }
@@ -148,7 +154,37 @@
           margin-left:0px;
           padding:0px;
          }
-        .fadeImg{height:450px}
+         
+         
+        .fadeImg{height:350px}
+        .fade-content{
+        	color:white;
+        	font-size:35px;
+        	width:600px;
+        	margin:auto;
+        	font-weight:bolder;
+        	text-align:right;
+        	 position:absolute;
+            left:50%; 
+            transform:translateX(-50%);
+            top:80px;
+            z-index: 3;
+        }
+        
+        .fade-content2{
+        	color:white;
+        	font-size:35px;
+        	width:600px;
+        	margin:auto;
+        	font-weight:bolder;
+        	text-align:right;
+        	 position:absolute;
+            left:50%; 
+            transform:translateX(-50%);
+            top:50px;
+            z-index: 3;
+        }
+        
         .category{
           text-align:center;
           margin-top:40px;
@@ -327,7 +363,7 @@
                 speed:750,
                 timeout:8000,
                 type:'sequence',
-                containerheight:'450px'
+                containerheight:'350px'
             });
 
             $('.categoryTr>td').mouseenter(function(){
@@ -407,7 +443,8 @@
             <sec:authorize access="!isAuthenticated()">
                 <ul class="top-ul">
                     <li><a href="./boarder?main=11&subject=11">수업목록</a></li>
-                    <li><a href="./applylist">요청목록</a></li>
+                    <li><a href="./lessonapply">수업요청</a></li>
+                    <!-- 주석 지우기 <li><a href="./applylist">요청목록</a></li> -->
                     <li><a href="./login">로그인</a></li>
                     <li><a href="./signup">회원가입</a></li>
                 </ul>
@@ -415,7 +452,7 @@
              <sec:authorize access="isAuthenticated()">
                 <ul class="top-ul">
                     <li><a href="./boarder?main=11&subject=11">수업목록</a></li>
-                    <li><a href="./applylist">요청목록</a></li>
+                    <!-- 주석 지우기 <li><a href="./applylist">요청목록</a></li> -->
                     <li><a href="./lessonapply">수업요청</a></li>
                     <li><a href="./myroom">마이페이지</a></li>
                     <li><a href="./message" class="message-notify">메세지</a></li>
@@ -445,11 +482,11 @@
             </tr>
             
             <tr>
-            <td class="menu-td"><a href="./boarder?main=11&subject=15">이과수학</a></td><td class="menu-td"><a href="./boarder?main=21&subject=25">수능영어</a></td><td class="menu-td"><a href="./boarder?main=31&subject=35">수능국어</a></td><td class="menu-td"><a href="./boarder?main=41&subject=45">사회탐구</a></td><td class="menu-td"><a href="./boarder?main=51&subject=55">물리</a></td><td></td><td></td>
+            <td class="menu-td"><a href="./boarder?main=11&subject=15">이과수학</a></td><td class="menu-td"><a href="./boarder?main=21&subject=25">수능영어</a></td><td class="menu-td"><a href="./boarder?main=31&subject=35">수능국어</a></td><td class="menu-td"><a href="./boarder?main=41&subject=451">사회탐구</a></td><td class="menu-td"><a href="./boarder?main=51&subject=55">물리</a></td><td></td><td></td>
             </tr>
             
             <tr>
-            <td class="menu-td"><a href="./boarder?main=11&subject=16">문과수학</a></td><td class="menu-td"><a href="./boarder?main=21&subject=26">영어회화</a></td><td class="menu-td"><a href="./boarder?main=31&subject=36">국어논술</a></td><td class="menu-td"><a href="./boarder?main=41&subject=46">한국사</a></td><td class="menu-td"><a href="./boarder?main=51&subject=56">생명</a></td><td></td><td></td>
+            <td class="menu-td"><a href="./boarder?main=11&subject=16">문과수학</a></td><td class="menu-td"><a href="./boarder?main=21&subject=26">영어회화</a></td><td class="menu-td"><a href="./boarder?main=31&subject=36">국어논술</a></td><td class="menu-td"><a href="./boarder?main=41&subject=46">한국사</a></td><td class="menu-td"><a href="./boarder?main=51&subject=56">생명과학</a></td><td></td><td></td>
             </tr>
             
             
@@ -478,10 +515,26 @@
 
         <ul id="inner-fade">
             
-            <li><img class="fadeImg" src="<c:url value="/resources/img/main6.png" />"  alt="메인이미지1"/></li>
-            <li><img class="fadeImg" src="<c:url value="/resources/img/main7.png" />"  alt="메인이미지2"/></li>
-              <li><img class="fadeImg" src="<c:url value="/resources/img/main8.png" />"  alt="메인이미지3"/></li>
+            <li>
+            	<img class="fadeImg" src="<c:url value="/resources/img/main1.png" />"  alt="메인이미지1"/>
+            	<div class="fade-content">선생님 매칭부터 안전거래까지,<br/>안전거래 과외플랫폼 콕사부</div>
+            </li>
+            <li>
+            	<img class="fadeImg" src="<c:url value="/resources/img/main2.png" />"  alt="메인이미지2"/>
+            	<div class="fade-content">콕사부의 사부님과<br/>내게 맞는 과외를 진행 해보세요.</div>
+            </li>
+            
+            <li>
+            	<img class="fadeImg" src="<c:url value="/resources/img/main3.png" />"  alt="메인이미지3"/>
+            	<div class="fade-content2">선생님의 제공 수업 외에도<br/>채팅창에서 새로운 거래를 작성하여<br/>안전거래 할 수 있습니다.</div>
+            </li>
         </ul>
+        
+     <div style="text-align:center;font-family: 'JejuGothic';padding:30px; background:#F6F6F6 ">
+      		<div style="margin-bottom:30px;">콕사부 서비스 내용이 궁금하신가요?? </div>
+      		<div style="margin:30px;"><a href="./useGuide" style="text-decoration:none;color:white;"><span style="padding:10px; border-radius:10px; background:orange;font-size:18px;">"콕사부 이용가이드"</span></a></div>
+     </div>
+        
       <nav>
         <table class="category">
           <tr class="categoryTr">
@@ -523,7 +576,7 @@
 							<td style="vertical-align:top;padding-top:30px;width:100%;">
 							<a href="<c:url value="./boardread?postId=${post.id}"/>" style="text-decoration:none;">
 							<div id="categories">${post.subcate}</div>
-							<div id="name"> ${post.name}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
+							<div id="name"> ${post.nickname}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
 							<div id="universe"> ${post.universe} ${post.univsub}</div>
 							<div id="title"> ${post.title}</div>
 							<div id="price" >${post.subCate0} ${post.price3}원 <c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if> <c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if></div>
@@ -563,7 +616,7 @@
 							<td style="vertical-align:top;padding-top:30px;width:100%;">
 							<a href="<c:url value="./boardread?postId=${post.id}"/>" style="text-decoration:none;">
 							<div id="categories">${post.subcate}</div>
-							<div id="name"> ${post.name}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
+							<div id="name"> ${post.nickname}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
 							<div id="universe"> ${post.universe} ${post.univsub}</div>
 							<div id="title"> ${post.title}</div>
 							<div id="price" >${post.subCate0} ${post.price3}원 <c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if> <c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if></div>
@@ -600,7 +653,7 @@
 							<td style="vertical-align:top;padding-top:30px;width:100%;">
 							<a href="<c:url value="./boardread?postId=${post.id}"/>" style="text-decoration:none;">
 							<div id="categories">${post.subcate}</div>
-							<div id="name"> ${post.name}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
+							<div id="name"> ${post.nickname}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
 							<div id="universe"> ${post.universe} ${post.univsub}</div>
 							<div id="title"> ${post.title}</div>
 							<div id="price" >${post.subCate0} ${post.price3}원 <c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if> <c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if></div>
@@ -618,7 +671,7 @@
               			<a href="./boarder?main=41&subject=42"><div>초등사회</div></a>
                         <a href="./boarder?main=41&subject=43"><div>중등사회</div></a>
                         <a href="./boarder?main=41&subject=44"><div>고등사회</div></a>
-                        <a href="./boarder?main=41&subject=45"><div>사회탐구</div></a>
+                        <a href="./boarder?main=41&subject=451"><div>사회탐구</div></a>
                         <a href="./boarder?main=41&subject=46"><div>한국사</div></a>
                 </div>
                 <div style="font-family:'JejuGothic'; font-size:20px;margin-top:20px;width:600px">&nbsp;&nbsp;&nbsp;&nbsp;인기 추천 수업</div>
@@ -638,7 +691,7 @@
 							<td style="vertical-align:top;padding-top:30px;width:100%;">
 							<a href="<c:url value="./boardread?postId=${post.id}"/>" style="text-decoration:none;">
 							<div id="categories">${post.subcate}</div>
-							<div id="name"> ${post.name}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
+							<div id="name"> ${post.nickname}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
 							<div id="universe"> ${post.universe} ${post.univsub}</div>
 							<div id="title"> ${post.title}</div>
 							<div id="price" >${post.subCate0} ${post.price3}원 <c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if> <c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if></div>
@@ -657,7 +710,7 @@
 						<a href="./boarder?main=51&subject=53"><div>중등과학</div></a>
                         <a href="./boarder?main=51&subject=54"><div>고등과학</div></a>
                         <a href="./boarder?main=51&subject=55"><div>물리</div></a>
-                        <a href="./boarder?main=51&subject=56"><div>생명</div></a>
+                        <a href="./boarder?main=51&subject=56"><div>생명과학</div></a>
                         <a href="./boarder?main=51&subject=57"><div>화학</div></a>
                         <a href="./boarder?main=51&subject=58"><div>지구과학</div></a>
                 </div>
@@ -678,7 +731,7 @@
 							<td style="vertical-align:top;padding-top:30px;width:100%;">
 							<a href="<c:url value="./boardread?postId=${post.id}"/>" style="text-decoration:none;">
 							<div id="categories">${post.subcate}</div>
-							<div id="name"> ${post.name}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
+							<div id="name"> ${post.nickname}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
 							<div id="universe"> ${post.universe} ${post.univsub}</div>
 							<div id="title"> ${post.title}</div>
 							<div id="price" >${post.subCate0} ${post.price3}원 <c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if> <c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if></div>
@@ -715,7 +768,7 @@
 							<td style="vertical-align:top;padding-top:30px;width:100%;">
 							<a href="<c:url value="./boardread?postId=${post.id}"/>" style="text-decoration:none;">
 							<div id="categories">${post.subcate}</div>
-							<div id="name"> ${post.name}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
+							<div id="name"> ${post.nickname}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
 							<div id="universe"> ${post.universe} ${post.univsub}</div>
 							<div id="title"> ${post.title}</div>
 							<div id="price" >${post.subCate0} ${post.price3}원 <c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if> <c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if></div>
@@ -749,7 +802,7 @@
 							<td style="vertical-align:top;padding-top:30px;width:100%;">
 							<a href="<c:url value="./boardread?postId=${post.id}"/>" style="text-decoration:none;">
 							<div id="categories">${post.subcate}</div>
-							<div id="name"> ${post.name}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
+							<div id="name"> ${post.nickname}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
 							<div id="universe"> ${post.universe} ${post.univsub}</div>
 							<div id="title"> ${post.title}</div>
 							<div id="price" >${post.subCate0} ${post.price3}원 <c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if> <c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if></div>
@@ -796,7 +849,7 @@
           <div class="cateTitle"><p><b>사회</b> 선생님을 찾아보세요.</p></div>
           <section class="regular slider">
            <div><a href="./boarder?main=41&subject=46" ><img src="<c:url value="/resources/img/society1.png" />" alt="한국사" /></a></div>
-            <div><a href="./boarder?main=41&subject=45" ><img src="<c:url value="/resources/img/social2.png" />" alt="사회탐구" /></a></div>
+            <div><a href="./boarder?main=41&subject=451" ><img src="<c:url value="/resources/img/social2.png" />" alt="사회탐구" /></a></div>
             <div><a href="./boarder?main=41&subject=44" ><img src="<c:url value="/resources/img/society4.png" />" alt="고등사회" /></a></div>
             <div><a href="./boarder?main=41&subject=43" ><img src="<c:url value="/resources/img/society2.png" />"  alt="중등사회"/></a></div>
             <div><a href="./boarder?main=41&subject=42" ><img src="<c:url value="/resources/img/society3.png" />" alt="초등사회" /></a></div>
@@ -808,7 +861,7 @@
             <div><a href="./boarder?main=51&subject=53" ><img src="<c:url value="/resources/img/science4.png" />" alt="중등과학" /></a></div>
             <div><a href="./boarder?main=51&subject=54" ><img src="<c:url value="/resources/img/science5.png" />" alt="고등과학" /></a></div>
             <div><a href="./boarder?main=51&subject=58" ><img src="<c:url value="/resources/img/science6.png" />" alt="지구과학" /></a></div>
-            <div><a href="./boarder?main=51&subject=56" ><img src="<c:url value="/resources/img/science7.png" />" alt="생명" /></a></div>
+            <div><a href="./boarder?main=51&subject=56" ><img src="<c:url value="/resources/img/science7.png" />" alt="생명과학" /></a></div>
             <div><a href="./boarder?main=51&subject=52" ><img src="<c:url value="/resources/img/science1.png" />" alt="초등과학"/></a></div>
             <div><a href="./boarder?main=51&subject=57" ><img src="<c:url value="/resources/img/scienceC.png" />" alt="화학"/></a></div>
           </section>
@@ -832,7 +885,7 @@
               <p>상호 : 콕사부 <br/>
                 대표자 : 정요직<br/> 
                 개인정보보호담당자 :정요직<br/> 
-                주소 : 서울특별시 동대문구 183-368<br/>
+                주소 : 서울특별시 동대문구 휘경동 183-368. 104호<br/>
                 TEL. 02-959-1176<br/> 
                   사업자 등록번호 : 654-19-01069 <br/>
 		통신판매업 신고 : 2019-서울동대문-0997호<br/>
@@ -857,7 +910,8 @@
                  <a href="./companyInfo"> 회사소개</a><br/>
                  <a href="./customer" style="text-decoration:none; color:black;"> 자주하는 질문</a><br/>
                  <a href="./qna" style="text-decoration:none; color:black;"> 고객문의</a><br/> 
-                 <a href="./privateData" style="text-decoration:none; color:black;">개인정보처리방침</a>
+                 <a href="./privateData" style="text-decoration:none; color:black;">개인정보처리방침</a><br/>
+                 <a href="./service" style="text-decoration:none; color:black;">이용약관</a>
                 </p>
               </div>
             

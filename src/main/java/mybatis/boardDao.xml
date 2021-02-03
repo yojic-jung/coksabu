@@ -42,7 +42,7 @@
 	</select>
 	<!-- 수정 -->
 	<select id="read" resultType="lesson.board.model.LessonCardDB2" >
-		select cate, subcate, title, lesson, description, careerdb, email, id, subcate0, price1, price2, price3, subcate1, opt1price1, opt1price2, opt1price3, subcate2, opt2price1, opt2price2, opt2price3, represent, day, gawe, contentimg from lesson where id=#{id} and email=#{email}
+		select cate, subcate, title, lesson, description, careerdb, email, id, trial, subcate0, price1, price2, price3, subcate1, opt1price1, opt1price2, opt1price3, subcate2, opt2price1, opt2price2, opt2price3, represent, day, gawe, contentimg from lesson where id=#{id} and email=#{email}
 	</select>
 	
 	<delete id="deleteLesson" >
@@ -81,12 +81,12 @@
 	</delete>
 	
 	<select id="myLessonList" resultType="lesson.board.model.PostView">
-		select A.name, A.birth, A.phone, B.universe, B.univsub ,  B.sexual, B.career,C.cate, C.subcate, C.represent, C.title, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.visible
+		select A.nickname, A.birth, A.phone, B.universe, B.univsub,  B.sexual, B.career,C.cate, C.subcate, C.represent, C.title, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.visible
 		from members as A, profile as B, lesson as C where A.email = #{email} and B.email = #{email} and C.email = #{email}
 	</select>
 	
 	<select id="myLessonListFromTutorProfile" resultType="lesson.board.model.PostView">
-		select A.name, A.birth, A.phone, B.universe, B.univsub ,  B.sexual, B.career,C.cate, C.subcate, C.represent, C.title, C.price3, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3,C.id
+		select A.nickname, A.birth, A.phone, B.universe, B.univsub ,  B.sexual, B.career,C.cate, C.subcate, C.represent, C.title, C.price3, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3,C.id
 		from members as A, profile as B, lesson as C where A.email = #{email} and B.email = #{email} and C.email = #{email} and A.membership=1 and C.visible=1
 	</select>
 	
@@ -103,7 +103,7 @@
 	</select>
 	
 	<select id="listPost" resultType="lesson.board.model.PostView">
-		select A.name, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career, C.subcate, C.represent, C.title, C.subcate0, C.price1, C.price3, C.subcate1, C.opt1price3 , C.subcate2, C.opt2price3 ,C.id, C.readcount
+		select A.nickname, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career, C.subcate, C.represent, C.title, C.subcate0, C.price1, C.price3, C.subcate1, C.opt1price3 , C.subcate2, C.opt2price3 ,C.id, C.readcount
 		from members as A, profile as B, lesson as C where A.email=B.email and B.email=C.email and A.membership=1 and C.visible=1
 		<choose>
 			<when test = 'subject!=null and (subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("자소서/입시"))' >
@@ -116,7 +116,7 @@
 	</select>
 	
 	<select id="listNewPost" resultType="lesson.board.model.PostView">
-		select A.name, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career, C.title, C.subcate0, C.price1, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3 , C.id
+		select A.nickname, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career, C.title, C.subcate0, C.price1, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3 , C.id
 		from members as A, profile as B, lesson as C where A.email=B.email and B.email=C.email and A.membership=1 and C.visible=1
 		<choose>
 			<when test = 'subject!=null and (subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("자소서/입시"))' >
@@ -143,7 +143,7 @@
 	
 	
 	<select id="listForm" resultType="lesson.board.model.PostView">
-		select A.name, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career, C.subcate, C.represent, C.title, C.subcate0, C.price1, C.price3, C.subcate1, C.opt1price3 , C.subcate2, C.opt2price3 , C.id, C.readcount
+		select A.nickname, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career, C.subcate, C.represent, C.title, C.subcate0, C.price1, C.price3, C.subcate1, C.opt1price3 , C.subcate2, C.opt2price3 , C.id, C.readcount
 		from members as A, profile as B, lesson as C where A.email=B.email and B.email=C.email and A.membership=1 and C.visible=1 and B.locales like concat('%',#{locale},'%') and B.career>=#{career} 
 		 and B.sexual like concat('%',#{sexual},'%')
 		<choose>
@@ -166,7 +166,7 @@
 	</select>
 	
 	<select id="readProfilePost" resultType="lesson.member.model.Profile">
-		select A.email, A.name, A.birth, B.imgpath, B.locales, B.universe, B.univsub, B.universer, B.career, B.sexual, B.academy, B.academyd, B.nation, B.nationy, B.toeic, B.tofle, B.teps, B.hsk, B.jpt, B.singular, B.certify
+		select A.email, A.name, A.nickname, A.birth, B.imgpath, B.locales, B.universe, B.univsub, B.universer, B.career, B.sexual, B.academy, B.academyd, B.nation, B.nationy, B.toeic, B.tofle, B.teps, B.hsk, B.jpt, B.singular, B.certify
 		from members as A, profile as B where A.email = #{email} and B.email=#{email}
 	</select>
 	<!-- 수정 -->
@@ -175,37 +175,37 @@
 	</select>
 	
 	<select id="listMain" resultType="lesson.board.model.PostView">
-		(select A.name, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
+		(select A.nickname, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
 		from members as A, profile as B, lesson as C where A.email = B.email and B.email=C.email and A.membership=1 and C.visible=1
 		and cate='수학' order by C.readcount desc limit 3) 
 		union all
-		(select A.name, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title,  C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
+		(select A.nickname, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title,  C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
 		from members as A, profile as B, lesson as C where A.email = B.email and B.email=C.email and A.membership=1 and C.visible=1
 		and cate='외국어' order by C.readcount desc limit 3) 
 		union all
-		(select A.name, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
+		(select A.nickname, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
 		from members as A, profile as B, lesson as C where A.email = B.email and B.email=C.email and A.membership=1 and C.visible=1
 		and cate='국어' order by C.readcount desc limit 3) 
 		union all
-		(select A.name, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title,  C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
+		(select A.nickname, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title,  C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
 		from members as A, profile as B, lesson as C where A.email = B.email and B.email=C.email and A.membership=1 and C.visible=1
 		and cate='사회' order by C.readcount desc limit 3) 
 		union all
-		(select A.name, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title,  C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
+		(select A.nickname, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title,  C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
 		from members as A, profile as B, lesson as C where A.email = B.email and B.email=C.email and A.membership=1 and C.visible=1
 		and cate='과학' order by C.readcount desc limit 3) 
 		union all
-		(select A.name, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
+		(select A.nickname, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
 		from members as A, profile as B, lesson as C where A.email = B.email and B.email=C.email and A.membership=1 and C.visible=1
 		and cate='예체능' order by C.readcount desc limit 3) 
 		union all
-		(select A.name, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
+		(select A.nickname, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
 		from members as A, profile as B, lesson as C where A.email = B.email and B.email=C.email and A.membership=1 and C.visible=1
 		and cate='자소서/입시' order by C.readcount desc limit 3) 
 	</select>
 	
 	<select id="purchaseRead" resultType="lesson.board.model.PurchaseRead">
-		select A.email, A.name, A.phone ,B.sexual, C.represent, C.title, C.cate, C.subcate, C.gawe, C.trial, C.visible ,
+		select A.email, A.name ,A.nickname, A.phone ,B.sexual, C.represent, C.title, C.cate, C.subcate, C.gawe, C.trial, C.visible ,
 		<choose>
    		    <when test ='subcate.equals("first")'>
    		     C.subCate0, C.price1, C.price2, C.price3 from members as A, profile as B, lesson as C where A.email=#{email} and B.email=#{email} and C.id=#{id}

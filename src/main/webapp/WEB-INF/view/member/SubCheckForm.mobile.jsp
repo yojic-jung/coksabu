@@ -128,6 +128,9 @@ $(document).ready(function(){
 	
 	$('#chk2').hide();
 
+	
+	
+	
 	var univ = "<c:out value="${univ}" />"
 	
 	$('.univlist').hover(function(){
@@ -143,7 +146,7 @@ $(document).ready(function(){
 	})
 	
 	
-	$('page-a').click(function(){
+	$('.page-a').click(function(){
 		var href = $(this).attr("href");
 		href=href+"&univ="+encodeURIComponent(univ);
 		$(this).prop('href',href);

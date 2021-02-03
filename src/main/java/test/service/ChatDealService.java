@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 import lesson.deal.model.PurchaseListSearch;
 import test.dao.ChatDao;
@@ -74,7 +75,7 @@ public class ChatDealService {
 		chatDao.makeAcceptPurchase(map);
 	}
 	
-	
+	@Transactional(rollbackFor= {Exception.class})
 	public String chatTransaction(int proposal_id, String buyerEmail, String bank, String depositor) {
 		ChatPurchase purchase = chatDao.takeChatDealByOrd(proposal_id);
 		String sellerEmail = purchase.getEmail();
@@ -84,11 +85,8 @@ public class ChatDealService {
 		
 		//판매자가 자신의 서비스를 사는경우
 		if(sellerEmail.equals(buyerEmail)) {
-			
 			logger.info("실패 거래");
-			
 			return "fail";
-			
 		//구매자가 사는 경우
 		}else {
 			String sellerName = chatDao.takeName(sellerEmail);
@@ -123,10 +121,10 @@ public class ChatDealService {
 			list.add(pur.getSeller());
 		}
 		
-		List<String> nameList = chatDao.takeNameList(list);
+		List<String> nicknameList = chatDao.takeNicknameList(list);
 		
 		for(int i=0; i<list.size(); i++) {
-			purchase.get(i).setSeller(nameList.get(i));
+			purchase.get(i).setSeller(nicknameList.get(i));
 		}
 		
 		
@@ -163,7 +161,7 @@ public class ChatDealService {
 			list.add(pur.getSeller());
 		}
 		
-		List<String> nameList = chatDao.takeNameList(list);
+		List<String> nameList = chatDao.takeNicknameList(list);
 		
 		for(int i=0; i<list.size(); i++) {
 			purchase.get(i).setSeller(nameList.get(i));
@@ -190,7 +188,7 @@ public class ChatDealService {
 			list.add(pur.getBuyer());
 		}
 		
-		List<String> nameList = chatDao.takeNameList(list);
+		List<String> nameList = chatDao.takeNicknameList(list);
 		
 		for(int i=0; i<list.size(); i++) {
 			purchase.get(i).setBuyer(nameList.get(i));
@@ -211,12 +209,15 @@ public class ChatDealService {
 			pur =  chatDao.myProposal(map);
 		}
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
-		pur.setPurchase_dayS(sdf.format(pur.getPurchase_day()));
-		String buyer = chatDao.takeName(pur.getBuyer());
-		String seller = chatDao.takeName(pur.getSeller());
-		pur.setBuyer(buyer);
-		pur.setSeller(seller);
+		if(pur !=null) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+			pur.setPurchase_dayS(sdf.format(pur.getPurchase_day()));
+			String buyer = chatDao.takeName(pur.getBuyer());
+			String seller = chatDao.takeName(pur.getSeller());
+			pur.setBuyer(buyer);
+			pur.setSeller(seller);
+		}
+		
 		return pur;
 	}
 	

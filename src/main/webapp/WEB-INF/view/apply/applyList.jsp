@@ -62,8 +62,10 @@
 			font-weight:bolder;			
 			font-family:'malgun-gothic';
 			margin-bottom:10px;
-			word-break:keep-all;
-			word-wrap:break-word;
+			width:198px;
+			overflow:hidden;
+			white-space:nowrap;
+			text-overflow:ellipsis;
 	}
 	
 	#locale{
@@ -653,7 +655,7 @@
 		<div id="grade">${apply.grade}</div>
 		<div id="subcate" >${apply.subcate}</div>
 		<div id="locale">${apply.locale} ${apply.locale3}</div>
-		<div id="price">희망가격 <span style="color:black;font-size:16px;font-weight:bold">${apply.price1} ~ ${apply.price2}</span></div>
+		<div id="price">희망가격 <span style="color:black;font-size:15px;font-weight:bold">${apply.price1} ~ ${apply.price2}</span></div>
 		
 		
 		<!-- 컬러박스 -->

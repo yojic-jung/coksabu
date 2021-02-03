@@ -14,7 +14,7 @@
 <meta property="og:description" content="내가 찾던 수업을 만나는 곳, 콕사부입니다.">
 <meta property="og:image" content="https://www.coksabu.com/resources/images/logo.png">
 <meta property="og:url" content="https://www.coksabu.com">
-
+<meta name="viewport" content="user-scalable=no" />
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
   <link rel="canonical" href="https://coksabu.com/">
    <style>
@@ -26,8 +26,14 @@
    
    *{margin:0;padding:0;box-sizing:border-box}
    
-   body{margin:0;padding:0;font-family:'Malgun Gothic' ;
-   -webkit-text-size-adjust:100%}
+   body{margin:0;
+  		 padding:0;
+   		font-family:'Malgun Gothic' ;
+   		-webkit-text-size-adjust:100%;
+  		 -webkit-touch-callout: none;
+		}
+
+   
    .m-jbMenu{background:white;width:100%;padding:30px;font-size:80px;
    font-family:'Do Hyeon';
    border-bottom:1px solid gray;z-index:3}
@@ -94,8 +100,22 @@
    
    .foot-cate a,.foot-company a{text-decoration:none;color:black}
    
-   .fadeImg{width:100%;height:500px }  
+   .fadeImg{width:100%;height:400px }  
    
+   .fade-content{
+        	color:white;
+        	font-size:40px;
+        	width:550px;
+        	margin:auto;
+        	font-weight:bolder;
+        	text-align:right;
+        	 position:absolute;
+            left:50%; 
+            transform:translateX(-50%);
+            top:100px;
+            z-index: 3;
+        }
+        
    #inner-fade{z-index:1}
    
    .img-ui{width:95%;margin:auto}
@@ -216,15 +236,14 @@ width:100%;margin:auto
 <script>
 
 </script>
-<div class="progressbar" style="position: fixed;left: 0;top:5px;border:none;height:7px;z-index:15;"></div>
 <header class="m-header">
   
     <div class="m-jbMenu">
-      	<a class="m-btn" href="#">
+      	<span class="m-btn">
       		<span> </span>
       		<span> </span>
       		<span> </span>
-  		</a>
+  		</span>
       
  		<a href="./"><span class="m-title">콕사부</span></a>
  	</div>
@@ -237,13 +256,14 @@ width:100%;margin:auto
 			<a href="./login" class="m-menu-href" ><div class="m-menu-content">로그인</div></a>
 			<a href="./signup" class="m-menu-href"><div class="m-menu-content">회원가입</div></a>
 			<a href="./boarder?main=11&subject=11" class="m-menu-href"><div class="m-menu-content">수업목록</div></a>
-			<a href="./applylist" class="m-menu-href"><div class="m-menu-content">요청목록</div></a>
+			<a href="./lessonapply" class="m-menu-href"><div class="m-menu-content">수업요청</div></a>
+			<!-- 주석 지우기 <a href="./applylist" class="m-menu-href"><div class="m-menu-content">요청목록</div></a> -->
 			 </sec:authorize>
 			 <sec:authorize access="isAuthenticated()">
               <a href="./message" class="m-menu-href"><div class="m-menu-content">메세지</div></a>
               <a href="./myroom" class="m-menu-href"><div class="m-menu-content">마이페이지</div></a>
               <a href="./boarder?main=11&subject=11" class="m-menu-href"><div class="m-menu-content">수업목록</div></a>
-              <a href="./applylist" class="m-menu-href"><div class="m-menu-content">요청목록</div></a>
+              <!-- 주석 지우기 <a href="./applylist" class="m-menu-href"><div class="m-menu-content">요청목록</div></a> -->
               <a href="./lessonapply" class="m-menu-href"><div class="m-menu-content">수업요청</div></a>
          	  <a href="./customer" class="m-menu-href"><div class="m-menu-content">고객센터</div></a>
          	 </sec:authorize>
@@ -257,11 +277,27 @@ width:100%;margin:auto
 	
 	 <ul id="inner-fade">
             
-            <li><img class="fadeImg" src="<c:url value="/resources/img/main6.png" />"  alt="메인이미지1"/></li>
-            <li><img class="fadeImg" src="<c:url value="/resources/img/main7.png" />"  alt="메인이미지2"/></li>
-            <li><img class="fadeImg" src="<c:url value="/resources/img/Mmain8.png" />"  alt="메인이미지3"/></li>
+            <li>
+            	<img class="fadeImg" src="<c:url value="/resources/img/main1.png" />"  alt="메인이미지1"/>
+            	<div class="fade-content">선생님 매칭부터 안전거래까지,<br/>안전거래 과외플랫폼 콕사부</div>
+            </li>
+            <li>
+            	<img class="fadeImg" src="<c:url value="/resources/img/main2.png" />"  alt="메인이미지2"/>
+            	<div class="fade-content">콕사부의 사부님과<br/>내게 맞는 과외를 진행 해보세요.</div>
+            </li>
+            <li>
+            	<img class="fadeImg" src="<c:url value="/resources/img/main3.png" />"  alt="메인이미지3"/>
+            	<div class="fade-content">선생님의 판매 수업 외에도<br/>채팅창의 거래제안서 작성으로<br/>안전거래를 할 수 있습니다.</div>
+            </li>
         </ul>
+        	
+	
+	 <div style="text-align:center;font-family: 'JejuGothic';padding:30px; background:#F6F6F6 ">
+      		<div style="margin-bottom:30px;font-size:35px;">콕사부 서비스 내용이 궁금하신가요?? </div>
+      		<div style="margin:30px;"><a href="./useGuide" style="text-decoration:none;color:white;"><span style="padding:10px; border-radius:10px; background:orange;font-size:40px;">"콕사부 이용가이드"</span></a></div>
+     </div>
         
+	
 	<div style="width:100%;padding:90px 20px;">
 	<table class="img-ui" style="border-spacing:70px 0px;text-align:center; font-size:30px;font-weight:bolder">
 		<tr>
@@ -293,8 +329,8 @@ width:100%;margin:auto
 		</tr>
 	</table>
 </div>
-	
-<div style="width:90%; margin:auto; padding:30px 0px 0px 0px; font-size:3em; font-weight:900; font-family:'JejuGothic'; text-decoration:underline;">콕사부 인기 수업</div>
+
+<div style="width:90%; margin:30px auto 0px auto; padding:30px 0px 0px 0px; font-size:3em; font-weight:900; font-family:'JejuGothic'; text-decoration:underline;">콕사부 인기 수업</div>
 <div style="width:100%;">
 <table class="list">
 <c:forEach var="post" items="${list}" varStatus="status">
@@ -307,7 +343,7 @@ width:100%;margin:auto
 	<a href="./boardread?postId=${post.id}">
 	<div>
 	<div id="title"> ${post.title}</div>
-	<div id="name">${post.name}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
+	<div id="name">${post.nickname}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
 	<div id="universe"> ${post.universe} ${post.univsub}</div>
 	<div id="price" > ${post.subCate0} ${post.price3}원 <c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if> <c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if></div>
 	</div>
@@ -319,7 +355,11 @@ width:100%;margin:auto
 </div>
 
 	</section>
- 
+	
+<div class="m-page-transit" style="text-align:center;width:100%;position:fixed;left:0px;top:0px;background: white; height:100%;z-index:10;">
+    <img src="<c:url value="/resources/img/Spin-1s-124px.svg" />"  style="margin-top:50%;"/>
+</div>
+
  <footer class="m-footer">
           <div class="m-foot">
             <hr/>
@@ -363,28 +403,21 @@ width:100%;margin:auto
     <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
     <script src="<c:url value="/resources/js/jquery.innerfade.js"/>"></script>
     <script>
-    $(window).on("beforeunload",function(){
-    		var broswerInfo = navigator.userAgent;
-    		
-    		if(broswerInfo.indexOf("APP_WISHRROM_Android")>-1){
-    				$(".progressbar").show();
-    				$(".progressbar").css({"background":"orange"});
-    				var i=0;
-    				var progressbar = setInterval(function(){
-    					i+=24;
-    					$(".progressbar").css({"width":i+"%"});
-    					
-    					if(i==96){
-    						clearInterval(progressbar);
-    					}
-    				},100);
-    			}
-    	});
-
-
-
+    $(document).on("click","a",function(event){
+    	var broswerInfo = navigator.userAgent;
+    	//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+    	if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+    		event.preventDefault();
+            linkLocation = this.href;
+            $('.m-page-transit').fadeIn(100);
+            setTimeout(function(){redirectPage()}, 100);
+    	}
+    });
+    
+    function redirectPage() {
+             window.location = linkLocation;
+    }
     $(document).ready(function(){
-
             var jbOffset = $('.m-jbMenu').offset(); //상단메뉴 좌표 가져오는 코드
                 $( window ).scroll( function() {        
                   if ( $( document ).scrollTop() > jbOffset.top ) { //scrollTop() 요청한 스크롤바의 수직위치 반환
@@ -403,7 +436,7 @@ width:100%;margin:auto
                     speed:750,
                     timeout:8000,
                     type:'sequence',
-                    containerheight:'500px'
+                    containerheight:'400px'
                 });
             
             
@@ -447,8 +480,14 @@ width:100%;margin:auto
     		})
     	});
     	
-    	$('.progressbar').hide();
-
+    	$(window).bind("pageshow", function(event) {
+    		$('.m-page-transit').fadeOut(100);
+    	    if ( event.originalEvent && event.originalEvent.persisted) {// BFCahe
+    	        window.location.reload();
+    	    }else{}//새로운페이지
+    	    
+    	    
+    	});
     	</script>
     	
     	 <%

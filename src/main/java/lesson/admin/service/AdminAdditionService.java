@@ -2,6 +2,8 @@ package lesson.admin.service;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lesson.admin.dao.AdminDao;
 import lesson.admin.model.DelWaiting;
+import lesson.admin.model.NotificationLight;
 import lesson.board.model.LessonCardDB;
 import lesson.board.model.PurchaseHistory;
 
@@ -19,6 +22,31 @@ public class AdminAdditionService {
 	
 	public void setAdminDao(AdminDao adminDao) {
 		this.adminDao = adminDao;
+	}
+	
+	
+	public NotificationLight notificationLight(){
+		NotificationLight notify = new NotificationLight();
+		notify.setCertifyCount(adminDao.certifyCount());
+		notify.setDelLessonCount(adminDao.delLessonCount());
+		notify.setQnaCount(adminDao.countQna());
+		
+		List<String> list = new ArrayList<>();
+		
+		list.add("입금대기");
+		list.add("환불대기");
+		
+		List<Integer> lessonNotify =adminDao.takeLessonCount(list);
+		List<Integer> chatNotify =adminDao.takeChatCount(list);
+		
+		notify.setLessonTranCount(lessonNotify.get(0));
+		notify.setLessonRefundCount(lessonNotify.get(1));
+		
+		notify.setChatTranCount(chatNotify.get(0));
+		notify.setChatRefundCount(chatNotify.get(1));
+		
+		
+		return notify;
 	}
 	
 	public List<DelWaiting> delWaitingList() {
@@ -44,8 +72,7 @@ public class AdminAdditionService {
 	}
 	
 	public List<PurchaseHistory> takePurchaseList(int postId) {
-		List<PurchaseHistory> list = adminDao.takePurchaseList(postId);
-		return list;
+		return  adminDao.takePurchaseList(postId);
 	}
 	
 	@Transactional(rollbackFor= {Exception.class})

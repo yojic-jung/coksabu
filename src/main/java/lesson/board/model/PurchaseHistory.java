@@ -7,10 +7,12 @@ public class PurchaseHistory {
 	private int orderId;
 	private String buyerEmail;
 	private String buyerName;
+	private String buyerNickname;
 	private String buyerPhone;
 	
 	private String sellerEmail;
 	private String sellerName;
+	private String sellerNickname;
 	private String sellerPhone;
 	
 	private Date orderDate;
@@ -63,6 +65,13 @@ public class PurchaseHistory {
 		return buyerName;
 	}
 	
+	public void setBuyerNickname(String buyerNickname) {
+		this.buyerNickname=buyerNickname;
+	}
+	public String getBuyerNickname() {
+		return buyerNickname;
+	}
+	
 	public void setBuyerPhone(String buyerPhone) {
 		this.buyerPhone=buyerPhone;
 	}
@@ -85,6 +94,15 @@ public class PurchaseHistory {
 	public String getSellerName() {
 		return sellerName;
 	}
+	
+	public void setSellerNickname(String sellerNickname) {
+		this.sellerNickname=sellerNickname;
+	}
+	public String getSellerNickname() {
+		return sellerNickname;
+	}
+	
+	
 	public void setSellerPhone(String sellerPhone) {
 		this.sellerPhone=sellerPhone;
 	}

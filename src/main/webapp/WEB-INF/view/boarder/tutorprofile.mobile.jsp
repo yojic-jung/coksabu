@@ -8,6 +8,7 @@
 <title>튜터페이지 콕사부</title>
     <meta charset="utf-8">
      <meta name="description" content="선생님 프로필 및 수업정보" />
+    <meta name="viewport" content="user-scalable=yes" />
     <link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
     <link rel="canonical" href="https://coksabu.com/tutorprofile?id=8&root=chat">
     <style>
@@ -219,7 +220,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                             <tr>
                                 <td rowspan="2"> <img style="width:140px; height:140px; border-radius:70px;" 
                                 src="<c:url value="/img/profileImg/${pro.imgPath}" />"  alt="본인 프로필 이미지"/></td>
-                                <td style="color:rgb(87, 87, 87); padding:0px 5px 0px 20px;font-size:32px">${pro.name}님 (${pro.birth})</td>
+                                <td style="color:rgb(87, 87, 87); padding:0px 5px 0px 20px;font-size:32px">${pro.nickname}님 (${pro.birth})</td>
                             </tr>
                             <tr>
                                 <td style="color:rgb(151, 149, 149);padding:0px 5px 0px 20px;">
@@ -236,17 +237,18 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                 			<div style="font-size:30px;padding:15px;font-family:'JejuGothic';">튜터회원이 아닌 경우 프로필이 존재하지 않습니다.</div>
                 		</c:if>
                         
-                        <div style="text-align:right;font-size:12px; color:rgb(117, 116, 116);">
+                        <div style="text-align:right;font-size:25px; color:rgb(117, 116, 116);">
                           <c:if test="${pro.certify==1}" >
                           <b style="color:rgb(212, 210, 77)">본인인증완료&nbsp;&nbsp;학력인증완료&nbsp;&nbsp;</b>
                             </c:if>
                            
                         </div>
                 </div>
+                 <c:if test="${size!=null}" >
                 <div class="div-title">수업 목록 (${size}/3)</div>
-                         <div style="width:100%; background:white; margin:auto; padding:0px 40px;">
-                            
-						<c:if test="${size != 0}" >
+                 <c:choose>   
+						<c:when test="${size != 0}" >
+						<div style="width:100%; background:white; margin:auto; padding:0px 40px;">
                           <div style="min-height:300px;width:100%">
 						
 					<table class="list">
@@ -262,7 +264,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 							<a href="./boardread?postId=${lesson.id}" style="text-decoration:none;">
 							<div>
 							<div id="title"> ${lesson.title}</div>
-							<div id="name">${lesson.name}(${lesson.birth}, ${lesson.sexual})&nbsp;&nbsp;경력 <c:if test="${lesson.career!=0}">${lesson.career}년</c:if><c:if test="${lesson.career==0}">1년미만</c:if></div>
+							<div id="name">${lesson.nickname}(${lesson.birth}, ${lesson.sexual})&nbsp;&nbsp;경력 <c:if test="${lesson.career!=0}">${lesson.career}년</c:if><c:if test="${lesson.career==0}">1년미만</c:if></div>
 							<div id="universe"> ${lesson.universe} ${lesson.univsub}</div>
 							<div id="price" > ${lesson.subCate0} ${lesson.price3}원 <c:if test="${lesson.subCate1 !='nonevalue' }">/ ${lesson.subCate1} ${lesson.opt1price3}원</c:if> <c:if test="${lesson.subCate2!='nonevalue' }">/ ${lesson.subCate2} ${lesson.opt2price3}원</c:if></div>
 							</div>
@@ -274,8 +276,15 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
    		 			</table>
                             
                             </div>
-                            </c:if>
-                        </div>
+                        	</div>
+                        	</c:when>
+                        <c:otherwise>
+                            	   <div style="width:800px;background:white; margin: auto; padding:70px 30px;;font-family:JejuGothic; font-size: 30px;">
+                            	   제공 수업이 없습니다.
+                            	   </div>
+                            </c:otherwise>
+                        </c:choose>
+                        </c:if>
                         <div style="height:300px;"></div>
             </div>
             

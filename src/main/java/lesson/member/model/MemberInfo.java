@@ -7,6 +7,7 @@ public class MemberInfo {
 	private String email;
 	private String password;
 	private String name;
+	private String nickname;
 	private String birth;
 	private String phone;
 	
@@ -32,6 +33,15 @@ public class MemberInfo {
 	public void setName(String name) {
 		this.name=name;
 	}
+	
+	
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname=nickname;
+	}
+	
 	
 	public String getBirth() {
 		return birth;

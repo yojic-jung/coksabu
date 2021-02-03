@@ -1,6 +1,7 @@
 package lesson.cron.job;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,21 +22,27 @@ public class CronService {
 	@Transactional(rollbackFor= {Exception.class})
 	public void service() {
 		int a = cronDao.resetApplyCount();
-		logger.info("하루 레슨지원 횟수 리셋="+a+"개");
+		logger.info("요직 하루 레슨지원 횟수 리셋="+a+"개");
 	}
 	
 	@Transactional(rollbackFor= {Exception.class})
 	public void service2() {
 		int a = cronDao.deleteOldWish();
-		logger.info("장바구니 보관기간 14일 지난 장바구니 삭제 갯수="+a+"개");
+		logger.info("요직 장바구니 보관기간 14일 지난 장바구니 삭제 갯수="+a+"개");
 	}
 	
-	//삭제 고민	
 	@Transactional(rollbackFor= {Exception.class})
 	public void service3() {
+		List<Integer> idList = cronDao.takeApplyId();
+		
+		if(idList.size()!=0) {
+			int b = cronDao.deleteOldLessonApplyList(idList);
+			logger.info("1년 지난 레슨지원 내역 삭제 갯수="+b+"개");
+		}
+		
+		
 		int a = cronDao.deleteOldLessonApply();
-		int b = cronDao.deleteOldLessonApplyList();
-		logger.info("1년 지난 레슨요청 내역 삭제 갯수="+a+"개, "+"1년 지난 레슨지원 내역 삭제 갯수="+b+"개");
+		logger.info("요직 1년 지난 레슨요청 내역 삭제 갯수="+a+"개");
 	}
 	
 	
@@ -82,7 +89,8 @@ public class CronService {
 	
 	@Transactional(rollbackFor= {Exception.class})
 	public void resetLoginFailCount() {
-		cronDao.resetLoginFailCount();
+		int b = cronDao.resetLoginFailCount();
+		logger.info("요직 하루 로그인 실패카우트 초기화="+b+"개");
 	}
 	
 }

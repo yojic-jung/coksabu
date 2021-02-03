@@ -34,9 +34,24 @@
 	background:rgb(236, 235, 234);
 }
 .div-title{
-            width:800px; margin:auto; padding:30px 0px 20px 10px;
+            width:800px; margin:auto;
              font-family:'JejuGothic'; color:rgb(97, 96, 96);
+             font-size:16px;
         }
+.inner-main{
+			display:inline-block;
+			background:white;
+			padding:20px;
+			border-radius: 10px 10px 0px 0px;
+			border:2px solid gray;
+			border-bottom:2px solid white;
+}
+.inner-sub{
+			display:inline-block;
+			background:white;
+			padding:20px;
+			border-radius: 10px 10px 0px 0px;
+}
 #load{
 		padding:20px;
 		width:80%;
@@ -73,9 +88,17 @@ border:1px solid gray; padding:5px 30px;cursor:pointer;font-size:15px;
 </head>
 <body>
 <div style="background:rgb(233, 232, 232); padding:30px;min-height:300px;">
- <div class="div-title">구매관리</div>
- <div style="width:800px; background:white; margin: auto; padding:20px;">
- 	
+ <div class="div-title">
+ 
+  <div class="inner-main">
+  <a href="/purchaselist" style="color: black;font-weight:bolder;font-size:18px;">일반거래 구매내역</a>
+  </div>
+  <div class="inner-sub">
+  <a href="/proposalpurchase" style="color: gray;text-decoration:none;">거래제안서 구매내역</a>
+  </div>
+  
+ </div>
+ <div style="width:800px; background:white; margin: auto; padding:20px;border:2px solid gray;">
  	<form method="post" onSubmit="return checkForm(this)">
  	<div style="position:relative;width:700px; margin:auto;">
  	<select style="position:relative; top:4px;padding:5px;heigh:24px;" id="orderStatus" name="orderStatus">
@@ -248,7 +271,7 @@ border:1px solid gray; padding:5px 30px;cursor:pointer;font-size:15px;
         	   		$( "#testDatepicker" ).val(dates[0]+'.'+dates[1]+'.'+dates[2] );
         	   	}else{
         	   		var d =  new Date();
-            	    $( "#testDatepicker" ).datepicker( "setDate", new Date(d.getFullYear(), d.getMonth(), d.getDate()-14) );
+            	    $( "#testDatepicker" ).datepicker( "setDate", new Date(d.getFullYear()-2, d.getMonth(), d.getDate()) );
 
         	   	}
         	   

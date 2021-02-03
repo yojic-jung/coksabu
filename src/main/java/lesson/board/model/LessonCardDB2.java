@@ -2,7 +2,7 @@ package lesson.board.model;
 
 public class LessonCardDB2 {
 	
-	private String id;
+	private int id;
 	private String email;
 	private String represent;
 	private String cate;
@@ -40,10 +40,10 @@ public class LessonCardDB2 {
 	private String trial;
 	private int visible;
 	
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public void setCareerDB(String ycareer) {

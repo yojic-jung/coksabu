@@ -16,13 +16,11 @@
 	}
 	.left{
 	margin:auto;
-	float:left;
-	width:370px;
+	width:600px;
 	}
 	.right{
-	margin-left:300px;
-	width:480px;
-	clear:right;
+	width:600px;
+	margin:auto;
 	}
 	.inp{
 	padding:3px; width:300px
@@ -45,35 +43,18 @@
 	<form method="post" onSubmit="return CheckForm()" >
 		<div class="ser-title">서비스 정책 동의</div>
 		<hr style="border:1px solid rgb(59, 58, 61);"/>
-			<div class="left" style="float:left;line-height:180%;font-size:14px;">
+			<div class="left" style="line-height:180%;font-size:14px;">
 			<br/>
 			실명 <br/>
 			<input class="inp name" type="text" name="name" <c:if test="${certify.name !=null}">value="${certify.name}" style="background:#D5D5D5;" readonly</c:if> /><br/>
-			<br/>
-			계좌 (판매대금 입금받을 계좌)<br/> 
-			<select class="account" style="padding:3px; width:100px" name="account">
-			<option>--선택--</option>
-			<option>농협</option>
-			<option>국민은행</option>
-			<option>신한은행</option>
-			<option>우리은행</option>
-			<option>기업은행</option>
-			<option>KEB하나은행</option>
-			<option>대구은행</option>
-			<option>부산은행</option>
-			<option>우체국</option>
-			<option>SC제일은행</option>
-			<option>광주은행</option>
-			<option>경남은행</option>
-			</select>
-			<input style="padding:3px; width:200px" type="text" class="accountnumber" name="accountNumber"  placeholder=" '-' 없이  입력해주세요."  <c:if test="${certify.accountNumber !=null}">value="${certify.accountNumber}"</c:if>/><br/>
 			</div>
 			
 			<div class="right">
 				<div style="margin-top:20px">콕사부 서비스 정책</div>
 				<div style="margin-top:20px; line-height:180%; font-size:12px;overflow:scroll; padding:10px;height:200px;background:white;border:1px solid black; ">
 			콕사부를 통해 선생님들은 수업을 판매할 수 있습니다.<br/>
-			 콕사부를 통해 판매되는 수익금은 거래 수수료 25%를 제외한 거래금액의 75%가 선생님에게 전달됩니다.(수수료가 15만원이 넘게 발생되는 60만원 이상의 거래는 수수료를 15만원으로 일괄 적용합니다.)<br/>
+			 콕사부를 통해 판매되는 수익금은 중개 수수료 20%를 제외한 거래금액의 80%가 선생님에게 전달됩니다.<br/>
+			 (수수료는 수수료 이벤트와  같은 경우에 한시적으로 달라질 수 있음.) <br/>
 			  다만, 서비스의 안전한 거래를 위하여 판매금을 서비스가 종료된 날짜를 기준으로 1-3일 후에 입금됨을 알립니다.(후불입금)<br/>
 			 <br/>
 			 콕사부를 통해 서비스를 제공하는 선생님들은 법에 의거한 환불정책을 준수해야 합니다.<br/>
@@ -212,10 +193,7 @@
 			</div>
 			<div style="text-align:center">
 			<br/><br/>
-			<c:choose>
-			<c:when test="${certify.name ==null}"><input class="btn" type="submit" value="동의하고 프로필 작성하기" /></c:when>
-			<c:otherwise><input class="btn" type="submit" value="계좌변경하기" /></c:otherwise>
-			</c:choose>
+			<c:if test="${certify.name ==null}"><input class="btn" type="submit" value="동의하고 프로필 작성하기" /></c:if>
 			</div>
 	</form>
 	</div>
@@ -227,52 +205,36 @@
 <script>
 $(document).ready(function(){
 	
-	
 	$('.tutor1').css('color','orange');
 	
+	  var status = "<c:out value="${status}" />";
 	  var nameDiscord = "<c:out value="${nameDiscord}" />";
 	
 	  if(nameDiscord=="nameDiscord"){
 		  alert('실명은 회원가입시 본인 성명과 동일해야합니다.')
 	  }
 	
-	  var account = "<c:out value="${certify.account}" />";
-	
-	$('.account').find('option').each(function(){
-		if($(this).val()==account){
-			$(this).prop('selected', 'true');
-		}
-	});
-	
-	
+	  
+	  if(status=="success"){
+		  alert('인증정보가 정상적으로 등록되셧습니다. 프로필을 작성해주세요.')
+		  window.location.href = "./tutorpage"
+	  }
+	  
 });
 function CheckForm(){
+	
 		 if($('.name').val().length <= 0){
 			 alert('이름을 입력해주시기 바랍니다.');
 			 return false;
 		 }
 		
 		
-		if($('.account').val()=='--선택--'){
-			alert('계좌 은행을 선택해주세요.');
-			 return false;
-		}
-		if($('.accountnumber').val().length==0){
-			alert('계좌번호를 -없이 입력해주세요.');
-			 return false;
-		}
-		
-		var accountnumber = $('.accountnumber').val();
-		
-		if(accountnumber.indexOf('-')!=-1){
-			alert('계좌번호는 -없이 입력해주시기 바랍니다.');
-			 return false;
-		}
-		
 		if(!$('.serviceagree').is(":checked")){
 			alert('서비스 정책 동의에 체크해주시기 바랍니다.');
 			 return false;
 		}
+		
+		
 		if(!$('.myagree').is(":checked") ){
 			alert('이용약관 동의에 체크해주시기 바랍니다.');
 			 return false;

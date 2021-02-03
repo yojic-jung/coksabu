@@ -1,6 +1,7 @@
 package lesson.member.service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
 
 import lesson.member.dao.MemberDao;
 import lesson.member.model.MemberInfo;
@@ -18,7 +19,8 @@ public class CheckAndInsertService {
 		this.passwordEncoder = passwordEncoder;
 	}
 	
-	public String singUp(MemberInfo memberInfo){
+	@Transactional(rollbackFor= {Exception.class})
+	public String signUp(MemberInfo memberInfo){
 		int emailCheck = memberDao.checkEmail(memberInfo.getEmail());
 		if(emailCheck==0) {
 			int phoneCheck = memberDao.checkPhone(memberInfo.getPhone());

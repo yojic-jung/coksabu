@@ -115,6 +115,12 @@ font-weight:bolder;
 	$('.email-btn').click(function(){
 		var name  = $('.name').val();
 		var phone = $('.phone').val();
+		
+		if(isNaN(phone)){
+			alert("휴대폰 번호는 숫자만 입력해주시기 바랍니다.");
+			return false;
+		}
+		
 		$.ajax({
   		  url:'./emailFind?name='+name+'&phone='+phone,
   		  type:'get',

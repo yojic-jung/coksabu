@@ -4,11 +4,9 @@ public class ImgList {
 	private String name;
 	private String birth;
 	private String email;
-	private String certifyimg;
-	private String identity;
-	private String master;
-	
-	private String education;
+	private String certifyimg1;
+	private String certifyimg2;
+	private String certifyimg3;
 	private String universe;
 	private String univsub;
 	private String academy;
@@ -21,12 +19,27 @@ public class ImgList {
 	public String getEmail() {
 		return email;
 	}
-	public void setCertifyimg(String certifyimg) {
-		this.certifyimg= certifyimg;
+	public void setCertifyimg1(String certifyimg1) {
+		this.certifyimg1= certifyimg1;
 	}
-	public String getCertifyimg() {
-		return certifyimg;
+	public String getCertifyimg1() {
+		return certifyimg1;
 	}
+	public void setCertifyimg2(String certifyimg2) {
+		this.certifyimg2= certifyimg2;
+	}
+	public String getCertifyimg2() {
+		return certifyimg2;
+	}
+	public void setCertifyimg3(String certifyimg3) {
+		this.certifyimg3= certifyimg3;
+	}
+	public String getCertifyimg3() {
+		return certifyimg3;
+	}
+	
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -39,26 +52,6 @@ public class ImgList {
 	}
 	public void setBirth(String birth) {
 		this.birth=birth;
-	}
-	public void setIdentity(String identity) {
-		this.identity= identity;
-	}
-	public String getIdentity() {
-		return identity;
-	}
-	
-	public void setEducation(String education) {
-		this.education= education;
-	}
-	public String getEducation() {
-		return education;
-	}
-	
-	public void setMaster(String master) {
-		this.master= master;
-	}
-	public String getMaster() {
-		return master;
 	}
 	
 	public void setUniverse(String universe) {

@@ -15,7 +15,6 @@
 <meta property="og:image" content="https://www.coksabu.com/resources/images/logo.png">
 <meta property="og:url" content="https://www.coksabu.com/apply">
      
-    <link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
 <style>
 @charset "UTF-8";
           .top-ul a {
@@ -437,7 +436,7 @@ window.location="./";
             <br/>
             <table class="catetable">
             <tr><td>
-            <div style="margin-bottom:20px; font-size:20px; color:dimgray;line-height:200%;">세부지역은 읍면동이나 아파트명까지만 적어주세요.</div>
+            <div style="margin-bottom:20px; font-size:20px; color:dimgray;line-height:200%;">세부지역은 읍면동까지만 적어주세요.</div>
             <select class="locale-main" name="locale1">
 							<option>선택</option>
                             <option>서울</option>
@@ -780,7 +779,7 @@ window.location="./";
                                 <option>제주시</option>
                         </select>
                         <br/><br/>
-                        <input class="locale3" type="text" name="locale3" placeholder="읍/면/동까지 또는 아파트명까지" />
+                        <input class="locale3" type="text" name="locale3" placeholder="읍/면/동까지만 적어주세요." />
                         </td>
                         </tr>
                         
@@ -878,7 +877,6 @@ window.location="./";
            </section>
            
         <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-        <script src="resources/colorbox-master/colorbox-master/jquery.colorbox.js"></script>
         <script src="resources/jquery-number-master/jquery.number.min.js"></script>
  <script>
  $(document).ready(function(){
@@ -989,8 +987,8 @@ window.location="./";
 	$('.btn6').click(function(){
 		if($('.locale-main option:selected').index()=="0"){
 			alert("지역을 선택해주세요.")
-		}else if($('.locale3').val().length>20){
-			alert('세부 지역명은 20글자 미만으로 작성해주세요.')
+		}else if($('.locale3').val().length>15){
+			alert('세부 지역명은 15글자 미만으로 작성해주세요.')
 		}else{
 		$('.step6').hide();
 		$('.step7').show();

@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no" />
 <title><decorator:title /></title>
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap&subset=korean" rel="stylesheet">
@@ -22,6 +23,7 @@
             padding: 0px;
             font-family:'Malgun Gothic' ;
             -webkit-text-size-adjust:100%;
+            -webkit-touch-callout: none;
           }
  .jbMenu {
             z-index:3;
@@ -61,10 +63,6 @@
           text-align:center; font-size:30px;padding-bottom:30px;color:white;
           }
           
-          
-          
-          
-          
 .m-jbMenu{
           background:white;
           width:100%;
@@ -74,19 +72,19 @@
           border-bottom:1px solid gray; 
           z-index:3;
           }
-          .m-jbFixed {
+          
+.m-jbFixed {
             position: fixed;
             top: 0px;
           }
           
 .m-btn {
-
-	width : 50px; 
-	height : 50px; 
-	position : absolute; 
-	right : 0px; top : 0px; 
-	z-index : 1; 
-	cursor : pointer; 
+		width : 50px; 
+		height : 50px; 
+		position : absolute; 
+		right : 0px; top : 0px; 
+		z-index : 1; 
+		cursor : pointer; 
 		display:inline-block;
 		transition:all .4s;
 		box-sizing:border-box;
@@ -255,7 +253,6 @@ color:#A6A6A6;
 <decorator:head />
 </head>
 <body>
-<div class="progressbar" style="position: fixed;left: 0;top:5px;border:none;height:7px;z-index:15;"></div>
 <header class="pc-header">
         <div class="jbMenu">
                 <div class="top-title"><a href="./"><img src="<c:url value="/resources/images/logo.png" />"  alt="로고"/></a></div>
@@ -263,7 +260,8 @@ color:#A6A6A6;
              <sec:authorize access="!isAuthenticated()">
                 <ul class="top-ul">
                     <li><a href="./boarder?main=11&subject=11">수업목록</a></li>
-                    <li><a href="./applylist">요청목록</a></li>
+                     <li><a href="./lessonapply">수업요청</a></li>
+                   <!-- 주석 지우기 <li><a href="./applylist">요청목록</a></li> -->
                     <li><a href="./login">로그인</a></li>
                     <li><a href="./signup">회원가입</a></li>
                 </ul>
@@ -271,7 +269,7 @@ color:#A6A6A6;
              <sec:authorize access="isAuthenticated()">
                 <ul class="top-ul">
                     <li><a href="./boarder?main=11&subject=11">수업목록</a></li>
-                    <li><a href="./applylist">요청목록</a></li>
+                  <!-- 주석 지우기  <li><a href="./applylist">요청목록</a></li> -->
                     <li><a href="./lessonapply">수업요청</a></li>
                     <li><a href="./myroom">마이페이지</a></li>
                     <li><a href="./message" class="message-notify">메세지</a></li>
@@ -284,11 +282,11 @@ color:#A6A6A6;
 <header class="m-header">
   
     <div class="m-jbMenu">
-      	<a class="m-btn" href="#">
+      	<span class="m-btn" href="#">
       		<span> </span>
       		<span> </span>
       		<span> </span>
-  		</a>
+  		</span>
       
  		<a href="./"><span class="m-title">콕사부</span></a>
  	</div>
@@ -301,13 +299,14 @@ color:#A6A6A6;
 			<a href="./login" class="m-menu-href"><div class="m-menu-content">로그인</div></a>
 			<a href="./signup" class="m-menu-href"><div class="m-menu-content">회원가입</div></a>
 			<a href="./boarder?main=11&subject=11" class="m-menu-href"><div class="m-menu-content">수업목록</div></a>
-			<a href="./applylist" class="m-menu-href"><div class="m-menu-content">요청목록</div></a>
+			<a href="./lessonapply" class="m-menu-href"><div class="m-menu-content">수업요청</div></a>
+			<!-- 주석 지우기 <a href="./applylist" class="m-menu-href"><div class="m-menu-content">요청목록</div></a> -->
 			 </sec:authorize>
              <sec:authorize access="isAuthenticated()">
               <a href="./message" class="m-menu-href"><div class="m-menu-content">메세지</div></a>
               <a href="./myroom" class="m-menu-href"><div class="m-menu-content">마이페이지</div></a>
               <a href="./boarder?main=11&subject=11" class="m-menu-href"><div class="m-menu-content">수업목록</div></a>
-              <a href="./applylist" class="m-menu-href"><div class="m-menu-content">요청목록</div></a>
+            <!-- 주석 지우기  <a href="./applylist" class="m-menu-href"><div class="m-menu-content">요청목록</div></a> -->
               <a href="./lessonapply" class="m-menu-href"><div class="m-menu-content">수업요청</div></a>
               <a href="./customer" class="m-menu-href"><div class="m-menu-content">고객센터</div></a>
              </sec:authorize>
@@ -316,6 +315,10 @@ color:#A6A6A6;
 	<div id="m-menu2"></div>
 
 </header>
+
+<div class="m-page-transit" style="text-align:center;width:100%;position:fixed;left:0px;top:0px;background: white; height:100%;z-index:10;">
+    <img src="<c:url value="/resources/img/Spin-1s-124px.svg" />"  style="margin-top:50%;"/>
+</div>
 
 <decorator:body />
 
@@ -396,23 +399,36 @@ color:#A6A6A6;
  <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
     <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script>
-$(window).on("beforeunload",function(){
+var linkLocation="";
+$(document).on("click","a",function(event){
+	//datepicker에서는 효과 미적용
+	if($(this).hasClass("ui-corner-all")){
+		return;
+	}
 	var broswerInfo = navigator.userAgent;
-	
-	if(broswerInfo.indexOf("APP_WISHRROM_Android")>-1){
-			$(".progressbar").show();
-			$(".progressbar").css({"background":"orange"});
-			var i=0;
-			var progressbar = setInterval(function(){
-				i+=24;
-				$(".progressbar").css({"width":i+"%"});
-				
-				if(i==96){
-					clearInterval(progressbar);
-				}
-			},100);
-		}
+	//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+	if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+		event.preventDefault();
+        linkLocation = this.href;
+        if($(this).attr("href")!="#"){
+        	$('.m-page-transit').fadeIn(100);
+            setTimeout(function(){redirectPage()}, 100);
+        }
+	}
 });
+
+
+
+    function redirectPage() {
+        window.location = linkLocation;
+    }
+
+    $(window).bind("pageshow", function(event) {
+    	$('.m-page-transit').fadeOut(200);
+    	if ( event.originalEvent && event.originalEvent.persisted) {// BFCahe
+           		window.location.reload();
+       	}
+    });
 
 
 $(document).ready(function(){
@@ -438,12 +454,6 @@ var filter = "win16|win32|win64|mac|macintel";
 			$('.bottom-cate').remove();
 		}
 	}
-	
-	
-	
-	
-	
-	
 	
 	
     $(".m-btn").click(function() { 
@@ -486,7 +496,6 @@ var filter = "win16|win32|win64|mac|macintel";
 });
 
 
-$('.progressbar').hide();
 </script>
 
 	   <%

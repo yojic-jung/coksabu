@@ -51,7 +51,7 @@
 			<td>${refund.fees }</td> <td>${refund.finalPrice}</td>
 		</tr>
 	</table>
-	<div style="white-space:pre">환불내용 ${refund.refundDetail}</div>
+	<div style="white-space:pre">환불내용 ${refund.content}</div>
 
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>

@@ -1,5 +1,6 @@
 package lesson.deal.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +32,7 @@ public class DealController extends DeviceSwitcherController {
 
 	private static final  Logger logger = LoggerFactory.getLogger(DealController.class);
 	
+	//테스트 완료
 	@RequestMapping(value="purchaselist", method=RequestMethod.GET)
 	public String purchaselist(HttpServletRequest request, Model model, HttpSession session) {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
@@ -38,11 +40,12 @@ public class DealController extends DeviceSwitcherController {
 		String email = (String)session.getAttribute("email");
 		List<PurchaseHistory> list = dealService.myPurchaseList(email);
 		ctx.close();
-		request.setAttribute("listModel", list);
+		model.addAttribute("listModel", list);
 		model.addAttribute("size", list.size());
 		return forward("deal/myPurchaseList");
 	}
 	
+	//테스트 완료
 	@RequestMapping(value="purchaselist", method=RequestMethod.POST)
 	public String purchaselist2(PurchaseListSearch search, HttpServletRequest request, Model model ,HttpSession session) {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
@@ -59,6 +62,7 @@ public class DealController extends DeviceSwitcherController {
 		return forward("deal/myPurchaseList");
 	}
 	
+	//테스트 완료
 	@RequestMapping(value="orderInfo", method=RequestMethod.GET)
 	public String orderInfo(HttpServletRequest request, Model model, HttpSession session) {
 		int orderId = Integer.parseInt((String)request.getParameter("id"));
@@ -67,10 +71,11 @@ public class DealController extends DeviceSwitcherController {
 		DealPurchaseService dealService = ctx.getBean("dealPurchaseService", DealPurchaseService.class );
 		PurchaseHistory pur = dealService.orderInfo(orderId, email);
 		ctx.close();
-		request.setAttribute("pur", pur);
+		model.addAttribute("pur", pur);
 		return forward("deal/orderInfo");
 	}
 	
+	//테스트 완료
 	@RequestMapping(value="proposalOrderInfo", method=RequestMethod.GET)
 	public String proposalOrderInfo(HttpServletRequest request, Model model, HttpSession session) {
 		int orderId = Integer.parseInt((String)request.getParameter("id"));
@@ -84,6 +89,7 @@ public class DealController extends DeviceSwitcherController {
 		return forward("deal/proposalOrderInfo");
 	}	
 	
+	//테스트 완료
 	@RequestMapping(value="sellerorderInfo", method=RequestMethod.GET)
 	public String sellerorderInfo(HttpServletRequest request, Model model, HttpSession session) {
 		int orderId = Integer.parseInt((String)request.getParameter("id"));
@@ -91,12 +97,13 @@ public class DealController extends DeviceSwitcherController {
 		
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
 		DealPurchaseService dealService = ctx.getBean("dealPurchaseService", DealPurchaseService.class );
-		PurchaseHistory pur = dealService.orderInfo(orderId, email);
+		PurchaseHistory pur = dealService.sellerOrderInfo(orderId, email);
 		ctx.close();
 		request.setAttribute("pur", pur);
 		return forward("deal/sellerorderInfo");
 	}
 
+	//테스트 완료
 	@RequestMapping(value="sellerProposalOrderInfo", method=RequestMethod.GET)
 	public String sellerProposalOrderInfo(HttpServletRequest request, Model model, HttpSession session) {
 		int orderId = Integer.parseInt((String)request.getParameter("id"));
@@ -110,29 +117,27 @@ public class DealController extends DeviceSwitcherController {
 		return forward("deal/proposalSellerOrderInfo");
 	}
 	
-	//데스크탑에서는 window.open사용하기 때문에
+	//테스트 완료
 	@RequestMapping(value="refund", method=RequestMethod.GET)
 	public String applyrefund(HttpServletRequest request, Model model, HttpSession session) {
-		
 		String email = (String)session.getAttribute("email");
 		int orderId = Integer.parseInt((String)request.getParameter("orderid"));
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
 		DealRefundService dealRefundService = ctx.getBean("dealRefundService", DealRefundService.class );
-		RefundContent content = dealRefundService.myRefundContent(orderId, email);
+		HashMap<String, Object> map = dealRefundService.myRefundContent(orderId, email);
+		
+		RefundContent refund = (RefundContent)map.get("refund");
+		String applicant = (String)map.get("applicant");
 		ctx.close();
-		int size;
-		if(content==null) {
-			size=0;
-		}else {
-			size=1;
-		}
-		model.addAttribute("content", content);
-		model.addAttribute("size", size);
+		
+		model.addAttribute("refund", refund);
 		model.addAttribute("orderId", orderId);
+		model.addAttribute("email", email);
+		model.addAttribute("applicant", applicant);
 		return forward("deal/myRefund");
 	}
 	
-	//데스크탑에서는 window.open사용하기 때문에
+	//테스트 완료
 	@RequestMapping(value="refund", method=RequestMethod.POST)
 	public String applyrefund2(RefundContent content, HttpServletRequest request, Model model, HttpSession session) {
 		String email = (String)session.getAttribute("email");
@@ -144,62 +149,28 @@ public class DealController extends DeviceSwitcherController {
 		return forward("deal/refundSuccess");
 	}
 	
-	//모바일에서는 a.href사용하기 때문에
-	@RequestMapping(value="refundM", method=RequestMethod.GET)
-	public String applyrefundM(HttpServletRequest request, Model model, HttpSession session) {
-		
-		String email = (String)session.getAttribute("email");
-		int orderId = Integer.parseInt((String)request.getParameter("orderid"));
-		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
-		DealRefundService dealRefundService = ctx.getBean("dealRefundService", DealRefundService.class );
-		RefundContent content = dealRefundService.myRefundContent(orderId, email);
-		ctx.close();
-		int size;
-		if(content==null) {
-			size=0;
-		}else {
-			size=1;
-		}
-		model.addAttribute("content", content);
-		model.addAttribute("size", size);
-		model.addAttribute("orderId", orderId);
-		return forward("deal/myRefund");
-	}
 	
-	//모바일에서는 a.href사용하기 때문에
-	@RequestMapping(value="refundM", method=RequestMethod.POST)
-	public String applyrefund2M(RefundContent content, HttpServletRequest request, Model model, HttpSession session) {
-		String email = (String)session.getAttribute("email");
-		content.setApplicant(email);
-		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
-		DealRefundService dealRefundService = ctx.getBean("dealRefundService", DealRefundService.class );
-		dealRefundService.writeRefund(content);
-		ctx.close();
-		return "redirect:purchaselist";
-	}
-	
-	//모바일에서는 a.href사용하기 때문에
+	//테스트 완료
 	@RequestMapping(value="sellerrefundM", method=RequestMethod.GET)
 	public String sellerrefund(HttpServletRequest request, Model model, HttpSession session) {
 		String email = (String)session.getAttribute("email");
 		int orderId = Integer.parseInt((String)request.getParameter("orderid"));
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
 		DealRefundService dealRefundService = ctx.getBean("dealRefundService", DealRefundService.class );
-		RefundContent content = dealRefundService.myRefundContent(orderId, email);
+		HashMap<String, Object> map = dealRefundService.myRefundContent(orderId, email);
+		
+		RefundContent refund = (RefundContent)map.get("refund");
+		String applicant = (String)map.get("applicant");
 		ctx.close();
-		int size;
-		if(content==null) {
-			size=0;
-		}else {
-			size=1;
-		}
-		model.addAttribute("content", content);
-		model.addAttribute("size", size);
+		
+		model.addAttribute("refund", refund);
 		model.addAttribute("orderId", orderId);
+		model.addAttribute("email", email);
+		model.addAttribute("applicant", applicant);
 		return forward("deal/myRefund");
 	}
 	
-	//모바일에서는 a.href사용하기 때문에
+	//테스트 완료, 판매목록으로 redirect 시켜야하므로 refund와 기능은 같음 
 	@RequestMapping(value="sellerrefundM", method=RequestMethod.POST)
 	public String sellerrefund2(RefundContent content, HttpServletRequest request, Model model, HttpSession session) {
 		String email = (String)session.getAttribute("email");
@@ -213,108 +184,73 @@ public class DealController extends DeviceSwitcherController {
 	
 	
 	
-	//데스크탑에서는 window.open사용하기 때문에
-		@RequestMapping(value="refundproposal", method=RequestMethod.GET)
-		public String refundproposal(HttpServletRequest request, Model model, HttpSession session) {
-			
-			String email = (String)session.getAttribute("email");
-			int orderId = Integer.parseInt((String)request.getParameter("orderid"));
-			GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
-			DealRefundService dealRefundService = ctx.getBean("dealRefundService", DealRefundService.class );
-			RefundContent content = dealRefundService.proMyRefundContent(orderId, email);
-			ctx.close();
-			int size;
-			if(content==null) {
-				size=0;
-			}else {
-				size=1;
-			}
-			model.addAttribute("content", content);
-			model.addAttribute("size", size);
-			model.addAttribute("orderId", orderId);
-			return forward("deal/myRefund");
-		}
+	//테스트 완료
+	@RequestMapping(value="refundproposal", method=RequestMethod.GET)
+	public String refundproposal(HttpServletRequest request, Model model, HttpSession session) {
+		String email = (String)session.getAttribute("email");
+		int orderId = Integer.parseInt((String)request.getParameter("orderid"));
+		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
+		DealRefundService dealRefundService = ctx.getBean("dealRefundService", DealRefundService.class );
+		HashMap<String, Object> map = dealRefundService.proMyRefundContent(orderId, email);
 		
-		//데스크탑에서는 window.open사용하기 때문에
-		@RequestMapping(value="refundproposal", method=RequestMethod.POST)
-		public String refundproposal2(RefundContent content, HttpServletRequest request, Model model, HttpSession session) {
-			String email = (String)session.getAttribute("email");
-			content.setApplicant(email);
-			GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
-			DealRefundService dealRefundService = ctx.getBean("dealRefundService", DealRefundService.class );
-			dealRefundService.proWriteRefund(content);
-			ctx.close();
-			return forward("deal/refundSuccess");
-		}
+		RefundContent refund = (RefundContent)map.get("refund");
+		String applicant = (String)map.get("applicant");
+		ctx.close();
+		
+		model.addAttribute("refund", refund);
+		model.addAttribute("orderId", orderId);
+		model.addAttribute("email", email);
+		model.addAttribute("applicant", applicant);
+		return forward("deal/myRefund");
+	}
+		
+	//테스트 완료
+	@RequestMapping(value="refundproposal", method=RequestMethod.POST)
+	public String refundproposal2(RefundContent content, HttpServletRequest request, Model model, HttpSession session) {
+		String email = (String)session.getAttribute("email");
+		content.setApplicant(email);
+		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
+		DealRefundService dealRefundService = ctx.getBean("dealRefundService", DealRefundService.class );
+		dealRefundService.proWriteRefund(content);
+		ctx.close();
+		return forward("deal/refundProSuccess");
+	}
 		
 		
-		@RequestMapping(value="refundProM", method=RequestMethod.GET)
-		public String refundProM(HttpServletRequest request, Model model, HttpSession session) {
-			
-			String email = (String)session.getAttribute("email");
-			int orderId = Integer.parseInt((String)request.getParameter("orderid"));
-			GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
-			DealRefundService dealRefundService = ctx.getBean("dealRefundService", DealRefundService.class );
-			RefundContent content = dealRefundService.proMyRefundContent(orderId, email);
-			ctx.close();
-			int size;
-			if(content==null) {
-				size=0;
-			}else {
-				size=1;
-			}
-			model.addAttribute("content", content);
-			model.addAttribute("size", size);
-			model.addAttribute("orderId", orderId);
-			return forward("deal/myRefund");
-		}
+	//테스트 완료
+	@RequestMapping(value="sellerRefundProM", method=RequestMethod.GET)
+	public String sellerRefundProM(HttpServletRequest request, Model model, HttpSession session) {
+		String email = (String)session.getAttribute("email");
+		int orderId = Integer.parseInt((String)request.getParameter("orderid"));
+		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
+		DealRefundService dealRefundService = ctx.getBean("dealRefundService", DealRefundService.class );
+		HashMap<String, Object> map = dealRefundService.proMyRefundContent(orderId, email);
 		
-		//모바일에서는 a.href사용하기 때문에
-		@RequestMapping(value="refundProM", method=RequestMethod.POST)
-		public String refundProM2(RefundContent content, HttpServletRequest request, Model model, HttpSession session) {
-			String email = (String)session.getAttribute("email");
-			content.setApplicant(email);
-			GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
-			DealRefundService dealRefundService = ctx.getBean("dealRefundService", DealRefundService.class );
-			dealRefundService.proWriteRefund(content);
-			ctx.close();
-			return "redirect:proposalpurchase";
-		}
-		//모바일에서는 a.href사용하기 때문에
-		@RequestMapping(value="sellerRefundProM", method=RequestMethod.GET)
-		public String sellerRefundProM(HttpServletRequest request, Model model, HttpSession session) {
-			String email = (String)session.getAttribute("email");
-			int orderId = Integer.parseInt((String)request.getParameter("orderid"));
-			GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
-			DealRefundService dealRefundService = ctx.getBean("dealRefundService", DealRefundService.class );
-			RefundContent content = dealRefundService.proMyRefundContent(orderId, email);
-			ctx.close();
-			int size;
-			if(content==null) {
-				size=0;
-			}else {
-				size=1;
-			}
-			model.addAttribute("content", content);
-			model.addAttribute("size", size);
-			model.addAttribute("orderId", orderId);
-			return forward("deal/myRefund");
-			
-		}
+		RefundContent refund = (RefundContent)map.get("refund");
+		String applicant = (String)map.get("applicant");
+		ctx.close();
 		
-		//모바일에서는 a.href사용하기 때문에
-		@RequestMapping(value="sellerRefundProM", method=RequestMethod.POST)
-		public String sellerRefundProM(RefundContent content, HttpServletRequest request, Model model, HttpSession session) {
-			String email = (String)session.getAttribute("email");
-			content.setApplicant(email);
-			GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
-			DealRefundService dealRefundService = ctx.getBean("dealRefundService", DealRefundService.class );
-			dealRefundService.proWriteRefund(content);
-			ctx.close();
-			return "redirect:proposalsell";
-		}
+		model.addAttribute("refund", refund);
+		model.addAttribute("orderId", orderId);
+		model.addAttribute("email", email);
+		model.addAttribute("applicant", applicant);
+		return forward("deal/myRefund");
 		
+	}
 		
+	//테스트 완료
+	@RequestMapping(value="sellerRefundProM", method=RequestMethod.POST)
+	public String sellerRefundProM(RefundContent content, HttpServletRequest request, Model model, HttpSession session) {
+		String email = (String)session.getAttribute("email");
+		content.setApplicant(email);
+		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
+		DealRefundService dealRefundService = ctx.getBean("dealRefundService", DealRefundService.class );
+		dealRefundService.proWriteRefund(content);
+		ctx.close();
+		return "redirect:proposalsell";
+	}
+		
+	//테스트 완료
 	@RequestMapping(value="buyerRefundCompleteInfo", method=RequestMethod.GET)
 	public String refundCompleteInfo(HttpServletRequest request, Model model, HttpSession session) {
 		String email = (String)session.getAttribute("email");
@@ -327,7 +263,7 @@ public class DealController extends DeviceSwitcherController {
 		
 		return forward("deal/buyerRefundCompleteInfo");
 	}
-	
+	//테스트 완료
 	@RequestMapping(value="sellerRefundCompleteInfo", method=RequestMethod.GET)
 	public String sellerRefundCompleteInfo(HttpServletRequest request, Model model, HttpSession session) {
 		String email = (String)session.getAttribute("email");
@@ -341,7 +277,7 @@ public class DealController extends DeviceSwitcherController {
 		return forward("deal/sellerRefundCompleteInfo");
 	}
 	
-	
+	//테스트 완료
 	@RequestMapping(value="buyerRefundCompletePro", method=RequestMethod.GET)
 	public String buyerRefundCompletePro(HttpServletRequest request, Model model, HttpSession session) {
 		String email = (String)session.getAttribute("email");
@@ -354,7 +290,7 @@ public class DealController extends DeviceSwitcherController {
 		
 		return forward("deal/buyerRefundCompleteInfo");
 	}
-	
+	//테스트 완료
 	@RequestMapping(value="sellerRefundCompletePro", method=RequestMethod.GET)
 	public String sellerRefundCompletePro(HttpServletRequest request, Model model, HttpSession session) {
 		String email = (String)session.getAttribute("email");
@@ -368,7 +304,7 @@ public class DealController extends DeviceSwitcherController {
 		return forward("deal/sellerRefundCompleteInfo");
 	}
 	
-	
+	//테스트 완료
 	@ResponseBody
 	@RequestMapping(value="orderCancel", method=RequestMethod.GET)
 	public void orderCancel(HttpServletRequest request, Model model, HttpSession session) {
@@ -380,6 +316,7 @@ public class DealController extends DeviceSwitcherController {
 		ctx.close();
 	}
 	
+	//테스트 완료
 	@ResponseBody
 	@RequestMapping(value="proposalOrderCancel", method=RequestMethod.GET)
 	public void proposalOrderCancel(HttpServletRequest request, Model model, HttpSession session) {
@@ -391,7 +328,7 @@ public class DealController extends DeviceSwitcherController {
 		ctx.close();
 	}
 	
-	
+	//테스트 완료
 	@RequestMapping(value="proposalpurchase", method=RequestMethod.GET)
 	public String proposalpurchase(HttpSession session, Model model) {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
@@ -404,6 +341,7 @@ public class DealController extends DeviceSwitcherController {
 		return forward("deal/proposalpurchase");
 	}
 	
+	//테스트 완료
 	@RequestMapping(value="proposalpurchase", method=RequestMethod.POST)
 	public String proposalpurchase2(PurchaseListSearch search, HttpSession session, Model model) {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
@@ -420,6 +358,7 @@ public class DealController extends DeviceSwitcherController {
 		return forward("deal/proposalpurchase");
 	}
 	
+	//테스트 완료
 	@ResponseBody
 	@RequestMapping(value="wishApply", method=RequestMethod.GET)
 	public String wishApply(HttpServletRequest request, HttpSession session) {
@@ -430,7 +369,6 @@ public class DealController extends DeviceSwitcherController {
 		String email = (String)session.getAttribute("email");
 		int count = dealService.wishlist(email, postId);
 		ctx.close();
-		logger.info(count+"카운트값");
 		if(count==8) {
 			return "full";
 		}else if(count==1){
@@ -440,6 +378,7 @@ public class DealController extends DeviceSwitcherController {
 		
 	}
 	
+	//테스트 완료
 	@RequestMapping(value="wishlist", method=RequestMethod.GET)
 	public String wishlist(HttpServletRequest request, Model model ,HttpSession session) {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
@@ -452,7 +391,7 @@ public class DealController extends DeviceSwitcherController {
 		return forward("deal/myWishList");
 	}
 	
-	
+	//테스트 완료
 	@RequestMapping(value="deletewish", method=RequestMethod.GET)
 	public String wishlist2(HttpServletRequest request, Model model, HttpSession session) {
 		String email = (String)session.getAttribute("email");
@@ -464,7 +403,7 @@ public class DealController extends DeviceSwitcherController {
 		return "redirect:wishlist";
 	}
 
-	
+	//테스트 완료
 	@RequestMapping(value="saleslist", method=RequestMethod.GET)
 	public String salelist(HttpServletRequest request, Model model ,HttpSession session) {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
@@ -480,11 +419,12 @@ public class DealController extends DeviceSwitcherController {
 			List<PurchaseHistory> list = saleService.mySaleList(email);
 			ctx.close();
 			request.setAttribute("listModel", list);
+			model.addAttribute("size", list.size());
 			return forward("deal/mySalesList");
 		}
 	}
 	
-	
+	//테스트완료
 	@RequestMapping(value="proposalsell", method=RequestMethod.GET)
 	public String proposalsale(HttpServletRequest request, Model model ,HttpSession session) {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
@@ -497,6 +437,7 @@ public class DealController extends DeviceSwitcherController {
 		return forward("deal/proposalsell");
 	}	
 	
+	//테스트완료
 	@RequestMapping(value="myproposal", method=RequestMethod.GET)
 	public String myproposal(HttpServletRequest request, Model model ,HttpSession session) {
 		String email = (String)session.getAttribute("email");

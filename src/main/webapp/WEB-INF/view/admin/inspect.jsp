@@ -43,38 +43,37 @@ window.location="./";
 
 <br/><br/>
 
-<table>
-<c:forEach var="imglist" items="${list}" >
-<tr>
-<td style="padding-bottom:50px;">
-<img src="<c:url value='/resources/certifyImg/${imglist.identity}' />" style="width:260px; height:300px; magin-top:0px;"/><br/>
-</td>
-<td style="padding-bottom:50px;">
-<img src="<c:url value='/resources/certifyImg/${imglist.education}' />" style="width:260px; height:300px; magin-top:0px;"/><br/>
-</td>
-<td style="padding-bottom:50px;">
-<c:if test="${imglist.academy!=null && imglist.academy!='' && imglist.master != null}">
-<img src="<c:url value='/resources/certifyImg/${imglist.master}' />" style="width:260px; height:300px; magin-top:0px;"/><br/>
-</c:if>
-</td>
-<td>
-${imglist.name}(${imglist.birth})
-<br/>
-${imglist.universe},${imglist.univsub}
-<br/>
-<c:if test="${imglist.academy!=null && imglist.academy!=''}">
-${imglist.academy},${imglist.academyd}
-</c:if>
-</td>
-<td>
-<br/><br/>
-<button class="btn certify">인증완료<span style="display:none">${imglist.email}</span></button>
-<br/><br/>
-<button class="btn fail" >반려<span style="display:none">${imglist.email}</span></button>
-</td>
-
-</tr>
-</c:forEach>
+<table style="border-spacing:20px;text-align:center;font-size:15px;font-weight:bolder;">
+	<c:forEach var="imglist" items="${list}" >
+	<tr>
+		<td>${imglist.name}(${imglist.birth})</td>
+		<td>${imglist.universe},${imglist.univsub}</td>
+		<td>
+			<c:if test="${imglist.academy!=null && imglist.academy!=''}">
+				${imglist.academy}<br/>
+				${imglist.academyd}
+			</c:if>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding-bottom:50px;">
+			<img src="<c:url value='/resources/certifyImg/${imglist.certifyimg1}' />" style="width:300px; height:150px; magin-top:0px;"/><br/>
+		</td>
+		<td style="padding-bottom:50px;">
+			<img src="<c:url value='/resources/certifyImg/${imglist.certifyimg2}' />" style="width:180px; height:230px; magin-top:0px;"/><br/>
+		</td>
+		<td style="padding-bottom:50px;">
+			<c:if test="${imglist.academy!=null && imglist.academy!='' && imglist.certifyimg3 != null}">
+			<img src="<c:url value='/resources/certifyImg/${imglist.certifyimg3}' />" style="width:180px; height:230px; magin-top:0px;"/><br/>
+			</c:if>
+		</td>
+		<td>
+			<button class="btn certify">인증완료<span style="display:none">${imglist.email}</span></button>
+			<br/><br/>
+			<button class="btn fail" >반려<span style="display:none">${imglist.email}</span></button>
+		</td>
+	</tr>
+	</c:forEach>
 </table>
 
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>

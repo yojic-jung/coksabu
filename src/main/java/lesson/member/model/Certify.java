@@ -6,7 +6,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Certify {
 	private String email;
-	private MultipartFile img[];
+	
+	private MultipartFile certifyimg1;
+	private MultipartFile certifyimg2;
+	private MultipartFile certifyimg3;
+	
 	private Date certifydate;
 	
 	public void setEmail(String email) {
@@ -16,11 +20,26 @@ public class Certify {
 		return email;
 	}
 	
-	public void setImg(MultipartFile img[]) {
-		this.img= img;
+	
+	public void setCertifyimg1(MultipartFile certifyimg1) {
+		this.certifyimg1= certifyimg1;
 	}
-	public MultipartFile[] getImg() {
-		return img;
+	public MultipartFile getCertifyimg1() {
+		return certifyimg1;
+	}
+	
+	public void setCertifyimg2(MultipartFile certifyimg2) {
+		this.certifyimg2= certifyimg2;
+	}
+	public MultipartFile getCertifyimg2() {
+		return certifyimg2;
+	}
+	
+	public void setCertifyimg3(MultipartFile certifyimg3) {
+		this.certifyimg3= certifyimg3;
+	}
+	public MultipartFile getCertifyimg3() {
+		return certifyimg3;
 	}
 	
 	

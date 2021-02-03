@@ -56,7 +56,6 @@
 <script>
 $(document).ready(function(){
 	
-	$('.bottom-cate').remove();
 	
 	  var success = "<c:out value="${success}" />";
 	  if(success=="success"){

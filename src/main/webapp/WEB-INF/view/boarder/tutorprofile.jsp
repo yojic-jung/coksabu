@@ -194,7 +194,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                             <tr>
                                 <td rowspan="3"> <img style="width:140px; height:140px; border-radius:70px;" 
                                 src="<c:url value="/img/profileImg/${pro.imgPath}" />"  alt="본인 프로필 이미지"/></td>
-                                <td style="color:rgb(87, 87, 87); padding:0px 5px 0px 20px;font-size:22px">${pro.name}님 (${pro.birth})</td>
+                                <td style="color:rgb(87, 87, 87); padding:0px 5px 0px 20px;font-size:22px">${pro.nickname}님 (${pro.birth})</td>
                             </tr>
                             <tr>
                                 <td style="color:rgb(151, 149, 149);padding:0px 5px 0px 20px;">
@@ -208,7 +208,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                 </c:if>
                 
                 <c:if test="${empty pro.universe}" >
-                	<div style="font-size:20px;padding:15px;font-family:'JejuGothic';">튜터회원이 아닌 경우 프로필이 존재하지 않습니다.</div>
+                	<div style="font-size:15px;padding:15px;font-family:'JejuGothic';padding:40px 10px 40px 10px;">튜터회원이 아닌 경우 프로필이 존재하지 않습니다.</div>
                 </c:if>
                 
                         <div style="text-align:right;font-size:15px; color:rgb(117, 116, 116);">
@@ -218,10 +218,11 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                            
                         </div>
                 </div>
+                <c:if test="${size!=null}" >
                 <div class="div-title">수업 목록 (${size}/3)</div>
                         <div style="width:800px; background:white; margin:auto; padding:20px;">
-                            
-						<c:if test="${size != 0}" >
+                    <c:choose>
+						<c:when test="${size != 0}" >
                             <div style="min-height:300px;">
 						
 					<table class="list">
@@ -237,8 +238,8 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 								<td style="vertical-align:top;padding-top:30px;width:100%;">
 								<a href="<c:url value="./boardread?postId=${lesson.id}"/>" style="text-decoration:none;">
 								<div id="categories">${lesson.subcate}</div>
-								<div id="name"> ${lesson.name}(${lesson.birth}, ${lesson.sexual})&nbsp;&nbsp;경력 <c:if test="${lesson.career!=0}">${lesson.career}년</c:if><c:if test="${post.lesson==0}">1년미만</c:if></div>
-								<div id="universe"> ${lesson.universe} ${post.univsub}</div>
+								<div id="name"> ${lesson.nickname}(${lesson.birth}, ${lesson.sexual})&nbsp;&nbsp;경력 <c:if test="${lesson.career!=0}">${lesson.career}년</c:if><c:if test="${post.lesson==0}">1년미만</c:if></div>
+								<div id="universe"> ${lesson.universe} ${lesson.univsub}</div>
 								<div id="title"> ${lesson.title}</div>
 								<div id="price" >${lesson.subCate0} ${lesson.price3}원 <c:if test="${lesson.subCate1 !='nonevalue' }">/ ${lesson.subCate1} ${lesson.opt1price3}원</c:if> <c:if test="${lesson.subCate2!='nonevalue' }">/ ${lesson.subCate2} ${lesson.opt2price3}원</c:if></div>
 								</a>
@@ -248,10 +249,13 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
    		 			</table>
                             
                             </div>
-                            </c:if>
+                            </c:when>
+                            <c:otherwise>
+                            	<div style="font-family:JejuGothic; font-size: 16px;">제공 수업이 없습니다.</div>
+                            </c:otherwise>
+                        </c:choose>
                         </div>
-                        
-                   
+                   </c:if>
             </div>
             
         </section>

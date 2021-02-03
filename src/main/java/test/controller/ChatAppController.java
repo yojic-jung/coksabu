@@ -40,6 +40,9 @@ public class ChatAppController extends DeviceSwitcherController {
 
 	private static final  Logger logger = LoggerFactory.getLogger(ChatAppController.class);
 	
+	
+	//테스트 완료
+	@Transactional(rollbackFor= {Exception.class})
 	@RequestMapping(value="message", method=RequestMethod.GET)
 	public String message(HttpSession session, Model model, HttpServletRequest request) {	
 		String configLocation = "classpath:applicationContext.xml";
@@ -59,6 +62,7 @@ public class ChatAppController extends DeviceSwitcherController {
 			receiverEmail = receiverEmail.replace(email,"").replace(",","").trim();	
 			emailList.add(receiverEmail);
 		}
+		
 		
 		if(list.size()!=0) {
 			List<Profile> pro = readProfileService.readProfileList(emailList);
@@ -81,6 +85,8 @@ public class ChatAppController extends DeviceSwitcherController {
 		return forward("chat/message");
 	}
 	
+	
+	//테스트 완료
 	@RequestMapping(value="chatroom", method=RequestMethod.GET)
 	@Transactional(rollbackFor= {Exception.class})
 	public String chatRoom(Model model, HttpServletRequest request, HttpSession session) {
@@ -109,8 +115,7 @@ public class ChatAppController extends DeviceSwitcherController {
 			
 		}
 		
-		logger.info(receiver+"리시버 아이디");
-		String receiverName = chattingService.takeName(receiver);
+		String receiverName = chattingService.takeNickname(receiver);
 		
 		
 		if(email.equals(receiver)) {
@@ -121,8 +126,6 @@ public class ChatAppController extends DeviceSwitcherController {
 		// 방이 없으면 0 있으면 방 번호 리턴
 		int chatroom_id = chattingService.checkRoom(email, receiver);
 		
-		logger.info(chatroom_id+"챗룸아이디");
-		
 		if(chatroom_id==0) {//대화방이 없는경우
 			//대화방 만들고 방번호 리턴
 			int roomNum = chattingService.makeRoom(email, receiver);
@@ -132,6 +135,8 @@ public class ChatAppController extends DeviceSwitcherController {
 			List<Message> mesList = chattingService.takeMyChat(String.valueOf(chatroom_id), email);
 			String messageStatus = chattingService.unReadMessageStatus(email);
 			
+			
+			//빨간불 변경사항 알려주기 위해서
 			session.setAttribute("messageStatus", messageStatus);
 			
 			for(Iterator<Message> itr = mesList.iterator(); itr.hasNext();) {
@@ -159,7 +164,9 @@ public class ChatAppController extends DeviceSwitcherController {
 	}
 	
 	
+	//테스트 완료
 	@RequestMapping(value="chatmyroom", method=RequestMethod.GET)
+	@Transactional(rollbackFor= {Exception.class})
 	public String chatMyRoom(Model model, HttpServletRequest request, HttpSession session) throws Exception {
 		String configLocation = "classpath:applicationContext.xml";
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
@@ -184,7 +191,7 @@ public class ChatAppController extends DeviceSwitcherController {
 		}
 		
 		receiver=receiver.replace(email, "").replace(",", "").trim();
-		String receiverName = chattingService.takeName(receiver);
+		String receiverName = chattingService.takeNickname(receiver);
 		for(Iterator<Message> itr = mesList.iterator(); itr.hasNext();) {
 			Message msg = itr.next();
 			SimpleDateFormat format1 = new SimpleDateFormat ( "MM/dd HH:mm");
@@ -207,6 +214,7 @@ public class ChatAppController extends DeviceSwitcherController {
 		return forward("chat/chat-ws");
 	}
 	
+	//테스트 완료
 	@ResponseBody
 	@RequestMapping(value="newpurchase", method=RequestMethod.POST)
 	public String newpurchase2(ChatDeal deal, HttpSession session, Model model, HttpServletRequest request) throws ParseException {	
@@ -226,6 +234,7 @@ public class ChatAppController extends DeviceSwitcherController {
 		return "success";
 	}
 	
+	//테스트 완료
 	@ResponseBody
 	@RequestMapping(value="proposallist", method=RequestMethod.GET)
 	public Map<String, String> proposallist(HttpSession session, Model model, HttpServletRequest request) {	
@@ -252,6 +261,7 @@ public class ChatAppController extends DeviceSwitcherController {
 		return map;
 	}
 	
+	//테스트 완료
 	@ResponseBody
 	@RequestMapping(value="transactionJudge", method=RequestMethod.GET)
 	public String purchaseAccept(HttpSession session, Model model, HttpServletRequest request,RedirectAttributes redirectAttributes) {	
@@ -274,7 +284,7 @@ public class ChatAppController extends DeviceSwitcherController {
 		}
 	}
 	
-	
+	//테스트 완료
 	@ResponseBody
 	@RequestMapping(value="chatTransaction", method=RequestMethod.GET)
 	public String chatTransaction(@RequestParam("bank") String bank, @RequestParam("depositor") String depositor, HttpSession session, Model model, HttpServletRequest request,RedirectAttributes redirectAttributes) {	
@@ -288,21 +298,6 @@ public class ChatAppController extends DeviceSwitcherController {
 		String status = chatDealService.chatTransaction(proposal_id, email, bank, depositor);
 		ctx.close();
 		return status;
-	}
-	
-	@ResponseBody
-	@RequestMapping(value="chatmemberstatus", method=RequestMethod.GET)
-	public void chatmemberstatus(@RequestParam("id") String chatroom_id, HttpSession session, Model model, HttpServletRequest request) {	
-		String configLocation = "classpath:applicationContext.xml";
-		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
-				configLocation);
-		ChattingService chattingService = ctx.getBean("chattingService", ChattingService.class );
-		
-		String email = (String)session.getAttribute("email");
-		chattingService.changeChatStatusToON(chatroom_id,email);
-		logger.info("소켓 연결성공");
-		ctx.close();
-		
 	}
 	
 }

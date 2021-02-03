@@ -6,7 +6,7 @@
 <head>
 <title>거래제안서 콕사부</title>
 <meta charset="utf-8">
-
+<meta name="viewport" content="user-scalable=yes" />
 <link rel="canonical" href="https://coksabu.com/myproposal?id=26">
 <style>
 .content{

@@ -36,19 +36,27 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
+	<bean id="htmlEscapingObjectMapper" class="com.dywlr.jsonxssfilter.HtmlEscapingObjectMapperFactory" />
+	
 	<mvc:resources mapping="/resources/**" location="/resources/theme/" />
 	<mvc:resources mapping="/img/**" location="/resources/theme/" />	
  	<mvc:resources mapping="/sitemap.xml" location="WEB-INF/sitemap.xml" />
  	<mvc:resources mapping="/rss.xml" location="WEB-INF/rss.xml" />
  	<mvc:resources mapping="/robots.txt" location="WEB-INF/robots.txt" />
- 	<mvc:resources mapping="/naverb0b268e8b7ca8c117edf242a7f1467bf.html" location="naverb0b268e8b7ca8c117edf242a7f1467bf.html" />
+ 	<mvc:resources mapping="/favicon.ico" location="favicon.ico" />
+ 	<mvc:resources mapping="/naver32e99e777138de5b44b0663eb2a71bf2.html" location="naver32e99e777138de5b44b0663eb2a71bf2.html" />
  	
  	<mvc:annotation-driven>
     <mvc:argument-resolvers>
         <bean class="org.springframework.mobile.device.DeviceWebArgumentResolver" />
     </mvc:argument-resolvers>
+    <mvc:message-converters>
+	        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" >
+	        	<property name="objectMapper" ref="htmlEscapingObjectMapper"></property>
+	        </bean>
+	</mvc:message-converters>
 	</mvc:annotation-driven>
- 	
+	
  	<mvc:interceptors>
     <mvc:interceptor>
         <mvc:mapping path="/**"/>

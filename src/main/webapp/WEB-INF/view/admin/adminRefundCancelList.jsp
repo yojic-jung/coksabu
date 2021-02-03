@@ -55,7 +55,12 @@
 		<td>${refund.applicantname}</td>
 		<td>${refund.applicant}</td>
 		<td>${refund.recordtimeS}</td>
-		<td><div style="white-space:pre; overflow:scroll; height:200px; ">${refund.refunddetail}</div></td>
+		<td><div style="height:200px; ">진행한 수업 : ${refund.processCount}회<br/>
+남아있는 수업횟수 : ${refund.remainCount}회<br/>
+기타 환불신청내용 : <br/>
+<div style="border:1px solid lightgray;line-height:150%;margin:10px;width:500px;height:80px;overflow:scroll;">${refund.content }</div>
+핸드폰 번호 : ${refund.phone}<br/>
+환불계좌 : ${refund.account }</div></td>
 	</tr>
 	<tr>
 		<td colspan="5" style="border-bottom:1px solid black;"></td>

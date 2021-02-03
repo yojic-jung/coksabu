@@ -16,6 +16,7 @@
   <link rel="stylesheet" type="text/css" href= "<c:url value="/resources/slick/slick-theme.css" />">
   <link rel="canonical" href="https://coksabu.com/boarder?main=11&subject=11">
   <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
  <style>
    html, body{
    	height:100%;
@@ -49,7 +50,7 @@ overflow:auto; -webkit-overflow-scrolling:touch;
 }
 #m-cate { 
 	width : 35%; 
-	height : 100%; 
+	height : 150%; 
 	background-color : rgb(231, 231, 231); 
 	text-align : center; 
 	display:inline-block;
@@ -57,9 +58,9 @@ overflow:auto; -webkit-overflow-scrolling:touch;
 	} 
 #m-subcate{
 width : 65%; 
-height : 100%; 
+height : 150%; 
 color:black;
-background:white;
+background:#F6F6F6;
 text-align : center; 
 display:inline-block;
 }
@@ -261,6 +262,7 @@ width:80%;
     	border-spacing:0px 80px;
     }
 .list td{
+	line-height:200%;
 	padding-bottom:20px;
 	border-bottom:1px solid gray;
 }
@@ -408,7 +410,17 @@ width:80%;
                         <li><a href="./boarder?main=41&subject=42">초등사회</a></li>
                         <li><a href="./boarder?main=41&subject=43">중등사회</a></li>
                         <li><a href="./boarder?main=41&subject=44">고등사회</a></li>
-                        <li><a href="./boarder?main=41&subject=45">사회탐구</a></li>
+                       
+						<li><a href="./boarder?main=41&subject=451">생활과윤리</a></li>
+                        <li><a href="./boarder?main=41&subject=452">사회문화</a></li>
+                        <li><a href="./boarder?main=41&subject=453">한국지리</a></li>
+                        <li><a href="./boarder?main=41&subject=454">세계지리</a></li>
+                        <li><a href="./boarder?main=41&subject=455">윤리와사상</a></li>
+                        <li><a href="./boarder?main=41&subject=456">동아시아사</a></li>
+                        <li><a href="./boarder?main=41&subject=457">법과정치</a></li>
+                        <li><a href="./boarder?main=41&subject=458">세계사</a></li>
+                        <li><a href="./boarder?main=41&subject=459">경제</a></li>
+
                         <li><a href="./boarder?main=41&subject=46">한국사</a></li>
                 </ul>
                 <ul class="subcate dispno">
@@ -417,9 +429,14 @@ width:80%;
 						<li><a href="./boarder?main=51&subject=53">중등과학</a></li>
                         <li><a href="./boarder?main=51&subject=54">고등과학</a></li>
                         <li><a href="./boarder?main=51&subject=55">물리</a></li>
-                        <li><a href="./boarder?main=51&subject=56">생명</a></li>
+                        <li><a href="./boarder?main=51&subject=56">생명과학</a></li>
                         <li><a href="./boarder?main=51&subject=57">화학</a></li>
                         <li><a href="./boarder?main=51&subject=58">지구과학</a></li>
+                        
+                        <li><a href="./boarder?main=51&subject=552">물리2</a></li>
+                        <li><a href="./boarder?main=51&subject=562">생명과학2</a></li>
+                        <li><a href="./boarder?main=51&subject=572">화학2</a></li>
+                        <li><a href="./boarder?main=51&subject=582">지구과학2</a></li>
                 </ul>
                 <ul class="subcate dispno">
                 		<li><a href="./boarder?main=61&subject=61">전체</a></li>
@@ -1275,7 +1292,7 @@ width:80%;
 	<table class="list">
 	<tr>
 	<td colspan="4" style="padding:40px; font-size:40px;">
-	게시글이 없습니다.
+	해당 요청에 대한 수업이 없습니다. <br>더욱 다양한 선생님들을 모시도록 하겠습니다.
 	</td>
 	</tr>
 	</table>
@@ -1292,7 +1309,7 @@ width:80%;
 	<a href="./boardread?postId=${post.id}">
 	<div>
 	<div id="title"> ${post.title}</div>
-	<div id="name">${post.name}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
+	<div id="name">${post.nickname}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
 	<div id="universe"> ${post.universe} ${post.univsub}</div>
 	<div id="price" > ${post.subCate0} ${post.price3}원 <c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if> <c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if></div>
 	</div>
@@ -1304,25 +1321,24 @@ width:80%;
 	</table>
 	
 	
-	
-	<div class="pagemove">
+<div class="pagemove" style="padding-top:60px;">
 	<table class="pagemove-table">
 	<tr>
 	<c:if test="${beginPage > 5}">
-		<td><a class="page-a" href="<c:url value="./boarder?p=${beginPage-1}&main=${mainR}&subject=${subjectR}&careerP=${form.career}&arrayP=${form.array}"/>" >&lt;</a></td>
+		<td><a class="page-a" href="<c:url value="./boarder?p=${beginPage-1}&main=${mainR}&subject=${subjectR}&careerP=${form.career}&arrayP=${form.array}"/>" >&lt;</a></td> 
 	</c:if>
 	<c:forEach var="pno" begin="${beginPage}" end="${endPage}">
 	<c:choose>
 	<c:when test="${pno==p || (p==null && pno==1)}" >
-	<td><a class="page-a" href="<c:url value="./boarder?p=${pno}&main=${mainR}&subject=${subjectR}&careerP=${form.career}}&arrayP=${form.array}"/>" style="color: black;">${pno}</a></td>
+	<td><a class="page-a" href="<c:url value="./boarder?p=${pno}&main=${mainR}&subject=${subjectR}&careerP=${form.career}&arrayP=${form.array}"/>" style="color: black;font-weight:bold;">${pno}</a></td>
 	</c:when>
 	<c:otherwise>
-	<td><a class="page-a" href="<c:url value="./boarder?p=${pno}&main=${mainR}&subject=${subjectR}&careerP=${form.career}&arrayP=${form.array}" />">${pno}</a></td>
+	<td><a class="page-a" href="<c:url value="./boarder?p=${pno}&main=${mainR}&subject=${subjectR}&careerP=${form.career}&arrayP=${form.array}" />" >${pno}</a></td>
 	</c:otherwise>
 	</c:choose>
 	</c:forEach>
 	<c:if test="${endPage < listModel.totalPageCount}">
-		<td><a class="page-a" href="<c:url value="./boarder?p=${endPage+1}&main=${mainR}&subject=${subjectR}&careerP=${form.career}&arrayP=${form.array}"/>" >&gt;</a></td>
+		 <td><a class="page-a" href="<c:url value="./boarder?p=${endPage+1}&main=${mainR}&subject=${subjectR}&careerP=${form.career}&arrayP=${form.array}"/>">&gt;</a></td>
 	</c:if>
 	</tr>
 	</table>
@@ -1332,10 +1348,10 @@ width:80%;
 </div>    
 </div>       
 
-  
+  <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
     <script>
        $(document).ready(function(){
-    	  
     	   
     	   $(".m-cate-btn").click(function() { 
        		$(".m-all-cate").animate({
@@ -1585,6 +1601,7 @@ width:80%;
         		href=href+"&locale1P="+encodeURIComponent(locale1)+"&locale2P="+encodeURIComponent(locale2)+"&sexualP="+encodeURIComponent(sexual);
         		$(this).prop('href',href);
         	});
+
           
        });
     </script>

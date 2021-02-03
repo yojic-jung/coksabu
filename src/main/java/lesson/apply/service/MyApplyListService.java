@@ -22,16 +22,10 @@ public class MyApplyListService {
 	//통과
 	public List<ApplyForm> myApplyList(String email){
 		List<ApplyForm> list = applyDao.myApplyList(email);
-		List<ApplyForm> applyList2 = new ArrayList<ApplyForm>();
-		String name;
-		for(Iterator<ApplyForm> itr = list.iterator(); itr.hasNext();) {
-			ApplyForm apply = itr.next();
-			name = apply.getName().substring(0,1)+" O O";
-			apply.setName(name);
-			applyList2.add(apply);
-			
+		for(ApplyForm apply : list) {
+			apply.setName(apply.getName().substring(0, 1)+" O O");
 		}
-		return applyList2;
+		return list;
 	}
 	//통과
 	@Transactional(rollbackFor= {Exception.class})

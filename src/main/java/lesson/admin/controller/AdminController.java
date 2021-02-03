@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import lesson.admin.model.DelWaiting;
 import lesson.admin.model.ImgList;
+import lesson.admin.model.NotificationLight;
 import lesson.admin.model.OrderStatusRecord;
 import lesson.admin.model.QnaList;
 import lesson.admin.model.RefundComplete;
@@ -34,15 +35,21 @@ import test.model.ChatPurchase;
 @Controller
 public class AdminController {
 	
-	
+	//테스트 완료
 	@RequestMapping(value="adminlogout")
 	public String adminlogout(HttpSession session) {
 		session.invalidate();
 			return "redirect:admin";
 	}
 	
+	//테스트 완료
 	@RequestMapping("admin")
-	public String admin3() {
+	public String admin3(Model model) {
+		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
+		AdminAdditionService adminAddService = ctx.getBean(AdminAdditionService.class);
+		NotificationLight notify = adminAddService.notificationLight();
+		ctx.close();
+		model.addAttribute("notify", notify);
 		return "admin/adminPage";
 	}
 	
@@ -52,19 +59,6 @@ public class AdminController {
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
 		AdminService adminService = ctx.getBean("adminService", AdminService.class );
 		List<ImgList> list = adminService.imgList();
-		for(Iterator<ImgList> itr = list.iterator(); itr.hasNext();) {
-			ImgList imglist = itr.next();
-			String imgPath =imglist.getCertifyimg();
-			String img[] = imgPath.split("\\*");
-			if(img.length==3) {
-				imglist.setIdentity(img[0]);
-				imglist.setEducation(img[1]);
-				imglist.setMaster(img[2]);
-			}else if(img.length==2) {
-				imglist.setIdentity(img[0]);
-				imglist.setEducation(img[1]);
-			}
-		}
 		int count = adminService.certifyCount();
 		ctx.close();
 		model.addAttribute("list", list);
@@ -430,6 +424,7 @@ public class AdminController {
 		return "admin/adminRefundProConfirmList";
 	}	
 	
+	//테스트 완료
 	@RequestMapping(value="adminRefundCompleteInfo", method=RequestMethod.GET)
 	public String refundCompleteInfo(HttpServletRequest request,Model model) {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
@@ -443,7 +438,7 @@ public class AdminController {
 		return "admin/refundCompleteInfo";
 	}
 	
-	
+	//테스트 완료
 	@RequestMapping(value="adminRefundProCompleteInfo", method=RequestMethod.GET)
 	public String refundProCompleteInfo(HttpServletRequest request,Model model) {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
@@ -458,6 +453,7 @@ public class AdminController {
 	}
 	
 	
+	//테스트 완료
 	@ResponseBody
 	@RequestMapping(value="adminRefundCancel", method=RequestMethod.GET)
 	public void refundCancel(HttpServletRequest request,Model model) {
@@ -470,6 +466,7 @@ public class AdminController {
 		ctx.close();
 	}
 	
+	//테스트 완료
 	@ResponseBody
 	@RequestMapping(value="adminRefundCancelPro", method=RequestMethod.GET)
 	public void adminRefundCancelPro(HttpServletRequest request,Model model) {
@@ -482,6 +479,7 @@ public class AdminController {
 		ctx.close();
 	}
 	
+	//테스트 완료
 	@RequestMapping(value="adminOrderInfoAndRefund", method=RequestMethod.GET)
 	public String adminOrderInfo(HttpSession session, HttpServletRequest request,Model model) {
 		String email = (String)session.getAttribute("email");
@@ -502,6 +500,7 @@ public class AdminController {
 		return "admin/orderInfoAndRefund";
 	}	
 	
+	//테스트 완료
 	@RequestMapping(value="adminOrderInfoAndRefund", method=RequestMethod.POST)
 	public String adminOrderInfo2(RefundComplete refund, HttpSession session, HttpServletRequest request,Model model) {
 		String email = (String)session.getAttribute("email");
@@ -519,7 +518,7 @@ public class AdminController {
 	}	
 
 	
-	
+	//테스트 완료
 	@RequestMapping(value="adminOrderInfoAndRefundPro", method=RequestMethod.GET)
 	public String adminOrderInfoAndRefundPro(HttpSession session, HttpServletRequest request,Model model) {
 		String email = (String)session.getAttribute("email");
@@ -540,6 +539,7 @@ public class AdminController {
 		return "admin/orderInfoAndRefundPro";
 	}	
 	
+	//테스트 완료
 	@RequestMapping(value="adminOrderInfoAndRefundPro", method=RequestMethod.POST)
 	public String adminOrderInfoAndRefundPro2(RefundComplete refund, HttpSession session, HttpServletRequest request,Model model) {
 		String email = (String)session.getAttribute("email");
@@ -609,7 +609,7 @@ public class AdminController {
 		int id = Integer.parseInt((String)request.getParameter("id"));
 		List<PurchaseHistory> list = adminAddService.takePurchaseList(postId);
 		String orderStatus;
-		String delStatus="";
+		int delCount=0;
 		for(Iterator<PurchaseHistory> itr = list.iterator(); itr.hasNext();) {
 			PurchaseHistory pur = itr.next();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
@@ -617,13 +617,21 @@ public class AdminController {
 			pur.setEndDateS(sdf.format(pur.getEndDate()));
 			orderStatus = pur.getOrderstatus();
 			
-			if(orderStatus.equals("입금대기") ||orderStatus.equals("환불대기") || orderStatus.equals("결제완료") ) {
-				delStatus="삭제불가";
+			if(orderStatus.equals("입금대기") ||orderStatus.equals("결제완료") || orderStatus.equals("환불대기") ) {
+				delCount+=1;
 			}else {
-				delStatus="삭제가능";
 			}
 			
 		}
+		
+		String delStatus;
+		
+		if(delCount!=0) {
+			delStatus="삭제불가";
+		}else {
+			delStatus="삭제가능";
+		}
+		
 		ctx.close();
 		model.addAttribute("list", list);
 		model.addAttribute("delStatus", delStatus);

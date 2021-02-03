@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lesson.admin.dao.AdminDao;
 import lesson.admin.model.ImgList;
-import lesson.admin.model.Login;
 import lesson.admin.model.OrderStatusRecord;
 import lesson.admin.model.QnaList;
 import lesson.admin.model.RefundComplete;
@@ -31,18 +30,6 @@ public class AdminService {
 	
 	public void setAdminDao(AdminDao adminDao) {
 		this.adminDao = adminDao;
-	}
-	
-	@Transactional(rollbackFor= {Exception.class})
-	public boolean login(Login login) {
-		int id = adminDao.checkId(login.getId());
-		int password = adminDao.checkPassword(login.getPassword());
-		
-		if(id==1 && password==1) {
-			return true;
-		}else {
-			return false;
-		}
 	}
 	
 	public List<ImgList> imgList() {
@@ -534,11 +521,7 @@ public class AdminService {
 	
 	
 	public void refundCancel(String orderId) {
-		logger.info("오더아이디"+orderId);
 		RefundContent info = adminDao.refundListById(orderId);
-		logger.info("오더아이디"+info.getOrderId());
-		logger.info("신청자"+info.getApplicant());
-		logger.info("신청자이름"+info.getApplicantname() );
 		
 		adminDao.insertRefundCancel(info);
 		adminDao.deleteRefundList(orderId);

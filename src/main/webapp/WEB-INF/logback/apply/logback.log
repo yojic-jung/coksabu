@@ -1,1 +1,15 @@
 WARN  11:26:10.381 [http-bio-8080-exec-2 TeacherApplyService.java:121] sendPushForOneTarget - 토큰 : null
+WARN  12:24:40.908 [http-bio-8080-exec-30 TeacherApplyService.java:126] sendPushForOneTarget - 학생 이메일 : xogb@naver.com
+WARN  12:24:40.927 [http-bio-8080-exec-30 TeacherApplyService.java:136] sendPushForOneTarget - 토큰 : null
+WARN  12:34:25.385 [http-bio-8080-exec-53 TeacherApplyService.java:126] sendPushForOneTarget - 학생 이메일 : xogb@naver.com
+WARN  12:34:25.386 [http-bio-8080-exec-53 TeacherApplyService.java:136] sendPushForOneTarget - 토큰 : null
+WARN  13:51:31.933 [http-bio-8080-exec-43 TeacherApplyService.java:126] sendPushForOneTarget - 학생 이메일 : dywlr@naver.com
+WARN  13:51:31.952 [http-bio-8080-exec-43 TeacherApplyService.java:136] sendPushForOneTarget - 토큰 : null
+WARN  13:53:58.125 [http-bio-8080-exec-36 TeacherApplyService.java:126] sendPushForOneTarget - 학생 이메일 : dywlr@naver.com
+WARN  13:53:58.126 [http-bio-8080-exec-36 TeacherApplyService.java:136] sendPushForOneTarget - 토큰 : null
+WARN  13:54:22.411 [http-bio-8080-exec-36 TeacherApplyService.java:126] sendPushForOneTarget - 학생 이메일 : dywlr@naver.com
+WARN  13:54:22.412 [http-bio-8080-exec-36 TeacherApplyService.java:136] sendPushForOneTarget - 토큰 : null
+WARN  12:10:57.107 [http-bio-8080-exec-32 TeacherApplyService.java:126] sendPushForOneTarget - 학생 이메일 : dywlr@naver.com
+WARN  12:10:57.126 [http-bio-8080-exec-32 TeacherApplyService.java:136] sendPushForOneTarget - 토큰 : null
+WARN  12:12:19.566 [http-bio-8080-exec-27 TeacherApplyService.java:126] sendPushForOneTarget - 학생 이메일 : dywlr@naver.com
+WARN  12:12:19.567 [http-bio-8080-exec-27 TeacherApplyService.java:136] sendPushForOneTarget - 토큰 : null

@@ -11,6 +11,7 @@ import lesson.member.model.EmailInfo;
 import lesson.member.model.LessonCertify;
 import lesson.member.model.Login;
 import lesson.member.model.MemberInfo;
+import lesson.member.model.MyAccount;
 import lesson.member.model.Password;
 import lesson.member.model.Profile;
 import lesson.member.model.Qna;
@@ -27,13 +28,13 @@ public interface MemberDao {
 	
 	public int signUp(MemberInfo memberInfo); 
 	
-	public int confirmCertify(String email);
-	
 	public int checkImgPath(String email);
 	
 	public String takeImgPath(String email);
 	
 	public Profile takeImgUniv(String email); 
+	
+	public int confirmCertify(String email);
 	
 	public int updateCertify(String email);
 	
@@ -53,9 +54,9 @@ public interface MemberDao {
 	
 	public TeacherDB takeTeacherDB(String email);
 	
-	public int updateImgUpload(CertifyDB cer);
+	public int updateImgCertify(CertifyDB cer);
 	
-	public String tekeCertify(String email);
+	public CertifyDB tekeCertify(String email);
 	
 	public MemberInfo readMemberInfo(String email);
 	
@@ -109,8 +110,20 @@ public interface MemberDao {
 	
 	public int registerAndroidToken(HashMap<String, String> map);
 	
+	public int deleteAndroidToken(HashMap<String, String> map);
+	
 	public int takeUnReadCount(String email);
 	
+	public String takeNickName(String email);
 	
+	public int updateNickName(MemberInfo mem);
+	
+	public int takePurchaseCount(String email);
+	
+	public int takeChatTranCount(String email);
+	
+	public MyAccount takeMyAccount(String email);
+	
+	public int updateMyAccount(MyAccount account);
 	
 }

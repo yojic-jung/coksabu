@@ -8,6 +8,7 @@ public class PostView {
 	private String phone;
 	private String represent;
 	private String name;
+	private String nickname;
 	private String birth;
 	private String universe;
 	private String univsub;
@@ -75,6 +76,13 @@ public class PostView {
 	}
 	public String getName() {
 		return name;
+	}
+	
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname=nickname;
 	}
 	
 	public void setBirth(String birth) {

@@ -102,15 +102,16 @@ width:100%;margin:auto
 
 
 
-
+<!-- 주석 지우기
 <div class="subheading" >
 학생요청목록<br/>
+
 <div style="text-align:center;padding:50px;">
 <a href="./applylist" style="text-decoration:none;"><span class="cate-btn">학생요청목록 가기</span></a><br/>
 <div style="text-align:center;margin:30px 0px 50px 0px; color:gray;">학생들이 선생님을 찾고 있습니다. 지원서를 넣어보세요.</div>
 </div>
 </div>
-
+ -->
 
 <div style="height:400px;"></div>
 

@@ -15,7 +15,6 @@
 <meta property="og:image" content="https://www.coksabu.com/resources/images/logo.png">
 <meta property="og:url" content="https://www.coksabu.com/apply">
      
-    <link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
     <style>
       
           .top-ul a {
@@ -142,13 +141,13 @@ window.location="./";
             학생이 받고 싶은 수업은 무엇인가요?<br/>
             <br/>
             <table class="catetable">
-            <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="수학" />수학</label></td></tr>
-            <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="외국어" />외국어</label></td></tr>
-            <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="국어" />국어</label></td></tr>
-            <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="사회" />사회</label></td></tr>
-            <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="과학" />과학</label></td></tr>
-            <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="예체능" />예체능</label></td></tr>
-            <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="자소서/입시" />자소서/입시</label></td></tr>
+            <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="수학" /> 수학</label></td></tr>
+            <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="외국어" /> 외국어</label></td></tr>
+            <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="국어" /> 국어</label></td></tr>
+            <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="사회" /> 사회</label></td></tr>
+            <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="과학" /> 과학</label></td></tr>
+            <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="예체능" /> 예체능</label></td></tr>
+            <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="자소서/입시" /> 자소서/입시</label></td></tr>
             </table>
             <br/>
             <span class="btn1">다음단계</span>
@@ -169,13 +168,13 @@ window.location="./";
             세부 수업을 정해주세요.<br/>
             <br/>
             <table class="catetable">
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="초등수학" />초등수학</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="중등수학" />중등수학</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="고등수학" />고등수학</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="문과수학" />문과수학</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="이과수학" />이과수학</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="수학논술" />수학논술</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="수학경시" />수학경시</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="초등수학" /> 초등수학</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="중등수학" /> 중등수학</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="고등수학" /> 고등수학</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="문과수학" /> 문과수학</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="이과수학" /> 이과수학</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="수학논술" /> 수학논술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="수학경시" /> 수학경시</label></td></tr>
             </table>
             <br/>
             <span class="btn2">다음단계</span><span class="prev2">이전단계</span>
@@ -196,14 +195,14 @@ window.location="./";
             세부 수업을 정해주세요.<br/>
             <br/>
             <table class="catetable">
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="초등영어" />초등영어</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="중등영어" />중등영어</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="고등영어" />고등영어</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="수능영어" />수능영어</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="영어회화" />영어회화</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="toeic/tofle/teps" />toeic/tofle/teps</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="중국어" />중국어</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="일본어" />일본어</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="초등영어" /> 초등영어</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="중등영어" /> 중등영어</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="고등영어" /> 고등영어</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="수능영어" /> 수능영어</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="영어회화" /> 영어회화</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="toeic/tofle/teps" /> toeic/tofle/teps</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="중국어" /> 중국어</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="일본어" /> 일본어</label></td></tr>
             </table>
             <br/>
             <span class="btn2">다음단계</span><span class="prev2">이전단계</span>
@@ -222,11 +221,11 @@ window.location="./";
             세부 수업을 정해주세요.<br/>
             <br/>
             <table class="catetable">
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="초등국어" />초등국어</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="중등국어" />중등국어</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="고등국어" />고등국어</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="수능국어" />수능국어</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="국어논술" />국어논술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="초등국어" /> 초등국어</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="중등국어" /> 중등국어</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="고등국어" /> 고등국어</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="수능국어" /> 수능국어</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="국어논술" /> 국어논술</label></td></tr>
             </table>
             <br/>
             <span class="btn2">다음단계</span><span class="prev2">이전단계</span>
@@ -245,11 +244,11 @@ window.location="./";
             세부 수업을 정해주세요.<br/>
             <br/>
             <table class="catetable">
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="초등사회" />초등사회</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="중등사회" />중등사회</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="고등사회" />고등사회</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="사회탐구" />사회탐구</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="한국사" />한국사</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="초등사회" /> 초등사회</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="중등사회" /> 중등사회</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="고등사회" /> 고등사회</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="사회탐구" /> 사회탐구</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="한국사" /> 한국사</label></td></tr>
             </table>
             <br/>
             <span class="btn2">다음단계</span><span class="prev2">이전단계</span>
@@ -268,13 +267,13 @@ window.location="./";
             세부 수업을 정해주세요.<br/>
             <br/>
             <table class="catetable">
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="초등과학" />초등과학</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="중등과학" />중등과학</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="고등과학" />고등과학</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="물리" />물리</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="생명" />생명</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="화학" />화학</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="지구과학" />지구과학</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="초등과학" /> 초등과학</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="중등과학" /> 중등과학</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="고등과학" /> 고등과학</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="물리" /> 물리</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="생명" /> 생명</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="화학" /> 화학</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="지구과학" /> 지구과학</label></td></tr>
             </table>
             <br/>
             <span class="btn2">다음단계</span><span class="prev2">이전단계</span>
@@ -293,9 +292,9 @@ window.location="./";
             세부 수업을 정해주세요.<br/>
             <br/>
             <table class="catetable">
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="미술" />미술</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="음악" />음악</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="체육" />체육</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="미술" /> 미술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="음악" /> 음악</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="체육" /> 체육</label></td></tr>
             </table>
             <br/>
             <span class="btn2">다음단계</span><span class="prev2">이전단계</span>
@@ -314,8 +313,8 @@ window.location="./";
             세부 수업을 정해주세요.<br/>
             <br/>
             <table class="catetable">
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="자소서첨삭" />자소서첨삭</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="입시컨설팅" />입시컨설팅</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="자소서첨삭" /> 자소서첨삭</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="입시컨설팅" /> 입시컨설팅</label></td></tr>
             </table>
             <br/>
             <span class="btn2">다음단계</span><span class="prev2">이전단계</span>
@@ -372,13 +371,13 @@ window.location="./";
             가능한 요일을 선택해주세요.<br/>
             <br/>
             <table class="catetable">
-            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="월">월</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="화">화</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="수">수</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="목">목</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="금">금</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="토">토</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="일">일</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="월"> 월</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="화"> 화</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="수"> 수</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="목"> 목</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="금"> 금</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="토"> 토</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="일"> 일</label></td></tr>
             </table>
             <br/>
             <span class="btn4">다음단계</span><span class="prev4">이전단계</span>
@@ -397,11 +396,11 @@ window.location="./";
             가능한 시간대를 선택해주세요.<br/>
             <br/>
             <table class="catetable">
-            <tr><td><label style="cursor:pointer"><input name="time" type="checkbox" value="아침 9-12시">아침 9-12시</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input name="time" type="checkbox" value="낮 12-3시">낮 12-3시</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input name="time" type="checkbox" value="낮 3-6시">낮 3-6시</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input name="time" type="checkbox" value="저녁 6-8시">저녁 6-8시</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input name="time" type="checkbox" value="저녁 8-10시">저녁 8-10시</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input name="time" type="checkbox" value="아침 9-12시"> 아침 9-12시</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input name="time" type="checkbox" value="낮 12-3시"> 낮 12-3시</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input name="time" type="checkbox" value="낮 3-6시"> 낮 3-6시</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input name="time" type="checkbox" value="저녁 6-8시"> 저녁 6-8시</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input name="time" type="checkbox" value="저녁 8-10시"> 저녁 8-10시</label></td></tr>
             </table>
             <br/>
             <span class="btn5">다음단계</span><span class="prev5">이전단계</span>
@@ -421,7 +420,7 @@ window.location="./";
             <br/>
             <table class="catetable">
             <tr><td>
-            <div style="margin-bottom:10px; font-size:14px; color:dimgray;">세부지역은 읍면동이나 아파트명까지만 적어주세요.</div>
+            <div style="margin-bottom:10px; font-size:14px; color:dimgray;">세부지역은 읍면동까지만 적어주세요.</div>
             <select class="locale-main" name="locale1">
 							<option>선택</option>
                             <option>서울</option>
@@ -764,7 +763,7 @@ window.location="./";
                                 <option>제주시</option>
                         </select>
                         <br/><br/>
-                        <input class="locale3" type="text" name="locale3" placeholder="읍/면/동까지 또는 아파트명까지" />
+                        <input class="locale3" type="text" name="locale3" placeholder="읍/면/동까지만 적어주세요." />
                         </td>
                         </tr>
                         
@@ -859,7 +858,6 @@ window.location="./";
            </section>
            
         <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-        <script src="resources/colorbox-master/colorbox-master/jquery.colorbox.js"></script>
         <script src="resources/jquery-number-master/jquery.number.min.js"></script>
  <script>
  $(document).ready(function(){
@@ -968,8 +966,8 @@ window.location="./";
 	$('.btn6').click(function(){
 		if($('.locale-main option:selected').index()=="0"){
 			alert("지역을 선택해주세요.")
-		}else if($('.locale3').val().length>20){
-			alert('세부 지역명은 20글자 미만으로 작성해주세요.')
+		}else if($('.locale3').val().length>15){
+			alert('세부 지역명은 15글자 미만으로 작성해주세요.')
 		}else{
 		$('.step6').hide();
 		$('.step7').show();

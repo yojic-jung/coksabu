@@ -16,8 +16,10 @@ public interface ChatDao {
 	public List<String> userList(String email);
 	
 	public String takeName(String email);
+	
+	public String takeNickname(String email);
 
-	public List<String> takeNameList(List<String> list);
+	public List<String> takeNicknameList(List<String> list);
 	
 	public int checkRoom(HashMap<String, Object> map);
 	

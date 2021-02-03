@@ -38,7 +38,7 @@ public class TeacherDB {
 		this.sexual = tea.getSexual();
 		
 		this.academy=tea.getAcademy();
-		this.academyd=tea.getAcademy();
+		this.academyd=tea.getAcademyd();
 		this.nation=tea.getNation();
 		
 		if(tea.getNationy().equals("")) {

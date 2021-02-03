@@ -7,11 +7,12 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no" />
 <title><decorator:title /></title>
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap&subset=korean" rel="stylesheet">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
-  
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap&subset=korean" rel="stylesheet">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
 <style>
  @font-face { font-family: 'JejuGothic'; 
       src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 
@@ -22,6 +23,7 @@
             padding: 0px;
             font-family:'Malgun Gothic' ;
             -webkit-text-size-adjust:100%;
+            -webkit-touch-callout: none;
           }
           .jbMenu {
             z-index:3;
@@ -151,35 +153,49 @@ color:#A6A6A6;
 <decorator:head />
 </head>
 <body>
-    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-    <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+ 
+<header class="pc-header">
+        <div class="jbMenu">
+                <div class="top-title"><a href="./"><img src="<c:url value="/resources/images/logo.png" />"  alt="로고"/></a></div>
+                
+            <sec:authorize access="!isAuthenticated()">
+                <ul class="top-ul">
+                    <li><a href="./boarder?main=11&subject=11">수업목록</a></li>
+                     <li><a href="./lessonapply">수업요청</a></li>
+                    <!-- 주석 지우기 <li><a href="./applylist">요청목록</a></li> -->
+                    <li><a href="./login">로그인</a></li>
+                    <li><a href="./signup">회원가입</a></li>
+                </ul>
+             </sec:authorize>
+             <sec:authorize access="isAuthenticated()">
+                <ul class="top-ul">
+                    <li><a href="./boarder?main=11&subject=11">수업목록</a></li>
+                   <!-- 주석 지우기 <li><a href="./applylist">요청목록</a></li> -->
+                    <li><a href="./lessonapply">수업요청</a></li>
+                    <li><a href="./myroom">마이페이지</a></li>
+                    <li><a href="./message" class="message-notify">메세지</a></li>
+                    <li><a href="<c:url value='j_spring_security_logout' />">로그아웃</a></li>
+                </ul>
+            </sec:authorize>
+          </div>
+</header>
+
+<header class="m-header">
+  
+    <div class="m-jbMenu">
+    <span class="m-back">&lt;</span>
+ 		<a href="./" class="m-title">콕사부</a>
+ 	</div>
+ 	
+</header>
+
+<decorator:body />
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 <script src="resources/colorbox-master/colorbox-master/jquery.colorbox.js"></script>
 <script>
-$(window).on("beforeunload",function(){
-	var broswerInfo = navigator.userAgent;
-	
-	if(broswerInfo.indexOf("APP_WISHRROM_Android")>-1){
-			$(".progressbar").show();
-			$(".progressbar").css({"background":"orange"});
-			var i=0;
-			var progressbar = setInterval(function(){
-				i+=24;
-				$(".progressbar").css({"width":i+"%"});
-				
-				if(i==96){
-					clearInterval(progressbar);
-				}
-			},100);
-		}
-});
-
-
-
 $(document).ready(function(){
-
 	var filter = "win16|win32|win64|mac|macintel";
-	
-	
 	
 	if(navigator.platform){
 		if(0 > filter.indexOf(navigator.platform.toLowerCase())){
@@ -203,67 +219,19 @@ $(document).ready(function(){
 		}
 	}
 	
-	$('.m-back').click(function(){
-		var referpage = document.referrer;
-		
-		if(referpage==''){
-			location.href = './';
-		}else{
-			history.back();
-		}
-	});
-	
 });
-
 </script>
-<div class="progressbar" style="position: fixed;left: 0;top:5px;border:none;height:7px;z-index:15;"></div>
-<header class="pc-header">
-        <div class="jbMenu">
-                <div class="top-title"><a href="./"><img src="<c:url value="/resources/images/logo.png" />"  alt="로고"/></a></div>
-                
-            <sec:authorize access="!isAuthenticated()">
-                <ul class="top-ul">
-                    <li><a href="./boarder?main=11&subject=11">수업목록</a></li>
-                    <li><a href="./applylist">요청목록</a></li>
-                    <li><a href="./login">로그인</a></li>
-                    <li><a href="./signup">회원가입</a></li>
-                </ul>
-             </sec:authorize>
-             <sec:authorize access="isAuthenticated()">
-                <ul class="top-ul">
-                    <li><a href="./boarder?main=11&subject=11">수업목록</a></li>
-                    <li><a href="./applylist">요청목록</a></li>
-                    <li><a href="./lessonapply">수업요청</a></li>
-                    <li><a href="./myroom">마이페이지</a></li>
-                    <li><a href="./message" class="message-notify">메세지</a></li>
-                    <li><a href="<c:url value='j_spring_security_logout' />">로그아웃</a></li>
-                </ul>
-            </sec:authorize>
-          </div>
-</header>
-
-<header class="m-header">
-  
-    <div class="m-jbMenu">
-    <span class="m-back">&lt;</span>
- 		<a href="./" class="m-title">콕사부</a>
- 	</div>
- 	
-</header>
-
-<decorator:body />
-
  <div class="bottom-cate">
 				<table class="bottom-table">
 					<tr>
-						<td><a href="./"><img class="bottom-img" src="<c:url value="/resources/img/home2.png" />"  alt="home"/></a></td>
-						<td><a href="./category"><img class="bottom-img" src="<c:url value="/resources/img/cate.png" />"  alt="cate"/></a></td>
+						<td><a href="./"><img class="bottom-img" src="<c:url value="/resources/img/home.png" />"  alt="home"/></a></td>
+						<td><a href="./category"><img class="bottom-img" src="<c:url value="/resources/img/cate2.png" />"  alt="cate"/></a></td>
 						<td><a href="./message"><img class="bottom-img" src="<c:url value="/resources/img/message.png" />"  alt="message"/></a></td>
 						<td><a href="./myroom"><img class="bottom-img" src="<c:url value="/resources/img/my.png" />"  alt="my"/></a></td>
 					</tr>
 					<tr>
-					<td><a href="./" style="color:orange">홈</a></td>
-					<td><a href="./category">카테고리</a></td>
+					<td><a href="./">홈</a></td>
+					<td><a href="./category" style="color:orange">카테고리</a></td>
 					<td><a href="./message" class="message-notify">메시지</a></td>
 					<td><a href="./myroom">마이페이지</a></td>
 					</tr>
@@ -325,6 +293,12 @@ $(document).ready(function(){
           </div>
           
         </footer>
+        
+        
+        
+<div class="m-page-transit" style="text-align:center;width:100%;position:fixed;left:0px;top:0px;background: white; height:100%;z-index:10;">
+    <img src="<c:url value="/resources/img/Spin-1s-124px.svg" />"  style="margin-top:50%;"/>
+</div>
         <%
        session=request.getSession();
        String messageStatus = (String)session.getAttribute("messageStatus");
@@ -337,8 +311,61 @@ $(document).ready(function(){
        <%
        }
        %>
-        <script>
-        	$('.progressbar').hide();
-        </script>
+       
+<script>
+var linkLocation="";
+$(document).on("click","a",function(event){
+	//datepicker에서는 효과 미적용
+	if($(this).hasClass("ui-corner-all")){
+		return;
+	}
+	var broswerInfo = navigator.userAgent;
+	//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+	if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+		event.preventDefault();
+        linkLocation = this.href;
+        if($(this).attr("href")!="#"){
+        	$('.m-page-transit').fadeIn(100);
+            setTimeout(function(){redirectPage()}, 100);
+        }
+	}
+});
+
+function redirectPage() {
+         window.location = linkLocation;
+}
+
+
+$(document).on("click", '.m-back', function(){
+	var broswerInfo = navigator.userAgent;
+	//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+	if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+		var referpage = document.referrer;
+        		$('.m-page-transit').fadeIn(200);
+		if(referpage==''){
+			setTimeout(function(){$('.m-page-transit').hide();location.href = './';}, 200);
+		}else{			
+			setTimeout(function(){$('.m-page-transit').hide();history.back();}, 200);
+		}
+	//웹뷰 아닌 그냥 모바일
+	}else{
+		var referpage = document.referrer;
+		if(referpage==''){
+			location.href = './';
+		}else{
+			history.back();
+		}
+	}
+});
+
+
+
+$(window).bind("pageshow", function(event) {
+	$('.m-page-transit').fadeOut(200);
+	if ( event.originalEvent && event.originalEvent.persisted) {// BFCahe
+       		window.location.reload();
+   	}
+});
+</script>
 </body>
 </html>

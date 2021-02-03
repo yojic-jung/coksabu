@@ -12,8 +12,9 @@ public class CronJob {
 
 	private static final  Logger logger = LoggerFactory.getLogger(CronJob.class);
 	
-	//UTC 런던시각 기준으로
-	@Scheduled(cron = "00 00 15 * * *")
+	
+	//선생님 수업 지원횟수 초기화와 로그인 실패 횟수 초기화
+	@Scheduled(cron = "00 00 00 * * *")
     public void resetApplyCount1(){
 		String configLocation = "classpath:applicationContext.xml";
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
@@ -23,7 +24,8 @@ public class CronJob {
 		logger.info("스케쥴 테스트:" +"resetApplyCount1");
     }
 	
-	@Scheduled(cron = "00 00 16 * * *")
+	// 04시 00분 00초
+	@Scheduled(cron = "00 00 04 * * *")
     public void resetApplyCount2(){
 		String configLocation = "classpath:applicationContext.xml";
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
@@ -33,8 +35,7 @@ public class CronJob {
 		logger.info("스케쥴 테스트:" +"resetApplyCount2");
     }
 	
-	//삭제 고민
-	@Scheduled(cron = "00 10 16 * * *")
+	@Scheduled(cron = "00 00 05 * * *")
     public void resetApplyCount3(){
 		String configLocation = "classpath:applicationContext.xml";
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
@@ -44,8 +45,8 @@ public class CronJob {
 		logger.info("스케쥴 테스트:" +"resetApplyCount3");
 	}
 	
-	//결제완료 서비스완료로 바꾸기 0시 4분
-	@Scheduled(cron = "00 03 15 * * *")
+	//결제완료 서비스완료로 바꾸기 0시 5분
+	@Scheduled(cron = "00 05 00 * * *")
     public void resetEndDateService(){
 		String configLocation = "classpath:applicationContext.xml";
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
@@ -55,8 +56,8 @@ public class CronJob {
 		logger.info("스케쥴 테스트:" +"resetEndDateService");
     }
 	
-	//입금대기 주문취소로 바꾸기 0시 6분
-	@Scheduled(cron = "00 06 15 * * *")
+	//입금대기 주문취소로 바꾸기 0시 10분
+	@Scheduled(cron = "00 10 00 * * *")
     public void orderCancel(){
 		String configLocation = "classpath:applicationContext.xml";
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
@@ -67,39 +68,36 @@ public class CronJob {
     }
 	
 	//채팅거래 결제완료 서비스완료로 바꾸기
-		@Scheduled(cron = "00 09 15 * * *")
-	    public void resetProposalEndDateService(){
-			String configLocation = "classpath:applicationContext.xml";
-			AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
-			CronService cronService = ctx.getBean("cronService", CronService.class );
-			cronService.resetProposalEndDateService();
-			ctx.close();
-			logger.info("스케쥴 테스트:" +"resetProposalEndDateService");
-	    }
+	@Scheduled(cron = "00 15 00 * * *")
+	public void resetProposalEndDateService(){
+		String configLocation = "classpath:applicationContext.xml";
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
+		CronService cronService = ctx.getBean("cronService", CronService.class );
+		cronService.resetProposalEndDateService();
+		ctx.close();
+		logger.info("스케쥴 테스트:" +"resetProposalEndDateService");
+	}
 		
-		//채팅거래 입금대기 주문취소로 바꾸기
-		@Scheduled(cron = "00 12 15 * * *")
-	    public void orderProposalCancel(){
-			String configLocation = "classpath:applicationContext.xml";
-			AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
-			CronService cronService = ctx.getBean("cronService", CronService.class );
-			cronService.orderProposalCancel();
-			ctx.close();
-			logger.info("스케쥴 테스트:" +"orderProposalCancel");
-	    }
+	//채팅거래 입금대기 주문취소로 바꾸기
+	@Scheduled(cron = "00 20 00 * * *")
+	public void orderProposalCancel(){
+		String configLocation = "classpath:applicationContext.xml";
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
+		CronService cronService = ctx.getBean("cronService", CronService.class );
+		cronService.orderProposalCancel();
+		ctx.close();
+		logger.info("스케쥴 테스트:" +"orderProposalCancel");
+	}
 	
-		
-		
-		//로그인 실패 카운드 0으로 리셋
-		@Scheduled(cron = "00 15 15 * * *")
-	    public void resetLoginFailCount(){
-			String configLocation = "classpath:applicationContext.xml";
-			AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
-			CronService cronService = ctx.getBean("cronService", CronService.class );
-			cronService.resetLoginFailCount();
-			ctx.close();
-			logger.info("스케쥴 테스트:" +"resetLoginFailCount");
-		}
-		
+	//로그인 실패 횟수, 실패시간, enabled 초기화
+	@Scheduled(cron = "00 00 06 * * *")
+	public void resetLoginFailCount(){
+		String configLocation = "classpath:applicationContext.xml";
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
+		CronService cronService = ctx.getBean("cronService", CronService.class );
+		cronService.resetLoginFailCount();
+		ctx.close();
+		logger.info("스케쥴 테스트:" +"resetLoginFailCount");
+	}
 		
 }

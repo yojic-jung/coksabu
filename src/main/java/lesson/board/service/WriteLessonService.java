@@ -30,6 +30,13 @@ public class WriteLessonService {
 		}
 		card.setPostingdate(new Date());
 		card.setReadCount(0);
+		
+		if(card.getSubCate1().equals("nonevalue")) {
+			card.setOpt1price3("0");
+		}
+		if(card.getSubCate2().equals("nonevalue")) {
+			card.setOpt2price3("0");
+		}
 		return boardDao.write(card);	
 						
 		}
@@ -37,7 +44,7 @@ public class WriteLessonService {
 	//수정필요
 	@Transactional(rollbackFor= {Exception.class})
 	public int update(LessonCardDB card, String path) {
-			String id = card.getId();
+			int id = card.getId();
 			//imgPath는 대표이미지와 미디어이미지
 			ImgFileName imgPath = boardDao.takeImgName(id);
 			

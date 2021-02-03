@@ -2,71 +2,71 @@
 <rss version="2.0">
   <channel>
     <title>콕사부</title>
-    <link>https://coksabu.com</link>
+    <link>https://www.coksabu.com</link>
     <description>콕사부 웹페이지 rss 피드</description>
     <generator>콕사부</generator>
     <pubDate>2019년 7월 31일</pubDate>
     
     <item>
       <title>콕사부</title>
-      <link>https://coksabu.com</link>
-      <guid>https://coksabu.com</guid>
+      <link>https://www.coksabu.com</link>
+      <guid>https://www.coksabu.com</guid>
       <description />
     </item>
   
    <item>
       <title>선생님 수학레슨목록</title>
-      <link>https://coksabu.com/boarder?main=11&amp;subject=11</link>
-      <guid>https://coksabu.com/boarder?main=11&amp;subject=11</guid>
+      <link>https://www.coksabu.com/boarder?main=11&amp;subject=11</link>
+      <guid>https://www.coksabu.com/boarder?main=11&amp;subject=11</guid>
       <description />
     </item>
     
      <item>
       <title>선생님 외국어레슨 목록</title>
-      <link>https://coksabu.com/boarder?main=21&amp;subject=21</link>
-      <guid>https://coksabu.com/boarder?main=21&amp;subject=21</guid>
+      <link>https://www.coksabu.com/boarder?main=21&amp;subject=21</link>
+      <guid>https://www.coksabu.com/boarder?main=21&amp;subject=21</guid>
       <description />
     </item>
     
      <item>
       <title>선생님 국어레슨 목록</title>
-      <link>https://coksabu.com/boarder?main=31&amp;subject=31</link>
-      <guid>https://coksabu.com/boarder?main=31&amp;subject=31</guid>
+      <link>https://www.coksabu.com/boarder?main=31&amp;subject=31</link>
+      <guid>https://www.coksabu.com/boarder?main=31&amp;subject=31</guid>
       <description />
     </item>
     
      <item>
       <title>선생님 사회레슨 목록</title>
-      <link>https://coksabu.com/boarder?main=41&amp;subject=41</link>
-      <guid>https://coksabu.com/boarder?main=41&amp;subject=41</guid>
+      <link>https://www.coksabu.com/boarder?main=41&amp;subject=41</link>
+      <guid>https://www.coksabu.com/boarder?main=41&amp;subject=41</guid>
       <description />
     </item>
     
     <item>
       <title>선생님 과학레슨 목록</title>
-      <link>https://coksabu.com/boarder?main=51&amp;subject=51</link>
-      <guid>https://coksabu.com/boarder?main=51&amp;subject=51</guid>
+      <link>https://www.coksabu.com/boarder?main=51&amp;subject=51</link>
+      <guid>https://www.coksabu.com/boarder?main=51&amp;subject=51</guid>
       <description />
     </item>
     
     <item>
       <title>선생님 과학레슨 목록</title>
-      <link>https://coksabu.com/boarder?main=61&amp;subject=61</link>
-      <guid>https://coksabu.com/boarder?main=61&amp;subject=61</guid>
+      <link>https://www.coksabu.com/boarder?main=61&amp;subject=61</link>
+      <guid>https://www.coksabu.com/boarder?main=61&amp;subject=61</guid>
       <description />
     </item>
     
   	<item>
       <title>선생님 자소서/입시레슨 목록</title>
-      <link>https://coksabu.com/boarder?main=71&amp;subject=71</link>
-      <guid>https://coksabu.com/boarder?main=71&amp;subject=71</guid>
+      <link>https://www.coksabu.com/boarder?main=71&amp;subject=71</link>
+      <guid>https://www.coksabu.com/boarder?main=71&amp;subject=71</guid>
       <description />
     </item>
   
   	<item>
       <title>학생 수업요청 목록</title>
-      <link>https://coksabu.com/applylist</link>
-      <guid>https://coksabu.com/applylist</guid>
+      <link>https://www.coksabu.com/applylist</link>
+      <guid>https://www.coksabu.com/applylist</guid>
       <description />
     </item>
   

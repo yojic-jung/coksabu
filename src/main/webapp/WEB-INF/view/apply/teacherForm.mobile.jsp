@@ -6,6 +6,7 @@
 <head>
 <meta charset="utf-8">
 <title>선생님 이력 목록 콕사부</title>
+<meta name="viewport" content="user-scalable=yes" />
  <meta name="description" content="수업요청에 응답한 선생님 목록" />
  <meta property="og:type" content="website">
 <meta property="og:title" content="응답선생님">
@@ -90,7 +91,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 </style>
 </head>
 <body>
-<div style="background:orange;font-size:30px; color:white;padding:20px;margin:15px; text-align:center; font-family:'JejuGothic';">선생님 지원 목록(${size}/10)</div>
+<div style="background:orange;font-size:35px; color:white;padding:20px;margin:15px; text-align:center; font-family:'JejuGothic';">선생님 지원 목록(${size}/10)</div>
 <c:if test="${size==0}">
 <div style="font-size:35px; text-align:center;line-height:180%;font-family:'JejuGothic'; margin-top:140px;">
 현재 지원하신 선생님이 없습니다. <br/>
@@ -98,7 +99,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 </div>
 </c:if>
 
-					<table style="font-family:JejuGothic; font-size:30px;border-spacing:20px;width:700px;margin:40px auto;">
+					<table style="font-family:JejuGothic; font-size:30px;border-spacing:20px;width:85%;margin:40px auto;">
 		
 			<% int i=-1; %>
 			<c:forEach var="pro" items="${list}">
@@ -112,7 +113,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 	                            <tr>
                                 <td rowspan="3"> <img style="width:140px; height:140px; border-radius:70px;" 
                                 src="<c:url value="/img/profileImg/${pro.imgPath}" />"  alt="본인 프로필 이미지"/></td>
-                                <td style="color:rgb(87, 87, 87); padding:0px 5px 0px 20px;font-size:30px">${pro.name}(<span class="age">${pro.birth}</span>)</td>
+                                <td style="color:rgb(87, 87, 87); padding:0px 5px 0px 20px;font-size:30px">${pro.nickname}(<span class="age">${pro.birth}</span>)</td>
                             </tr>
                             <tr>
                                 <td style="color:rgb(151, 149, 149);padding:0px 5px 0px 20px;line-height:50px;">
@@ -126,14 +127,14 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                             <tr>
 							<td  style="color:rgb(151, 149, 149);" id="lesson-td" colspan="2">
 							<div style="margin:20px 0px 10px 20px;">메세지</div>
-							<div style="border:1px solid lightgray;min-height:100px;padding:10px;width:600px;line-height:45px;background:white;">
+							<div style="border:1px solid lightgray;min-height:100px;padding:10px;width:100%;line-height:45px;background:white;">
 							${pro.message}
 							</div>
 							</td>
 						</tr>	
 						<tr>
 						<td>
-						<br/><br/><br/><br/>
+						<br/><br/>
 						</td>
 						</tr>
                      

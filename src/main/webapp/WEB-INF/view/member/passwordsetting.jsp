@@ -13,7 +13,7 @@ padding-bottom:100px;
 }
 .main-title{
 	font-size:40px;
-	padding:80px;
+	padding:40px 0px 80px 0px;
 	text-align:center;
 
 }
@@ -64,8 +64,10 @@ margin:20px;
 <body>
 <div>
 
-
+<div style="text-align:center;font-size:20px;margin-top:40px;"><a href="/" style="color: orange;">홈으로 가기</a></div>
 <div class="main-title">비밀번호 변경</div>
+
+
 
 <form method='post'  commandName='memberInfo' onSubmit='return CheckForm(this)'>
 <div class='content'>

@@ -1,0 +1,4 @@
+WARN  21:48:50.092 [http-bio-8080-exec-25 WriteLessonService.java:34] write - 서브1nonevalue
+WARN  21:48:50.112 [http-bio-8080-exec-25 WriteLessonService.java:35] write - 서브2nonevalue
+WARN  21:50:42.634 [http-bio-8080-exec-37 WriteLessonService.java:34] write - 서브1nonevalue
+WARN  21:50:42.634 [http-bio-8080-exec-37 WriteLessonService.java:35] write - 서브2nonevalue

@@ -39,27 +39,18 @@
         });
         
         setTimeout(function(){
-        	$.ajax({
-    			  url:'./chatmemberstatus?id='+chatroom_id,
-      		  type:'get',
-      		  error:function(request,status,error){
-      		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-      		       },
-      		  success:function(data){
       			  var message = {};
       			  message.message_sender = sender;
+      			//안읽음 메세지 읽음처리해주기 위해서
       			  stompClient.send("/app/newconnect", {atytopic:"message", name: chatroom_id}, JSON.stringify(message));
-      		  }
-      		  });
-        	
         }, 1000)
-        	
         
         
         socket.onclose = function(){
         	setTimeout(function(){connect();},1000);
         }
     }
+    
     function disconnect() {
         if (stompClient !== null) {
             stompClient.disconnect();
@@ -437,7 +428,8 @@ font-size:20px;color:gray; margin:10px 10px 0px 10px ;float:right;
 <div class="main-1">
 	<div class="content" style="font-size:50px;padding:30px;line-height:180%;width:80%;margin:auto;word-break:keep-all;">
 	선생님이 판매하는 수업이<br/>고객의 요구와 맞지 않아 변동이 필요한 경우
-	고객의 요구에 맞춘 1대1 맞춤형 수업을 만들어 안전거래를 할 수 있습니다.
+	고객의 요구에 맞춘 1대1 맞춤형 수업을 만들어 안전거래를 할 수 있습니다.<br/>
+	(거래제안서는 실명으로 작성되며 작성된 제안서에 실명이 표기됩니다.)
 	<div style="text-align:center;margin-top:60px;">
 	<img src="<c:url value="/resources/images/newpurchase.png" />" alt="거래 이미지" style="width:60%;height:300px;"/>
 	</div>
@@ -598,7 +590,7 @@ font-size:20px;color:gray; margin:10px 10px 0px 10px ;float:right;
 	</div>
 	
 	<div class="purchase-update" style="font-size:40px; margin:60px;text-align:center; text-decoration:underline;">
-	거래 제안서 수정하기
+	거래 제안서 새로 작성하기
 	</div>
 	
 	<div style="margin:50px; font-size:40px; padding:20px;line-height:180%;">
@@ -938,7 +930,7 @@ $(document).ready(function(){
 		    			$('.purchase').hide();
 		    			
 		    			var mes = {};
-		    			mes.message_content = "새로운 거래 제안서를 작성하였습니다.<br/>수업을 확인하고 안전거래 해보세요.<div class='proposal purchase-box'>거래 제안서 보기</div>";
+		    			mes.message_content = "새로운 거래 제안서를 작성하였습니다.수업을 확인하고 안전거래 해보세요.<div class='proposal purchase-box'>거래 제안서 보기</div>";
 		    			mes.message_sender = sender
 		    			mes.chatroom_id = chatroom_id
 		    			mes.message_time = new Date();
@@ -1055,7 +1047,7 @@ $(document).on('click','.accept-proposal',function(){
 				  $('.close-btn2').trigger('click');
 				  
 				  var mes = {};
-	    			mes.message_content = "거래 제안서를 승낙했습니다.<br/>서비스를 구매하실  수 있습니다. <div class='proposal purchase-box'>거래 제안서 보기</div>";
+	    			mes.message_content = "거래 제안서를 승낙했습니다. 서비스를 구매하실  수 있습니다. <div class='proposal purchase-box'>거래 제안서 보기</div>";
 	    			mes.message_sender = sender
 	    			mes.chatroom_id = chatroom_id
 	    			mes.message_time = new Date();
@@ -1094,7 +1086,7 @@ $(document).on('click','.lesson-purchase',function(){
 						$('.close-btn2').trigger('click');
 						
 						var mes = {};
-		    			mes.message_content = "서비스를 구매하였습니다.<br/>서비스를 진행해주세요.";
+		    			mes.message_content = "서비스를 구매하였습니다. 결제가 완료되면 서비스를 진행해주세요.";
 		    			mes.message_sender = sender
 		    			mes.chatroom_id = chatroom_id
 		    			mes.message_time = new Date();
@@ -1107,11 +1099,8 @@ $(document).on('click','.lesson-purchase',function(){
 	}else{
 		alert("입금은행을 선택해주세요.");
 	}
-	
-	
-	
-	
 });
+
 
 $(function() {
     $( "#testDatepicker" ).datepicker({

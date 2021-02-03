@@ -32,7 +32,7 @@ public class PurchaseService {
 	}
 	
 	@Transactional(rollbackFor= {Exception.class})
-	public int insertPurchaseHistory(PurchaseHistory pur, String buyerEmail, String postId) {
+	public HashMap<String, Object> insertPurchaseHistory(PurchaseHistory pur, String buyerEmail, String postId) {
 		
 		String sellerEmail = boardDao.readEmail(postId);
 		HashMap<String, Object> map = new HashMap<>();
@@ -42,6 +42,7 @@ public class PurchaseService {
 		PurchaseRead purchaseRead = boardDao.purchaseRead(map);
 		pur.setSellerEmail(sellerEmail);
 		pur.setSellerName(purchaseRead.getName());
+		pur.setSellerNickname(purchaseRead.getNickname());
 		pur.setSellerPhone(purchaseRead.getPhone());
 		
 		String buyerName = boardDao.readBuyerName(buyerEmail);
@@ -50,12 +51,16 @@ public class PurchaseService {
 		pur.setBuyerName(buyerName);
 		pur.setOrderDate(new Date());
 		pur.setOrderstatus("입금대기");
-		
-		return boardDao.insertPurchaseHistory(pur);
+		int success = boardDao.insertPurchaseHistory(pur);
+		if(success==1) {
+			map.put("status","success");
+		}else {
+			map.put("status","fail");
+		}
+		return map;
 	}
 	
-	public String success(String postId){
-		String email = boardDao.readEmail(postId);
+	public String success(String email){
 		return boardDao.takeSellerImg(email);
 	}
 	

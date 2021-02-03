@@ -17,6 +17,8 @@ public interface DealDao {
 	
 	public int countProfile(String email);
 	
+	public String takeNickname(String email);
+	
 	public int countLesson(String email);
 	
 	public int countMyPurchaseList(String email);
@@ -27,7 +29,7 @@ public interface DealDao {
 	
 	public List<PurchaseHistory> myPurchaseListSearch(HashMap<String, Object> map);
 	
-	public int deleteWish(int wishId);
+	public int deleteWish(HashMap<String, Object> map);
 	
 	public int confirmWishList(String email);
 	
@@ -57,8 +59,6 @@ public interface DealDao {
 	
 	public void insertRefund(RefundContent content);
 	
-	public void updateRefund(RefundContent content);
-	
 	public void updateOrderstatus(HashMap<String, Object> map);
 	
 	public PurchaseHistory orderInfo(HashMap<String, Object> map);
@@ -85,10 +85,25 @@ public interface DealDao {
 	
 	public void insertProRefund(RefundContent content);
 	
-	public void updateProRefund(RefundContent content);
-	
 	public void updateProOrderstatus(HashMap<String, Object> map);	
 	
 	public int takeWishId(HashMap<String, Object> map);
 	
+	public PurchaseHistory takePurchaseEmail(int orderId);
+	
+	public int countRefundContent(int orderId);
+	
+	public RefundContent takeRefundContent(int orderId);
+	
+	public String takeOrderStatus(int orderId);
+
+	public ChatPurchase takeProposalEmail(int orderId);
+	
+	public int proCountRefundContent(int orderId);
+	
+	public RefundContent takeProRefundContent(int orderId);
+	
+	public RefundContent myProRefundContent(HashMap<String, Object> map);
+	
+	public String takeProOrderStatus(int orderId);
 }

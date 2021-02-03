@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="user-scalable=yes" />
 <link rel="canonical" href="https://coksabu.com/sellerorderInfo?id=75">
 <title>주문정보 콕사부</title>
 <style>
@@ -20,78 +21,54 @@
 		font-size:25px;
 		font-weight:bolder;
 	}
-	.order-title{
-text-align:center;
-font-weight:bolder; background: #353535;
-color:white;
-margin-bottom:50px;
-
-     width:100%;
-     padding:30px; 
-     font-size:80px;
-     font-family:'Do Hyeon'; 
-     border-bottom:1px solid gray; 
-     z-index:3;
-     text-align:center;
-}
-.m-back{	
-	   	   	 position:absolute;
-	   	 left:0%; 
-	   	 color:#A6A6A6;
-	   	 padding:0px 50px;
-	}
 </style>
 </head>
 <body>
-<header class="m-header">
-  <div class="order-title">주문 정보
-    <span class="m-back">&lt;</span>
-   </div>
-</header>
-<div style="font-size:20px;font-weight:bolder;width:90%;margin:50px auto 0px auto;">수업정보</div>
+<div style="font-size:30px;font-weight:bolder;width:90%;margin:50px auto 0px auto;">수업정보</div>
 <table style="width:90%;text-align:center;margin:10px auto;">
 	<tr>
-		<td colspan="3" style="border-top:2px solid black;"></td>
+		<td colspan="4" style="border-top:2px solid black;"></td>
 	</tr>
 	<tr>
-	<td>주문날짜</td><td>수업제목</td><td>수업시수</td>
+	<td>주문날짜</td><td colspan="3">수업제목</td>
 	</tr>
 	<tr>
-		<td colspan="3" style="border-bottom:1px solid gray;"></td>
+		<td colspan="4" style="border-bottom:1px solid gray;"></td>
 	</tr>
 	<tr>
 	<td>${pur.orderDateJ}</td>
-	<td>${pur.cate}(${pur.subcate })<br/>${pur.title }</td>
-	<td>${pur.price1}<br/>1회당 ${pur.price2} 수업</td>
+	<td colspan="3">(${pur.cate}, ${pur.subcate})<br/>${pur.title }</td>
+	
 	</tr>
 	<tr>
-		<td colspan="3" style="border-bottom:1px solid gray;"></td>
+		<td colspan="4" style="border-bottom:1px solid gray;"></td>
 	</tr>
 	<tr>
-	<td>수업시작일</td><td>수업종료일</td><td>가격</td>
+	<td style="width:22%">수업시작일</td><td style="width:22%">수업종료일</td><td style="width:22%">수업시수</td><td style="width:22%">가격</td>
 	</tr>
 	<tr>
-		<td colspan="3" style="border-bottom:1px solid gray;"></td>
+		<td colspan="4" style="border-bottom:1px solid gray;"></td>
 	</tr>
 	<tr>
-	<td>${pur.startDateS}</td><td>${pur.endDateS}</td><td>${pur.price3}원</td>
+	<td>${pur.startDateS}</td><td>${pur.endDateS}</td><td>${pur.price1}<br/>회당 ${pur.price2} 수업</td><td>${pur.price3}원</td>
 	</tr>
 </table>
 
 
-<div style="font-size:20px;font-weight:bolder;width:90%;margin:50px auto 0px auto;">결제정보</div>
+<div style="font-size:30px;font-weight:bolder;width:90%;margin:50px auto 0px auto;">결제정보</div>
 <table style="width:90%;text-align:center;margin:10px auto;">
 	<tr>
 		<td colspan="3" style="border-top:2px solid black;"></td>
 	</tr>
 	<tr>
-	<td>구매자 이름</td><td>주문상태</td>
+	<td style="width:30%">구매자 이름</td><td style="width:30%">구매자 닉네임</td><td style="width:30%">주문상태</td>
 	</tr>
 	<tr>
 		<td colspan="4" style="border-bottom:1px solid gray;"></td>
 	</tr>
 	<tr>
 	<td>${pur.buyerName}</td>
+	<td>${pur.buyerNickname}</td>
 	<td>${pur.orderstatus}</td>
 	</tr>
 </table>
@@ -99,16 +76,7 @@ margin-bottom:50px;
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <script>
 $(document).ready(function(){
-
-	$('.m-back').click(function(){
-		var referpage = document.referrer;
-		
-		if(referpage==''){
-			location.href = './';
-		}else{
-			history.back();
-		}
-	});
+	$('.m-jbMenu').append("주문 정보");
 });
 </script>
 

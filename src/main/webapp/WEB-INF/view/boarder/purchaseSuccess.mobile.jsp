@@ -8,6 +8,7 @@
  <meta name="description" content="구매 성공, 최종 구매내역 및 선생님 정보 안내" />
 <meta charset="utf-8">
 <title>콕사부</title>
+<link rel="stylesheet" href="<c:url value="/resources/css/jquery-ui.css" />" type="text/css" /> 
 <style>
 @charset "UTF-8";
 @font-face { font-family: 'JejuGothic'; 
@@ -70,15 +71,11 @@
 </style>
 </head>
 <body>
-<div class="jbMenu">
-       <div class="top-title"><a href="./"><img style="width:150px; height:60px;"" src="<c:url value="/resources/images/logo.png" />"  alt="로고"/></a></div>
-       <div class="top-right">주문이 완료 되었습니다.</div>
-</div>
 
 <div style="width:80%; margin:60px auto; font-family:'JejuGothic';">
 	<div style="width:40%;font-size:30px;margin:auto;font-weight:bolder;text-align:center;">
 	<img style="width:300px; height:300px;border-radius:150px;" src="<c:url value="/img/profileImg/${imgpath}" />"  alt="선생님 프로필이미지"/><br/>
-	${sellername} 선생님
+	${sellernickname} 선생님
 	</div>
 	<div class="message" >
 	${buyername}님 수업을 신청해주셔서 감사합니다.<br/> 결제 완료되면 서비스가 진행됩니다.<br/> 아래의 결제정보를 확인해주세요.
@@ -118,6 +115,11 @@
 <td class="second">${depositDay}</td>
 </tr>
 
+<tr>
+<td class="first">입금자명</td>
+<td class="second">${depositor}</td>
+</tr>
+
 </table>
 
 	<div style="font-size:25px;margin:20px 0px;">수업시작 전까지 입금을 만료해주시기 바랍니다.</div>
@@ -128,5 +130,12 @@
 		</a>
 </div>
 <div style="height:300px;"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
+<script>
+$(document).ready(function(){
+	$('.m-jbMenu').append("주문완료");
+});
+</script>
 </body>
 </html>

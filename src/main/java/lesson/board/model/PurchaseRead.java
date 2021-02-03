@@ -3,6 +3,7 @@ package lesson.board.model;
 public class PurchaseRead {
 	private String email;
 	private String name;
+	private String nickname;
 	private String phone;
 	
 	private String sexual;
@@ -56,6 +57,14 @@ public class PurchaseRead {
 	}
 	public String getName() {
 		return name;
+	}
+	
+	
+	public void setNickname(String nickname) {
+		this.nickname=nickname;
+	}
+	public String getNickname() {
+		return nickname;
 	}
 	
 	public void setPhone(String phone) {

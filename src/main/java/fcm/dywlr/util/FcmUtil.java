@@ -55,7 +55,7 @@ public class FcmUtil {
 				
 				
 	}
-	
+		
 	//해당 토큰 사용자 1명에게 전송
 	public void send_FCMtoken(String tokenId, String title, String content, String link) throws IOException, FirebaseMessagingException {
 		

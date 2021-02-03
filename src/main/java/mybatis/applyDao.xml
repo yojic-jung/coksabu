@@ -69,7 +69,7 @@
 	
 	<select id="myLessonList" resultType="lesson.apply.model.ApplyTeacher">
 		<foreach collection="list" item="item" separator="union all">
-		(select A.teacher_id, A.teacheremail, A.message, A.applydate, B.name, B.birth, C.imgpath, C.sexual, C.locales, C.universe, C.univsub, C.career, C.certify  
+		(select A.teacher_id, A.teacheremail, A.message, A.applydate, B.nickname, B.birth, C.imgpath, C.sexual, C.locales, C.universe, C.univsub, C.career, C.certify  
 		from applylist as A, members as B, profile as C where A.teacher_id = #{item.teacherid} and B.email = #{item.email} and C.email = #{item.email} )
 		</foreach> 
 	</select>

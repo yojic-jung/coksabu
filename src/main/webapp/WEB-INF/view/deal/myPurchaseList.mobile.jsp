@@ -12,16 +12,15 @@
 <style>
 @font-face { font-family: 'JejuGothic'; 
       src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 
-.ui-datepicker{ font-size: 30px; padding:15px;}
-.ui-datepicker select.ui-datepicker-month{ font-size: 30px;padding:15px; }
-.ui-datepicker select.ui-datepicker-year{ font-size: 30px;padding:15px; }
+.ui-datepicker{ width: 60%;font-size:40px; }
+      }
 .search{
 	background:orange;
 	border:none;
 	padding:15px;
-	margin-left:20px;
+	margin-left:30px;
 	color:white;
-	font-size:24px
+	font-size:35px
 }
 .lesson-href{
 	color:black;
@@ -31,11 +30,26 @@
 	background:rgb(236, 235, 234);
 }
 .div-title{
-            width:90%; margin:auto; padding:30px 0px 20px 10px;
-             font-family:'JejuGothic'; color:rgb(97, 96, 96);
+            width:90%; margin:50px auto 0px auto;
+             font-family:'JejuGothic'; color:dimgray;
              font-size:30px;
         }
-        
+
+.inner-main{
+			display:inline-block;
+			background:white;
+			padding:40px;
+			border-radius: 20px 20px 0px 0px;
+			border:3px solid gray;
+			border-bottom:3px solid white;
+			 font-size:35px;
+}
+.inner-sub{
+			display:inline-block;
+			background:white;
+			padding:40px;
+			border-radius: 20px 20px 0px 0px;
+}
 #load{
 		padding:30px;
 		width:80%;
@@ -71,8 +85,17 @@ border:1px solid gray; padding:5px 30px;cursor:pointer;font-size:30px;
 </head>
 <body>
 <div style="background:rgb(233, 232, 232); padding:30px 30px 240px 30px;min-height:1800px;">
- <div class="div-title">구매관리</div>
- <div style="width:90%;; background:white; margin: auto; padding:20px;min-height:500px;">
+  <div class="div-title">
+ 
+<div class="inner-main">
+  <a href="/purchaselist" style="color: black;font-weight:bolder;">일반거래 구매내역</a>
+  </div>
+  <div class="inner-sub">
+  <a href="/proposalpurchase" style="color: gray;text-decoration:none;">거래제안서 구매내역</a>
+  </div>
+
+ </div>
+ <div style="width:90%;; background:white; margin: auto; padding:20px;min-height:500px;;border:3px solid gray;">
  	
  	<form method="post" onSubmit="return checkForm(this)">
  	<div style="position:relative;width:700px; margin:auto;">
@@ -85,11 +108,11 @@ border:1px solid gray; padding:5px 30px;cursor:pointer;font-size:30px;
  		<option value="환불대기">환불대기</option>
 		<option value="환불완료">환불완료</option>
  	</select>
- 	
- 	<input type="text" id="testDatepicker" name="firstDateJ" style="font-size:20px;padding:15px;width:150px;"/>&nbsp; ~ 
- 	<input type="text" id="testDatepicker2" name="lastDateJ" style="font-size:20px;padding:15px;width:150px;"/>  
- 	
- 	<input class="search" type="submit" value="조회하기" />
+ 	&nbsp;&nbsp;
+ 	<input type="text" id="testDatepicker" name="firstDateJ" style="font-size:24px;padding:15px;width:170px;"/>&nbsp;&nbsp; ~ &nbsp;&nbsp;
+ 	<input type="text" id="testDatepicker2" name="lastDateJ" style="font-size:24px;padding:15px;width:170px;"/>  
+ 	&nbsp;&nbsp;&nbsp;&nbsp;
+ 	<input class="search" type="submit" value="조회하기" style="font-size:24px;"/>
  	</div>
 	</form> 	
 	
@@ -128,10 +151,10 @@ border:1px solid gray; padding:5px 30px;cursor:pointer;font-size:30px;
  			<div style="margin-bottom:30px;"><span class="orderCancel">주문취소</span><span class="orderId">${list.orderId }</span></div>
  		</c:when>
 		<c:when test="${list.orderstatus=='결제완료'}">
- 			<div style="margin-bottom:30px;"><a href="./refundM?orderid=${list.orderId}" style="text-decoration:none;color:black;"><span class="refund">환불신청</span></a><span class="orderId">${list.orderId }</span></div>
+ 			<div style="margin-bottom:30px;"><a href="./refund?orderid=${list.orderId}" style="text-decoration:none;color:black;"><span class="refund">환불신청</span></a><span class="orderId">${list.orderId }</span></div>
  		</c:when>
  		<c:when test="${list.orderstatus=='환불대기'}">
- 			<div style="margin-bottom:30px;"><a href="./refundM?orderid=${list.orderId}" style="text-decoration:none;color:black;"><span class="refund">환불정보</span></a><span class="orderId">${list.orderId }</span></div>
+ 			<div style="margin-bottom:30px;"><a href="./refund?orderid=${list.orderId}" style="text-decoration:none;color:black;"><span class="refund">환불정보</span></a><span class="orderId">${list.orderId }</span></div>
  		</c:when>
  		<c:when test="${list.orderstatus=='환불완료'}">
  			<div style="margin-bottom:30px;"><a href="./buyerRefundCompleteInfo?orderid=${list.orderId}" style="text-decoration:none;color:black;"><span class="refund">환불완료</span></a><span class="orderId">${list.orderId }</span></div>
@@ -152,9 +175,9 @@ border:1px solid gray; padding:5px 30px;cursor:pointer;font-size:30px;
  	<div id="load">더보기</div>
  	
  </div>
- <div style="height:300px;"></div>
+   <div style="height:500px;"></div>
  </div>
- 
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 <script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
 <script src="resources/jquery-number-master/jquery.number.min.js"></script>
@@ -230,7 +253,7 @@ border:1px solid gray; padding:5px 30px;cursor:pointer;font-size:30px;
         	   		$( "#testDatepicker" ).val(dates[0]+'.'+dates[1]+'.'+dates[2] );
         	   	}else{
         	   		var d =  new Date();
-            	    $( "#testDatepicker" ).datepicker( "setDate", new Date(d.getFullYear(), d.getMonth(), d.getDate()-14) );
+            	    $( "#testDatepicker" ).datepicker( "setDate", new Date(d.getFullYear()-2, d.getMonth(), d.getDate()) );
 
         	   	}
         	   

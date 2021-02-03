@@ -40,9 +40,16 @@ window.location="./";
 		</tr>
 
 		<tr>
-		<td><a href="./admininspect">본인/학력 인증 검사</a></td>
-		<td><a href="./adminDelWaiting">삭제요청 리스트</a></td>
-		<td><a href="./listqna">고객문의 Q&A 리스트</a></td>
+		<td><a href="./admininspect">본인/학력 인증 검사</a>
+		<c:if test="${notify.certifyCount!=0}"><span style="display:inline-block;vertical-align:top;width:10px;height:10px;border-radius:5px;background:red;"></span></c:if>
+		</td>
+		<td><a href="./adminDelWaiting">삭제요청 리스트</a>
+		<c:if test="${notify.delLessonCount!=0}"><span style="display:inline-block;vertical-align:top;width:10px;height:10px;border-radius:5px;background:red;"></span></c:if>
+		</td>
+		<td><a href="./listqna">고객문의 Q&A 리스트</a>
+		<c:if test="${notify.qnaCount!=0}"><span style="display:inline-block;vertical-align:top;width:10px;height:10px;border-radius:5px;background:red;"></span></c:if>
+		</td>
+		
 		</tr>
 		
 		
@@ -50,12 +57,16 @@ window.location="./";
 			<td colspan="3" style="padding-top:50px;">-일반거래-</td>
 		</tr>
 		<tr>
-		<td><a href="./adminTransaction">레슨 구매/판매 거래내역</a></td>
+		<td><a href="./adminTransaction">레슨 구매/판매 거래내역</a>
+		<c:if test="${notify.lessonTranCount!=0}"><span style="display:inline-block;vertical-align:top;width:10px;height:10px;border-radius:5px;background:red;"></span></c:if>
+		</td>
 		<td><a href="./depositConfirmRecord">입금확인 기록내역</a></td>
 		</tr>
 		
 		<tr>
-		<td><a href="./adminRefund">환불신청내역</a></td>
+		<td><a href="./adminRefund">환불신청내역</a>
+		<c:if test="${notify.lessonRefundCount!=0}"><span style="display:inline-block;vertical-align:top;width:10px;height:10px;border-radius:5px;background:red;"></span></c:if>
+		</td>
 		<td><a href="./adminRefundConfirmList">환불완료 기록내역</a></td>
 		<td><a href="./adminRefundCancelList">환불취소 처리내역</a></td>
 		</tr>
@@ -65,12 +76,16 @@ window.location="./";
 			<td colspan="3" style="padding-top:50px;">-거래제안서-</td>
 		</tr>
 		<tr>
-		<td><a href="./adminChatTransaction">구매/판매 거래내역(거래제안서)</a></td>
+		<td><a href="./adminChatTransaction">구매/판매 거래내역(거래제안서)</a>
+		<c:if test="${notify.chatTranCount!=0}"><span style="display:inline-block;vertical-align:top;width:10px;height:10px;border-radius:5px;background:red;"></span></c:if>
+		</td>
 		<td><a href="./depositConfirmProposalRecord">입금확인 기록내역</a></td>
 		</tr>
 		
 		<tr>
-		<td><a href="./adminProRefund">환불신청내역</a></td>
+		<td><a href="./adminProRefund">환불신청내역</a>
+		<c:if test="${notify.chatRefundCount!=0}"><span style="display:inline-block;vertical-align:top;width:10px;height:10px;border-radius:5px;background:red;"></span></c:if>
+		</td>
 		<td><a href="./adminRefundProConfirmList">환불완료 기록내역</a></td>
 		<td><a href="./adminRefundProCancelList">환불취소 처리내역</a></td>
 		</tr>

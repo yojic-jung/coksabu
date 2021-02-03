@@ -6,24 +6,16 @@
 
 <mapper namespace="lesson.admin.dao.AdminDao">
 
-	<select id="checkId" resultType="Integer" >
-		select count(*) from adminlogin where id=#{id}
-	</select>
-	
-	<select id="checkPassword" resultType="Integer" >
-		select count(*) from adminlogin where password=#{password}
-	</select>
-	
 	<select id="imgList" resultType="lesson.admin.model.ImgList" >
-		select A.name, A.birth, B.email, B.certifyimg, B.universe, B.univsub,  B.academy, B.academyd from members as A, profile as B where A.email=B.email and certify=0 and certifyimg !='' order by B.certifydate asc limit 2
+		select A.name, A.birth, B.email, B.certifyimg1, B.certifyimg2, B.certifyimg3, B.universe, B.univsub,  B.academy, B.academyd from members as A, profile as B where A.email=B.email and B.certify=3 order by B.certifydate asc limit 2
 	</select>
 	
 	<update id="inspectComplete" >
-		update profile set certify=1 where email=#{email}
+		update profile set certify=1, certifydate=now() where email=#{email}
 	</update>
 	
 	<update id="inspectFail" >
-		update profile set certify=2 where email=#{email}
+		update profile set certify=2, certifydate=now() where email=#{email}
 	</update>
 	
 	<update id="qualifyMembership">
@@ -31,7 +23,7 @@
 	</update>
 	
 	<select id="certifyCount" resultType="Integer">
-		select count(*) from profile where certify=0 and certifyimg !=''
+		select count(*) from profile where certify=3
 	</select>
 	
 	
@@ -165,13 +157,13 @@
 	</select>
 	
 	<insert id="refundComplete" parameterType="lesson.admin.model.RefundComplete" >
-		insert into refundcomplete (orderid, progresslesson, remainlesson, price1, buyeremail, buyername, buyerbank, buyeraccount, buyerprice, buyeraccountholder, selleremail, sellername, sellerbank, selleraccount, sellerprice, selleraccountholder, refunddetail, recordtime, fees, finalPrice ) 
-		values (#{orderId}, #{progressLesson}, #{remainLesson}, #{price1}, #{buyerEmail}, #{buyerName}, #{buyerBank}, #{buyerAccount}, #{buyerPrice}, #{buyerAccountHolder}, #{sellerEmail}, #{sellerName}, #{sellerBank}, #{sellerAccount}, #{sellerPrice}, #{sellerAccountHolder}, #{refundDetail}, now(), #{fees}, #{finalPrice})
+		insert into refundcomplete (orderid, progresslesson, remainlesson, price1, buyeremail, buyername, buyerbank, buyeraccount, buyerprice, buyeraccountholder, selleremail, sellername, sellerbank, selleraccount, sellerprice, selleraccountholder, content, recordtime, fees, finalPrice ) 
+		values (#{orderId}, #{progressLesson}, #{remainLesson}, #{price1}, #{buyerEmail}, #{buyerName}, #{buyerBank}, #{buyerAccount}, #{buyerPrice}, #{buyerAccountHolder}, #{sellerEmail}, #{sellerName}, #{sellerBank}, #{sellerAccount}, #{sellerPrice}, #{sellerAccountHolder}, #{content}, now(), #{fees}, #{finalPrice})
 	</insert>
 	
 	<insert id="refundCompletePro" parameterType="lesson.admin.model.RefundComplete" >
-		insert into refundcompletepro (orderid, progresslesson, remainlesson, price1, buyeremail, buyername, buyerbank, buyeraccount, buyerprice, buyeraccountholder, selleremail, sellername, sellerbank, selleraccount, sellerprice, selleraccountholder, refunddetail, recordtime, fees, finalPrice ) 
-		values (#{orderId}, #{progressLesson}, #{remainLesson}, #{price1}, #{buyerEmail}, #{buyerName}, #{buyerBank}, #{buyerAccount}, #{buyerPrice}, #{buyerAccountHolder}, #{sellerEmail}, #{sellerName}, #{sellerBank}, #{sellerAccount}, #{sellerPrice}, #{sellerAccountHolder}, #{refundDetail}, now(), #{fees}, #{finalPrice})
+		insert into refundcompletepro (orderid, progresslesson, remainlesson, price1, buyeremail, buyername, buyerbank, buyeraccount, buyerprice, buyeraccountholder, selleremail, sellername, sellerbank, selleraccount, sellerprice, selleraccountholder, content, recordtime, fees, finalPrice ) 
+		values (#{orderId}, #{progressLesson}, #{remainLesson}, #{price1}, #{buyerEmail}, #{buyerName}, #{buyerBank}, #{buyerAccount}, #{buyerPrice}, #{buyerAccountHolder}, #{sellerEmail}, #{sellerName}, #{sellerBank}, #{sellerAccount}, #{sellerPrice}, #{sellerAccountHolder}, #{content}, now(), #{fees}, #{finalPrice})
 	</insert>
 	
 	<select id="takeBirthList" resultType="String">
@@ -213,8 +205,8 @@
 	</select>
 	
 	<insert id="insertRefundCancel" parameterType="lesson.deal.model.RefundContent" >
-		insert into refundcancel (orderid, applicant, applicantname, refunddetail, recordtime, orderstatus) 
-		values (#{orderId}, #{applicant}, #{applicantname}, #{refunddetail}, now(), #{orderStatus})
+		insert into refundcancel (orderid, applicant, applicantname, processCount, remainCount, content, phone, account, recordtime, orderstatus) 
+		values (#{orderId}, #{applicant}, #{applicantname}, #{processCount}, #{remainCount}, #{content}, #{phone}, #{account}, now(), #{orderStatus})
 	</insert>
 	
 	<delete id="deleteRefundList" parameterType="lesson.deal.model.RefundContent" >
@@ -222,8 +214,8 @@
 	</delete>
 	
 	<insert id="insertRefundProCancel" parameterType="lesson.deal.model.RefundContent" >
-		insert into refundcancelpro (orderid, applicant, applicantname, refunddetail, recordtime, orderstatus) 
-		values (#{orderId}, #{applicant}, #{applicantname}, #{refunddetail}, now(), #{orderStatus})
+		insert into refundcancelpro (orderid, applicant, applicantname, processCount, remainCount, content, phone, account, recordtime, orderstatus) 
+		values (#{orderId}, #{applicant}, #{applicantname}, #{processCount}, #{remainCount}, #{content}, #{phone}, #{account}, now(), #{orderStatus})
 	</insert>
 	
 	<delete id="deleteRefundProList" parameterType="lesson.deal.model.RefundContent" >
@@ -231,11 +223,11 @@
 	</delete>
 	
 	<select id="adminRefundCancelList" resultType="lesson.deal.model.RefundContent">
-		select * from refundcancel
+		select * from refundcancel order by id desc
 	</select>
 	
 	<select id="adminRefundProCancelList" resultType="lesson.deal.model.RefundContent">
-		select * from refundcancelpro
+		select * from refundcancelpro order by id desc
 	</select>
 	
 	<select id="delWaitingList" resultType="lesson.admin.model.DelWaiting">
@@ -245,10 +237,6 @@
 	<select id="takePurchaseList" resultType="lesson.board.model.PurchaseHistory">
 		select buyeremail, buyername,buyerphone, orderdate, orderstatus, enddate  from purchasehistory where postid=#{postId}
 	</select>
-	
-	
-	
-	
 	
 	
 	
@@ -277,4 +265,20 @@
 	<delete id="deleteLesson" >
 		delete from lesson where id = #{postId}
 	</delete>
+	
+	<select id="delLessonCount" resultType="Integer">
+		select count(*) from delwaitinglist
+	</select>
+	
+	<select id="takeLessonCount" resultType="Integer">
+		<foreach collection="list" item="item" separator="union all">
+		(select count(*) from purchasehistory where orderstatus = #{item})
+		</foreach>
+	</select>
+	
+	<select id="takeChatCount" resultType="Integer">
+		<foreach collection="list" item="item" separator="union all">
+		(select count(*) from chat_transaction where orderstatus = #{item})
+		</foreach>
+	</select>
 </mapper>

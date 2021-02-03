@@ -103,22 +103,22 @@ background:rgb(245, 244, 244);
 <tr><td colspan="2">${apply.cate}(${apply.subcate})</td></tr>
 <tr><td colspan="2">${apply.name}(${apply.sexual}) ${apply.grade}</td></tr>
 <tr><td colspan="2">${apply.locale} ${apply.locale3}</td></tr>
-<tr><td>과외가능 요일<br/> ${apply.day}</td><td>과외가능 시간대 <br/>${apply.time}</td></tr>
+<tr><td style="width:35%;">과외가능 요일<br/> ${apply.day}</td><td>과외가능 시간대 <br/>${apply.time}</td></tr>
 <tr><td colspan="2"> 희망가격 ${apply.price1}~${apply.price2}<br/>
 (${apply.month}. 회당 ${apply.gawetime} )</td></tr>
 <tr><td colspan="2" style="padding:10px 50px 10px 50px">${apply.message}</td></tr>
 </table>
 <br/>
-<div style="text-align:center; font-size:25px;color:orange; font-family:'JejuGothic'">
-<span style="font-weight:bolder; font-size:30px;">${apply.subcate}</span>을 제공하는 수업의 경우 지원 가능합니다.</div>
+<div style="text-align:center; font-size:25px; font-family:'JejuGothic'">
 <br/>
 			<form method="post" onSubmit="return checkApply(this)">
 <div style="text-align:center;">
-<div style="margin:10px 0px;font-size:25px;">학생에게 남기시고 싶은 말을 적어주시기 바랍니다.<span style="font-size:20px; color:dimgray;">(300글자미만, <span class="message-length">0</span>/300)</span>
+<div style="margin:10px 0px;font-size:30px;color:black;">학생에게 남기실 말을 적어주세요.<span style="font-size:30px; color:dimgray;">(30글자미만, <span class="message-length">0</span>/30)</span>
 </div>
-<textarea id="message" name="message" rows="7" cols="40" style="font-size:30px; line-height:160%;padding:10px;">
+<textarea id="message" name="message" rows="1" cols="45" style="font-size:30px; line-height:160%;padding:10px;">
 </textarea>
 </div>
+<div style="text-align:center;color:orange;margin-top:30px;font-size:30px;">지원시 선생님의 프로필과 수업목록이 함께 전달됩니다.</div>
 <br/><br/>
 			<table style="margin:auto;">
 						<tr>
@@ -129,6 +129,7 @@ background:rgb(245, 244, 244);
     					</tr>
    		 			</table>
  	</form>
+ 	<div style="height:300px;"></div>
  		<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
         <script>
         
@@ -144,7 +145,7 @@ background:rgb(245, 244, 244);
        	  }else if(status == "duplicate"){
        		  alert("이미 지원하셨습니다.");
        	  }else if(status == "noProfile"){
-       		  alert("프로필이 등록되어있지 않습니다. 프로필을 등록해주세요.");
+       		  alert("튜터 프로필을 등록해주세요. 튜터 프로필이 등록되어있지 않는 경우 지원이 불가능 합니다.");
        	  }else if(status == "true"){
        		  alert("정상적으로 지원이 완료되었습니다.\n학생이 수업을 원할 경우 선생님 연락처로 연락이 갈 것입니다.");
        		  window.history.go(-2);
@@ -163,8 +164,8 @@ background:rgb(245, 244, 244);
 	            });
 			
 			 function checkApply(member){
-				 if($('#message').val().length>300){
-					 alert('남기실 메시지는 300글자 미만이어야 합니다.')
+				 if($('#message').val().length>30){
+					 alert('남기실 메시지는 30글자 미만이어야 합니다.')
 					 return false;
 				 }
 			 }

@@ -10,6 +10,10 @@
 		select count(*) from profile where email=#{email} 
 	</select>
 	
+	<select id="takeNickname" resultType="String">
+		select nickname from members where email=#{email} 
+	</select>
+	
 	<select id="countLesson" resultType="Integer">
 		select count(*) from lesson where email=#{email} 
 	</select>
@@ -19,7 +23,7 @@
 	</select>
 
 	<select id="myPurchaseList" resultType="lesson.board.model.PurchaseHistory">
-		select sellername, orderdate, orderid, postid, price1,price2, price3, bank, startdate, enddate, orderstatus, cate, title, subcate from purchasehistory where buyeremail = #{email} and  orderdate between date_add(now(), interval-2 year) and now() order by orderid desc
+		select orderdate, orderid, postid, price3, orderstatus, cate, title, subcate from purchasehistory where buyeremail = #{email} and  orderdate between date_add(now(), interval-2 year) and now() order by orderid desc
 	</select>
 
 	<select id="countMyPurchaseListSearch" resultType="Integer">
@@ -27,7 +31,7 @@
 	</select>
 
 	<select id="myPurchaseListSearch" resultType="lesson.board.model.PurchaseHistory">
-		select sellername, orderdate, postid, price1,price2, price3, bank, startdate, enddate, orderstatus, cate, title, subcate from purchasehistory where buyeremail = #{email} and orderStatus like concat('%',#{orderStatus},'%') and  orderdate between #{firstDate} and #{lastDate} order by orderid desc
+		select orderdate, orderid, postid,  price3, orderstatus, cate, title, subcate from purchasehistory where buyeremail = #{email} and orderStatus like concat('%',#{orderStatus},'%') and  orderdate between #{firstDate} and #{lastDate} order by orderid desc
 	</select>
 
 	<select id="confirmWishList" resultType="Integer">
@@ -44,7 +48,7 @@
 	</select>
 	
 	<delete id="deleteWish" >
-		delete from wishlist where wishid=#{wishId}
+		delete from wishlist where postId=#{postId} and email=#{email}
 	</delete>
 
 	
@@ -66,7 +70,7 @@
 	
 	<select id="myWishList" resultType="lesson.board.model.PostView">
 		<foreach collection="list" item="item" separator="union all">
-		(select A.name, A.birth, B.universe, B.univsub, B.sexual, B.career, B.imgpath, C.cate, C.subcate, C.represent, C.title, C.subcate0, C.price3,  C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id
+		(select A.nickname, A.birth, B.universe, B.univsub, B.sexual, B.career, B.imgpath, C.cate, C.subcate, C.represent, C.title, C.subcate0, C.price3,  C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id
 		from members as A, profile as B, lesson as C where A.email = B.email and B.email=C.email and C.id=#{item})
 		</foreach>
 	</select>
@@ -81,7 +85,7 @@
 	</select>
 	
 	<select id="countMyRefundContent" resultType="Integer">
-		select count(*) from refundlist where orderid=#{orderId} and applicant=#{email} 
+		select count(*) from refundlist where orderid=#{orderId} and applicant=#{email}
 	</select>
 	
 	<select id="proCountMyRefundContent" resultType="Integer">
@@ -101,20 +105,12 @@
 	</select>
 	
 	<insert id="insertRefund" parameterType="lesson.deal.model.RefundContent">
-		insert into refundlist (orderid, applicant, applicantname, refunddetail, recordtime, orderstatus) values (#{orderId}, #{applicant}, #{applicantname}, #{refunddetail}, now(), #{orderStatus}) 
+		insert into refundlist (orderid, applicant, applicantname, processCount, remainCount, content, phone, account, recordtime, orderstatus) values (#{orderId}, #{applicant}, #{applicantname}, #{processCount}, #{remainCount}, #{content}, #{phone}, #{account}, now(), #{orderStatus}) 
 	</insert>
-	
-	<update id="updateRefund" parameterType="lesson.deal.model.RefundContent">
-		update refundlist set applicant=#{applicant}, applicantname=#{applicantname}, refunddetail=#{refunddetail}, recordtime= now(), orderstatus=#{orderStatus} where orderid=#{orderId} and applicant=#{applicant}
-	</update>
 	
 	<insert id="insertProRefund" parameterType="lesson.deal.model.RefundContent">
-		insert into refundprolist (orderid, applicant, applicantname, refunddetail, recordtime, orderstatus) values (#{orderId}, #{applicant}, #{applicantname}, #{refunddetail}, now(), #{orderStatus}) 
+		insert into refundprolist (orderid, applicant, applicantname, processCount, remainCount, content, phone, account, recordtime, orderstatus) values (#{orderId}, #{applicant}, #{applicantname}, #{processCount}, #{remainCount}, #{content}, #{phone}, #{account}, now(), #{orderStatus}) 
 	</insert>
-	
-	<update id="updateProRefund" parameterType="lesson.deal.model.RefundContent">
-		update refundprolist set applicant=#{applicant}, applicantname=#{applicantname}, refunddetail=#{refunddetail}, recordtime= now(), orderstatus=#{orderStatus} where orderid=#{orderId} and applicant=#{applicant}
-	</update>	
 	
 	<update id="updateOrderstatus">
 		update purchasehistory set orderstatus=#{orderstatus} where orderid=#{orderId}
@@ -165,4 +161,41 @@
 		select wishid from wishlist where postid=#{postId} and email=#{email}
 	</select>
 	
+	
+	<select id="takePurchaseEmail" resultType="lesson.board.model.PurchaseHistory">
+		select buyeremail, selleremail from purchasehistory where orderid=#{orderId}
+	</select>
+	
+	<select id="countRefundContent" resultType="Integer">
+		select count(*) from refundlist where orderid=#{orderId}
+	</select>
+	
+	<select id="takeRefundContent" resultType="lesson.deal.model.RefundContent">
+		select processCount, remainCount  from refundlist where orderid=#{orderId}
+	</select>
+	
+	<select id="takeOrderStatus" resultType="String">
+		select orderstatus  from purchasehistory where orderid=#{orderId}
+	</select>
+	
+	<select id="takeProposalEmail" resultType="test.model.ChatPurchase">
+		select buyer, seller from chat_transaction where id=#{orderId}
+	</select>
+	
+	<select id="proCountRefundContent" resultType="Integer">
+		select count(*)  from refundprolist where orderid=#{orderId}
+	</select>
+	
+	<select id="takeProRefundContent" resultType="lesson.deal.model.RefundContent">
+		select processCount, remainCount  from refundprolist where orderid=#{orderId}
+	</select>
+	
+	<select id="myProRefundContent" resultType="lesson.deal.model.RefundContent">
+		select * from refundprolist where orderid=#{orderId} and applicant=#{email}
+	</select>
+	
+	
+	<select id="takeProOrderStatus" resultType="String">
+		select orderstatus from chat_transaction where id=#{orderId}
+	</select>
 </mapper>

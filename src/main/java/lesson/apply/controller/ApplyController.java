@@ -2,6 +2,7 @@ package lesson.apply.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,13 +33,14 @@ import lesson.apply.service.TeacherApplyService;
 public class ApplyController extends DeviceSwitcherController{
 	
 	private static final  Logger logger = LoggerFactory.getLogger(ApplyController.class);
-	//통과
+	
+	//테스트 완료
 	@RequestMapping(value="lessonapply", method = RequestMethod.GET)
 	public String lessonApply() {
 		return forward("apply/goApply");
 	}
 	
-	//통과
+	//테스트 완료
 	@RequestMapping(value="apply", method = RequestMethod.GET)
 	public String apply(Model model,HttpSession session) {
 		String email = (String)session.getAttribute("email");
@@ -46,7 +48,8 @@ public class ApplyController extends DeviceSwitcherController{
 		return forward("apply/lessonapply");
 	}
 	
-	//통과
+	//테스트 완료
+	@Transactional(rollbackFor= {Exception.class})
 	@RequestMapping(value="apply", method = RequestMethod.POST)
 	public String apply2(ApplyForm apply, Model model, HttpSession session) {
 		String configLocation = "classpath:applicationContext.xml";
@@ -79,7 +82,7 @@ public class ApplyController extends DeviceSwitcherController{
 		
 	}
 	
-	//통과
+	//테스트 완료
 	@RequestMapping(value="applysuccess")
 	public String apply3() {
 		return forward("apply/applySuccess");
@@ -103,7 +106,6 @@ public class ApplyController extends DeviceSwitcherController{
 			applyList = listApplyService.listPost(pageNumber);
 		//POST 검색 후 검색결과 화면에서 페이지 이동 GET요청할때 검색폼값 유지하며 페이지 이동하기 위해
 		}else {
-
 			
 			String locale1P = (String)request.getParameter("locale1P");
 			locale1P = URLDecoder.decode(locale1P, "UTF-8");
@@ -183,9 +185,8 @@ public class ApplyController extends DeviceSwitcherController{
 		return forward("apply/applyList");
 	}
 	
-	//통과
+	//테스트 완료
 	@RequestMapping(value="teacherApply", method=RequestMethod.GET)
-	@Transactional(rollbackFor= {Exception.class})
 	public String apply5(HttpServletRequest request, Model model,HttpSession session) {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
 		ApplyShowService applyShowService = ctx.getBean(ApplyShowService.class);
@@ -198,7 +199,7 @@ public class ApplyController extends DeviceSwitcherController{
 		ctx.close();
 		return forward("apply/teacherApply");
 	}
-	//통과
+	//테스트 완료
 	@RequestMapping(value="teacherApply", method=RequestMethod.POST)
 	@Transactional(rollbackFor= {Exception.class})
 	public String apply6(ApplyTeacher apply, HttpServletRequest request, Model model,HttpSession session) {
@@ -207,8 +208,11 @@ public class ApplyController extends DeviceSwitcherController{
 		String email = (String)session.getAttribute("email");
 		
 		apply.setTeacherEmail(email);
-		String status = teacherApplyService.teacherApply(apply);
-
+		HashMap<String, Object> statusMap = teacherApplyService.teacherApply(apply);
+		
+		String status = (String)statusMap.get("status");
+		String applyEmail = (String)statusMap.get("applyEmail");
+		
 		model.addAttribute("status", status);
 		
 		ApplyShowService applyShowService = ctx.getBean(ApplyShowService.class);
@@ -219,7 +223,7 @@ public class ApplyController extends DeviceSwitcherController{
 		//정상적으로 지원이 된 경우, 푸시알림보내기
 		if(status.equals("true")) {
 			try {
-				teacherApplyService.sendPushForOneTarget(id);
+				teacherApplyService.sendPushForOneTarget(id, applyEmail);
 			}catch(Exception e) {}
 		}
 		ctx.close();
@@ -230,7 +234,7 @@ public class ApplyController extends DeviceSwitcherController{
 		return forward("apply/teacherApply");
 	}
 	
-	//통과
+	//테스트 완료
 	@RequestMapping("mypage")
 	public String apply9(Model model,HttpSession session) {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
@@ -243,7 +247,7 @@ public class ApplyController extends DeviceSwitcherController{
 		return forward("apply/mylist");
 	}
 	
-	//통과
+	//테스트 완료
 	@RequestMapping("myapply/delete")
 	public String apply11(HttpServletRequest request, Model model, HttpSession session) {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
@@ -255,7 +259,7 @@ public class ApplyController extends DeviceSwitcherController{
 		return "redirect:/mypage";
 	}
 	
-	//통과
+	//테스트 완료
 	@RequestMapping("teacherForm")
 	public String apply12(HttpServletRequest request, Model model, HttpSession session) {
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");

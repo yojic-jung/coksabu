@@ -61,7 +61,7 @@
 	
 	
 	<div class="pagemove">
-	<c:if test="${beginPage > 10}">
+	<c:if test="${beginPage > 5}">
 		<a class="page-a" href="<c:url value="./subCheckForm?p=${beginPage-1}"/>"  style="color: black;font-size:15px;">이전...</a>
 	</c:if>
 	<c:forEach var="pno" begin="${beginPage}" end="${endPage}">

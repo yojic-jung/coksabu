@@ -9,43 +9,39 @@
 <style>
 .title{
 	padding:30px; 
-	font-size:20px;
+	font-size:17px;
 	font-weight:bolder;
 }
 
-table{
+.lesson-table{
 	width:80%;
 	margin:auto;
 }
 
 
-table td{
+.lesson-table td{
 	background:#eaeaea;
-	font-size:20px;
+	font-size:15px;
 	text-align:center;
 	padding:10px;
 }
 .content{
 	width:80%;
 	margin:auto;
-	font-size:20px;
+	font-size:15px;
 }
 
-.small-title{
-	
-	font-size:16px;
-}
 
 </style>
 </head>
 <body>
 <div>
 <div class='title'>수업정보</div>
-	<table>
+	<table class="lesson-table">
 		<tr>
-			<td class="small-title">전체 수업횟수</td>
-			<td class="small-title">진행한 수업횟수</td>
-			<td class="small-title">남은 수업횟수</td>
+			<td>전체 수업횟수</td>
+			<td>진행한 수업횟수</td>
+			<td>남은 수업횟수</td>
 		</tr>
 		<tr>
 			<td>${refund.price1}</td>
@@ -55,10 +51,23 @@ table td{
 	</table>
 	
 	<div class='title'>환불계좌정보</div>
-	<div class="content"><span class="small-title">은행</span> : ${refund.sellerBank} | <span class="small-title">계좌번호 : </span> ${refund.sellerAccount}</div>
+	<div class="content">
+		<table style="border-spacing:10px;">
+		<tr>
+			<td>은행 : </td>
+			<td >${refund.sellerBank}</td>
+			<td>계좌번호 : </td>
+			<td>${refund.sellerAccount}</td>
+		</tr>
+		<tr>
+			<td>예금주 : </td>
+			<td>${refund.sellerAccountHolder}</td>
+		</tr>
+		</table>
+	</div>
 	
 	<div class='title'>환불금액</div>
-	<div class="content" >최종 입금금액 ${refund.finalPrice}원(금액:${refund.sellerPrice}  , 수수료:${refund.fees})</div>
+	<div class="content" >최종 환불금액 : ${refund.finalPrice}원<br/>(금액:${refund.sellerPrice}원  , 수수료:${refund.fees}원)</div>
 </div>
 </body>
 </html>

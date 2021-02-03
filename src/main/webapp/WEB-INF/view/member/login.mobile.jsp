@@ -9,15 +9,65 @@
   <title>로그인 콕사부</title>
   <meta charset="utf-8">
   <meta name="description" content="로그인 하기" />
-  <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
   <link rel="stylesheet" href= "<c:url value="/resources/css/loginM.css" />" />
   <link rel="canonical" href="https://coksabu.com/login">   
+<meta name="viewport" content="user-scalable=no" />
+<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap&subset=korean" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+<style>
+ @font-face { font-family: 'JejuGothic'; 
+      src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 
 
+        * { margin:0px; padding:0px; box-sizing: border-box;}
+        * { margin:0px; padding:0px; box-sizing: border-box;}
+        body {
+            margin: 0px;
+            padding: 0px;
+            font-family:'Malgun Gothic' ;
+            -webkit-text-size-adjust:100%;
+            -webkit-touch-callout: none;
+          }
+      
+   .m-jbMenu{
+          background:white;
+          width:100%;
+          padding:30px; 
+          font-size:80px;
+          font-family:'Do Hyeon'; 
+          border-bottom:1px solid gray; 
+          z-index:3;
+          text-align:center;
+}
+.m-jbFixed {
+            position: fixed;
+            top: 0px;
+          }
+          
+.m-title{
+	   	 color:orange;
+	   	 text-decoration: none;
+	}
+	
+	.m-back{	
+	   	 position:absolute;
+	   	 left:0%; 
+	   	 color:#A6A6A6;
+	   	 padding:0px 50px;
+	}
+</style>
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
     <script>
-   
-    	
-    	
+    
+    $(window).bind("pageshow", function(event) {
+    	$('.m-page-transit').fadeOut(200);
+    	if( event.originalEvent && event.originalEvent.persisted) {// BFCahe
+           		window.location.reload();
+       	}
+    });
+ 
+  
 $(document).ready(function(){
 	 var ex = "<c:out value="${ERRORMSG}" />"
 	    if(ex !="")
@@ -126,11 +176,20 @@ $(document).ready(function(){
     }
     	
     
-
+    
+   
     </script>
 
 </head>
 <body>
+<header class="m-header">
+  
+    <div class="m-jbMenu">
+    <span class="m-back">&lt;</span>
+ 		<a href="./" class="m-title">콕사부</a>
+ 	</div>
+ 	
+</header>
     <sec:authorize access="isAuthenticated()">
 		<script>
 		window.location="./";
@@ -157,6 +216,60 @@ $(document).ready(function(){
         <div id="emailPassFind">아이디/비밀번호 찾기</div>
   </div>
   </section>    
+  
+<div class="m-page-transit" style="text-align:center;width:100%;position:fixed;left:0px;top:0px;background: white; height:100%;z-index:10;">
+    <img src="<c:url value="/resources/img/Spin-1s-124px.svg" />"  style="margin-top:50%;"/>
+</div>
+
+      <script>
+      var jbOffset = $('.m-jbMenu').offset(); //상단메뉴 좌표 가져오는 코드
+      $( window ).scroll( function() {        
+           if ( $( document ).scrollTop() > jbOffset.top ) { //scrollTop() 요청한 스크롤바의 수직위치 반환
+             $( '.m-jbMenu' ).addClass( 'm-jbFixed' );
+           }
+           else {
+             $( '.m-jbMenu' ).removeClass( 'm-jbFixed' );
+           }
+         });
+      var linkLocation="";
+      $(document).on("click","a",function(event){
+    		//datepicker에서는 효과 미적용
+    		if($(this).hasClass("ui-corner-all")){
+    			return;
+    		}
+    		var broswerInfo = navigator.userAgent;
+    		//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+    		if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+    			event.preventDefault();
+    	        linkLocation = this.href;
+    	        if($(this).attr("href")!="#"){
+    	        	$('.m-page-transit').fadeIn(100);
+    	            setTimeout(function(){redirectPage()}, 100);
+    	        }
+    		}
+    	});
       
+      $(document).on("click", '.m-back', function(){
+    		var broswerInfo = navigator.userAgent;
+    		//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+    		if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+    			var referpage = document.referrer;
+    	        		$('.m-page-transit').fadeIn(200);
+    			if(referpage==''){
+    				setTimeout(function(){$('.m-page-transit').hide();location.href = './';}, 200);
+    			}else{			
+    				setTimeout(function(){$('.m-page-transit').hide();history.back();}, 200);
+    			}
+    		//웹뷰 아닌 그냥 모바일
+    		}else{
+    			var referpage = document.referrer;
+    			if(referpage==''){
+    				location.href = './';
+    			}else{
+    				history.back();
+    			}
+    		}
+    	});
+      </script>
 </body>
 </html>

@@ -35,21 +35,26 @@
 			margin-bottom:10px;
 		}
 	
+	#subcate-div{
+			width:100%;
+			overflow:hidden;
+			white-space:nowrap;
+			text-overflow:ellipsis;
+	}
 		#subcate{
 			font-size:30px;
 			color: dimgray;
 			font-family:'JejuGothic';
 			margin-bottom:15px;
 			font-weight:bolder;
-		
 		}
 	
 	#locale{
 			font-size:25px;
 			font-family:'JejuGothic';
-			color:gray;
+			color:#4C4C4C;
 			margin-bottom:10px;
-			width:198px;
+			width:100%;
 			overflow:hidden;
 			white-space:nowrap;
 			text-overflow:ellipsis;
@@ -73,13 +78,14 @@
 	.apply-table{
 		width:100%;
 		margin:10px auto;
-		padding:30px;
+		
 	}
 	
 	.apply-table td{
-		padding:30px;
+		width:30%;
+		padding:20px;
 		min-height:30px;
-		font-size:24px;
+		font-size:30px;
 		color: black;
 		text-align:center;
 		border-right:0.2px solid lightgray;
@@ -116,7 +122,7 @@ width:100%;
  		
  		<c:choose>
  		<c:when test="${bool}">
- 			<div style="font-size:30px; font-family:'JejuGothic'; text-align:center;margin-top:50px;line-height:150%;">
+ 			<div style="font-size:30px; font-family:'JejuGothic'; text-align:center;margin-top:50px;line-height:150%;padding:50px 0px;">
  			현재 수업 요청 내역이 없습니다.<br/>
  			선생님을 찾고 계신다면 <a href="./apply" style="text-decoration:none; color:rgb(226, 193, 6); font-size:30px">[수업요청]</a> 을 해보세요.
  			</div>
@@ -139,37 +145,37 @@ width:100%;
 		<div style="padding:0px;font-family:'JejuGothic';;">
 		<div id ="name" class="name">${apply.name}</div>
 		<div id="grade">${apply.grade}</div>
-		<div style="margin-bottom:10px;"><span id="subcate">${apply.subcate}</span></div>
+		<div id="subcate-div" style="margin-bottom:10px;"><span id="subcate">${apply.subcate}</span></div>
 		<div id="locale">${apply.locale} ${apply.locale3}</div>
 		<div id="price">희망가격 <span style="color: dimgray;font-size:30px;font-weight:bold">${apply.price1} ~ ${apply.price2}</span></div>
 		
 		
 		<!-- 컬러박스 -->
-		<div class="apply-read" style="display: none;">
+		<div class="apply-read" style="display:none;">
 			<div style="width:100%; min-height:250px; font-family:'JejuGothic';color:dimgray;background:rgb(252, 251, 251);">
 				
-				<div style="width:100%; background:rgb(241, 241, 239);padding:10px;">
-					<div style="margin:10px 0px; font-size:25px; text-align:center">${apply.name}(${apply.sexual})</div>
-					<div style="margin:10px 0px;color:orange; font-size:28px;text-align:center">${apply.subcate}</div>
-					<div style=" margin:10px 0px 10px 0px; font-size:25px;font-weight:bolder; text-align:center"></div>
+				<div style="width:100%; background:rgb(241, 241, 239);padding:30px;">
+					<div style="margin:20px 0px; font-size:30px; text-align:center">${apply.name}(${apply.sexual})</div>
+					<div style="margin:20px 0px;color:orange; font-size:40px;text-align:center">${apply.subcate}</div>
+					<div style=" margin:20px 0px 10px 0px; font-size:30px;font-weight:bolder; text-align:center"></div>
 				</div>
-				<hr style=" border:0.5px solid lightgray; margin:auto"/> 
+				<hr style=" border:1px solid lightgray; margin:auto"/> 
 
-				<table class="apply-table" >
+				<table class="apply-table">
 				<tr>
-				<td>${apply.locale} ${apply.locale3 }</td>
+				<td style="word-break:keep-all;word-wrap:break-word;">${apply.locale} ${apply.locale3 }</td>
 				<td>${apply.day}</td>
-				<td>${apply.grade}<br/>
+				<td style="border:none;">${apply.grade}<br/>
 				</td>
 				</tr>
 				</table>
 				
-				<div style="width:100%;padding:30px;background:rgb(241, 241, 239);padding:10px;">
-				<div style=";margin:20px 0px 10px 0px; font-size:26px;font-weight:bolder; text-align:center">희망 가격 ${apply.price1} ~ ${apply.price2}</div>
-				<div style="margin:10px 0px 10px 0px; font-size:23px;font-weight:bolder; text-align:center">(${apply.month}, 회당 ${apply.gawetime} )</div>
+				<div style="width:100%; background:rgb(241, 241, 239);padding:10px;">
+				<div style="margin:20px 0px 10px 0px; font-size:30px;font-weight:bolder; text-align:center">희망 가격 ${apply.price1} ~ ${apply.price2}</div>
+				<div style="margin:10px 0px 10px 0px; font-size:30px;font-weight:bolder; text-align:center">(${apply.month}, 회당 ${apply.gawetime} )</div>
 				</div>
 				
-				<div style="padding:30px;font-size:20px; color:orange;line-height:150%;">${apply.message}</div>
+				<div style="padding:40px; color:orange;line-height:150%;font-size:30px;">${apply.message}</div>
 				
 				<div style="text-align:center;padding:30px;">
 				<span class="applybtn" style="border-radius:5px; padding:15px; color:white;background:dimgray; font-size:30px; cursor:pointer" >
@@ -181,13 +187,13 @@ width:100%;
 		</div>
 	</div>
 	</div>
- 		<div style="text-align:right;padding-right:10px;font-size:30px;margin-right:30px;">
+ 		<div style="text-align:right;padding-right:10px;font-size:35px;margin-right:30px;">
  		
- 			<span class="applybtn" style="margin-right:25px;font-size:22px;border-radius:5px; padding:5px; color:white;background:dimgray; cursor:pointer" >
+ 			<span class="applybtn" style="margin-right:25px;font-size:30px;border-radius:5px; padding:5px; color:white;background:dimgray; cursor:pointer" >
 				<a href="./teacherForm?id=${apply.id}"  style="text-decoration:none;color:white;">선생님 요청서 보기</a>
 			</span>
 		
-		<a class="delete" href="./myapply/delete?id=${apply.id}" style="text-decoration:none;"><span class="btn">삭제하기</span></a>
+		<a class="delete" href="./myapply/delete?id=${apply.id}" style="text-decoration:none;"><span class="btn" style="font-size:30px;">삭제하기</span></a>
 		
 		</div>
  		
@@ -252,6 +258,7 @@ width:100%;
 	  
 	  $('.student').colorbox({
 	      inline:true,
+	      width:'80%',
 	      closeButton:false,
 	      overlayOpacity:0.5,
 	      onOpen:function(){

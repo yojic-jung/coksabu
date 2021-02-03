@@ -10,6 +10,7 @@ public class ApplyTeacher {
 	private String imgPath;
 	
 	private String name;
+	private String nickname;
 	private String birth;
 	private String universe;
 	private String univsub;
@@ -51,6 +52,13 @@ public class ApplyTeacher {
 		return name;
 	}
 
+	public void setNickname(String nickname) {
+		this.nickname=nickname;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	
 	public void setImgPath(String imgPath) {
 		this.imgPath= imgPath;
 	}

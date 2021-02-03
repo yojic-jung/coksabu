@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 
 import lesson.member.service.LoginCheckService;
 
+//테스트 완료
 public class LoginFailureHandler implements AuthenticationFailureHandler {
     
     private String loginidname;

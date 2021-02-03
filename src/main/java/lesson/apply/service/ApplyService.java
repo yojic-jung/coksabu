@@ -28,6 +28,7 @@ public class ApplyService {
 		if(changeStatus==0) {
 			return "none";
 		}
+		//바꾸면 안됨, 링크에 사용할 id값
 		return String.valueOf(apply.getId());
 		
 	}

@@ -19,49 +19,58 @@ public class CertifyService {
 		this.memberDao = memberDao;
 	}
 	
-	public int certify(CertifyDB cer) {
-		String imgPath =  memberDao.tekeCertify(cer.getEmail());
-			if(!imgPath.equals("") && !cer.getCertifyimg().equals("")) {
-				cer.setCertifyimg(imgPath.concat("*"+cer.getCertifyimg()));
-				return memberDao.updateImgUpload(cer);
-			}else if(imgPath.equals("") && !cer.getCertifyimg().equals("")) {
-				return memberDao.updateImgUpload(cer);
-			}else if(!imgPath.equals("") && cer.getCertifyimg().equals("")) {
-				return memberDao.updateCertify(cer.getEmail());
+	@Transactional(rollbackFor= {Exception.class})
+	public int certify(CertifyDB cer, String path) {
+		CertifyDB existVal =  memberDao.tekeCertify(cer.getEmail());
+		
+		
+		//신분증 이미지가 이미 등록되어있을때
+		if(existVal.getCertifyimg1() != null) {
+			//신분증 이미지 새로 등록하지 않는 경우
+			if(cer.getCertifyimg1() == null) {
+				//기존 이미지로 등록
+				cer.setCertifyimg1(existVal.getCertifyimg1());
+			//이미지 새로 등록할 경우 그 전 이미지 삭제
 			}else {
-				return -1;
+				File file = new File(path+"/"+existVal.getCertifyimg1());
+				file.delete();
 			}
-			
+		}
+		
+		
+		//대학증명서 이미지가 등록되어있을때
+		if(existVal.getCertifyimg2()!=null) {
+			//대학증명서 이미지 새로 등록하지 않는 경우
+			if(cer.getCertifyimg2()== null) {
+				//기존 이미지로 등록
+				cer.setCertifyimg2(existVal.getCertifyimg2());
+				//이미지 새로 등록할 경우 그 전 이미지 삭제
+			}else {
+				File file = new File(path+"/"+existVal.getCertifyimg2());
+				file.delete();
+			}
+		}
+		
+		//대학원증명서 이미지가 등록되어있을때
+		if(existVal.getCertifyimg3()!=null) {
+			//대학원증명서 이미지 새로 등록하지 않는 경우
+			if(cer.getCertifyimg3()== null) {
+				//기존 이미지로 등록
+				cer.setCertifyimg3(existVal.getCertifyimg3());
+			//이미지 새로 등록할 경우 그 전 이미지 삭제
+			}else {
+				File file = new File(path+"/"+existVal.getCertifyimg3());
+				file.delete();
+			}
+						
+		}
+		
+		return memberDao.updateImgCertify(cer);
 	}
 	
-	@Transactional(rollbackFor= {Exception.class})
-	public void delImgPath(String name, String email, String path) {
-		File file = new File(path+"/"+name);
-		file.delete();
-		
-		String imgPath = memberDao.tekeCertify(email);
-		logger.info(imgPath);
-		String img[] = imgPath.split("\\*");
-		
-		String newName="";
-		for(int i=0; i<img.length; i++) {
-			if(!img[i].equals(name)) {
-				newName = newName.concat(img[i]+"*");
-			}
-		}
-		if(newName.length()!=0) {
-			newName = newName.substring(0, newName.length()-1);
-		}
-		logger.info(newName);
-		CertifyDB db = new CertifyDB();
-		db.setCertifyimg(newName);
-		db.setEmail(email);
-		memberDao.updateImgUpload(db);
-		
-	}
 	
 	//통과
-	public String tekeCertify(String email) {
+	public CertifyDB tekeCertify(String email) {
 		return memberDao.tekeCertify(email);
 	}
 	

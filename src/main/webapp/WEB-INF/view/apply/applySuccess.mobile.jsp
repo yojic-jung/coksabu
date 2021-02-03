@@ -5,7 +5,6 @@
 <head>
 <title>요청완료 콕사부</title>
  <meta name="description" content="수업 요청 완료" />
- <link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
     <style>
     html, body, section{ height:100%; overflow:hidden }
     
@@ -36,7 +35,7 @@ $(document).ready(function(){
             <div style="font-size:35px;font-family:'JejuGothic';line-height:180%;">
             	"수업요청"이 완료 되었습니다.<br/><br/>
                 [마이페이지] [수업요청내역] 페이지에서 <br/>
-                나의 수업 요청 내역을 확인할 수 있습니다.  <br/> <br/>
+                선생님 지원서 내역을 확인할 수 있습니다. <br/> <br/>
                 
                 <a href="./mypage" style="color:orange;font-weight:bolder;cursor:pointer;font-size:40px;">요청내역 확인하기</a> <br/>
                 

@@ -17,7 +17,7 @@ public interface BoardDao {
 	
 	public String takeRepresent(HashMap<String, Object> map);
 	
-	public ImgFileName takeImgName(String id);
+	public ImgFileName takeImgName(int id);
 	
 	public String readEmail(String id);
 	
@@ -90,4 +90,5 @@ public interface BoardDao {
 	public int giveVisibleZero(String postId);
 	
 	public int addDelWatinglist(HashMap<String, Object> map);
+	
 }

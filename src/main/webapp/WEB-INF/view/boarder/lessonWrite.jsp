@@ -187,7 +187,6 @@
                   
 
                   <form:form commandName="card" method="post" enctype="multipart/form-data"  onSubmit="return checkLesson(this)">
-					<input name="id" type="hidden" value="${lesson.id}"/>
 					<input name="email" type="hidden" value="<%= (String)session.getAttribute("email") %>"/>
                   <!-- 선생님 소개 -->
                     <div class="teacher-intr" >
@@ -218,9 +217,8 @@
                         			<select style="font-size:15px;padding:7px;height:40px; width:130px;">
                         	 	 		<option>초등수학</option>
                         	  			<option>중등수학</option>
-                     	 	 			<option>고등수학</option>
+                        	  			<option>고등수학</option>
                       	   	  			<option>문과수학</option>
-                     	     			<option>고등수학</option>
                           	  			<option>이과수학</option>
                           	  			<option>수학논술</option>
                           	  			<option>수학경시</option>
@@ -233,7 +231,6 @@
                         	  			<option>중등수학</option>
                      	 	 			<option>고등수학</option>
                       	   	  			<option>문과수학</option>
-                     	     			<option>고등수학</option>
                           	  			<option>이과수학</option>
                           	  			<option>수학논술</option>
                           	  			<option>수학경시</option>
@@ -246,7 +243,6 @@
                         	  			<option>중등수학</option>
                      	 	 			<option>고등수학</option>
                       	   	  			<option>문과수학</option>
-                     	     			<option>고등수학</option>
                           	  			<option>이과수학</option>
                           	  			<option>수학논술</option>
                           	  			<option>수학경시</option>
@@ -333,7 +329,15 @@
                         	  		<option>초등사회</option>
                         	  		<option>중등사회</option>
                      	 	  		<option>고등사회</option>
-                      	   	  		<option>사회탐구</option>
+                      	   	  		<option>생활과윤리</option>
+                     	      		<option>사회문화</option>
+                     	      		<option>한국지리</option>
+                     	      		<option>세계지리</option>
+                     	      		<option>윤리와사상</option>
+                     	      		<option>동아시아사</option>
+                     	      		<option>법과정치</option>
+                     	      		<option>세계사</option>
+                     	      		<option>경제</option>
                      	      		<option>한국사</option>
                         		</select>
                         		</td>
@@ -343,7 +347,15 @@
                         	  		<option>초등사회</option>
                         	  		<option>중등사회</option>
                      	 	  		<option>고등사회</option>
-                      	   	  		<option>사회탐구</option>
+                      	   	  		<option>생활과윤리</option>
+                     	      		<option>사회문화</option>
+                     	      		<option>한국지리</option>
+                     	      		<option>세계지리</option>
+                     	      		<option>윤리와사상</option>
+                     	      		<option>동아시아사</option>
+                     	      		<option>법과정치</option>
+                     	      		<option>세계사</option>
+                     	      		<option>경제</option>
                      	      		<option>한국사</option>
                         		</select>
                         		</td>
@@ -353,7 +365,15 @@
                         	  		<option>초등사회</option>
                         	  		<option>중등사회</option>
                      	 	  		<option>고등사회</option>
-                      	   	  		<option>사회탐구</option>
+									<option>생활과윤리</option>
+                     	      		<option>사회문화</option>
+                     	      		<option>한국지리</option>
+                     	      		<option>세계지리</option>
+                     	      		<option>윤리와사상</option>
+                     	      		<option>동아시아사</option>
+                     	      		<option>법과정치</option>
+                     	      		<option>세계사</option>
+                     	      		<option>경제</option>
                      	      		<option>한국사</option>
                         		</select>
                         		</td>
@@ -367,8 +387,12 @@
                      	 	  		<option>고등과학</option>
                       	   	  		<option>물리</option>
                      	      		<option>화학</option>
-                          	  		<option>생물</option>
+                          	  		<option>생명과학</option>
                           	  		<option>지구과학</option>
+                          	  		<option>물리2</option>
+                     	      		<option>화학2</option>
+                          	  		<option>생명과학2</option>
+                          	  		<option>지구과학2</option>
                         		</select>
                         		</td>
                         		<td>
@@ -379,8 +403,12 @@
                      	 	  		<option>고등과학</option>
                       	   	  		<option>물리</option>
                      	      		<option>화학</option>
-                          	  		<option>생물</option>
+                          	  		<option>생명과학</option>
                           	  		<option>지구과학</option>
+                          	  		<option>물리2</option>
+                     	      		<option>화학2</option>
+                          	  		<option>생명과학2</option>
+                          	  		<option>지구과학2</option>
                         		</select>
                         		</td>
                         		<td>
@@ -391,8 +419,12 @@
                      	 	  		<option>고등과학</option>
                       	   	  		<option>물리</option>
                      	      		<option>화학</option>
-                          	  		<option>생물</option>
+                          	  		<option>생명과학</option>
                           	  		<option>지구과학</option>
+                          	  		<option>물리2</option>
+                     	      		<option>화학2</option>
+                          	  		<option>생명과학2</option>
+                          	  		<option>지구과학2</option>
                         		</select>
                         		</td>
                         		</tr>
@@ -567,7 +599,8 @@
                     수업 형태<br/>
                    <span style="color:gray; font-size:18px; margin-top:10px;">
                    <label style="cursor:pointer"><input type="checkbox" name="gawe" value="개인 과외 가능" /> 개인 과외 가능 </label>&nbsp;
-                   <label style="cursor:pointer"><input type="checkbox" name="gawe" value="그룹 과외 가능" /> 그룹 과외 가능</label></span>
+                   <label style="cursor:pointer"><input type="checkbox" name="gawe" value="화상 과외 가능" /> 화상 과외 가능 </label>
+                   </span>
                    <br/><br/>
                    시범수업<br/>
                    <span style="color:gray; font-size:18px; margin-top:10px;">
@@ -632,7 +665,11 @@
                   <div class="teacher-intr" id="teacher-intr" >
                   <div>콕사부 정책</div>
                    <div style="font-size:15px; line-height:130%;margin:20px auto;;border:1px solid black; padding:10px;">
-                   콕사부의 수업 수수료는 25%이며 이를 제외한 75%는 선생님에게 전달됩니다.<br/>(수수료가 15만원이 넘게 발생되는 60만원 이상의 거래는 수수료를 15만원으로 일괄 적용합니다.)<br/> 서비스의 안전한 거래를 위하여 판매금을 서비스가 종료된 날짜를 기준으로 1-3일 후에 입금됨을 알립니다.(후불입금)
+                   콕사부의 중개 수수료는 수업비의 20%이며 이를 제외한 80%가 선생님에게 전달됩니다.<br/>(수수료는 수수료 이벤트와  같은 경우에 한시적으로 달라질 수 있음.)<br/>  서비스의 안전한 거래를 위하여 판매금을 서비스가 종료된 날짜를 기준으로 1-3일 후에 입금됨을 알립니다.(후불입금)
+                  </div>
+                  <div style="color:orange;font-size:15px;line-height:130%;margin:20px auto;">
+               현재 수수료 할인 이벤트를 진행하고 있습니다. <br/>
+		3월 31일까지 수수료 할인 이벤트를 진행하며 3월 31일 전에 결제된 수업에 대하여 중개 수수료가 20%가 아닌 10%로 적용됩니다. 
                   </div>
                   <div>취소 및 환불규정</div>
                   <div style="overflow:scroll;font-size:15px; line-height:130%;margin:20px auto;height:400px;border:1px solid black; padding:10px;">
@@ -744,7 +781,7 @@
                 	  	 if($('input:checkbox[name="day"]:checked').length == 0){
                          	alert("수업 가능 요일을 체크해주세요.");
                      	 }else if($('input:checkbox[name="gawe"]:checked').length == 0){
-                         	alert("개인과외, 그룹과외 가능여부를 체크해주세요.");
+                         	alert("개인과외, 화상과외 가능여부를 체크해주세요.");
                      	 }else if(lessonIntr.value.length<100){
                            alert('수업소개글을 최소 100글자 이상 작성해주세요.');
                          }else if(lessonIntr.value.length>500){
@@ -816,26 +853,34 @@
 
                   
               var a ='<select class="career-op1">';
-              for(var i=1990; i<2020; i++){
+              for(var i=1990; i<2022; i++){
                 a+='<option>'+i+'</option>';
               }
               a+='</select>';
 
               var b='<select class="career-op2">';
               for(var i=1; i<13; i++){
-                b +='<option>'+i+'</option>';
+            	  if(i<10){
+             		 b +='<option>'+0+i+'</option>';
+             	}else{
+             		 b +='<option>'+i+'</option>';
+             	}
               }
               b+='</select>';
 
               var c ='<select class="career-op3">';
-              for(var i=1990; i<2020; i++){
+              for(var i=1990; i<2022; i++){
                 c+='<option>'+i+'</option>';
               }
               c+='</select>';
 
               var d='<select class="career-op4">';
               for(var i=1; i<13; i++){
-                d +='<option>'+i+'</option>';
+            	  if(i<10){
+             		 d +='<option>'+0+i+'</option>';
+             	}else{
+             		 d +='<option>'+i+'</option>';
+             	}
               }
               d+='</select>';
               
@@ -1141,7 +1186,7 @@
            	 }
              
              if($('input:checkbox[name="gawe"]:checked').length == 0){
-               	alert("[수업정보]페이지의 개인과외, 그룹과외 가능여부를 체크해주세요.");
+               	alert("[수업정보]페이지의 개인과외, 화상과외 가능여부를 체크해주세요.");
             	$('.menu td').eq(2).trigger('click');
            	  	return false;
            	 }

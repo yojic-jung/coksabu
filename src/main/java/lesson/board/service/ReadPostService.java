@@ -1,9 +1,7 @@
 package lesson.board.service;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -49,12 +47,9 @@ public class ReadPostService {
 		 
 		 List<PostView> list2 = boardDao.listMain(list);
 		 
-		 for(Iterator<PostView> itr = list2.iterator(); itr.hasNext();) {
-				PostView post = itr.next();
-				post.setPrice3(NumberFormat.getInstance().format(Integer.parseInt(post.getPrice3())));
-			}
 		 
 		 return list2;
 	}
+	
 		
 }

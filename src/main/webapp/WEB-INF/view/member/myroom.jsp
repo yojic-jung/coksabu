@@ -73,14 +73,12 @@ body {
 <div class="subheading">내 계정 <a href="./usersetting" style="text-decoration:underline">정보수정하기</a></div>
 <div class="headline">고객메뉴</div>
 <div class="subheading"><a href="./purchaselist">&gt; 구매목록</a></div>
-<div class="subheading"><a href="./proposalpurchase">&gt; 거래제안서(구매)</a></div>
 <div class="subheading"><a href="./mypage">&gt; 수업요청내역</a></div>
 <div class="subheading"><a href="./wishlist">&gt; 장바구니</a></div>
 <div class="headline">튜터메뉴</div>
 <div class="subheading"><a href="./lessoncertify">&gt; 인증정보</a></div>
 <div class="subheading"><a href="./tutorpage">&gt; 프로필/수업 관리</a></div>
 <div class="subheading"><a href="./saleslist">&gt; 판매목록</a></div>
-<div class="subheading"><a href="./proposalsell">&gt; 거래제안서(판매)</a></div>
 </div>
 
 

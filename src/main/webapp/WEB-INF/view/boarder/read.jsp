@@ -394,7 +394,7 @@
 					</table>
 				</div>
 				
-				<div style="margin:15px 0px;padding:10px;">콕사부 안내 : 제공하는 수업 외에도 채팅창에서 새로운 수업을 작성하여 거래할 수 있습니다.</div>
+				<div style="margin:15px 0px;padding:10px;">콕사부 안내 : 제공하는 수업 외에도  &#39;상담 하기&#39;를 통해 채팅창에서 새로운 수업을 작성하여 거래할 수 있습니다.</div>
 				
 				<div class="button">
 				<c:if test="${!empty lesson.title}">
@@ -415,7 +415,7 @@
 				
 				<div style="text-align:center;">
 				<br/><br/>
-				${pro.name}님 (${pro.birth})<br/>
+				<div style="margin-bottom:15px;">${pro.nickname}님 (${pro.birth}, ${pro.sexual})</div>
 					<img style="width:160px; height:160px;border-radius:80px;" src="<c:url value="/img/profileImg/${pro.imgPath}" />" alt="선생님 프로필 이미지"/><br/>
 				</div>
 				
@@ -455,6 +455,7 @@
     	   if(email==''){
         		  var a = confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?');
         		  if(a){
+        			  //형식상 lessonpurchase로 보내야 로그인페이지로 넘어감, 로그인 후에는 /boardread로 돌아옴
         			  window.location="./lessonPurchase?subCate="+subCateIdx+"&postId="+postId;
         			  return false;  
         		  }else{

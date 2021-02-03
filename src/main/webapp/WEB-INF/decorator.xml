@@ -9,6 +9,7 @@
 		<pattern>/applylist*</pattern>
 		<pattern>/lessonapply*</pattern>
 		<pattern>/companyInfo*</pattern>
+		<pattern>/useGuide*</pattern>
 		<pattern>/customer*</pattern>
 		<pattern>/qna*</pattern>
 		<pattern>/myqna*</pattern>
@@ -20,9 +21,6 @@
 		<pattern>/applysuccess*</pattern>
 	</decorator>
 	
-	<decorator name="messageLayout" page="message_decorator.jsp">
-		<pattern>/message*</pattern>
-	</decorator>
 	
 	<decorator name="mypageLayout" page="mypage_decorator.jsp">
 		<pattern>/mypage*</pattern>
@@ -52,18 +50,20 @@
 	
 	<decorator name="titleLayout" page="title_decorator.jsp">
 		<pattern>/signup*</pattern>
-		<pattern>/login*</pattern>
+		
 		<pattern>/private*</pattern>
 		<pattern>/service*</pattern>
 		<pattern>/emailPassFind*</pattern>
 		<pattern>/privateData*</pattern>
 	</decorator>
 	
-	
 	<decorator name="backLayout" page="back_decorator.jsp">
 		<pattern>/usersetting*</pattern>
 		<pattern>/passwordsetting*</pattern>
+		<pattern>/myaccountinfo*</pattern>
+		<pattern>/nicknameUpdate*</pattern>
 		<pattern>/secession*</pattern>
+		
 		<pattern>/certify*</pattern>
 		<pattern>/lessonWrite*</pattern>
 		<pattern>/update*</pattern>
@@ -73,6 +73,19 @@
 		<pattern>/profile*</pattern>
 		<pattern>/tutorprofile*</pattern>
 		<pattern>/myproposal*</pattern>
+		
+		<pattern>/orderInfo*</pattern>
+		<pattern>/proposalOrderInfo*</pattern>
+		<pattern>/sellerorderInfo*</pattern>
+		<pattern>/sellerProposalOrderInfo*</pattern>
+		<pattern>/buyerRefundCompleteInfo*</pattern>
+		<pattern>/sellerRefundCompleteInfo*</pattern>
+		<pattern>/buyerRefundCompletePro*</pattern>
+		<pattern>/sellerRefundCompletePro*</pattern>
+		<pattern>/refund*</pattern>
+		<pattern>/sellerrefundM*</pattern>
+		<pattern>/refundproposal*</pattern>
+		<pattern>/sellerRefundProM*</pattern>
 	</decorator>
 	
 	<decorator name="chatLayout" page="chat_decorator.jsp">
@@ -80,17 +93,21 @@
 		<pattern>/chatmyroom*</pattern>
 	</decorator>
 	
-	<decorator name="noneLayout" page="none_decorator.jsp">
-		<pattern>/purchaseSuccess*</pattern>
-		<pattern>/subCheckForm*</pattern>
-		<pattern>/orderInfo*</pattern>
-		<pattern>/sellerorderInfo*</pattern>
-		<pattern>/refund*</pattern>
-		<pattern>/refundM*</pattern>
-		<pattern>/sellerrefundM*</pattern>
-		<pattern>/buyerRefundCompleteInfo*</pattern>
-		<pattern>/sellerRefundCompleteInfo*</pattern>
+	
+	<!-- /message페이지는 웹소켓이 있어 모바일 데스크톱 환경 구분이 느려 데코레이터에는 아무 기능없고
+		 message.jsp와 message.mobile.jsp에 데스크톱용 모바일용 디자인과 기능 각각 구현  -->
+	<decorator page="message_decorator.jsp" name="messageLayout">
+		<pattern>/message*</pattern>
 	</decorator>
 	
+	<decorator name="noneLayout" page="none_decorator.jsp">
+		<!-- /login은 스프링 시큐리티의 로그인 처리 url인 /loginprocess가 데코레이터 안 걸려 
+			/login만 title_decorator의 내용을 login.jsp와 login.mobile.jsp에 직접 구현 -->
+		<pattern>/login*</pattern>
+		<pattern>/subCheckForm*</pattern>
+	</decorator>
+	
+	
+
 </decorators>
 

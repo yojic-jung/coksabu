@@ -22,6 +22,10 @@
 		select imgPath, universe, univsub from profile where email=#{email} 
 	</select>
 	
+	<select id="confirmCertify" resultType="Integer">
+		select count(*) from lessoncertify where email= #{email}
+	</select>
+	
 	<update id="updateCertify">
 	 	update profile set certify=0, certifydate=now() where email=#{email}
 	</update>
@@ -30,12 +34,8 @@
 	 	update members set membership=0 where email=#{email}
 	</update>
 	
-	<select id="confirmCertify" resultType="Integer">
-		select count(*) from lessoncertify where email= #{email}
-	</select>
-	
 	<insert id="signUp" parameterType="lesson.member.model.MemberInfo" >
-		insert into members (email, password, name, birth, phone, logindate, membership, enabled, authority, human_status, fail_count, fail_time, imgpath, push) values (#{email}, #{password}, #{name}, #{birth}, #{phone}, #{loginDate}, 0, 1, 'user', 0, 0, 0, 'pro.png', 'ON')
+		insert into members (email, password, name, nickname, birth, phone, logindate, membership, enabled, authority, human_status, fail_count, fail_time, imgpath, push) values (#{email}, #{password}, #{name}, #{name}, #{birth}, #{phone}, now(), 0, 1, 'user', 0, 0, 0, 'pro.png', 'ON')
 	</insert>
 	
 	<select id="checkImgPath" resultType="Integer">
@@ -59,17 +59,17 @@
 	<update id="updateProfile"  parameterType="lesson.member.model.TeacherDB">
 		update profile as A, members as B set A.imgpath=#{imgPath}, A.locales=#{locales}, A.sexual=#{sexual}, A.universe=#{universe}, 
 		A.univsub=#{univsub}, A.universer=#{universer}, A.career=#{career} , A.academy=#{academy}, A.academyd = #{academyd},
-		 nation=#{nation}, A.nationy=#{nationy}, A.toeic=#{toeic}, A.tofle=#{tofle}, A.teps=#{teps}, A.hsk=#{hsk}, A.jpt=#{jpt}, 
+		A.nation=#{nation}, A.nationy=#{nationy}, A.toeic=#{toeic}, A.tofle=#{tofle}, A.teps=#{teps}, A.hsk=#{hsk}, A.jpt=#{jpt}, 
 		 A.singular=#{singular}, B.imgpath=#{imgPath} where A.email=#{email} and B.email=#{email}
 	</update>
 	
 	<select id="takeProfile" resultType="lesson.member.model.Profile" >
-		select A.name, A.birth ,B.imgpath, B.locales, B.universe, B.univsub, B.career, B.sexual, B.certify from members as A, profile as B where A.email =#{email} and B.email=#{email}
+		select A.nickname, A.birth ,B.imgpath, B.locales, B.universe, B.univsub, B.career, B.sexual, B.certify from members as A, profile as B where A.email =#{email} and B.email=#{email}
 	</select>
 	
 	<select id="takeProfileList" resultType="lesson.member.model.Profile" >
 		<foreach collection="list" item="item" separator="union all">
-			(select name, imgpath from members where email=#{item})
+			(select nickname, imgpath from members where email=#{item})
 		</foreach>
 	</select>
 
@@ -86,16 +86,16 @@
 		select count(*) from universe where universe like concat('%',#{universe},'%')
 	</select>
 	
-	<update id="updateImgUpload" parameterType="lesson.member.model.CertifyDB" >
-		update profile set certifyimg=#{certifyimg}, certify=0, certifydate=now() where email=#{email}
+	<update id="updateImgCertify" parameterType="lesson.member.model.CertifyDB" >
+		update profile set certifyimg1=#{certifyimg1}, certifyimg2=#{certifyimg2}, certifyimg3=#{certifyimg3}, certify=3, certifydate=now() where email=#{email}
 	</update>
 	
-	<select id="tekeCertify" resultType="String">
-		select certifyimg from profile where email=#{email}
+	<select id="tekeCertify" resultType="lesson.member.model.CertifyDB">
+		select email, certify, certifyimg1, certifyimg2, certifyimg3 from profile where email=#{email}
 	</select>
 	
 	<select id="readMemberInfo" resultType="lesson.member.model.MemberInfo" >
-		select email, name, birth, phone from members where email=#{email}
+		select email, name, birth, phone, nickname from members where email=#{email}
 	</select>
 	
 	<update id="updatePhone" parameterType="lesson.member.model.MemberInfo" >
@@ -123,15 +123,12 @@
 	</select>
 	
 	<insert id="insertLessonCertify" parameterType="lesson.member.model.LessonCertify" >
-		insert into lessoncertify (name, account, accountNumber, serviceAgree, myAgree, email) values (#{name}, #{account}, #{accountNumber}, #{serviceAgree}, #{myAgree}, #{email} )
+		insert into lessoncertify (name, serviceAgree, myAgree, email) values (#{name}, #{serviceAgree}, #{myAgree}, #{email} )
 	</insert>
 	
-	<update id="updateLessonCertify" parameterType="lesson.member.model.LessonCertify" >
-		update lessoncertify set account=#{account}, accountNumber=#{accountNumber} where email = #{email}
-	</update>
 	
 	<select id="readLessonCertify" resultType="lesson.member.model.LessonCertify" >
-		select name, account, accountnumber, serviceagree, myagree from lessoncertify where email=#{email}
+		select name, serviceagree, myagree from lessoncertify where email=#{email}
 	</select>
 	
 	<select id="readName" resultType="String" >
@@ -190,6 +187,10 @@
 		update members set fail_time = date_add(now(), interval 15 minute) where email=#{email}
 	</update>
 	
+	<update id="deleteAndroidToken">
+		update members set token=null where token=#{token}
+	</update>
+	
 	<update id="registerAndroidToken">
 		update members set token=#{token} where email=#{email}
 	</update>
@@ -197,5 +198,29 @@
 	<select id="takeUnReadCount" resultType="int">
 		select count(*) from message where message_receiver=#{email} and message_read=1
 	</select>
+
+	<select id="takeNickName" resultType="String">
+		select nickname from members where email=#{email}
+	</select>
+	
+	<update id="updateNickName">
+		update members set nickname=#{nickname} where email=#{email}
+	</update>
+	
+	<select id="takePurchaseCount" resultType="Integer">
+		select count(*) from purchasehistory where selleremail=#{email} or buyeremail=#{email}
+	</select>
+	
+	<select id="takeChatTranCount" resultType="Integer">
+		select count(*) from chat_transaction where seller like concat('%',#{email},'%') or buyer like concat('%',#{email},'%')
+	</select>
+	
+	<select id="takeMyAccount" resultType="lesson.member.model.MyAccount">
+		select name, account, accountnumber from members where email=#{email}
+	</select>
+	
+	<update id="updateMyAccount" parameterType="lesson.member.model.MyAccount">
+		update members set account=#{account}, accountnumber=#{accountNumber} where email=#{email}
+	</update>
 	
 </mapper>

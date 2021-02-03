@@ -8,15 +8,28 @@
 <meta charset="utf-8">
 <style>
 .div-title{
-            width:800px; margin:auto; padding:30px 0px 20px 10px;
+            width:800px; margin:auto;
              font-family:'JejuGothic'; color:rgb(97, 96, 96);
+             font-size:16px;
         }
-.table-title{
-		padding:10px;
-		text-align:center;
-		border-bottom:1px solid orange;
-		font-weight:bolder;
-		margin-bottom:30px;
+.div-title{
+            width:800px; margin:auto;
+             font-family:'JejuGothic'; color:rgb(97, 96, 96);
+             font-size:16px;
+        }
+.inner-main{
+			display:inline-block;
+			background:white;
+			padding:20px;
+			border-radius: 10px 10px 0px 0px;
+			border:2px solid gray;
+			border-bottom:2px solid white;
+}
+.inner-sub{
+			display:inline-block;
+			background:white;
+			padding:20px;
+			border-radius: 10px 10px 0px 0px;
 }
 .td-stl{
 		font-weight:bolder;
@@ -55,9 +68,19 @@ border:1px solid gray; width:120px; padding:5px 0px; text-align:center; margin:1
 </head>
 <body>
  <div style="background:rgb(233, 232, 232); padding:30px;min-height:300px;">
- <div class="div-title">거래 제안서</div>
- <div style="width:800px; background:white;min-height:400px; margin: auto; padding:20px;">
-	<div class="table-title" >거래제안서를 통해 구매한 내역이 공개됩니다.</div>
+ <div class="div-title">
+  <div class="div-title-inner">
+
+	<div class="inner-sub">
+  <a href="/purchaselist" style="color: gray;text-decoration:none;">일반거래 구매내역</a>
+  </div>
+  <div class="inner-main">
+  <a href="/proposalpurchase" style="color:black;font-weight:bolder;font-size:18px;">거래제안서 구매내역</a>
+  </div>
+
+  </div>
+ </div>
+ <div style="width:800px; background:white;min-height:400px; margin: auto; padding:20px;border:2px solid gray;">
 	<div style="margin-bottom:20px;">
 	<form method="post" onSubmit="return checkForm(this)">
  	<div style="position:relative;width:700px; margin:auto;">
@@ -88,14 +111,14 @@ border:1px solid gray; width:120px; padding:5px 0px; text-align:center; margin:1
 	
 	
 	
-	<table id="proposal-table" style="border-spacing:0px 20px;width:100%;font-size:17px;">
+	<table id="proposal-table" style="border-spacing:0px 15px;width:100%;font-size:14px;">
 	<c:forEach var="list" items="${purchase}">
 	
 	<tr>
 		<td rowspan="4" style="text-align:center;font-size:18px;width:20%;font-family: 'JejuGothic';color:orange">${list.orderstatus }</td>
 		<td colspan="4"></td>
 		<td rowspan="4" style="width:20%;" >
-<div class="orderInfo proposal-show"><span class="proposal-show">제안서 보기</span><span class="proposal-id">${list.id}</span></div>
+<div class="orderInfo"><span class="proposal-show">제안서 보기</span><span class="proposal-id">${list.id}</span></div>
 		<div class="proposalOrderInfo">주문정보<span class="orderId">${list.id}</span></div>
 		
 		<c:choose>
@@ -118,7 +141,7 @@ border:1px solid gray; width:120px; padding:5px 0px; text-align:center; margin:1
 	</tr>
 	
 	<tr>
-		<td class="td-stl">판매자</td><td>${list.seller }</td><td class="td-stl">주문날짜</td><td>${list.purchase_dayS }</td>
+		<td class="td-stl">판매자 닉네임</td><td>${list.seller }</td><td class="td-stl">주문날짜</td><td>${list.purchase_dayS }</td>
 	</tr>
 	<tr>
 		<td class="td-stl">서비스</td><td>${list.cate }</td><td class="td-stl">가격</td><td>${list.price }</td>
@@ -142,7 +165,7 @@ border:1px solid gray; width:120px; padding:5px 0px; text-align:center; margin:1
 <script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
         <script>
         $(document).ready(function(){
-        	  $('.my2').css('color','orange');
+        	  $('.my1').css('color','orange');
         	  var orderStatus = "<c:out value="${orderStatus}" />";
         	  if(orderStatus !=""){
     				$('#orderStatus').val(orderStatus).prop('selected', true);
@@ -181,13 +204,17 @@ border:1px solid gray; width:120px; padding:5px 0px; text-align:center; margin:1
         $(document).on('click','.refund-complete',function(){
         	var orderId= $(this).closest("td").find('.orderId').text();
         	window.open("./buyerRefundCompletePro?orderid="+orderId, "purchaselist", "width=500,height=500");
-            });
+        });
+        
+        
         
         $(document).on('click','.proposal-show',function(){
         	
         	var proposal_id = $(this).closest("div").find('.proposal-id').text();
         	window.open("./myproposal?id="+proposal_id, "", "width=800,height=600");
-            });
+        });
+        
+        
         
         $(document).on('click','#testDatepicker',function(){
         	var ago = $( "#testDatepicker" ).val();
@@ -199,7 +226,7 @@ border:1px solid gray; width:120px; padding:5px 0px; text-align:center; margin:1
         		  return false;
         	  }
         	  
-            });
+        });
         
           $(function() {
         	    $( "#testDatepicker" ).datepicker({
@@ -229,7 +256,7 @@ border:1px solid gray; width:120px; padding:5px 0px; text-align:center; margin:1
         	   		$( "#testDatepicker" ).val(dates[0]+'.'+dates[1]+'.'+dates[2] );
         	   	}else{
         	   		var d =  new Date();
-            	    $( "#testDatepicker" ).datepicker( "setDate", new Date(d.getFullYear(), d.getMonth(), d.getDate()-14) );
+            	    $( "#testDatepicker" ).datepicker( "setDate", new Date(d.getFullYear()-2, d.getMonth(), d.getDate()) );
 
         	   	}
         	   

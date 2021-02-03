@@ -30,8 +30,6 @@ public class DealPurchaseService {
 			PurchaseHistory purchase = itr.next();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 			purchase.setOrderDateJ(sdf.format(purchase.getOrderDate()));
-			purchase.setStartDateS(sdf.format(purchase.getStartDate()));
-			purchase.setEndDateS(sdf.format(purchase.getEndDate()));
 		}
 		
 		
@@ -58,8 +56,6 @@ public List<PurchaseHistory> myPurchaseList2(PurchaseListSearch search, String e
 			PurchaseHistory purchase = itr.next();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 			purchase.setOrderDateJ(sdf.format(purchase.getOrderDate()));
-			purchase.setStartDateS(sdf.format(purchase.getStartDate()));
-			purchase.setEndDateS(sdf.format(purchase.getEndDate()));
 		}
 		
 		return list;
@@ -69,12 +65,13 @@ public int wishlist(String email, String postId) {
 	HashMap<String, Object> map = new HashMap<>();
 	map.put("email", email);
 	map.put("postId", postId);
-	int count = dealDao.confirmWishList(email);
+	
 	int wish = dealDao.takeWish(map);
 	
 	if(wish==1) {
 		return 1;
 	}else {
+		int count = dealDao.confirmWishList(email);
 		if(count==8) {
 			return count;
 		}else {
@@ -100,6 +97,8 @@ public List<PostView> myWishList(String email){
 		 for(Iterator<PostView> itr = list.iterator(); itr.hasNext();) {
 				PostView post = itr.next();
 				post.setPrice3(NumberFormat.getInstance().format(Integer.parseInt(post.getPrice3())));
+				post.setOpt1price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt1price3())));
+				post.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt2price3())));
 			}
 		 
 		 return list;
@@ -113,6 +112,21 @@ public List<PostView> myWishList(String email){
 		map.put("email", email);
 		
 		PurchaseHistory pur = dealDao.orderInfo(map);
+		pur.setSellerNickname(dealDao.takeNickname(pur.getSellerEmail()));
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+		pur.setOrderDateJ(sdf.format(pur.getOrderDate()));
+		pur.setStartDateS(sdf.format(pur.getStartDate()));
+		pur.setEndDateS(sdf.format(pur.getEndDate()));
+		return pur;
+	}
+	
+	public PurchaseHistory sellerOrderInfo(int orderId, String email) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("orderId", orderId);
+		map.put("email", email);
+		
+		PurchaseHistory pur = dealDao.orderInfo(map);
+		pur.setBuyerNickname(dealDao.takeNickname(pur.getBuyerEmail()));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 		pur.setOrderDateJ(sdf.format(pur.getOrderDate()));
 		pur.setStartDateS(sdf.format(pur.getStartDate()));
@@ -147,8 +161,7 @@ public List<PostView> myWishList(String email){
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("postId", postId);
 		map.put("email", email);
-		int wishId = dealDao.takeWishId(map);
-		return dealDao.deleteWish(wishId);
+		return dealDao.deleteWish(map);
 	}
 
 	public void testImgUpload(ImgUploadDB img) {

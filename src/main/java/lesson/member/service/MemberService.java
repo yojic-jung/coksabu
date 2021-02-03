@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lesson.member.dao.MemberDao;
 import lesson.member.model.MemberInfo;
+import lesson.member.model.MyAccount;
 import lesson.member.model.MyQnaList;
 import lesson.member.model.Password;
 import lesson.member.model.Qna;
@@ -31,7 +32,7 @@ public class MemberService {
 		this.passwordEncoder = passwordEncoder;
 	}
 	
-	public static final int COUNT_PER_PAGE = 2;
+	public static final int COUNT_PER_PAGE = 4;
 	
 	
 	//통과
@@ -39,6 +40,15 @@ public class MemberService {
 		return memberDao.readMemberInfo(email);
 	}
 	
+	//통과
+	public MyAccount takeMyAccount(String email) {
+		return memberDao.takeMyAccount(email);
+	}
+	
+	//통과
+	public int updateMyAccount(MyAccount account) {
+		return memberDao.updateMyAccount(account);
+	}
 	
 	//수정필요
 	public String updatePhone(MemberInfo member) {
@@ -67,7 +77,6 @@ public class MemberService {
 		}
 	}
 	
-	//수정필요
 	public int insertQna(Qna qna) {
 		qna.setDate(new Date());
 		return memberDao.insertQna(qna);
@@ -135,4 +144,24 @@ public class MemberService {
 		return memberDao.takeUnReadCount(email);
 	}
 	
+	public String takeNickName(String email) {
+		return memberDao.takeNickName(email);
+	}
+	
+	public int updateNickName(MemberInfo mem, String email) {
+		
+		int purchaseCount = memberDao.takePurchaseCount(email);
+		int chatTranCount = memberDao.takeChatTranCount(email);
+		
+		int count = purchaseCount + chatTranCount;
+		System.out.println(purchaseCount);
+		System.out.println(chatTranCount);
+		System.out.println(count);
+		
+		if(count>0) {
+			return -1;
+		}
+		
+		return memberDao.updateNickName(mem);
+	}
 }

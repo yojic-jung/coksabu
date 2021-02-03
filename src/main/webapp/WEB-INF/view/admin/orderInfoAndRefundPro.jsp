@@ -102,7 +102,14 @@
 	</tr>
 	<tr>
 		<td>신청내용</td>
-		<td style="white-space:pre;border:1px solid black;">${refund.refunddetail}</td>
+		<td style="border:1px solid black;">
+		진행한 수업 : ${refund.processCount}회<br/>
+		남아있는 수업횟수 : ${refund.remainCount}회<br/>
+		기타 환불신청내용 : <br/>
+		<div style="border:1px solid lightgray;line-height:150%;margin:10px;width:400px;height:150px;overflow:scroll;">${refund.content }</div>
+		핸드폰 번호 : ${refund.phone}<br/>
+		환불계좌 : ${refund.account }
+		</td>
 	</tr>
 </table>
 
@@ -168,7 +175,7 @@
 	</tr>
 	<tr>
 		<td>환불 신청내용</td>	
-		<td colspan="3"><textarea rows="20" cols="40" class="refunddetail" name="refundDetail">${refund.refunddetail}</textarea></td>
+		<td colspan="3"><textarea rows="20" cols="40" class="content" name="content">${refund.content}</textarea></td>
 	</tr>
 	
 	<tr style="display:none;">
@@ -232,7 +239,7 @@ function checkRefund(member){
 	var sellerAccount = $('.sellerAccount').val();
 	var buyerAccountHolder = $('.buyerAccountHolder').val();
 	var sellerAccountHolder = $('.sellerAccountHolder').val();
-	var refunddetail = $('.refundDetail').val();
+	var content = $('.content').val();
 	var fees = $('.fees').val();
 	var finalPrice = $('.finalPrice').val();
 	
@@ -279,8 +286,8 @@ function checkRefund(member){
 		alert("판매자 환불계좌 예금주를 입력해주세요.");
 		return false;
 	}
-	if(refunddetail.length>500 || refunddetail.lenth==0 ){
-		alert("환불신청내용을 입력해주세요.(500글자 미만)");
+	if(content.length>300 || content.lenth==0 ){
+		alert("환불신청내용을 입력해주세요.(300글자 미만)");
 		return false;
 	}
 	if(fees.length>6 || fees.lenth==0 ){

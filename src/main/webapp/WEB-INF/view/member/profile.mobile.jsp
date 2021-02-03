@@ -106,26 +106,6 @@
 </head>
 <body>
 <script>
-	
-	
-    var loc = "<c:out value="${locale}" />"
-    if(loc!=""){
-    	var locale = loc.split(",");
-    	
-    	
-    	$(document).ready(function(){
-    		
-    		$('.m-jbMenu').append("프로필 작성");
-    		
-    		for(var i=0; i<locale.length; i++){
-    			  $('.locale-box').append('<div class="my-btn">' 
-    	                 +locale[i]+' <button class="x-btn">삭제</button></div>');
-    	             $('.locale-box').append('<input name="locales" style="display:none;" class="my-locale" type="checkbox" value="'
-    	             +locale[i]+'" checked />');
-    		}
-    	});
-    }
-    
     var universe = "<c:out value="${pro.universe}" />";
     var universer = "<c:out value="${pro.universer}" />";
     var univsub = "<c:out value="${pro.univsub}" />";
@@ -146,7 +126,19 @@
     var sin = singular.split(",");
     
     $(document).ready(function(){
-    	    	
+    	$('.m-jbMenu').append("프로필 작성");
+    	
+    	 var loc = "<c:out value="${locale}" />"
+    	    if(loc!=""){
+    	    	var locale = loc.split(",");
+   	    		for(var i=0; i<locale.length; i++){
+   	    			  $('.locale-box').append('<div class="my-btn">' 
+    	    	                 +locale[i]+' <button class="x-btn">삭제</button></div>');
+      	              $('.locale-box').append('<input name="locales" style="display:none;" class="my-locale" type="checkbox" value="'
+    	    	             +locale[i]+'" checked />');
+    	    	}
+    	    }
+    	
     	$('#univid').val(universe);
     	$('#univsub').val(univsub);
     	if(universer != ""){
@@ -580,7 +572,7 @@
                     	<tr  id="subcheck" class="subcheck" style="display:none;">
                     	<td colspan="2">
                     	<div style="border:5px solid black;">
-                    				<iframe src="https://coksabu.com/subCheckForm" width="100%" height="900px" scrolling="no"></iframe>
+                    				<iframe src="https://m.coksabu.com/subCheckForm" width="100%" height="900px" scrolling="no"></iframe>
                     			</div>
                     	</td>
                     	</tr>
@@ -897,25 +889,6 @@
         	 alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
          }
          
-    	var maxSize  = 2048 * 1024    //2MB
-    	var fileSize = 0;
-
- 		// 브라우저 확인
- 		var browser=navigator.appName;
- 		// 익스플로러일 경우
- 		if (browser=="Microsoft Internet Explorer"){
- 			var oas = new ActiveXObject("Scripting.FileSystemObject");
- 			fileSize = oas.getFile( obj.value ).size;
- 		// 익스플로러가 아닐경우
- 		}else{
- 			fileSize = obj.files[0].size;
- 		}
-
-         if(fileSize > maxSize){
-             alert("첨부파일 사이즈는 2MB 이내로 등록 가능합니다.");
-             $('#img').val('');
-             return false;
-         }
     }            
       </script>
 </body>

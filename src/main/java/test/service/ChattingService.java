@@ -165,8 +165,8 @@ public class ChattingService {
 		return chatDao.takeChatEmail(a);
 	}
 	
-	public String takeName(String email) {
-		return chatDao.takeName(email);
+	public String takeNickname(String email) {
+		return chatDao.takeNickname(email);
 	}
 	
 	public String takeReceiverEmail(String id) {

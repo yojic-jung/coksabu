@@ -27,7 +27,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
-import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -45,7 +44,6 @@ import com.siot.IamportRestClient.response.IamportResponse;
 
 import DeviceSwitcher.DeviceSwitcherController;
 import Iamport.IamportClient;
-import fcm.dywlr.util.FcmUtil;
 import lesson.board.model.PostView;
 import lesson.board.service.ReadLessonService;
 import lesson.board.service.ReadPostService;
@@ -54,6 +52,7 @@ import lesson.member.model.CertifyDB;
 import lesson.member.model.EmailInfo;
 import lesson.member.model.LessonCertify;
 import lesson.member.model.MemberInfo;
+import lesson.member.model.MyAccount;
 import lesson.member.model.MyQnaList;
 import lesson.member.model.PassFind;
 import lesson.member.model.Password;
@@ -75,24 +74,51 @@ import lesson.member.service.WriteProfileService;
 @Controller
 public class MemberController extends DeviceSwitcherController {
 	
-	private static final  Logger logger = LoggerFactory.getLogger(MemberController.class);
+	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
-	//통과
+	
+	//테스트 완료
 	@RequestMapping("")
-	public String main(Model model, Device device)  throws Exception{
+	public String main(HttpSession session, Model model ) throws Exception{
+		
 		String configLocation = "classpath:applicationContext.xml";
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
 				configLocation);
 		ReadPostService readPostService = ctx.getBean("readPostService", ReadPostService.class );
 		
 		List<PostView> list = readPostService.listMain();
+		String email = (String)session.getAttribute("email");
+		
+		// 메세지 빨간불 구현
+		if(email!=null) {
+			MemberService memberService = ctx.getBean("memberService", MemberService.class );
+			int messageCount = memberService.takeUnreadMessageCount(email);
+			
+			String messageStatus;
+			if(messageCount==0) {
+				messageStatus="none";
+			}else {
+				messageStatus="exist";
+			}
+			
+			session.setAttribute("messageStatus", messageStatus);
+		}
+		
 		ctx.close();
 		model.addAttribute("list", list);
-		
 		return forward("main/index");
 	}
 	
 	
+	//테스트 완료
+	@RequestMapping("useGuide")
+	public String useGuide() throws Exception{
+		return forward("main/useGuide");
+	}
+		
+		
+	
+	//미진행
 	@RequestMapping("badgecount")
 	@ResponseBody
 	public Map<String, Integer> badgecount(HttpServletRequest request,HttpSession session) throws Exception{
@@ -110,7 +136,7 @@ public class MemberController extends DeviceSwitcherController {
 		return map;
 	}
 	
-	
+	//미진행
 	@RequestMapping("giveToAndroidValue")
 	@ResponseBody
 	public Map<String, String> giveToAndroid(@RequestBody byte buffers[],HttpServletRequest request,HttpSession session) throws Exception{
@@ -135,18 +161,8 @@ public class MemberController extends DeviceSwitcherController {
 		return map;
 	}
 	
-	@RequestMapping(value="topicsubscribe", method=RequestMethod.GET)
-	public @ResponseBody String topicsubscribe(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
-		String title = "주제구독";
-		String content = "스프링에서 푸시알림 성공";
-		
-		FcmUtil FcmUtil = new FcmUtil();
-		FcmUtil.send_FCMtopic(title, content);
-		
-		return "fcmtest";
-	}
 	
-	
+	//테스트 완료
 	@RequestMapping("myroom")
 	public String myroom( HttpSession session, Model model) {
 		String configLocation = "classpath:applicationContext.xml";
@@ -159,38 +175,40 @@ public class MemberController extends DeviceSwitcherController {
 		return forward("member/myroom");
 	}
 	
+	//테스트 완료
 	@RequestMapping("category")
 	public String category() {
 		return forward("member/category");
 	}
 	
-	//통과
+	//테스트 완료
 	@RequestMapping("404error")
 	public String error404() {
 		return forward("main/404error");
 	}
 	
-	//통과
+	//테스트 완료
 	@RequestMapping("400error")
 	public String error400() {
 		return forward("main/400error");
 	}
 	
 
-	//통과
+	//테스트 완료
 	@RequestMapping("error")
 	public String error() {
 		return forward("main/500error");
 	}
 
-	//통과
+	//테스트 완료
 	@RequestMapping(value="signup", method=RequestMethod.GET)
-	public String singUp(MemberInfo mem, Model model) {	
+	public String signUp(MemberInfo mem, Model model) {	
 		model.addAttribute("iamport", "imp48047014");
 		model.addAttribute("merchant_uid", "ORD20180131-0000011");
 		return forward("member/signup");
 	}
 	
+	//테스트 완료
 	@ResponseBody	
 	@RequestMapping(value="certifications/{imp_uid}", method=RequestMethod.POST)
 	public Object certifications(@PathVariable String imp_uid, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -210,7 +228,7 @@ public class MemberController extends DeviceSwitcherController {
 		return map;
 	}
 	
-	//통과
+	//테스트 완료
 	@RequestMapping(value="signup", method=RequestMethod.POST)
 	public String signUp2(MemberInfo mem,  Model model, HttpSession session, RedirectAttributes redirectAttributes) {
 		mem.setLoginDate(new Date());
@@ -228,7 +246,7 @@ public class MemberController extends DeviceSwitcherController {
 			model.addAttribute("merchant_uid", "ORD20180131-0000011");
 			return forward("member/signup");
 		}
-		String status = checkAndInsertService.singUp(mem);
+		String status = checkAndInsertService.signUp(mem);
 		ctx.close();
 		
 		
@@ -245,11 +263,13 @@ public class MemberController extends DeviceSwitcherController {
 			return forward("member/signup");
 		}else {
 			session.setAttribute("email", mem.getEmail());
-			return "redirect:/";
+			model.addAttribute("status", "success");
+			return forward("member/signup");
 		}
 	}
 	
-	//통과
+	
+	//테스트 완료
 	@RequestMapping(value="login")
 	public String login(HttpSession session, HttpServletRequest request) {
 		String referer = (String)request.getHeader("REFERER");
@@ -258,14 +278,14 @@ public class MemberController extends DeviceSwitcherController {
 	}
 	
 	
-	//통과
+	//테스트 완료
 	@RequestMapping("logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
 	}
 	
-	//통과
+	//테스트 완료
 	@RequestMapping(value="lessoncertify", method=RequestMethod.GET)
 	public String mycertify( Model model, HttpSession session) {
 		String configLocation = "classpath:applicationContext.xml";
@@ -278,7 +298,7 @@ public class MemberController extends DeviceSwitcherController {
 		return forward("member/lessoncertify");
 	}
 	
-	//통과
+	//테스트 완료
 	@RequestMapping(value="lessoncertify", method=RequestMethod.POST)
 	public String mycertify2(LessonCertify certify,HttpSession session, Model model) {
 		String configLocation = "classpath:applicationContext.xml";
@@ -292,11 +312,12 @@ public class MemberController extends DeviceSwitcherController {
 			return forward("member/lessoncertify");
 		}
 		ctx.close();
-		return forward("member/lessoncertifySuccess");
+		model.addAttribute("status", "success");
+		return forward("member/lessoncertify");
 	}
 	
 	
-	//통과
+	//테스트완료
 	@RequestMapping(value="profile", method=RequestMethod.GET)
 	public String profile(TeacherInfo tea, Model model,HttpSession session) {
 		String configLocation = "classpath:applicationContext.xml";
@@ -317,7 +338,7 @@ public class MemberController extends DeviceSwitcherController {
 	}
 	
 
-	//통과
+	//테스트완료
 	@RequestMapping(value = "profile",method=RequestMethod.POST)
 	public String profile2(TeacherInfo tea, Model model, HttpServletRequest request) throws IllegalStateException, IOException {
 	
@@ -334,7 +355,7 @@ public class MemberController extends DeviceSwitcherController {
 		return "redirect:/tutorpage";
 	}
 	
-	//통과
+	//미진행
 	@Transactional(rollbackFor= {Exception.class})
 	@RequestMapping(value="tutorpage")
 	public String tutorpage(Model model, HttpSession session) {
@@ -367,8 +388,7 @@ public class MemberController extends DeviceSwitcherController {
 		}
 		return forward("member/tutorpage");
 	}
-		
-	//통과
+	//테스트 완료
 	@RequestMapping(value="subCheckForm", method=RequestMethod.GET)
 	public String subCheckForm(HttpServletRequest request) throws UnsupportedEncodingException{
 		String pageNumberString = (String)request.getParameter("p");
@@ -410,7 +430,8 @@ public class MemberController extends DeviceSwitcherController {
 		request.setAttribute("univ", univinput);
 		return forward("member/SubCheckForm");
 	}
-	//통과
+	
+	//테스트 완료
 	@RequestMapping(value="subCheckForm", method=RequestMethod.POST)
 	public String subCheckForm2(@RequestParam("univinput")String univinput, HttpServletRequest request, Model model) {
 		int pageNumber =1;
@@ -443,7 +464,8 @@ public class MemberController extends DeviceSwitcherController {
 		return forward("member/SubCheckForm");
 	}
 
-	//통과
+	
+	//테스트 완료
 	@RequestMapping(value="certify", method=RequestMethod.GET)
 	public String certify(Model model, HttpSession session) {
 		String configLocation = "classpath:applicationContext.xml";
@@ -451,14 +473,17 @@ public class MemberController extends DeviceSwitcherController {
 				configLocation);
 		CertifyService certifyService = ctx.getBean("certifyService", CertifyService.class);
 		String email = (String)session.getAttribute("email");
-		String imgPath = certifyService.tekeCertify( email );
+		
+		//수정
+		CertifyDB cerDB = certifyService.tekeCertify( email );
+		
 		ctx.close();
 		model.addAttribute("email", email);
-		model.addAttribute("imgPath", imgPath);
+		model.addAttribute("cerDB", cerDB);
 		return forward("member/certify");
 	}
 	
-	//통과
+	//테스트 완료
 	@RequestMapping(value="certify", method=RequestMethod.POST)
 	public String certify2(Certify cer, Model model,HttpServletRequest request) throws IllegalStateException, IOException {
 		String configLocation = "classpath:applicationContext.xml";
@@ -470,9 +495,9 @@ public class MemberController extends DeviceSwitcherController {
 		
 		CertifyDB cerDB = new CertifyDB(cer, path);
 		
-		int a = certifyService.certify(cerDB);
+		int a = certifyService.certify(cerDB, path);
 		
-		model.addAttribute("imgPath", cerDB.getCertifyimg());
+		model.addAttribute("cerDB", cerDB);
 		
 		if (a==1) {
 			model.addAttribute("status", "success");
@@ -485,33 +510,21 @@ public class MemberController extends DeviceSwitcherController {
 		
 	}
 	
-	@ResponseBody
-	@RequestMapping(value="delImgPath")
-	public String delImgPath(@RequestParam("name") String name, Model model,HttpSession session,HttpServletRequest request) {
-		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
-		CertifyService certifyService = ctx.getBean("certifyService", CertifyService.class); 
-		String path = request.getServletContext().getRealPath("resources/theme/certifyImg");
-		String email = (String)session.getAttribute("email");
-		certifyService.delImgPath(name, email, path);
-		ctx.close();
-		return "";
-	}
+	//테스트 완료
 	
-	//통과
+	//수정필요
 	@RequestMapping("private")
 	public String private1() {
 		return "member/private";
 	}
 	
-	//통과
+	//수정필요
 	@RequestMapping("service")
 	public String service() {
 		return "member/service";
 	}
 	
-	
-	
-	//통과
+	//테스트 완료
 	@RequestMapping(value="usersetting", method=RequestMethod.GET)
 	public String usersetting(HttpSession session, Model model) throws IamportResponseException, IOException {
 		String configLocation = "classpath:applicationContext.xml";
@@ -528,7 +541,79 @@ public class MemberController extends DeviceSwitcherController {
 		return forward("member/usersetting");
 	}
 	
-	//수정필요
+	
+	//테스트 완료
+		@RequestMapping(value="myaccountinfo", method=RequestMethod.GET)
+		public String myaccountinfo( Model model, HttpSession session) {
+			String configLocation = "classpath:applicationContext.xml";
+			AbstractApplicationContext ctx = new GenericXmlApplicationContext(
+					configLocation);
+			MemberService memberService  = ctx.getBean("memberService", MemberService.class);
+			MyAccount account = memberService.takeMyAccount((String)session.getAttribute("email"));
+			ctx.close();
+			model.addAttribute("account", account);
+			return forward("member/myaccountinfo");
+		}
+		
+		
+		//테스트 완료
+		@RequestMapping(value="myaccountinfo", method=RequestMethod.POST)
+		public String myaccountinfo2(MyAccount myaccount, Model model, HttpSession session) {
+			String configLocation = "classpath:applicationContext.xml";
+			AbstractApplicationContext ctx = new GenericXmlApplicationContext(
+					configLocation);
+			MemberService memberService  = ctx.getBean("memberService", MemberService.class);
+			String email = (String)session.getAttribute("email");
+			myaccount.setEmail(email);
+			int a = memberService.updateMyAccount(myaccount);
+			if(a==1) {
+				model.addAttribute("status", "success");
+				MyAccount account = memberService.takeMyAccount(email);
+				model.addAttribute("account", account);
+			}else {
+				model.addAttribute("status", "fail");
+			}
+			ctx.close();
+			return forward("member/myaccountinfo");
+		}
+	
+	@RequestMapping(value="nicknameUpdate", method=RequestMethod.GET)
+	public String nicknameUpdate(MemberInfo mem, HttpSession session, Model model) throws IamportResponseException, IOException {
+		String configLocation = "classpath:applicationContext.xml";
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
+				configLocation);
+		
+		MemberService memberSerivce = ctx.getBean("memberService", MemberService.class);
+		String email = (String)session.getAttribute("email");
+		String nickName = memberSerivce.takeNickName(email);
+		model.addAttribute("nickName", nickName);
+		
+		ctx.close();
+		return forward("member/nicknameUpdate");
+	}
+	
+	@RequestMapping(value="nicknameUpdate", method=RequestMethod.POST)
+	public String nicknameUpdate2(MemberInfo mem, HttpSession session, Model model) throws IamportResponseException, IOException {
+		String configLocation = "classpath:applicationContext.xml";
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
+				configLocation);
+		
+		MemberService memberSerivce = ctx.getBean("memberService", MemberService.class);
+		String email = (String)session.getAttribute("email");
+		mem.setEmail(email);
+		int status = memberSerivce.updateNickName(mem, email);
+		if(status==-1) {
+			String nickName = memberSerivce.takeNickName(email);
+			ctx.close();
+			model.addAttribute("nickName", nickName);
+			model.addAttribute("status", "existPurchase");
+			return forward("member/nicknameUpdate");
+		}
+		ctx.close();
+		return "redirect:/usersetting";
+	}
+	
+	//테스트 완료
 	@ResponseBody
 	@RequestMapping(value="usersetting/{imp_uid}", method=RequestMethod.POST)
 	public String usersetting2(@PathVariable String imp_uid,  HttpSession session, Model model) throws IamportResponseException, IOException {
@@ -552,19 +637,19 @@ public class MemberController extends DeviceSwitcherController {
 		return status;
 	}
 	
-	//통과
+	//테스트 완료
 	@RequestMapping(value="passwordsetting", method=RequestMethod.GET)
 	public String passsetting(HttpSession session, Model model) {
 				
 		return forward("member/passwordsetting");
 	}
 	
-	//통과
+	//테스트 완료
 	@RequestMapping(value="passwordsetting", method=RequestMethod.POST)
 	public String passsetting2(Password password, HttpSession session, Model model) {
 		if( !password.getPassword2().equals(password.getPassword3()) ){
 			model.addAttribute("error", "error");
-			
+			return forward("member/passwordsetting");
 		}else {
 			String configLocation = "classpath:applicationContext.xml";
 			AbstractApplicationContext ctx = new GenericXmlApplicationContext(
@@ -576,29 +661,31 @@ public class MemberController extends DeviceSwitcherController {
 			
 			if(status==-1) {
 				model.addAttribute("status", "error");
+				return forward("member/passwordsetting");
 			}else {
 				model.addAttribute("status", "success");
+				return "redirect:/usersetting";
 			}
 		}
 		
-		return forward("member/passwordsetting");
+		
 	}
 	
-	//수정필요
+	//개선필요
 	@RequestMapping(value="secession", method=RequestMethod.GET)
 	public String secession(HttpSession session, Model model) {
 				
 		return forward("member/secession");
 	}
 	
-	//수정필요
+	//테스트 완료
 	@RequestMapping(value="qna", method=RequestMethod.GET)
 	public String qna(HttpSession session, Model model) {
 				
 		return  forward("main/qna");
 	}
 	
-	//수정필요
+	//테스트 완료
 	@RequestMapping(value="qna", method=RequestMethod.POST)
 	public String qna2(Qna qna, HttpSession session, Model model) {
 		String configLocation = "classpath:applicationContext.xml";
@@ -611,9 +698,9 @@ public class MemberController extends DeviceSwitcherController {
 		return  forward("main/qna");
 	}
 	
-	//수정필요
-		@RequestMapping(value="myqna", method=RequestMethod.GET)
-		public String myqna(HttpSession session,HttpServletRequest request ,Model model) {
+	//테스트 완료
+	@RequestMapping(value="myqna", method=RequestMethod.GET)
+	public String myqna(HttpSession session,HttpServletRequest request ,Model model) {
 			String pageNumberString = (String)request.getParameter("p");
 			int pageNumber =1;
 			if(pageNumberString!=null && !pageNumberString.equals("")) {
@@ -642,13 +729,13 @@ public class MemberController extends DeviceSwitcherController {
 			return  forward("main/myqna");
 		}
 		
-	//통과
+	//테스트 완료
 	@RequestMapping(value="customer", method=RequestMethod.GET)
 	public String customer(HttpSession session, Model model) {
 		return  forward("main/customer");
 	}
 	
-	//통과
+	//테스트 완료
 	@RequestMapping(value="emailPassFind", method=RequestMethod.GET)
 	public String emailPassFind(Model model) {
 		model.addAttribute("iamport", "imp48047014");
@@ -656,7 +743,7 @@ public class MemberController extends DeviceSwitcherController {
 		return forward("member/emailPassFind");
 	}
 	
-	//통과
+	//테스트 완료
 	@ResponseBody
 	@RequestMapping(value="emailFind", method=RequestMethod.GET)
 	public String emailFind2(HttpServletRequest request, Model model) {
@@ -672,7 +759,7 @@ public class MemberController extends DeviceSwitcherController {
 		return email;
 	}
 	
-	
+	//테스트 완료
 	@ResponseBody
 	@RequestMapping(value="passwordFind", method=RequestMethod.GET)
 	public String passFind2(HttpServletRequest request) throws AddressException, MessagingException {
@@ -695,7 +782,7 @@ public class MemberController extends DeviceSwitcherController {
 		
 	}
 	
-	
+	//테스트 완료
 	public static void mailSender(HttpServletRequest request, String email, String userPassword) throws AddressException, MessagingException {
 		// 네이버일 경우 smtp.naver.com 을 입력합니다.
 		// Google일 경우 smtp.gmail.com 을 입력합니다. 
@@ -746,12 +833,13 @@ public class MemberController extends DeviceSwitcherController {
 		//javax.mail.Transport.send() 이용 }
 	}
 	
-	//통과
+	//수정필요
 	@RequestMapping(value = "/privateData") 
 	public String privateData(){
 		return "member/private";
 	}
 	
+	//테스트 완료
 	@RequestMapping(value = "/companyInfo") 
 	public String companyInfo(){
 		return forward("main/companyInfo");

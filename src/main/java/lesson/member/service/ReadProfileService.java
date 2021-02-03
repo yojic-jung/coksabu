@@ -15,12 +15,11 @@ public class ReadProfileService {
 	public void setMemberDao(MemberDao memberDao) {
 		this.memberDao = memberDao;
 	}
-	
 	//통과
 	public int confirmCertify(String email) {
 		return memberDao.confirmCertify(email);
 	}
-	
+		
 	//통과
 	@Transactional(rollbackFor= {Exception.class})
 	public Profile readProfile(String email) {

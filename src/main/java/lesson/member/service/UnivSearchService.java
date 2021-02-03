@@ -24,7 +24,6 @@ public class UnivSearchService {
 		if(pageNumber<0) {
 			throw new IllegalArgumentException("page number < 0 : "+pageNumber);
 		}
-		
 		int totalcount = memberDao.univCount(univinput);
 		List<String> list;
 		HashMap<String, Object> map = new HashMap<>();

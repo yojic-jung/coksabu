@@ -24,7 +24,7 @@ public class ListService {
 		this.boardDao = boardDao;
 	}
 	
-	public static final int COUNT_PER_PAGE = 8;
+	public static final int COUNT_PER_PAGE =30;
 	
 	
 	//통과
@@ -74,6 +74,7 @@ public class ListService {
 					post.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt2price3())));
 				}
 			}
+			
 			for(Iterator<PostView> itr = postNewList.iterator(); itr.hasNext();) {
 				PostView post = itr.next();
 				post.setPrice3(NumberFormat.getInstance().format(Integer.parseInt(post.getPrice3())));
@@ -224,7 +225,17 @@ public class ListService {
 			case "42":return "초등사회";
 			case "43":return "중등사회";
 			case "44":return "고등사회";
-			case "45":return "사회탐구";
+			
+			case "451":return "생활과윤리";
+			case "452":return "사회문화";
+			case "453":return "한국지리";
+			case "454":return "세계지리";
+			case "455":return "윤리와사상";
+			case "456":return "동아시아사";
+			case "457":return "법과정치";
+			case "458":return "세계사";
+			case "459":return "경제";
+			
 			case "46":return "한국사";
 			
 			case "51":return "과학";
@@ -232,9 +243,13 @@ public class ListService {
 			case "53":return "중등과학";
 			case "54":return "고등과학";
 			case "55":return "물리";
-			case "56":return "생명";
+			case "56":return "생명과학";
 			case "57":return "화학";
 			case "58":return "지구과학";
+			case "552":return "물리2";
+			case "562":return "생명과학2";
+			case "572":return "화학2";
+			case "582":return "지구과학2";
 			
 			case "61":return "예체능";
 			case "62":return "미술";

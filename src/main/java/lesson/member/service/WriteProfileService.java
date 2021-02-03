@@ -18,12 +18,11 @@ public class WriteProfileService {
 	
 	@Transactional(rollbackFor= {Exception.class})
 	public void writeProfile(TeacherDB tea, String path) {
-		
 		//학과명 공백제거
 		tea.setUnivsub(tea.getUnivsub().replace(" ", ""));
 		
-		int imgpath = memberDao.checkImgPath(tea.getEmail());
-		if(imgpath !=0) {
+		int profileExist = memberDao.checkImgPath(tea.getEmail());
+		if(profileExist !=0) {
 			Profile profile = memberDao.takeImgUniv(tea.getEmail());
 			
 			String imgPath = profile.getImgPath();
@@ -40,6 +39,7 @@ public class WriteProfileService {
 			if(imgPath.equals("pro.png")) {
 				memberDao.updateProfile(tea);
 			}else {
+				//DB에 저장되어 있는 이미지가 있고 이를  사용자가 수정하지 않은경우
 				if(tea.getImgPath().equals("pro.png")) {
 					tea.setImgPath(imgPath);
 					memberDao.updateProfile(tea);
@@ -50,15 +50,16 @@ public class WriteProfileService {
 					memberDao.updateProfile(tea);
 				}
 			}
-					}else {
-						memberDao.insertApplyCount(tea.getEmail());
-						memberDao.writeProfile(tea);
-						HashMap<String, String> map = new HashMap<String, String>();
+		}else {
+			memberDao.insertApplyCount(tea.getEmail());
+			memberDao.writeProfile(tea);
+			HashMap<String, String> map = new HashMap<String, String>();
 						
-						map.put("email", tea.getEmail());
-						map.put("imgpath", tea.getImgPath());
+			map.put("email", tea.getEmail());
+			map.put("imgpath", tea.getImgPath());
 						
-						memberDao.updateMembersImgpath(map);
+			memberDao.updateMembersImgpath(map);
 		}
 	}
+	
 }

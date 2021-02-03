@@ -96,14 +96,14 @@ width:100%;margin:auto
 <div class="subheading" >
 수업 요청하기<br/>
 <div style="text-align:center;padding:50px;">
-<a href="./lessonapply" style="text-decoration:none;"><span class="cate-btn">선생님 지원서 받기</span></a><br/>
+<a href="./lessonapply" style="text-decoration:none;"><span class="cate-btn">수업 요청 하기</span></a><br/>
 <div style="text-align:center;margin:30px 0px 50px 0px; color:gray;">원하는 수업이 가능한 선생님의 지원서를 받아 보세요.</div>
 </div>
 </div>
 
 
 
-
+<!-- 주석 지우기
 <div class="subheading" >
 학생요청목록<br/>
 <div style="text-align:center;padding:50px;">
@@ -111,7 +111,7 @@ width:100%;margin:auto
 <div style="text-align:center;margin:30px 0px 50px 0px; color:gray;">학생들이 선생님을 찾고 있습니다. 지원서를 넣어보세요.</div>
 </div>
 </div>
-
+ -->
 
 <div style="height:400px;"></div>
 

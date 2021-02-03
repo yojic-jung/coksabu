@@ -10,12 +10,21 @@
 		delete from wishlist where DATE_ADD(wishdate, INTERVAL '14' DAY) &lt; now()
 	</delete>
 	
+	<select id="takeApplyId" resultType="Integer" >
+		select id from apply where DATE_ADD(postingdate, INTERVAL '1' year) &lt; now()
+	</select>
+	
 	<delete id="deleteOldLessonApply">
 		delete from apply where DATE_ADD(postingdate, INTERVAL '1' year) &lt; now()
 	</delete>
 	
-	<delete id="deleteOldLessonApplyList">
-		delete from applylist where DATE_ADD(applydate, INTERVAL '1' year) &lt; now()
+	<delete id="deleteOldLessonApplyList" parameterType="java.util.List"> 
+		delete from applylist
+			<where>
+			<foreach collection="list" item="item" open="" close="" separator="or">
+			 apply_id=#{item}
+			</foreach>
+			</where> 
 	</delete>
 	
 	<update id="resetApplyCount">
@@ -23,11 +32,11 @@
 	</update>
 	
 	<update id="resetLoginFailCount">
-		update members set fail_count = 0
+		update members set fail_count = 0, enabled=1, fail_time=0
 	</update>
 	
 	<update id="resetEndDateService">
-		update purchasehistory set orderstatus=#{val} where orderstatus=#{condition} and DATE_ADD(enddate, INTERVAL 6 DAY) &lt; now() 
+		update purchasehistory set orderstatus=#{val} where orderstatus=#{condition} and DATE_ADD(enddate, INTERVAL 1 DAY) &lt; now() 
 	</update>
 		
 	<update id="orderCancel">
@@ -35,7 +44,7 @@
 	</update>
 	
 	<update id="resetProposalEndDateService">
-		update chat_transaction set orderstatus=#{val} where orderstatus=#{condition} and DATE_ADD(endday, INTERVAL 6 DAY) &lt; now() 
+		update chat_transaction set orderstatus=#{val} where orderstatus=#{condition} and DATE_ADD(endday, INTERVAL 1 DAY) &lt; now() 
 	</update>
 		
 	<update id="orderProposalCancel">

@@ -11,7 +11,27 @@
  <style>
   @font-face { font-family: 'JejuGothic'; 
       src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 
- 
+ .div-title{
+            width:90%; margin:50px auto 0px auto;
+             font-family:'JejuGothic'; color:dimgray;
+             font-size:30px;
+        }
+
+.inner-main{
+			display:inline-block;
+			background:white;
+			padding:40px;
+			border-radius: 20px 20px 0px 0px;
+			border:3px solid gray;
+			border-bottom:3px solid white;
+			 font-size:35px;
+}
+.inner-sub{
+			display:inline-block;
+			background:white;
+			padding:40px;
+			border-radius: 20px 20px 0px 0px;
+}
 .table-title{
 		padding:10px;
 		text-align:center;
@@ -37,9 +57,7 @@
 	display:none;
 }
 
-.ui-datepicker{ font-size: 30px; padding:15px;}
-.ui-datepicker select.ui-datepicker-month{ font-size: 30px;padding:15px; }
-.ui-datepicker select.ui-datepicker-year{ font-size: 30px;padding:15px; }
+.ui-datepicker{ width: 60%;font-size:40px; }
 
 .search{
 	background:orange;
@@ -63,27 +81,30 @@ border:1px solid gray; width:150px; padding:15px 0px; text-align:center; margin:
 <script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
         <script>
         $(document).ready(function(){
-        	  $('.my2').css('color','orange');
+        	$('.my1').css('color','orange');
         	  var orderStatus = "<c:out value="${orderStatus}" />";
         	  if(orderStatus !=""){
     				$('#orderStatus').val(orderStatus).prop('selected', true);
     			} 
           });
 		</script>
+<div style="background:rgb(233, 232, 232); padding:30px 30px 240px 30px;min-height:1800px;">		
 		
+<div class="div-title">
+ 
+  <div class="inner-sub">
+  <a href="/purchaselist" style="color: gray;text-decoration:none;">일반거래 구매내역</a>
+  </div>
+  <div class="inner-main">
+  <a href="/proposalpurchase" style="color: black;font-weight:bolder;">거래제안서 구매내역</a>
+  </div>
+
+ </div>
 		
- <div style="width:90%; margin: auto;padding:40px 0px; text-align:center;">
+ <div style="width:90%; ; background:white; margin: auto; padding:20px;min-height:500px;;border:3px solid gray;">
  <div style="width:100%; margin:auto;">
  
-<c:choose>
-	<c:when test="${size==0 }">
-	<div style="text-align:center;padding:50px 0px;font-size:30px;font-weight:bolder;">거래 제안서를 통한 구매 내역이 없습니다.</div>
-	</c:when>
-	<c:otherwise>
-	<div class="table-title" >거래제안서를 통해 구매한 내역이 공개됩니다.</div>
-	
-	
-	<form method="post" onSubmit="return checkForm(this)">
+ <form method="post" onSubmit="return checkForm(this)">
  	<div style="width:700px;margin-top:20px;">
  	<select style="padding:15px;font-size:24px;" id="orderStatus" name="orderStatus">
  		<option value="">전체</option>
@@ -100,16 +121,23 @@ border:1px solid gray; width:150px; padding:15px 0px; text-align:center; margin:
  	
  	<input class="search" type="submit" value="조회하기" />
  	</div>
-	</form> 	
+	</form> 
+	
+<c:choose>
+	<c:when test="${size==0 }">
+	<div style="text-align:center;padding:50px 0px;font-size:30px;font-weight:bolder;">거래 제안서를 통한 구매 내역이 없습니다.</div>
+	</c:when>
+	<c:otherwise>
+	<div class="table-title" >거래제안서를 통해 구매한 내역이 공개됩니다.</div>
 	
 	<hr style="width:100%; border:1px solid gray; margin:20px auto;"/>
 	
 	<table style="border-spacing:30px;width:100%;font-size:30px;">
 	<c:forEach var="list" items="${purchase}">
 	<tr class="tr">
-		<td rowspan="5" style="text-align:center;font-size:30px;font-family: 'JejuGothic';color:orange">${list.orderstatus }</td>
-		<td colspan="3"></td>
-		<td rowspan="5" >
+		<td rowspan="7" style="text-align:center;font-size:30px;font-family: 'JejuGothic';color:orange">${list.orderstatus }</td>
+		<td colspan="2"></td>
+		<td rowspan="7" >
 <div class="orderInfo"><a href="./myproposal?id=${list.id}" style="color:black;text-decoration:none;">제안서 보기</a></div>
 		<div class="proposalOrderInfo"><a href="./proposalOrderInfo?id=${list.id}" style="color:black;text-decoration:none;">주문정보</a></div>
 		<c:choose>	
@@ -117,10 +145,10 @@ border:1px solid gray; width:150px; padding:15px 0px; text-align:center; margin:
  			<div class="orderInfo"><span class="orderCancel">주문취소</span><span class="orderId">${list.id }</span></div>
  		</c:when>
 		<c:when test="${list.orderstatus=='결제완료'}">
- 			<div class="orderInfo"><a href="./refundProM?orderid=${list.id}" style="text-decoration:none;color:black;"><span class="refund">환불신청</span></a></div>
+ 			<div class="orderInfo"><a href="./refundproposal?orderid=${list.id}" style="text-decoration:none;color:black;"><span class="refund">환불신청</span></a></div>
  		</c:when>
  		<c:when test="${list.orderstatus=='환불대기'}">
- 			<div class="orderInfo"><a href="./refundProM?orderid=${list.id}" style="text-decoration:none;color:black;"><span class="refund">환불정보</span></a></div>
+ 			<div class="orderInfo"><a href="./refundproposal?orderid=${list.id}" style="text-decoration:none;color:black;"><span class="refund">환불정보</span></a></div>
  		</c:when>
  		<c:when test="${list.orderstatus=='환불완료'}">
  			<div class="orderInfo"><a href="./buyerRefundCompletePro?orderid=${list.id}" style="text-decoration:none;color:black;"><span class="refund">환불완료</span></a></div>
@@ -130,19 +158,25 @@ border:1px solid gray; width:150px; padding:15px 0px; text-align:center; margin:
 		</td>
 	</tr>
 	<tr class="tr">
-		<td class="td-stl">판매자</td><td class="td-stl">서비스</td><td class="td-stl">주문날짜</td>
+		<td class="td-stl">주문날짜</td><td class="td-stl">서비스</td>
 	</tr>
 	<tr class="tr" style="font-size:25px;">
-		<td>${list.seller }</td><td>${list.cate }</td><td>${list.purchase_dayS }</td>
+		<td>${list.purchase_dayS }</td><td>${list.cate }</td>
 	</tr>
 	<tr class="tr">	
-		<td class="td-stl">가격</td><td class="td-stl">횟수</td><td class="td-stl">수업시간</td>
+		<td class="td-stl">횟수</td><td class="td-stl">수업시간</td>
 	</tr>
 	<tr class="tr" style="font-size:25px;">	
-		<td>${list.price}</td><td>${list.lessonCount }</td><td>회당 ${list.lessonTime }</td>
+		<td>${list.lessonCount }</td><td>회당 ${list.lessonTime }</td>
 	</tr>
-	<tr>
-		<td colspan="5" style="border:1px solid lightgray;"></td>
+	<tr class="tr">
+		<td class="td-stl">판매자 닉네임</td><td class="td-stl">가격</td>
+	</tr>
+	<tr class="tr" style="font-size:25px;">
+		<td>${list.seller }</td><td>${list.price}</td>
+	</tr>
+	<tr class="tr">
+		<td colspan="4" style="border:1px solid lightgray;"></td>
 	</tr>
 	</c:forEach>
 	</table>
@@ -153,7 +187,9 @@ border:1px solid gray; width:150px; padding:15px 0px; text-align:center; margin:
  
  </div>
  </div>
- <div style="height:500px;"></div>
+    <div style="height:500px;"></div>
+ </div>
+
  <script>
  $(document).ready(function(){
 
@@ -219,7 +255,7 @@ border:1px solid gray; width:150px; padding:15px 0px; text-align:center; margin:
  	   		$( "#testDatepicker" ).val(dates[0]+'.'+dates[1]+'.'+dates[2] );
  	   	}else{
  	   		var d =  new Date();
-     	    $( "#testDatepicker" ).datepicker( "setDate", new Date(d.getFullYear(), d.getMonth(), d.getDate()-14) );
+     	    $( "#testDatepicker" ).datepicker( "setDate", new Date(d.getFullYear()-2, d.getMonth(), d.getDate()) );
 
  	   	}
  	   
@@ -272,7 +308,7 @@ border:1px solid gray; width:150px; padding:15px 0px; text-align:center; margin:
      	   }
  
  $(function(){
-	 $(".tr").slice(0, 25).show(); // 최초 5개 선택
+	 $(".tr").slice(0, 40).show(); // 최초 5개 선택
 	 
 	 $("#load").click(function(e){ // Load More를 위한 클릭 이벤트e
 	 		e.preventDefault();
@@ -280,7 +316,7 @@ border:1px solid gray; width:150px; padding:15px 0px; text-align:center; margin:
 	 			alert("더 이상 항목이 없습니다"); // 더 이상 로드할 항목이 없는 경우 경고
 	 		}
 	 		
-		 		$(".tr:hidden").slice(0, 25).show(); // 숨김 설정된 다음 10개를 선택하여 표시
+		 		$(".tr:hidden").slice(0, 40).show(); // 숨김 설정된 다음 10개를 선택하여 표시
 	});
 });
  </script>
