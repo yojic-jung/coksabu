@@ -88,7 +88,6 @@ public class MemberController extends DeviceSwitcherController {
 		
 		List<PostView> list = readPostService.listMain();
 		String email = (String)session.getAttribute("email");
-		
 		// 메세지 빨간불 구현
 		if(email!=null) {
 			MemberService memberService = ctx.getBean("memberService", MemberService.class );
@@ -137,6 +136,7 @@ public class MemberController extends DeviceSwitcherController {
 	}
 	
 	//미진행
+	//xss필터링으로 토큰에 com.dywlr.jsonxssfilter.HtmlEscapingObjectMapperFactory에서 필터링 하는 특수문자가 포함되어 있느지 확인하지 못함
 	@RequestMapping("giveToAndroidValue")
 	@ResponseBody
 	public Map<String, String> giveToAndroid(@RequestBody byte buffers[],HttpServletRequest request,HttpSession session) throws Exception{
@@ -148,7 +148,6 @@ public class MemberController extends DeviceSwitcherController {
 		String token = new String(buffers,"UTF-8");
 		token = URLDecoder.decode(token,"UTF-8");
 		token = token.substring(0, token.length()-1);
-		
 		String status = tokenRegisterService.registerAndroidToken(email, token);
 		ctx.close();
 		
@@ -766,7 +765,8 @@ public class MemberController extends DeviceSwitcherController {
 		PassFind pass = new PassFind();
 		pass.setEmail((String)request.getParameter("email"));
 		pass.setPhone((String)request.getParameter("phone"));
-
+		System.out.println(pass.getEmail());
+		System.out.println(pass.getPhone());
 		String configLocation = "classpath:applicationContext.xml";
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
 		EmailPassFindService emailPassFindService = ctx.getBean("emailPassFindService", EmailPassFindService.class);
@@ -786,10 +786,10 @@ public class MemberController extends DeviceSwitcherController {
 	public static void mailSender(HttpServletRequest request, String email, String userPassword) throws AddressException, MessagingException {
 		// 네이버일 경우 smtp.naver.com 을 입력합니다.
 		// Google일 경우 smtp.gmail.com 을 입력합니다. 
-		String host = "smtp.naver.com"; 
-		final String username = "dywlr74"; 
+		String host = "smtp.gmail.com"; 
+		final String username = "coksabubusiness"; 
 		//네이버 아이디를 입력해주세요. @naver.com은 입력하지 마시구요. 
-		final String password = "wpdlf7412"; 
+		final String password = "zjavbxj789!"; 
 		//네이버 이메일 비밀번호를 입력해주세요. 
 		int port=465; //포트번호 // 메일 내용 
 		String recipient = email; 
@@ -817,7 +817,7 @@ public class MemberController extends DeviceSwitcherController {
 		//for debug 
 		Message mimeMessage = new MimeMessage(session); 
 		//MimeMessage 생성 
-		mimeMessage.setFrom(new InternetAddress("dywlr74@naver.com")); 
+		mimeMessage.setFrom(new InternetAddress("coksabubusiness@gmail.com")); 
 		//발신자 셋팅 , 보내는 사람의 이메일주소를 한번 더 입력합니다. 이때는 이메일 풀 주소를 다 작성해주세요. 
 		mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient)); 
 		//수신자셋팅 //.TO 외에 .CC(참조) .BCC(숨은참조) 도 있음 

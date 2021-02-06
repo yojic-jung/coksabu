@@ -272,12 +272,21 @@ $(document).on("click","a",function(event){
     });
 
 $(window).bind("pageshow", function(event) {
-	$('.m-page-transit').fadeOut(200);
+	//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+	var broswerInfo = navigator.userAgent;
+	//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+	if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+		$('.m-page-transit').fadeOut(200);
+	}else{
+		$('.m-page-transit').hide();
+	}
 	if ( event.originalEvent && event.originalEvent.persisted) {// BFCahe
     	window.location.reload();
+    	console.log("BF캐시 존재함")
 	}else if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
 		//뒤로가기 이벤트 채팅 숫자 초기화 위해
 		window.location.reload();
+		console.log("캐시 존재함")
 	}else{}
 });
 </script>

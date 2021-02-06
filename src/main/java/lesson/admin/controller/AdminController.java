@@ -649,6 +649,8 @@ public class AdminController {
 		
 		int postId = Integer.parseInt((String)request.getParameter("postId"));
 		int id = Integer.parseInt((String)request.getParameter("id"));
+		System.out.println("찍힘 확인:"+postId);
+		System.out.println("찍힘 확인:"+id);
 		adminAddService.adminDelLesson(postId, id, path);
 		ctx.close();
 		

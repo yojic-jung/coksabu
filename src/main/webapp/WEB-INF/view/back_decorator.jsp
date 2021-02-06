@@ -141,12 +141,23 @@ $(document).on("click", '.m-back', function(){
 	//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
 	if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
 		var referpage = document.referrer;
-        		$('.m-page-transit').fadeIn(200);
-		if(referpage==''){
-			setTimeout(function(){$('.m-page-transit').hide();location.href = './';}, 200);
-		}else{			
-			setTimeout(function(){$('.m-page-transit').hide();history.back();}, 200);
-		}
+        		$('.m-page-transit').fadeIn(100);
+        		var currenturl = window.location.href;
+				if(referpage==''){
+					//아이프레임 존재하는 페이지는 뒤로가기시 애니메이션 효과 없애기
+					if(currenturl.indexOf("usersetting")!=-1 || currenturl.indexOf("profile")!=-1 || currenturl.indexOf("signup")!=-1){
+						setTimeout(function(){$('.m-page-transit').hide();location.href = './';}, 100);
+					}else{
+						setTimeout(function(){location.href = './';}, 100);
+						}
+				}else{
+					//아이프레임 존재하는 페이지는 뒤로가기시 애니메이션 효과 없애기
+					if(currenturl.indexOf("usersetting")!=-1 || currenturl.indexOf("profile")!=-1 || currenturl.indexOf("signup")!=-1){
+							setTimeout(function(){$('.m-page-transit').hide();history.back();}, 100);
+					}else{
+						setTimeout(function(){history.back();}, 100);
+					}
+				}
 	//웹뷰 아닌 그냥 모바일
 	}else{
 		var referpage = document.referrer;
@@ -159,9 +170,14 @@ $(document).on("click", '.m-back', function(){
 });
 
 $(window).bind("pageshow", function(event) {
-	$('.m-page-transit').fadeOut(200);
+	var broswerInfo = navigator.userAgent;
+	//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+	if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+		$('.m-page-transit').fadeOut(100);
+	}else{
+		$('.m-page-transit').hide();
+	}
 	if ( event.originalEvent && event.originalEvent.persisted) {// BFCahe
-       		window.location.reload();
    	}
 });
 

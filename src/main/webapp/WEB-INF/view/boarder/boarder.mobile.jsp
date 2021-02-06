@@ -1351,6 +1351,16 @@ width:80%;
   <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
     <script>
+    
+    $(window).bind("pageshow", function(event) {
+    	if ( event.originalEvent && event.originalEvent.persisted) {// BFCahe
+    		//모바일 사파리에서 뒤로가기시 뒤로가기전 화면을 그대로 보여줘서 애니메이션 효과를 제거
+    		$('.m-close-btn').trigger("click");
+    		$('.m-locale-close-btn').trigger("click");
+    		$('.m-filter-close-btn').trigger("click");
+       	}
+    });
+    
        $(document).ready(function(){
     	   
     	   $(".m-cate-btn").click(function() { 

@@ -72,6 +72,7 @@
 	</mvc:interceptor>
 	</mvc:interceptors>
 	
+
 <!-- 유효성 에러 메세지 -->	
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">

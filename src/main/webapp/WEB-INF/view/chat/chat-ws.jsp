@@ -21,7 +21,7 @@
     //this line.
     function connect() {
     	//파라미터 이름, 순서 바뀌면 안됨 , afterConnectionClosed메서드에서 참조함
-        var socket = new SockJS("http://localhost:8080/hello?chatroom_id="+chatroom_id+"&username="+sender);
+        var socket = new SockJS("https://coksabu.com/hello?chatroom_id="+chatroom_id+"&username="+sender);
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function(frame) {
             stompClient.subscribe('/queue/message-'+chatroom_id, function(greeting){
@@ -891,7 +891,7 @@ $(document).ready(function(){
 		    			$('.purchase').hide();
 		    			
 		    			var mes = {};
-		    			mes.message_content = "새로운 거래 제안서를 작성하였습니다.수업을 확인하고 안전거래 해보세요.<div class='proposal purchase-box' style='cursor:pointer'>거래 제안서 보기</div>";
+		    			mes.message_content = "[콕사부 알림] 새로운 거래 제안서가 작성되었습니다. 상단의 '거래제안서 보기'를 통해 확인 하실 수 있습니다.";
 		    			mes.message_sender = sender
 		    			mes.chatroom_id = chatroom_id
 		    			mes.message_time = new Date();
@@ -1006,7 +1006,7 @@ $(document).on('click','.accept-proposal',function(){
 				  $('.close-btn2').trigger('click');
 				  
 				  var mes = {};
-	    			mes.message_content = "거래 제안서를 승낙했습니다. 서비스를 구매하실  수 있습니다. <div class='proposal purchase-box' style='cursor:pointer'>거래 제안서 보기</div>";
+	    			mes.message_content = "[콕사부 알림] 거래 제안서를 승낙했습니다. 서비스를 구매하실  수 있습니다.";
 	    			mes.message_sender = sender
 	    			mes.chatroom_id = chatroom_id
 	    			mes.message_time = new Date();
@@ -1046,7 +1046,7 @@ $(document).on('click','.lesson-purchase',function(){
 					$('.close-btn2').trigger('click');
 					
 					var mes = {};
-	    			mes.message_content = "서비스를 구매하였습니다. 결제가 완료되면 서비스를 진행해주세요.";
+	    			mes.message_content = "[콕사부 알림] 구매자가 서비스를 구매하였습니다. 구매자는 마이페이지의 [구매목록 -> 거래제안서 구매내역]에서, 판매자는 마이페이지의 [판매 목록 -> 거래제안서 판매내역]에서 주문정보를 확인할 수 있습니다. 구매자의 입금이 확인되면 주문정보가 '결제완료'로 변경이 되니 구매/판매 목록에서 '결제완료'상태를 확인 후 서비스를 진행해주세요.";
 	    			mes.message_sender = sender
 	    			mes.chatroom_id = chatroom_id
 	    			mes.message_time = new Date();

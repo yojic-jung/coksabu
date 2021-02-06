@@ -24,7 +24,11 @@
    src:url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype')
    }
    
-   *{margin:0;padding:0;box-sizing:border-box}
+   *{
+   margin:0;
+   padding:0;
+   box-sizing:border-box;
+   }
    
    body{margin:0;
   		 padding:0;
@@ -481,11 +485,13 @@ width:100%;margin:auto
     	});
     	
     	$(window).bind("pageshow", function(event) {
-    		$('.m-page-transit').fadeOut(100);
-    	    if ( event.originalEvent && event.originalEvent.persisted) {// BFCahe
-    	        window.location.reload();
-    	    }else{}//새로운페이지
-    	    
+    		var broswerInfo = navigator.userAgent;
+    		//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+    		if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+    			$('.m-page-transit').fadeOut(200);
+    		}else{
+    			$('.m-page-transit').hide();
+    		}
     	    
     	});
     	</script>

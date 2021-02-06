@@ -914,7 +914,7 @@
             
             
             $(document).on('click','.career-add',function(){
-          	  var re3 = /[*]/;
+          	  var re3 =  /[*\|<>]/; 
           	  var careerDisc = document.getElementById('career-disc');
           	  
           	  if( re3.test(careerDisc.value) ){

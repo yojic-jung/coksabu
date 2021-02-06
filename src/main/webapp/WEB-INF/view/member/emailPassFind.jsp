@@ -158,7 +158,7 @@ font-weight:bolder;
   		  url:'./passwordFind?email='+email+'&phone='+phone2,
   		  type:'get',
   		  error:function(error){
-  			  alert('처리가 제대로 되지 않았습니다. \n새로고침 후에 다시 시도해주세요.');
+  			  alert('처리가 제대로 되지 않았습니다. \n새로고침 후에 다시 시도해주세요.\n지속적으로 오류가 발생시 고객센터로 문의주시기 바랍니다.');
   		  },
   		  success:function(data){
   			if(data == 'false'){

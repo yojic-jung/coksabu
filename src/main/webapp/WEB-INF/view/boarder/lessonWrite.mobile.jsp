@@ -944,7 +944,7 @@
             
             
             $(document).on('click','.career-add',function(){
-          	  var re3 = /[*]/;
+            	var re3 =  /[*\|<>]/; 
           	  var careerDisc = document.getElementById('career-disc');
           	  
           	  if( re3.test(careerDisc.value) ){
@@ -1324,7 +1324,6 @@
                    if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp'){
                    }else{
                 	   alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
-                     	document.getElementsByName("contentimg")[0].value = ""; 
                      	$("#output1").trigger('click');
                      	 return false;
                    }
@@ -1338,7 +1337,6 @@
                    if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp'){
                    }else{
                 	   alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
-                     	document.getElementsByName("contentimg")[1].value = ""; 
                      	$("#output2").trigger('click');
                      	 return false;
                    }
@@ -1354,7 +1352,6 @@
                    if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp'){
                    }else{
                 	   alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
-                     	document.getElementsByName("contentimg")[2].value = ""; 
                      	$("#output3").trigger('click');
                      	 return false;
                    }
@@ -1370,7 +1367,6 @@
                    if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp'){
                    }else{
                 	   alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
-                     	document.getElementsByName("contentimg")[3].value = ""; 
                      	$("#output4").trigger('click');
                      	 return false;
                    }

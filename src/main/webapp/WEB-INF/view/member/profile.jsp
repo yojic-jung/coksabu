@@ -240,8 +240,9 @@
                                 src="<c:url value="/img/profileImg/${pro.imgPath}" />"  alt="프로필 아미지"/>
                    	</c:if>
                         <br/>
+                        <span class="file-wrapper">
                         <input type="file" name="img" id="img" accept="image/*" onchange="check(this);loadFile(event);" />
-
+						</span>
                     </div>
                     
                     <div style="color:gray; font-size:18px;font-family:'JejuGothic'; margin:100px 0px 20px 0px;">서비스 가능지역(최대 5개)</div>
@@ -908,6 +909,7 @@
          if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp'){
          }else{
         	 alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
+        	 document.getElementsByName("img")[0].value = ""; 
          }
     }            
       </script>

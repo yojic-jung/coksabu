@@ -1,6 +1,7 @@
 package test.webconfig;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.messaging.converter.MappingJackson2MessageConverter;
+import org.springframework.messaging.converter.MessageConverter;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
@@ -22,6 +25,9 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketTransportRegistration;
 import org.springframework.web.socket.handler.WebSocketHandlerDecorator;
 import org.springframework.web.socket.handler.WebSocketHandlerDecoratorFactory;
+
+import com.dywlr.jsonxssfilter.HtmlEscapingObjectMapperFactory.HTMLCharacterEscapes;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lesson.cron.job.CronJob;
 import test.service.ChattingService;
@@ -151,6 +157,23 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer im
         }, 1000);
     }
     
+    // 웹소켓에서도 메세지 컨버터 설정
+    @Override
+	public boolean configureMessageConverters(List<MessageConverter> messageConverters) {
+    	messageConverters.add(escapingConverter());
+        return true;
+    }
+
+    private MessageConverter escapingConverter() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.getFactory().setCharacterEscapes(new HTMLCharacterEscapes());
+
+        MappingJackson2MessageConverter escapingConverter =
+                new MappingJackson2MessageConverter();
+        escapingConverter.setObjectMapper(objectMapper);
+
+        return escapingConverter;
+    }
     
 
 }

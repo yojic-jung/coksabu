@@ -342,7 +342,6 @@
     <script src= "<c:url value="/resources/slick/slick.js" />" type="text/javascript" charset="utf-8"></script>
    <script src="resources/colorbox-master/colorbox-master/jquery.colorbox.js"></script>
     <script>
-    
        $(document).ready(function(){
 
         var jbOffset = $( '.jbMenu' ).offset(); //상단메뉴 좌표 가져오는 코드

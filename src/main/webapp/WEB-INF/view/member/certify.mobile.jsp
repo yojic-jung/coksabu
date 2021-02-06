@@ -83,7 +83,7 @@ padding:20px;
 					<img id="imgplus1" src="<c:url value="/resources/images/imgplus.png" />"  />
 					</div>
 					<div id="input-div1">
-					<input name="certifyimg1" class="multi1" type="file" accept="image/*" onchange="loadFile1(event);check1(this)" />
+					<input name="certifyimg1" class="multi1" type="file" accept="image/*" onchange="loadFile1(event);" />
 					</div>
 					</td>
 				</tr>
@@ -98,7 +98,7 @@ padding:20px;
 					<img id="imgplus2" src="<c:url value="/resources/images/imgplus.png" />"  />
 					</div>
 					<div id="input-div2">
-					<input name="certifyimg2" class="multi2" type="file" accept="image/*" onchange="loadFile2(event);check2(this)" />
+					<input name="certifyimg2" class="multi2" type="file" accept="image/*" onchange="loadFile2(event);" />
 					</div>
 					</td>
 				</tr>
@@ -113,7 +113,7 @@ padding:20px;
 					<img id="imgplus3" src="<c:url value="/resources/images/imgplus.png" />"  />
 					</div>
 					<div id="input-div3">
-					<input name="certifyimg3" class="multi3" type="file" accept="image/*" onchange="loadFile3(event);check3(this)" />
+					<input name="certifyimg3" class="multi3" type="file" accept="image/*" onchange="loadFile3(event);" />
 					</div>
 					</td>
 				</tr>

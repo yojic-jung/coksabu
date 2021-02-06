@@ -116,9 +116,14 @@
 <script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.js"></script>
 <script>
 window.onpageshow = function(event) {
-    if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+	if ( event.originalEvent && event.originalEvent.persisted) {// BFCahe
+    	window.location.reload();
+		console.log("BF캐시 존재함")
+	}else if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+		//뒤로가기 이벤트 채팅 숫자 초기화 위해
 		window.location.reload();
-    }
+		console.log("캐시 존재함")
+	}else{}
 }
 
 var email = "<c:out value="${email}" />";
@@ -287,12 +292,6 @@ $(document).ready(function(){
           </div>
           </div>
 </footer>
-<div class="m-page-transit" style="text-align:center;width:100%;background: white; height:100%;position:fixed;left:100%;top:0px;z-index:10;dispaly:none;">
-    <img src="<c:url value="/resources/img/Spin-1s-124px.svg" />"  style="margin-top:50%;"/>
-</div>
-<div class="m-back-transit" style="text-align:center;width:100%;background: white; height:100%;position:fixed;right:100%;top:0px;z-index:10;dispaly:none;">
-    <img src="<c:url value="/resources/img/Spin-1s-124px.svg" />"  style="margin-top:50%;"/>
-</div>
 
        <%
        session=request.getSession();

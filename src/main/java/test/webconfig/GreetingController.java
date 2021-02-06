@@ -57,9 +57,18 @@ public class GreetingController {
   				configLocation);
   		 ChattingService chattingService = ctx.getBean("chattingService", ChattingService.class );
   		 message=chattingService.takeMessage(message);
+  		 
+  		 //원래 값 가져오고
+  		 String mesContent = message.getMessage_content();
+  	     //xss 필터링 후 DB에 집어넣기
+  	     message.setMessage_content(ConvertInputValue(message.getMessage_content()));
   		 String status = chattingService.insertMessage(message);
-          
-         SimpleDateFormat format1 = new SimpleDateFormat ( "MM/dd HH:mm");
+  		 
+  		 //DB에 넣었다면 다시 원래 값으로 변경시켜줘야 웹소켓config에서 지정한 메세지 컨버터로 사용자가 볼수 있다
+  		 //원래값으로 변경 안하면 특수문자가 &nbsp; &gt; 와 같은 html코드로 보임
+  		 message.setMessage_content(mesContent);
+        
+  		 SimpleDateFormat format1 = new SimpleDateFormat ( "MM/dd HH:mm");
           		
          String time1 = format1.format(message.getMessage_time());
          message.setMessage_time2(time1);
@@ -83,7 +92,16 @@ public class GreetingController {
   				configLocation);
   		 ChattingService chattingService = ctx.getBean("chattingService", ChattingService.class );
   		 message=chattingService.takeMessage(message);
-  		 chattingService.insertMessage(message);
+  		 
+  		 
+  		 //원래 값 가져오고
+  		 String mesContent = message.getMessage_content();
+  	     //xss 필터링 후 DB에 집어넣기
+  	     message.setMessage_content(ConvertInputValue(message.getMessage_content()));
+  	     chattingService.insertMessage(message);
+  		 //DB에 넣었다면 다시 원래 값으로 변경시켜줘야 웹소켓config에서 지정한 메세지 컨버터로 사용자가 볼수 있다
+  		 //원래값으로 변경 안하면 특수문자가 &nbsp; &gt; 와 같은 html코드로 보임
+  		 message.setMessage_content(mesContent);
           
           ctx.close();
           SimpleDateFormat format1 = new SimpleDateFormat ( "yy-MM-dd HH:mm");
@@ -101,5 +119,11 @@ public class GreetingController {
         return new Greeting("I am a msg from SubscribeMapping('/send').");
     }
 
+    
+    public static String ConvertInputValue(String message){
+        message = message.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;")
+        .replace("'", "&apos;").replace("\\", "&#x2F;").replace(" ", "&nbsp;").replace("\n", "<br />");
+           return message;
+       }
     
 }

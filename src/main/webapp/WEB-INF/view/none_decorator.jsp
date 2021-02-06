@@ -52,9 +52,14 @@ $(document).on("click","a",function(event){
     }
 
     $(window).bind("pageshow", function(event) {
-    	$('.m-page-transit').fadeOut(200);
+    	var broswerInfo = navigator.userAgent;
+		//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+		if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+			$('.m-page-transit').fadeOut(100);
+		}else{
+			$('.m-page-transit').hide();
+		}
     	if ( event.originalEvent && event.originalEvent.persisted) {// BFCahe
-           		window.location.reload();
        	}
     });
 </script>
