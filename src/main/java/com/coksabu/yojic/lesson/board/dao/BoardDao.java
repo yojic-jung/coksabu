@@ -1,0 +1,94 @@
+package com.coksabu.yojic.lesson.board.dao;
+
+import java.util.HashMap;
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.coksabu.yojic.lesson.board.model.ImgFileName;
+import com.coksabu.yojic.lesson.board.model.LessonCardDB;
+import com.coksabu.yojic.lesson.board.model.LessonCardDB2;
+import com.coksabu.yojic.lesson.board.model.PostView;
+import com.coksabu.yojic.lesson.board.model.PurchaseHistory;
+import com.coksabu.yojic.lesson.board.model.PurchaseRead;
+import com.coksabu.yojic.lesson.member.model.Profile;
+@Repository
+public interface BoardDao {
+	
+	public String takeRepresent(HashMap<String, Object> map);
+	
+	public ImgFileName takeImgName(int id);
+	
+	public String readEmail(String id);
+	
+	public int write(LessonCardDB card);
+	
+	public int update(LessonCardDB card);
+	
+	public int readCount(String id);
+	
+	public int countLesson(LessonCardDB card);
+	
+	public int checkLesson(String email);
+
+	public int confirmApplyWish(String id);
+	
+	public int deleteApply(String id);
+
+	public int deleteWishList(String id);
+	
+	public List<PostView> myLessonList(String email);
+	
+	public List<PostView> myLessonListFromTutorProfile(String email);
+	
+	public int deleteLesson(HashMap<String, Object> map);
+	
+	public int deleteImg(HashMap<String, Object> map);
+
+	public LessonCardDB2 read(HashMap<String, Object> map);
+	
+	public List<PostView> listPost(HashMap<String, Object> map);
+	
+	public List<PostView> listNewPost(HashMap<String, Object> map);
+	
+	public int countSubject(HashMap<String, Object> map);
+	
+	public List<PostView> listSubject(HashMap<String, Object> map);
+
+	public int countForm(HashMap<String, Object> map);
+	
+	public List<PostView> listForm(HashMap<String, Object> map);
+	
+	public Profile readProfilePost(String email);
+	
+	public LessonCardDB2 readLessonPost(String id);
+	
+	public List<PostView> listMain(List<String> list);
+	
+	public PurchaseRead purchaseRead(HashMap<String, Object> map);
+	
+	public String phoneNumber(String email);
+	
+	public String readBuyerName(String email);
+	
+	public int insertPurchaseHistory(PurchaseHistory pur);
+	
+	public String takeSellerImg(String email);
+	
+	public List<String> takeNamePhone(String email);
+	
+	public String takeTeachEmail(int id);
+	
+	public PostView takeTeacher(PostView post);
+	
+	public String takeImgPath(HashMap<String, Object> map);
+	
+	public int updateImgUpload(HashMap<String, Object> map);
+	
+	public int checkPurchaseHistory(String postId);
+	
+	public int giveVisibleZero(String postId);
+	
+	public int addDelWatinglist(HashMap<String, Object> map);
+	
+}

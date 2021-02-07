@@ -4,13 +4,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="lesson.board.dao.BoardDao">
+<mapper namespace="com.coksabu.yojic.lesson.board.dao.BoardDao">
 
 	<select id="takeRepresent" resultType="String">
 		select represent from lesson where id = #{id} and email=#{email}
 	</select>
 	
-	<select id="takeImgName" resultType="lesson.board.model.ImgFileName">
+	<select id="takeImgName" resultType="com.coksabu.yojic.lesson.board.model.ImgFileName">
 		select represent, contentimg from lesson where id = #{id}
 	</select>
 	
@@ -18,13 +18,13 @@
 		select email from lesson where id = #{id}
 	</select>
 	
-	<insert id="write" parameterType="lesson.board.model.LessonCardDB" >
+	<insert id="write" parameterType="com.coksabu.yojic.lesson.board.model.LessonCardDB" >
 		insert into lesson (cate, subcate, represent, title, lesson, description, contentimg, careerDB, subcate0, price1, price2, price3, subcate1, opt1price1, opt1price2, opt1price3, subcate2, opt2price1, opt2price2, opt2price3, email, postingdate, readcount, day, gawe, trial, visible) 
 		values (#{cate}, #{subCate}, #{represent}, #{title}, #{lesson}, #{description}, #{contentimg}, 
 		#{careerDB}, #{subCate0},#{price1}, #{price2},#{price3}, #{subCate1},#{opt1price1}, #{opt1price2},#{opt1price3},#{subCate2},#{opt2price1}, #{opt2price2},#{opt2price3}, #{email}, #{postingdate}, #{readCount}, #{day}, #{gawe}, #{trial}, 1)
 	</insert>
 
-	<update id="update" parameterType="lesson.board.model.LessonCardDB" >
+	<update id="update" parameterType="com.coksabu.yojic.lesson.board.model.LessonCardDB" >
 		update lesson set represent=#{represent},title=#{title}, lesson=#{lesson}
 		, description=#{description}, careerDB=#{careerDB}, day=#{day}, gawe=#{gawe}, trial=#{trial}, contentimg=#{contentimg} where id=#{id}
 	</update>
@@ -33,7 +33,7 @@
 		update lesson set readcount=readcount+1 where id=#{id}
 	</update>
 	
-	<select id="countLesson" parameterType="lesson.board.model.LessonCardDB" resultType="Integer" >
+	<select id="countLesson" parameterType="com.coksabu.yojic.lesson.board.model.LessonCardDB" resultType="Integer" >
 		select count(*) from lesson where email=#{email}
 	</select>
 
@@ -41,7 +41,7 @@
 		select count(*) from lesson where email=#{email}
 	</select>
 	<!-- 수정 -->
-	<select id="read" resultType="lesson.board.model.LessonCardDB2" >
+	<select id="read" resultType="com.coksabu.yojic.lesson.board.model.LessonCardDB2" >
 		select cate, subcate, title, lesson, description, careerdb, email, id, trial, subcate0, price1, price2, price3, subcate1, opt1price1, opt1price2, opt1price3, subcate2, opt2price1, opt2price2, opt2price3, represent, day, gawe, contentimg from lesson where id=#{id} and email=#{email}
 	</select>
 	
@@ -80,12 +80,12 @@
 		delete from wishlist where postId=#{id}
 	</delete>
 	
-	<select id="myLessonList" resultType="lesson.board.model.PostView">
+	<select id="myLessonList" resultType="com.coksabu.yojic.lesson.board.model.PostView">
 		select A.nickname, A.birth, A.phone, B.universe, B.univsub,  B.sexual, B.career,C.cate, C.subcate, C.represent, C.title, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.visible
 		from members as A, profile as B, lesson as C where A.email = #{email} and B.email = #{email} and C.email = #{email}
 	</select>
 	
-	<select id="myLessonListFromTutorProfile" resultType="lesson.board.model.PostView">
+	<select id="myLessonListFromTutorProfile" resultType="com.coksabu.yojic.lesson.board.model.PostView">
 		select A.nickname, A.birth, A.phone, B.universe, B.univsub ,  B.sexual, B.career,C.cate, C.subcate, C.represent, C.title, C.price3, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3,C.id
 		from members as A, profile as B, lesson as C where A.email = #{email} and B.email = #{email} and C.email = #{email} and A.membership=1 and C.visible=1
 	</select>
@@ -102,7 +102,7 @@
 		</choose>
 	</select>
 	
-	<select id="listPost" resultType="lesson.board.model.PostView">
+	<select id="listPost" resultType="com.coksabu.yojic.lesson.board.model.PostView">
 		select A.nickname, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career, C.subcate, C.represent, C.title, C.subcate0, C.price1, C.price3, C.subcate1, C.opt1price3 , C.subcate2, C.opt2price3 ,C.id, C.readcount
 		from members as A, profile as B, lesson as C where A.email=B.email and B.email=C.email and A.membership=1 and C.visible=1
 		<choose>
@@ -115,7 +115,7 @@
 		</choose>
 	</select>
 	
-	<select id="listNewPost" resultType="lesson.board.model.PostView">
+	<select id="listNewPost" resultType="com.coksabu.yojic.lesson.board.model.PostView">
 		select A.nickname, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career, C.title, C.subcate0, C.price1, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3 , C.id
 		from members as A, profile as B, lesson as C where A.email=B.email and B.email=C.email and A.membership=1 and C.visible=1
 		<choose>
@@ -142,7 +142,7 @@
 	</select>
 	
 	
-	<select id="listForm" resultType="lesson.board.model.PostView">
+	<select id="listForm" resultType="com.coksabu.yojic.lesson.board.model.PostView">
 		select A.nickname, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career, C.subcate, C.represent, C.title, C.subcate0, C.price1, C.price3, C.subcate1, C.opt1price3 , C.subcate2, C.opt2price3 , C.id, C.readcount
 		from members as A, profile as B, lesson as C where A.email=B.email and B.email=C.email and A.membership=1 and C.visible=1 and B.locales like concat('%',#{locale},'%') and B.career>=#{career} 
 		 and B.sexual like concat('%',#{sexual},'%')
@@ -165,16 +165,16 @@
 		</choose>
 	</select>
 	
-	<select id="readProfilePost" resultType="lesson.member.model.Profile">
+	<select id="readProfilePost" resultType="com.coksabu.yojic.lesson.member.model.Profile">
 		select A.email, A.name, A.nickname, A.birth, B.imgpath, B.locales, B.universe, B.univsub, B.universer, B.career, B.sexual, B.academy, B.academyd, B.nation, B.nationy, B.toeic, B.tofle, B.teps, B.hsk, B.jpt, B.singular, B.certify
 		from members as A, profile as B where A.email = #{email} and B.email=#{email}
 	</select>
 	<!-- 수정 -->
-	<select id="readLessonPost" resultType="lesson.board.model.LessonCardDB2">
+	<select id="readLessonPost" resultType="com.coksabu.yojic.lesson.board.model.LessonCardDB2">
 		select cate, subcate, represent, title, lesson, description, contentimg, careerDB, subcate0, price1, price2, price3, subcate1, opt1price1, opt1price2, opt1price3, subcate2, opt2price1, opt2price2, opt2price3, postingdate, readcount, day, gawe, trial, visible from lesson where id=#{id}
 	</select>
 	
-	<select id="listMain" resultType="lesson.board.model.PostView">
+	<select id="listMain" resultType="com.coksabu.yojic.lesson.board.model.PostView">
 		(select A.nickname, A.email, A.birth, B.imgpath, B.universe, B.univsub , B.sexual, B.career , C.subcate, C.represent, C.title, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
 		from members as A, profile as B, lesson as C where A.email = B.email and B.email=C.email and A.membership=1 and C.visible=1
 		and cate='수학' order by C.readcount desc limit 3) 
@@ -204,7 +204,7 @@
 		and cate='자소서/입시' order by C.readcount desc limit 3) 
 	</select>
 	
-	<select id="purchaseRead" resultType="lesson.board.model.PurchaseRead">
+	<select id="purchaseRead" resultType="com.coksabu.yojic.lesson.board.model.PurchaseRead">
 		select A.email, A.name ,A.nickname, A.phone ,B.sexual, C.represent, C.title, C.cate, C.subcate, C.gawe, C.trial, C.visible ,
 		<choose>
    		    <when test ='subcate.equals("first")'>
@@ -227,7 +227,7 @@
 		select name from members where email=#{email}
 	</select>
 	
-	<insert id="insertPurchaseHistory" parameterType="lesson.board.model.PurchaseHistory">
+	<insert id="insertPurchaseHistory" parameterType="com.coksabu.yojic.lesson.board.model.PurchaseHistory">
 		insert into purchasehistory (buyerEmail, buyerName, buyerPhone, sellerEmail, sellerName, sellerPhone, orderDate, postId, price1, price2, price3, trial, gawe, startDate, endDate, orderstatus, title, cate, subcate, bank, depositor) 
 		values (#{buyerEmail}, #{buyerName}, #{buyerPhone}, #{sellerEmail}, #{sellerName}, #{sellerPhone}, #{orderDate}, #{postId}, #{price1}, #{price2}, #{price3}, #{trial}, #{gawe}, #{startDate}, #{endDate}, #{orderstatus}, #{title}, #{cate}, #{subcate}, #{bank}, #{depositor} )
 	</insert>
@@ -244,7 +244,7 @@
 		select email from lesson where id=#{id}
 	</select>	
 	
-	<select id="takeTeacher" resultType="lesson.board.model.PostView" parameterType="lesson.board.model.PostView">
+	<select id="takeTeacher" resultType="com.coksabu.yojic.lesson.board.model.PostView" parameterType="com.coksabu.yojic.lesson.board.model.PostView">
 		select A.name, A.email, B.cate, B.subcate, B.title from members as A, lesson as B where A.email=B.email and A.email=#{email} and id=#{id}
 	</select>	
 	

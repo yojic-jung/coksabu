@@ -99,14 +99,14 @@
 		</sec:authentication-provider>
 	</sec:authentication-manager>
 	
-	<bean id="autoLoginSuccessHandler" class="com.dywlr.handler.AutoLoginSuccessHandler" />
+	<bean id="autoLoginSuccessHandler" class="com.coksabu.yojic.loginhandler.AutoLoginSuccessHandler" />
 	
-	<bean id="loginSuccessHandler" class="com.dywlr.handler.LoginSuccessHandler">
+	<bean id="loginSuccessHandler" class="com.coksabu.yojic.loginhandler.LoginSuccessHandler">
 	    <property name="loginidname" value="email"/>
 	    <property name="defaultUrl" value="/"/>
 	</bean>
 
-	<bean id="loginFailureHandler" class="com.dywlr.handler.LoginFailureHandler">
+	<bean id="loginFailureHandler" class="com.coksabu.yojic.loginhandler.LoginFailureHandler">
    		<property name="loginidname" value="email"/>
     	<property name="loginpwdname" value="password"/>
    		<property name="errormsgname" value="ERRORMSG"/>

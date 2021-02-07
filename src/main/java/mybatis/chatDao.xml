@@ -4,7 +4,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="test.dao.ChatDao">
+<mapper namespace="com.coksabu.yojic.lesson.chat.dao.ChatDao">
 
 	<select id="userList" resultType="String" >
 		select email from chat_member where email not in (#{email});
@@ -38,24 +38,24 @@
 		insert into chat_room (user, lasttime) values (#{user}, now())
 	</insert>
 	
-	<insert id="insertChatMessageRead" parameterType="test.model.Message" >
+	<insert id="insertChatMessageRead" parameterType="com.coksabu.yojic.lesson.chat.model.Message" >
 		insert into message (chatroom_id, message_content, message_sender, message_receiver, message_time, message_read) values (#{chatroom_id}, #{message_content}, #{message_sender}, #{message_receiver}, now(), 0)
 	</insert>
 	
-	<insert id="insertChatMessageReadNot" parameterType="test.model.Message" >
+	<insert id="insertChatMessageReadNot" parameterType="com.coksabu.yojic.lesson.chat.model.Message" >
 		insert into message (chatroom_id, message_content, message_sender, message_receiver, message_time, message_read) values (#{chatroom_id}, #{message_content}, #{message_sender}, #{message_receiver}, now(), 1)
 	</insert>
 	
-	<select id="takeChatMemberStatus" parameterType="test.model.Message" resultType="String" >
+	<select id="takeChatMemberStatus" parameterType="com.coksabu.yojic.lesson.chat.model.Message" resultType="String" >
 		select status from chat_member_status where roomnumber=#{chatroom_id} and user=#{message_receiver}
 	</select>
 	
 	
-	<select id="takeMessage" resultType="test.model.Message" >
+	<select id="takeMessage" resultType="com.coksabu.yojic.lesson.chat.model.Message" >
 		select chatroom_id, message_content, message_sender, message_receiver, message_time, message_read from message where chatroom_id=#{chatroom_id} order by message_id asc
 	</select>
 	
-	<select id="takeMyRoom" resultType="test.model.MyRoom" >
+	<select id="takeMyRoom" resultType="com.coksabu.yojic.lesson.chat.model.MyRoom" >
 		select id, user, lasttime from chat_room where user like concat('%', #{email}, '%') order by lasttime desc;
 	</select>
 	
@@ -71,11 +71,11 @@
 		select email from lesson where id=#{id}
 	</select>
 	
-	<insert id="putChatDeal" parameterType="test.model.ChatDeal">
+	<insert id="putChatDeal" parameterType="com.coksabu.yojic.lesson.chat.model.ChatDeal">
 		insert into chat_deal (email, chatroom_id, customer, cate, lessonCount, lessonTime, price, startDate, endDate, startDay, endDay, moreDetail, permit, proposal_day) values (#{email}, #{chatroom_id}, #{customer}, #{cate}, #{lessonCount}, #{lessonTime}, #{price}, #{startDate}, #{endDate}, #{startDay}, #{endDay}, #{moreDetail}, #{permit}, now())
 	</insert>
 
-	<update id="updateChatDeal" parameterType="test.model.ChatDeal">
+	<update id="updateChatDeal" parameterType="com.coksabu.yojic.lesson.chat.model.ChatDeal">
 		update chat_deal set email=#{email}, customer=#{customer}, cate=#{cate},
 		lessonCount=#{lessonCount}, lessonTime=#{lessonTime}, price=#{price}, startDate=#{startDate}, endDate=#{endDate}, startDay=#{startDay}, endDay=#{endDay}, moreDetail=#{moreDetail}, proposal_day=now() where chatroom_id=#{chatroom_id}
 	</update>
@@ -84,7 +84,7 @@
 		select count(*) from chat_deal where chatroom_id = #{chatroom_id}
 	</select>
 	
-	<select id="takeMyChatDeal" resultType="test.model.ChatDeal">
+	<select id="takeMyChatDeal" resultType="com.coksabu.yojic.lesson.chat.model.ChatDeal">
 		select id, email, customer, cate, lessoncount, price, startdate, enddate,moredetail, lessontime from chat_deal where chatroom_id = #{chatroom_id}
 	</select>
 	
@@ -96,32 +96,32 @@
 		update chat_deal set email=#{email}, customer=#{customer}, proposal_day=now() where chatroom_id=#{chatroom_id}
 	</update>
 	
-	<select id="takeChatDealByOrd" resultType="test.model.ChatPurchase">
+	<select id="takeChatDealByOrd" resultType="com.coksabu.yojic.lesson.chat.model.ChatPurchase">
 		select id, email, customer, cate, lessoncount, price, startdate, enddate, startday, endday, moredetail, lessontime from chat_deal where id = #{proposal_id}
 	</select>
 	
-	<insert id="purchaseChatTransaction" parameterType="test.model.ChatPurchase">
+	<insert id="purchaseChatTransaction" parameterType="com.coksabu.yojic.lesson.chat.model.ChatPurchase">
 		insert into chat_transaction (buyer, buyername, seller, sellername, cate, lessonCount, lessonTime, price, startDate, endDate, startDay, endDay, moreDetail, proposal_id, orderstatus, purchase_day, bank, depositor) values (#{buyer}, #{buyerName}, #{seller}, #{sellerName}, #{cate}, #{lessonCount}, #{lessonTime}, #{price}, #{startDate}, #{endDate}, #{startDay}, #{endDay}, #{moreDetail}, #{proposal_id},  #{orderstatus}, now(), #{bank}, #{depositor})
 	</insert>
 	
-	<select id="myPurchaseProposal" resultType="test.model.ChatPurchase">
+	<select id="myPurchaseProposal" resultType="com.coksabu.yojic.lesson.chat.model.ChatPurchase">
 		select seller, buyer, cate, lessoncount, price, lessontime, proposal_id, id, purchase_day, orderstatus from chat_transaction where buyer = #{email} order by id desc
 	</select>
 	
-	<select id="myPurchaseProposalSearch" resultType="test.model.ChatPurchase">
+	<select id="myPurchaseProposalSearch" resultType="com.coksabu.yojic.lesson.chat.model.ChatPurchase">
 		select seller, buyer, cate, lessoncount, price, lessontime, proposal_id, id, purchase_day, orderstatus from chat_transaction where buyer = #{email} and orderstatus like concat('%',#{orderStatus},'%') and  purchase_day between #{firstDate} and #{lastDate} order by id desc
 	</select>
 	
 	
-	<select id="mySaleProposal" resultType="test.model.ChatPurchase">
+	<select id="mySaleProposal" resultType="com.coksabu.yojic.lesson.chat.model.ChatPurchase">
 		select seller, buyer, cate, lessoncount, price, startdate, enddate, moredetail, lessontime, proposal_id, id, purchase_day, orderstatus from chat_transaction where seller = #{email} order by id desc
 	</select>
 	
-	<select id="myProposal" resultType="test.model.ChatPurchase">
+	<select id="myProposal" resultType="com.coksabu.yojic.lesson.chat.model.ChatPurchase">
 		select seller, buyer, cate, lessoncount, price, startdate, enddate, moredetail, lessontime, purchase_day from chat_transaction where id = #{id} and (buyer like concat('%',#{email},'%') or seller like concat('%',#{email},'%') )
 	</select>
 	
-	<select id="myProposalByAdmin" resultType="test.model.ChatPurchase">
+	<select id="myProposalByAdmin" resultType="com.coksabu.yojic.lesson.chat.model.ChatPurchase">
 		select seller, buyer, cate, lessoncount, price, startdate, enddate, moredetail, lessontime, purchase_day from chat_transaction where id = #{id}
 	</select>
 	

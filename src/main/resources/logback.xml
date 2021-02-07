@@ -162,22 +162,22 @@
     </appender>
  
  
-	 <logger name="lesson.apply" level="WARN">
+	 <logger name="com.coksabu.yojic.lesson.apply" level="WARN">
         <appender-ref ref="ROLLING_APPLY_FILE" />
     </logger>
-	<logger name="lesson.member" level="WARN">
+	<logger name="com.coksabu.yojic.lesson.member" level="WARN">
         <appender-ref ref="ROLLING_MEMBER_FILE" />
     </logger>
-    <logger name="lesson.board" level="WARN">
+    <logger name="com.coksabu.yojic.lesson.board" level="WARN">
         <appender-ref ref="ROLLING_BOARD_FILE" />
     </logger>
-    <logger name="lesson.deal" level="WARN">
+    <logger name="com.coksabu.yojic.lesson.deal" level="WARN">
         <appender-ref ref="ROLLING_DEAL_FILE" />
     </logger>
-    <logger name="test" level="WARN">
+    <logger name="com.coksabu.yojic.lesson.chat" level="WARN">
         <appender-ref ref="ROLLING_CHAT_FILE" />
     </logger>
-    <logger name="lesson.cron" level="WARN">
+    <logger name="com.coksabu.yojic.lesson.cron" level="WARN">
         <appender-ref ref="ROLLING_CRON_FILE" />
     </logger>
     

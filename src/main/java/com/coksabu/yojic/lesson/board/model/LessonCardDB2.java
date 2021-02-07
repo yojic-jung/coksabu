@@ -1,0 +1,248 @@
+package com.coksabu.yojic.lesson.board.model;
+
+public class LessonCardDB2 {
+	
+	private int id;
+	private String email;
+	private String represent;
+	private String cate;
+	private String subCate;
+	private String title;
+	private String lesson;
+	private String description;
+	
+	private String imgpath1;
+	private String imgpath2;
+	private String imgpath3;
+	private String imgpath4;
+	private String contentimg;
+	
+	private String careerDB;
+	
+	private String subCate0;
+	private String price1;
+	private String price2;
+	private String price3;
+	
+	private String subCate1;
+	private String opt1price1;
+	private String opt1price2;
+	private String opt1price3;
+	
+	private String subCate2;
+	private String opt2price1;
+	private String opt2price2;
+	private String opt2price3;
+	
+	
+	private String day;
+	private String gawe;
+	private String trial;
+	private int visible;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public void setCareerDB(String ycareer) {
+		this.careerDB=ycareer;
+	}
+	public String getCareerDB() {
+		return careerDB;
+	}
+	
+	public void setEmail(String email) {
+		this.email=email;
+	}
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setRepresent(String represent) {
+		this.represent=represent;
+	}
+	public String getRepresent() {
+		return represent;
+	}
+	
+	public void setCate(String cate) {
+		this.cate=cate;
+	}
+	public String getCate() {
+		return cate;
+	}
+	
+	public void setSubCate(String subCate) {
+		this.subCate=subCate;
+	}
+	public String getSubCate() {
+		return subCate;
+	}
+	
+	public void setTitle(String title) {
+		this.title=title;
+	}
+	public String getTitle() {
+		return title;
+	}
+	
+	public void setLesson(String lesson) {
+		this.lesson=lesson;
+	}
+	public String getLesson() {
+		return lesson;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getDescription() {
+		return description;
+	}
+
+	public void setImgpath1(String imgpath1) {
+		this.imgpath1 = imgpath1;
+	}
+	public String getImgpath1() {
+		return imgpath1;
+	}
+	
+	public void setImgpath2(String imgpath2) {
+		this.imgpath2 = imgpath2;
+	}
+	public String getImgpath2() {
+		return imgpath2;
+	}
+	
+	public void setImgpath3(String imgpath3) {
+		this.imgpath3 = imgpath3;
+	}
+	public String getImgpath3() {
+		return imgpath3;
+	}
+	
+	public void setImgpath(String imgpath4) {
+		this.imgpath4 = imgpath4;
+	}
+	public String getImgpath4() {
+		return imgpath4;
+	}
+	
+	public void setContentimg(String contentimg) {
+		this.contentimg = contentimg;
+	}
+	public String getContentimg() {
+		return contentimg;
+	}
+	
+	public void setSubCate0(String subCate0) {
+		this.subCate0=subCate0;
+	}
+	public String getSubCate0() {
+		return subCate0;
+	}
+	public void setPrice1(String price1) {
+		this.price1=price1;
+	}
+	
+	public String getPrice1() {
+		return price1;
+	}
+	
+	public void setPrice2(String price2) {
+		this.price2=price2;
+	}
+	
+	public String getPrice2() {
+		return price2;
+	}
+	
+	public void setPrice3(String price3) {
+		this.price3=price3;
+	}
+	
+	public String getPrice3() {
+		return price3;
+	}
+	
+	public void setSubCate1(String subCate1) {
+		this.subCate1=subCate1;
+	}
+	public String getSubCate1() {
+		return subCate1;
+	}
+	public void setOpt1price1(String opt1price1) {
+		this.opt1price1=opt1price1;
+	}
+	public String getOpt1price1() {
+		return opt1price1;
+	}
+	
+	public void setOpt1price2(String opt1price2) {
+		this.opt1price2=opt1price2;
+	}
+	public String getOpt1price2() {
+		return opt1price2;
+	}
+	
+	public void setOpt1price3(String opt1price3) {
+		this.opt1price3=opt1price3;
+	}
+	public String getOpt1price3() {
+		return opt1price3;
+	}
+	
+	public void setSubCate2(String subCate2) {
+		this.subCate2=subCate2;
+	}
+	public String getSubCate2() {
+		return subCate2;
+	}
+	public void setOpt2price1(String opt2price1) {
+		this.opt2price1=opt2price1;
+	}
+	public String getOpt2price1() {
+		return opt2price1;
+	}
+	
+	public void setOpt2price2(String opt2price2) {
+		this.opt2price2=opt2price2;
+	}
+	public String getOpt2price2() {
+		return opt2price2;
+	}
+	
+	public void setOpt2price3(String opt2price3) {
+		this.opt2price3=opt2price3;
+	}
+	public String getOpt2price3() {
+		return opt2price3;
+	}
+	
+	public void setDay(String day) {
+		this.day=day;
+	}
+	public String getDay() {
+		return day;
+	}
+	public void setGawe(String gawe) {
+		this.gawe=gawe;
+	}
+	public String getGawe() {
+		return gawe;
+	}
+	public void setTrial(String trial) {
+		this.trial=trial;
+	}
+	public String getTrial() {
+		return trial;
+	}
+	public void setVisible(int visible) {
+		this.visible=visible;
+	}
+	public int getVisible() {
+		return visible;
+	}
+}

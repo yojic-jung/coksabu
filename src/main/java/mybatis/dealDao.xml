@@ -4,7 +4,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="lesson.deal.dao.DealDao">
+<mapper namespace="com.coksabu.yojic.lesson.deal.dao.DealDao">
 	
 	<select id="countProfile" resultType="Integer">
 		select count(*) from profile where email=#{email} 
@@ -22,7 +22,7 @@
 		select count(*) from purchasehistory where buyeremail = #{email} and  orderdate between date_add(now(), interval-1 year) and now()
 	</select>
 
-	<select id="myPurchaseList" resultType="lesson.board.model.PurchaseHistory">
+	<select id="myPurchaseList" resultType="com.coksabu.yojic.lesson.board.model.PurchaseHistory">
 		select orderdate, orderid, postid, price3, orderstatus, cate, title, subcate from purchasehistory where buyeremail = #{email} and  orderdate between date_add(now(), interval-2 year) and now() order by orderid desc
 	</select>
 
@@ -30,7 +30,7 @@
 		select count(*) from purchasehistory where buyeremail = #{email} and orderStatus like concat('%',#{orderStatus},'%') and orderdate between #{firstDate} and #{lastDate}
 	</select>
 
-	<select id="myPurchaseListSearch" resultType="lesson.board.model.PurchaseHistory">
+	<select id="myPurchaseListSearch" resultType="com.coksabu.yojic.lesson.board.model.PurchaseHistory">
 		select orderdate, orderid, postid,  price3, orderstatus, cate, title, subcate from purchasehistory where buyeremail = #{email} and orderStatus like concat('%',#{orderStatus},'%') and  orderdate between #{firstDate} and #{lastDate} order by orderid desc
 	</select>
 
@@ -60,7 +60,7 @@
 		select count(*) from purchasehistory where selleremail=#{email}
 	</select>
 
-	<select id="mySaleList" resultType="lesson.board.model.PurchaseHistory">
+	<select id="mySaleList" resultType="com.coksabu.yojic.lesson.board.model.PurchaseHistory">
 		select buyername, orderdate, postid, price1,price2, price3, startdate, enddate, orderstatus,  cate, title, subcate, orderid from purchasehistory where selleremail = #{email} and  orderdate between date_add(now(), interval-1 year) and now() order by orderid desc
 	</select>
 	
@@ -68,7 +68,7 @@
 		select count(*) from wishlist where postId=#{postId} and email=#{email}
 	</select>
 	
-	<select id="myWishList" resultType="lesson.board.model.PostView">
+	<select id="myWishList" resultType="com.coksabu.yojic.lesson.board.model.PostView">
 		<foreach collection="list" item="item" separator="union all">
 		(select A.nickname, A.birth, B.universe, B.univsub, B.sexual, B.career, B.imgpath, C.cate, C.subcate, C.represent, C.title, C.subcate0, C.price3,  C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id
 		from members as A, profile as B, lesson as C where A.email = B.email and B.email=C.email and C.id=#{item})
@@ -76,7 +76,7 @@
 	</select>
 	
 	
-	<insert id="testImgUpload" parameterType="test.model.ImgUploadDB">
+	<insert id="testImgUpload" parameterType="com.coksabu.yojic.lesson.chat.model.ImgUploadDB">
 		insert into imgupload (img) values (#{img}) 
 	</insert>
 	
@@ -96,19 +96,19 @@
 		select name from members where email=#{email}
 	</select>
 	
-	<select id="myRefundContent" resultType="lesson.deal.model.RefundContent">
+	<select id="myRefundContent" resultType="com.coksabu.yojic.lesson.deal.model.RefundContent">
 		select * from refundlist where orderid=#{orderId} and applicant=#{email}
 	</select>
 	
-	<select id="proMyRefundContent" resultType="lesson.deal.model.RefundContent">
+	<select id="proMyRefundContent" resultType="com.coksabu.yojic.lesson.deal.model.RefundContent">
 		select * from refundprolist where orderid=#{orderId} and applicant=#{email}
 	</select>
 	
-	<insert id="insertRefund" parameterType="lesson.deal.model.RefundContent">
+	<insert id="insertRefund" parameterType="com.coksabu.yojic.lesson.deal.model.RefundContent">
 		insert into refundlist (orderid, applicant, applicantname, processCount, remainCount, content, phone, account, recordtime, orderstatus) values (#{orderId}, #{applicant}, #{applicantname}, #{processCount}, #{remainCount}, #{content}, #{phone}, #{account}, now(), #{orderStatus}) 
 	</insert>
 	
-	<insert id="insertProRefund" parameterType="lesson.deal.model.RefundContent">
+	<insert id="insertProRefund" parameterType="com.coksabu.yojic.lesson.deal.model.RefundContent">
 		insert into refundprolist (orderid, applicant, applicantname, processCount, remainCount, content, phone, account, recordtime, orderstatus) values (#{orderId}, #{applicant}, #{applicantname}, #{processCount}, #{remainCount}, #{content}, #{phone}, #{account}, now(), #{orderStatus}) 
 	</insert>
 	
@@ -120,15 +120,15 @@
 		update chat_transaction set orderstatus=#{orderstatus} where id=#{orderId}
 	</update>
 	
-	<select id="orderInfo" resultType="lesson.board.model.PurchaseHistory">
+	<select id="orderInfo" resultType="com.coksabu.yojic.lesson.board.model.PurchaseHistory">
 		select * from purchasehistory where orderid=#{orderId} and (selleremail like concat('%',#{email},'%') or buyeremail like concat('%',#{email},'%'))
 	</select>
 	
-	<select id="proposalOrderInfo" resultType="test.model.ChatPurchase">
+	<select id="proposalOrderInfo" resultType="com.coksabu.yojic.lesson.chat.model.ChatPurchase">
 		select * from chat_transaction where id=#{orderId} and buyer=#{email}
 	</select>
 	
-	<select id="sellerProposalOrderInfo" resultType="test.model.ChatPurchase">
+	<select id="sellerProposalOrderInfo" resultType="com.coksabu.yojic.lesson.chat.model.ChatPurchase">
 		select id, proposal_id, cate, lessoncount, lessontime, startdate, enddate, moredetail, price, purchase_day, orderstatus, buyername, sellername from chat_transaction where id=#{orderId} and seller=#{email}
 	</select>
 	
@@ -140,19 +140,19 @@
 		update chat_transaction set orderstatus=#{orderstatus} where id=#{orderId} and orderstatus=#{nowstatus} and buyer=#{email}
 	</update>
 	
-	<select id="buyerRefundCompleteInfo" resultType="lesson.deal.model.RefundComplete">
+	<select id="buyerRefundCompleteInfo" resultType="com.coksabu.yojic.lesson.deal.model.RefundComplete">
 		select orderid, progresslesson, remainlesson, buyername, buyerprice, buyerbank, buyeraccount, buyeraccountholder, price1 from refundcomplete where orderid=#{orderId} and buyeremail=#{email}
 	</select>
 	
-	<select id="sellerRefundCompleteInfo" resultType="lesson.deal.model.RefundComplete">
+	<select id="sellerRefundCompleteInfo" resultType="com.coksabu.yojic.lesson.deal.model.RefundComplete">
 		select orderid, progresslesson, remainlesson, sellername, sellerprice, sellerbank, selleraccount, selleraccountholder, fees, finalprice, price1 from refundcomplete where orderid=#{orderId} and selleremail=#{email}
 	</select>
 	
-	<select id="buyerRefundCompletePro" resultType="lesson.deal.model.RefundComplete">
+	<select id="buyerRefundCompletePro" resultType="com.coksabu.yojic.lesson.deal.model.RefundComplete">
 		select orderid, progresslesson, remainlesson, buyername, buyerprice, buyerbank, buyeraccount, buyeraccountholder, price1 from refundcompletepro where orderid=#{orderId} and buyeremail=#{email}
 	</select>
 	
-	<select id="sellerRefundCompletePro" resultType="lesson.deal.model.RefundComplete">
+	<select id="sellerRefundCompletePro" resultType="com.coksabu.yojic.lesson.deal.model.RefundComplete">
 		select orderid, progresslesson, remainlesson, sellername, sellerprice, sellerbank, selleraccount, selleraccountholder, fees, finalprice, price1 from refundcompletepro where orderid=#{orderId} and selleremail=#{email}
 	</select>
 	
@@ -162,7 +162,7 @@
 	</select>
 	
 	
-	<select id="takePurchaseEmail" resultType="lesson.board.model.PurchaseHistory">
+	<select id="takePurchaseEmail" resultType="com.coksabu.yojic.lesson.board.model.PurchaseHistory">
 		select buyeremail, selleremail from purchasehistory where orderid=#{orderId}
 	</select>
 	
@@ -170,7 +170,7 @@
 		select count(*) from refundlist where orderid=#{orderId}
 	</select>
 	
-	<select id="takeRefundContent" resultType="lesson.deal.model.RefundContent">
+	<select id="takeRefundContent" resultType="com.coksabu.yojic.lesson.deal.model.RefundContent">
 		select processCount, remainCount  from refundlist where orderid=#{orderId}
 	</select>
 	
@@ -178,7 +178,7 @@
 		select orderstatus  from purchasehistory where orderid=#{orderId}
 	</select>
 	
-	<select id="takeProposalEmail" resultType="test.model.ChatPurchase">
+	<select id="takeProposalEmail" resultType="com.coksabu.yojic.lesson.chat.model.ChatPurchase">
 		select buyer, seller from chat_transaction where id=#{orderId}
 	</select>
 	
@@ -186,11 +186,11 @@
 		select count(*)  from refundprolist where orderid=#{orderId}
 	</select>
 	
-	<select id="takeProRefundContent" resultType="lesson.deal.model.RefundContent">
+	<select id="takeProRefundContent" resultType="com.coksabu.yojic.lesson.deal.model.RefundContent">
 		select processCount, remainCount  from refundprolist where orderid=#{orderId}
 	</select>
 	
-	<select id="myProRefundContent" resultType="lesson.deal.model.RefundContent">
+	<select id="myProRefundContent" resultType="com.coksabu.yojic.lesson.deal.model.RefundContent">
 		select * from refundprolist where orderid=#{orderId} and applicant=#{email}
 	</select>
 	

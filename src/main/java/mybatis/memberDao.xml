@@ -4,7 +4,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="lesson.member.dao.MemberDao">
+<mapper namespace="com.coksabu.yojic.lesson.member.dao.MemberDao">
 		
 	<select id="checkEmail" resultType="Integer" >
 		select count(*) from members where email=#{email}
@@ -14,11 +14,11 @@
 		select count(*) from members where phone=#{phone}
 	</select>
 	
-	<select id="checkPassword" parameterType="lesson.member.model.Login" resultType="String" >
+	<select id="checkPassword" parameterType="com.coksabu.yojic.lesson.member.model.Login" resultType="String" >
 		select password from members where email= #{email}
 	</select>
 	
-	<select id="takeImgUniv" resultType="lesson.member.model.Profile">
+	<select id="takeImgUniv" resultType="com.coksabu.yojic.lesson.member.model.Profile">
 		select imgPath, universe, univsub from profile where email=#{email} 
 	</select>
 	
@@ -34,7 +34,7 @@
 	 	update members set membership=0 where email=#{email}
 	</update>
 	
-	<insert id="signUp" parameterType="lesson.member.model.MemberInfo" >
+	<insert id="signUp" parameterType="com.coksabu.yojic.lesson.member.model.MemberInfo" >
 		insert into members (email, password, name, nickname, birth, phone, logindate, membership, enabled, authority, human_status, fail_count, fail_time, imgpath, push) values (#{email}, #{password}, #{name}, #{name}, #{birth}, #{phone}, now(), 0, 1, 'user', 0, 0, 0, 'pro.png', 'ON')
 	</insert>
 	
@@ -46,7 +46,7 @@
 		select imgpath from profile where email = #{email}
 	</select>
 	
-	<insert id="writeProfile" parameterType="lesson.member.model.TeacherDB" >
+	<insert id="writeProfile" parameterType="com.coksabu.yojic.lesson.member.model.TeacherDB" >
 		insert into profile (email, imgpath, locales, universe, univsub, universer, career, sexual, academy, academyd, nation, nationy, toeic, tofle, teps, hsk, jpt, singular, certify) values 
 		(#{email}, #{imgPath}, #{locales}, #{universe}, #{univsub}, #{universer}, #{career}, #{sexual}, #{academy}, #{academyd}, #{nation}, #{nationy}, #{toeic}, #{tofle}, #{teps}, #{hsk}, #{jpt}, #{singular}, 0)
 	</insert>
@@ -56,24 +56,24 @@
 	</update>
 	
 	
-	<update id="updateProfile"  parameterType="lesson.member.model.TeacherDB">
+	<update id="updateProfile"  parameterType="com.coksabu.yojic.lesson.member.model.TeacherDB">
 		update profile as A, members as B set A.imgpath=#{imgPath}, A.locales=#{locales}, A.sexual=#{sexual}, A.universe=#{universe}, 
 		A.univsub=#{univsub}, A.universer=#{universer}, A.career=#{career} , A.academy=#{academy}, A.academyd = #{academyd},
 		A.nation=#{nation}, A.nationy=#{nationy}, A.toeic=#{toeic}, A.tofle=#{tofle}, A.teps=#{teps}, A.hsk=#{hsk}, A.jpt=#{jpt}, 
 		 A.singular=#{singular}, B.imgpath=#{imgPath} where A.email=#{email} and B.email=#{email}
 	</update>
 	
-	<select id="takeProfile" resultType="lesson.member.model.Profile" >
+	<select id="takeProfile" resultType="com.coksabu.yojic.lesson.member.model.Profile" >
 		select A.nickname, A.birth ,B.imgpath, B.locales, B.universe, B.univsub, B.career, B.sexual, B.certify from members as A, profile as B where A.email =#{email} and B.email=#{email}
 	</select>
 	
-	<select id="takeProfileList" resultType="lesson.member.model.Profile" >
+	<select id="takeProfileList" resultType="com.coksabu.yojic.lesson.member.model.Profile" >
 		<foreach collection="list" item="item" separator="union all">
 			(select nickname, imgpath from members where email=#{item})
 		</foreach>
 	</select>
 
-	<select id="takeTeacherDB" resultType="lesson.member.model.TeacherDB" >
+	<select id="takeTeacherDB" resultType="com.coksabu.yojic.lesson.member.model.TeacherDB" >
 		select imgpath, locales, universe, universer, career, univsub, sexual, academy, academyd,
 		nation, nationy, toeic, tofle, teps, hsk, jpt, singular, certify from profile where email=#{email}
 	</select>
@@ -86,19 +86,19 @@
 		select count(*) from universe where universe like concat('%',#{universe},'%')
 	</select>
 	
-	<update id="updateImgCertify" parameterType="lesson.member.model.CertifyDB" >
+	<update id="updateImgCertify" parameterType="com.coksabu.yojic.lesson.member.model.CertifyDB" >
 		update profile set certifyimg1=#{certifyimg1}, certifyimg2=#{certifyimg2}, certifyimg3=#{certifyimg3}, certify=3, certifydate=now() where email=#{email}
 	</update>
 	
-	<select id="tekeCertify" resultType="lesson.member.model.CertifyDB">
+	<select id="tekeCertify" resultType="com.coksabu.yojic.lesson.member.model.CertifyDB">
 		select email, certify, certifyimg1, certifyimg2, certifyimg3 from profile where email=#{email}
 	</select>
 	
-	<select id="readMemberInfo" resultType="lesson.member.model.MemberInfo" >
+	<select id="readMemberInfo" resultType="com.coksabu.yojic.lesson.member.model.MemberInfo" >
 		select email, name, birth, phone, nickname from members where email=#{email}
 	</select>
 	
-	<update id="updatePhone" parameterType="lesson.member.model.MemberInfo" >
+	<update id="updatePhone" parameterType="com.coksabu.yojic.lesson.member.model.MemberInfo" >
 		update members set phone=#{phone} where email=#{email}
 	</update>
 	
@@ -106,15 +106,15 @@
 		select password from members where email=#{email}
 	</select>
 	
-	<update id="updatePassword" parameterType="lesson.member.model.Password" >
+	<update id="updatePassword" parameterType="com.coksabu.yojic.lesson.member.model.Password" >
 		update members set password=#{password2}, human_status=0 where email=#{email}
 	</update>
 	
-	<update id="updatePassword2" parameterType="lesson.member.model.Password" >
+	<update id="updatePassword2" parameterType="com.coksabu.yojic.lesson.member.model.Password" >
 		update members set password=#{password2}, human_status=1, enabled=1, fail_count=0, fail_time=0  where email=#{email}
 	</update>
 	
-	<insert id="insertQna" parameterType="lesson.member.model.Qna" >
+	<insert id="insertQna" parameterType="com.coksabu.yojic.lesson.member.model.Qna" >
 		insert into qna (email, title, content, visible, date) values (#{email}, #{title}, #{content}, 1, #{date})
 	</insert>
 	
@@ -122,12 +122,12 @@
 		select count(*) from lessoncertify where email=#{email}
 	</select>
 	
-	<insert id="insertLessonCertify" parameterType="lesson.member.model.LessonCertify" >
+	<insert id="insertLessonCertify" parameterType="com.coksabu.yojic.lesson.member.model.LessonCertify" >
 		insert into lessoncertify (name, serviceAgree, myAgree, email) values (#{name}, #{serviceAgree}, #{myAgree}, #{email} )
 	</insert>
 	
 	
-	<select id="readLessonCertify" resultType="lesson.member.model.LessonCertify" >
+	<select id="readLessonCertify" resultType="com.coksabu.yojic.lesson.member.model.LessonCertify" >
 		select name, serviceagree, myagree from lessoncertify where email=#{email}
 	</select>
 	
@@ -135,11 +135,11 @@
 		select name from members where email=#{email}
 	</select>
 	
-	<select id="countEmail" parameterType="lesson.member.model.EmailInfo" resultType="Integer">
+	<select id="countEmail" parameterType="com.coksabu.yojic.lesson.member.model.EmailInfo" resultType="Integer">
 		select count(*) from members where name=#{name} and phone=#{phone}
 	</select>
 	
-	<select id="takeEmail" parameterType="lesson.member.model.EmailInfo" resultType="String">
+	<select id="takeEmail" parameterType="com.coksabu.yojic.lesson.member.model.EmailInfo" resultType="String">
 		select email from members where name=#{name} and phone=#{phone}
 	</select>
 	
@@ -155,7 +155,7 @@
 		select count(*) from qna where email=#{email}
 	</select>
 	
-	<select id="myQnaList" resultType="lesson.member.model.Qna">
+	<select id="myQnaList" resultType="com.coksabu.yojic.lesson.member.model.Qna">
 		select title, content, id, answer, date from qna where email=#{email} order by id desc limit #{firstRow}, #{endRow}
 	</select>
 	
@@ -215,11 +215,11 @@
 		select count(*) from chat_transaction where seller like concat('%',#{email},'%') or buyer like concat('%',#{email},'%')
 	</select>
 	
-	<select id="takeMyAccount" resultType="lesson.member.model.MyAccount">
+	<select id="takeMyAccount" resultType="com.coksabu.yojic.lesson.member.model.MyAccount">
 		select name, account, accountnumber from members where email=#{email}
 	</select>
 	
-	<update id="updateMyAccount" parameterType="lesson.member.model.MyAccount">
+	<update id="updateMyAccount" parameterType="com.coksabu.yojic.lesson.member.model.MyAccount">
 		update members set account=#{account}, accountnumber=#{accountNumber} where email=#{email}
 	</update>
 	
