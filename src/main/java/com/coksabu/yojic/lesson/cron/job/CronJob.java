@@ -14,7 +14,6 @@ public class CronJob {
 
 	private static final  Logger logger = LoggerFactory.getLogger(CronJob.class);
 	
-	
 	//선생님 수업 지원횟수 초기화와 로그인 실패 횟수 초기화
 	@Scheduled(cron = "00 00 00 * * *")
     public void resetApplyCount1(){

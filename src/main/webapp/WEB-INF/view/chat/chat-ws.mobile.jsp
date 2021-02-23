@@ -59,27 +59,25 @@
     
     
     function send() {
-    	var msg = $("#message").val();
+    	var msg = $("#message").val().trim();
     	if(msg != ""){
 			  var message = {};
-			  message.message_content = $("#message").val()
+			  message.message_content = msg
 		  	  message.message_sender = sender
 		  	  message.chatroom_id = chatroom_id
 		  	  message.message_time = new Date();
+			  stompClient.send("/app/message", {atytopic:"message", name: chatroom_id}, JSON.stringify(message));
+		      $("#message").val("");
 		  }
-		 
-		 
-        stompClient.send("/app/message", {atytopic:"message", name: chatroom_id}, JSON.stringify(message));
-        $("#message").val("");
     }
 	
 		  
 	function appendMessage(msg) {
 		if(JSON.parse(msg.body).message_sender==sender){
-			$("#chatMessageArea").append("<div><div class='senderMessage'>"+JSON.parse(msg.body).message_content+"</div><p style='clear:both'></p><div class='msg_time2'>"+"<span class='readOrNot'>"+JSON.parse(msg.body).message_read2+" </span>"+JSON.parse(msg.body).message_time2+"</div><p style='clear:both'></p></div>");
+			$("#chatMessageArea").append("<div><div class='senderMessage'>"+JSON.parse(msg.body).message_content.replaceAll("\n","<br/>")+"</div><p style='clear:both'></p><div class='msg_time2'>"+"<span class='readOrNot'>"+JSON.parse(msg.body).message_read2+" </span>"+JSON.parse(msg.body).message_time2+"</div><p style='clear:both'></p></div>");
 			$('html, body').scrollTop(document.body.scrollHeight);
 		}else{
-			$("#chatMessageArea").append("<div style='text-align:left;padding:5px;'><div class='receiverMessage'>"+JSON.parse(msg.body).message_content+"</div><div class='msg_time'>"+JSON.parse(msg.body).message_time2+"</div></div>");
+			$("#chatMessageArea").append("<div style='text-align:left;padding:5px;'><div class='receiverMessage'>"+JSON.parse(msg.body).message_content.replaceAll("\n","<br/>")+"</div><div class='msg_time'>"+JSON.parse(msg.body).message_time2+"</div></div>");
 			$('html, body').scrollTop(document.body.scrollHeight);
 		}
 	}

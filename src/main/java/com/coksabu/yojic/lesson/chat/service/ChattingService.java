@@ -5,20 +5,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.coksabu.yojic.fcm.util.FcmUtil;
 import com.coksabu.yojic.lesson.chat.dao.ChatDao;
 import com.coksabu.yojic.lesson.chat.model.Message;
 import com.coksabu.yojic.lesson.chat.model.MyRoom;
+import com.coksabu.yojic.lesson.fcm.util.PushAsyncMethod;
+import com.coksabu.yojic.lesson.fcm.util.TokenInfo;
 import com.google.firebase.messaging.FirebaseMessagingException;
 
 @Service
 public class ChattingService {
+	
+	@Resource
+	private PushAsyncMethod pushAsyncMethod;
 	
 	@Autowired
 	private ChatDao chatDao;
@@ -107,8 +113,9 @@ public class ChattingService {
 		
 		return a;
 	}
+	
 	@Transactional(rollbackFor= {Exception.class})
-	public String insertMessage(Message mes) throws FirebaseMessagingException, IOException {
+	public String insertMessage(Message mes, String mesForPush) throws FirebaseMessagingException, IOException {
 		chatDao.updateLastTime(mes.getChatroom_id());
 		
 		String status = chatDao.takeChatMemberStatus(mes);
@@ -120,18 +127,15 @@ public class ChattingService {
 		//메세지 안읽음 상태
 		}else {
 			chatDao.insertChatMessageReadNot(mes);
-			
 			//메세지를 안읽음 상태일때만 푸시알림 보내기
 			String title = "메세지(수업문의)가 왔습니다";
-			String content = mes.getMessage_content();
 			String link = "https://m.coksabu.com/message";
 			
-			String token = chatDao.takeTokenForReceiver(mes.getMessage_receiver());
-			if(token !=null) {
-				FcmUtil fcm = new FcmUtil();
-				fcm.send_FCMtoken(token, title, content, link);
-			}else {
-				logger.info("토큰 : "+token);
+			TokenInfo tokenInfo = chatDao.takeTokenForReceiver(mes.getMessage_receiver());
+			if(tokenInfo !=null) {
+				String device = tokenInfo.getDevice();
+				//푸시알림 갈때 html코드도 같이 나가는게 있어서 필터링된 메세지가 아닌 원래 메세지값 넘겨주기
+				pushAsyncMethod.pushForMessageNotification(device, tokenInfo.getToken(), title, mesForPush, link);
 			}
 			
 		}
@@ -196,5 +200,6 @@ public class ChattingService {
 		
 		chatDao.changeChatStatusToON(map);
 	}
+	
 	
 }

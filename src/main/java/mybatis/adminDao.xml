@@ -281,4 +281,9 @@
 		(select count(*) from chat_transaction where orderstatus = #{item})
 		</foreach>
 	</select>
+	
+	<select id="takePushForOneTarget" resultType="com.coksabu.yojic.lesson.fcm.util.TokenInfo">
+		select device, token from members where email=#{email}
+	</select>
+	
 </mapper>

@@ -88,7 +88,8 @@ public class ApplyController extends DeviceSwitcherController{
 		return forward("apply/applySuccess");
 	}
 	
-	//통과
+	/* 
+	통과
 	@RequestMapping(value="applylist", method=RequestMethod.GET)
 	public String applylist(HttpServletRequest request,Model model,HttpSession session) throws UnsupportedEncodingException {
 		String pageNumberString = (String)request.getParameter("p");
@@ -184,6 +185,9 @@ public class ApplyController extends DeviceSwitcherController{
 		
 		return forward("apply/applyList");
 	}
+	*/
+	
+	
 	
 	//테스트 완료
 	@RequestMapping(value="teacherApply", method=RequestMethod.GET)

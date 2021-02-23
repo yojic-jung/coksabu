@@ -155,8 +155,8 @@
         select count(*) from message where message_receiver=#{receiver} and message_sender=#{sender} and message_read=1
 	</select>
 	
-	<select id="takeTokenForReceiver" resultType="String">
-        select token from members where email=#{email} and push='ON'
+	<select id="takeTokenForReceiver" resultType="com.coksabu.yojic.lesson.fcm.util.TokenInfo">
+        select token, device from members where email=#{email} and push='ON'
 	</select>
 	
 	<select id="takeUnReadCountTotal" resultType="int">

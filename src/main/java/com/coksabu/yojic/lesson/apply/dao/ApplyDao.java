@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.coksabu.yojic.lesson.apply.model.ApplyForm;
 import com.coksabu.yojic.lesson.apply.model.ApplyTeacher;
+import com.coksabu.yojic.lesson.fcm.util.TokenInfo;
 
 @Repository
 public interface ApplyDao {
@@ -53,7 +54,9 @@ public interface ApplyDao {
 	
 	public List<String> takeEmailForPushTarget(HashMap<String, String> map);
 	
-	public List<String> takeTokenForPushTarget(List<String> item);
+	public List<String> takeTokenForAndroidPushTarget(List<String> item);
 	
-	public String takePushForOneTarget(String email);
+	public List<String> takeTokenForIosPushTarget(List<String> item);
+	
+	public TokenInfo takePushForOneTarget(String email);
 }

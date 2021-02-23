@@ -23,6 +23,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONException;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -43,6 +47,7 @@ import com.coksabu.yojic.iamport.IamportClient;
 import com.coksabu.yojic.lesson.board.model.PostView;
 import com.coksabu.yojic.lesson.board.service.ReadLessonService;
 import com.coksabu.yojic.lesson.board.service.ReadPostService;
+import com.coksabu.yojic.lesson.fcm.util.FcmUtil;
 import com.coksabu.yojic.lesson.member.model.Certify;
 import com.coksabu.yojic.lesson.member.model.CertifyDB;
 import com.coksabu.yojic.lesson.member.model.EmailInfo;
@@ -66,6 +71,7 @@ import com.coksabu.yojic.lesson.member.service.ReadProfileService;
 import com.coksabu.yojic.lesson.member.service.TokenRegisterService;
 import com.coksabu.yojic.lesson.member.service.UnivSearchService;
 import com.coksabu.yojic.lesson.member.service.WriteProfileService;
+import com.google.firebase.messaging.FirebaseMessagingException;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.Certification;
 import com.siot.IamportRestClient.response.IamportResponse;
@@ -75,6 +81,15 @@ public class MemberController extends DeviceSwitcherController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
+	@RequestMapping("apnTest1")
+	public String apnTest1(HttpServletRequest request) throws FirebaseMessagingException, IOException {
+		String token = request.getParameter("token");
+		FcmUtil fcm = new FcmUtil();
+		
+		fcm.send_FCMtoken(token, "aaa", "aaa", "https://m.cokabu.com");
+		
+		return "main/apnTest";
+	}
 	
 	//테스트 완료
 	@RequestMapping("")
@@ -144,19 +159,52 @@ public class MemberController extends DeviceSwitcherController {
 				configLocation);
 		TokenRegisterService tokenRegisterService = ctx.getBean("tokenRegisterService", TokenRegisterService.class );
 		String email = (String)session.getAttribute("email");
+		
+		HashMap<String, String> map = new HashMap<>();
+		if(email.equals("") || email==null) {
+			logger.warn("로그아웃시 토큰 삭제 안함");
+			ctx.close();
+			return map;
+		}
+		
 		String token = new String(buffers,"UTF-8");
 		token = URLDecoder.decode(token,"UTF-8");
 		token = token.substring(0, token.length()-1);
-		String status = tokenRegisterService.registerAndroidToken(email, token);
+		String status = tokenRegisterService.registerPushToken(email, token, "android");
 		ctx.close();
 		
-		HashMap<String, String> map = new HashMap<>();
+		
 		map.put("status", status);
 		map.put("email", email);
 		map.put("token", token);
 		logger.info(token);
 		
 		return map;
+	}
+	
+	
+	@RequestMapping("giveToIOS")
+	@ResponseBody
+	public String giveToIOS(@RequestBody String tokenParam,HttpServletRequest request,HttpSession session) throws ParseException, JSONException{
+		String configLocation = "classpath:applicationContext.xml";
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
+				configLocation);
+		TokenRegisterService tokenRegisterService = ctx.getBean("tokenRegisterService", TokenRegisterService.class );
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse(tokenParam);
+		JSONObject jsonObj = (JSONObject) obj;
+		String email = (String)jsonObj.get("email");
+		String token = (String)jsonObj.get("token");
+		String change = (String)jsonObj.get("emailTokenChange");
+		
+		//ios앱의 이메일또는 토큰이 달라져서 토큰 또는 이메일을 새롭게 등록하는 경우
+		if(change.equals("change")) {
+			tokenRegisterService.registerPushToken(email, token, "ios");	
+		}		
+		
+		String unreadCount =String.valueOf(tokenRegisterService.takeBadgeCount(email));
+		ctx.close();
+		return unreadCount;
 	}
 	
 	
@@ -173,17 +221,20 @@ public class MemberController extends DeviceSwitcherController {
 		return forward("member/myroom");
 	}
 	
+	
 	//테스트 완료
 	@RequestMapping("category")
 	public String category() {
 		return forward("member/category");
 	}
 	
+	
 	//테스트 완료
 	@RequestMapping("404error")
 	public String error404() {
 		return forward("main/404error");
 	}
+	
 	
 	//테스트 완료
 	@RequestMapping("400error")
@@ -192,6 +243,7 @@ public class MemberController extends DeviceSwitcherController {
 	}
 	
 
+	
 	//테스트 완료
 	@RequestMapping("error")
 	public String error() {

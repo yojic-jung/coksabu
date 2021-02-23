@@ -95,15 +95,21 @@
 		select A.email from profile as A, lesson as B, members as C where A.locales like concat('%',#{locale},'%') and B.cate like concat('%',#{cate},'%') and A.email=B.email and A.email=C.email order by C.logindate desc limit 500
 	</select>
 	
-	<select id="takeTokenForPushTarget" resultType="String">
+	<select id="takeTokenForAndroidPushTarget" resultType="String">
 		<foreach collection="list" item="item" separator="union all">
-		( select token from members where push='ON' and email=#{item} and token is not null and logindate > DATE_SUB(now(), INTERVAL 3 MONTH) )
+		( select token from members where push='ON' and email=#{item} and device='android' and token is not null )
 		</foreach>
 	</select>
 	
 	
-	<select id="takePushForOneTarget" resultType="String">
-		select token from members where email=#{email} and push='ON'
+	<select id="takeTokenForIosPushTarget" resultType="String">
+		<foreach collection="list" item="item" separator="union all">
+		( select token from members where push='ON' and email=#{item} and device='ios' and token is not null )
+		</foreach>
+	</select>
+	
+	<select id="takePushForOneTarget" resultType="com.coksabu.yojic.lesson.fcm.util.TokenInfo">
+		select token, device from members where email=#{email} and push='ON'
 	</select>
 	
 </mapper>

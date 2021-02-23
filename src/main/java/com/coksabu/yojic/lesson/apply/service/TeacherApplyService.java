@@ -5,24 +5,30 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.coksabu.yojic.fcm.util.FcmUtil;
 import com.coksabu.yojic.lesson.apply.dao.ApplyDao;
 import com.coksabu.yojic.lesson.apply.model.ApplyTeacher;
+import com.coksabu.yojic.lesson.fcm.util.PushAsyncMethod;
+import com.coksabu.yojic.lesson.fcm.util.TokenInfo;
 import com.google.firebase.messaging.FirebaseMessagingException;
 
 @Service
 public class TeacherApplyService {
 	
-	private static final  Logger logger = LoggerFactory.getLogger(TeacherApplyService.class);
+	@Resource
+	private PushAsyncMethod pushAsyncMethod;
 	
 	@Autowired
 	private ApplyDao applyDao;
+	
+	private static final  Logger logger = LoggerFactory.getLogger(TeacherApplyService.class);
 	
 	
 	//통과
@@ -107,33 +113,30 @@ public class TeacherApplyService {
 		List<String> emailList = applyDao.takeEmailForPushTarget(map);
 		
 		if(!emailList.isEmpty()) {
-			List<String> registrationTokens = applyDao.takeTokenForPushTarget(emailList);
-			if(!registrationTokens.isEmpty()) {
-				FcmUtil fcm = new FcmUtil();
-				String title= "\""+cate+"\""+"수업에 지원하세요";
-				String content = "\""+locale+"\""+"에  "+"\""+cate+"\""+"수업 요청 학생이 있습니다";
-				try {
-					fcm.send_Multi_FCMtoken(registrationTokens, title, content, link);
-				}catch(Exception e) {}
-			}
+			List<String> androidToken = applyDao.takeTokenForAndroidPushTarget(emailList);
+			List<String> iosTokenList = applyDao.takeTokenForIosPushTarget(emailList);
+			String title= "\""+cate+"\""+"수업에 지원하세요";
+			String content = "\""+locale+"\""+"에  "+"\""+cate+"\""+"수업 요청 학생이 있습니다";
+			pushAsyncMethod.multiPushNotification(androidToken, iosTokenList, title, content, link);
 		}
 		
 	}
 	
+	
+	
 	//테스트 완료
 	public void sendPushForOneTarget(int id, String applyEmail) throws FirebaseMessagingException, IOException {
 		logger.warn("학생 이메일 : "+applyEmail);
-		String token = applyDao.takePushForOneTarget(applyEmail);
-		if(token !=null) {
-			FcmUtil fcm = new FcmUtil();
-			
+		TokenInfo tokenInfo = applyDao.takePushForOneTarget(applyEmail);
+		if(tokenInfo != null) {
+			String device = tokenInfo.getDevice();
 			String title = "선생님 지원서가 도착하였습니다.";
 			String content = "문의하신 수업에 대한 지원서가 도착하였습니다.";
 			String link = "https://m.coksabu.com/teacherForm?id="+id;
-			fcm.send_FCMtoken(token, title, content, link);
-		}else {
-			logger.warn("토큰 : "+token);
+			pushAsyncMethod.pushNotification(device, tokenInfo.getToken(), title, content, link);
 		}
+		
+		
 		
 	}
 	

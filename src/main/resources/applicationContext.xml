@@ -19,9 +19,9 @@
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl"
-			value="jdbc:mysql://localhost/dywlr74?characterEncoding=utf8&amp;allowMultiQueries=true" />
-		<property name="user" value="dywlr74" />
-		<property name="password" value="gresuc787!" />
+			value="jdbc:mysql://localhost/coksabu?characterEncoding=utf8&amp;allowMultiQueries=true" />
+		<property name="user" value="dywlr" />
+		<property name="password" value="1111" />
 		<property name="idleConnectionTestPeriod" value="60" />
     	<property name="preferredTestQuery" value="SELECT 1" />
     	<property name="testConnectionOnCheckin" value="true" />

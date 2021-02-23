@@ -15,6 +15,7 @@ import com.coksabu.yojic.lesson.board.model.LessonCardDB;
 import com.coksabu.yojic.lesson.board.model.PurchaseHistory;
 import com.coksabu.yojic.lesson.chat.model.ChatPurchase;
 import com.coksabu.yojic.lesson.deal.model.RefundContent;
+import com.coksabu.yojic.lesson.fcm.util.TokenInfo;
 import com.coksabu.yojic.lesson.member.model.Qna;
 
 @Repository
@@ -148,4 +149,7 @@ public interface AdminDao {
 	public List<Integer> takeLessonCount(List<String> item);
 	
 	public List<Integer> takeChatCount(List<String> item);
+	
+	public TokenInfo takePushForOneTarget(String email);
+	
 }

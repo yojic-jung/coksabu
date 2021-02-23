@@ -108,9 +108,9 @@ public interface MemberDao {
 	
 	public void giveMembersipToZero(String email);
 	
-	public int registerAndroidToken(HashMap<String, String> map);
+	public int registerPushToken(HashMap<String, String> map);
 	
-	public int deleteAndroidToken(HashMap<String, String> map);
+	public int deletePushToken(HashMap<String, String> map);
 	
 	public int takeUnReadCount(String email);
 	

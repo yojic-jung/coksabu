@@ -61,7 +61,8 @@ public class GreetingController {
   		 String mesContent = message.getMessage_content();
   	     //xss 필터링 후 DB에 집어넣기
   	     message.setMessage_content(ConvertInputValue(message.getMessage_content()));
-  		 String status = chattingService.insertMessage(message);
+  	     //푸시알림 갈때 html코드도 같이 나가는게 있어서 필터링된 메세지가 아닌 원래 메세지값 넘겨주기
+  		 String status = chattingService.insertMessage(message, mesContent);
   		 
   		 //DB에 넣었다면 다시 원래 값으로 변경시켜줘야 웹소켓config에서 지정한 메세지 컨버터로 사용자가 볼수 있다
   		 //원래값으로 변경 안하면 특수문자가 &nbsp; &gt; 와 같은 html코드로 보임
@@ -97,7 +98,8 @@ public class GreetingController {
   		 String mesContent = message.getMessage_content();
   	     //xss 필터링 후 DB에 집어넣기
   	     message.setMessage_content(ConvertInputValue(message.getMessage_content()));
-  	     chattingService.insertMessage(message);
+  	     //푸시알림 갈때 html코드도 같이 나가는게 있어서 필터링된 메세지가 아닌 원래 메세지값 넘겨주기
+  	     chattingService.insertMessage(message, mesContent);
   		 //DB에 넣었다면 다시 원래 값으로 변경시켜줘야 웹소켓config에서 지정한 메세지 컨버터로 사용자가 볼수 있다
   		 //원래값으로 변경 안하면 특수문자가 &nbsp; &gt; 와 같은 html코드로 보임
   		 message.setMessage_content(mesContent);

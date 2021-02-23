@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +24,16 @@ import com.coksabu.yojic.lesson.admin.model.TranSearch;
 import com.coksabu.yojic.lesson.board.model.PurchaseHistory;
 import com.coksabu.yojic.lesson.chat.model.ChatPurchase;
 import com.coksabu.yojic.lesson.deal.model.RefundContent;
+import com.coksabu.yojic.lesson.fcm.util.PushAsyncMethod;
+import com.coksabu.yojic.lesson.fcm.util.TokenInfo;
 import com.coksabu.yojic.lesson.member.model.Qna;
 
 @Service
 public class AdminService {
+	
+	@Resource
+	private PushAsyncMethod pushAsyncMethod;
+	
 	@Autowired
 	private AdminDao adminDao;
 	
@@ -39,10 +47,22 @@ public class AdminService {
 		adminDao.qualifyMembership(email);
 		
 		adminDao.inspectComplete(email);
+		
+		TokenInfo tokenInfo = adminDao.takePushForOneTarget(email);
+		
+		if(tokenInfo != null) {
+			pushAsyncMethod.pushNotification(tokenInfo.getDevice(), tokenInfo.getToken(), "본인학력 인증완료", "본인학력인증을 완료하였습니다. 수업이 정상적으로 노출이 됩니다.", "https://m.coksabu.com/tutorpage");
+		}
 	}
 	
 	public void inspectFail(String email) {
 		adminDao.inspectFail(email);
+		
+		TokenInfo tokenInfo = adminDao.takePushForOneTarget(email);
+		
+		if(tokenInfo != null) {
+			pushAsyncMethod.pushNotification(tokenInfo.getDevice(), tokenInfo.getToken(), "본인학력 인증실패", "본인학력인증을 다시 해주세요. 프로필에서 본인 학력인증 이미지를 다시 확인해주세요.", "https://m.coksabu.com/tutorpage");
+		}
 	}
 	public int certifyCount() {
 		return adminDao.certifyCount();

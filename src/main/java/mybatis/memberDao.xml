@@ -187,12 +187,12 @@
 		update members set fail_time = date_add(now(), interval 15 minute) where email=#{email}
 	</update>
 	
-	<update id="deleteAndroidToken">
-		update members set token=null where token=#{token}
+	<update id="deletePushToken">
+		update members set token=null, device=null where token=#{token}
 	</update>
 	
-	<update id="registerAndroidToken">
-		update members set token=#{token} where email=#{email}
+	<update id="registerPushToken">
+		update members set token=#{token}, device=#{device} where email=#{email}
 	</update>
 	
 	<select id="takeUnReadCount" resultType="int">

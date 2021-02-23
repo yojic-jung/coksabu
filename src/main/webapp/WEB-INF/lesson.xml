@@ -69,6 +69,13 @@
 	
 	<context:component-scan base-package="com.coksabu.yojic.lesson" />	
 		
-	<task:annotation-driven />
+	
+	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+  		<property name="corePoolSize" value="5" />
+  		<property name="maxPoolSize" value="10" />
+  		<property name="queueCapacity" value="30" />
+	</bean>	
+		
+	<task:annotation-driven executor="taskExecutor" />
 	
 </beans>

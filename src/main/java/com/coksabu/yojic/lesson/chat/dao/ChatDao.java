@@ -9,6 +9,7 @@ import com.coksabu.yojic.lesson.chat.model.ChatDeal;
 import com.coksabu.yojic.lesson.chat.model.ChatPurchase;
 import com.coksabu.yojic.lesson.chat.model.Message;
 import com.coksabu.yojic.lesson.chat.model.MyRoom;
+import com.coksabu.yojic.lesson.fcm.util.TokenInfo;
 
 @Repository
 public interface ChatDao {
@@ -81,7 +82,7 @@ public interface ChatDao {
 	
 	public void changeReadOrNot(HashMap<String, String> map);
 	
-	public String takeTokenForReceiver(String email);
+	public TokenInfo takeTokenForReceiver(String email);
 	
 	public int takeUnReadCountTotal(String email);
 }
