@@ -15,6 +15,11 @@
 		values (#{email}, #{cate}, #{subcate}, #{grade}, #{sexual}, #{day}, #{time}, #{locale}, #{locale3}, #{month}, #{gawetime}, #{price1}, #{price2}, #{message}, #{postingdate}, #{visible})
 	</insert>
 	
+	<insert id="applyNoLogin" parameterType="com.coksabu.yojic.lesson.apply.model.ApplyWithSignup" useGeneratedKeys="true" keyProperty="id">
+		insert into apply (email, cate, subcate, grade,sexual, day, time, locale, locale3, month, gawetime,price1, price2, message, postingdate, visible) 
+		values (#{email}, #{cate}, #{subcate}, #{grade}, #{sexual}, #{day}, #{time}, #{locale}, #{locale3}, #{month}, #{gawetime}, #{price1}, #{price2}, #{message}, #{postingdate}, #{visible})
+	</insert>
+	
 	<select id="takeApplyService" resultType="Integer">
 		(select membership from members where email=#{email}) union all (select count(*) from applylist where apply_id=#{apply_id} and teacheremail=#{email}) union all (select count(*) from applylist where apply_id=#{apply_id})
 	</select>
@@ -69,7 +74,7 @@
 	
 	<select id="myLessonList" resultType="com.coksabu.yojic.lesson.apply.model.ApplyTeacher">
 		<foreach collection="list" item="item" separator="union all">
-		(select A.teacher_id, A.teacheremail, A.message, A.applydate, B.nickname, B.birth, C.imgpath, C.sexual, C.locales, C.universe, C.univsub, C.career, C.certify  
+		(select A.teacher_id, A.teacheremail, A.message, A.applydate, B.nickname, B.birth, C.imgpath, C.sexual, C.locales, C.universe, C.univsub, C.academy, C.academyd, C.career, C.certify  
 		from applylist as A, members as B, profile as C where A.teacher_id = #{item.teacherid} and B.email = #{item.email} and C.email = #{item.email} )
 		</foreach> 
 	</select>

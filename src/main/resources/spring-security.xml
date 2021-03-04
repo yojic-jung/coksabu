@@ -32,9 +32,8 @@
 		<sec:intercept-url pattern="/secession**" access="hasAuthority('user')" />
 		<sec:intercept-url pattern="/myroom**" access="hasAuthority('user')" />
 		<sec:intercept-url pattern="/lessonWrite**" access="hasAuthority('user')" />
+		<sec:intercept-url pattern="/promotion**" access="hasAuthority('user')" />
 		
-		<sec:intercept-url pattern="/applysuccess**" access="hasAuthority('user')" />
-		<sec:intercept-url pattern="/lessonapply**" access="hasAuthority('user')" />
 		<sec:intercept-url pattern="/teacherForm**" access="hasAuthority('user')" />
 		<sec:intercept-url pattern="/cusultTeacher**" access="hasAuthority('user')" />
 		<sec:intercept-url pattern="/lessonPurchase**" access="hasAuthority('user')" />

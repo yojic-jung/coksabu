@@ -137,7 +137,14 @@ width:100%;
 							<div>
 							<div id="title"> ${lesson.title}</div>
 							<div id="name">${lesson.nickname}(${lesson.birth}, ${lesson.sexual})&nbsp;&nbsp;경력 <c:if test="${lesson.career!=0}">${lesson.career}년</c:if><c:if test="${lesson.career==0}">1년미만</c:if></div>
-							<div id="universe"> ${lesson.universe} ${lesson.univsub}</div>
+								<c:choose>
+									<c:when test="${lesson.academy ne '' and lesson.academy != null}">
+										<div id="universe"> ${lesson.academy} ${lesson.academyd}</div>
+									</c:when>
+									<c:otherwise>
+										<div id="universe"> ${lesson.universe} ${lesson.univsub}</div>
+									</c:otherwise>
+								</c:choose>					
 							<div id="price" > ${lesson.subCate0} ${lesson.price3}원 <c:if test="${lesson.subCate1 !='nonevalue' }">/ ${lesson.subCate1} ${lesson.opt1price3}원</c:if> <c:if test="${lesson.subCate2!='nonevalue' }">/ ${lesson.subCate2} ${lesson.opt2price3}원</c:if></div>
 							</div>
 							</a>

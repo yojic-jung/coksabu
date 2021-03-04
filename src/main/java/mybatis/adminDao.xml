@@ -11,15 +11,11 @@
 	</select>
 	
 	<update id="inspectComplete" >
-		update profile set certify=1, certifydate=now() where email=#{email}
+		update members as A, profile as B set A.membership=1, B.certify=1, B.certifydate=now() where A.email=#{email} and A.email=B.email
 	</update>
 	
 	<update id="inspectFail" >
 		update profile set certify=2, certifydate=now() where email=#{email}
-	</update>
-	
-	<update id="qualifyMembership">
-		update members set membership=1 where email=#{email}
 	</update>
 	
 	<select id="certifyCount" resultType="Integer">
@@ -285,5 +281,36 @@
 	<select id="takePushForOneTarget" resultType="com.coksabu.yojic.lesson.fcm.util.TokenInfo">
 		select device, token from members where email=#{email}
 	</select>
+	
+	
+	
+	
+	
+	
+	<select id="takeProfileImage" resultType="String">
+		select imgpath from profile where email=#{email}
+	</select>
+	
+	<select id="takeRepresentImg" resultType="String">
+		select represent from lesson where email=#{email}
+	</select>
+	
+	<select id="takeCertifyImg" resultType="com.coksabu.yojic.lesson.member.model.CertifyDB">
+		select certifyimg1, certifyimg2, certifyimg3 from profile where email=#{email}
+	</select>
+	
+	<select id="takeMediaImg" resultType="String">
+		select contentimg from lesson where email=#{email}
+	</select>
+	
+	<select id="takeChatRoomId" resultType="Integer">
+		select roomnumber from chat_member_status where user like concat('%',#{email},'%')
+	</select>
+	
+	<delete id="delChatRoomById" >
+		<foreach collection="list" item="item" separator=";">
+		delete from chat_member_status where roomnumber = #{item}
+		</foreach>
+	</delete>
 	
 </mapper>

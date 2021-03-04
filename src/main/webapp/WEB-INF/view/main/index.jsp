@@ -171,19 +171,6 @@
             z-index: 3;
         }
         
-        .fade-content2{
-        	color:white;
-        	font-size:35px;
-        	width:600px;
-        	margin:auto;
-        	font-weight:bolder;
-        	text-align:right;
-        	 position:absolute;
-            left:50%; 
-            transform:translateX(-50%);
-            top:50px;
-            z-index: 3;
-        }
         
         .category{
           text-align:center;
@@ -337,6 +324,14 @@
 		box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 	}
     </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-413632618"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-413632618');
+</script>
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
     <script src="<c:url value="/resources/js/jquery.innerfade.js"/>"></script>
     <script src= "<c:url value="/resources/slick/slick.js" />" type="text/javascript" charset="utf-8"></script>
@@ -513,19 +508,17 @@
           </div>
 
         <ul id="inner-fade">
-            
+            <li>
+            	<img class="fadeImg" src="<c:url value="/resources/img/main5.png" />"  alt="메인이미지3"/>
+            	<div class="fade-content" style="text-align:center;">선생님 "수수료 무료" 프로모션<br/>회원가입 후 등록가능</div>
+            </li>
             <li>
             	<img class="fadeImg" src="<c:url value="/resources/img/main1.png" />"  alt="메인이미지1"/>
-            	<div class="fade-content">선생님 매칭부터 안전거래까지,<br/>안전거래 과외플랫폼 콕사부</div>
+            	<div class="fade-content">모바일 어플 다운받고 <br/>실시간 과외 알림 받으세요</div>
             </li>
             <li>
             	<img class="fadeImg" src="<c:url value="/resources/img/main2.png" />"  alt="메인이미지2"/>
             	<div class="fade-content">콕사부의 사부님과<br/>내게 맞는 과외를 진행 해보세요.</div>
-            </li>
-            
-            <li>
-            	<img class="fadeImg" src="<c:url value="/resources/img/main3.png" />"  alt="메인이미지3"/>
-            	<div class="fade-content2">선생님의 제공 수업 외에도<br/>채팅창에서 새로운 거래를 작성하여<br/>안전거래 할 수 있습니다.</div>
             </li>
         </ul>
         
@@ -576,7 +569,17 @@
 							<a href="<c:url value="./boardread?postId=${post.id}"/>" style="text-decoration:none;">
 							<div id="categories">${post.subcate}</div>
 							<div id="name"> ${post.nickname}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
-							<div id="universe"> ${post.universe} ${post.univsub}</div>
+							
+							<c:choose>
+							<c:when test="${post.academy ne '' and post.academy != null}">
+							<div id="universe"> ${post.academy} ${post.academyd}</div>
+							</c:when>
+							<c:otherwise>
+								<div id="universe"> ${post.universe} ${post.univsub}</div>
+							</c:otherwise>
+							</c:choose>
+							
+							
 							<div id="title"> ${post.title}</div>
 							<div id="price" >${post.subCate0} ${post.price3}원 <c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if> <c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if></div>
 							</a>
@@ -616,7 +619,14 @@
 							<a href="<c:url value="./boardread?postId=${post.id}"/>" style="text-decoration:none;">
 							<div id="categories">${post.subcate}</div>
 							<div id="name"> ${post.nickname}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
-							<div id="universe"> ${post.universe} ${post.univsub}</div>
+							<c:choose>
+							<c:when test="${post.academy ne '' and post.academy != null}">
+							<div id="universe"> ${post.academy} ${post.academyd}</div>
+							</c:when>
+							<c:otherwise>
+								<div id="universe"> ${post.universe} ${post.univsub}</div>
+							</c:otherwise>
+							</c:choose>
 							<div id="title"> ${post.title}</div>
 							<div id="price" >${post.subCate0} ${post.price3}원 <c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if> <c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if></div>
 							</a>
@@ -653,7 +663,14 @@
 							<a href="<c:url value="./boardread?postId=${post.id}"/>" style="text-decoration:none;">
 							<div id="categories">${post.subcate}</div>
 							<div id="name"> ${post.nickname}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
-							<div id="universe"> ${post.universe} ${post.univsub}</div>
+							<c:choose>
+							<c:when test="${post.academy ne '' and post.academy != null}">
+							<div id="universe"> ${post.academy} ${post.academyd}</div>
+							</c:when>
+							<c:otherwise>
+								<div id="universe"> ${post.universe} ${post.univsub}</div>
+							</c:otherwise>
+							</c:choose>
 							<div id="title"> ${post.title}</div>
 							<div id="price" >${post.subCate0} ${post.price3}원 <c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if> <c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if></div>
 							</a>
@@ -691,7 +708,14 @@
 							<a href="<c:url value="./boardread?postId=${post.id}"/>" style="text-decoration:none;">
 							<div id="categories">${post.subcate}</div>
 							<div id="name"> ${post.nickname}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
-							<div id="universe"> ${post.universe} ${post.univsub}</div>
+							<c:choose>
+							<c:when test="${post.academy ne '' and post.academy != null}">
+							<div id="universe"> ${post.academy} ${post.academyd}</div>
+							</c:when>
+							<c:otherwise>
+								<div id="universe"> ${post.universe} ${post.univsub}</div>
+							</c:otherwise>
+							</c:choose>
 							<div id="title"> ${post.title}</div>
 							<div id="price" >${post.subCate0} ${post.price3}원 <c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if> <c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if></div>
 							</a>
@@ -731,7 +755,14 @@
 							<a href="<c:url value="./boardread?postId=${post.id}"/>" style="text-decoration:none;">
 							<div id="categories">${post.subcate}</div>
 							<div id="name"> ${post.nickname}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
-							<div id="universe"> ${post.universe} ${post.univsub}</div>
+							<c:choose>
+							<c:when test="${post.academy ne '' and post.academy != null}">
+							<div id="universe"> ${post.academy} ${post.academyd}</div>
+							</c:when>
+							<c:otherwise>
+								<div id="universe"> ${post.universe} ${post.univsub}</div>
+							</c:otherwise>
+							</c:choose>
 							<div id="title"> ${post.title}</div>
 							<div id="price" >${post.subCate0} ${post.price3}원 <c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if> <c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if></div>
 							</a>
@@ -768,7 +799,14 @@
 							<a href="<c:url value="./boardread?postId=${post.id}"/>" style="text-decoration:none;">
 							<div id="categories">${post.subcate}</div>
 							<div id="name"> ${post.nickname}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
-							<div id="universe"> ${post.universe} ${post.univsub}</div>
+							<c:choose>
+							<c:when test="${post.academy ne '' and post.academy != null}">
+							<div id="universe"> ${post.academy} ${post.academyd}</div>
+							</c:when>
+							<c:otherwise>
+								<div id="universe"> ${post.universe} ${post.univsub}</div>
+							</c:otherwise>
+							</c:choose>
 							<div id="title"> ${post.title}</div>
 							<div id="price" >${post.subCate0} ${post.price3}원 <c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if> <c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if></div>
 							</a>
@@ -802,7 +840,14 @@
 							<a href="<c:url value="./boardread?postId=${post.id}"/>" style="text-decoration:none;">
 							<div id="categories">${post.subcate}</div>
 							<div id="name"> ${post.nickname}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
-							<div id="universe"> ${post.universe} ${post.univsub}</div>
+							<c:choose>
+							<c:when test="${post.academy ne '' and post.academy != null}">
+							<div id="universe"> ${post.academy} ${post.academyd}</div>
+							</c:when>
+							<c:otherwise>
+								<div id="universe"> ${post.universe} ${post.univsub}</div>
+							</c:otherwise>
+							</c:choose>
 							<div id="title"> ${post.title}</div>
 							<div id="price" >${post.subCate0} ${post.price3}원 <c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if> <c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if></div>
 							</a>

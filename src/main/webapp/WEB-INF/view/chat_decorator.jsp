@@ -66,6 +66,13 @@ body {
 	}
 </style>
 <decorator:head />
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-413632618"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-413632618');
+</script>
 </head>
 <body>
 <div class="m-page-transit" style="text-align:center;width:100%;position:fixed;left:0px;top:0px;background: white; height:100%;z-index:10;">

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.coksabu.yojic.lesson.apply.model.ApplyForm;
 import com.coksabu.yojic.lesson.apply.model.ApplyTeacher;
+import com.coksabu.yojic.lesson.apply.model.ApplyWithSignup;
 import com.coksabu.yojic.lesson.fcm.util.TokenInfo;
 
 @Repository
@@ -15,6 +16,8 @@ public interface ApplyDao {
 	public String takeApplyEmail(int applyId);
 	
 	public int apply(ApplyForm apply);
+
+	public int applyNoLogin(ApplyWithSignup apply);
 	
 	public int countApply();
 	

@@ -251,6 +251,14 @@ color:#A6A6A6;
 }
 </style>
 <decorator:head />
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-413632618"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-413632618');
+</script>
 </head>
 <body>
 <header class="pc-header">

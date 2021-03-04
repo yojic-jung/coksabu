@@ -198,7 +198,15 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                             </tr>
                             <tr>
                                 <td style="color:rgb(151, 149, 149);padding:0px 5px 0px 20px;">
-                                ${pro.universe} ${pro.univsub} &nbsp;&nbsp;경력 <c:if test="${pro.career!=0}">${pro.career}년이상</c:if><c:if test="${pro.career==0}">1년미만</c:if>
+                                <c:choose>
+									<c:when test="${pro.academy ne '' and pro.academy != null}">
+										${pro.academy} ${pro.academyd}
+									</c:when>
+									<c:otherwise>
+										${pro.universe} ${pro.univsub}
+									</c:otherwise>
+								</c:choose>                                
+								&nbsp;&nbsp;경력 <c:if test="${pro.career!=0}">${pro.career}년이상</c:if><c:if test="${pro.career==0}">1년미만</c:if>
                                 </td>
                             </tr>
                             <tr>

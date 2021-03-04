@@ -14,6 +14,7 @@ import com.coksabu.yojic.lesson.member.model.MemberInfo;
 import com.coksabu.yojic.lesson.member.model.MyAccount;
 import com.coksabu.yojic.lesson.member.model.Password;
 import com.coksabu.yojic.lesson.member.model.Profile;
+import com.coksabu.yojic.lesson.member.model.Promotion;
 import com.coksabu.yojic.lesson.member.model.Qna;
 import com.coksabu.yojic.lesson.member.model.TeacherDB;
 
@@ -35,8 +36,6 @@ public interface MemberDao {
 	public Profile takeImgUniv(String email); 
 	
 	public int confirmCertify(String email);
-	
-	public int updateCertify(String email);
 	
 	public void writeProfile(TeacherDB tea);
 	
@@ -106,7 +105,7 @@ public interface MemberDao {
 	
 	public void addFailTime(String email);
 	
-	public void giveMembersipToZero(String email);
+	public void membersipAndCetifyToZero(String email);
 	
 	public int registerPushToken(HashMap<String, String> map);
 	
@@ -125,5 +124,16 @@ public interface MemberDao {
 	public MyAccount takeMyAccount(String email);
 	
 	public int updateMyAccount(MyAccount account);
+
+	public int myPromotionCount(String email);
+	
+	public Promotion myPromotion(String email);
+	
+	public Date takeSignUpDate(String email);
+	
+	public void registerMyPromotion(Promotion promotion);
+	
+	public int myCommissionPromotionCount(String email);
+	
 	
 }

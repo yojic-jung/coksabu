@@ -63,6 +63,7 @@
 		<pattern>/myaccountinfo*</pattern>
 		<pattern>/nicknameUpdate*</pattern>
 		<pattern>/secession*</pattern>
+		<pattern>/promotion*</pattern>
 		
 		<pattern>/certify*</pattern>
 		<pattern>/lessonWrite*</pattern>

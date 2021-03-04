@@ -83,7 +83,7 @@ padding:20px;
 					<img id="imgplus1" src="<c:url value="/resources/images/imgplus.png" />"  />
 					</div>
 					<div id="input-div1">
-					<input name="certifyimg1" class="multi1" type="file" accept="image/*" onchange="loadFile1(event);" />
+					<input name="certifyimg1" class="multi1" type="file" accept="image/*" onchange="check1(this);loadFile1(event);" />
 					</div>
 					</td>
 				</tr>
@@ -98,7 +98,7 @@ padding:20px;
 					<img id="imgplus2" src="<c:url value="/resources/images/imgplus.png" />"  />
 					</div>
 					<div id="input-div2">
-					<input name="certifyimg2" class="multi2" type="file" accept="image/*" onchange="loadFile2(event);" />
+					<input name="certifyimg2" class="multi2" type="file" accept="image/*" onchange="check2(this);loadFile2(event);" />
 					</div>
 					</td>
 				</tr>
@@ -113,7 +113,7 @@ padding:20px;
 					<img id="imgplus3" src="<c:url value="/resources/images/imgplus.png" />"  />
 					</div>
 					<div id="input-div3">
-					<input name="certifyimg3" class="multi3" type="file" accept="image/*" onchange="loadFile3(event);" />
+					<input name="certifyimg3" class="multi3" type="file" accept="image/*" onchange="check3(this);loadFile3(event);" />
 					</div>
 					</td>
 				</tr>
@@ -197,7 +197,7 @@ $(document).on('change','.multi1',function(){
     }else{
    	 alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
    	$('.multi1').remove();
-   	$('#input-div1').append('<input name="certifyimg1" class="multi1" type="file" accept="image/*" onchange="loadFile1(event);" />');
+   	$('#input-div1').append('<input name="certifyimg1" class="multi1" type="file" accept="image/*" onchange="check1(this);loadFile1(event);" />');
    	 return false;
     }
     
@@ -214,7 +214,7 @@ $(document).on('change','.multi2',function(){
      }else{
     	 alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
     	$('.multi2').remove();
-    	$('#input-div2').append('<input name="certifyimg2" class="multi2" type="file" accept="image/*" onchange="loadFile2(event);" />');
+    	$('#input-div2').append('<input name="certifyimg2" class="multi2" type="file" accept="image/*" onchange="check2(this);loadFile2(event);" />');
     	 return false;
      }
      
@@ -231,7 +231,7 @@ $(document).on('change','.multi3',function(){
      }else{
     	 alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
     	$('.multi3').remove();
-    	$('#input-div3').append('<input name="certifyimg3" class="multi3" type="file" accept="image/*" onchange="loadFile3(event);" />');
+    	$('#input-div3').append('<input name="certifyimg3" class="multi3" type="file" accept="image/*" onchange="check3(this);loadFile3(event);" />');
     	 return false;
      }
      
@@ -267,6 +267,46 @@ var loadFile2 = function(event) {
   	    reader.readAsDataURL(event.target.files[0]);
         };    
 
+        function check1(obj){
+      	   var file = obj.files;
+
+           	// file[0].size 는 파일 용량 정보입니다.
+           	if(file[0].size > 1024*1024*10){
+           		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
+           		  alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+           		$('.multi1').remove();
+           	   	$('#input-div1').append('<input name="certifyimg1" class="multi1" type="file" accept="image/*" onchange="check1(this);loadFile1(event);" />');
+           		  return false;
+           	}
+            }            
+         
+         function check2(obj){
+      	   var file = obj.files;
+
+           	// file[0].size 는 파일 용량 정보입니다.
+           	if(file[0].size > 1024*1024*10){
+           		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
+           		  alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+           		$('.multi2').remove();
+             	$('#input-div2').append('<input name="certifyimg2" class="multi2" type="file" accept="image/*" onchange="check2(this);loadFile2(event);" />');
+           		  return false;
+           	}
+           }    
+         
+         function check3(obj){
+      	   var file = obj.files;
+
+           	// file[0].size 는 파일 용량 정보입니다.
+           	if(file[0].size > 1024*1024*10){
+           		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
+           		  alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+           		$('.multi3').remove();
+             	$('#input-div3').append('<input name="certifyimg3" class="multi3" type="file" accept="image/*" onchange="check3(this);loadFile3(event);" />');
+           		  return false;
+           	}
+            }    
+        
+        
 function CheckForm(memberInfo){
 	var file1= $('.multi1').val();
 	var file2= $('.multi2').val();

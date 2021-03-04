@@ -67,6 +67,7 @@ body {
 <div style="padding-bottom:500px;">
 <div class="big-title">마이페이지</div>
 <div class="subheading"><a href="./usersetting" style="text-decoration:underline">내 계정 정보수정하기</a></div>
+<div class="subheading"><a href="./promotion">프로모션 및 쿠폰 등록</a></div>
 <div class="headline">고객메뉴</div>
 <div class="subheading"><a href="./purchaselist">구매목록</a></div>
 <div class="subheading"><a href="./mypage">수업요청내역</a></div>

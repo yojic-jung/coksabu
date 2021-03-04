@@ -47,7 +47,6 @@ import com.coksabu.yojic.iamport.IamportClient;
 import com.coksabu.yojic.lesson.board.model.PostView;
 import com.coksabu.yojic.lesson.board.service.ReadLessonService;
 import com.coksabu.yojic.lesson.board.service.ReadPostService;
-import com.coksabu.yojic.lesson.fcm.util.FcmUtil;
 import com.coksabu.yojic.lesson.member.model.Certify;
 import com.coksabu.yojic.lesson.member.model.CertifyDB;
 import com.coksabu.yojic.lesson.member.model.EmailInfo;
@@ -58,6 +57,7 @@ import com.coksabu.yojic.lesson.member.model.MyQnaList;
 import com.coksabu.yojic.lesson.member.model.PassFind;
 import com.coksabu.yojic.lesson.member.model.Password;
 import com.coksabu.yojic.lesson.member.model.Profile;
+import com.coksabu.yojic.lesson.member.model.Promotion;
 import com.coksabu.yojic.lesson.member.model.Qna;
 import com.coksabu.yojic.lesson.member.model.TeacherDB;
 import com.coksabu.yojic.lesson.member.model.TeacherInfo;
@@ -67,11 +67,11 @@ import com.coksabu.yojic.lesson.member.service.CheckAndInsertService;
 import com.coksabu.yojic.lesson.member.service.EmailPassFindService;
 import com.coksabu.yojic.lesson.member.service.LessonCertifyService;
 import com.coksabu.yojic.lesson.member.service.MemberService;
+import com.coksabu.yojic.lesson.member.service.PromotionService;
 import com.coksabu.yojic.lesson.member.service.ReadProfileService;
 import com.coksabu.yojic.lesson.member.service.TokenRegisterService;
 import com.coksabu.yojic.lesson.member.service.UnivSearchService;
 import com.coksabu.yojic.lesson.member.service.WriteProfileService;
-import com.google.firebase.messaging.FirebaseMessagingException;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.Certification;
 import com.siot.IamportRestClient.response.IamportResponse;
@@ -80,16 +80,6 @@ import com.siot.IamportRestClient.response.IamportResponse;
 public class MemberController extends DeviceSwitcherController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
-	
-	@RequestMapping("apnTest1")
-	public String apnTest1(HttpServletRequest request) throws FirebaseMessagingException, IOException {
-		String token = request.getParameter("token");
-		FcmUtil fcm = new FcmUtil();
-		
-		fcm.send_FCMtoken(token, "aaa", "aaa", "https://m.cokabu.com");
-		
-		return "main/apnTest";
-	}
 	
 	//테스트 완료
 	@RequestMapping("")
@@ -195,7 +185,10 @@ public class MemberController extends DeviceSwitcherController {
 		JSONObject jsonObj = (JSONObject) obj;
 		String email = (String)jsonObj.get("email");
 		String token = (String)jsonObj.get("token");
+		String fcmToken = (String)jsonObj.get("fcmToken");
 		String change = (String)jsonObj.get("emailTokenChange");
+		
+		logger.warn(fcmToken);
 		
 		//ios앱의 이메일또는 토큰이 달라져서 토큰 또는 이메일을 새롭게 등록하는 경우
 		if(change.equals("change")) {
@@ -312,7 +305,6 @@ public class MemberController extends DeviceSwitcherController {
 			model.addAttribute("merchant_uid", "ORD20180131-0000011");
 			return forward("member/signup");
 		}else {
-			session.setAttribute("email", mem.getEmail());
 			model.addAttribute("status", "success");
 			return forward("member/signup");
 		}
@@ -560,7 +552,38 @@ public class MemberController extends DeviceSwitcherController {
 		
 	}
 	
-	//테스트 완료
+	
+	//수정필요
+	@RequestMapping(value="promotion", method=RequestMethod.GET)
+	public String promotionpage(HttpSession session, Model model) {
+		String email = (String)session.getAttribute("email");
+		
+		String configLocation = "classpath:applicationContext.xml";
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
+				configLocation);
+		PromotionService promotionService = ctx.getBean("promotionService", PromotionService.class);
+		Promotion promotion = promotionService.myPromotion(email);
+		ctx.close();
+		model.addAttribute("promotion", promotion);
+		return forward("member/promotion");
+	}
+	
+		//수정필요
+	@RequestMapping(value="promotion", method=RequestMethod.POST)
+	public String promotionpage2(Promotion promotion,HttpSession session, Model model) {
+		promotion.setEmail((String)session.getAttribute("email"));
+		
+		String configLocation = "classpath:applicationContext.xml";
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
+				configLocation);
+		PromotionService promotionService = ctx.getBean("promotionService", PromotionService.class);
+		String status = promotionService.registerMyPromotion(promotion);
+		ctx.close();
+		model.addAttribute("status", status);
+		
+		return forward("member/promotionSuccess");
+	}
+	
 	
 	//수정필요
 	@RequestMapping("private")

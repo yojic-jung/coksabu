@@ -29,13 +29,23 @@ public class WriteProfileService {
 			String imgPath = profile.getImgPath();
 			String univName = profile.getUniverse();
 			String univSub = profile.getUnivsub();
+			String academy = profile.getAcademy();
+			String academyd = profile.getAcademyd();
+			
 			
 			boolean a = univName.equals(tea.getUniverse()) && univSub.equals(tea.getUnivsub());
 			
 			if(!a) {
-				memberDao.giveMembersipToZero(tea.getEmail());
-				memberDao.updateCertify(tea.getEmail());
+				memberDao.membersipAndCetifyToZero(tea.getEmail());
 			}
+			
+			if(academy!=null && academyd != null) {
+				boolean b = academy.equals(tea.getAcademy()) && academyd.equals(tea.getAcademyd());
+				if(!b) {
+					memberDao.membersipAndCetifyToZero(tea.getEmail());
+				}
+			}
+			
 			
 			if(imgPath.equals("pro.png")) {
 				memberDao.updateProfile(tea);

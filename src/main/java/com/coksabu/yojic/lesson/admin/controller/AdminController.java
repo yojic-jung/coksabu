@@ -26,6 +26,7 @@ import com.coksabu.yojic.lesson.admin.model.RefundComplete;
 import com.coksabu.yojic.lesson.admin.model.RefundSearch;
 import com.coksabu.yojic.lesson.admin.model.TranSearch;
 import com.coksabu.yojic.lesson.admin.service.AdminAdditionService;
+import com.coksabu.yojic.lesson.admin.service.AdminDelServcie;
 import com.coksabu.yojic.lesson.admin.service.AdminService;
 import com.coksabu.yojic.lesson.board.model.PurchaseHistory;
 import com.coksabu.yojic.lesson.chat.model.ChatPurchase;
@@ -656,4 +657,29 @@ public class AdminController {
 		
 		return "success";
 	}
+	
+	
+	
+	
+	@RequestMapping(value="adminDelUserAKA", method=RequestMethod.GET)
+	public String adminDelUserAKA(HttpServletRequest request, HttpSession session) {
+			return "admin/adminDelUserAKA";
+	}
+	
+	/*
+	@RequestMapping(value="adminDelUserAKA", method=RequestMethod.POST)
+	public String adminDelUserAKA2(HttpServletRequest request, HttpSession session,Model model) {
+		String path = request.getServletContext().getRealPath("resources/theme");
+		String admin = (String)session.getAttribute("email");
+		if(admin.equals("dywlr74")) {
+			GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
+			AdminDelServcie adminDelServcie = ctx.getBean(AdminDelServcie.class);
+			System.out.println(request.getParameter("email")+"이메일 출력");
+			String status = adminDelServcie.delUser(request.getParameter("email"), path);
+			ctx.close();
+			model.addAttribute("status", status);
+		}
+			return "admin/adminDelUserAKA";
+	}
+	*/
 }

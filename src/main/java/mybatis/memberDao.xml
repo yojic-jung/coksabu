@@ -19,23 +19,19 @@
 	</select>
 	
 	<select id="takeImgUniv" resultType="com.coksabu.yojic.lesson.member.model.Profile">
-		select imgPath, universe, univsub from profile where email=#{email} 
+		select imgPath, universe, univsub, academy, academyd from profile where email=#{email} 
 	</select>
 	
 	<select id="confirmCertify" resultType="Integer">
 		select count(*) from lessoncertify where email= #{email}
 	</select>
 	
-	<update id="updateCertify">
-	 	update profile set certify=0, certifydate=now() where email=#{email}
-	</update>
-	
-	<update id="giveMembersipToZero">
-	 	update members set membership=0 where email=#{email}
+	<update id="membersipAndCetifyToZero">
+	 	update members as A, profile as B set A.membership=0, B.certify=0, B.certifydate=now() where A.email=#{email} and A.email=B.email
 	</update>
 	
 	<insert id="signUp" parameterType="com.coksabu.yojic.lesson.member.model.MemberInfo" >
-		insert into members (email, password, name, nickname, birth, phone, logindate, membership, enabled, authority, human_status, fail_count, fail_time, imgpath, push) values (#{email}, #{password}, #{name}, #{name}, #{birth}, #{phone}, now(), 0, 1, 'user', 0, 0, 0, 'pro.png', 'ON')
+		insert into members (email, password, name, nickname, birth, phone, logindate, signupdate, membership, enabled, authority, human_status, fail_count, fail_time, imgpath, push) values (#{email}, #{password}, #{name}, #{name}, #{birth}, #{phone}, now(), now(), 0, 1, 'user', 0, 0, 0, 'pro.png', 'ON')
 	</insert>
 	
 	<select id="checkImgPath" resultType="Integer">
@@ -64,7 +60,7 @@
 	</update>
 	
 	<select id="takeProfile" resultType="com.coksabu.yojic.lesson.member.model.Profile" >
-		select A.nickname, A.birth ,B.imgpath, B.locales, B.universe, B.univsub, B.career, B.sexual, B.certify from members as A, profile as B where A.email =#{email} and B.email=#{email}
+		select A.nickname, A.birth ,B.imgpath, B.locales, B.universe, B.univsub, B.academy, B.academyd, B.career, B.sexual, B.certify from members as A, profile as B where A.email =#{email} and B.email=#{email}
 	</select>
 	
 	<select id="takeProfileList" resultType="com.coksabu.yojic.lesson.member.model.Profile" >
@@ -222,5 +218,25 @@
 	<update id="updateMyAccount" parameterType="com.coksabu.yojic.lesson.member.model.MyAccount">
 		update members set account=#{account}, accountnumber=#{accountNumber} where email=#{email}
 	</update>
+	
+	<select id="myPromotionCount" resultType="Integer">
+		select count(*) from promotion where email=#{email}
+	</select>
+	
+	<select id="myPromotion" resultType="com.coksabu.yojic.lesson.member.model.Promotion">
+		select * from promotion where email=#{email}
+	</select>
+	
+	<select id="takeSignUpDate" resultType="Date">
+		select signupdate from members where email=#{email}
+	</select>
+	
+	<insert id="registerMyPromotion" parameterType="com.coksabu.yojic.lesson.member.model.Promotion">
+		insert into promotion (email, title, content, code, startdate, enddate) values (#{email}, #{title}, #{content}, #{code}, #{startDate}, DATE_ADD(#{startDate}, INTERVAL 2 MONTH) )
+	</insert>
+	
+	<select id="myCommissionPromotionCount" resultType="Integer">
+		select count(*) from promotion where email=#{email} and (code='COKSABU' or code='LESSON')
+	</select>
 	
 </mapper>

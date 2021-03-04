@@ -67,9 +67,11 @@
   			border:0.5px solid rgb(115, 115, 117);
   			border-radius:3px;
   		  }
-  			
-  			
     </style>
+<!-- Event snippet for 가입 conversion page -->
+<script>
+  gtag('event', 'conversion', {'send_to': 'AW-413632618/Emm8CI67sfkBEOqQnsUB'});
+</script>
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
   	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.4.js"></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>

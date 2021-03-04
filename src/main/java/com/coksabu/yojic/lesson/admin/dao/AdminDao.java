@@ -16,6 +16,7 @@ import com.coksabu.yojic.lesson.board.model.PurchaseHistory;
 import com.coksabu.yojic.lesson.chat.model.ChatPurchase;
 import com.coksabu.yojic.lesson.deal.model.RefundContent;
 import com.coksabu.yojic.lesson.fcm.util.TokenInfo;
+import com.coksabu.yojic.lesson.member.model.CertifyDB;
 import com.coksabu.yojic.lesson.member.model.Qna;
 
 @Repository
@@ -26,8 +27,6 @@ public interface AdminDao {
 	public void inspectComplete(String email);
 	
 	public void inspectFail(String email);
-	
-	public void qualifyMembership(String email);
 	
 	public int certifyCount();
 	
@@ -152,4 +151,11 @@ public interface AdminDao {
 	
 	public TokenInfo takePushForOneTarget(String email);
 	
+	
+	public String takeProfileImage(String email);
+	public List<String> takeRepresentImg(String email);
+	public List<CertifyDB> takeCertifyImg(String email);
+	public List<String> takeMediaImg(String email);
+	public List<Integer> takeChatRoomId(String email);
+	public int delChatRoomById(List<Integer> item);
 }

@@ -659,7 +659,14 @@
                     		<td><input type="text" id="academy" name="academy" /></td>
                     		<td>학과</td>
                     		<td><input type="text" name="academyd" id="academyd"  /></td>
+                    		
                     	</tr>
+                    	<c:if test="${pro.universe!=null}">
+							<tr><td  colspan="4"  style="color: black;font-size:15px;">
+							대학원/학과를 수정하시는 경우 <span style="color:orange">본인/학력인증</span> 다시 해주시기 바랍니다.
+							</td></tr>
+						</c:if>
+                    	
                     	<tr>
                     		<td>유학국가</td>
                     		<td><input type="text" name="nation" id="nation"/></td>
@@ -902,6 +909,16 @@
    	}
    	
     function check(obj){
+    	var file = obj.files;
+
+    	// file[0].size 는 파일 용량 정보입니다.
+    	if(file[0].size > 1024*1024*10){
+    		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
+    		  alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+    		  document.getElementsByName("img")[0].value = ""; 
+    		  return false;
+    	}
+    	
     	var pathpoint = obj.value.lastIndexOf('.');
     	var filepoint = obj.value.substring(pathpoint+1,obj.length);
     	var filetype = filepoint.toLowerCase();

@@ -44,8 +44,6 @@ public class AdminService {
 	}
 	public void inspectComplete(String email) {
 		
-		adminDao.qualifyMembership(email);
-		
 		adminDao.inspectComplete(email);
 		
 		TokenInfo tokenInfo = adminDao.takePushForOneTarget(email);

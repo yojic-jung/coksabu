@@ -1,7 +1,7 @@
 package com.coksabu.yojic.lesson.apply.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,6 +12,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -20,19 +27,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.coksabu.yojic.DeviceSwitcher.DeviceSwitcherController;
 import com.coksabu.yojic.lesson.apply.model.ApplyForm;
-import com.coksabu.yojic.lesson.apply.model.ApplyList;
-import com.coksabu.yojic.lesson.apply.model.ApplySearchForm;
 import com.coksabu.yojic.lesson.apply.model.ApplyTeacher;
+import com.coksabu.yojic.lesson.apply.model.ApplyWithSignup;
 import com.coksabu.yojic.lesson.apply.service.ApplyService;
 import com.coksabu.yojic.lesson.apply.service.ApplyShowService;
-import com.coksabu.yojic.lesson.apply.service.ListApplyService;
 import com.coksabu.yojic.lesson.apply.service.MyApplyListService;
 import com.coksabu.yojic.lesson.apply.service.TeacherApplyService;
+import com.coksabu.yojic.lesson.member.model.MemberInfo;
+import com.coksabu.yojic.lesson.member.service.CheckAndInsertService;
 
 @Controller
 public class ApplyController extends DeviceSwitcherController{
 	
 	private static final  Logger logger = LoggerFactory.getLogger(ApplyController.class);
+	
 	
 	//테스트 완료
 	@RequestMapping(value="lessonapply", method = RequestMethod.GET)
@@ -48,10 +56,17 @@ public class ApplyController extends DeviceSwitcherController{
 		return forward("apply/lessonapply");
 	}
 	
+	
 	//테스트 완료
 	@Transactional(rollbackFor= {Exception.class})
 	@RequestMapping(value="apply", method = RequestMethod.POST)
 	public String apply2(ApplyForm apply, Model model, HttpSession session) {
+		String email = (String)session.getAttribute("email");
+		apply.setEmail(email);
+		if(email==null || email.equals("")) {
+			return "redirect:applynologin";
+		}
+		
 		String configLocation = "classpath:applicationContext.xml";
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
 		ApplyService applyService = ctx.getBean("applyService", ApplyService.class );
@@ -60,7 +75,7 @@ public class ApplyController extends DeviceSwitcherController{
 		}
 		apply.setLocale(apply.getLocale1()+" "+apply.getLocale2());
 		String applyStatus = applyService.apply(apply);
-		String email = (String)session.getAttribute("email");
+		
 		if(applyStatus.equals("limit")) {
 			ctx.close();
 			model.addAttribute("limit","limit");
@@ -77,6 +92,96 @@ public class ApplyController extends DeviceSwitcherController{
 			String link = "https://m.coksabu.com/teacherApply?id="+applyStatus;
 			teacherApplyService.sendPushNotificationTarget(locale,apply.getCate(), link);
 			ctx.close();
+			return "redirect:applysuccess";
+		}
+		
+	}
+	
+	//테스트 완료
+	@RequestMapping(value="applynologin", method = RequestMethod.GET)
+	public String applynologin( Model model,HttpSession session) {
+		String email = (String)session.getAttribute("email");
+		model.addAttribute("email", email);
+		model.addAttribute("iamport", "imp48047014");
+		model.addAttribute("merchant_uid", "ORD20180131-0000011");
+		return forward("apply/applynologin");
+	}
+	
+	
+	@Transactional(rollbackFor= {Exception.class})
+	@RequestMapping(value="applynologin", method = RequestMethod.POST)
+	public String applynologin2(ApplyWithSignup applyWithSign, Model model, HttpServletRequest request, HttpSession session) {
+		model.addAttribute("email", null);
+		
+		String configLocation = "classpath:applicationContext.xml";
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
+		ApplyService applyService = ctx.getBean("applyService", ApplyService.class );
+		CheckAndInsertService checkAndInsertService = ctx.getBean("checkAndInsertService", CheckAndInsertService.class );
+		
+		if(applyWithSign.getPhone().equals("") ) {
+			ctx.close();
+			//휴대폰 인증하지 않고 서버로 들어온 경우
+			model.addAttribute("ex", "certify");
+			model.addAttribute("iamport", "imp48047014");
+			model.addAttribute("merchant_uid", "ORD20180131-0000011");
+			return forward("apply/applynologin");
+		}
+		
+		MemberInfo mem = new MemberInfo();
+		mem.setEmail(applyWithSign.getEmail());
+		mem.setBirth(applyWithSign.getBirth());
+		mem.setName(applyWithSign.getName());
+		mem.setLoginDate(new Date());
+		mem.setPassword(applyWithSign.getPassword());
+		mem.setPhone(applyWithSign.getPhone());
+		String status = checkAndInsertService.signUp(mem);
+		
+		if( status.equals("emailDuplicate") ) {
+			model.addAttribute("ex", "exception");
+			model.addAttribute("iamport", "imp48047014");
+			model.addAttribute("merchant_uid", "ORD20180131-0000011");
+			ctx.close();
+			return forward("apply/applynologin");
+		}else if( status.equals("phoneDuplicate") ) {
+			model.addAttribute("ex", "phone");
+			model.addAttribute("iamport", "imp48047014");
+			model.addAttribute("merchant_uid", "ORD20180131-0000011");
+			ctx.close();
+			return forward("apply/applynologin");
+		}
+		
+		if(applyWithSign.getLocale2()==null) {
+			applyWithSign.setLocale2(" ");//공백 지우면 안됨.
+		}
+		applyWithSign.setLocale(applyWithSign.getLocale1()+" "+applyWithSign.getLocale2());
+		String applyStatus = applyService.applyNoLogin(applyWithSign);
+		if(applyStatus.equals("none")) {
+			ctx.close();
+			model.addAttribute("error", "error");
+			return forward("apply/applynologin");
+		//학생요청 성공
+		}else {
+			TeacherApplyService teacherApplyService = ctx.getBean("teacherApplyService", TeacherApplyService.class );
+			String locale= applyWithSign.getLocale1()+" "+applyWithSign.getLocale2();
+			String link = "https://m.coksabu.com/teacherApply?id="+applyStatus;
+			teacherApplyService.sendPushNotificationTarget(locale,applyWithSign.getCate(), link);
+			ctx.close();
+			
+			
+			//자동 로그인 처리
+			SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority("user");
+			List<SimpleGrantedAuthority> collection = new ArrayList<>();
+			collection.add(simpleGrantedAuthority);
+			UserDetails customUserDetails = new User(applyWithSign.getEmail(), applyWithSign.getPassword(), collection);
+			
+		    Authentication authentication = new UsernamePasswordAuthenticationToken(customUserDetails, applyWithSign.getPassword(), customUserDetails.getAuthorities());
+
+		    SecurityContext securityContext = SecurityContextHolder.getContext();
+		    securityContext.setAuthentication(authentication);
+		    session = request.getSession(true);
+		    session.setAttribute("email", applyWithSign.getEmail());
+		    session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+			
 			return "redirect:applysuccess";
 		}
 		

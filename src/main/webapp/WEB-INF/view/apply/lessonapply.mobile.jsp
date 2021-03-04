@@ -120,30 +120,23 @@
 </style>    
 </head>
 <body>
-        <% if(session.getAttribute("email")==null) {
-%>
+<% if(session.getAttribute("email")==null) { %>
 <script>
-window.location="./";
+window.location="./applynologin";
 </script>
-<%
-}
-%>
+<% } %>
         <section>
             <div style="background:rgb(46, 46, 46); color:rgb(219, 218, 218);">
                
-                <div style="text-align:center; font-size:40px;padding-top:30px">
-                   수업 요청
-                </div>
                 <div style="font-size:30px; padding:30px; text-align:center">
                   수업 요청을 통해 수업 가능한 선생님들의<br/> 지원서를 받아볼 수 있습니다. 
                 </div>
             </div>
             
-            <div style="padding:20px 20px 150px 20px;">
-            <div style="width:90%; background:white; margin:auto; padding:20px 20px 50px 20px;">
+            <div style="padding:20px 0px 150px 0px;">
+            <div style="width:90%; background:white; margin:auto; padding:20px 0px 50px 0px;">
             <div>
             <form method="post">
-            <input name="email" id="email" type="hidden" value="${email}" />
             
             <div class="step1">
             

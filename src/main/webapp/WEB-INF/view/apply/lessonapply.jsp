@@ -104,14 +104,11 @@
 </head>
 <body>
 <!-- 리퀘스트매핑 겹치는것 있어  시큐리티 처리않고 세션으로 처리-->
-      <% if(session.getAttribute("email")==null) {
-%>
+<% if(session.getAttribute("email")==null) { %>
 <script>
-window.location="./";
+window.location="./applynologin";
 </script>
-<%
-}
-%>
+<% } %>
         <section>
             <div style="background:rgb(46, 46, 46); color:rgb(219, 218, 218); font-size:14px;">
                
@@ -127,7 +124,6 @@ window.location="./";
             <div style="width:800px; background:white; margin: auto; padding:20px;">
             <div>
             <form method="post">
-            <input name="email" id="email" type="hidden" value="${email}" />
             
             <div class="step1">
             

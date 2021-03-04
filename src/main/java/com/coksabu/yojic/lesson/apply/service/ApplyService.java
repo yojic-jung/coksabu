@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.coksabu.yojic.lesson.apply.dao.ApplyDao;
 import com.coksabu.yojic.lesson.apply.model.ApplyForm;
+import com.coksabu.yojic.lesson.apply.model.ApplyWithSignup;
 
 @Service
 public class ApplyService {
@@ -21,10 +22,25 @@ public class ApplyService {
 		apply.setPostingdate(new Date());
 		
 		int myApply = applyDao.countMyApply(apply.getEmail());
+		
 		if(myApply >= 3) {
 			return "limit";
 		}
+		
 		int changeStatus = applyDao.apply(apply);
+		
+		if(changeStatus==0) {
+			return "none";
+		}
+		//바꾸면 안됨, 링크에 사용할 id값
+		return String.valueOf(apply.getId());
+	}
+	
+	@Transactional(rollbackFor= {Exception.class})
+	public String applyNoLogin(ApplyWithSignup apply) {
+		apply.setPostingdate(new Date());
+		
+		int changeStatus = applyDao.applyNoLogin(apply);
 		if(changeStatus==0) {
 			return "none";
 		}

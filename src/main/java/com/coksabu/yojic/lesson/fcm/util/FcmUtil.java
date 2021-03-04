@@ -153,7 +153,7 @@ public class FcmUtil {
             //cotentAvailable(true)설정해야 ios의 앱델레게이트 didReceiveRemoteNotification메서드 실행됨
             payload.setContentAvailable(true);
             payload.addCustomDictionary("link", link);
-            List < PushedNotification > NOTIFICATIONS = Push.payload(payload, "/home/ec2-user/coksabu.p12", "zjavbxj789!", false, token);
+            List < PushedNotification > NOTIFICATIONS = Push.payload(payload, "/home/ec2-user/coksabuApnsDistribute.p12", "zjavbxj789!", true, token);
 
             for (PushedNotification NOTIFICATION: NOTIFICATIONS) {
                 if (NOTIFICATION.isSuccessful()) {
@@ -195,7 +195,7 @@ public class FcmUtil {
             //cotentAvailable(true)설정해야 ios의 앱델레게이트 didReceiveRemoteNotification메서드 실행됨
             payload.setContentAvailable(true);
             payload.addCustomDictionary("link", link);
-            List < PushedNotification > NOTIFICATIONS = Push.payload(payload, "/home/ec2-user/coksabu.p12", "zjavbxj789!", false, tokenList);
+            List < PushedNotification > NOTIFICATIONS = Push.payload(payload, "/home/ec2-user/coksabuApnsDistribute.p12", "zjavbxj789!", true, tokenList);
 
             for (PushedNotification NOTIFICATION: NOTIFICATIONS) {
                 if (NOTIFICATION.isSuccessful()) {

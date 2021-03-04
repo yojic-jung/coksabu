@@ -108,11 +108,12 @@
    
    .fade-content{
         	color:white;
-        	font-size:40px;
-        	width:550px;
+        	font-size:45px;
+        	line-height:150%;
+        	width:90%;
+        	text-align:center;
         	margin:auto;
         	font-weight:bolder;
-        	text-align:right;
         	 position:absolute;
             left:50%; 
             transform:translateX(-50%);
@@ -235,6 +236,14 @@ width:100%;margin:auto
 }
 
    </style>
+   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-413632618"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-413632618');
+</script>
 </head>
 <body>
 <script>
@@ -283,7 +292,7 @@ width:100%;margin:auto
             
             <li>
             	<img class="fadeImg" src="<c:url value="/resources/img/main1.png" />"  alt="메인이미지1"/>
-            	<div class="fade-content">선생님 매칭부터 안전거래까지,<br/>안전거래 과외플랫폼 콕사부</div>
+            	<div class="fade-content" style="text-align:center;">선생님 "수수료 무료" 프로모션<br/>회원가입 후 등록가능</div>
             </li>
             <li>
             	<img class="fadeImg" src="<c:url value="/resources/img/main2.png" />"  alt="메인이미지2"/>
@@ -348,7 +357,16 @@ width:100%;margin:auto
 	<div>
 	<div id="title"> ${post.title}</div>
 	<div id="name">${post.nickname}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
-	<div id="universe"> ${post.universe} ${post.univsub}</div>
+	
+	<c:choose>
+		<c:when test="${post.academy ne '' and post.academy != null}">
+			<div id="universe"> ${post.academy} ${post.academyd}</div>
+		</c:when>
+		<c:otherwise>
+			<div id="universe"> ${post.universe} ${post.univsub}</div>
+		</c:otherwise>
+	</c:choose>
+	
 	<div id="price" > ${post.subCate0} ${post.price3}원 <c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if> <c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if></div>
 	</div>
 	</a>

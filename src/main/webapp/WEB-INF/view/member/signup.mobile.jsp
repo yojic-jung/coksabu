@@ -107,6 +107,10 @@
   			
   		  }
     </style>
+    <!-- Event snippet for 가입 conversion page -->
+<script>
+  gtag('event', 'conversion', {'send_to': 'AW-413632618/Emm8CI67sfkBEOqQnsUB'});
+</script>
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
   	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.4.js"></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -177,9 +181,9 @@
     	  var status = "<c:out value="${status}" />";
     	  
           if(ex == 'exception'){
-          	alert("이미 가입된 이메일 입니다.");
+          	alert("이미 가입된 이메일 입니다. 로그인 후 다시 신청해주시기 바랍니다.");
           }else if(ex == 'phone'){
-            	alert("이미 가입된 휴대폰번호 입니다.");
+            	alert("이미 가입된 휴대폰번호 입니다. 로그인 후 다시 신청해주시기 바랍니다.");
           }else if(ex=='certify'){
             	alert('휴대폰 인증을 해주시기 바랍니다.')
             }

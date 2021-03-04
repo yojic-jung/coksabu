@@ -1127,10 +1127,6 @@
                   <div style="font-size:25px; line-height:150%;margin:20px auto;;border:1px solid black; padding:10px;">
                   콕사부의 중개 수수료는 20%이며 이를 제외한 80%는 선생님에게 전달됩니다.<br/>(수수료는 수수료 이벤트와  같은 경우에 한시적으로 달라질 수 있음.)<br/> 서비스의 안전한 거래를 위하여 판매금을 서비스가 종료된 날짜를 기준으로 1-3일 후에 입금됨을 알립니다.(후불입금)
                   </div>
-                  <div style="color:orange;font-size:25px; line-height:130%;margin:20px auto;">
-                  현재 수수료 할인 이벤트를 진행하고 있습니다. <br/>
-		3월 31일까지 수수료 할인 이벤트를 진행하며 3월 31일 전에 결제된 수업에 대하여 중개 수수료가 20%가 아닌 10%로 적용됩니다. 
-				   </div>
 				   <br/>
                   <div>취소 및 환불규정</div>
                   <div style="overflow:scroll;font-size:25px; line-height:150%;margin:20px auto;height:400px;border:1px solid black; padding:10px;">
@@ -1738,6 +1734,16 @@
             
             
             function check(obj){
+            	var file = obj.files;
+
+            	// file[0].size 는 파일 용량 정보입니다.
+            	if(file[0].size > 1024*1024*10){
+            		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
+            		  alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+            		  document.getElementsByName("represent")[0].value = ""; 
+            		  return false;
+            	}
+            	
                	var pathpoint = obj.value.lastIndexOf('.');
                	var filepoint = obj.value.substring(pathpoint+1,obj.length);
                	var filetype = filepoint.toLowerCase();
@@ -1753,6 +1759,17 @@
             
             
             function check1(obj){
+            	var file = obj.files;
+
+            	// file[0].size 는 파일 용량 정보입니다.
+            	if(file[0].size > 1024*1024*10){
+            		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
+            		  alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+            		  $("#output1").trigger('click');
+            		  return false;
+            	}
+            	
+            	
                	var pathpoint = obj.value.lastIndexOf('.');
                	var filepoint = obj.value.substring(pathpoint+1,obj.length);
                	var filetype = filepoint.toLowerCase();
@@ -1767,6 +1784,16 @@
                }    
             
             function check22(obj){
+            	var file = obj.files;
+
+            	// file[0].size 는 파일 용량 정보입니다.
+            	if(file[0].size > 1024*1024*10){
+            		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
+            		  alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+            		  $("#output2").trigger('click');
+            		  return false;
+            	}
+            	
                	var pathpoint = obj.value.lastIndexOf('.');
                	var filepoint = obj.value.substring(pathpoint+1,obj.length);
                	var filetype = filepoint.toLowerCase();
@@ -1781,6 +1808,16 @@
                }    
             
             function check3(obj){
+            	var file = obj.files;
+
+            	// file[0].size 는 파일 용량 정보입니다.
+            	if(file[0].size > 1024*1024*10){
+            		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
+            		  alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+            		  $("#output3").trigger('click');
+            		  return false;
+            	}
+            	
                	var pathpoint = obj.value.lastIndexOf('.');
                	var filepoint = obj.value.substring(pathpoint+1,obj.length);
                	var filetype = filepoint.toLowerCase();
@@ -1795,6 +1832,16 @@
                }    
             
             function check4(obj){
+            	var file = obj.files;
+
+            	// file[0].size 는 파일 용량 정보입니다.
+            	if(file[0].size > 1024*1024*10){
+            		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
+            		  alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+            		  $("#output4").trigger('click');
+            		  return false;
+            	}
+            	
                	var pathpoint = obj.value.lastIndexOf('.');
                	var filepoint = obj.value.substring(pathpoint+1,obj.length);
                	var filetype = filepoint.toLowerCase();

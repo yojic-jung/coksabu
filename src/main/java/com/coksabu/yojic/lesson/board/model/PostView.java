@@ -12,6 +12,8 @@ public class PostView {
 	private String birth;
 	private String universe;
 	private String univsub;
+	private String academy;
+	private String academyd;
 	private String sexual;
 	private String career;
 	private String cate;
@@ -118,6 +120,23 @@ public class PostView {
 	public String getUniverse() {
 		return universe;
 	}
+	
+	
+	public void setAcademy(String academy) {
+		this.academy= academy;
+	}
+	public String getAcademy() {
+		return academy;
+	}
+	
+	public void setAcademyd(String academyd) {
+		this.academyd= academyd;
+	}
+	public String getAcademyd() {
+		return academyd;
+	}
+	
+	
 	
 	public void setSexual(String sexual) {
 		this.sexual = sexual;

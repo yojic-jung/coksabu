@@ -1310,7 +1310,14 @@ width:80%;
 	<div>
 	<div id="title"> ${post.title}</div>
 	<div id="name">${post.nickname}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력 <c:if test="${post.career!=0}">${post.career}년</c:if><c:if test="${post.career==0}">1년미만</c:if></div>
-	<div id="universe"> ${post.universe} ${post.univsub}</div>
+	<c:choose>
+		<c:when test="${post.academy ne '' and post.academy != null}">
+			<div id="universe"> ${post.academy} ${post.academyd}</div>
+		</c:when>
+		<c:otherwise>
+			<div id="universe"> ${post.universe} ${post.univsub}</div>
+		</c:otherwise>
+	</c:choose>	
 	<div id="price" > ${post.subCate0} ${post.price3}원 <c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if> <c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if></div>
 	</div>
 	</a>

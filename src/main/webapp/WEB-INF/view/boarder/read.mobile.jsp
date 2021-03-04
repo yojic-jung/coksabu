@@ -337,7 +337,7 @@
                 <c:if test="${pro.certify == 1}"> <div style="margin-top:30px;color:orange; text-align:center;font-size:30px;">본인인증완료 &nbsp; &nbsp; 학력인증완료 </div></c:if>
                 <br/>
                 <div style="width:90%; margin:auto;font-size:30px;line-height:230%">
-               <span class="info" style="margin-right:20px;">학교</span>${pro.universe} ${pro.univsub} (${pro.universer}) <br/>
+               <span class="info" style="margin-right:20px;">대학교</span>${pro.universe} ${pro.univsub} (${pro.universer}) <br/>
                <span class="info" style="margin-right:20px;">경력</span><c:if test="${pro.career!=0}">${pro.career}년이상</c:if><c:if test="${pro.career==0}">1년미만</c:if><br/>
             	<c:if test="${pro.academy != ''}"><span class="info" style="margin-right:15px;">대학원</span>${pro.academy} ${pro.academyd}<br/></c:if>
             	<c:if test="${pro.nation != ''}"><span class="info" style="margin-right:20px;">유학</span>${pro.nation} ${pro.nationy}년<br/></c:if>
