@@ -9,7 +9,8 @@
   <meta charset="utf-8">
   <link rel="canonical" href="https://coksabu.com/profile">  
     <style>
-          .mypage{
+   
+         .mypage{
               list-style:none;
               padding:20px;
           }
@@ -18,6 +19,21 @@
             padding:20px;
             display:inline;
         }
+        
+    	#img{
+    		display:none;
+    	}
+    
+    	#imgplus{
+        	width:120px;height:120px;
+        	backgroud:white;
+        	border-radius:40px;
+        	border:4px solid lightgray;
+        	cursor:pointer;
+        	position:relative;
+        	top:-120px;
+    	}
+        
         .login-form{
               min-height:410px;
               width:470px;
@@ -41,25 +57,54 @@
             background:rgb(241, 239, 239);
             font-size:14px;
           }
-          .locale-main{
-            color:gray;font-size:35px; padding : 15px;  margin-right:40px;
+          .locale-main, .locale{
+          font-family: 'JejuGothic';
+            color:dimgray;border:5px solid #BDBDBD;background:#F9F9F9;
+            font-size:50px; padding:30px; border-radius:20px; margin:40px 0px;width:70%;margin:auto; 
         }
-          .locale{
-            color:gray;font-size:35px; padding : 15px;  margin-right:40px; 
-          }
+          
           .locale-btn{
-              padding:15px;
-              font-size:35px;
+              padding:20px;
+              font-size:40px;
+              margin-left:40px; 
+              display:none;
 
           }
+          .locate-span{
+          	padding:20px;
+              font-size:50px;
+              margin-left:40px; 
+              background:#747474;
+              color:white;
+              border-radius:10px;
+          }
+          
+          
           #singular{
           	width:40px;
           	height:40px;
           }
           .sexual1, .sexual2{
-          	width:30px;
-          	height:30px;
+          	width:40px;
+          	height:40px;
           }
+          
+          .profile-submit-div{
+          width:100%;
+          position: fixed;left: 0;bottom: 0;
+          padding:30px;
+          background:white;
+          border-top:3px solid lightgray;
+          }
+           .profile-complete{
+           font-family: 'JejuGothic';
+   			 
+   			 text-align:center;color:white;
+   			 background: #F4C60B; font-size:50px;
+  			 padding:50px;
+  			 border-radius:30px;
+  			 width:90%;margin:auto;
+   			}
 		
 			table input{
 				border:1px solid gray;
@@ -69,16 +114,21 @@
               /* 지표클래스 */
           }
           .my-btn{
-            margin:5px;
-            font-size:35px;
+            margin:20px;
+            font-size:40px;
+            padding:10px;
+            border-radius:50px;
+            background:#F2F3F7;
+            display:inline-block;
           }
           .s-u-c td:first-child{
-          	width:150px;
+          	width:220px;
           }
          
           .x-btn{
-          	padding:15px;
-          	font-size:35px;
+          	font-size:40px;
+            padding:10px;
+            color:#D5D5D5;
           }
     .foot{
       width:100%;
@@ -133,7 +183,7 @@
     	    	var locale = loc.split(",");
    	    		for(var i=0; i<locale.length; i++){
    	    			  $('.locale-box').append('<div class="my-btn">' 
-    	    	                 +locale[i]+' <button class="x-btn">삭제</button></div>');
+    	    	                 +locale[i]+' <span class="x-btn">X</span></div>');
       	              $('.locale-box').append('<input name="locales" style="display:none;" class="my-locale" type="checkbox" value="'
     	    	             +locale[i]+'" checked />');
     	    	}
@@ -171,34 +221,36 @@
 
 		</script>
         <section>
-            <div style="background:rgb(233, 232, 232); padding:50px 10px 250px 10px; min-height: 500px;">
-                <div class="login-form" style="width:90%;background:white;margin:auto;padding:20px 0px; ">
-                    <div style="width:90%;margin:auto;">
+            <div style="padding:70px 0px 250px 0px; min-height: 500px;">
+                <div class="login-form" style="width:90%;margin:auto;">
                     <form:form class="teacher2-submit" method="post" commandName="profile" name="profile" enctype="multipart/form-data" onSubmit="return CheckForm(this)">
                         
                     <input name="email" id="email" type="hidden" value="${email}" />
                    
-                    <div style="color:gray;font-family: 'JejuGothic'; margin:40px 0px 15px 0px;font-size:35px; ">프로필 설정</div>
+                    <div style="color:gray;font-family: 'JejuGothic'; margin:40px 0px 15px 0px;font-size:50px; ">프로필 이미지</div>
                     
-                    <div style="margin:40px 0px 40px 0px;text-align:center;padding-bottom:40px;">
+                    <div style="margin:40px 0px 0px 0px;text-align:center;">
                     	
                     <c:if test="${pro.imgPath == null}" >
-                    	<img id="output" style="width:400px; height:400px;border-radius:200px;margin-bottom:10px;" 
+                    	<img id="output" style="width:500px; height:500px;border-radius:250px;margin-bottom:10px;" 
                                 src="<c:url value="/resources/images/pro.png"  />"  alt="프로필 대체"/>
                     </c:if>
                     <c:if test="${pro.imgPath != null }">
-                        <img id="output" style="width:400px; height:400px;border-radius:200px;margin-bottom:10px" 
+                        <img id="output" style="width:500px; height:500px;border-radius:250px;margin-bottom:10px" 
                                 src="<c:url value="/img/profileImg/${pro.imgPath}" />"  alt="프로필 아미지"/>
                    	</c:if>
+                   	<div style="width:480px; margin:auto;text-align:right;">
+						<img id="imgplus" src="<c:url value="/resources/images/imgplus.png" />"  />
+					</div>
                         <br/>
                         <span class="file-wrapper">
                         <input type="file" name="img" id="img" style="font-size:35px;width:50%; padding:20px;" accept="image/*" onchange="check(this);loadFile(event);" />
 						</span>
                     </div>
-                    <br/><br/>
-                    <div style="color:gray;font-family:'JejuGothic';font-size:35px; margin:40px 0px 20px 0px;">서비스 가능지역(최대 5개)</div>
+                    <div style="color:gray;font-family:'JejuGothic';font-size:50px; margin:250px 0px 60px 0px">서비스 가능지역(최대 5개)</div>
                     <div>
                     <div style="margin-bottom:60px; width:100%;">
+                      <div style="margin-bottom:20px;">
                         <select class="locale-main">
                             <option>선택</option>
                             <option>서울</option>
@@ -219,7 +271,11 @@
                             <option>전북</option>
                             <option>제주</option>
                         </select>
-                
+                        <span class="locate-span">추가</span>
+                        <input type="button" class="locale-btn" value="추가"/>
+                      </div>  
+                        
+                         
                         <select class="locale" style="display:none;">
                                 <option>강남</option>
                                 <option>강동</option>
@@ -541,15 +597,13 @@
                                 <option>서귀포시</option>
                                 <option>제주시</option>
                         </select>
-                         <input type="button" class="locale-btn" value="추가"/><br/>
+                        
                         </div>
                        
                         <div class="locale-box" style="font-size:35px;width:100%;line-height:350%; padding:20px; margin-top:20px; border:1px solid gray; "></div> 
                     </div>
-                    <br/>
-                    <br/>
-                    <div style="font-size:35px;color:gray;font-family: 'JejuGothic'; margin:10px 0px; ">
-                    <table class="s-u-c" style="width:100%;border-spacing:20px 100px;">
+                    <div style="font-size:50px;color:gray;font-family: 'JejuGothic'; margin:250px 0px 0px 0px; ">
+                    <table class="s-u-c" style="width:100%;border-spacing:20px 150px;">
                     	<tr>
                     		<td>성별</td>
                     		<td>
@@ -561,11 +615,11 @@
                     	</tr>
                     	<tr>
                     		<td>
-                    			<span style="color:gray; font-family:'JejuGothic';font-size:35px; margin:10px 0px; ">대학</span>
+                    			<span style="color:gray; font-family:'JejuGothic'; margin:10px 0px; ">대학</span>
                     		</td>
                     		<td>
-                    			<input style="width:50%;font-size:35px;padding:20px;" name="universe" type="text" id="univid" onclick="openIdChk()" readonly/>
-                    			<input type="button" value="대학검색" style="font-size:30px;padding:10px;"  onclick="openIdChk()"/>
+                    			<input style="width:100%;padding:20px;font-size:50px;" name="universe" type="text" id="univid" onclick="openIdChk()" readonly/>
+                    			<input type="button" value="대학검색" style="padding:10px;display:none;"  onclick="openIdChk()"/>
                     			
                     			<br/>
                     		</td>
@@ -578,22 +632,28 @@
                     	</td>
                     	</tr>
                     	<tr>
-                    		<td colspan="2">
-                    		<c:if test="${pro.universe!=null}">
-							<b style="color:gray;font-size:25px;">대학을 수정하시는 경우 <span style="color:orange">본인/학력인증</span> 다시 해주시기 바랍니다.</b><br/>
-							</c:if>
-                    		</td>
-                    	</tr>
-                    	<tr>
                     		<td>학과</td>
-                    		<td><input style="width:60%;font-size:35px;padding:20px;" type="text" id="univsub" name="univsub" /></td>
+                    		<td>
+                    			<input style="width:100%;font-size:50px;padding:20px;" type="text" id="univsub" name="univsub" />
+                    		</td>
+                    		
                     	</tr>
+                    	
+                    	<tr>
+                    		<td colspan="2">
+                    			<c:if test="${pro.universe!=null}">
+									<b style="color:gray;font-size:35px;">대학 및 학과를 수정하시는 경우 <span style="color:orange">본인/학력인증</span> 다시 해주시기 바랍니다.</b><br/>
+								</c:if>
+                    		</td>
+                    		
+                    	</tr>
+                    	
                     	<tr>
                     		<td>
-                    			<span style="font-size:35px;">재학유무 </span>
+                    			<span>재학유무 </span>
                     		</td>
                     		<td>
-                    			<select style="font-size:35px;padding:20px; width:30%; color:gray;font-family: 'JejuGothic'; padding:5px" name="universer" id="universer">
+                    			<select style="font-family: 'JejuGothic';color:dimgray;border:5px solid #BDBDBD;background:#F9F9F9;font-size:50px; padding:30px; border-radius:20px; margin:40px 0px;width:70%;margin:auto;" name="universer" id="universer">
     							<option>재학</option>
     							<option>휴학</option>
     							<option>중퇴</option>
@@ -603,9 +663,9 @@
                     		</td>
                     	</tr>
                     	<tr>
-                    		<td><span style="color:gray;font-family: 'JejuGothic';font-size:35px; margin:10px 0px; ">과외경력</span></td>
+                    		<td><span style="color:gray;font-family: 'JejuGothic'; margin:10px 0px; ">과외경력</span></td>
                     		<td>
-                    			<select name="career" id="career" style="font-size:35px;padding:20px; width:40%; color:gray;font-family: 'JejuGothic'; padding:5px" >
+                    			<select name="career" id="career" style="color:dimgray;border:5px solid #BDBDBD;background:#F9F9F9;font-size:50px; padding:30px; border-radius:20px; margin:40px 0px;width:70%;margin:auto;font-family: 'JejuGothic';" >
     	    						<option value="0">1년미만</option>
                     				<option value="1">1년이상</option>
                     				<option value="2">2년이상</option>
@@ -622,65 +682,65 @@
     					
     					
     					
-                   <table style="width:100%;border-spacing:20px 100px;font-size:35px;color:gray;font-family: 'JejuGothic'; margin-top:150px;">
+                   <table style="width:100%;border-spacing:20px 120px;font-size:50px;color:gray;font-family: 'JejuGothic'; margin-top:250px;">
                    	<tr>
                    		<td colspan="2">추가 입력(선택)</td>
                    	</tr>
                    	<tr>
                    		<td>대학원</td>
-                   		<td><input type="text" id="academy" name="academy" style="padding:20px;width:70%;font-size:35px;" /></td>
+                   		<td><input type="text" id="academy" name="academy" style="padding:20px;width:100%;font-size:50px;" /></td>
                    	</tr>
                    <tr>
                    		<td>학과</td>
-                   		<td><input type="text" name="academyd" id="academyd" style="padding:20px;width:70%;font-size:35px;" /></td>
+                   		<td><input type="text" name="academyd" id="academyd" style="padding:20px;width:100%;font-size:50px;" /></td>
                    	</tr>
                    	
                     <c:if test="${pro.academy!=null}">
                     <tr>
                     	<td colspan="2">
-							<b style="color:gray;font-size:25px;">대학원을 수정하시는 경우 <span style="color:orange">본인/학력인증</span>을 다시 하기 바랍니다.</b><br/>
+							<b style="color:gray;font-size:40px;">대학원을 수정하시는 경우 <span style="color:orange">본인/학력인증</span>을 다시 하기 바랍니다.</b><br/>
 						</td>
 					</tr>
 					</c:if>
                    	
                    	<tr>
-                   		<td>유학국가</td>
-                   		<td> <input type="text" name="nation" id="nation" style="padding:20px;width:50%;font-size:35px;" /></td>
+                   		<td style="width:220px;">유학국가</td>
+                   		<td> <input type="text" name="nation" id="nation" style="padding:20px;width:70%;font-size:50px;" /></td>
                    	</tr>
                    	<tr>
                    		<td>기간</td>
-                   		<td><input type="number" name="nationy" id="nationy" style="padding:20px;width:50%;font-size:35px;" />년</td>
+                   		<td><input type="number" name="nationy" id="nationy" style="padding:20px;width:70%;font-size:50px;" /> 년</td>
                    	</tr>
                    </table>
                    	
-                   	<table style="width:100%;border-spacing:20px 100px;font-size:35px;color:gray;font-family: 'JejuGothic'; margin-top:30px;">
+                   	<table style="width:100%;border-spacing:20px 120px;font-size:50px;color:gray;font-family: 'JejuGothic'; margin-top:250px;">
                    		<tr>
                    			<td colspan="2">어학점수(선택)</td>
                    		</tr>
                    		<tr>
-                   		<td>토익</td>
-                   		<td><input type="number" name="toeic" id="toeic" style="padding:20px;width:40%;font-size:35px;"/>점</td>
+                   		<td style="width:220px;">토익</td>
+                   		<td><input type="number" name="toeic" id="toeic" style="text-align:right;padding:20px;width:70%;font-size:50px;"/> 점</td>
                    		</tr>
                    		<tr>
                    		<td>토플</td>
-                   		<td> <input type="number" name="tofle" id="tofle" style="padding:20px;width:40%;font-size:35px;"/>점</td>
+                   		<td> <input type="number" name="tofle" id="tofle" style="text-align:right;padding:20px;width:70%;font-size:50px;"/> 점</td>
                    		</tr>
                    		<tr>
                    		<td>텝스</td>
-                   		<td><input type="number" name="teps" id="teps" style="padding:20px;width:40%;font-size:35px;"/>점</td>
+                   		<td><input type="number" name="teps" id="teps" style="text-align:right;padding:20px;width:70%;font-size:50px;"/> 점</td>
                    		</tr>
                    		<tr>
                    		<td>HSK</td>
-                   		<td><input type="number" name="hsk" id="hsk" style="padding:20px;width:40%;font-size:35px;"/>급</td>
+                   		<td><input type="number" name="hsk" id="hsk" style="text-align:right;padding:20px;width:70%;font-size:50px;"/> 급</td>
                    		</tr>
                    		<tr>
                    		<td>JPT</td>
-                   		<td><input type="number" id="jpt" name="jpt" style="padding:20px;width:40%;font-size:35px;" />점</td>
+                   		<td><input type="number" id="jpt" name="jpt" style="text-align:right;padding:20px;width:70%;font-size:50px;"/> 점</td>
                    		</tr>
                    		
                    	</table>
                    	
-                   	<table style="width:100%;border-spacing:20px 100px;font-size:35px;color:gray;font-family: 'JejuGothic'; margin-top:30px;">
+                   	<table style="width:100%;border-spacing:20px 100px;font-size:50px;color:gray;font-family: 'JejuGothic'; margin-top:120px;">
                    		<tr>
                    			<td colspan="2">특이사항(선택)</td>
                    		</tr>
@@ -701,18 +761,19 @@
                    			<td><label style="cursor:pointer"><input type="checkbox" name="singular" id="singular" value="논술대회"/> &nbsp;논술대회 </label></td>
                    		</tr>
                    	</table>
-                   
-                   	 <div style="text-align:center;">
-                      <input style="color:white; background:rgb(105, 104, 104); font-size:35px; 
-                      padding:15px;border-radius:10px; width:350px;margin:20px 0px;" type="submit" value="프로필 설정 완료"/>
+                   	<div style="height:300px;"></div>
+                   	<div class="profile-submit-div">
+                   	 <div class="profile-complete" >
+                   	 프로필 설정 완료
                      </div>
+                    </div> 
+                      <input class="submit-btn" style="display:none;" type="submit" value="프로필 설정 완료"/>
+                     
                     </form:form>
-                    </div>
                 </div>
             </div>
         </section>
-       
-            
+       <img id="spinner" src="<c:url value='/resources/img/spinner.svg' />" style="position:fixed; left:50%; transform:translate(-50%, -50%);top:50%; z-index:99;display:none;"/>
 
     <script>
  	 $(document).ready(function(){
@@ -721,6 +782,10 @@
  		 
  		 $('.menu-title').append("프로필 설정");
  		 
+ 		 $(".locate-span").click(function(){
+        	 $('.locale-btn').trigger("click");
+         });
+ 		
          $('.locale-main').change(function(){
              $(".disp").removeClass('disp');
              $('.locale').hide();
@@ -732,6 +797,10 @@
              }
          });
 
+         $(".profile-complete").click(function(){
+        	 $('.submit-btn').trigger("click");
+         });
+         
 	
          $('.locale-btn').click(function(){
              var main = $('.locale-main>option:selected').val();
@@ -757,7 +826,7 @@
              }
 
              $('.locale-box').append('<div class="my-btn">' 
-                 +main+" "+sub+' <button class="x-btn">삭제</button></div>');
+                 +main+" "+sub+' <span class="x-btn">X</span></div>');
              $('.locale-box').append('<input name="locales" style="display:none;" class="my-locale" type="checkbox" value="'
              +main+' '+sub+'" checked />');
              
@@ -769,7 +838,19 @@
              $('.my-locale').eq(btnIndex).remove();
              $('.my-btn').eq(btnIndex).remove();
          });
+         
+         
+        $("#imgplus").click(function(){
+     		$('#img').trigger("click");
+     	});
+         
+        	
      });
+ 	 
+ 	 
+ 	$(window).bind("pageshow", function(event) {
+    	$('#spinner').hide();
+	});
     
        function CheckForm(memberInfo){
    		 
@@ -859,10 +940,16 @@
             	return false;
             }
             
-            var a = window.name;
-       		if(a=='child')
-            opener.parent.location = opener.parent.location;
+            var broswerInfo = navigator.userAgent;
+     	     //ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+     	     if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+     	           $('#spinner').show();
+    	     }
        }
+
+       
+       
+       
        var loadFile = function(event) {
    	    var reader = new FileReader();
    	    reader.onload = function(){

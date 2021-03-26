@@ -1,22 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page trimDirectiveWhitespaces="true" %>
-<%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title><decorator:title /></title>
+  <title>회원가입완료, 콕사부</title>
+    <meta name="description" content="회원가입 페이지" />
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-413632618"></script>
 <script>
+
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'AW-413632618');
 </script>
-
+<!-- Event snippet for 가입 conversion page -->
+<script>
+  gtag('event', 'conversion', {'send_to': 'AW-413632618/Emm8CI67sfkBEOqQnsUB'});
+</script>
 <!-- Facebook Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -28,17 +34,17 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '2787801881458923');
-fbq('track', 'PageView');
+fbq('track', 'CompleteRegistration', {currency: "KRW", value: 1.00});
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Facebook Pixel Code -->
-<decorator:head />
 </head>
 <body>
-<decorator:body />
-
-        
+<script>
+alert("감사합니다. 정상적으로 회원가입 되셨습니다.")
+window.location.href="./"
+</script>
 </body>
 </html>

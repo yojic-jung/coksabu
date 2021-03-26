@@ -1,3 +1,12 @@
-WARN  10:46:20.002 [taskScheduler-1 CronJob.java:100] schedulTest - 잘돌아감
-WARN  10:48:20.003 [taskScheduler-1 CronJob.java:100] schedulTest - 잘돌아감
-WARN  10:50:20.007 [taskScheduler-1 CronJob.java:100] schedulTest - 잘돌아감
+WARN  11:14:00.009 [taskScheduler-1 CronJob.java:20] test - 스케쥴 테스트
+WARN  11:14:00.009 [taskScheduler-1 CronJob.java:20] test - 스케쥴 테스트
+WARN  11:14:00.029 [taskScheduler-1 CronJob.java:20] test - 스케쥴 테스트
+WARN  11:14:00.029 [taskScheduler-1 CronJob.java:20] test - 스케쥴 테스트
+WARN  11:21:00.002 [taskScheduler-1 CronJob.java:20] test - 스케쥴 테스트
+WARN  11:21:00.002 [taskScheduler-1 CronJob.java:20] test - 스케쥴 테스트
+WARN  11:21:00.002 [taskScheduler-1 CronJob.java:20] test - 스케쥴 테스트
+WARN  11:21:00.003 [taskScheduler-1 CronJob.java:20] test - 스케쥴 테스트
+WARN  11:23:00.001 [taskScheduler-1 CronJob.java:20] test - 스케쥴 테스트
+WARN  11:23:00.001 [taskScheduler-1 CronJob.java:20] test - 스케쥴 테스트
+WARN  11:23:00.002 [taskScheduler-1 CronJob.java:20] test - 스케쥴 테스트
+WARN  11:23:00.004 [taskScheduler-1 CronJob.java:20] test - 스케쥴 테스트

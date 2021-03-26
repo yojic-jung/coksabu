@@ -46,13 +46,11 @@
           font-size:80px;
           font-family:'Do Hyeon'; 
           border-bottom:1px solid gray; 
-          z-index:3;
+          position:fixed;
+ 		  top:0px;
+          z-index:99;
           text-align:center;
 }
-.m-jbFixed {
-            position: fixed;
-            top: 0px;
-          }
           
 .m-title{
 	   	 color:orange;
@@ -169,6 +167,7 @@ $(document).ready(function(){
  	</div>
  	
 </header>
+<div class="m-fix-background" style="height:160px"></div>
 <div class="pc-tutor" style="background:rgb(46, 46, 46); color:rgb(219, 218, 218); font-size:14px;">
                 <div class="menu-title"></div>
             </div>

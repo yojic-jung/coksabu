@@ -108,20 +108,6 @@
     }
     
 
-    .m-tutor{
-    	padding:50px 20px;
-    	text-align:center;
-    }
-    .m-tutor li{
-    	padding:10px;
-    	font-family: 'JejuGothic';
-            padding:20px;
-            display:inline;
-    }          
-        .m-tutor a{
-         color:rgb(201, 199, 199);
-         	text-decoration:none;
-        }
     
 .bottom-cate{
 	width: 100%;
@@ -166,13 +152,11 @@ color:#A6A6A6;
           font-size:80px;
           font-family:'Do Hyeon'; 
           border-bottom:1px solid gray; 
-          z-index:3;
+          position:fixed;
+ 		  top:0px;
+          z-index:99;
           text-align:center;
 }
-.m-jbFixed {
-            position: fixed;
-            top: 0px;
-          }
           
 .m-title{
 	   	 color:orange;
@@ -186,21 +170,6 @@ color:#A6A6A6;
 	   	 padding:0px 50px;
 	}
 	
-	.mode{
-		text-align:center;
-		font-size:40px;
-		color:white;
-		margin-bottom:50px;
-	}
-	.mode-change{
-		font-size:25px; 
-		padding:10px; 
-		background:white;
-		color:black;
-		position: absolute;
-		right:20px;
-		border-radius:10px;
-	}	
 	
 .changeToCustom{
 font-weight:bolder;
@@ -218,6 +187,23 @@ padding:5px;
   gtag('js', new Date());
   gtag('config', 'AW-413632618');
 </script>
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2787801881458923');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
 <decorator:head />
 </head>
 <body>
@@ -256,12 +242,11 @@ padding:5px;
  	</div>
  	
 </header>
-
+<div class="m-fix-background" style="height:160px"></div>
 
 <div class="pc-tutor" style="background:rgb(46, 46, 46); color:rgb(219, 218, 218); font-size:14px;">
                 <div class="menu-title">튜터전용</div>
                 <ul class="mypage" style="min-width:600px;">
-                	<li><a href="./lessoncertify" class="tutor1">인증정보</a></li>
                     <li><a href="./tutorpage" class="tutor2">프로필/수업 관리</a></li>
                     <li><a href="./saleslist" class="tutor3">판매목록</a></li>
                 </ul>
@@ -275,19 +260,6 @@ padding:5px;
 				<a href="./mypage" style="text-decoration:none;"><span class="changeToCustom">&hArr;고객으로 전환</span></a>
             </div>
             
-            
-            
-<div class="m-tutor" style="background:rgb(46, 46, 46); color:rgb(219, 218, 218); font-size:30px;">
-                <div class="mode">
-                	튜터전용
-                	<a href="./mypage"><span class="mode-change">&hArr;고객으로 전환</span></a>
-                </div>
-                <ul style="min-width:600px;line-height:200%;">
-                	<li><a href="./lessoncertify" class="tutor1">인증정보</a></li>
-                    <li><a href="./tutorpage" class="tutor2">프로필/수업 관리</a></li>
-                    <li><a href="./saleslist" class="tutor3">판매목록</a></li>
-                </ul>
-            </div>
             
             
 <div class="m-page-transit" style="text-align:center;width:100%;position:fixed;left:0px;top:0px;background: white; height:100%;z-index:10;">
@@ -385,18 +357,9 @@ $(document).ready(function(){
 			$('.pc-footer').remove();
 			$('.pc-tutor').remove();
 			$('.pc-tutor2').remove();
-			var jbOffset = $('.m-jbMenu').offset(); //상단메뉴 좌표 가져오는 코드
-		    $( window ).scroll( function() {        
-		      if ( $( document ).scrollTop() > jbOffset.top ) { //scrollTop() 요청한 스크롤바의 수직위치 반환
-		        $( '.m-jbMenu' ).addClass( 'm-jbFixed' );
-		      }
-		      else {
-		        $( '.m-jbMenu' ).removeClass( 'm-jbFixed' );
-		      }
-		    });
 		}else{
 			$('.m-header').remove();
-			$('.m-tutor').remove();
+			$('.m-fix-background').remove();
 			$('.bottom-cate').remove();
 		}
 	}

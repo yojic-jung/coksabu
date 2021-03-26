@@ -110,39 +110,7 @@
     
     
 
-    .m-mypage{
-          	  font-size:17px;
-          	  text-align:center;
-              list-style:none;
-              padding:40px 20px;
-          } 
-          
-     .m-mypage>li{
-            font-family: 'JejuGothic';
-            padding:15px;
-            display:inline;
-        }
-     .m-mypage a{
-         color:rgb(201, 199, 199);
-         	text-decoration:none;
-        }
-        
    
-   
-   .m-tutor{
-    	padding:0px 20px;
-    	text-align:center;
-    }
-    .m-tutor li{
-    	padding:10px;
-    	font-family: 'JejuGothic';
-            padding:20px;
-            display:inline;
-    }          
-      .m-tutor a{
-         color:rgb(201, 199, 199);
-         	text-decoration:none;
-        }
     
          .bottom-cate{
 	width: 100%;
@@ -185,14 +153,11 @@ color:#A6A6A6;
           font-size:80px;
           font-family:'Do Hyeon'; 
           border-bottom:1px solid gray; 
-          z-index:3;
+          position:fixed;
+ 		  top:0px;
+          z-index:99;
           text-align:center;
 }
-.m-jbFixed {
-            position: fixed;
-            top: 0px;
-          }
-          
           
 .m-title{
 	   	 color:orange;
@@ -206,21 +171,6 @@ color:#A6A6A6;
 	   	 padding:0px 50px;
 	}
 	
-	.mode{
-		text-align:center;
-		font-size:40px;
-		color:white;
-		margin-bottom:50px;
-	}
-	.mode-change{
-		font-size:25px; 
-		padding:10px; 
-		background:white;
-		color:black;
-		position: absolute;
-		right:20px;
-		border-radius:10px;
-	}	
     
 .changeToTutor{
 font-weight:bolder;
@@ -239,6 +189,23 @@ padding:5px;
   gtag('js', new Date());
   gtag('config', 'AW-413632618');
 </script>
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2787801881458923');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
 <decorator:head />
 </head>
 <body>
@@ -278,7 +245,7 @@ padding:5px;
  	</div>
  	
 </header>
-
+<div class="m-fix-background" style="height:160px"></div>
 <div class="pc-mypage" style="background:rgb(46, 46, 46); color:rgb(219, 218, 218); font-size:14px;">
                 <div class="menu-title">고객전용</div>
                 <ul class="mypage" style="min-width:600px;">
@@ -292,19 +259,6 @@ padding:5px;
             <div class="pc-mypage2" style="background:rgb(233, 232, 232);text-align:right;padding:30px 30px 0px 0px;">
 				<a href="./tutorpage" style="text-decoration:none;"><span class="changeToTutor">&hArr;튜터로 전환</span></a>
             </div>
-            
-            
-<div class="m-mypage" style="background:rgb(46, 46, 46); color:rgb(219, 218, 218); font-size:30px;">
-               <div class="mode">
-                	고객전용 
-                	<a href="./tutorpage"><span class="mode-change">&hArr;튜터로 전환</span></a>
-                </div>
-               <ul class="m-tutor" style="min-width:600px;">
-						<li><a href="./purchaselist" class="my1">구매목록</a></li>
-						<li><a href="./mypage" class="my4">수업요청내역</a></li>
-						<li><a href="./wishlist" class="my5">장바구니</a></li>
-				</ul>
-            </div>            
             
 <decorator:body />
 
@@ -399,18 +353,9 @@ $(document).ready(function(){
 			$('.pc-footer').remove();
 			$('.pc-mypage').remove();
 			$('.pc-mypage2').remove();
-			var jbOffset = $('.m-jbMenu').offset(); //상단메뉴 좌표 가져오는 코드
-		    $( window ).scroll( function() {        
-		      if ( $( document ).scrollTop() > jbOffset.top ) { //scrollTop() 요청한 스크롤바의 수직위치 반환
-		        $( '.m-jbMenu' ).addClass( 'm-jbFixed' );
-		      }
-		      else {
-		        $( '.m-jbMenu' ).removeClass( 'm-jbFixed' );
-		      }
-		    });
 		}else{
 			$('.m-header').remove();
-			$('.m-mypage').remove();
+			$('.m-fix-background').remove();
 			$('.bottom-cate').remove();
 		}
 	}

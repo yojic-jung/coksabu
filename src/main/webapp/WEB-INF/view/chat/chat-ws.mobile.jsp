@@ -658,7 +658,7 @@ font-size:20px;color:gray; margin:10px 10px 0px 10px ;float:right;
 
 </div>    
     
-    
+<img id="spinner" src="<c:url value='/resources/img/spinner.svg' />" style="position:fixed; left:50%; transform:translate(-50%, -50%);top:50%; z-index:99;display:none;"/>
     
 <script>
 $(document).ready(function(){
@@ -907,18 +907,25 @@ $(document).ready(function(){
 		    	alert("환불정책 동의를 해주세요.");
 		    	return false;
 		    }else{
-		    	
-		    	
-		    	var queryString = $("form[name=newpurchase]").serialize();
+		    	 var broswerInfo = navigator.userAgent;
+          	      //ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+          	      if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+          	            $('#spinner').show();
+         	      }
+
+          	    var queryString = $("form[name=newpurchase]").serialize();
 				
 				$.ajax({
 					  url:'./newpurchase?id='+chatroom_id,
 		    		  type:'post',
 		    		  data:queryString,
 		    		  error:function(request,status,error){
+		    			    $('#spinner').hide();
 		    		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		    		       },
 		    		  success:function(data){
+		    			  $('#spinner').hide();
+		    			  
 		    			  if(data=='success'){
 		    				  alert('거래제안서를 정상적으로 작성하였습니다.')
 		    			  }
@@ -1071,14 +1078,24 @@ $(document).on('click','.lesson-purchase',function(){
 		}else if(depositor.length >= 25){
 			alert("입금자명은 25글자 미만입니다.")
 		}else{
+			
+			var broswerInfo = navigator.userAgent;
+     	    //ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+     	    if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+     	            $('#spinner').show();
+    	    }
+     	      
 			$.ajax({
 				url:'./chatTransaction?id='+proposal_id ,
 				  data : { "bank" : bank, "depositor" : depositor },
 				  type:'get',
 				  error:function(error){
+					  $('#spinner').hide();
 					  alert("에러"+error);
 				  },
 				  success:function(data){
+					  $('#spinner').hide();
+					  
 					  if(data=='success'){
 						alert('정상적으로 구매하였습니다.');
 						$('.close-btn2').trigger('click');

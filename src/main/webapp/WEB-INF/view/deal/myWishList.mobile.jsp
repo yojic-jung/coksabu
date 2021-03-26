@@ -30,8 +30,8 @@
 	font-size:25px;
 }
 .div-title{
-			font-size:30px;
-            width:90%; margin:auto; padding:30px 0px 20px 10px;
+			font-size:50px;
+            text-align:center; padding:30px 0px 20px 10px;
              font-family:'JejuGothic'; color:rgb(97, 96, 96);
         }
 	#categories{
@@ -106,14 +106,14 @@ width:100%;
 </style>
 </head>
 <body>
-<div style="background:rgb(233, 232, 232); padding:30px;width:100%">
+<div style="background:rgb(233, 232, 232); padding: 90px 30px 30px 30px;width:100%">
  <div class="div-title">장바구니</div>
- <div style="width:90%; background:white; margin: auto; padding:20px;">
+ <div style="width:90%;margin: auto; padding:20px;">
  	
 
  	<div >
  	<div style="font-size:30px; font-family:'JejuGothic';padding:30px;">장바구니 목록은 14일간 보관됩니다.</div>
- 	<table class="wish-table" style="font-family:'JejuGothic';">
+ 	<table class="wish-table" style="font-family:'JejuGothic';background:white;padding:30px;">
  	
 <c:choose>	
  	<c:when test="${size == 0 }" >

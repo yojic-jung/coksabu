@@ -17,19 +17,23 @@
         }
 
 .inner-main{
+			width:50%;
+			text-align:center;
 			display:inline-block;
-			background:white;
 			padding:40px;
-			border-radius: 20px 20px 0px 0px;
-			border:3px solid gray;
-			border-bottom:3px solid white;
-			 font-size:35px;
+			border-bottom:5px solid black;
+			font-size:40px;
+			font-weight:bolder;
 }
+
 .inner-sub{
+			width:50%;
+			text-align:center;
 			display:inline-block;
-			background:white;
 			padding:40px;
-			border-radius: 20px 20px 0px 0px;
+			border-bottom:1px solid gray;
+			font-size:40px;
+			font-weight:bolder;
 }
  .table-title{
 		padding:10px;
@@ -80,19 +84,14 @@ border:1px solid gray; width:150px; padding:15px 0px; text-align:center; margin:
         	  $('.tutor3').css('color','orange');
           });
 </script>
- <div style="background:rgb(233, 232, 232); padding:30px 30px 250px 30px;min-height:1800px;">
-<div class="div-title">
- 
-  <div class="inner-sub">
-  <a href="/saleslist" style="color: gray;text-decoration:none;">일반거래 판매내역</a>
-  </div>
-  <div class="inner-main">
-  <a href="/proposalsell" style="color: black;font-weight:bolder;">거래제안서 판매내역</a>
-  </div>
-
- </div>
-
- <div style="width:90%; background:white; margin: auto; padding:40px;border:3px solid gray;">
+ <div style="background:white;min-height:1800px;">
+<table style="width:100%;">
+ 	<tr>
+ 		<td class="inner-sub"><a href="/saleslist" style="color: #CDCDCD;text-decoration:none;">일반거래 판매내역</a></td>
+ 		<td class="inner-main"> <a href="/proposalsell" style="color: black;text-decoration:none;">거래제안서 판매내역</a></td>
+ 	</tr>
+ </table>
+ <div style="width:90%; background:white; margin:50px auto;">
  <div style="width:100%;">
  	
 <c:choose>

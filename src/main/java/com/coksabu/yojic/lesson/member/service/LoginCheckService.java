@@ -26,6 +26,13 @@ public class LoginCheckService {
 		return memberDao.takeHumanStatus(email);
 	}	
 	
+	public void updateLoginTime2(String email) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("date",new Date());
+		map.put("email",email);
+		memberDao.updateLoginTime(map);
+	}
+	
 	public boolean emailCheck(String email) {
 		//이메일 존재하지 않는경우
 		if(memberDao.checkEmail(email)==0) {

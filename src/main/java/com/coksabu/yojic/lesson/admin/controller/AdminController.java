@@ -666,7 +666,6 @@ public class AdminController {
 			return "admin/adminDelUserAKA";
 	}
 	
-	/*
 	@RequestMapping(value="adminDelUserAKA", method=RequestMethod.POST)
 	public String adminDelUserAKA2(HttpServletRequest request, HttpSession session,Model model) {
 		String path = request.getServletContext().getRealPath("resources/theme");
@@ -681,5 +680,4 @@ public class AdminController {
 		}
 			return "admin/adminDelUserAKA";
 	}
-	*/
 }

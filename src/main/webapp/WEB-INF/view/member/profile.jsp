@@ -17,6 +17,18 @@
     font-size:35px;
     text-align:center;
     }
+    #img{
+    	display:none;
+    }
+     #imgplus{
+        	width:50px;height:50px;
+        	backgroud:white;
+        	border-radius:15px;
+        	border:2px solid lightgray;
+        	cursor:pointer;
+        	position:relative;
+        	top:-70px;
+        }
           .mypage{
               list-style:none;
               padding:20px;
@@ -239,6 +251,10 @@
                         <img id="output" style="width:300px; height:300px;border-radius:150px;margin-bottom:10px" 
                                 src="<c:url value="/img/profileImg/${pro.imgPath}" />"  alt="프로필 아미지"/>
                    	</c:if>
+                   	<br/>
+                   	<div style="width:260px; margin:auto;text-align:right;">
+						<img id="imgplus" src="<c:url value="/resources/images/imgplus.png" />"  />
+					</div>
                         <br/>
                         <span class="file-wrapper">
                         <input type="file" name="img" id="img" accept="image/*" onchange="check(this);loadFile(event);" />
@@ -789,6 +805,12 @@
              $('.my-locale').eq(btnIndex).remove();
              $('.my-btn').eq(btnIndex).remove();
          });
+         
+         
+         $("#imgplus").click(function(){
+        		$('#img').trigger("click");
+        	});
+         
      });
     
        function CheckForm(memberInfo){

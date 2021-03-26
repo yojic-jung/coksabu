@@ -25,40 +25,60 @@ padding:20px;
         }
         
         #imgplus1{
-        	width:80px;height:80px;
+        	width:120px;height:120px;
         	backgroud:white;
-        	border-radius:40px;
+        	border-radius:60px;
         	border:4px solid lightgray;
         	cursor:pointer;
         	position:relative;
-        	top:-80px;right:-210px;
+        	top:-80px;
         }
         
        #imgplus2, #imgplus3{
-        	width:80px;height:80px;
+        	width:120px;height:120px;
         	backgroud:white;
-        	border-radius:40px;
+        	border-radius:60px;
         	border:4px solid lightgray;
         	cursor:pointer;
         	position:relative;
-        	top:-80px;right:-130px;
+        	top:-80px;
         }
-        #output1{
-        	width:500px;height:400px;
-        }
-        #output2, #output3{
-        	width:340px;height:500px;
+        #output1,  #output2, #output3{
+        	width:90%;height:60vw;border-radius:20px;
         }
         .certi{
-        	padding:20px;border-radius:10px;
-        	background:orange;
-        	color:white;
-        	border:none;
-        	font-size:35px;
+        	display:none;
         	
         }
         .submit-div{
         	font-size:35px;
+        }
+        
+        
+        .certi-submit-div{
+          width:100%;
+          position: fixed;left: 0;bottom: 0;
+          padding:30px;
+          background:white;
+          border-top:3px solid lightgray;
+           text-align:center;
+           font-size:50px;
+           color:#F4C60B;
+          }
+           .certi-btn{
+           color:white;
+           font-family: 'JejuGothic';
+   			 text-align:center;color:white;
+   			 background: #F4C60B; font-size:50px;
+  			 padding:50px;
+  			 border-radius:30px;
+  			 width:90%;margin:auto;
+   			}
+		
+        .output-content1, .output-content2, .output-content3{
+        	word-break:keep-all;
+        	width:80%;position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);
+        	line-height:180%;
         }
 </style>
 </head>
@@ -72,14 +92,15 @@ padding:20px;
 			
 			<input type="text" value="${email}" style="display:none" />
 			
-			<table style="font-size:30px; width:90%;margin:50px auto 0px auto;border-spacing:20px;text-align:center;">
+			<table style="font-size:40px; width:90%;margin:50px auto 0px auto;border-spacing:40px;text-align:center;">
 				<tr>
 					<td>신분증</td>
 				</tr>
 				<tr>
-					<td style="width:600px;">
-					<img id="output1" src="<c:url value="/resources/certifyImg/identity.png" />"  />
-					<div>
+					<td style="position:relative">
+					<img id="output1" src="<c:url value="/resources/certifyImg/certifybackground.png" />"  />
+					<div class="output-content1">주민등록증 또는 운전면허증 또는 여권 가능<br/>(주민번호 뒷번호, 주소<br/>운전면허, 여권번호는 가려주세요.)</div>
+					<div style="width:90%;text-align:right;height:150px;">
 					<img id="imgplus1" src="<c:url value="/resources/images/imgplus.png" />"  />
 					</div>
 					<div id="input-div1">
@@ -89,12 +110,13 @@ padding:20px;
 				</tr>
 				
 				<tr>
-					<td>대학 졸업/재학증명서<br/>(학생증 가능)</td>
+					<td style="line-height:140%;">대학 재학/졸업증명서<br/>(학생증 및 합격증 이미지 가능)</td>
 				</tr>
 				<tr>
-					<td style="width:130px;">
-					<img id="output2" src="<c:url value="/resources/certifyImg/education.png" />"  />
-					<div>
+					<td style="position:relative">
+					<div class="output-content2">대학 인증 이미지</div>
+					<img id="output2" src="<c:url value="/resources/certifyImg/certifybackground.png" />"  />
+					<div style="width:90%;text-align:right;height:150px;">
 					<img id="imgplus2" src="<c:url value="/resources/images/imgplus.png" />"  />
 					</div>
 					<div id="input-div2">
@@ -104,12 +126,13 @@ padding:20px;
 				</tr>
 					
 				<tr>
-					<td>대학원 증명서 (선택)</td>
+					<td style="line-height:140%;">대학원 재학/졸업증명서 (선택)<br/>(학생증 및 합격증 이미지 가능)</td>
 				</tr>
 				<tr>
-					<td style="width:130px;">
-					<img id="output3" src="<c:url value="/resources/certifyImg/education.png" />"  />
-					<div>
+					<td style="position:relative">
+					<div class="output-content3">(선택)<br/>대학원 인증 이미지</div>
+					<img id="output3" src="<c:url value="/resources/certifyImg/certifybackground.png" />"  />
+					<div style="width:90%;text-align:right;height:150px;">
 					<img id="imgplus3" src="<c:url value="/resources/images/imgplus.png" />"  />
 					</div>
 					<div id="input-div3">
@@ -120,11 +143,15 @@ padding:20px;
 				
 			</table>
     	        
-			<div style="text-align:center" class="submit-div">
-				<input type="submit" class="certi" value="보내기" />
+			<div class="certi-submit-div">
+					<div class="certi-btn">
+						인증 신청하기
+					</div>
+					<input type="submit" class="certi" value="보내기" />
    			</div>
    			
    		</form>
+   		<img id="spinner" src="<c:url value='/resources/img/spinner.svg' />" style="position:fixed; left:50%; transform:translate(-50%, -50%);top:50%; z-index:99;display:none;"/>
    		<div style="height:300px;"></div>
 
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
@@ -156,18 +183,22 @@ $(document).ready(function(){
 		 $('#imgplus1').remove();
 		 $('#imgplus2').remove();
 		 $('#imgplus3').remove();
-		 $(".submit-div").text("인증이 완료되었습니다.")
+		 $('.certi-btn').remove();
+		 $(".certi-submit-div").text("인증이 완료 되었습니다.")
 	 }
 	 
 	
 	 if(certifyimg1 !=null && certifyimg1 !=''){
 		 $('#output1').attr('src', ctx+"/resources/certifyImg/"+certifyimg1);
+		 $(".output-content1").remove();
 	 }
 	 if(certifyimg2 !=null && certifyimg2 !=''){
 		 $('#output2').attr('src', ctx+"/resources/certifyImg/"+certifyimg2); 
+		 $(".output-content2").remove();
 	 }
 	 if(certifyimg3 !=null && certifyimg3 !=''){
 		 $('#output3').attr('src', ctx+"/resources/certifyImg/"+certifyimg3);
+		 $(".output-content3").remove();
 	 }
 });
 
@@ -185,7 +216,16 @@ $("#imgplus3").click(function(){
 	$('.multi3').trigger("click");
 });
 
-
+$('.certi-btn').click(function(){
+	
+	var broswerInfo = navigator.userAgent;
+	//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+	if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+	            $('#spinner').show();
+    }
+	
+	$('.certi').trigger("click");
+});
 
 $(document).on('change','.multi1',function(){
 	var pathpoint = $('.multi1').val().lastIndexOf('.');
@@ -200,8 +240,6 @@ $(document).on('change','.multi1',function(){
    	$('#input-div1').append('<input name="certifyimg1" class="multi1" type="file" accept="image/*" onchange="check1(this);loadFile1(event);" />');
    	 return false;
     }
-    
-    document.fileForm.submit();
 });
 
 $(document).on('change','.multi2',function(){
@@ -217,8 +255,6 @@ $(document).on('change','.multi2',function(){
     	$('#input-div2').append('<input name="certifyimg2" class="multi2" type="file" accept="image/*" onchange="check2(this);loadFile2(event);" />');
     	 return false;
      }
-     
-     document.fileForm.submit();
 });
 
 $(document).on('change','.multi3',function(){
@@ -235,8 +271,6 @@ $(document).on('change','.multi3',function(){
     	 return false;
      }
      
-     document.fileForm.submit();
-	
 });
 
 
@@ -246,6 +280,7 @@ var loadFile1 = function(event) {
 	      var output = document.getElementById('output1');
 	      output.src = reader.result;
 	    };
+	    $(".output-content1").remove();
 	    reader.readAsDataURL(event.target.files[0]);
     };   
 
@@ -255,6 +290,7 @@ var loadFile2 = function(event) {
   	     var output = document.getElementById('output2');
   	     output.src = reader.result;
   	 };
+  	$(".output-content2").remove();
   	 reader.readAsDataURL(event.target.files[0]);
      }; 
     
@@ -264,6 +300,7 @@ var loadFile2 = function(event) {
   	      var output = document.getElementById('output3');
   	      output.src = reader.result;
   	    };
+  	  $(".output-content3").remove();
   	    reader.readAsDataURL(event.target.files[0]);
         };    
 
@@ -327,7 +364,9 @@ function CheckForm(memberInfo){
     }
 	
 	
-	
+$(window).bind("pageshow", function(event) {
+		$('#spinner').hide();
+});
 
 	
 </script>

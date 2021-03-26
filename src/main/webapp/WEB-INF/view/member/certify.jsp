@@ -16,7 +16,7 @@ padding:20px;
 }
 .title1{
 	text-align:center;font-weight:bolder;
-	margin:20px;
+	margin:20px 0px;
 }
         
         .multi1, .multi2, .multi3{
@@ -24,69 +24,83 @@ padding:20px;
         }
         
         #imgplus1, #imgplus2, #imgplus3{
-        	width:30px;height:30px;
+        	width:40px;height:40px;
         	backgroud:white;
-        	border-radius:15px;
+        	border-radius:20px;
         	border:2px solid lightgray;
         	cursor:pointer;
         	position:relative;
         	top:-30px;
         }
-        #output1{
-        	width:210px;height:180px;
-        }
-        #output2, #output3{
-        	width:130px;height:180px;
+        #output1,  #output2, #output3{
+        	width:280px;height:200px;
+        	border-radius:20px
         }
         .certi{
         	padding:10px;border-radius:10px;
+        	width:200px;
+        	font-size:20px;
         	background:orange;
         	color:white;
         	border:none;
+        }
+         .output-content1, .output-content2, .output-content3{
+        	word-break:keep-all;
+        	width:80%;position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);
+        	line-height:180%;
         }
 </style>
 </head>
 <body>
 <div class="title1">본인/학력인증</div>
-			<div style="font-size:15px;text-align:center;color:orange;margin:10px;line-height:150%;">
+			<div style="font-size:15px;text-align:center;color:orange;margin:20px 0px;line-height:150%;">
 				신분증의 주민등록번호 뒷자리는 반드시 가려주시기 바랍니다.<br/>
-			       프로필에 대학원을 기재하신 경우 대학원 재학/졸업 증명서를 꼭 첨부하여주시기 바랍니다.
+			       프로필에 대학원을 기재하신 경우<br/>대학원 재학/졸업 증명서를 꼭 첨부하여주시기 바랍니다.
 			</div>
 				
 			<form id="create_form" method="post" enctype="multipart/form-data" onSubmit="return CheckForm(this)">
 			
 			<input type="text" value="${email}" style="display:none" />
 			
-			<table style="font-size:12px; width:560px;margin:30px auto 0px auto;border-spacing:10px;">
-				<tr style="text-align:center;">
+			<table style="font-size:15px; width:300px;margin:30px auto;border-spacing:10px;text-align:center;">
+				<tr>
 					<td>신분증</td>
-					<td>대학 졸업/재학증명서<br/>(학생증 가능)</td>
-					<td>대학원 증명서 (선택)</td>
 				</tr>
-				<tr style="text-align:right">
-					<td style="width:210px;">
-					<img id="output1" src="<c:url value="/resources/certifyImg/identity.png" />"  />
-					<div>
+				<tr>
+					<td style="position:relative">
+					<img id="output1" src="<c:url value="/resources/certifyImg/certifybackground.png" />"  />
+					<div class="output-content1">주민등록증 또는 운전면허증 또는 여권 가능<br/>(주민번호 뒷번호, 주소<br/>운전면허, 여권번호는 가려주세요.)</div>
+					<div style="text-align:right;height:70px;">
 					<img id="imgplus1" src="<c:url value="/resources/images/imgplus.png" />"  />
 					</div>
 					<div id="input-div1">
 					<input name="certifyimg1" class="multi1" type="file" accept="image/*" onchange="check1(this);loadFile1(event);" />
 					</div>
 					</td>
-					
-					<td style="width:130px;">
-					<img id="output2" src="<c:url value="/resources/certifyImg/education.png" />"  />
-					<div>
+				</tr>
+				<tr style="line-height:140%;">
+					<td>대학 재학/졸업증명서<br/>(학생증 또는 합격증 이미지 가능)</td>
+				</tr>
+				<tr>
+					<td style="position:relative">
+					<div class="output-content2">대학 인증 이미지</div>
+					<img id="output2" src="<c:url value="/resources/certifyImg/certifybackground.png" />"  />
+					<div style="text-align:right;height:70px;">
 					<img id="imgplus2" src="<c:url value="/resources/images/imgplus.png" />"  />
 					</div>
 					<div id="input-div2">
 					<input name="certifyimg2" class="multi2" type="file" accept="image/*" onchange="check2(this);loadFile2(event);" />
 					</div>
 					</td>
-					
-					<td style="width:130px;">
-					<img id="output3" src="<c:url value="/resources/certifyImg/education.png" />"  />
-					<div>
+				</tr>
+				<tr style="line-height:140%;">
+					<td>대학원  재학/졸업증명서(선택)<br/>(학생증 또는 합격증 이미지 가능)</td>
+				</tr>
+				<tr>
+					<td style="position:relative">
+					<img id="output3" src="<c:url value="/resources/certifyImg/certifybackground.png" />"  />
+					<div class="output-content3">(선택)<br/>대학원 인증 이미지</div>
+					<div style="text-align:right;height:70px;">
 					<img id="imgplus3" src="<c:url value="/resources/images/imgplus.png" />"  />
 					</div>
 					<div id="input-div3">
@@ -96,7 +110,7 @@ padding:20px;
 				</tr>
 			</table>
     	        
-			<div style="text-align:center" class="submit-div">
+			<div style="text-align:center;margin:40px auto;" class="submit-div">
 				<input type="submit" class="certi" value="보내기" />
    			</div>
    			
@@ -137,12 +151,15 @@ $(document).ready(function(){
 	
 	 if(certifyimg1 !=null && certifyimg1 !=''){
 		 $('#output1').attr('src', ctx+"/resources/certifyImg/"+certifyimg1);
+		 $(".output-content1").remove();
 	 }
 	 if(certifyimg2 !=null && certifyimg2 !=''){
 		 $('#output2').attr('src', ctx+"/resources/certifyImg/"+certifyimg2); 
+		 $(".output-content2").remove();
 	 }
 	 if(certifyimg3 !=null && certifyimg3 !=''){
 		 $('#output3').attr('src', ctx+"/resources/certifyImg/"+certifyimg3);
+		 $(".output-content3").remove();
 	 }
 });
 
@@ -204,14 +221,12 @@ $(document).on('change','.multi3',function(){
  
      if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp'){
      }else{
-    	 alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
+    	alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
     	$('.multi3').remove();
     	$('#input-div3').append('<input name="certifyimg3" class="multi3" type="file" accept="image/*" onchange="check3(this);loadFile3(event);" />');
     	 return false;
      }
-     
      document.fileForm.submit();
-	
 });
 
 
@@ -221,6 +236,7 @@ var loadFile1 = function(event) {
 	      var output = document.getElementById('output1');
 	      output.src = reader.result;
 	    };
+	    $(".output-content1").remove();
 	    reader.readAsDataURL(event.target.files[0]);
     };   
 
@@ -230,6 +246,7 @@ var loadFile2 = function(event) {
   	     var output = document.getElementById('output2');
   	     output.src = reader.result;
   	 };
+  	 $(".output-content2").remove();
   	 reader.readAsDataURL(event.target.files[0]);
      }; 
     
@@ -239,6 +256,7 @@ var loadFile2 = function(event) {
   	      var output = document.getElementById('output3');
   	      output.src = reader.result;
   	    };
+  	  $(".output-content3").remove();
   	    reader.readAsDataURL(event.target.files[0]);
         };   
         

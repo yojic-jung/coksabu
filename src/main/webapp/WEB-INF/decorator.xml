@@ -50,7 +50,6 @@
 	
 	<decorator name="titleLayout" page="title_decorator.jsp">
 		<pattern>/signup*</pattern>
-		
 		<pattern>/private*</pattern>
 		<pattern>/service*</pattern>
 		<pattern>/emailPassFind*</pattern>

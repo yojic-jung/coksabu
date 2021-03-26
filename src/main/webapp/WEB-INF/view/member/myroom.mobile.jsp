@@ -44,18 +44,21 @@ body {
 	width:100%;
 	font-size:40px;
 	padding:60px 60px 60px 70px;
-	border-bottom:1px solid #D5D5D5;
+	border-bottom:1px solid #BDBDBD;
+	color:#737373;font-weight:700;
 }
 
-.subheading a{
+a{
 	text-decoration:none;
 	color:black;
+	
 }
 
 
 
-
-	
+.connect-sign{
+float:right;clear:right;font-weight:bolder;font-family:'Do Hyeon'; 
+}
 	
 </style>
 </head>
@@ -66,16 +69,15 @@ body {
 
 <div style="padding-bottom:500px;">
 <div class="big-title">마이페이지</div>
-<div class="subheading"><a href="./usersetting" style="text-decoration:underline">내 계정 정보수정하기</a></div>
-<div class="subheading"><a href="./promotion">프로모션 및 쿠폰 등록</a></div>
+<a href="./usersetting"><div class="subheading">내 계정 정보수정하기 <span class="connect-sign">&gt;</span></div></a>
+<a href="./promotion"><div class="subheading">프로모션 및 쿠폰 등록 <span class="connect-sign" >&gt;</span></div></a>
 <div class="headline">고객메뉴</div>
-<div class="subheading"><a href="./purchaselist">구매목록</a></div>
-<div class="subheading"><a href="./mypage">수업요청내역</a></div>
-<div class="subheading"><a href="./wishlist">장바구니</a></div>
+<a href="./purchaselist"><div class="subheading">구매목록 <span class="connect-sign" >&gt;</span></div></a>
+<a href="./mypage"><div class="subheading">수업요청내역 <span class="connect-sign" >&gt;</span></div></a>
+<a href="./wishlist"><div class="subheading">장바구니 <span class="connect-sign" >&gt;</span></div></a>
 <div class="headline">튜터메뉴</div>
-<div class="subheading"><a href="./lessoncertify">인증정보</a></div>
-<div class="subheading"><a href="./tutorpage">프로필/수업 관리</a></div>
-<div class="subheading"><a href="./saleslist">판매목록</a></div>
+<a href="./tutorpage"><div class="subheading">프로필/수업 관리 <span class="connect-sign" >&gt;</span></div></a>
+<a href="./saleslist"><div class="subheading">판매목록 <span class="connect-sign" >&gt;</span></div></a>
 
 
 </div>

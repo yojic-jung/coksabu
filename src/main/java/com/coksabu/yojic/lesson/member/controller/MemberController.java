@@ -5,12 +5,16 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Base64.Encoder;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Random;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -19,6 +23,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -31,6 +36,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -40,7 +52,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.coksabu.yojic.DeviceSwitcher.DeviceSwitcherController;
 import com.coksabu.yojic.iamport.IamportClient;
@@ -50,7 +61,6 @@ import com.coksabu.yojic.lesson.board.service.ReadPostService;
 import com.coksabu.yojic.lesson.member.model.Certify;
 import com.coksabu.yojic.lesson.member.model.CertifyDB;
 import com.coksabu.yojic.lesson.member.model.EmailInfo;
-import com.coksabu.yojic.lesson.member.model.LessonCertify;
 import com.coksabu.yojic.lesson.member.model.MemberInfo;
 import com.coksabu.yojic.lesson.member.model.MyAccount;
 import com.coksabu.yojic.lesson.member.model.MyQnaList;
@@ -65,7 +75,6 @@ import com.coksabu.yojic.lesson.member.model.UnivList;
 import com.coksabu.yojic.lesson.member.service.CertifyService;
 import com.coksabu.yojic.lesson.member.service.CheckAndInsertService;
 import com.coksabu.yojic.lesson.member.service.EmailPassFindService;
-import com.coksabu.yojic.lesson.member.service.LessonCertifyService;
 import com.coksabu.yojic.lesson.member.service.MemberService;
 import com.coksabu.yojic.lesson.member.service.PromotionService;
 import com.coksabu.yojic.lesson.member.service.ReadProfileService;
@@ -83,8 +92,7 @@ public class MemberController extends DeviceSwitcherController {
 	
 	//테스트 완료
 	@RequestMapping("")
-	public String main(HttpSession session, Model model ) throws Exception{
-		
+	public String main(@RequestParam(value = "status", defaultValue = "nothing") String status, HttpSession session, Model model ) throws Exception{
 		String configLocation = "classpath:applicationContext.xml";
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
 				configLocation);
@@ -109,6 +117,7 @@ public class MemberController extends DeviceSwitcherController {
 		
 		ctx.close();
 		model.addAttribute("list", list);
+		model.addAttribute("status", status);
 		return forward("main/index");
 	}
 	
@@ -185,10 +194,11 @@ public class MemberController extends DeviceSwitcherController {
 		JSONObject jsonObj = (JSONObject) obj;
 		String email = (String)jsonObj.get("email");
 		String token = (String)jsonObj.get("token");
-		String fcmToken = (String)jsonObj.get("fcmToken");
 		String change = (String)jsonObj.get("emailTokenChange");
-		
-		logger.warn(fcmToken);
+		logger.warn(email);
+		logger.warn(token);
+		logger.warn(token);
+		logger.warn(change);
 		
 		//ios앱의 이메일또는 토큰이 달라져서 토큰 또는 이메일을 새롭게 등록하는 경우
 		if(change.equals("change")) {
@@ -273,7 +283,7 @@ public class MemberController extends DeviceSwitcherController {
 	
 	//테스트 완료
 	@RequestMapping(value="signup", method=RequestMethod.POST)
-	public String signUp2(MemberInfo mem,  Model model, HttpSession session, RedirectAttributes redirectAttributes) {
+	public String signUp2(MemberInfo mem,  Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		mem.setLoginDate(new Date());
 		
 		String configLocation = "classpath:applicationContext.xml";
@@ -289,24 +299,59 @@ public class MemberController extends DeviceSwitcherController {
 			model.addAttribute("merchant_uid", "ORD20180131-0000011");
 			return forward("member/signup");
 		}
-		String status = checkAndInsertService.signUp(mem);
+		HashMap<String, String> signupMap = checkAndInsertService.signUp(mem);
 		ctx.close();
 		
+		String singupStatus = signupMap.get("signupStatus");
 		
-		
-		if( status.equals("emailDuplicate") ) {
+		if( singupStatus.equals("emailDuplicate") ) {
 			model.addAttribute("ex", "exception");
 			model.addAttribute("iamport", "imp48047014");
 			model.addAttribute("merchant_uid", "ORD20180131-0000011");
 			return forward("member/signup");
-		}else if( status.equals("phoneDuplicate") ) {
+		}else if( singupStatus.equals("phoneDuplicate") ) {
 			model.addAttribute("ex", "phone");
 			model.addAttribute("iamport", "imp48047014");
 			model.addAttribute("merchant_uid", "ORD20180131-0000011");
 			return forward("member/signup");
 		}else {
-			model.addAttribute("status", "success");
-			return forward("member/signup");
+			
+			String encryptedPass = signupMap.get("password");
+			//자동 로그인 처리
+			SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority("user");
+			List<SimpleGrantedAuthority> collection = new ArrayList<>();
+			collection.add(simpleGrantedAuthority);
+			UserDetails customUserDetails = new User(mem.getEmail(),encryptedPass, collection);
+			
+		    Authentication authentication = new UsernamePasswordAuthenticationToken(customUserDetails,encryptedPass, customUserDetails.getAuthorities());
+
+		    SecurityContext securityContext = SecurityContextHolder.getContext();
+		    securityContext.setAuthentication(authentication);
+		    session = request.getSession(true);
+		    session.setAttribute("email", mem.getEmail());
+		    session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+		    
+		    long tokenValidityTime = 14515200000L;
+			long millis = System.currentTimeMillis()+tokenValidityTime;
+			
+			String target = mem.getEmail() + ":" + millis + ":" +org.apache.commons.codec.digest.DigestUtils.md5Hex(mem.getEmail() + ":" + millis + ":"+encryptedPass + ":" + "wmoskey");
+		    byte[] targetBytes = target.getBytes();
+	        // Base64 인코딩 /////////
+	        Encoder encoder = Base64.getEncoder();
+	        
+	        // Encoder#encode(byte[] src) :: 바이트배열로 반환
+	        byte[] encodedBytes = encoder.encode(targetBytes);
+	        
+	        String rememberCookie = new String(encodedBytes);
+	        String rememberMeCookie = rememberCookie.replace("=", "");
+	        
+	        Cookie cookie = new Cookie("remember-me",rememberMeCookie);
+	        cookie.setPath("/");
+	        cookie.setHttpOnly(true);
+	        cookie.setMaxAge(14515200);
+	        
+	        response.addCookie(cookie);
+		    return forward("member/signupSuccess");
 		}
 	}
 	
@@ -327,6 +372,8 @@ public class MemberController extends DeviceSwitcherController {
 		return "redirect:/";
 	}
 	
+	/**
+	 프로필 만들기 전 인증하는 부분 일단 없애놓음
 	//테스트 완료
 	@RequestMapping(value="lessoncertify", method=RequestMethod.GET)
 	public String mycertify( Model model, HttpSession session) {
@@ -339,6 +386,7 @@ public class MemberController extends DeviceSwitcherController {
 		model.addAttribute("certify", certify);
 		return forward("member/lessoncertify");
 	}
+	
 	
 	//테스트 완료
 	@RequestMapping(value="lessoncertify", method=RequestMethod.POST)
@@ -357,7 +405,7 @@ public class MemberController extends DeviceSwitcherController {
 		model.addAttribute("status", "success");
 		return forward("member/lessoncertify");
 	}
-	
+	**/
 	
 	//테스트완료
 	@RequestMapping(value="profile", method=RequestMethod.GET)
@@ -408,9 +456,12 @@ public class MemberController extends DeviceSwitcherController {
 		
 		String email = (String)session.getAttribute("email");
 		
+		/** 
+		  프로필 만들기 전 인증하는 부분 일단 없애놓음
 		if(readProfileService.confirmCertify(email)!=1) {
 			model.addAttribute("certify", "0");
 		}
+		**/
 		
 		Profile pro = readProfileService.readProfile(email);
 		if(pro == null) {
@@ -920,5 +971,95 @@ public class MemberController extends DeviceSwitcherController {
 	}
 	
 	
+	//테스트 완료
+	@RequestMapping(value="logintest")
+	public String logintest(HttpSession session, HttpServletRequest request) {
+		return forward("member/logintest");
+	}
+	
+		
+	//테스트 완료
+	@RequestMapping(value="loginCallBackNaver")
+	public String naverLoginCallBack() {	
+		return forward("member/naverLoginCallBack");
+	}
+	
+	
+		
+	@RequestMapping(value="naverSignupSuccess")
+	public String naverSignupSuccess(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		return forward("member/naverSignupSuccess");
+	}
+		
+		
+	//테스트 완료
+	@ResponseBody
+	@RequestMapping(value="naverLogin", method=RequestMethod.POST)
+	public Map<String, String> naverLogin(MemberInfo mem,  Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		mem.setLoginDate(new Date());
+		
+		String configLocation = "classpath:applicationContext.xml";
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
+				configLocation);
+		CheckAndInsertService checkAndInsertService = ctx.getBean("checkAndInsertService", CheckAndInsertService.class );
+		
+		
+		//보안을 위해 비밀번호  암호화
+		String password = mem.getNaverToken();
+		Random random = new Random();
+		for(int i=0; i<5; i++) {
+			password = password+(char)((Math.random() * 26) + 97)+random.nextInt(10);
+			logger.warn("반복문 password : "+password);
+		}
+		logger.warn("최종 password : "+password);
+		
+		mem.setPassword(password);
+		HashMap<String,String> status = checkAndInsertService.naverLogin(mem);
+		ctx.close();
+			
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		if( status.get("status").equals("phoneDuplicate") ) {
+			map.put("status", "phoneDuplicate");
+			return map;
+		}else {
+			
+			
+			SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority("user");
+			List<SimpleGrantedAuthority> collection = new ArrayList<>();
+			collection.add(simpleGrantedAuthority);
+			UserDetails customUserDetails = new User(mem.getEmail(), status.get("password"), collection);
+			
+		    Authentication authentication = new UsernamePasswordAuthenticationToken(customUserDetails, status.get("password"), customUserDetails.getAuthorities());
+
+		    SecurityContext securityContext = SecurityContextHolder.getContext();
+		    securityContext.setAuthentication(authentication);
+		    session = request.getSession(true);
+		    session.setAttribute("email", mem.getEmail());
+		    session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+			
+		    long tokenValidityTime = 14515200000L;
+			long millis = System.currentTimeMillis()+tokenValidityTime;
+			
+			String target = mem.getEmail() + ":" + millis + ":" +org.apache.commons.codec.digest.DigestUtils.md5Hex(mem.getEmail() + ":" + millis + ":"+status.get("password") + ":" + "wmoskey");
+		    byte[] targetBytes = target.getBytes();
+	        // Base64 인코딩 ///////////////////////////////////////////////////
+	        Encoder encoder = Base64.getEncoder();
+	        
+	        // Encoder#encode(byte[] src) :: 바이트배열로 반환
+	        byte[] encodedBytes = encoder.encode(targetBytes);
+	        String rememberCookie = new String(encodedBytes);
+	        String rememberMeCookie = rememberCookie.replace("=", "");
+	        Cookie cookie = new Cookie("remember-me",rememberMeCookie);
+	        cookie.setPath("/");
+	        cookie.setHttpOnly(true);
+	        cookie.setMaxAge(14515200);
+	        
+	        response.addCookie(cookie);
+	        
+	        map.put("status", status.get("status"));
+			return map;
+		}
+	}
 	
 }

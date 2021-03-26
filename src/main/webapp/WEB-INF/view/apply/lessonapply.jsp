@@ -868,6 +868,7 @@ window.location="./applynologin";
 	  
 	  if(limit == "limit"){
 		  alert("수업 요청은 3개까지만 가능합니다. [마이페이지][수업요청내역]에서 기존 수업요청을 삭제하고 다시 요청해주시기 바랍니다.");
+		  window.location.href="./mypage";
 	  }
 	 
 	  $(document).on('keyup','.message',function(){

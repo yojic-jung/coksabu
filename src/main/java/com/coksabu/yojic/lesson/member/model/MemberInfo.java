@@ -11,6 +11,8 @@ public class MemberInfo {
 	private String birth;
 	private String phone;
 	
+	private String naverToken;
+	
 	private Date loginDate;
 	
 	public String getEmail() {
@@ -55,6 +57,13 @@ public class MemberInfo {
 	}
 	public void setPhone(String phone) {
 		this.phone=phone;
+	}
+	
+	public String getNaverToken() {
+		return naverToken;
+	}
+	public void setNaverToken(String naverToken) {
+		this.naverToken=naverToken;
 	}
 	
 	public Date getLoginDate() {

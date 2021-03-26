@@ -77,7 +77,6 @@ body {
 <div class="subheading"><a href="./mypage">&gt; 수업요청내역</a></div>
 <div class="subheading"><a href="./wishlist">&gt; 장바구니</a></div>
 <div class="headline">튜터메뉴</div>
-<div class="subheading"><a href="./lessoncertify">&gt; 인증정보</a></div>
 <div class="subheading"><a href="./tutorpage">&gt; 프로필/수업 관리</a></div>
 <div class="subheading"><a href="./saleslist">&gt; 판매목록</a></div>
 </div>

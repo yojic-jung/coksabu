@@ -62,7 +62,7 @@ margin:50px 0px 50px 0px;
 <div class='content'>
 <div class='current'></div>
 <div style='font-size:30px; width:80%; margin:auto;padding-bottom:20px;text-align:center'>
-<div style="padding-bottom:30px;line-height:150%;">현재 진행중인 선생님 수수료 무료 프로모션은<br/>회원가입 날짜로부터 2개월간 적용됩니다.</div>
+<div style="padding-bottom:30px;line-height:150%;">현재 진행중인 선생님 수수료 무료 프로모션은<br/> 회원가입 날짜로부터 2개월간 적용됩니다.<br/>sns광고(인스타,페이스북, 웹 광고)를 보고 가입하신 선생님은<br/>프로모션 코드에 COKSABU<br/>전단지 및 포스터를 보고 가입하신 선생님은 <br/>LESSON 이라고 적어주시면 수수료 무료 2개월이 적용됩니다.</div>
 <input class='prmtCode' type='text' placeholder='프로모션 코드 및 쿠폰을 등록 해주세요.' name='code'/>
 <input type='submit' class='btn' value='등록하기'/>  
 </div>

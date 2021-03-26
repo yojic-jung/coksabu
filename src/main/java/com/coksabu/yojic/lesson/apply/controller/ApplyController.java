@@ -1,11 +1,15 @@
 package com.coksabu.yojic.lesson.apply.controller;
 
 import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Base64.Encoder;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -110,7 +114,7 @@ public class ApplyController extends DeviceSwitcherController{
 	
 	@Transactional(rollbackFor= {Exception.class})
 	@RequestMapping(value="applynologin", method = RequestMethod.POST)
-	public String applynologin2(ApplyWithSignup applyWithSign, Model model, HttpServletRequest request, HttpSession session) {
+	public String applynologin2(ApplyWithSignup applyWithSign, Model model, HttpServletRequest request, HttpSession session, HttpServletResponse response) {
 		model.addAttribute("email", null);
 		
 		String configLocation = "classpath:applicationContext.xml";
@@ -134,15 +138,17 @@ public class ApplyController extends DeviceSwitcherController{
 		mem.setLoginDate(new Date());
 		mem.setPassword(applyWithSign.getPassword());
 		mem.setPhone(applyWithSign.getPhone());
-		String status = checkAndInsertService.signUp(mem);
+		HashMap<String, String> signupMap = checkAndInsertService.signUp(mem);
 		
-		if( status.equals("emailDuplicate") ) {
+		String singupStatus = signupMap.get("signupStatus");
+		
+		if(singupStatus.equals("emailDuplicate") ) {
 			model.addAttribute("ex", "exception");
 			model.addAttribute("iamport", "imp48047014");
 			model.addAttribute("merchant_uid", "ORD20180131-0000011");
 			ctx.close();
 			return forward("apply/applynologin");
-		}else if( status.equals("phoneDuplicate") ) {
+		}else if(singupStatus.equals("phoneDuplicate") ) {
 			model.addAttribute("ex", "phone");
 			model.addAttribute("iamport", "imp48047014");
 			model.addAttribute("merchant_uid", "ORD20180131-0000011");
@@ -172,15 +178,39 @@ public class ApplyController extends DeviceSwitcherController{
 			SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority("user");
 			List<SimpleGrantedAuthority> collection = new ArrayList<>();
 			collection.add(simpleGrantedAuthority);
-			UserDetails customUserDetails = new User(applyWithSign.getEmail(), applyWithSign.getPassword(), collection);
 			
-		    Authentication authentication = new UsernamePasswordAuthenticationToken(customUserDetails, applyWithSign.getPassword(), customUserDetails.getAuthorities());
+			String encryptedPass = signupMap.get("password");
+			UserDetails customUserDetails = new User(applyWithSign.getEmail(), encryptedPass, collection);
+			
+		    Authentication authentication = new UsernamePasswordAuthenticationToken(customUserDetails, encryptedPass, customUserDetails.getAuthorities());
 
 		    SecurityContext securityContext = SecurityContextHolder.getContext();
 		    securityContext.setAuthentication(authentication);
 		    session = request.getSession(true);
 		    session.setAttribute("email", applyWithSign.getEmail());
 		    session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+		    
+		    
+		    long tokenValidityTime = 14515200000L;
+			long millis = System.currentTimeMillis()+tokenValidityTime;
+			
+			String target = applyWithSign.getEmail() + ":" + millis + ":" +org.apache.commons.codec.digest.DigestUtils.md5Hex(applyWithSign.getEmail() + ":" + millis + ":"+encryptedPass + ":" + "wmoskey");
+		    byte[] targetBytes = target.getBytes();
+	        // Base64 인코딩 ///////////////////////////////////////////////////
+	        Encoder encoder = Base64.getEncoder();
+	        
+	        // Encoder#encode(byte[] src) :: 바이트배열로 반환
+	        byte[] encodedBytes = encoder.encode(targetBytes);
+	        
+	        String rememberCookie = new String(encodedBytes);
+	        String rememberMeCookie = rememberCookie.replace("=", "");
+	        
+	        Cookie cookie = new Cookie("remember-me",rememberMeCookie);
+	        cookie.setPath("/");
+	        cookie.setHttpOnly(true);
+	        cookie.setMaxAge(14515200);
+	        
+	        response.addCookie(cookie);
 			
 			return "redirect:applysuccess";
 		}

@@ -17,8 +17,7 @@
 <link rel="canonical" href="https://coksabu.com/mypage">
 <style>
 	.div-title{
-            width:800px; margin:auto; padding:0px 0px 10px 10px;
-            font-size:17px;
+            text-align:center; padding:60px;
              font-family:'JejuGothic'; color:rgb(97, 96, 96);
         }
         #name{
@@ -106,7 +105,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 width:100%;
 }
 .list{
-	width:100%; border-spacing:50px;
+	width:100%; border-spacing:50px;background:white;
 }
 .c-box-close{
 		padding:20px;
@@ -116,15 +115,15 @@ width:100%;
 <body>
 
 <div style="min-height:300px; background:rgb(233, 232, 232); padding:30px;">
-<div class="div-title" style="margin-top:50px;font-size:25px;">나의 수업 요청 내역</div>
- 	<div style="width:90%; background:white; margin: auto; padding:20px;min-height:200px;">
+<div class="div-title" style="font-size:50px;">나의 수업 요청 내역</div>
+ 	<div style="width:90%; margin: auto; padding:20px;min-height:200px;">
  	
  		
  		<c:choose>
  		<c:when test="${bool}">
- 			<div style="font-size:30px; font-family:'JejuGothic'; text-align:center;margin-top:50px;line-height:150%;padding:50px 0px;">
+ 			<div style="font-size:35px; font-family:'JejuGothic'; text-align:center;line-height:150%;padding:50px 0px;">
  			현재 수업 요청 내역이 없습니다.<br/>
- 			선생님을 찾고 계신다면 <a href="./apply" style="text-decoration:none; color:rgb(226, 193, 6); font-size:30px">[수업요청]</a> 을 해보세요.
+ 			선생님을 찾고 계신다면 <a href="./apply" style="text-decoration:none; color:rgb(226, 193, 6); font-size:40px">[수업요청]</a> 을 해보세요.
  			</div>
  		</c:when>
  		<c:otherwise>

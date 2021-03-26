@@ -36,6 +36,21 @@
             width:800px; margin:auto; padding:30px 0px 20px 10px;
              font-family:'JejuGothic'; color:rgb(97, 96, 96);
         }
+        
+        #represent{
+        	display:none;
+        }
+        
+        #imgplus{
+        	width:50px;height:50px;
+        	backgroud:white;
+        	border-radius:15px;
+        	border:2px solid lightgray;
+        	cursor:pointer;
+        	position:relative;
+        	top:-50px;
+        }
+
 
         .menu td{
         font-family: 'JejuGothic'; 
@@ -569,7 +584,11 @@
                     		수업 대표 이미지<br/>
                     		<span style="color:gray; font-size:18px;margin:15px 0px 15px 0px;">수업을 대표하는 이미지나 선생님 사진을 넣어주세요.</span><br/>
                     	<img id="output" style="width:240px; height:240px;" src="<c:url value="/resources/profileImg/pro.png"  />"  alt="수업대표이미지"/>
-                        <br/>
+                    	<br/>
+                    	<div style="width:240px;text-align:right;">
+							<img id="imgplus" src="<c:url value="/resources/images/imgplus.png" />"  />
+						</div>
+	
                         <input type="file" name="represent" id="represent" accept="image/*" onchange="check(this);loadFile(event)" />
                         
                     </div>
@@ -666,7 +685,7 @@
                   <div class="teacher-intr" id="teacher-intr" >
                   <div>콕사부 정책</div>
                    <div style="font-size:15px; line-height:130%;margin:20px auto;;border:1px solid black; padding:10px;">
-                   콕사부의 중개 수수료는 수업비의 20%이며 이를 제외한 80%가 선생님에게 전달됩니다.<br/>(수수료는 수수료 이벤트와  같은 경우에 한시적으로 달라질 수 있음.)<br/>  서비스의 안전한 거래를 위하여 판매금을 서비스가 종료된 날짜를 기준으로 1-3일 후에 입금됨을 알립니다.(후불입금)
+                   콕사부의 중개 수수료는 수업비의 20%이며 이를 제외한 80%가 선생님에게 전달됩니다.<br/>(수수료는 수수료 이벤트와  같은 경우에 한시적으로 달라질 수 있음.)<br/>  서비스의 안전한 거래를 위하여 판매금을 서비스가 종료된 날짜를 기준으로 1-3일 후에 입금됨을 알립니다.<br/>입금 받을 계좌는 [마이페이지] -> [내 계정 정보 수정하기] 페이지에서 등록 할 수 있습니다. 
                   </div>
                   <div>취소 및 환불규정</div>
                   <div style="overflow:scroll;font-size:15px; line-height:130%;margin:20px auto;height:400px;border:1px solid black; padding:10px;">
@@ -830,7 +849,9 @@
                 	  $('.menu td').eq(4).trigger('click');
                   });
                   
-                  
+                  $("#imgplus").click(function(){
+                		$('#represent').trigger("click");
+                	  });
                   
                   
                    
@@ -891,6 +912,7 @@
               
               var k = '<div class="career-line">'+ a+'-'+b +' ~ '+c+'-'+d +' <input class="career-op career-disc" id="career-disc" type="text" />'
               $('#career').append(k);
+              
             });        
             
             $(document).on('keyup','#lesson-title',function(){
@@ -1217,16 +1239,7 @@
               	$('.menu td').eq(3).trigger('click');
                   return false;
                 }
-              if($('#message').val().length<10){
-        		  alert('[미디어]페이지의 남길 말씀은 최소 10글자 이상 작성해주세요.');
-        			$('.menu td').eq(4).trigger('click');
-        		  return false;
-        	  }
-              if($('#message').val().length>70){
-        		  alert('[미디어]페이지의 남길 말씀은 최대 70글자 미만입니다.');
-        			$('.menu td').eq(4).trigger('click');
-        		  return false;
-        	  }
+              
            }  
 
           

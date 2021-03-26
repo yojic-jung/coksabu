@@ -29,6 +29,12 @@ public interface MemberDao {
 	
 	public int signUp(MemberInfo memberInfo); 
 	
+	public int naverSignUp(MemberInfo memberInfo); 
+	
+	public int updateNaverPassword(MemberInfo mem);
+	
+	public String takeEncryptedPW(String email);
+	
 	public int checkImgPath(String email);
 	
 	public String takeImgPath(String email);
@@ -134,6 +140,7 @@ public interface MemberDao {
 	public void registerMyPromotion(Promotion promotion);
 	
 	public int myCommissionPromotionCount(String email);
+	
 	
 	
 }

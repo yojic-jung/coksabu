@@ -64,19 +64,19 @@ margin:20px;
 <form method='post'  commandName='memberInfo' onSubmit='return CheckForm(this)'>
 <div class='content'>
 <div class='current'></div>
-<div style='font-size:30px; width:500px; margin:auto;padding-bottom:20px;'>
-<div style="font-size:20px;padding-bottom:10px;">현재 진행중인 선생님 수수료 무료 프로모션은 회원가입 날짜로부터 2개월간 적용됩니다.</div>
+<div style='font-size:30px; width:700px; margin:auto;padding-bottom:20px;'>
+<div style="font-size:15px;padding-bottom:10px;">현재 진행중인 선생님 수수료 무료 프로모션은 회원가입 날짜로부터 2개월간 적용됩니다.<br/>sns광고(인스타,페이스북, 웹 광고)를 보고 가입하신 선생님은 프로모션 코드에 COKSABU<br/>전단지 및 포스터를 보고 가입하신 선생님은 LESSON 이라고 적어주시면 수수료 무료 2개월이 적용됩니다.</div>
+<div style='text-align:center'>
 <input class='prmtCode' type='text' placeholder='프로모션 코드 및 쿠폰을 등록 해주세요.' name='code'/>
- <div style='text-align:center'>
 <input type='submit' class='btn' value='등록하기'/>  
 </div>
 </div> 
 </div>
 </form>
 
-<div style="width:700px;margin:40px auto 0px auto;font-family:JejuGothic;">
+<div style="width:700px;margin:30px auto 0px auto;font-family:JejuGothic;">
 	<c:if test="${promotion != null }">
-	<div style="padding-left:20px;font-size:18px;">나의 프로모션 "이용내역"</div>
+	<div style="padding-left:20px;font-size:18px;">나의 프로모션 <span style="color:orange;">"이용내역"</span></div>
 		<table style="border-spacing:20px;color:dimgray;">
 			<tr>
 				<td style="border-bottom:2px solid black;" colspan="4"></td>

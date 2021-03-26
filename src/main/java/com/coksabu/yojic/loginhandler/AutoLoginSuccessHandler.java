@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.security.core.Authentication;
@@ -15,6 +17,7 @@ import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import com.coksabu.yojic.lesson.member.service.LoginCheckService;
 import com.coksabu.yojic.lesson.member.service.MemberService;
 
 
@@ -23,15 +26,20 @@ public class AutoLoginSuccessHandler implements AuthenticationSuccessHandler  {
 	
 	 private RedirectStrategy redirectStratgy = new DefaultRedirectStrategy();
 	
+	 private static final Logger logger = LoggerFactory.getLogger(AutoLoginSuccessHandler.class);
+	 
 	@Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws IOException, ServletException {
 		HttpSession session = request.getSession(true);
 		if(authentication.getName()!=null) {
-			session.setAttribute("email", authentication.getName());
+			String email = authentication.getName();
+			session.setAttribute("email", email);
 			String configLocation = "classpath:applicationContext.xml";
 			AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
+			LoginCheckService loginCheckService = ctx.getBean("loginCheckService", LoginCheckService.class );
 			MemberService memberService = ctx.getBean("memberService", MemberService.class );
+			loginCheckService.updateLoginTime2(email);
 			int messageCount = memberService.takeUnreadMessageCount(authentication.getName());
 			ctx.close();
 			
@@ -47,6 +55,8 @@ public class AutoLoginSuccessHandler implements AuthenticationSuccessHandler  {
 			session.setAttribute("email", null);
 		}
 		
+		
+		logger.warn("오토로그인 잘 작동함");
 		
 		String uri = request.getRequestURI();
 		if(uri!=null) {

@@ -18,19 +18,23 @@
         }
 
 .inner-main{
+			width:50%;
+			text-align:center;
 			display:inline-block;
-			background:white;
 			padding:40px;
-			border-radius: 20px 20px 0px 0px;
-			border:3px solid gray;
-			border-bottom:3px solid white;
-			 font-size:35px;
+			border-bottom:5px solid black;
+			font-size:40px;
+			font-weight:bolder;
 }
+
 .inner-sub{
+			width:50%;
+			text-align:center;
 			display:inline-block;
-			background:white;
 			padding:40px;
-			border-radius: 20px 20px 0px 0px;
+			border-bottom:1px solid gray;
+			font-size:40px;
+			font-weight:bolder;
 }
 .table-title{
 		padding:10px;
@@ -88,23 +92,26 @@ border:1px solid gray; width:150px; padding:15px 0px; text-align:center; margin:
     			} 
           });
 		</script>
-<div style="background:rgb(233, 232, 232); padding:30px 30px 240px 30px;min-height:1800px;">		
+ <div style="background:white;">
+<table style="width:100%;">
+ 	<tr>
+ 		<td class="inner-sub"><a href="/purchaselist" style="color: gray;text-decoration:none;">일반거래 구매내역</a></td>
+  		<td class="inner-main"><a href="/proposalpurchase" style="color: black;font-weight:bolder;text-decoration:none;">거래제안서 구매내역</a></td>
+  	</tr>
+</table>
 		
-<div class="div-title">
- 
-  <div class="inner-sub">
-  <a href="/purchaselist" style="color: gray;text-decoration:none;">일반거래 구매내역</a>
-  </div>
-  <div class="inner-main">
-  <a href="/proposalpurchase" style="color: black;font-weight:bolder;">거래제안서 구매내역</a>
-  </div>
-
- </div>
-		
- <div style="width:90%; ; background:white; margin: auto; padding:20px;min-height:500px;;border:3px solid gray;">
+ <div style="width:90%; ; background:white; margin:50px auto; ">
  <div style="width:100%; margin:auto;">
  
- <form method="post" onSubmit="return checkForm(this)">
+
+	
+<c:choose>
+	<c:when test="${size==0 }">
+	<div style="text-align:center;padding:50px 0px;font-size:30px;font-weight:bolder;">거래 제안서를 통한 구매 내역이 없습니다.</div>
+	</c:when>
+	<c:otherwise>
+	<div class="table-title" >거래제안서를 통해 구매한 내역이 공개됩니다.</div>
+	 <form method="post" onSubmit="return checkForm(this)">
  	<div style="width:700px;margin-top:20px;">
  	<select style="padding:15px;font-size:24px;" id="orderStatus" name="orderStatus">
  		<option value="">전체</option>
@@ -122,13 +129,6 @@ border:1px solid gray; width:150px; padding:15px 0px; text-align:center; margin:
  	<input class="search" type="submit" value="조회하기" />
  	</div>
 	</form> 
-	
-<c:choose>
-	<c:when test="${size==0 }">
-	<div style="text-align:center;padding:50px 0px;font-size:30px;font-weight:bolder;">거래 제안서를 통한 구매 내역이 없습니다.</div>
-	</c:when>
-	<c:otherwise>
-	<div class="table-title" >거래제안서를 통해 구매한 내역이 공개됩니다.</div>
 	
 	<hr style="width:100%; border:1px solid gray; margin:20px auto;"/>
 	

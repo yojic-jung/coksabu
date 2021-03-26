@@ -25,8 +25,11 @@
 	</insert>
 
 	<update id="update" parameterType="com.coksabu.yojic.lesson.board.model.LessonCardDB" >
-		update lesson set represent=#{represent},title=#{title}, lesson=#{lesson}
-		, description=#{description}, careerDB=#{careerDB}, day=#{day}, gawe=#{gawe}, trial=#{trial}, contentimg=#{contentimg} where id=#{id}
+		update lesson set represent=#{represent}, title=#{title}, lesson=#{lesson}, 
+		subcate0=#{subCate0}, price1=#{price1}, price2=#{price2}, price3=#{price3}, 
+		subcate1=#{subCate1}, opt1price1=#{opt1price1}, opt1price2=#{opt1price2}, opt1price3=#{opt1price3},
+		subcate2=#{subCate2}, opt2price1=#{opt2price1}, opt2price2=#{opt2price2}, opt2price3=#{opt2price3},
+		description=#{description}, careerDB=#{careerDB}, day=#{day}, gawe=#{gawe}, trial=#{trial}, contentimg=#{contentimg} where id=#{id}
 	</update>
 	
 	<update id="readCount">

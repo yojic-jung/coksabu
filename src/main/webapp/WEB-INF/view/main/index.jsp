@@ -324,6 +324,25 @@
 		box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 	}
     </style>
+    
+    <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2787801881458923');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+    
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-413632618"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -339,6 +358,8 @@
     <script>
        $(document).ready(function(){
 
+    	   
+    	   
         var jbOffset = $( '.jbMenu' ).offset(); //상단메뉴 좌표 가져오는 코드
             $( window ).scroll( function() {        
               if ( $( document ).scrollTop() > jbOffset.top ) { //scrollTop() 요청한 스크롤바의 수직위치 반환
@@ -349,7 +370,8 @@
               }
             });
 
-
+        
+        
         $('.fadeImg').css('width',$(document).width());
         
             $("#inner-fade").innerfade({
@@ -510,7 +532,7 @@
         <ul id="inner-fade">
             <li>
             	<img class="fadeImg" src="<c:url value="/resources/img/main5.png" />"  alt="메인이미지3"/>
-            	<div class="fade-content" style="text-align:center;">선생님 "수수료 무료" 프로모션<br/>회원가입 후 등록가능</div>
+            	<div class="fade-content" style="text-align:center;">지금 가입하면 <br/>선생님 "과외수수료 2개월 무료"</div>
             </li>
             <li>
             	<img class="fadeImg" src="<c:url value="/resources/img/main1.png" />"  alt="메인이미지1"/>

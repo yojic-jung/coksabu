@@ -27,11 +27,11 @@
           }
           
           .name{
-          display:none;
+          	display:none;
           }
           
           .birth{
-          display:none;
+          	display:none;
           }
           .login-logo{
             width:200px;
@@ -67,10 +67,25 @@
   			border:0.5px solid rgb(115, 115, 117);
   			border-radius:3px;
   		  }
+  		  
+  		 .naver-customize{
+  		 width:350px;
+	 background-image:url(<c:url value="/resources/img/naverbackground.png" />);
+	font-family:Gothic;font-size:15px;color:white;border-radius:10px; padding:10px;font-weight:bolder;
+	line-height:200%;
+	margin:0px 10px;cursor:pointer;
+	text-align:center;
+	}
+	
     </style>
-<!-- Event snippet for 가입 conversion page -->
+  <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-413632618"></script>
 <script>
-  gtag('event', 'conversion', {'send_to': 'AW-413632618/Emm8CI67sfkBEOqQnsUB'});
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-413632618');
 </script>
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
   	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.4.js"></script>
@@ -132,9 +147,19 @@
     </div>  
     
       <input style="color:white; background:rgb(94, 94, 94); font-size:15px; 
-      padding:15px;border-radius:10px; width:350px;margin:60px 10px" type="submit" value="동의하고 가입하기"/>
+      padding:15px;border-radius:10px; width:350px;margin:60px 10px 40px 10px" type="submit" value="동의하고 가입하기"/>
     </form:form>  
-    
+    <div >
+        	<div class="naver-customize">
+        		<span style="font-weight:bolder;float:left;clear:right;margin:0px 10px">
+        		<img src="<c:url value='/resources/img/naver.png' />"  style="width:40px;height:40px;"/>
+        		</span>
+        		네이버 아이디로 가입하기
+        	</div>
+        	<div style="display:none;">
+        		<div id="naverIdLogin"></div>
+        	</div>
+        </div>
     </div>
   </section>    
       <script>
@@ -142,8 +167,6 @@
     	  var ex = "<c:out value="${ex}" />";
     	  
     	  var iamport = "<c:out value="${iamport}" />";
-    	  
-    	  var status = "<c:out value="${status}" />";
     	  
           if(ex == 'exception'){
           	alert("이미 가입된 이메일 입니다.");
@@ -156,10 +179,6 @@
           IMP.init(iamport);
           
           
-          if(status=='success'){
-        	  alert("감사합니다. 정상적으로 회원가입을 완료하였습니다.\n가입한 이메일로 로그인을 해주시기 바랍니다. ")
-        	  window.location.href="/login";
-          }
           
           $('.phoneCertify').hover(function(){
         	  $(this).css('background','rgb(115, 115, 117)');
@@ -265,6 +284,23 @@ function check(re, what, message) {
     //return false;
 }
       
+      
+var naverLogin = new naver.LoginWithNaverId(
+	  		{
+	  			clientId: "0PgcZhDTwaod8UwQsoKX",
+	  			callbackUrl: "https://coksabu.com/loginCallBackNaver",
+	  			isPopup: false, /* 팝업을 통한 연동처리 여부 */
+	  			loginButton: {color: "green", type: 3, height: 170} /* 로그인 버튼의 타입을 지정 */
+	  		}
+	  	);
+	  	
+	  	/* 설정정보를 초기화하고 연동을 준비 */
+	  	naverLogin.init();
+	  	
+	  	 $(document).on("click",".naver-customize",function(event){
+	    	  naverLogin.init(); 
+	    	  location.href = naverLogin.generateAuthorizeUrl();
+	  		});
       </script>
 </body>
 </html>

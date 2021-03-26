@@ -3756,3 +3756,137 @@ WARN  15:58:42.945 [http-bio-8080-exec-26 WebSocketConfig.java:93] afterConnecti
 WARN  15:58:42.945 [http-bio-8080-exec-26 WebSocketConfig.java:103] afterConnectionClosed - 소켓 연결 종료
 WARN  15:58:42.945 [http-bio-8080-exec-26 WebSocketConfig.java:104] afterConnectionClosed - 내 roomnumber 23
 WARN  15:58:42.945 [http-bio-8080-exec-26 WebSocketConfig.java:105] afterConnectionClosed - 내 email dywlr@naver.com
+WARN  16:53:30.672 [http-bio-8080-exec-6 WebSocketConfig.java:55] afterConnectionEstablished - 소켓 연결 성공
+WARN  16:53:30.691 [http-bio-8080-exec-6 WebSocketConfig.java:62] afterConnectionEstablished - 채팅방 접속
+WARN  16:53:42.357 [http-bio-8080-exec-6 WebSocketConfig.java:92] afterConnectionClosed - 채팅방 나감
+WARN  16:53:42.357 [http-bio-8080-exec-6 WebSocketConfig.java:102] afterConnectionClosed - 소켓 연결 종료
+WARN  16:53:42.358 [http-bio-8080-exec-6 WebSocketConfig.java:103] afterConnectionClosed - 내 roomnumber 20
+WARN  16:53:42.358 [http-bio-8080-exec-6 WebSocketConfig.java:104] afterConnectionClosed - 내 email dywlr@naver.com
+WARN  16:57:55.626 [http-bio-8080-exec-8 WebSocketConfig.java:55] afterConnectionEstablished - 소켓 연결 성공
+WARN  16:57:55.626 [http-bio-8080-exec-8 WebSocketConfig.java:62] afterConnectionEstablished - 채팅방 접속
+WARN  16:58:47.294 [http-bio-8080-exec-8 WebSocketConfig.java:92] afterConnectionClosed - 채팅방 나감
+WARN  16:58:47.295 [http-bio-8080-exec-8 WebSocketConfig.java:102] afterConnectionClosed - 소켓 연결 종료
+WARN  16:58:47.295 [http-bio-8080-exec-8 WebSocketConfig.java:103] afterConnectionClosed - 내 roomnumber 20
+WARN  16:58:47.295 [http-bio-8080-exec-8 WebSocketConfig.java:104] afterConnectionClosed - 내 email dywlr@naver.com
+WARN  16:58:47.474 [http-bio-8080-exec-11 WebSocketConfig.java:55] afterConnectionEstablished - 소켓 연결 성공
+WARN  16:58:47.475 [http-bio-8080-exec-11 WebSocketConfig.java:62] afterConnectionEstablished - 채팅방 접속
+WARN  16:58:51.914 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:92] afterConnectionClosed - 채팅방 나감
+WARN  16:58:51.914 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:102] afterConnectionClosed - 소켓 연결 종료
+WARN  16:58:51.914 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:103] afterConnectionClosed - 내 roomnumber 20
+WARN  16:58:51.914 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:104] afterConnectionClosed - 내 email dywlr@naver.com
+WARN  16:58:57.591 [http-bio-8080-exec-12 WebSocketConfig.java:55] afterConnectionEstablished - 소켓 연결 성공
+WARN  16:58:57.593 [http-bio-8080-exec-12 WebSocketConfig.java:62] afterConnectionEstablished - 채팅방 접속
+WARN  16:59:24.441 [clientInboundChannel-7 GreetingController.java:54] handleSubscribe - 메세지 매핑 채팅 로그
+WARN  16:59:26.766 [clientInboundChannel-10 GreetingController.java:54] handleSubscribe - 메세지 매핑 채팅 로그
+WARN  16:59:46.864 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:92] afterConnectionClosed - 채팅방 나감
+WARN  16:59:46.865 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:102] afterConnectionClosed - 소켓 연결 종료
+WARN  16:59:46.865 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:103] afterConnectionClosed - 내 roomnumber 20
+WARN  16:59:46.865 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:104] afterConnectionClosed - 내 email dywlr@naver.com
+WARN  16:59:56.797 [http-bio-8080-exec-8 WebSocketConfig.java:55] afterConnectionEstablished - 소켓 연결 성공
+WARN  16:59:56.797 [http-bio-8080-exec-8 WebSocketConfig.java:62] afterConnectionEstablished - 채팅방 접속
+WARN  16:59:59.439 [clientInboundChannel-10 GreetingController.java:54] handleSubscribe - 메세지 매핑 채팅 로그
+WARN  17:00:10.046 [clientInboundChannel-13 GreetingController.java:54] handleSubscribe - 메세지 매핑 채팅 로그
+WARN  17:00:17.859 [clientInboundChannel-16 GreetingController.java:54] handleSubscribe - 메세지 매핑 채팅 로그
+WARN  17:00:18.931 [clientInboundChannel-2 GreetingController.java:54] handleSubscribe - 메세지 매핑 채팅 로그
+WARN  17:00:42.453 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:92] afterConnectionClosed - 채팅방 나감
+WARN  17:00:42.454 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:102] afterConnectionClosed - 소켓 연결 종료
+WARN  17:00:42.454 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:103] afterConnectionClosed - 내 roomnumber 20
+WARN  17:00:42.454 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:104] afterConnectionClosed - 내 email dywlr@naver.com
+WARN  17:00:48.232 [http-bio-8080-exec-11 WebSocketConfig.java:55] afterConnectionEstablished - 소켓 연결 성공
+WARN  17:00:48.232 [http-bio-8080-exec-11 WebSocketConfig.java:62] afterConnectionEstablished - 채팅방 접속
+WARN  17:00:48.810 [http-bio-8080-exec-11 WebSocketConfig.java:92] afterConnectionClosed - 채팅방 나감
+WARN  17:00:48.811 [http-bio-8080-exec-11 WebSocketConfig.java:102] afterConnectionClosed - 소켓 연결 종료
+WARN  17:00:48.811 [http-bio-8080-exec-11 WebSocketConfig.java:103] afterConnectionClosed - 내 roomnumber 20
+WARN  17:00:48.811 [http-bio-8080-exec-11 WebSocketConfig.java:104] afterConnectionClosed - 내 email dywlr@naver.com
+WARN  17:00:49.010 [http-bio-8080-exec-25 WebSocketConfig.java:55] afterConnectionEstablished - 소켓 연결 성공
+WARN  17:00:49.012 [http-bio-8080-exec-25 WebSocketConfig.java:62] afterConnectionEstablished - 채팅방 접속
+WARN  17:00:51.070 [clientInboundChannel-16 GreetingController.java:54] handleSubscribe - 메세지 매핑 채팅 로그
+WARN  17:00:51.266 [clientInboundChannel-16 GreetingController.java:59] handleSubscribe - 메세지 매핑 채팅 로그2
+WARN  17:00:51.275 [clientInboundChannel-16 GreetingController.java:61] handleSubscribe - 메세지 매핑 채팅 로그3
+WARN  17:01:27.798 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:92] afterConnectionClosed - 채팅방 나감
+WARN  17:01:27.798 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:102] afterConnectionClosed - 소켓 연결 종료
+WARN  17:01:27.798 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:103] afterConnectionClosed - 내 roomnumber 20
+WARN  17:01:27.798 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:104] afterConnectionClosed - 내 email dywlr@naver.com
+WARN  17:01:33.646 [http-bio-8080-exec-26 WebSocketConfig.java:55] afterConnectionEstablished - 소켓 연결 성공
+WARN  17:01:33.647 [http-bio-8080-exec-26 WebSocketConfig.java:62] afterConnectionEstablished - 채팅방 접속
+WARN  17:02:12.809 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:92] afterConnectionClosed - 채팅방 나감
+WARN  17:02:12.810 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:102] afterConnectionClosed - 소켓 연결 종료
+WARN  17:02:12.810 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:103] afterConnectionClosed - 내 roomnumber 20
+WARN  17:02:12.810 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:104] afterConnectionClosed - 내 email dywlr@naver.com
+WARN  17:02:18.608 [http-bio-8080-exec-20 WebSocketConfig.java:55] afterConnectionEstablished - 소켓 연결 성공
+WARN  17:02:18.609 [http-bio-8080-exec-20 WebSocketConfig.java:62] afterConnectionEstablished - 채팅방 접속
+WARN  17:02:33.498 [http-bio-8080-exec-20 WebSocketConfig.java:92] afterConnectionClosed - 채팅방 나감
+WARN  17:02:33.498 [http-bio-8080-exec-20 WebSocketConfig.java:102] afterConnectionClosed - 소켓 연결 종료
+WARN  17:02:33.498 [http-bio-8080-exec-20 WebSocketConfig.java:103] afterConnectionClosed - 내 roomnumber 20
+WARN  17:02:33.498 [http-bio-8080-exec-20 WebSocketConfig.java:104] afterConnectionClosed - 내 email dywlr@naver.com
+WARN  17:02:33.675 [http-bio-8080-exec-11 WebSocketConfig.java:55] afterConnectionEstablished - 소켓 연결 성공
+WARN  17:02:33.676 [http-bio-8080-exec-11 WebSocketConfig.java:62] afterConnectionEstablished - 채팅방 접속
+WARN  17:02:35.262 [clientInboundChannel-16 GreetingController.java:54] handleSubscribe - 메세지 매핑 채팅 로그
+WARN  17:02:35.444 [clientInboundChannel-16 GreetingController.java:59] handleSubscribe - 메세지 매핑 채팅 로그2
+WARN  17:02:35.454 [clientInboundChannel-16 GreetingController.java:61] handleSubscribe - 메세지 매핑 채팅 로그3
+WARN  17:02:35.473 [clientInboundChannel-16 GreetingController.java:86] handleSubscribe - 채팅 로그는 잘찍힘
+WARN  17:03:07.721 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:92] afterConnectionClosed - 채팅방 나감
+WARN  17:03:07.721 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:102] afterConnectionClosed - 소켓 연결 종료
+WARN  17:03:07.721 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:103] afterConnectionClosed - 내 roomnumber 20
+WARN  17:03:07.721 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:104] afterConnectionClosed - 내 email dywlr@naver.com
+WARN  17:03:12.564 [http-bio-8080-exec-21 WebSocketConfig.java:55] afterConnectionEstablished - 소켓 연결 성공
+WARN  17:03:12.566 [http-bio-8080-exec-21 WebSocketConfig.java:62] afterConnectionEstablished - 채팅방 접속
+WARN  17:03:19.626 [http-bio-8080-exec-21 WebSocketConfig.java:92] afterConnectionClosed - 채팅방 나감
+WARN  17:03:19.626 [http-bio-8080-exec-21 WebSocketConfig.java:102] afterConnectionClosed - 소켓 연결 종료
+WARN  17:03:19.626 [http-bio-8080-exec-21 WebSocketConfig.java:103] afterConnectionClosed - 내 roomnumber 20
+WARN  17:03:19.626 [http-bio-8080-exec-21 WebSocketConfig.java:104] afterConnectionClosed - 내 email dywlr@naver.com
+WARN  17:03:20.399 [http-bio-8080-exec-36 WebSocketConfig.java:55] afterConnectionEstablished - 소켓 연결 성공
+WARN  17:03:20.400 [http-bio-8080-exec-36 WebSocketConfig.java:62] afterConnectionEstablished - 채팅방 접속
+WARN  17:03:21.420 [clientInboundChannel-16 GreetingController.java:54] handleSubscribe - 메세지 매핑 채팅 로그
+WARN  17:03:21.605 [clientInboundChannel-16 GreetingController.java:59] handleSubscribe - 메세지 매핑 채팅 로그2
+WARN  17:03:21.615 [clientInboundChannel-16 GreetingController.java:61] handleSubscribe - 메세지 매핑 채팅 로그3
+WARN  17:03:22.400 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:92] afterConnectionClosed - 채팅방 나감
+WARN  17:03:22.400 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:102] afterConnectionClosed - 소켓 연결 종료
+WARN  17:03:22.400 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:103] afterConnectionClosed - 내 roomnumber 20
+WARN  17:03:22.400 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:104] afterConnectionClosed - 내 email dywlr@naver.com
+WARN  17:03:27.469 [http-bio-8080-exec-21 WebSocketConfig.java:55] afterConnectionEstablished - 소켓 연결 성공
+WARN  17:03:27.470 [http-bio-8080-exec-21 WebSocketConfig.java:62] afterConnectionEstablished - 채팅방 접속
+WARN  17:03:28.042 [http-bio-8080-exec-21 WebSocketConfig.java:92] afterConnectionClosed - 채팅방 나감
+WARN  17:03:28.043 [http-bio-8080-exec-21 WebSocketConfig.java:102] afterConnectionClosed - 소켓 연결 종료
+WARN  17:03:28.043 [http-bio-8080-exec-21 WebSocketConfig.java:103] afterConnectionClosed - 내 roomnumber 20
+WARN  17:03:28.043 [http-bio-8080-exec-21 WebSocketConfig.java:104] afterConnectionClosed - 내 email dywlr@naver.com
+WARN  17:03:28.578 [http-bio-8080-exec-40 WebSocketConfig.java:55] afterConnectionEstablished - 소켓 연결 성공
+WARN  17:03:28.579 [http-bio-8080-exec-40 WebSocketConfig.java:62] afterConnectionEstablished - 채팅방 접속
+WARN  17:03:33.413 [clientInboundChannel-16 GreetingController.java:54] handleSubscribe - 메세지 매핑 채팅 로그
+WARN  17:03:33.599 [clientInboundChannel-16 GreetingController.java:59] handleSubscribe - 메세지 매핑 채팅 로그2
+WARN  17:03:33.608 [clientInboundChannel-16 GreetingController.java:61] handleSubscribe - 메세지 매핑 채팅 로그3
+WARN  17:03:33.626 [clientInboundChannel-16 GreetingController.java:86] handleSubscribe - 채팅 로그는 잘찍힘
+WARN  17:03:47.212 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:92] afterConnectionClosed - 채팅방 나감
+WARN  17:03:47.212 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:102] afterConnectionClosed - 소켓 연결 종료
+WARN  17:03:47.213 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:103] afterConnectionClosed - 내 roomnumber 20
+WARN  17:03:47.213 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:104] afterConnectionClosed - 내 email dywlr@naver.com
+WARN  17:03:53.609 [http-bio-8080-exec-43 WebSocketConfig.java:55] afterConnectionEstablished - 소켓 연결 성공
+WARN  17:03:53.609 [http-bio-8080-exec-43 WebSocketConfig.java:62] afterConnectionEstablished - 채팅방 접속
+WARN  17:04:02.906 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:92] afterConnectionClosed - 채팅방 나감
+WARN  17:04:02.907 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:102] afterConnectionClosed - 소켓 연결 종료
+WARN  17:04:02.907 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:103] afterConnectionClosed - 내 roomnumber 20
+WARN  17:04:02.907 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:104] afterConnectionClosed - 내 email dywlr@naver.com
+WARN  17:04:08.561 [http-bio-8080-exec-46 WebSocketConfig.java:55] afterConnectionEstablished - 소켓 연결 성공
+WARN  17:04:08.561 [http-bio-8080-exec-46 WebSocketConfig.java:62] afterConnectionEstablished - 채팅방 접속
+WARN  17:13:25.400 [http-bio-8080-exec-46 WebSocketConfig.java:92] afterConnectionClosed - 채팅방 나감
+WARN  17:13:25.400 [http-bio-8080-exec-46 WebSocketConfig.java:102] afterConnectionClosed - 소켓 연결 종료
+WARN  17:13:25.400 [http-bio-8080-exec-46 WebSocketConfig.java:103] afterConnectionClosed - 내 roomnumber 20
+WARN  17:13:25.400 [http-bio-8080-exec-46 WebSocketConfig.java:104] afterConnectionClosed - 내 email dywlr@naver.com
+WARN  17:12:02.311 [http-bio-8080-exec-11 WebSocketConfig.java:55] afterConnectionEstablished - 소켓 연결 성공
+WARN  17:12:02.329 [http-bio-8080-exec-11 WebSocketConfig.java:62] afterConnectionEstablished - 채팅방 접속
+WARN  17:13:02.005 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:92] afterConnectionClosed - 채팅방 나감
+WARN  17:13:02.006 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:102] afterConnectionClosed - 소켓 연결 종료
+WARN  17:13:02.006 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:103] afterConnectionClosed - 내 roomnumber 20
+WARN  17:13:02.006 [ContainerBackgroundProcessor[StandardEngine[Catalina]] WebSocketConfig.java:104] afterConnectionClosed - 내 email dywlr@naver.com
+WARN  17:14:50.646 [http-bio-8080-exec-26 WebSocketConfig.java:55] afterConnectionEstablished - 소켓 연결 성공
+WARN  17:14:50.646 [http-bio-8080-exec-26 WebSocketConfig.java:62] afterConnectionEstablished - 채팅방 접속
+WARN  17:14:51.307 [http-bio-8080-exec-26 WebSocketConfig.java:92] afterConnectionClosed - 채팅방 나감
+WARN  17:14:51.307 [http-bio-8080-exec-26 WebSocketConfig.java:102] afterConnectionClosed - 소켓 연결 종료
+WARN  17:14:51.307 [http-bio-8080-exec-26 WebSocketConfig.java:103] afterConnectionClosed - 내 roomnumber 20
+WARN  17:14:51.307 [http-bio-8080-exec-26 WebSocketConfig.java:104] afterConnectionClosed - 내 email dywlr@naver.com
+WARN  17:14:51.383 [http-bio-8080-exec-20 WebSocketConfig.java:55] afterConnectionEstablished - 소켓 연결 성공
+WARN  17:14:51.385 [http-bio-8080-exec-20 WebSocketConfig.java:62] afterConnectionEstablished - 채팅방 접속
+WARN  17:15:40.346 [http-bio-8080-exec-20 WebSocketConfig.java:92] afterConnectionClosed - 채팅방 나감
+WARN  17:15:40.346 [http-bio-8080-exec-20 WebSocketConfig.java:102] afterConnectionClosed - 소켓 연결 종료
+WARN  17:15:40.346 [http-bio-8080-exec-20 WebSocketConfig.java:103] afterConnectionClosed - 내 roomnumber 20
+WARN  17:15:40.346 [http-bio-8080-exec-20 WebSocketConfig.java:104] afterConnectionClosed - 내 email dywlr@naver.com

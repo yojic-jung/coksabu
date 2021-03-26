@@ -65,8 +65,7 @@
           .login-form{
               width:90%;
               margin:80px auto;
-              font-size:40px;
-             
+             padding:0;font-size:40px;line-height:200%
           }
           
           .name{
@@ -96,21 +95,40 @@
           }
   		.phoneCertify{
   			width:100%;
-  			background:rgb(47, 46, 48);
+  			background:gray;
   			color:white;
   			text-align:center;
-  			font-size:30px;
+  			font-size:40px;
   			font-weight:bold;
-  			padding:30px;
+  			padding:20px;
   			cursor:pointer;
   			border:0.5px solid black;
   			
   		  }
+  	.signup-btn{
+  	text-align:center;
+  	color:white; background:rgb(68,68,68); font-size:40px;margin:150px 0px 50px 0px; 
+      padding:20px;border-radius:10px; width:100%;
+  	}	  
+  	.signup-submit{
+  		display:none;
+  	}
+  	.naver-customize{
+	 background-image:url(<c:url value="/resources/img/naverbackground.png" />);
+	font-family:Gothic;font-size:40px;color:white;border-radius:10px; padding:20px;
+	margin-bottom:50px;font-weight:bolder;
+	}
+	
     </style>
-    <!-- Event snippet for 가입 conversion page -->
+       <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-413632618"></script>
 <script>
-  gtag('event', 'conversion', {'send_to': 'AW-413632618/Emm8CI67sfkBEOqQnsUB'});
-</script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-413632618');
+</script>  
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
   	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.4.js"></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -127,7 +145,7 @@
     <div class="login-form">
     <div style="color:gray;font-family: 'JejuGothic';">회원가입</div>
 
-    <form:form commandName="memberInfo" onSubmit="return CheckForm(this)">
+    <form:form id="postPageTran" commandName="memberInfo" onSubmit="return CheckForm(this)">
     
     <form:input path="email" class="permit" id="email" placeholder="이메일" value="${memberInfo.email}"/><br/>
 	<form:errors path="email" />
@@ -163,13 +181,30 @@
     </div>  
     
     
-    
-      <input style="color:white; background:rgb(105, 104, 104); font-size:35px;height:100px;margin:150px 0px; 
-      padding:20x;border-radius:5px; width:100%;" type="submit" value="동의하고 가입하기"/>
+     <div class="signup-btn" style="font-weight:bolder;">
+     	동의하고 가입하기
+     </div>
+      <input class="signup-submit" type="submit" />
     </form:form>  
+    <div style="text-align:center;">
+        	<div class="naver-customize">
+        		<span style="font-weight:bolder;float:left;clear:right;">
+        		<img src="<c:url value='/resources/img/naver.png' />"  style="width:90px;height:90px;"/>
+        		</span>
+        		네이버 아이디로 가입하기
+        	</div>
+        	<div style="display:none;">
+        		<div id="naverIdLogin"></div>
+        	</div>
+        </div>
     
     </div>
   </section>    
+  <div style="height:400px;"></div>
+  
+  <img id="spinner" src="<c:url value='/resources/img/spinner.svg' />" style="position:fixed; left:50%; transform:translate(-50%, -50%);top:50%; z-index:99;display:none;"/>
+  
+  
       <script>
       
       
@@ -178,7 +213,6 @@
     	  
     	  var iamport = "<c:out value="${iamport}" />";
     	  
-    	  var status = "<c:out value="${status}" />";
     	  
           if(ex == 'exception'){
           	alert("이미 가입된 이메일 입니다. 로그인 후 다시 신청해주시기 바랍니다.");
@@ -190,10 +224,6 @@
           
           IMP.init(iamport);
           
-          if(status=='success'){
-        	  alert("감사합니다. 정상적으로 회원가입을 완료하였습니다.\n가입한 이메일로 로그인을 해주시기 바랍니다. ");
-        	  window.location.href="/login";
-          }
           
           $('.phoneCertify').hover(function(){
         	  $(this).css('background','rgb(192, 192, 192)');
@@ -201,10 +231,15 @@
           },function(){
         	  $(this).css('background','rgb(224, 224, 224)');
         	  $(this).css('color','black');
-        	  });        	  
-          })
+			});
+          
+          
+          
+       })
       
-     
+      $('.signup-btn').click(function(){
+     	 $('.signup-submit').trigger('click');
+       });
       
       $('.private').click(function(){
     	 window.location='./private';
@@ -213,6 +248,14 @@
      	 window.location='./service';
        });
       
+      
+      $(document).on("click", '.naver-customize', function(){
+    	  var broswerInfo = navigator.userAgent;
+   	      //ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+   	      if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+   	            $('#spinner').show();
+  	      }
+      });
      
       $(document).on('click','.phoneCertify',function(){
     	  var merchant_uid1 = "<c:out value="${merchant_uid}" />";
@@ -289,8 +332,16 @@
   	    alert('휴대폰 인증을 해주시기 바랍니다.');
   	    return false;
   	   }
+  	   
+  	   var broswerInfo = navigator.userAgent;
+	   //ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+	   if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+	         $('#spinner').show();
+	   }
   	
   	}
+      
+      
 function check(re, what, message) {
     if(re.test(what.value)) {
         return true;
@@ -300,7 +351,30 @@ function check(re, what, message) {
     what.focus();
     //return false;
 }
-      
+
+$(window).bind("pageshow", function(event) {
+	$('#spinner').hide();
+});
+
+
+
+	var naverLogin = new naver.LoginWithNaverId(
+		{
+			clientId: "0PgcZhDTwaod8UwQsoKX",
+			callbackUrl: "https://coksabu.com/loginCallBackNaver",
+			isPopup: false, /* 팝업을 통한 연동처리 여부 */
+			loginButton: {color: "green", type: 2, height: 120} /* 로그인 버튼의 타입을 지정 */
+		}
+	);
+	
+	/* 설정정보를 초기화하고 연동을 준비 */
+	naverLogin.init();
+	
+	$(document).on("click",".naver-customize",function(event){
+	  	  naverLogin.init(); 
+	  	  location.href = naverLogin.generateAuthorizeUrl();
+		});
+	
       </script>
 </body>
 </html>

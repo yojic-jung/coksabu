@@ -869,6 +869,8 @@ window.location="./applynologin";
             </div>
            </section>
            
+           <img id="spinner" src="<c:url value='/resources/img/spinner.svg' />" style="position:fixed; left:50%; transform:translate(-50%, -50%);top:50%; z-index:99;display:none;"/>
+           
         <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
         <script src="resources/jquery-number-master/jquery.number.min.js"></script>
  <script>
@@ -886,6 +888,7 @@ window.location="./applynologin";
 	  
 	  if(limit == "limit"){
 		  alert("수업 요청은 3개까지만 가능합니다. [마이페이지][수업요청내역]에서 기존 수업요청을 삭제하고 다시 요청해주시기 바랍니다.");
+		  window.location.href="./mypage";
 	  }
 	 
 	  $(document).on('keyup','.message',function(){
@@ -998,7 +1001,13 @@ window.location="./applynologin";
 			alert('남기고 싶은 말씀을 200글자 미만으로 적어주세요.');
 			return false;
 		}
-});
+		var broswerInfo = navigator.userAgent;
+ 	    //ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+ 	    if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+            $('#spinner').show();
+        }
+ 	    
+	});
 	
 	$('.locale-main').change(function(){
 	    $(".disp").removeClass('disp');
@@ -1017,6 +1026,12 @@ window.location="./applynologin";
 	});
 	
  });
+ 
+ 
+
+	$(window).bind("pageshow", function(event) {
+		$('#spinner').hide();
+	});
  </script>
 </body>
 </html>

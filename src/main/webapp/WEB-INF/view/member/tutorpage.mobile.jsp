@@ -17,10 +17,9 @@
           }
          
           .update,.delete{
-           border-radius:10px;
-           border:1px solid gray; 
-           background:gray; 
-           color:white; 
+           border-radius:50px;
+           border:3px solid #EF904F; 
+           color:#EF904F; 
            text-decoration:none;
            padding:15px;
            cursor:pointer;
@@ -31,10 +30,11 @@
             background:rgb(224, 223, 223);
         }
         .div-title{
-            width:80%; margin:20px auto 0px auto; padding:30px 0px 20px 10px;
+            width:90%; margin:0px auto; padding:30px 0px 20px 10px;
              font-family:'JejuGothic'; color:rgb(97, 96, 96);
-             font-size:25px;
+             font-size:40px;
         }
+        
 
         .menu td{
         font-family: 'JejuGothic'; 
@@ -222,39 +222,35 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
   
         <section>
             
-            <div style="background:rgb(233, 232, 232); padding:30px 30px 250px 30px;min-height:1400px;">
+            <div style="min-height:1400px;">
             
-            <c:if test="${certify == 0 }" >
-            	<div style="min-height:250px; padding:50px">
-            		<div style="width:90%; margin:auto;font-size:35px;line-heigth:200%;">
-            			"수업"을 만들기 위해서는 콕사부 인증정보를 설정하셔야 합니다. 
-            			<br/><br/>
-            			<div style="text-align:center;">
-            			<a href="./lessoncertify"><button style="padding:10px; font-size:30px;">인증하기</button></a>
-            			</div>
-            		</div>
-            	</div>
-            </c:if>
-            <c:if test="${pro ==null && certify!=0 }">
-            <div class="div-title">프로필</div>
-                <div style="width:90%;font-size:30px; background:white; margin: auto; padding:40px;text-align:center;">
-                <div style="margin-top:30px;">프로필을 작성하지 않으셨습니다. <a href="./profile" style="text-decoration:none; color:black;"><b>"프로필"</b></a>을 작성해주세요.</div>
-                <div style="text-align:center; padding:30px">
-                <a href="./profile" style="text-decoration:none;"><button style=" padding:10px; color:white; background:dimgray;border-radius:10px;font-size:30px;">지금 프로필 작성하기</button></a>
+            <c:choose>
+            <c:when test="${pro ==null}">
+             <div style=" background:#F7F7F7;padding-bottom:30px;">
+            	<div class="div-title">프로필</div>
+                <div style="width:90%;background:white;border:3px solid dimgray;border-radius:10px; margin: auto; padding:40px;text-align:center;">
+                <div style="margin-top:30px;font-size:30px;">프로필을 작성하지 않으셨습니다. <a href="./profile" style="text-decoration:none; color:black;"><b>"프로필"</b></a>을 작성해주세요.</div>
+                <a href="./profile" style="text-decoration:none;">
+                <div style="font-size:40px;width:90%;margin:80px auto 30px auto;border-radius:50px; padding:30px; background: #EF904F; color:white;">
+                <b> 지금 프로필 작성하기 </b>
                 </div>
+                </a>
                 </div>
-            </c:if>
-            <c:if test="${pro !=null }">
-                <div class="div-title">프로필</div>
-                <div style="width:90%; background:white; margin: auto; padding:40px;">
-                        <table style="font-family:JejuGothic; font-size: 30px;border-spacing:30px; ">
+             </div>   
+            </c:when>
+            <c:when test="${pro !=null }">
+            <div style=" background:#F7F7F7;padding-bottom:30px;">
+                <div style="width:90%;margin: auto;">
+                        <table style="width:100%;font-family:JejuGothic; font-size:35px;border-spacing:50px;text-align: center; ">
                             <tr>
-                                <td rowspan="2"> <img style="width:140px; height:140px; border-radius:70px;" 
+                                <td> <img style="width:300px;height:300px;border-radius:150px;" 
                                 src="<c:url value="/img/profileImg/${pro.imgPath}" />"  alt="본인 프로필 이미지"/></td>
-                                <td style="color:rgb(87, 87, 87); padding:0px 5px 0px 20px;font-size:32px">${pro.nickname}님 (${pro.birth})</td>
                             </tr>
                             <tr>
-                                <td style="line-height:160%;color:rgb(151, 149, 149);padding:0px 5px 0px 20px;">
+                            	<td style="color:rgb(87, 87, 87);font-size:40px">${pro.nickname}님 (${pro.birth})</td>
+                            </tr>
+                            <tr>
+                                <td style="line-height:160%;color:rgb(151, 149, 149);">
 								<c:choose>
 									<c:when test="${pro.academy ne '' and pro.academy != null}">
 										${pro.academy} ${pro.academyd}
@@ -263,14 +259,14 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 										${pro.universe} ${pro.univsub}
 									</c:otherwise>
 								</c:choose>                                
-								<br/>경력 <c:if test="${pro.career!=0}">${pro.career}년이상</c:if><c:if test="${pro.career==0}">1년미만</c:if>
+								&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; 경력 <c:if test="${pro.career!=0}">${pro.career}년이상</c:if><c:if test="${pro.career==0}">1년미만</c:if>
                                 </td>
                             </tr>
                             <tr>
-                                <td  colspan="2" class="locale" style="padding:0px 5px 0px 20px;line-height:40px;">${pro.locales}</td>
+                                <td class="locale" style="line-height:150%;word-break:keep-all;">${pro.locales}</td>
                             </tr>
                         </table>
-                        <div style="color:#FFBB00;font-size:30px; text-align:center;">
+                        <div style="color:#FFBB00;font-size:40px; text-align:center;">
                         	<c:if test="${pro.certify==0}" >
                           		<b>본인/학력인증을 해주세요.<br/>
                           		인증이 완료되어야 수업이 노출되며 지원서 발송도 가능합니다.</b>
@@ -285,32 +281,26 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                           		<b><span style="color: orange">&quot;심사 중&quot;</span> 인증 심사에는 1~2일 정도 걸릴 수 있습니다.&nbsp;&nbsp;</b>
                             </c:if>
                         </div>
-                        <div style="text-align:right;font-size:24px;line-height:250%; color:rgb(117, 116, 116);margin-top:20px;">
-                            <span class="certify" style="cursor:pointer; border-radius:13px; padding:15px; border:1px solid rgb(117, 116, 116); background:dimgray; color:white;">
-                                  	 <b> 본인/학력 인증 </b>
-                            </span>
-                            &nbsp;&nbsp;
-                            <a href="./profile"  style="text-decoration:none;color:black">
-                            <span class="profile" style="border-radius:13px; padding:15px; border:1px solid rgb(117, 116, 116); background:dimgray; color:white;">
-                                  	  <b> 프로필 수정하기 </b>
-                            </span>
-                            </a>
-                        </div>
-                        
                 </div>
-                <div class="div-title">수업 목록 (${size}/3)</div>
-                        <div style="width:100%; background:white; margin:auto; padding:40px;">
-                            <div class="lesson-make lesson-permit" href="#lesson" style="margin:auto; width: 80%; border:1px dashed gray;cursor:pointer">
-                               <div style="text-align:center; margin:15px auto; font-size:30px; color:rgb(158, 158, 158)">
-                                    
-                                    <b>
-                                    	<span style="font-size:23px;" >수업은 최대 3개까지 만들기가 가능합니다.</span>
-                                    <br/>
-                                    +<br/>
-                                    	수업 만들기
-                                    </b>
-                               </div>
+                </div>
+                 <div style="text-align:center;width:80%;margin:50px auto;border-radius:20px; border:2px dashed dimgray;font-size:40px;">
+                            <div class="certify" style="width:90%;margin:50px auto;cursor:pointer; border-radius:50px; padding:30px; background: #EF904F; color:white;">
+                                  	 <b> 본인/학력 인증하기 </b>
                             </div>
+                            
+                            <a href="./profile"  style="text-decoration:none;color:black">
+                            <div class="profile" style="width:90%;margin:50px auto;border-radius:50px; padding:30px; background: #EF904F; color:white;">
+                                  	  <b> 프로필 수정하기 </b>
+                            </div>
+                            </a>
+                            
+                            <div class="lesson-make lesson-permit" style="text-align:center;width:90%;margin:50px auto;border-radius:50px; padding:30px; background: #EF904F; color:white;">
+                                    	<b> 수업 만들기 </b>
+                            </div>
+                        </div>
+                <div class="div-title" style="margin-top:100px;">수업 목록 (${size}/3)</div>
+                        <div style="width:90%;background:white;;border:1px solid lightgray;border-radius:10px; margin:auto; padding:40px;">
+                            
 						<c:if test="${size != 0}" >
                             <div style="min-height:300px;width:100%">
 						
@@ -355,7 +345,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 						<tr>
 							<td colspan="2" style="border-bottom:1px solid gray;">
 							<c:if test="${lesson.visible==1 }">
-							<div style="font-size:22px;margin:30px auto 100px auto;padding:0px;text-align:center;">
+							<div style="font-size:30px;margin:30px auto 100px auto;padding:0px;text-align:center;">
 							<span class="update">수정하기<input type="text" class="idval" style="display:none;" value="${lesson.id}" ></span>
 							<a class="delete-a" href="./deletelesson?id=${lesson.id} " style="text-decoration:none;"><span class="delete">삭제하기</span></a></div>
 							</c:if>
@@ -368,7 +358,8 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                             </div>
                             </c:if>
                         </div>
-            </c:if>
+            </c:when>
+            </c:choose>
             
             <div style="height:300px;"></div>
             </div>

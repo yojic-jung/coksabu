@@ -200,18 +200,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
             
             <div style="background:rgb(233, 232, 232); padding:30px;">
             
-            <c:if test="${certify == 0 }" >
-            	<div style="min-height:250px; padding:50px">
-            		<div style="width:600px; margin:auto;font-size:20px;">
-            			"수업"을 만들기 위해서는 콕사부 인증정보를 설정하셔야 합니다. 
-            			<br/><br/>
-            			<div style="text-align:center;">
-            			<a href="./lessoncertify"><button style="padding:5px; font-size:20px;background:white;">인증하기</button></a>
-            			</div>
-            		</div>
-            	</div>
-            </c:if>
-            <c:if test="${pro ==null && certify!=0 }">
+            <c:if test="${pro ==null}">
             <div class="div-title">프로필</div>
                 <div style="width:800px; background:white; margin: auto; padding:20px;text-align:center;">
                 <div style="margin-top:30px;">프로필을 작성하지 않으셨습니다. <a href="./profile" style="text-decoration:none; color:black;"><b>"프로필"</b></a>을 작성해주세요.</div>
@@ -404,7 +393,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
           
           $('.certify').click(function(){
          	 var url = './certify?email='+email;
-         	 window.open(url,'', 'width=700, height=550');
+         	 window.open(url,'', 'width=600, height=600');
            });
           
           

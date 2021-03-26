@@ -78,18 +78,29 @@ margin:20px;
 <div style="margin:20px 0px">은행명 
 <select class="account" style="padding:10px; width:200px;font-size:20px;" name="account">
 			<option>--선택--</option>
-			<option>농협</option>
 			<option>국민은행</option>
-			<option>신한은행</option>
-			<option>우리은행</option>
 			<option>기업은행</option>
-			<option>KEB하나은행</option>
+			<option>농협은행</option>
+			<option>신한(구조흥)은행</option>
+			<option>우리은행</option>
+			<option>하나은행</option>
+			<option>카카오뱅크</option>
+			<option>K뱅크</option>
+			<option>SC(구제일)은행</option>
+			<option>경남은행</option>
+			<option>광주은행</option>
 			<option>대구은행</option>
 			<option>부산은행</option>
+			<option>산업은행</option>
+			<option>수협은행</option>
+			<option>전북은행</option>
+			<option>제주은행</option>
+			<option>한국씨티은행</option>
+			<option>새마을금고</option>
+			<option>신협</option>
+			<option>상호저축은행</option>
+			<option>산림조합</option>
 			<option>우체국</option>
-			<option>SC제일은행</option>
-			<option>광주은행</option>
-			<option>경남은행</option>
 			</select>
 </div>
 계좌번호  <input class='accountnumber' type='text' value="${account.accountNumber}" placeholder=" '-' 없이 숫자만 입력해주세요." name='accountNumber'/>

@@ -39,10 +39,11 @@
 
    
    .m-jbMenu{background:white;width:100%;padding:30px;font-size:80px;
+   position:fixed;
+   top:0px;
    font-family:'Do Hyeon';
    border-bottom:1px solid gray;z-index:3}
    
-   .m-jbFixed{position:fixed;top:0}
    .m-btn{width:50px;height:50px;
    position:absolute;right:0;top:0;z-index:1;
    cursor:pointer;display:inline-block;
@@ -235,7 +236,106 @@ width:100%;margin:auto
 		color:black;
 }
 
+.cok-intro{
+	background:white;
+	width:90%;height:90%;font-size:60px;
+	line-height:180%;
+	font-family:Malgun-Gothic;
+	border-radius:30px;
+	color:#002266;
+	z-index:100;
+	position:fixed;top:50%;left:50%;transform: translate(-50%, -50%);
+	border:5px solid lightgray;
+	display:none;
+}
+
+.intro-title{
+text-align:center;font-family:'Do Hyeon';color: white;font-size:40px;padding:20px;
+border-bottom:2px solid lightgray;text-align:right;
+}
+
+.intro-close1{
+font-size:50px;padding-right:30px;
+color:dimgray;
+}
+
+.intro-close2{
+float:right;clear:right;font-size:50px;padding-right:30px;
+color:dimgray;
+}
+
+.intro-content{
+border-radius:30px;font-weight:bolder;
+width:90%;
+}
+.intro-text{
+width:90%;
+z-index:101;
+border:5px solid gray;
+border-radius:30px;
+background:white;
+position:fixed;top:50%;left:50%;transform: translate(-50%, -50%);
+padding:50px 0px;
+}
+.teach-intro{
+font-size:40px;text-align:center;
+width:80%;padding:15px;color:white; background:#002266;
+margin:auto;
+border-radius:80px;
+}
+.student-intro{
+font-size:40px;text-align:center;
+width:80%;padding:15px;color: #002266; background:white;border:5px solid #002266;
+margin:60px auto 0px auto;
+border-radius:80px;
+}
+.teach-text1, .teach-text2, .teach-text3, .student-text1, .student-text2, .student-text3{
+	display:none;
+	font-size:50px;
+	line-height:160%;
+	width:90%;
+z-index:101;
+border:5px solid gray;
+border-radius:30px;
+background:white;
+position:fixed;top:50%;left:50%;transform: translate(-50%, -50%);
+padding:50px 20px;
+}
+.teach-next1, .teach-next2, .teach-next3, .student-next1, .student-next2, .student-next3{
+font-size:40px;text-align:center;
+width:80%;padding:15px;color:white; background:#002266;
+margin:80px auto;
+border-radius:80px;
+}
+
+
+.naver-customize{
+	width:80%;text-align:center;
+	 background-image:url(<c:url value="/resources/img/naverbackground.png" />);
+	font-family:Gothic;font-size:40px;color:white;border-radius:80px; padding:15px;font-weight:bolder;
+	margin:20px auto;line-height:200%:
+	}
    </style>
+   <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
+   <!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2787801881458923');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+
    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-413632618"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -246,9 +346,6 @@ width:100%;margin:auto
 </script>
 </head>
 <body>
-<script>
-
-</script>
 <header class="m-header">
   
     <div class="m-jbMenu">
@@ -286,13 +383,98 @@ width:100%;margin:auto
 
   	</header>
   	 	
+  	
+  	<div class="cok-intro">
+		<div class="intro-title">
+			<span class="intro-close1">[하루동안 열지않음 X]</span>
+			.
+			<span class="intro-close2">[닫기 X]</span>
+		</div>
+		<div class="intro-content">
+			<div style="width:90%;margin:100px auto 100px auto;font-size:65px;">콕사부에 대해 알아보고<br/>과외수업을 진행해보세요.</div>
+			<div style="text-align:center;"><img style="width:100%;" src="<c:url value="/resources/img/people.png" />"  alt=""/></div>
+			<div class="intro-text">
+				<div class="teach-intro">선생님으로 알아보기</div>
+				<div class="student-intro">학생/학부모님으로 알아보기</div>
+			</div>
+			<div class="teach-text1">
+				<div style="text-align:center;margin:60px;"><img style="width:100%;" src="<c:url value="/resources/img/threeclass.png" />"  alt=""/></div>
+				<div style="width:80%;margin:30px auto;">
+				콕사부 선생님은 최대 3개의 수업을 무료로 만들어 홍보 할 수 있습니다.
+				</div>
+				<div class="teach-next1">다음 알아보기</div>		
+			</div>
+			<div class="teach-text2">
+				<div style="text-align:center;margin:60px;"><img style="width:30%;" src="<c:url value="/resources/img/notification.png" />"  alt=""/></div>
+				<div style="width:80%;margin:30px auto;">
+				앱을 통해 학생의 과외 요청에 실시간 알림을 제공 받을수도 있습니다.
+				</div>
+				<div class="teach-next2">다음 알아보기</div>		
+			</div>
+			<div class="teach-text3">
+				<div style="text-align:center;margin:60px;"><img style="width:40%;" src="<c:url value="/resources/img/gawerespond.png" />"  alt=""/></div>
+				<div style="width:80%;margin:30px auto;">
+				물론, 학생의 과외요청서에 대해 무료로 지원서를 제출할 수 있습니다.
+				</div>
+				<div class="teach-next3 teach-end">콕사부 홈페이지 더보기</div>
+				<div class="naver-customize">
+        			<span style="font-weight:bolder;float:left;clear:right;">
+        				<img src="<c:url value='/resources/img/naver.png' />"  style="width:80px;height:80px;"/>
+        			</span>
+        			네이버 아이디로 로그인
+        		</div>
+        		<div style="display:none;">
+        			<div id="naverIdLogin"></div>
+        		</div>
+			</div>
+			
+			<div class="student-text1">
+				<div style="text-align:center;margin:60px;"><img style="width:100%;" src="<c:url value="/resources/img/threeclass.png" />"  alt=""/></div>
+				<div style="width:80%;margin:30px auto;">
+				수업목록을 통해 구체적인 선생님 정보와 수업정보를 알 수 있으며,<br/>
+				성별, 경력, 과외가능위치 등 상세검색을 통해 원하는 선생님을 찾을 수 있습니다.
+				</div>
+				<div class="student-next1">다음 알아보기</div>		
+			</div>
+			<div class="student-text2">
+				<div style="text-align:center;margin:60px;"><img style="width:100%;" src="<c:url value="/resources/img/gaweapplication.png" />"  alt=""/></div>
+				<div style="width:80%;margin:30px auto;">
+				선생님을 직접 찾지 않더라고 과외요청서를 작성하면,<br/> 
+				수업 가능한 선생님의 지원서를 받아 볼 수 있습니다.
+				</div>
+				<div class="student-next2">다음 알아보기</div>		
+			</div>
+			<div class="student-text3">
+				<div style="text-align:center;margin:60px;"><img style="width:30%;" src="<c:url value="/resources/img/chat.png" />"  alt=""/></div>
+				<div style="width:80%;margin:30px auto;">
+				채팅을 통하여 안전하게 상담 또한 진행 할 수 있으니,<br/>
+				지금 콕사부를 통해 과외선생님을 만나보세요!
+				</div>
+				<div class="student-next3 student-end">콕사부 홈페이지 더보기</div>
+				
+				<div class="naver-customize">
+        			<span style="font-weight:bolder;float:left;clear:right;">
+        				<img src="<c:url value='/resources/img/naver.png' />"  style="width:80px;height:80px;"/>
+        			</span>
+        			네이버 아이디로 로그인
+        		</div>
+				<div style="display:none;">
+        			<div id="naverIdLogin"></div>
+        		</div>
+			</div>
+		</div>
+	</div> 	
+  	 	
 	<section>
 	
+	
+	
+	<div style="height:140px;"></div>
 	 <ul id="inner-fade">
             
             <li>
             	<img class="fadeImg" src="<c:url value="/resources/img/main1.png" />"  alt="메인이미지1"/>
-            	<div class="fade-content" style="text-align:center;">선생님 "수수료 무료" 프로모션<br/>회원가입 후 등록가능</div>
+            	<div class="fade-content" style="text-align:center;">지금 가입하면<br/>선생님 "과외 수수료 2개월 무료"</div>
             </li>
             <li>
             	<img class="fadeImg" src="<c:url value="/resources/img/main2.png" />"  alt="메인이미지2"/>
@@ -425,6 +607,55 @@ width:100%;margin:auto
     <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
     <script src="<c:url value="/resources/js/jquery.innerfade.js"/>"></script>
     <script>
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    
+    var param = getParameterByName("inform");
+
+
+    
+    // 쿠키설정
+    var strReturn;
+    //아래에 정의되어 있는 GetCookie()라는 함수를 호출하여 현재 쿠키값이 있는지 확인
+    strReturn = GetCookie('promoteCookie');
+    //만약 쿠키가 없다면 starPop()함수를 호출하여 오픈 창으로 이벤트 페이지 실행
+    if(strReturn == null || strReturn == '0'){
+    	startPromote();
+    }
+ 
+  	
+  	function GetCookie(sName){
+  		/*저장되어있는 쿠키 정보 불러오기
+  		오픈 페이지에서 부여하는 쿠키의 이름 및 값을 aCookie라는 변수에 저장.
+  		여기서는 test_cookie=1이란 값이 저장 */
+  		var aCookie = document.cookie.split("; ");
+  		//검색을 원하는 쿠키명(test_cookie)과 저장되어 있는 쿠키의 이름이 일치하는지 확인
+  		for(var i=0; i<aCookie.length; i++){
+  			var aCrumb = aCookie[i].split("=");
+  			if(sName == aCrumb[0]){
+  				return unescape(aCrumb[1]);
+  			}
+  		}
+  		return null;
+  	}
+  	//쿠키가 없을 경우 오픈창을 띄우는 스크립트 
+  	function startPromote(){
+  		if(param =="user"){
+  			$('.cok-intro').show();
+  		}
+  	}
+  	
+  	function SetCookie(sName, sValue){
+  		var date = new Date();
+        date.setTime(date.getTime() + (1*24*60*60*1000));
+		document.cookie = sName + "=" + escape(sValue)+";expires="+date.toGMTString();
+	}
+    
     $(document).on("click","a",function(event){
     	var broswerInfo = navigator.userAgent;
     	//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
@@ -440,15 +671,7 @@ width:100%;margin:auto
              window.location = linkLocation;
     }
     $(document).ready(function(){
-            var jbOffset = $('.m-jbMenu').offset(); //상단메뉴 좌표 가져오는 코드
-                $( window ).scroll( function() {        
-                  if ( $( document ).scrollTop() > jbOffset.top ) { //scrollTop() 요청한 스크롤바의 수직위치 반환
-                    $( '.m-jbMenu' ).addClass( 'm-jbFixed' );
-                  }
-                  else {
-                    $( '.m-jbMenu' ).removeClass( 'm-jbFixed' );
-                  }
-                });
+            
             
             
                 $('.fadeImg').css('width',$(document).width());
@@ -464,6 +687,60 @@ width:100%;margin:auto
             
             
     	});
+    
+
+    
+    	$(".intro-close1").click(function() { 
+    		$('.cok-intro').remove();
+    		SetCookie('promoteCookie','1');
+		});
+    
+    	$(".intro-close2").click(function() { 
+    		$('.cok-intro').remove();
+		});
+    	
+    	
+    	
+    	$(".teach-intro").click(function() { 
+    		$('.intro-text').hide();
+    		$('.teach-text1').show();
+		});
+    	
+    	$(".teach-next1").click(function() { 
+    		$('.teach-text1').hide();
+    		$('.teach-text2').show();
+		});
+    	
+    	$(".teach-next2").click(function() { 
+    		$('.teach-text2').hide();
+    		$('.teach-text3').show();
+		});
+    	
+    	$(".teach-end").click(function() { 
+    		$('.cok-intro').remove();
+		});
+    	
+    	
+    	$(".student-intro").click(function() { 
+    		$('.intro-text').hide();
+    		$('.student-text1').show();
+		});
+    	
+    	$(".student-next1").click(function() { 
+    		$('.student-text1').hide();
+    		$('.student-text2').show();
+		});
+    	
+    	$(".student-next2").click(function() { 
+    		$('.student-text2').hide();
+    		$('.student-text3').show();
+		});
+    	
+    	$(".student-end").click(function() { 
+    		$('.cok-intro').remove();
+		});
+    	
+    	
     	$(".m-btn").click(function() { 
     		$("#m-menu").animate({
     			left:"0px"
@@ -512,6 +789,23 @@ width:100%;margin:auto
     		}
     	    
     	});
+    	
+    	  var naverLogin = new naver.LoginWithNaverId(
+      	  		{
+      	  			clientId: "0PgcZhDTwaod8UwQsoKX",
+      	  			callbackUrl: "https://coksabu.com/loginCallBackNaver",
+      	  			isPopup: false, /* 팝업을 통한 연동처리 여부 */
+      	  			loginButton: {color: "green", type: 3, height: 170} /* 로그인 버튼의 타입을 지정 */
+      	  		}
+      	  	);
+      	  	
+      	  	/* 설정정보를 초기화하고 연동을 준비 */
+      	  	naverLogin.init();
+      	  	
+      	  	$(document).on("click",".naver-customize",function(event){
+      	  	  naverLogin.init(); 
+      	  	  location.href = naverLogin.generateAuthorizeUrl();
+      		});
     	</script>
     	
     	 <%

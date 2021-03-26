@@ -164,6 +164,8 @@
 </div>
 </form>
 
+<img id="spinner" src="<c:url value='/resources/img/spinner.svg' />" style="position:fixed; left:50%; transform:translate(-50%, -50%);top:50%; z-index:99;display:none;"/>
+
 <div style="height:300px;"></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
@@ -178,6 +180,7 @@ $(document).ready(function(){
 		 $('.m-jbMenu').append("구매하기");
 	 }
 	
+	 
 
 });
 
@@ -267,6 +270,12 @@ function CheckForm(memberInfo){
 		return false;
 	}
 	
+	var broswerInfo = navigator.userAgent;
+      //ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+      if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+            $('#spinner').show();
+     }
+	
 }
 
 function check(re, what, message) {
@@ -279,6 +288,10 @@ what.focus();
 //return false;
 }
 
+
+$(window).bind("pageshow", function(event) {
+	$('#spinner').hide();
+});
 </script>
 </body>
 </html>

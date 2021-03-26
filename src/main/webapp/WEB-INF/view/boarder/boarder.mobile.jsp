@@ -40,7 +40,7 @@ width : 100%;
 	height : 100%; 
 	position : fixed; 
 	right : -101%; 
-	top:0px;
+	top:150px;
 	z-index : 10; 
 	transition: All 0.2s ease; 
 	-webkit-transition: All 0.2s ease; 
@@ -77,7 +77,7 @@ font-size:50px;
 	width : 100%; 
 height : 100%; 
 position : fixed; 
-top : 0px; 
+top : 150px; 
 right : -100%; 
 z-index : 10; 
 transition: All 0.2s ease; 
@@ -473,9 +473,11 @@ width:80%;
                     <li>경남</li>
                     <li>경북</li>
                     <li>대구</li>
+                    <li>광주</li>
                     <li>전남</li>
                     <li>전북</li>
                     <li>제주</li>
+                    <li></li>
                     <li></li>
                     <li></li>
                     <li></li>

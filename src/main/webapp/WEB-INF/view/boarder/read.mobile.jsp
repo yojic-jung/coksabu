@@ -17,10 +17,6 @@
 		line-height:200%;
     }
 
-   .m-jbFixed {
-   	position: fixed;
-    top: 0px;
-    }
     
     .m-fixed{
 	width: 100%;
@@ -548,16 +544,6 @@
     		
     		
     		
-                var jbOffset = $('.m-jbMenu').offset(); //상단메뉴 좌표 가져오는 코드
-                    $( window ).scroll( function(){        
-                      if ( $( document ).scrollTop() > jbOffset.top ) { //scrollTop() 요청한 스크롤바의 수직위치 반환
-                        $( '.m-jbMenu' ).addClass( 'm-jbFixed' );
-                      }
-                      else {
-                        $( '.m-jbMenu' ).removeClass( 'm-jbFixed' );
-                      }
-                    });
-                
                 
                     $('input:radio[name=subCate]').click(function(){
             			$('.highlight').css('box-shadow', '');

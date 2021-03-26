@@ -62,10 +62,15 @@
           #emailPassFind:hover{
           		text-decoration:underline;
           }
-  
+  	.naver-customize{
+	 background-image:url(<c:url value="/resources/img/naverbackground.png" />);
+	font-family:Gothic;font-size:15px;color:white;border-radius:10px; padding:5px;font-weight:bolder;
+	margin:20px auto;cursor:pointer;line-height:200%:
+	}
     </style>
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-  
+  <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
     <script>
 $(document).ready(function(){
 	
@@ -74,8 +79,8 @@ $(document).ready(function(){
 	    	alert(ex);
 	
     // 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
-    var userInputEmail = getCookie("userInputEmail");
-    $("input[name='email']").val(userInputEmail); 
+    var userInputEmailId = getCookie("userInputEmailId");
+    $("input[name='email']").val(userInputEmailId); 
      
     if($("input[name='email']").val() != ""){ // 그 전에 ID를 저장해서 처음 페이지 로딩 시, 입력 칸에 저장된 ID가 표시된 상태라면,
         $("#emailSave").attr("checked", true); // ID 저장하기를 체크 상태로 두기.
@@ -83,10 +88,10 @@ $(document).ready(function(){
      
     $("#emailSave").change(function(){ // 체크박스에 변화가 있다면,
         if($("#emailSave").is(":checked")){ // ID 저장하기 체크했을 때,
-            var userInputEmail = $("input[name='email']").val();
-            setCookie("userInputEmail", userInputEmail, 7); // 7일 동안 쿠키 보관
+            var userInputEmailId = $("input[name='email']").val();
+            setCookie("userInputEmailId", userInputEmailId, 7); // 7일 동안 쿠키 보관
         }else{ // ID 저장하기 체크 해제 시,
-            deleteCookie("userInputEmail");
+            deleteCookie("userInputEmailId");
         }
     });
      
@@ -94,9 +99,15 @@ $(document).ready(function(){
     $("input[name='email']").keyup(function(){ // ID 입력 칸에 ID를 입력할 때,
         if($("#emailSave").is(":checked")){ // ID 저장하기를 체크한 상태라면,
             var userInputEmail = $("input[name='email']").val();
-            setCookie("userInputEmail", userInputEmail, 30); // 30일 동안 쿠키 보관
+            setCookie("userInputEmailId", userInputEmail, 30); // 30일 동안 쿠키 보관
         }
     });
+    
+    $('#login-box').submit(function(){
+    	deleteCookie("userInputEmail");
+    	setCookie("userInputEmail", $('.email').val() , 180);
+    });
+    
     
 });
     
@@ -141,9 +152,9 @@ $(document).ready(function(){
     <div class="login-form">
     <div class="login-logo"><a href="./"><img style="width:200px" src="<c:url value="/resources/images/logo.png" />"   alt="로고"/></a></div>
     <div class="login-main">
-        <form method="post" action="./loginprocess">
+        <form id="login-box" method="post" action="./loginprocess">
             이메일<br/>
-            <input name="email" class="form-input" type="text"/><br/>
+            <input name="email" class="form-input email" type="text"/><br/>
             비밀번호<br/>
             <input name="password" class="form-input" type="password"/><br/>
             <div>
@@ -152,15 +163,44 @@ $(document).ready(function(){
             </div>
             <label><input type="checkbox" id="emailSave" /> 이메일 기억하기</label><br/>
             <div style="display:none">
-            <input id = "remember_me" name ="remember-me" type = "checkbox" checked/>Remember me<br/>
+            <input id="remember_me" name ="remember-me" type="checkbox" checked/>Remember me<br/>
 			</div>
             <input style="padding:15px; width:350px; background-color:rgb(68, 68, 68); 
             color : white; border:none; border-radius:5px; margin-top:20px;"
              type="submit" value="로그인" />
         </form>
+        <div style="text-align:center;">
+        	<div class="naver-customize">
+        		<span style="font-weight:bolder;float:left;clear:right;">
+        		<img src="<c:url value='/resources/img/naver.png' />"  style="width:40px;height:40px;"/>
+        		</span>
+        		네이버 아이디로 로그인
+        	</div>
+        	<div style="display:none;">
+        		<div id="naverIdLogin"></div>
+        	</div>
+        </div>
     </div>
 </div>
   </section>    
-      
+      <script>
+      var naverLogin = new naver.LoginWithNaverId(
+    	  		{
+    	  			clientId: "0PgcZhDTwaod8UwQsoKX",
+    	  			callbackUrl: "https://coksabu.com/loginCallBackNaver",
+    	  			isPopup: false, /* 팝업을 통한 연동처리 여부 */
+    	  			loginButton: {color: "green", type: 3, height: 170} /* 로그인 버튼의 타입을 지정 */
+    	  		}
+    	  	);
+    	  	
+    	  	/* 설정정보를 초기화하고 연동을 준비 */
+    	  	naverLogin.init();
+    	  	
+    	  	$(document).on("click",".naver-customize",function(event){
+    	  	  naverLogin.init(); 
+    	  	  location.href = naverLogin.generateAuthorizeUrl();
+    		});
+    	  	
+    </script>
 </body>
 </html>

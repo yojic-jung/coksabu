@@ -95,13 +95,11 @@
           font-size:80px;
           font-family:'Do Hyeon'; 
           border-bottom:1px solid gray; 
-          z-index:3;
+          position:fixed;
+ 		  top:0px;
+          z-index:99;
           text-align:center;
 }
-.m-jbFixed {
-            position: fixed;
-            top: 0px;
-          }
           
 .m-title{
 	   	 color:orange;
@@ -125,6 +123,25 @@
   gtag('js', new Date());
   gtag('config', 'AW-413632618');
 </script>
+
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2787801881458923');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+
 <decorator:head />
 </head>
 <body>
@@ -163,6 +180,7 @@
  	</div>
  	
 </header>
+<div class="m-fix-background" style="height:160px"></div>
 <div class="m-page-transit" style="text-align:center;width:100%;position:fixed;left:0px;top:0px;background: white; height:100%;z-index:10;">
     <img src="<c:url value="/resources/img/Spin-1s-124px.svg" />"  style="margin-top:50%;"/>
 </div>
@@ -230,18 +248,6 @@ $(document).ready(function(){
 
 	var filter = "win16|win32|win64|mac|macintel";
 	
-	
-	var jbOffset = $('.m-jbMenu').offset(); //상단메뉴 좌표 가져오는 코드
-    $( window ).scroll( function() {        
-      if ( $( document ).scrollTop() > jbOffset.top ) { //scrollTop() 요청한 스크롤바의 수직위치 반환
-        $( '.m-jbMenu' ).addClass( 'm-jbFixed' );
-      }
-      else {
-        $( '.m-jbMenu' ).removeClass( 'm-jbFixed' );
-      }
-    });
-	
-	
 	if(navigator.platform){
 		if(0 > filter.indexOf(navigator.platform.toLowerCase())){
 			$('.pc-header').remove();
@@ -249,6 +255,7 @@ $(document).ready(function(){
 		}else{
 			$('.m-header').remove();
 			$('.m-footer').remove();
+			$('.m-fix-background').remove();
 		}
 	}
 

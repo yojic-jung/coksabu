@@ -36,19 +36,22 @@
         }
 
 .inner-main{
+		width:50%;
+			text-align:center;
 			display:inline-block;
-			background:white;
 			padding:40px;
-			border-radius: 20px 20px 0px 0px;
-			border:3px solid gray;
-			border-bottom:3px solid white;
-			 font-size:35px;
+			border-bottom:5px solid black;
+			font-size:40px;
+			font-weight:bolder;
 }
 .inner-sub{
+			width:50%;
+			text-align:center;
 			display:inline-block;
-			background:white;
 			padding:40px;
-			border-radius: 20px 20px 0px 0px;
+			border-bottom:1px solid gray;
+			font-size:40px;
+			font-weight:bolder;
 }
 #load{
 		padding:30px;
@@ -84,18 +87,19 @@ border:1px solid gray; padding:5px 30px;cursor:pointer;font-size:30px;
 
 </head>
 <body>
-<div style="background:rgb(233, 232, 232); padding:30px 30px 240px 30px;min-height:1800px;">
-  <div class="div-title">
- 
-<div class="inner-main">
-  <a href="/purchaselist" style="color: black;font-weight:bolder;">일반거래 구매내역</a>
-  </div>
-  <div class="inner-sub">
-  <a href="/proposalpurchase" style="color: gray;text-decoration:none;">거래제안서 구매내역</a>
-  </div>
+ <div style="background:white;min-height:1800px;">
+ <table style="width:100%;">
+ 	<tr>
+ 		<td  class="inner-main">
+ 			<a href="/purchaselist" style="color: black;font-weight:bolder;text-decoration:none;">일반거래 구매내역</a>
+ 		</td>
+ 		<td  class="inner-sub">
+  			<a href="/proposalpurchase" style="color: gray;text-decoration:none;">거래제안서 구매내역</a>
+  		</td>
+ 	</tr>
+ </table>
 
- </div>
- <div style="width:90%;; background:white; margin: auto; padding:20px;min-height:500px;;border:3px solid gray;">
+ <div style="width:90%;; background:white; margin:50px auto;">
  	
  	<form method="post" onSubmit="return checkForm(this)">
  	<div style="position:relative;width:700px; margin:auto;">
@@ -177,7 +181,6 @@ border:1px solid gray; padding:5px 30px;cursor:pointer;font-size:30px;
  </div>
    <div style="height:500px;"></div>
  </div>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 <script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
 <script src="resources/jquery-number-master/jquery.number.min.js"></script>

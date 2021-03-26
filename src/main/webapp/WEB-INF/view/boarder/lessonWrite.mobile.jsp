@@ -29,6 +29,18 @@
             width:800px; margin:auto; padding:30px 0px 20px 10px;
              font-family:'JejuGothic'; color:rgb(97, 96, 96);
         }
+        
+        #imgplus{
+        	width:100px;height:100px;
+        	backgroud:white;
+        	border-radius:40px;
+        	border:4px solid lightgray;
+        	cursor:pointer;
+        	position:relative;
+        	top:-80px;
+        	right:-300px;
+    	}
+    	
 		.menu{
 			width:100%;
 		}
@@ -37,43 +49,82 @@
         font-family: 'JejuGothic'; 
         float:left;
         text-align:center;
-        padding:30px 10px;
-         width:16%;
+        padding:30px 0px;
+         width:16.5%;
         cursor:pointer;
       }
       .menu-td{
-        background:rgb(63, 63, 61);
+        background:#FBEADC;
         color:white;
-        font-size:25px;
+        font-size:35px;
+        font-weight:bolder;
+        color:#EF904F;
       }
       .td-trans{
         background:white;
         color:rgb(63, 63, 61);
-        border-top: 5px solid rgb(63, 63, 61);
+        border-top: 5px solid #FBEADC;
+         color:#EF904F;
       }
       
       .price-table{
       border-spacing:20px 60px;
       }
-      .btn-div{
-	  	width:650px;text-align:center;
-	  	margin:40px auto;
-	  }
+
+		.btn-div{
+			width:100%;
+		font-size:50px;
+		font-weight:bolder;
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		text-align:center;
+		}
+
+		.btn1{
+			width:100%;
+			text-align:center;
+			position:fixed; bottom:0px; left:0px;
+			font-size:50px; padding:30px 0px;
+			background:#F4C60B;
+        	color:white;
+			background:#F4C60B;
+        	color:white;
+		}
+		
+		.btn2, .btn3, .btn4, .btn5, .make-lesson{
+			width:50%;
+			text-align:center;
+			font-size:50px; padding:30px 0px;
+			background:#F4C60B;
+        	color:white;
+			background:#F4C60B;
+			display:inline-block;
+		}	
+		
+		.prev2, .prev3, .prev4, .prev5, .prev5, .prev6 {
+			width:50%;
+			text-align:center;
+			font-size:50px; padding:30px 0px;
+			border-top:10px solid #F4C60B;
+        	color:#F4C60B;
+        	background:white;
+        	float:left;
+        	display:inline-block;
+		}
+		
+
       .btn{
-      margin:0px 10px;
-        font-size:25px;
         border-radius:5px;
-        padding:15px;
         cursor:pointer;
-        background:rgb(75, 74, 74);
-        color:white;
+        
       }
       
       .img-add{
-      	padding:10px;
+      	padding:20px;
       	border-radius:15px;
       	background:black;
-      	font-size:30px;
+      	font-size:40px;
       	color:white;
       	cursor:pointer;
       }
@@ -84,7 +135,7 @@
       border:none;
       }
       .btnc{
-        font-size:24px;
+        font-size:35px;
         border-radius:10px;
         padding:15px;
         background: rgb(75, 74, 74);
@@ -92,22 +143,21 @@
         cursor:pointer;
       }
       .x-btn{
-      	margin-left:10px;
-      	font-size:25px;
-      	padding:5px 10px;
-      	border-radius:5px;
-      	background:rgb(63, 63, 61);
-        color:white;
-        cursor:pointer;
+      	font-size:40px;
+            padding:10px;
+            color:#D5D5D5;
       }
       .service-cate {
-        padding:15px;
-        font-size:30px; border-radius:10px;
+        padding:30px;
+        font-size:50px; border-radius:20px;
+       	width:70%;
+       	 color:dimgray;border:5px solid #BDBDBD;background:#F9F9F9;
         margin-top:20px;
+        
       }
       
       .seg-table td{
-      	padding:0px 20px;
+      	padding:0px 10px;
       }
       
       .seg-table tr:nth-child(1) td{
@@ -119,10 +169,10 @@
       	padding-bottom:60px;
       }
       .seg-table td:nth-child(2n){
-      	background:#EAEAEA;
+      	background:#EBEBEB
       }
        .seg-table td:nth-child(2n+1){
-      	background:#D5D5D5;
+      	background:#F6F6F6;
       }
       .seg-table select{
       	font-size:35px;
@@ -136,35 +186,45 @@
       }
 
       .teacher-intr{
-      	font-size:35px;
+      	font-size:40px;
         font-family: 'JejuGothic'; 
-        width:80%;
+        width:90%;
         min-height:400px;
         margin:30px auto;
         line-height:180%;
       }
       .career-op, .career-op1, .career-op2, .career-op3, .career-op4 {
         padding:10px;
-        font-size:30px;
-        margin-top:10px;
+        font-size:40px;
+        margin:10px;
       }
 
       .career-disc{
         width:70%;
-        font-size:25px;
+        font-size:40px;
         padding:10px;
       }
 	
 	  .career-box{
 		border:0.5px solid gray; 
-		width:90%;
+		width:100%;
 		min-height:150px; 
 		margin-top:20px;
 		font-size:25px;
-		padding:15px;
+		padding:10px;
 		color:gray;
 		line-height:300%;
 		}
+		
+	.car{
+		 	margin:20px;
+            font-size:30px;
+            padding:10px;
+            border-radius:50px;
+            background:#F2F3F7;
+            display:inline-block;
+	}
+	
       .del-btn{
         color:white;
         background:rgb(63, 63, 61);
@@ -184,6 +244,9 @@
       	min-height:200px;
       }
 
+input[type="checkbox"]{
+	width:20px;height:20px;
+}
     </style>
 <title>수업 만들기</title>
 </head>
@@ -195,11 +258,11 @@
                     <table class="menu">
                       <tr>
                       <td class="menu-td">서비스</td>
-                      <td class="menu-td">수업제목</td>
-                      <td class="menu-td">수업정보</td>
-                      <td class="menu-td">선생님소개</td>
+                      <td class="menu-td">제목</td>
+                      <td class="menu-td">정보</td>
+                      <td class="menu-td">소개</td>
                       <td class="menu-td">미디어</td>
-                      <td class="menu-td">정책안내</td>
+                      <td class="menu-td">안내</td>
                       </tr>
                     </table>
 
@@ -210,7 +273,7 @@
                   <!-- 선생님 소개 -->
                     <div class="teacher-intr" >
                     
-                        <div style="margin-top:20px;line-height:180%;font-size:35px;">
+                        <div style="margin-top:20px;line-height:180%;font-size:40px;">
                           	서비스 카테고리<br/>
                           <select name="cate" class="service-cate" id="service-cate">
                             <option>--선택--</option>
@@ -226,9 +289,10 @@
                         
                         <div style="min-height:300px;">
                          <div class="service-table" style="margin-top:80px;display:none;">
+                         
                         	<table class="seg-table" style="border-spacing:0px;font-size:30px;width:100%;">
                         		<tr>
-                        			<td>제공 수업1</td><td>제공 수업2</td><td>제공 수업3</td>
+                        			<td>제공 수업1</td><td>제공 수업2(선택)</td><td>제공 수업3(선택)</td>
                         		</tr>
                         		<tr class="seg-cate" style="display:none" >
                         			<td>
@@ -493,7 +557,7 @@
                         		</tr>
                         		
                         		<tr>
-                        			<td style="font-size:25px;color:dimgray;">
+                        			<td style="font-size:30px;color:dimgray;">
                         			수업기준
                         			</td>
                         			<td></td><td></td>
@@ -523,7 +587,7 @@
                         			</td>
                         		</tr>
                         		<tr>
-                        			<td style="font-size:25px;color:dimgray;">
+                        			<td style="font-size:30px;color:dimgray;">
                         			회당 수업시간
                         			</td>
                         			<td></td><td></td>
@@ -561,7 +625,7 @@
                         			</td>
                         		</tr>
                         		<tr>
-                        			<td style="font-size:25px;color:dimgray;">
+                        			<td style="font-size:30px;color:dimgray;">
                         			수업가격
                         			</td>
                         			<td></td><td></td>
@@ -588,35 +652,34 @@
                         </div>
                         
                       <br/>
-                     <div class="btn-div"> <span class="btn1 btn">다음단계</span></div>
+                     <div class="btn1 btn">다음단계</div>
                     </div>
                     
                     <!-- 선생님 -->
                     <div class="teacher-intr" >
-                    <div style="font-size:35px;" >
+                    <div style="font-size:40px;" >
                     		수업 대표 이미지<br/>
-                    		<span style="color:gray; font-size:30px;margin:15px 0px 15px 0px;">수업을 대표하는 이미지나 선생님 사진을 넣어주세요.</span><br/>
+                    		<span style="color:gray; font-size:40px;margin:15px 0px 15px 0px;">수업을 대표하는 이미지나 선생님 사진을 넣어주세요.</span><br/>
                     	<img id="output" style="width:400px; height:400px;" src="<c:url value="/resources/profileImg/pro.png"  />"  alt="수업대표이미지"/>
                         <br/>
-                        <label for="represent" style="background: #F6F6F6;border:1px solid dimgray; color: dimgray;padding:10px; border-radius:10px;">업로드</label>
+                        <label for="represent"> <img id="imgplus" src="<c:url value="/resources/images/imgplus.png" />"  /> </label>
                         <input type="file" name="represent" id="represent" accept="image/*" style="display: none;" onchange="check(this);loadFile(event)" />
                     </div>
                     
-                     <div style="line-height:200%;font-size:35px;">
-                        <br/><br/>
-                        	제목<br/>
-                        <span style="color:gray; font-size:30px;">제목을 30글자 미만으로 적어주세요.(<span class="title-length">0</span>/30)</span><br/>
-                        <input name="title" type="text" id="lesson-title" style="margin-top:10px;width:90%;
-                         padding:15px; font-size:35px;" placeholder="수업제목을 30자 내외로 적어주세요." value="${lesson.title}" />
-                      </div>
-                      <br/><br/>
+                    
+                     <div style="line-height:200%;font-size:40px;">제목</div>
+                        <span style="color:gray; font-size:40px;">제목을 30글자 미만으로 적어주세요.(<span class="title-length">0</span>/30)</span><br/>
+                        <input name="title" type="text" id="lesson-title" style="margin-top:10px;width:100%;
+                         padding:20px; font-size:50px; border-radius:20px; border:3px solid dimgray;" placeholder="수업제목을 30자 내외로 적어주세요." value="${lesson.title}" />
+                      <div style="height:400px;"></div>
                      <div class="btn-div"> <span class="prev2 btn">이전단계</span>  <span class="btn2 btn">다음단계</span></div>
                     </div>
                     
                   <!-- 수업 소개 -->
                     <div class="teacher-intr" >
-                    수업 가능 요일 <br/>
-                   <span style="color:gray; font-size:35px; margin-top:10px;"> 
+                    <div style="margin-bottom:20px;">수업 가능 요일</div>
+                    <div style="margin-bottom:100px;">
+                   <span style="color:gray; font-size:50px; margin-top:10px;"> 
                    <label style="cursor:pointer"><input type="checkbox" name="day" value="월" /> 월</label> &nbsp;
                    <label style="cursor:pointer"><input type="checkbox" name="day" value="화" /> 화</label> &nbsp;
                    <label style="cursor:pointer"><input type="checkbox" name="day" value="수" /> 수 </label>&nbsp;
@@ -624,28 +687,31 @@
                    <label style="cursor:pointer"> <input type="checkbox" name="day" value="금" /> 금</label> &nbsp;
                    <label style="cursor:pointer"> <input type="checkbox" name="day" value="토" /> 토 </label>&nbsp;
                     <label style="cursor:pointer"><input type="checkbox" name="day" value="일" /> 일</label></span>
-                    <br/><br/>
-                    수업 형태<br/>
-                   <span style="color:gray; font-size:35px; margin-top:10px;">
+                    </div>
+                   <div style="margin-bottom:20px;"> 수업 형태</div>
+                   <div style="margin-bottom:100px;">
+                   <span style="color:gray; font-size:50px; margin-top:10px;">
                    <label style="cursor:pointer"><input type="checkbox" name="gawe" value="개인 과외 가능" /> 개인 과외 가능 </label>&nbsp;
                    <label style="cursor:pointer"><input type="checkbox" name="gawe" value="화상 과외 가능" /> 화상 과외 가능</label></span>
-                   <br/><br/>
-                   시범수업<br/>
-                   <span style="color:gray; font-size:35px; margin-top:10px;">
+                   </div>
+                   <div style="margin-bottom:20px;">시범수업</div>
+                   <div style="margin-bottom:100px;">
+                   <span style="color:gray; font-size:50px; margin-top:10px;">
                    <label style="cursor:pointer"><input type="checkbox" name="trial" class="free" value="시범수업 무료" /> 시범수업 무료</label></span>
-                   <br/><br/>
-                        수업 소개 <br/>
-                         <span style="color:gray; font-size:25px; margin-top:10px">수업 형태나 학습목표, 커리큘럼에 대해 자세히 적어주세요.(<span class="lesson-length">0</span>/500)</span>
+                   </div>
+                        <div style="margin-bottom:20px;">수업 소개</div>
+                        <div style="margin-bottom:500px;">
+                         <span style="color:gray; font-size:35px; margin-top:10px">수업 형태나 학습목표, 커리큘럼에 대해<br/>자세히 적어주세요.(<span class="lesson-length">0</span>/500)</span>
                          <br/>
-                        <textarea name="lesson" id="lesson-intr" rows="10" cols="50" style="padding:15px;font-size:24px; line-height:140%;overflow-y:scroll;margin-top:10px;">${lesson.lesson}</textarea>
-                        <br/><br/>
+                        <textarea name="lesson" id="lesson-intr" rows="10" cols="40" style="padding:15px;font-size:35px; line-height:140%;overflow-y:scroll;margin-top:10px;">${lesson.lesson}</textarea>
+                        </div>
                         <div class="btn-div"> <span class="prev3 btn">이전단계</span> <span class="btn3 btn">다음단계</span></div>
                     </div>
                    
                   <!-- 경력사항 -->
                     <div class="teacher-intr" >
                         선생님 경력<br/>
-                        <span style="color:gray; font-size:24px;">경력이 없으신 경우 생략가능합니다.</span><br/>
+                        <span style="color:gray; font-size:35px;">경력이 없으신 경우 생략가능합니다.</span><br/>
                         <div class="career"  id="career" >
                         
                         </div>
@@ -656,21 +722,21 @@
                         </div>
                         <br/>
                         선생님 소개<br/>
-                        <span style="color:gray; font-size:24px; margin-top:10px">선생님의 지도성향이나 학습방식, 경력 등을 자세하게 서술해주세요.(<span class="teach-length">0</span>/500)</span><br/>
-                        <textarea id="careerDesc" name="description" rows="10" cols="50" style="font-size:24px;padding:15px; line-height:140%;overflow-y:scroll;margin-top:10px;"></textarea>
+                        <span style="color:gray; font-size:35px; margin-top:10px">선생님의 지도성향이나 학습방식, 경력 등을<br/>자세하게 서술해주세요.(<span class="teach-length">0</span>/500)</span><br/>
+                        <textarea id="careerDesc" name="description" rows="10" cols="40" style="font-size:35px;padding:15px; line-height:140%;overflow-y:scroll;margin-top:10px;"></textarea>
                         <br/><br/> 
                         <div class="btn-div"> <span class="prev4 btn">이전단계</span> <span class="btn4 btn">다음단계</span></div>
                     </div>
                    
                   <!-- 미디어 -->
                     <div class="teacher-intr" id="teacher-intr" >
-                    <div style="text-align:center; font-family:'JejuGothic'; font-size:30px;">
-                    	수업과 관련된 이미지를 등록하여 수업을 어필해보세요. (선택)
+                    <div style="text-align:center; font-family:'JejuGothic'; font-size:40px;">
+                    	수업과 관련된 이미지를 등록하여<br/>수업을 어필해보세요. (선택)
                     </div>
                     <div style="text-align:center;margin:30px;">
                     <span class="img-add">이미지 추가</span>
                     <br/><br/>
-                    <span style="font-size:30px;color:gray;">
+                    <span style="font-size:35px;color:gray;">
                     이미지는 최대 4장까지 업로드 가능합니다.<br/>
                      이미지 취소를 원할 경우 해당 이미지를 클릭하면 됩니다.
                      </span><br/>
@@ -694,7 +760,7 @@
                   <div class="teacher-intr" id="teacher-intr" >
                   <div>콕사부 정책</div>
                    <div style="font-size:25px; line-height:130%;margin:20px auto;;border:1px solid black; padding:10px;">
-                   콕사부의 중개 수수료는 20%이며 이를 제외한 80%는 선생님에게 전달됩니다.<br/>(수수료는 수수료 이벤트와  같은 경우에 한시적으로 달라질 수 있음.)<br/>서비스의 안전한 거래를 위하여 판매금을 서비스가 종료된 날짜를 기준으로 1-3일 후에 입금됨을 알립니다.(후불입금)
+                   콕사부의 중개 수수료는 20%이며 이를 제외한 80%는 선생님에게 전달됩니다.<br/>(수수료는 수수료 이벤트와  같은 경우에 한시적으로 달라질 수 있음.)<br/>서비스의 안전한 거래를 위하여 판매금을 서비스가 종료된 날짜를 기준으로 1-3일 후에 입금됨을 알립니다.<br/>입금 받을 계좌는 [마이페이지] -> [내 계정 정보 수정하기] 페이지에서 등록 할 수 있습니다.
                   </div>
 				   <br/>
                   <div>취소 및 환불규정</div>
@@ -719,13 +785,16 @@
 <br/>
 <div class="btn-div">
 <span class="prev6 btn">이전단계</span> 
-<label for="save" style="background: orange; color: white;;padding:10px; border-radius:10px;">동의하고 수업 만들기</label>
+<label for="save" class="make-lesson">수업 만들기</label>
                     <input id="save" class="save btn" type="submit" value="동의하고 수업 만들기"/> 
                   </div>
                   </div>	
 						
                   </form:form>
                 </div>
+                
+                <img id="spinner" src="<c:url value='/resources/img/spinner.svg' />" style="position:fixed; left:50%; transform:translate(-50%, -50%);top:50%; z-index:99;display:none;"/>
+                
                 <div style="height:200px;"></div>
         <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
         <script src="resources/jquery-number-master/jquery.number.min.js"></script>    
@@ -740,6 +809,9 @@
           		  alert("수업은 최대 3개까지만 등록 가능합니다.")
           		  window.history.back();
           	  }
+          	  
+          	  
+          	
           	  
           	  
           	$('.service-cate').change(function(){
@@ -987,7 +1059,7 @@
                 }
                 
                 var career = car1+"."+car2+"~"+car3+"."+car4+" "+car5;
-                var career1 = '<div class="car">'+car1+"."+car2+"~"+car3+"."+car4+" "+car5+'<span class="x-btn">삭제</span></div>';
+                var career1 = '<div class="car">'+car1+"."+car2+"~"+car3+"."+car4+" "+car5+'<span class="x-btn">X</span></div>';
                 var career2 ='<input name="ycareer" class="ycareer" type="text" style="display:none;" value="'+career+'" />';
                 
                 $('.career-box').append(career1);
@@ -1238,16 +1310,13 @@
                   	$('.menu td').eq(3).trigger('click');
                       return false;
                     }
-                  if($('#message').val().length<10){
-            		  alert('[미디어]페이지의 남길 말씀은 최소 10글자 이상 작성해주세요.');
-            			$('.menu td').eq(4).trigger('click');
-            		  return false;
-            	  }
-                  if($('#message').val().length>70){
-            		  alert('[미디어]페이지의 남길 말씀은 최대 70글자 미만입니다.');
-            			$('.menu td').eq(4).trigger('click');
-            		  return false;
-            	  }
+                  
+                  var broswerInfo = navigator.userAgent;
+           	      //ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+           	      if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+           	            $('#spinner').show();
+          	      }
+                  
                } 
 
           
@@ -1413,7 +1482,7 @@
               	// file[0].size 는 파일 용량 정보입니다.
               	if(file[0].size > 1024*1024*10){
               		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
-              		  alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+              		alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
               		$("#output4").trigger('click');
               		  return false;
               	}
@@ -1446,6 +1515,11 @@
               		if(num != 0) result = result + "원"; 
               		return result ; 
               	}
+           
+           
+           $(window).bind("pageshow", function(event) {
+           		$('#spinner').hide();
+	       });
              </script>
 </body>
 </html>

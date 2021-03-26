@@ -978,6 +978,8 @@ window.location="./apply";
             </div>
            </section>
            
+           <img id="spinner" src="<c:url value='/resources/img/spinner.svg' />" style="position:fixed; left:50%; transform:translate(-50%, -50%);top:50%; z-index:99;display:none;"/>
+           
         <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
         <script src="resources/jquery-number-master/jquery.number.min.js"></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.4.js"></script>
@@ -1235,6 +1237,12 @@ function CheckForm(memberInfo){
 	    alert('휴대폰 인증을 해주시기 바랍니다.');
 	    return false;
 	}
+	
+	var broswerInfo = navigator.userAgent;
+	      //ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+	if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+	            $('#spinner').show();
+      }
 }
 
 function check(re, what, message) {
@@ -1246,7 +1254,10 @@ function check(re, what, message) {
 		what.focus();
 		//return false;
 }
-	
+
+$(window).bind("pageshow", function(event) {
+	$('#spinner').hide();
+});
 </script>
 </body>
 </html>

@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.security.core.Authentication;
@@ -19,6 +21,7 @@ import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.coksabu.yojic.lesson.member.controller.MemberController;
 import com.coksabu.yojic.lesson.member.service.LoginCheckService;
 import com.coksabu.yojic.lesson.member.service.MemberService;
 
@@ -31,6 +34,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     private RequestCache requestCache = new HttpSessionRequestCache();
     private RedirectStrategy redirectStratgy = new DefaultRedirectStrategy();
 
+    private static final Logger logger = LoggerFactory.getLogger(LoginSuccessHandler.class);
+    
     @Transactional(rollbackFor= {Exception.class})
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -43,6 +48,9 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 				configLocation);
 		LoginCheckService loginCheckService = ctx.getBean("loginCheckService", LoginCheckService.class );
 		int humanStatus = loginCheckService.updateLoginTime(email);
+		
+		
+		logger.warn("로그인 잘 작동함");
 		
 		//메세지 카운
 		MemberService memberService = ctx.getBean("memberService", MemberService.class );

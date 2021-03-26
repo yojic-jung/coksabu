@@ -34,6 +34,18 @@
 		insert into members (email, password, name, nickname, birth, phone, logindate, signupdate, membership, enabled, authority, human_status, fail_count, fail_time, imgpath, push) values (#{email}, #{password}, #{name}, #{name}, #{birth}, #{phone}, now(), now(), 0, 1, 'user', 0, 0, 0, 'pro.png', 'ON')
 	</insert>
 	
+	<insert id="naverSignUp" parameterType="com.coksabu.yojic.lesson.member.model.MemberInfo" >
+		insert into members (email, password, name, nickname, birth, phone, logindate, signupdate, membership, enabled, authority, human_status, fail_count, fail_time, imgpath, push) values (#{email}, #{password}, #{name}, #{name}, #{birth}, #{phone}, now(), now(), 0, 1, 'user', 0, 0, 0, 'pro.png', 'ON')
+	</insert>
+	
+	<update id="updateNaverPassword" parameterType="com.coksabu.yojic.lesson.member.model.MemberInfo">
+	 	update members set password=#{password} where email=#{email}
+	</update>
+	
+	<select id="takeEncryptedPW" resultType="String">
+	 	select password from members where email=#{email}
+	</select>
+	
 	<select id="checkImgPath" resultType="Integer">
 		select count(*) from profile where email = #{email}
 	</select>
