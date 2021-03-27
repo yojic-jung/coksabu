@@ -74,6 +74,12 @@ public class WriteLessonService {
 			}
 			
 			
+			if(card.getSubCate1().equals("nonevalue")) {
+				card.setOpt1price3("0");
+			}
+			if(card.getSubCate2().equals("nonevalue")) {
+				card.setOpt2price3("0");
+			}
 					
 			if(represent.equals("pro.png")) {
 				return boardDao.update(card);

@@ -99,6 +99,12 @@ public class MemberController extends DeviceSwitcherController {
 		ReadPostService readPostService = ctx.getBean("readPostService", ReadPostService.class );
 		
 		List<PostView> list = readPostService.listMain();
+		for(Iterator<PostView> itr = list.iterator(); itr.hasNext();) {
+			PostView post = itr.next();
+			post.setPrice3(NumberFormat.getInstance().format(Integer.parseInt(post.getPrice3())));
+			post.setOpt1price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt1price3())));
+			post.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt2price3())));
+		}
 		String email = (String)session.getAttribute("email");
 		// 메세지 빨간불 구현
 		if(email!=null) {
@@ -473,6 +479,8 @@ public class MemberController extends DeviceSwitcherController {
 			for(Iterator<PostView> itr = list.iterator(); itr.hasNext();) {
 				PostView post = itr.next();
 				post.setPrice3(NumberFormat.getInstance().format(Integer.parseInt(post.getPrice3())));
+				post.setOpt1price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt1price3())));
+				post.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt2price3())));
 			}
 			ctx.close();
 			model.addAttribute("email", email);

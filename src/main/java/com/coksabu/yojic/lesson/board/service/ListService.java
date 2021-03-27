@@ -66,12 +66,8 @@ public class ListService {
 			for(Iterator<PostView> itr = postList.iterator(); itr.hasNext();) {
 				PostView post = itr.next();
 				post.setPrice3(NumberFormat.getInstance().format(Integer.parseInt(post.getPrice3())));
-				if(post.getOpt1price3()!=null && !post.getOpt1price3().equals("")) {
-					post.setOpt1price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt1price3())));
-				}
-				if(post.getOpt2price3()!=null && !post.getOpt2price3().equals("")) {
-					post.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt2price3())));
-				}
+				post.setOpt1price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt1price3())));
+				post.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt2price3())));
 			}
 			
 			for(Iterator<PostView> itr = postNewList.iterator(); itr.hasNext();) {
@@ -156,12 +152,8 @@ public class ListService {
 			for(Iterator<PostView> itr = postList.iterator(); itr.hasNext();) {
 				PostView post = itr.next();
 				post.setPrice3(NumberFormat.getInstance().format(Integer.parseInt(post.getPrice3())));
-				if(post.getOpt1price3()!=null && !post.getOpt1price3().equals("")) {
-					post.setOpt1price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt1price3())));
-				}
-				if(post.getOpt2price3()!=null && !post.getOpt2price3().equals("")) {
-					post.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt2price3())));
-				}
+				post.setOpt1price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt1price3())));
+				post.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt2price3())));
 			}
 			for(Iterator<PostView> itr = postNewList.iterator(); itr.hasNext();) {
 				PostView post = itr.next();
@@ -252,8 +244,17 @@ public class ListService {
 			
 			case "61":return "예체능";
 			case "62":return "미술";
+			
+			case "622":return "유아미술";
+			case "623":return "초등미술";
+			case "624":return "중등미술";
+			case "625":return "고등미술";
+			case "626":return "성인미술";
+			
 			case "63":return "음악";
 			case "64":return "체육";
+			
+			
 			
 			case "71":return "자소서/입시";
 			case "72":return "자소서첨삭";

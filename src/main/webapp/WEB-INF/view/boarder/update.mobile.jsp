@@ -558,6 +558,11 @@
                         	  		<option>미술</option>
                         	  		<option>음악</option>
                      	 	  		<option>체육</option>
+                     	 	  		<option>유아미술</option>
+                     	 	  		<option>초등미술</option>
+                     	 	  		<option>중등미술</option>
+                     	 	  		<option>고등미술</option>
+                     	 	  		<option>성인미술</option>
                         		</select>
                         		</td>
                         		<td>
@@ -566,6 +571,11 @@
                         	  		<option>미술</option>
                         	  		<option>음악</option>
                      	 	  		<option>체육</option>
+                     	 	  		<option>유아미술</option>
+                     	 	  		<option>초등미술</option>
+                     	 	  		<option>중등미술</option>
+                     	 	  		<option>고등미술</option>
+                     	 	  		<option>성인미술</option>
                         		</select>
                         		</td>
                         		<td>
@@ -574,6 +584,11 @@
                         	  		<option>미술</option>
                         	  		<option>음악</option>
                      	 	  		<option>체육</option>
+                     	 	  		<option>유아미술</option>
+                     	 	  		<option>초등미술</option>
+                     	 	  		<option>중등미술</option>
+                     	 	  		<option>고등미술</option>
+                     	 	  		<option>성인미술</option>
                         		</select>
                         		</td>
                         		</tr>
@@ -878,7 +893,31 @@
             	 
             	 
             	 $('.btn1').click(function(){
-                   	 $('.menu td').eq(1).trigger('click');
+            		 var re2 = /^[0-9]{1,}$/;
+                	 var price = document.getElementById('price');
+                	 var opt1price3 = document.getElementById('opt1price3');
+                	 var opt2price3 = document.getElementById('opt2price3');
+                	 var subcate1 = $('select[name=subCate1]>option:selected').index();
+                	 var subcate2 = $('select[name=subCate2]>option:selected').index();
+                	  
+             		 if(!check2(re2, price, "제공수업1의 가격을 숫자만 포함하여 입력해주세요.")){
+                      }else if($('#price').val() > 2000000){
+                       	  alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업1의 가격을 수정해주세요.")
+                      }else if($('#price').val() < 10000){
+                       	  alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업1의 가격을 수정해주세요.");
+                      }else if(subcate1 != 0 && !check2(re2, opt1price3, "제공수업2의 가격을 숫자만 포함하여 입력해주세요.")){
+                      }else if(subcate1 != 0 && $('#opt1price3').val() > 2000000){
+                    	  alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업2의 가격을 수정해주세요.")
+                      }else if(subcate1 != 0 && $('#opt1price3').val() < 10000){
+                    	  alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업2의 가격을 수정해주세요.")
+                      }else if(subcate2 != 0 && !check2(re2, opt2price3, "제공수업3의 가격을 숫자만 포함하여 입력해주세요.")){
+                      }else if(subcate2 != 0 && $('#opt2price3').val() > 2000000){
+                    	  alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업3의 가격을 수정해주세요.")
+ 	                  }else if(subcate2 != 0 && $('#opt2price3').val() < 10000){
+ 	                	  alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업3의 가격을 수정해주세요.")
+ 	                  }else{
+                    	 $('.menu td').eq(1).trigger('click');
+                     }
                  })
 
                  $('.btn2').click(function(){
@@ -958,11 +997,7 @@
                    }
                    else{
                    	$('.seg-cate').eq(opIdx-1).show();
-                   	$('.seg-cate2').eq(opIdx-1).show();
                    	$('.seg-cate').eq(opIdx-1).find('select').each(function(index, item){
-                		$(this).prop("name","subCate"+index);
-                	});
-                   	$('.seg-cate2').eq(opIdx-1).find('select').each(function(index, item){
                 		$(this).prop("name","subCate"+index);
                 	});
                    	
@@ -1343,7 +1378,7 @@
             function checkLesson(member){
 
              	 var re1 = /^.{1,30}$/;
-                  var re2 = /^[0-9 |,]{1,}$/;
+                  var re2 = /^[0-9]{1,}$/;
                   
                   var serviceCate = document.getElementById('service-cate');
                   var teacherInt = document.getElementById('teacher-int');
@@ -1351,7 +1386,61 @@
                   var lessonIntr = document.getElementById('lesson-intr');
                   var price = document.getElementById('price');
                   var careerDesc = document.getElementById('careerDesc');
+                  var price = document.getElementById('price');
+            	   var opt1price3 = document.getElementById('opt1price3');
+            	   var opt2price3 = document.getElementById('opt2price3');
+            	   var subcate1 = $('select[name=subCate1]>option:selected').index();
+            	   var subcate2 = $('select[name=subCate2]>option:selected').index();
+            	   
+                  if(!check2(re2, price, "제공수업1의 가격을 숫자만 포함하여 입력해주세요.")){
+               	   $('.menu td:first').trigger('click');
+                      return false;
+                  }
                   
+   			   if($('#price').val() > 2000000){
+                   	  alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업1의 가격을 수정해주세요.")
+                   	  $('.menu td:first').trigger('click');
+                         return false;
+                  }
+                  
+                  if($('#price').val() < 10000){
+                   	  alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업1의 가격을 수정해주세요.");
+                   	  $('.menu td:first').trigger('click');
+                         return false;
+                  }
+                  
+                  if(subcate1 != 0 && !check2(re2, opt1price3, "제공수업2의 가격을 숫자만 포함하여 입력해주세요.")){
+               	   $('.menu td:first').trigger('click');
+                      return false;
+                  }
+                  
+                  if(subcate1 != 0 && $('#opt1price3').val() > 2000000){
+                	  alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업2의 가격을 수정해주세요.");
+                	 $('.menu td:first').trigger('click');
+                     return false;
+                  }
+   			   if(subcate1 != 0 && $('#opt1price3').val() < 10000){
+                	  alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업2의 가격을 수정해주세요.");
+                	 $('.menu td:first').trigger('click');
+                    return false;
+                  }
+                  
+                  if(subcate2 != 0 && !check2(re2, opt2price3, "제공수업3의 가격을 숫자만 포함하여 입력해주세요.")){
+               	   $('.menu td:first').trigger('click');
+                      return false;
+                  }
+                  
+                  if(subcate2 != 0 && $('#opt2price3').val() > 2000000){
+                	  alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업3의 가격을 수정해주세요.");
+                	 $('.menu td:first').trigger('click');
+                    return false;
+                  }
+                 
+                  if(subcate2 != 0 && $('#opt2price3').val() < 10000){
+                	  alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업3의 가격을 수정해주세요.");
+                	 $('.menu td:first').trigger('click');
+                    return false;
+                  }
                  
                   if(!check2(re1, lessonTitle, "[수업제목]페이지의 제목을 30글자 내외로 작성해주세요.")) {
                	   $('.menu td').eq(1).trigger('click');

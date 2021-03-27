@@ -364,6 +364,11 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                         <li><a href="./boarder?main=61&subject=62">미술</a></li>
                         <li><a href="./boarder?main=61&subject=63">음악</a></li>
                         <li><a href="./boarder?main=61&subject=64">체육</a></li>
+                        <li><a href="./boarder?main=61&subject=622">유아미술</a></li>
+                        <li><a href="./boarder?main=61&subject=623">초등미술</a></li>
+                        <li><a href="./boarder?main=61&subject=624">중등미술</a></li>
+                        <li><a href="./boarder?main=61&subject=625">고등미술</a></li>
+                        <li><a href="./boarder?main=61&subject=626">성인미술</a></li>
                 </ul>
                 <ul class="subcate dispno">
                 		<li><a href="./boarder?main=71&subject=71">전체</a></li>

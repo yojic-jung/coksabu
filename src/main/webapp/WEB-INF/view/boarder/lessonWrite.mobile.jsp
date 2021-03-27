@@ -514,6 +514,11 @@ input[type="checkbox"]{
                         	  		<option>미술</option>
                         	  		<option>음악</option>
                      	 	  		<option>체육</option>
+                     	 	  		<option>유아미술</option>
+                     	 	  		<option>초등미술</option>
+                     	 	  		<option>중등미술</option>
+                     	 	  		<option>고등미술</option>
+                     	 	  		<option>성인미술</option>
                         		</select>
                         		</td>
                         		<td>
@@ -522,6 +527,11 @@ input[type="checkbox"]{
                         	  		<option>미술</option>
                         	  		<option>음악</option>
                      	 	  		<option>체육</option>
+                     	 	  		<option>유아미술</option>
+                     	 	  		<option>초등미술</option>
+                     	 	  		<option>중등미술</option>
+                     	 	  		<option>고등미술</option>
+                     	 	  		<option>성인미술</option>
                         		</select>
                         		</td>
                         		<td>
@@ -530,6 +540,11 @@ input[type="checkbox"]{
                         	  		<option>미술</option>
                         	  		<option>음악</option>
                      	 	  		<option>체육</option>
+                     	 	  		<option>유아미술</option>
+                     	 	  		<option>초등미술</option>
+                     	 	  		<option>중등미술</option>
+                     	 	  		<option>고등미술</option>
+                     	 	  		<option>성인미술</option>
                         		</select>
                         		</td>
                         		</tr>
@@ -848,7 +863,7 @@ input[type="checkbox"]{
                   
                   
                   $('.btn1').click(function(){
-                	  var re2 = /^[0-9 |,]{1,}$/;
+                	  var re2 = /^[0-9]{1,}$/;
                 	  var price = document.getElementById('price');
                 	  var opt1price3 = document.getElementById('opt1price3');
                 	  var opt2price3 = document.getElementById('opt2price3');
@@ -858,20 +873,20 @@ input[type="checkbox"]{
                 	  var opIdx2 = $('.service-cate>option:selected').index();
                       if( opIdx2==0){
                           alert('제공하는 서비스를 선택해주세요.');
-                      }else if(!check2(re2, price, "제공수업1의 가격을 숫자만 포함하여 입력해주세요. ex)400,000")){
-                      }else if($('#price').val().replace(/,/gi , '') > 2000000){
+                      }else if(!check2(re2, price, "제공수업1의 가격을 숫자만 포함하여 입력해주세요.")){
+                      }else if($('#price').val() > 2000000){
                        	  alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업1의 가격을 수정해주세요.")
-                      }else if($('#price').val().replace(/,/gi , '') < 10000){
+                      }else if($('#price').val() < 10000){
                        	  alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업1의 가격을 수정해주세요.");
-                      }else if(subcate1 != 0 && !check2(re2, opt1price3, "제공수업2의 가격을 숫자만 포함하여 입력해주세요. ex)400,000")){
-                      }else if(subcate1 != 0 && $('#opt1price3').val().replace(/,/gi , '') > 2000000){
+                      }else if(subcate1 != 0 && !check2(re2, opt1price3, "제공수업2의 가격을 숫자만 포함하여 입력해주세요.")){
+                      }else if(subcate1 != 0 && $('#opt1price3').val() > 2000000){
                     	  alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업2의 가격을 수정해주세요.")
-                      }else if(subcate1 != 0 && $('#opt1price3').val().replace(/,/gi , '') < 10000){
+                      }else if(subcate1 != 0 && $('#opt1price3').val() < 10000){
                     	  alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업2의 가격을 수정해주세요.")
-                      }else if(subcate2 != 0 && !check2(re2, opt2price3, "제공수업3의 가격을 숫자만 포함하여 입력해주세요. ex)400,000")){
-                      }else if(subcate2 != 0 && $('#opt2price3').val().replace(/,/gi , '') > 2000000){
+                      }else if(subcate2 != 0 && !check2(re2, opt2price3, "제공수업3의 가격을 숫자만 포함하여 입력해주세요.")){
+                      }else if(subcate2 != 0 && $('#opt2price3').val() > 2000000){
                     	  alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업3의 가격을 수정해주세요.")
-	                  }else if(subcate2 != 0 && $('#opt2price3').val().replace(/,/gi , '') < 10000){
+	                  }else if(subcate2 != 0 && $('#opt2price3').val() < 10000){
 	                	  alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업3의 가격을 수정해주세요.")
 	                  }else{
                     	 $('.menu td').eq(1).trigger('click');
@@ -1191,7 +1206,7 @@ input[type="checkbox"]{
             
              function checkLesson(member){
               	   var re1 = /^.{1,30}$/;
-                   var re2 = /^[0-9 |,]{1,}$/;
+                   var re2 = /^[0-9]{1,}$/;
                    
                    var serviceCate = document.getElementById('service-cate');
                    var teacherInt = document.getElementById('teacher-int');
@@ -1214,51 +1229,51 @@ input[type="checkbox"]{
                        return false;
                    }
                    
-                   if(!check2(re2, price, "제공수업1의 가격을 숫자만 포함하여 입력해주세요. ex)400,000")){
+                   if(!check2(re2, price, "제공수업1의 가격을 숫자만 포함하여 입력해주세요.")){
                 	   $('.menu td:first').trigger('click');
                        return false;
                    }
                    
-    			   if($('#price').val().replace(/,/gi , '') > 2000000){
+    			   if($('#price').val() > 2000000){
                     	  alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업1의 가격을 수정해주세요.")
                     	  $('.menu td:first').trigger('click');
                           return false;
                    }
                    
-                   if($('#price').val().replace(/,/gi , '') < 10000){
+                   if($('#price').val() < 10000){
                     	  alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업1의 가격을 수정해주세요.");
                     	  $('.menu td:first').trigger('click');
                           return false;
                    }
                    
-                   if(subcate1 != 0 && !check2(re2, opt1price3, "제공수업2의 가격을 숫자만 포함하여 입력해주세요. ex)400,000")){
+                   if(subcate1 != 0 && !check2(re2, opt1price3, "제공수업2의 가격을 숫자만 포함하여 입력해주세요.")){
                 	   $('.menu td:first').trigger('click');
                        return false;
                    }
                    
-                   if(subcate1 != 0 && $('#opt1price3').val().replace(/,/gi , '') > 2000000){
+                   if(subcate1 != 0 && $('#opt1price3').val() > 2000000){
                  	  alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업2의 가격을 수정해주세요.");
                  	 $('.menu td:first').trigger('click');
                       return false;
                    }
-    			   if(subcate1 != 0 && $('#opt1price3').val().replace(/,/gi , '') < 10000){
+    			   if(subcate1 != 0 && $('#opt1price3').val() < 10000){
                  	  alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업2의 가격을 수정해주세요.");
                  	 $('.menu td:first').trigger('click');
                      return false;
                    }
                    
-                   if(subcate2 != 0 && !check2(re2, opt2price3, "제공수업3의 가격을 숫자만 포함하여 입력해주세요. ex)400,000")){
+                   if(subcate2 != 0 && !check2(re2, opt2price3, "제공수업3의 가격을 숫자만 포함하여 입력해주세요.")){
                 	   $('.menu td:first').trigger('click');
                        return false;
                    }
                    
-                   if(subcate2 != 0 && $('#opt2price3').val().replace(/,/gi , '') > 2000000){
+                   if(subcate2 != 0 && $('#opt2price3').val() > 2000000){
                  	  alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업3의 가격을 수정해주세요.");
                  	 $('.menu td:first').trigger('click');
                      return false;
                    }
                   
-                   if(subcate2 != 0 && $('#opt2price3').val().replace(/,/gi , '') < 10000){
+                   if(subcate2 != 0 && $('#opt2price3').val() < 10000){
                  	  alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업3의 가격을 수정해주세요.");
                  	 $('.menu td:first').trigger('click');
                      return false;

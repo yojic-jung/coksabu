@@ -422,6 +422,8 @@ public class BoardController extends DeviceSwitcherController  {
 			for(Iterator<PostView> itr = list.iterator(); itr.hasNext();) {
 				PostView post = itr.next();
 				post.setPrice3(NumberFormat.getInstance().format(Integer.parseInt(post.getPrice3())));
+				post.setOpt1price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt1price3())));
+				post.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt2price3())));
 			}
 			ctx.close();
 			model.addAttribute("list", list);

@@ -487,6 +487,11 @@
                         	  		<option>미술</option>
                         	  		<option>음악</option>
                      	 	  		<option>체육</option>
+                     	 	  		<option>유아미술</option>
+                     	 	  		<option>초등미술</option>
+                     	 	  		<option>중등미술</option>
+                     	 	  		<option>고등미술</option>
+                     	 	  		<option>성인미술</option>
                         		</select>
                         		</td>
                         		<td>
@@ -495,6 +500,11 @@
                         	  		<option>미술</option>
                         	  		<option>음악</option>
                      	 	  		<option>체육</option>
+                     	 	  		<option>유아미술</option>
+                     	 	  		<option>초등미술</option>
+                     	 	  		<option>중등미술</option>
+                     	 	  		<option>고등미술</option>
+                     	 	  		<option>성인미술</option>
                         		</select>
                         		</td>
                         		<td>
@@ -503,6 +513,11 @@
                         	  		<option>미술</option>
                         	  		<option>음악</option>
                      	 	  		<option>체육</option>
+                     	 	  		<option>유아미술</option>
+                     	 	  		<option>초등미술</option>
+                     	 	  		<option>중등미술</option>
+                     	 	  		<option>고등미술</option>
+                     	 	  		<option>성인미술</option>
                         		</select>
                         		</td>
                         		</tr>
@@ -591,385 +606,23 @@
                         		<tr>
                         			<td>가격</td>
                         			<td>
-                        			<input name="price3" style="text-align: right;;padding: 7px; width:130px;font-size:15px;" class="price-pri1" type="text" id="price" placeholder="숫자만 입력"  value="${lesson.price3}" disabled/>원
+                        			<input name="price3" style="text-align: right;;padding: 7px; width:130px;font-size:15px;" class="price-pri1" type="text" id="price" placeholder="숫자만 입력"  value="${lesson.price3}" />원
                       				<br/>
                       				<span class="price-kor1"></span>
                         			</td>
                         			<td>
-                        			<input name="opt1price3" style="text-align: right;;padding: 7px; width:130px;font-size:15px;" class="price-pri2 opt1price3" type="text" id="opt1price3" placeholder="숫자만 입력" value="${lesson.opt1price3}" disabled/>원
+                        			<input name="opt1price3" style="text-align: right;;padding: 7px; width:130px;font-size:15px;" class="price-pri2 opt1price3" type="text" id="opt1price3" placeholder="숫자만 입력" value="${lesson.opt1price3}" />원
                       				<br/>
                       				<span class="price-kor2"></span>
                         			</td>
                         			<td>
-                        			<input name="opt2price3" style="text-align: right;;padding: 7px; width:130px;font-size:15px;" class="price-pri3 opt2price3" type="text" id="opt2price3" placeholder="숫자만 입력"  value="${lesson.opt2price3}" disabled/>원
+                        			<input name="opt2price3" style="text-align: right;;padding: 7px; width:130px;font-size:15px;" class="price-pri3 opt2price3" type="text" id="opt2price3" placeholder="숫자만 입력"  value="${lesson.opt2price3}"/>원
                       				<br/>
                       				<span class="price-kor3"></span>
                         			</td>
                         		</tr>
                         		
                         	</table>
-                        	
-                        	
-                        	<table class="seg-table" style="border-spacing:0px;font-size:30px;width:100%;display:none;">
-                        		<tr>
-                        			<td>제공 수업1</td><td>제공 수업2</td><td>제공 수업3</td>
-                        		</tr>
-                        		<tr class="seg-cate2" style="display:none" >
-                        			<td>
-                        			<select>
-                        	 	 		<option>초등수학</option>
-                        	  			<option>중등수학</option>
-                     	 	 			<option>고등수학</option>
-                      	   	  			<option>문과수학</option>
-                     	     			<option>고등수학</option>
-                          	  			<option>이과수학</option>
-                          	  			<option>수학논술</option>
-                          	  			<option>수학경시</option>
-                        			</select>
-                        			</td>
-                        			<td>
-                        			<select>
-                        	 	 		<option value="nonevalue">선택없음</option>
-                        	 	 		<option>초등수학</option>
-                        	  			<option>중등수학</option>
-                     	 	 			<option>고등수학</option>
-                      	   	  			<option>문과수학</option>
-                     	     			<option>고등수학</option>
-                          	  			<option>이과수학</option>
-                          	  			<option>수학논술</option>
-                          	  			<option>수학경시</option>
-                        			</select>
-                        			</td>
-                        			<td>
-                        			<select>
-                        	 	 		<option value="nonevalue">선택없음</option>
-                        	 	 		<option>초등수학</option>
-                        	  			<option>중등수학</option>
-                     	 	 			<option>고등수학</option>
-                      	   	  			<option>문과수학</option>
-                     	     			<option>고등수학</option>
-                          	  			<option>이과수학</option>
-                          	  			<option>수학논술</option>
-                          	  			<option>수학경시</option>
-                        			</select>
-                        			</td>
-                        		</tr>
-                        		<tr class="seg-cate2" style="display:none" >
-                        		<td>
-                        			<select>
-                        	 	 		<option>초등영어</option>
-                        	 			<option>중등영어</option>
-                     	 	  			<option>고등영어</option>
-                      	   	  			<option>수능영어</option>
-                     	      			<option>영어회화</option>
-                          	  			<option>toeic/tofle/teps</option>
-                          	  			<option>중국어</option>
-                          	  			<option>일본어</option>
-                        			</select>
-                        		</td>
-                        		<td>
-                        			<select>
-                        	 	 		<option value="nonevalue">선택없음</option>
-                        	 	 		<option>초등영어</option>
-                        	 			<option>중등영어</option>
-                     	 	  			<option>고등영어</option>
-                      	   	  			<option>수능영어</option>
-                     	      			<option>영어회화</option>
-                          	  			<option>toeic/tofle/teps</option>
-                          	  			<option>중국어</option>
-                          	  			<option>일본어</option>
-                        			</select>
-                        		</td>
-                        		<td>
-                        			<select>
-                        	 	 		<option value="nonevalue">선택없음</option>
-                        	 	 		<option>초등영어</option>
-                        	 			<option>중등영어</option>
-                     	 	  			<option>고등영어</option>
-                      	   	  			<option>수능영어</option>
-                     	      			<option>영어회화</option>
-                          	  			<option>toeic/tofle/teps</option>
-                          	  			<option>중국어</option>
-                          	  			<option>일본어</option>
-                        			</select>
-                        		</td>
-                        		</tr>
-                        		<tr class="seg-cate2" style="display:none" >
-                        		<td>
-                        		<select>
-                        	  		<option>초등국어</option>
-                        	  		<option>중등국어</option>
-                     	 	  		<option>고등국어</option>
-                      	   	  		<option>수능국어</option>
-                     	      		<option>국어논술</option>
-                        		</select>
-                        		</td>
-                        		<td>
-                        		<select>
-                        	 	 	<option value="nonevalue">선택없음</option>
-                        	 	 	<option>초등국어</option>
-                        	  		<option>중등국어</option>
-                     	 	  		<option>고등국어</option>
-                      	   	  		<option>수능국어</option>
-                     	      		<option>국어논술</option>
-                        		</select>
-                        		</td>
-                        		<td>
-                        		<select>
-                        	  		<option value="nonevalue">선택없음</option>
-                        	  		<option>초등국어</option>
-                        	  		<option>중등국어</option>
-                     	 	  		<option>고등국어</option>
-                      	   	  		<option>수능국어</option>
-                     	      		<option>국어논술</option>
-                        		</select>
-                        		</td>
-                        		</tr>
-                        		<tr class="seg-cate2" style="display:none" >
-                        		<td>
-                        		<select>
-                        	  		<option>초등사회</option>
-                        	  		<option>중등사회</option>
-                     	 	  		<option>고등사회</option>
-                      	   	  		<option>생활과윤리</option>
-                     	      		<option>사회문화</option>
-                     	      		<option>한국지리</option>
-                     	      		<option>세계지리</option>
-                     	      		<option>윤리와사상</option>
-                     	      		<option>동아시아사</option>
-                     	      		<option>법과정치</option>
-                     	      		<option>세계사</option>
-                     	      		<option>경제</option>
-                     	      		<option>한국사</option>
-                        		</select>
-                        		</td>
-                        		<td>
-                        		<select>
-                        	  		<option value="nonevalue">선택없음</option>
-                        	  		<option>초등사회</option>
-                        	  		<option>중등사회</option>
-                     	 	  		<option>고등사회</option>
-                      	   	  		<option>생활과윤리</option>
-                     	      		<option>사회문화</option>
-                     	      		<option>한국지리</option>
-                     	      		<option>세계지리</option>
-                     	      		<option>윤리와사상</option>
-                     	      		<option>동아시아사</option>
-                     	      		<option>법과정치</option>
-                     	      		<option>세계사</option>
-                     	      		<option>경제</option>
-                     	      		<option>한국사</option>
-                        		</select>
-                        		</td>
-                        		<td>
-                        		<select>
-                        	  		<option value="nonevalue">선택없음</option>
-                        	  		<option>초등사회</option>
-                        	  		<option>중등사회</option>
-                     	 	  		<option>고등사회</option>
-                      	   	  		<option>생활과윤리</option>
-                     	      		<option>사회문화</option>
-                     	      		<option>한국지리</option>
-                     	      		<option>세계지리</option>
-                     	      		<option>윤리와사상</option>
-                     	      		<option>동아시아사</option>
-                     	      		<option>법과정치</option>
-                     	      		<option>세계사</option>
-                     	      		<option>경제</option>
-                     	      		<option>한국사</option>
-                        		</select>
-                        		</td>
-                        		</tr>
-                        		<tr class="seg-cate2" style="display:none" >
-                        		<td>
-                        		<select>
-                        	  		<option>초등과학</option>
-                        	  		<option>중등과학</option>
-                     	 	  		<option>고등과학</option>
-                      	   	  		<option>물리</option>
-                     	      		<option>화학</option>
-                          	  		<option>생명과학</option>
-                          	  		<option>지구과학</option>
-                          	  		<option>물리2</option>
-                     	      		<option>화학2</option>
-                          	  		<option>생명과학2</option>
-                          	  		<option>지구과학2</option>
-                        		</select>
-                        		</td>
-                        		<td>
-                        		<select>
-                        	  		<option value="nonevalue">선택없음</option>
-                        	  		<option>초등과학</option>
-                        	  		<option>중등과학</option>
-                     	 	  		<option>고등과학</option>
-                      	   	  		<option>물리</option>
-                     	      		<option>화학</option>
-                          	  		<option>생명과학</option>
-                          	  		<option>지구과학</option>
-                          	  		<option>물리2</option>
-                     	      		<option>화학2</option>
-                          	  		<option>생명과학2</option>
-                          	  		<option>지구과학2</option>
-                        		</select>
-                        		</td>
-                        		<td>
-                        		<select>
-                        	  		<option value="nonevalue">선택없음</option>
-                        	  		<option>초등과학</option>
-                        	  		<option>중등과학</option>
-                     	 	  		<option>고등과학</option>
-                      	   	  		<option>물리</option>
-                     	      		<option>화학</option>
-                          	  		<option>생명과학</option>
-                          	  		<option>지구과학</option>
-                          	  		<option>물리2</option>
-                     	      		<option>화학2</option>
-                          	  		<option>생명과학2</option>
-                          	  		<option>지구과학2</option>
-                        		</select>
-                        		</td>
-                        		</tr>
-                        		<tr class="seg-cate2" style="display:none" >
-                        		<td>
-                        		<select>
-                        	  		<option>미술</option>
-                        	  		<option>음악</option>
-                     	 	  		<option>체육</option>
-                        		</select>
-                        		</td>
-                        		<td>
-                        		<select>
-                        	  		<option value="nonevalue">선택없음</option>
-                        	  		<option>미술</option>
-                        	  		<option>음악</option>
-                     	 	  		<option>체육</option>
-                        		</select>
-                        		</td>
-                        		<td>
-                        		<select>
-                        	  		<option value="nonevalue">선택없음</option>
-                        	  		<option>미술</option>
-                        	  		<option>음악</option>
-                     	 	  		<option>체육</option>
-                        		</select>
-                        		</td>
-                        		</tr>
-                        		<tr class="seg-cate2" style="display:none" >
-                        		<td>
-                        		<select>
-                        	  		<option>자소서첨삭</option>
-                        	  		<option>입시컨설팅</option>
-                        		</select>
-                        		</td>
-                        		<td>
-                        		<select>
-                        	  		<option value="nonevalue">선택없음</option>
-                        	  		<option>자소서첨삭</option>
-                        	  		<option>입시컨설팅</option>
-                        		</select>
-                        		</td>
-                        		<td>
-                        		<select>
-                        	  		<option value="nonevalue">선택없음</option>
-                        	  		<option>자소서첨삭</option>
-                        	  		<option>입시컨설팅</option>
-                        		</select>
-                        		</td>
-                        		</tr>
-                        		
-                        		<tr>
-                        			<td style="font-size:25px;color:dimgray;">
-                        			수업기준
-                        			</td>
-                        			<td></td><td></td>
-                        		</tr>
-                        		
-                        		<tr>
-                        			<td>
-                        			<select name="price1" class="price-standard">
-                        				<option>한달 12회</option>
-                        				<option>한달 8회</option>
-                        				<option>한달 4회 </option>
-                     				</select>
-                        			</td>
-                        			<td>
-                        			<select name="opt1price1" class="price-standard opt1price1">
-                        				<option>한달 12회</option>
-                        				<option>한달 8회</option>
-                        				<option>한달 4회 </option>
-                     				</select>
-                        			</td>
-                        			<td>
-                        			<select name="opt2price1" class="price-standard opt2price1">
-                        				<option>한달 12회</option>
-                        				<option>한달 8회</option>
-                        				<option>한달 4회 </option>
-                     				</select>
-                        			</td>
-                        		</tr>
-                        		<tr>
-                        			<td style="font-size:25px;color:dimgray;">
-                        			회당 수업시간
-                        			</td>
-                        			<td></td><td></td>
-                        		</tr>
-                        		<tr>
-                        			<td>
-                        			<select name="price2" class="price-time">
-                          				<option>60분</option>
-                          				<option>90분</option>
-                          				<option>2시간</option>
-                          				<option>2시간 30분</option>
-                          				<option>3시간</option>
-                          				<option>4시간</option>
-                        			</select>
-                        			</td>
-                        			<td>
-                        			<select name="opt1price2" class="price-time opt1price2">
-                          				<option>60분</option>
-                          				<option>90분</option>
-                          				<option>2시간</option>
-                          				<option>2시간 30분</option>
-                          				<option>3시간</option>
-                         				<option>4시간</option>
-                        			</select>
-                        			</td>
-                        			<td>
-                        			<select name="opt2price2" class="price-time opt2price2">
-                          				<option>60분</option>
-                          				<option>90분</option>
-                          				<option>2시간</option>
-                          				<option>2시간 30분</option>
-                          				<option>3시간</option>
-                          				<option>4시간</option>
-                        			</select>
-                        			</td>
-                        		</tr>
-                        		<tr>
-                        			<td style="font-size:25px;color:dimgray;">
-                        			수업가격
-                        			</td>
-                        			<td></td><td></td>
-                        		</tr>
-                        		<tr>
-                        			<td>
-                        			<input name="price3" style="text-align: right;font-size:35px;padding: 10px; width:80%;" class="price-pri1" type="text" id="price" placeholder="숫자만 입력"  value="${lesson.price3}" />원
-                      				<br/>
-                      				<span class="price-kor1"></span>
-                        			</td>
-                        			<td>
-                        			<input name="opt1price3" style="text-align: right;font-size:35px;padding:10px; width:80%;" class="price-pri2 opt1price3" type="text" id="opt1price3" placeholder="숫자만 입력" value="${lesson.opt1price3}" />원
-                      				<br/>
-                      				<span class="price-kor2"></span>
-                        			</td>
-                        			<td>
-                        			<input name="opt2price3" style="text-align: right; font-size:35px;padding:10px; width:80%;" class="price-pri3 opt2price3" type="text" id="opt2price3" placeholder="숫자만 입력" value="${lesson.opt2price3}"/>원
-                      				<br/>
-                      				<span class="price-kor3"></span>
-                        			</td>
-                        		</tr>
-                        	</table>
-                        	
                         	
                         </div>
                           
@@ -1154,7 +807,31 @@
             	 
             	 
             	 $('.btn1').click(function(){
+            		var re2 = /^[0-9]{1,}$/;
+               	  	var price = document.getElementById('price');
+               	  	var opt1price3 = document.getElementById('opt1price3');
+               	  	var opt2price3 = document.getElementById('opt2price3');
+               	  	var subcate1 = $('select[name=subCate1]>option:selected').index();
+               	  	var subcate2 = $('select[name=subCate2]>option:selected').index();
+               	  
+            		 if(!check2(re2, price, "제공수업1의 가격을 숫자만 포함하여 입력해주세요.")){
+                     }else if($('#price').val() > 2000000){
+                      	  alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업1의 가격을 수정해주세요.")
+                     }else if($('#price').val() < 10000){
+                      	  alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업1의 가격을 수정해주세요.");
+                     }else if(subcate1 != 0 && !check2(re2, opt1price3, "제공수업2의 가격을 숫자만 포함하여 입력해주세요.")){
+                     }else if(subcate1 != 0 && $('#opt1price3').val() > 2000000){
+                   	  alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업2의 가격을 수정해주세요.")
+                     }else if(subcate1 != 0 && $('#opt1price3').val() < 10000){
+                   	  alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업2의 가격을 수정해주세요.")
+                     }else if(subcate2 != 0 && !check2(re2, opt2price3, "제공수업3의 가격을 숫자만 포함하여 입력해주세요.")){
+                     }else if(subcate2 != 0 && $('#opt2price3').val() > 2000000){
+                   	  alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업3의 가격을 수정해주세요.")
+	                  }else if(subcate2 != 0 && $('#opt2price3').val() < 10000){
+	                	  alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업3의 가격을 수정해주세요.")
+	                  }else{
                    	 $('.menu td').eq(1).trigger('click');
+                    }
                  })
 
                  $('.btn2').click(function(){
@@ -1234,11 +911,7 @@
                    }
                    else{
                    	$('.seg-cate').eq(opIdx-1).show();
-                   	$('.seg-cate2').eq(opIdx-1).show();
                    	$('.seg-cate').eq(opIdx-1).find('select').each(function(index, item){
-                		$(this).prop("name","subCate"+index);
-                	});
-                   	$('.seg-cate2').eq(opIdx-1).find('select').each(function(index, item){
                 		$(this).prop("name","subCate"+index);
                 	});
                    	
@@ -1248,21 +921,12 @@
                        
                        $('select[name=subCate0]').each(function(index, item){
                     	   $(this).val(subcate0).prop("selected", true);
-                    	   if(index==0){
-                    		   $(this).prop('disabled', true)
-                    	   }
                        });
                        $('select[name=subCate1]').each(function(index, item){
                     	   $(this).val(subcate1).prop("selected", true);
-                    	   if(index==0){
-                    		   $(this).prop('disabled', true)
-                    	   }
                        });
                        $('select[name=subCate2]').each(function(index, item){
                     	   $(this).val(subcate2).prop("selected", true);
-                    	   if(index==0){
-                    		   $(this).prop('disabled', true)
-                    	   }
                        });
                    }
                    
@@ -1275,39 +939,21 @@
                    var opt2price2 = "<c:out value="${lesson.opt2price2}" />";
                    $('select[name=price1]').each(function(idx, item){
                 	   $(this).val(price1).prop("selected",true);
-                	   if(idx==0){
-                		   $(this).prop('disabled', true)
-                	   }
                    })
                    $('select[name=price2]').each(function(idx, item){
                 	   $(this).val(price2).prop("selected",true);
-                	   if(idx==0){
-                		   $(this).prop('disabled', true)
-                	   }
                    })
                    $('select[name=opt1price1]').each(function(idx, item){
                 	   $(this).val(opt1price1).prop("selected",true);
-                	   if(idx==0){
-                		   $(this).prop('disabled', true)
-                	   }
                    })
                    $('select[name=opt1price2]').each(function(idx, item){
                 	   $(this).val(opt1price2).prop("selected",true);
-                	   if(idx==0){
-                		   $(this).prop('disabled', true)
-                	   }
                    })
                    $('select[name=opt2price1]').each(function(idx, item){
                 	   $(this).val(opt2price1).prop("selected",true);
-                	   if(idx==0){
-                		   $(this).prop('disabled', true)
-                	   }
                    })
                    $('select[name=opt2price2]').each(function(idx, item){
                 	   $(this).val(opt2price2).prop("selected",true);
-                	   if(idx==0){
-                		   $(this).prop('disabled', true)
-                	   }
                    })
                    
                    
@@ -1643,7 +1289,7 @@
             function checkLesson(member){
 
              	 var re1 = /^.{1,30}$/;
-                  var re2 = /^[0-9 |,]{1,}$/;
+                  var re2 = /^[0-9]{1,}$/;
                   
                   var serviceCate = document.getElementById('service-cate');
                   var teacherInt = document.getElementById('teacher-int');
@@ -1651,6 +1297,60 @@
                   var lessonIntr = document.getElementById('lesson-intr');
                   var price = document.getElementById('price');
                   var careerDesc = document.getElementById('careerDesc');
+            	   var opt1price3 = document.getElementById('opt1price3');
+            	   var opt2price3 = document.getElementById('opt2price3');
+            	   var subcate1 = $('select[name=subCate1]>option:selected').index();
+            	   var subcate2 = $('select[name=subCate2]>option:selected').index();
+                  
+                  if(!check2(re2, price, "제공수업1의 가격을 숫자만 포함하여 입력해주세요.")){
+               	   $('.menu td:first').trigger('click');
+                      return false;
+                  }
+                  
+   			   if($('#price').val() > 2000000){
+                   	  alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업1의 가격을 수정해주세요.")
+                   	  $('.menu td:first').trigger('click');
+                         return false;
+                  }
+                  
+                  if($('#price').val() < 10000){
+                   	  alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업1의 가격을 수정해주세요.");
+                   	  $('.menu td:first').trigger('click');
+                         return false;
+                  }
+                  
+                  if(subcate1 != 0 && !check2(re2, opt1price3, "제공수업2의 가격을 숫자만 포함하여 입력해주세요.")){
+               	   $('.menu td:first').trigger('click');
+                      return false;
+                  }
+                  
+                  if(subcate1 != 0 && $('#opt1price3').val() > 2000000){
+                	  alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업2의 가격을 수정해주세요.");
+                	 $('.menu td:first').trigger('click');
+                     return false;
+                  }
+   			   if(subcate1 != 0 && $('#opt1price3').val() < 10000){
+                	  alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업2의 가격을 수정해주세요.");
+                	 $('.menu td:first').trigger('click');
+                    return false;
+                  }
+                  
+                  if(subcate2 != 0 && !check2(re2, opt2price3, "제공수업3의 가격을 숫자만 포함하여 입력해주세요.")){
+               	   $('.menu td:first').trigger('click');
+                      return false;
+                  }
+                  
+                  if(subcate2 != 0 && $('#opt2price3').val() > 2000000){
+                	  alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업3의 가격을 수정해주세요.");
+                	 $('.menu td:first').trigger('click');
+                    return false;
+                  }
+                 
+                  if(subcate2 != 0 && $('#opt2price3').val() < 10000){
+                	  alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업3의 가격을 수정해주세요.");
+                	 $('.menu td:first').trigger('click');
+                    return false;
+                  }
                   
                   if(!check2(re1, lessonTitle, "[수업제목]페이지의 제목을 30글자 내외로 작성해주세요.")) {
                	   $('.menu td').eq(1).trigger('click');
