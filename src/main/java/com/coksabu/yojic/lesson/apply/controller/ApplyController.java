@@ -64,7 +64,7 @@ public class ApplyController extends DeviceSwitcherController{
 	//테스트 완료
 	@Transactional(rollbackFor= {Exception.class})
 	@RequestMapping(value="apply", method = RequestMethod.POST)
-	public String apply2(ApplyForm apply, Model model, HttpSession session) {
+	public String apply2(ApplyForm apply, Model model, HttpSession session, HttpServletRequest request) {
 		String email = (String)session.getAttribute("email");
 		apply.setEmail(email);
 		if(email==null || email.equals("")) {
@@ -96,6 +96,14 @@ public class ApplyController extends DeviceSwitcherController{
 			String link = "https://m.coksabu.com/teacherApply?id="+applyStatus;
 			teacherApplyService.sendPushNotificationTarget(locale,apply.getCate(), link);
 			ctx.close();
+			
+			String firstProfile = request.getParameter("cok_tutorial");
+			if(firstProfile!=null) {
+				if(firstProfile.equals("first_student")) {
+					return "redirect:/applysuccess?cok_tutorial=first_student";
+				}
+			}
+			
 			return "redirect:applysuccess";
 		}
 		
@@ -210,7 +218,12 @@ public class ApplyController extends DeviceSwitcherController{
 	        cookie.setHttpOnly(true);
 	        cookie.setMaxAge(14515200);
 	        
+	        Cookie cookie2 = new Cookie("userInputEmail",applyWithSign.getEmail());
+	        cookie2.setPath("/");
+	        cookie2.setMaxAge(14515200);
+	        
 	        response.addCookie(cookie);
+	        response.addCookie(cookie2);
 			
 			return "redirect:applysuccess";
 		}

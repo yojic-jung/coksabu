@@ -64,13 +64,20 @@
           }
   	.naver-customize{
 	 background-image:url(<c:url value="/resources/img/naverbackground.png" />);
-	font-family:Gothic;font-size:15px;color:white;border-radius:10px; padding:5px;font-weight:bolder;
-	margin:20px auto;cursor:pointer;line-height:200%:
+	font-family: 'Apple SD Gothic Neo','Malgun Gothic';font-size:15px;color:white;border-radius:10px;font-weight:bolder;
+	margin:20px auto;cursor:pointer;
+	}
+	.apple-customize{
+	width:100%;text-align:center;
+	background:black;
+	font-family: 'Apple SD Gothic Neo','Malgun Gothic';font-size:15px;color:white;border-radius:10px; font-weight:bolder;
+	margin:20px auto;cursor:pointer;border:1px solid black;
 	}
     </style>
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
   <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
+	<script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
     <script>
 $(document).ready(function(){
 	
@@ -103,11 +110,12 @@ $(document).ready(function(){
         }
     });
     
-    $('#login-box').submit(function(){
-    	deleteCookie("userInputEmail");
-    	setCookie("userInputEmail", $('.email').val() , 180);
-    });
     
+    $('.apple-customize').click(function(){
+		   $('#appleid-signin').trigger("click");
+		});
+    
+   
     
 });
     
@@ -165,15 +173,19 @@ $(document).ready(function(){
             <div style="display:none">
             <input id="remember_me" name ="remember-me" type="checkbox" checked/>Remember me<br/>
 			</div>
-            <input style="padding:15px; width:350px; background-color:rgb(68, 68, 68); 
-            color : white; border:none; border-radius:5px; margin-top:20px;"
+            <input style="padding:10px;font-size:15px; width:350px; background-color:rgb(68, 68, 68); 
+            color : white; border:none; border-radius:5px; margin-top:20px;cursor:pointer;"
              type="submit" value="로그인" />
         </form>
+        
+        <div id="appleid-signin" data-color="black" data-border="true" data-type="sign in" style="width:100%;height:45px;margin:20px auto;cursor:pointer;display:none;"></div>
+        <div class="apple-customize">
+       			<img src="<c:url value='/resources/img/appleLogo.png' />"  style="vertical-align: middle;width:32px;height:45px;"/>
+        		Sign in with Apple
+        </div>
         <div style="text-align:center;">
         	<div class="naver-customize">
-        		<span style="font-weight:bolder;float:left;clear:right;">
-        		<img src="<c:url value='/resources/img/naver.png' />"  style="width:40px;height:40px;"/>
-        		</span>
+        		<img src="<c:url value='/resources/img/naver.png' />"  style="vertical-align:middle;width:45px;height:45px;"/>
         		네이버 아이디로 로그인
         	</div>
         	<div style="display:none;">
@@ -184,10 +196,21 @@ $(document).ready(function(){
 </div>
   </section>    
       <script>
+      
+      var currentUrlNaver = window.location.href;
+      var callbackUrlNaver = '';
+      if(currentUrlNaver.indexOf("www.coksabu.com") != -1){
+    	  callbackUrlNaver = "https://www.coksabu.com/loginCallBackNaver";
+      }else{
+    	  callbackUrlNaver = "https://coksabu.com/loginCallBackNaver";
+      }
+      
+     
+      
       var naverLogin = new naver.LoginWithNaverId(
     	  		{
     	  			clientId: "0PgcZhDTwaod8UwQsoKX",
-    	  			callbackUrl: "https://coksabu.com/loginCallBackNaver",
+    	  			callbackUrl: callbackUrlNaver,
     	  			isPopup: false, /* 팝업을 통한 연동처리 여부 */
     	  			loginButton: {color: "green", type: 3, height: 170} /* 로그인 버튼의 타입을 지정 */
     	  		}
@@ -200,6 +223,34 @@ $(document).ready(function(){
     	  	  naverLogin.init(); 
     	  	  location.href = naverLogin.generateAuthorizeUrl();
     		});
+    	  	
+    	  	$(document).ready(function(){
+    	  	 
+    	  		
+    	     var currentUrlApple = window.location.href;
+       	     var callbackUrlApple = '';
+       	     if(currentUrlApple.indexOf("www.coksabu.com") != -1){
+       	     	callbackUrlApple = "https://www.coksabu.com/loginCallBackApple";
+       	     }else if(currentUrlApple.indexOf("m.coksabu.com") != -1){
+       	     	callbackUrlApple = "https://m.coksabu.com/loginCallBackApple";
+       	     }else{
+     	     	callbackUrlApple = "https://coksabu.com/loginCallBackApple";
+     	     }
+       	     
+       	     
+       	     
+       	  	 var state = "<c:out value="${state}" />";
+          	 var client_nonce = "<c:out value="${client_nonce}" />";
+          	 AppleID.auth.init({
+       	         clientId : 'com.coksabu.coksabu',
+       	         scope : 'name email',
+       	         redirectURI : callbackUrlApple,
+       	         state : state,
+       	         nonce : client_nonce,
+       	     });
+    	  	})  	
+    	  	 
+    	     	  	
     	  	
     </script>
 </body>

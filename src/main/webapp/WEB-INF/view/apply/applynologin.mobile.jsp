@@ -18,21 +18,6 @@
      
 <style>
 @charset "UTF-8";
-
-input[type=checkbox] {
-margin:10px;
--ms-transform: scale(2); /* IE */
-
--moz-transform: scale(2); /* FF */
-
--webkit-transform: scale(2); /* Safari and Chrome */
-
--o-transform: scale(2); /* Opera */
-
-padding: 5px;
-
-}
-
           .top-ul a {
             text-decoration:none;
             color :black
@@ -50,36 +35,36 @@ padding: 5px;
         }
         
         .bar{
-        width:600px; background:gray; border-radius:4px; margin:auto;
+        width:100%; background:gray; border-radius:4px; margin:auto;
         }
         .bar1{
-        width:100px; background:rgb(44, 184, 26); border-radius:4px;padding:4px;
+        width:20%; background:rgb(44, 184, 26); border-radius:4px;padding:4px;
         }
         .bar2{
-        width:200px; background:rgb(44, 184, 26); border-radius:4px;padding:4px;
+        width:40%; background:rgb(44, 184, 26); border-radius:4px;padding:4px;
         }
         .bar3{
-        width:300px; background:rgb(44, 184, 26); border-radius:4px;padding:4px;
+        width:60%; background:rgb(44, 184, 26); border-radius:4px;padding:4px;
         }
         .bar4{
-        width:350px; background:rgb(44, 184, 26); border-radius:4px;padding:4px;
+        width:70%; background:rgb(44, 184, 26); border-radius:4px;padding:4px;
         }
         .bar5{
-        width:400px; background:rgb(44, 184, 26); border-radius:4px;padding:4px;
+        width:80%; background:rgb(44, 184, 26); border-radius:4px;padding:4px;
         }
         .bar6{
-        width:450px; background:rgb(44, 184, 26); border-radius:4px;padding:4px;
+        width:90%; background:rgb(44, 184, 26); border-radius:4px;padding:4px;
         }
         
         .bar7{
-        width:550px; background:rgb(44, 184, 26); border-radius:4px;padding:4px;
+        width:95%; background:rgb(44, 184, 26); border-radius:4px;padding:4px;
         }
         
         .bar8{
-        width:590px; background:rgb(44, 184, 26); border-radius:4px;padding:4px;
+        width:100%; background:rgb(44, 184, 26); border-radius:4px;padding:4px;
         }
         .content{
-        width:80%;; margin:auto;font-size:30px;
+         width:100%;; margin:auto;font-size:40px;
         }
 	
 	.catetable{
@@ -88,59 +73,92 @@ padding: 5px;
 		width:100%;
 	}
 	.catetable td{
-	width:100%;
 	padding:30px;
 	border:1px solid lightgray;
 	}
 	
 	
+	
 	.step-all{
-		margin-left:100px;font-family:'JejuGothic';font-size:30px;
+		font-family:'JejuGothic';font-size:40px;
 	}
 	
 	.step2, .step3, .step4, .step5, .step6, .step7, .step8{
 		display:none;
 	}
 
-	.btn1, .btn2, .btn3, .btn4 , .btn5, .btn6, .btn7, .prev2, .prev3, .prev4, .prev5, .prev6, .prev7, .prev8{
-		border-radius:14px;
-		background:rgb(150, 151, 150);
+	.btn1{
+		text-align:center;
+		background:#EF904F;
 		color:white;
-		padding:20px;
-		font-size:24px;
+		padding:50px;
+		font-size:50px;
 		font-family:'JejuGothic';
-		cursor:pointer;
-		float:right;
-		margin-right:20px;
+		width:100%;
+		position:fixed;
+		bottom:0px;
+		left:0px;
 	}
-	.btn8{
-	margin-top:10px;
-	border-radius:14px;
-		background:orange;
+	
+	.btn2, .btn3, .btn4 , .btn5, .btn6, .btn7 {
+		border-top:5px solid #EF904F;
+		text-align:center;
+		background:#EF904F;
 		color:white;
-		padding:20px;
-		font-size:24px;
+		padding:50px;
+		font-size:50px;
 		font-family:'JejuGothic';
-		cursor:pointer;
-		float:right;
-		margin-right:20px;
-	} 
+		width:50%;
+		position:fixed;
+		bottom:0px;
+		right:0px;
+	}
+	
+	
+	.prev2, .prev3, .prev4, .prev5, .prev6, .prev7, .prev8{
+		text-align:center;
+		border-top:5px solid #EF904F;
+		background:white;
+		color: #EF904F;
+		padding:50px;
+		font-size:50px;
+		font-family:'JejuGothic';
+		width:50%;
+		position:fixed;
+		bottom:0px;
+		left:0px;
+	}
+	
+	.btn8 {
+		border-top:5px solid #EF904F;
+		text-align:center;
+		background:#EF904F;
+		color:white;
+		padding:50px;
+		font-size:50px;
+		font-family:'JejuGothic';
+		width:50%;
+		position:fixed;
+		bottom:0px;
+		right:0px;
+		-webkit-appearance: none;
+	}
 	
 	.locale-main{
-		font-size:30px; color:gray; padding:30px;
+		font-size:40px; color:gray; padding:30px 50px;margin-right:30px;
 	}
 	.locale{
-	display:none;font-size:30px; color:gray; padding:30px;
+	display:none;font-size:40px; color:gray; padding:30px;
 	}
 	.locale3{
-	display:none;font-size:30px; color:gray; padding:30px;width:80%;
+	display:none;font-size:40px; color:gray; padding:30px;width:80%;
 	}
 	.price-standard, .price-time , .price1, .price2{
-		font-size:30px;padding:30px;
+		font-size:40px;padding:30px;
 	}
 	
 	.permit{
-            font-size:30px; padding:10px;width:90%;
+            font-size:40px; padding:20px;width:90%;
      }
     
     .phoneCertify{
@@ -161,7 +179,33 @@ padding: 5px;
        	cursor:pointer;
        	text-decoration:underline;
     }
-          
+       
+       
+    	input[type="radio"]{
+		margin:10px;
+-ms-transform: scale(2); /* IE */
+
+-moz-transform: scale(2); /* FF */
+
+-webkit-transform: scale(2); /* Safari and Chrome */
+
+-o-transform: scale(2); /* Opera */
+
+padding: 5px;
+	}
+input[type=checkbox] {
+margin:10px;
+-ms-transform: scale(2); /* IE */
+
+-moz-transform: scale(2); /* FF */
+
+-webkit-transform: scale(2); /* Safari and Chrome */
+
+-o-transform: scale(2); /* Opera */
+
+padding: 5px;
+
+}   
 </style>    
 </head>
 <body>
@@ -171,7 +215,7 @@ window.location="./apply";
 </script>
 <% } %>
         <section>
-            <div style="background:rgb(46, 46, 46); color:rgb(219, 218, 218);">
+            <div style="background:#FFF2E6; color:dimgray;">
             	<div style="font-size:30px; padding:30px; text-align:center">
                   	수업 요청을 통해 수업 가능한 선생님들의<br/> 지원서를 받아볼 수 있습니다. 
                 </div>
@@ -200,7 +244,7 @@ window.location="./apply";
             <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="사회" /> 사회</label></td></tr>
             <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="과학" /> 과학</label></td></tr>
             <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="예체능" /> 예체능</label></td></tr>
-            <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="자소서/입시" /> 자소서/입시</label></td></tr>
+            <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="입시(자소서/논술/면접)" /> 입시(자소서/논술/면접)</label></td></tr>
             </table>
             <br/>
             <span class="btn1">다음단계</span>
@@ -226,7 +270,6 @@ window.location="./apply";
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="고등수학" /> 고등수학</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="문과수학" /> 문과수학</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="이과수학" /> 이과수학</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="수학논술" /> 수학논술</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="수학경시" /> 수학경시</label></td></tr>
             </table>
             <br/>
@@ -278,7 +321,6 @@ window.location="./apply";
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="중등국어" /> 중등국어</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="고등국어" /> 고등국어</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="수능국어" /> 수능국어</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="국어논술" /> 국어논술</label></td></tr>
             </table>
             <br/>
             <span class="btn2">다음단계</span><span class="prev2">이전단계</span>
@@ -346,7 +388,15 @@ window.location="./apply";
             <br/>
             <table class="catetable">
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="미술" /> 미술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="유아미술" /> 유아미술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="초등미술" /> 초등미술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="중등미술" /> 중등미술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="고등미술" /> 고등미술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="성인미술" /> 성인미술</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="음악" /> 음악</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="악기" /> 악기</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="성악" /> 성악</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="국악" /> 국악</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="체육" /> 체육</label></td></tr>
             </table>
             <br/>
@@ -368,6 +418,11 @@ window.location="./apply";
             <table class="catetable">
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="자소서첨삭" /> 자소서첨삭</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="입시컨설팅" /> 입시컨설팅</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="면접" /> 면접</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="수학논술" /> 수학논술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="인문논술" /> 인문논술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="국어논술" /> 국어논술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="과학논술" /> 과학논술</label></td></tr>
             </table>
             <br/>
             <span class="btn2">다음단계</span><span class="prev2">이전단계</span>
@@ -385,10 +440,11 @@ window.location="./apply";
             <br/>
             학생의 학년과 성별을 선택해주세요.<br/>
             <br/>
-            <table class="catetable">
-            <tr><td style="line-height:250%;">
-            학년&nbsp;
-				<select id="grade" name="grade" style="padding:30px;color:gray; font-size:30px; font-family:'JejuGothic'">
+            <table class="catetable" >
+            <tr>
+            	<td style="border:none;">학년</td>
+            	<td style="border:none;">
+				<select id="grade" name="grade" style="width:100%;padding:30px;color:gray; font-size:40px; font-family:'JejuGothic'">
 					<option>--선택--</option>
 					<option>초등저학년(1~3학년)</option>
 					<option>초등고학년(4~6학년)</option>
@@ -399,13 +455,17 @@ window.location="./apply";
 					<option>재(N)수생</option>
 					<option>성인</option>
 				</select>
-				<br/>
-				성별&nbsp;
-				<select name="sexual" style="padding:30px; font-size:30px;color:gray; font-family:'JejuGothic'">
+				</td>
+			</tr>
+			<tr>
+            	<td style="border:none;">성별</td>
+            	<td style="border:none;">
+				<select name="sexual" style="width:50%;padding:30px; font-size:40px;color:gray; font-family:'JejuGothic'">
                         	<option>남</option>
                         	<option>여</option>
                 </select>
-			</td></tr>
+				</td>
+			</tr>
             </table>
             <br/>
             <span class="btn3">다음단계</span><span class="prev3">이전단계</span>
@@ -424,13 +484,13 @@ window.location="./apply";
             가능한 요일을 선택해주세요.<br/>
             <br/>
             <table class="catetable">
-            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="월"> 월</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="화"> 화</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="수"> 수</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="목"> 목</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="금"> 금</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="토"> 토</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="일"> 일</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="월"> 월요일</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="화"> 화요일</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="수"> 수요일</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="목"> 목요일</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="금"> 금요일</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="토"> 토요일</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input name="day" type="checkbox" value="일"> 일요일</label></td></tr>
             </table>
             <br/>
             <span class="btn4">다음단계</span><span class="prev4">이전단계</span>
@@ -473,7 +533,7 @@ window.location="./apply";
             <br/>
             <table class="catetable">
             <tr><td>
-            <div style="margin-bottom:20px; font-size:20px; color:dimgray;line-height:200%;">세부지역은 읍면동까지만 적어주세요.</div>
+            <div style="margin-bottom:20px; font-size:35px; color:dimgray;line-height:200%;">세부지역은 읍면동까지만 적어주세요.</div>
             <select class="locale-main" name="locale1">
 							<option>선택</option>
                             <option>서울</option>
@@ -837,32 +897,37 @@ window.location="./apply";
             <br/>
             가격과 남기고 싶은 말 또는 희망사항을 적어주세요.<br/>
             <br/>
-            <table class="catetable">
-            <tr><td>희망가격<br/>
-            <div style="margin-top:10px;line-height:200%;font-size:20px; font-family:'JejuGothic';padding:20px;">
-            
-            <span style="color:gray; font-size:30px; font-family:'JejuGothic'">수업기준&nbsp;
-                      <select name="month" class="price-standard">
+            <table class="catetable" style="margin-top:10px;line-height:200%;font-size:35px; font-family:'JejuGothic';padding:10px;">
+            <tr>
+            	<td>희망 수업횟수</td>
+            	<td>
+            		<select name="month" class="price-standard">
                         <option>한달 12회</option>
                         <option>한달 8회</option>
                         <option>한달 4회 </option>
                         <option>1회</option>
                       </select>
-                      <br/><br/>
-                     회당 수업시간  
-                      <select name="gawetime" class="price-time">
+            	</td>
+            <tr>
+            
+            <tr>
+            	<td>회당 수업시간</td>
+            	<td>
+            		<select name="gawetime" class="price-time">
                           <option>60분</option>
                           <option>90분</option>
                           <option>2시간</option>
                           <option>2시간 30분</option>
                           <option>3시간</option>
                           <option>4시간</option>
-                        </select>
-                        </span>
-            <br/><br/>
-           <span style="color:gray; font-size:30px;font-family:'JejuGothic'">가격
-           <div style="text-align:center">
-						<select class="price1" id="price1" name="price1">
+                    </select>
+            	</td>
+            <tr>
+            
+            <tr>
+            	<td>희망 가격</td>
+            	<td>
+            		<select class="price1" id="price1" name="price1">
 							<option value="무관">무관</option>
                     		<option value="10만원">10만원</option>
                     		<option value="20만원">20만원</option>
@@ -888,17 +953,19 @@ window.location="./apply";
                     		<option value="90만원">90만원</option>
                     		<option value="100만원">100만원</option>
                     		<option value="무관">무관</option>
-                		</select>
-                		</div>
-                		</span> 
-                		</div>
- 			</td></tr>
-            <tr><td>선생님에게 남기고 싶은 말 또는 희망사항(<span class="message-length">0</span>/200) <br/>
-            <div style="margin-top:10px;">
-            <textarea name="message" class="message" rows="6" cols="30" style="font-size:30px"></textarea>
+                    	</select>
+            	</td>
+            <tr>
+						
+            <tr>
+            	<td colspan="2">선생님에게 남기고 싶은 말 또는 희망사항(<span class="message-length">0</span>/200)</td>
+            </tr>
+            <tr>
+            <td colspan="2">
+            <textarea name="message" class="message" rows="8" style="font-size:35px;width:100%;"></textarea>
             <input type="text" name="visible" value="1" style="display:none;" />
-            </div>
-            </td></tr>
+            </td>
+            </tr>
             </table>
             <br/>
             <span class="btn7">다음단계</span><span class="prev7">이전단계</span>
@@ -922,7 +989,7 @@ window.location="./apply";
             </div>
             <br/>
             <br/>
-            <table class="catetable" style="font-size:30px;">
+            <table class="catetable" style="font-size:40px;">
             
             <tr><td>
             <input type="text" name="email" class="permit" id="email" placeholder="이메일" />
@@ -952,7 +1019,7 @@ window.location="./apply";
     		</td></tr>
     
    			<tr><td>
-    		<div style="margin :0px auto;font-size:28px;">
+    		<div style="margin :0px auto;font-size:35px;">
       			<input type="checkbox" name="U_checkAgreement1" />
       				회사의 <a style="color : black;" class="service">이용약관</a>과 
       				<a style="color : black;" class="private">개인정보보호 방침</a>에 동의합니다.

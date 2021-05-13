@@ -68,7 +68,7 @@ font-size:40px;
 			<td class="sub-title">핸드폰 번호</td><td><span class="sub-value">${member.phone}</span></td>
 		</tr>
 		<tr>
-			<td class="sub-title">닉네임</td><td class="sub-value">${member.nickname} &nbsp;&nbsp;<a class="akak" href="/nicknameUpdate">수정</a></td>
+			<td class="sub-title">닉네임</td><td class="sub-value">${member.nickname}</td>
 		</tr>
 </table>
 <div style="width:500px; margin:70px auto;text-align:center;">

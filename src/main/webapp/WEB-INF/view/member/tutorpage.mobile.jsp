@@ -131,6 +131,74 @@
     }
 
 
+.tutorial-first-back{
+			display:none;
+			width:100%;
+			height:100%;
+			background:black;
+			opacity:0.3;
+			position:fixed;
+			top:0px;
+			left:0px;
+			z-index:90;
+			
+		}
+
+		.tutorial-first, .tutorial-certi, .tutorial-success{
+			width:80%;
+			font-family: 'JejuGothic';
+			z-index:100;
+			position:fixed;top:50%;left:50%;transform: translate(-50%, -50%);
+			display:none;
+			padding:0px;
+			background-image:url(/resources/img/firecracker.png);
+			background-repeat : no-repeat;
+        	background-size : cover;
+			text-align:center;
+			border-radius:20px;
+			font-size:40px;
+			line-height:200%;
+		}
+		
+		
+		.tutorial-para{
+		text-align:center;
+		padding-top:80px;
+		background:white;
+		border-radius:20px 20px 120px 120px;
+		}
+		.tutorial-first-title{
+			color: #002266;
+			font-size:50px;
+			margin-bottom:30px;
+			font-weight:bold;
+		}
+		
+		.tutorial-btn, .tutorial-btn-certi, .tutorial-end{
+			margin:80px auto;
+			padding:10px;
+			cursor:pointer;
+			background:white;
+			color:#002266;
+			border-radius:20px;
+			width:80%;
+			font-weight:bolder;
+			display:inline-block;
+			font-size:50px;
+		}
+
+		.tutorial-close, .tutorial-close-certi{
+			cursor:pointer;
+		}
+		
+		.tutorial-close-div{
+			text-align:right;
+			color:white;
+			font-size:30px;
+			padding:10px;
+		}
+		
+
 .list{
     	width:100%;
     	margin:auto;
@@ -212,9 +280,6 @@
       line-height:150%;
       text-decoration:none;
     }
-    #pst:hover{
-box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
-}
 
 </style>
 </head>
@@ -284,9 +349,11 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                 </div>
                 </div>
                  <div style="text-align:center;width:80%;margin:50px auto;border-radius:20px; border:2px dashed dimgray;font-size:40px;">
+                            <a href="./certify?email=${email}"  style="text-decoration:none;color:black">
                             <div class="certify" style="width:90%;margin:50px auto;cursor:pointer; border-radius:50px; padding:30px; background: #EF904F; color:white;">
                                   	 <b> 본인/학력 인증하기 </b>
                             </div>
+                            </a>
                             
                             <a href="./profile"  style="text-decoration:none;color:black">
                             <div class="profile" style="width:90%;margin:50px auto;border-radius:50px; padding:30px; background: #EF904F; color:white;">
@@ -294,9 +361,11 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                             </div>
                             </a>
                             
+                            <a href="./lessonWrite"  style="text-decoration:none;color:black">
                             <div class="lesson-make lesson-permit" style="text-align:center;width:90%;margin:50px auto;border-radius:50px; padding:30px; background: #EF904F; color:white;">
                                     	<b> 수업 만들기 </b>
                             </div>
+                            </a>
                         </div>
                 <div class="div-title" style="margin-top:100px;">수업 목록 (${size}/3)</div>
                         <div style="width:90%;background:white;;border:1px solid lightgray;border-radius:10px; margin:auto; padding:40px;">
@@ -363,7 +432,49 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
             
             <div style="height:300px;"></div>
             </div>
-            
+
+<div class="tutorial-first-back"></div>
+    <div class="tutorial-first">
+    	<div class="tutorial-para">
+    		<div class="tutorial-first-title">이제, 나의 수업을 만들어보세요.</div>
+    		<div>
+    		입력양식에 따라 차근차근<br/>나의 수업을 채워 넣어보세요.
+    		</div>
+    	</div>
+    	<div>
+    		<a href="./lessonWrite?cok_tutorial=first_lesson" style="text-decoration:none;">
+    			<div class="tutorial-btn">수업 작성하기</div>
+    		</a>
+    	</div>
+    	<div class="tutorial-close-div"><span class="tutorial-close">[닫기x]</span></div>
+    </div>    
+    
+    <div class="tutorial-certi">
+    	<div class="tutorial-para">
+    		<div class="tutorial-first-title">마지막 단계,<br/> 본인/학력인증을 완료하면<br/>수업이 정상적으로 노출되며<br/>학생의 과외요청에<br/>알림을 받을 수 있습니다.</div>
+    	</div>
+    	<div>
+	    	<a href="./certify?email=${email}&cok_tutorial=first_certi" style="text-decoration:none;">
+    			<div class="tutorial-btn-certi">인증하기</div>
+    		</a>
+    	</div>
+    	<div class="tutorial-close-div"><span class="tutorial-close-certi">[닫기x]</span></div>
+    </div>    
+    
+    
+    <div class="tutorial-success">
+    	<div class="tutorial-para">
+    		<div class="tutorial-first-title">모든 단계를 완료하였습니다.</div>
+    		<div>
+    		본인학력인증 검수 후<br/>인증이 완료되면<br/>모든 서비스가 적용됩니다.
+    		</div>
+    	</div>
+    	<div>
+    			<div class="tutorial-end">튜토리얼 종료</div>
+    	</div>
+    </div>     
+
+          
         </section>
       
         <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
@@ -388,16 +499,6 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
         	  
         	  
         	  
-            $('.lesson-make').hover(function(){
-                $(this).addClass('lesson-make2');
-            }, function(){
-                $(this).removeClass('lesson-make2');
-            });
-
-          $('.lesson-make').click(function(){
-        	 window.location= './lessonWrite';
-          });
-            
           
           $('.update').click(function(){
         	 var updateUrl = './update?id='+$(this).find('.idval').val();
@@ -406,10 +507,6 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
           
           var email = "<c:out value="${email}" />";
           
-          $('.certify').click(function(){
-         	 var url = './certify?email='+email;
-         	 window.location = url;
-           });
           
           
           $('.delete-a').click(function(){
@@ -424,7 +521,78 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
         	    }
         	});
           
+          $('.tutorial-close').click(function(){
+        	  $('.tutorial-first').hide();
+          	  $('.tutorial-first-back').hide();
+          	  SetCookie('tutorial','end')
+          });
+          
+          $('.tutorial-close-certi').click(function(){
+        	  $('.tutorial-certi').hide();
+          	  $('.tutorial-first-back').hide();
+          		SetCookie('tutorial','end')
+          });
+          
+          
+          $('.tutorial-end').click(function(){
+        	  $('.tutorial-success').hide();
+          	  $('.tutorial-first-back').hide();
+          });    
          });
+          
+          function getRequestParam(){
+       	    var url = document.location.href;
+       	    var qs = url.substring(url.indexOf('?') + 1).split('&');
+       	    for(var i = 0, result = {}; i < qs.length; i++){
+       	        qs[i] = qs[i].split('=');
+       	        result[qs[i][0]] = decodeURIComponent(qs[i][1]);
+       	    }
+       	    return result;
+       	}
+          
+          if(getRequestParam().cok_tutorial=="first_lesson"){
+          	if(GetCookie("tutorial")!="end"){
+          	   $('.tutorial-first').toggle(500)
+             	   $('.tutorial-first-back').show();
+          	}
+          }
+          
+          if(getRequestParam().cok_tutorial=="first_certi"){
+          	if(GetCookie("tutorial")!="end"){
+        	   		$('.tutorial-certi').toggle(500)
+         	   		$('.tutorial-first-back').show();
+          	}
+          }
+          
+          if(getRequestParam().cok_tutorial=="tutorial_success"){
+          	if(GetCookie("tutorial")!="end"){
+          		$('.tutorial-success').toggle(500)
+              	$('.tutorial-first-back').show();
+              	SetCookie('tutorial','end')
+          	}
+          }
+
+          
+          function SetCookie(sName, sValue){
+      		var date = new Date();
+      		date.setTime(date.getTime() + (1*24*60*60*1000));
+      		document.cookie = sName + "=" + escape(sValue)+";expires="+date.toGMTString();
+      	}
+      	
+      	function GetCookie(sName){
+      		/*저장되어있는 쿠키 정보 불러오기
+      		오픈 페이지에서 부여하는 쿠키의 이름 및 값을 aCookie라는 변수에 저장.
+      		여기서는 test_cookie=1이란 값이 저장 */
+      		var aCookie = document.cookie.split("; ");
+      		//검색을 원하는 쿠키명(test_cookie)과 저장되어 있는 쿠키의 이름이 일치하는지 확인
+      		for(var i=0; i<aCookie.length; i++){
+      			var aCrumb = aCookie[i].split("=");
+      			if(sName == aCrumb[0]){
+      				return unescape(aCrumb[1]);
+      			}
+      		}
+      		return null;
+      	}	
         </script>
 </body>
 </html>

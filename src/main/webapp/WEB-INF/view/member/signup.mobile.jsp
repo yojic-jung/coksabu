@@ -38,7 +38,7 @@
 		font-size:60px; padding:50px;
 		border-bottom:4px solid white;
 		color:orange;
-		font-family:'Malgun Gothic';
+		font-family: 'Apple SD Gothic Neo','Malgun Gothic';
 		font-weight:bold;
 	}
 	
@@ -47,7 +47,7 @@
 		font-size:40px;
 		 padding:50px;
 		border-bottom:1px solid gray;
-		font-family:'Malgun Gothic';
+		font-family: 'Apple SD Gothic Neo','Malgun Gothic';
 	}
 	
 	.menu-href{
@@ -115,14 +115,21 @@
   	}
   	.naver-customize{
 	 background-image:url(<c:url value="/resources/img/naverbackground.png" />);
-	font-family:Gothic;font-size:40px;color:white;border-radius:10px; padding:20px;
+	font-family: 'Apple SD Gothic Neo','Malgun Gothic';font-size:40px;color:white;border-radius:10px; padding:20px;
 	margin-bottom:50px;font-weight:bolder;
+	}
+	.apple-customize{
+	width:100%;text-align:center;
+	background:black;
+	font-family: 'Apple SD Gothic Neo','Malgun Gothic';font-size:45px;color:white;border-radius:10px; font-weight:bolder;
+	margin:20px auto 60px auto;cursor:pointer;height:104px;border:1px solid black;
 	}
 	
     </style>
        <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-413632618"></script>
+<script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -187,6 +194,18 @@
       <input class="signup-submit" type="submit" />
     </form:form>  
     <div style="text-align:center;">
+    	
+    	<div id="appleid-signin" data-color="black" data-border="true" data-type="sign in" style="display:none;"></div>
+        
+        <div class="apple-customize">
+        <table style="width:100%;">
+        	<tr>
+        		<td><img src="<c:url value='/resources/img/appleLogo.png' />"  style="vertical-align: middle;width:71px;height:100px;"/></td>
+        		<td style="text-align:center;">Sign in with Apple</td>
+        	</tr>
+        </table>
+        </div>
+        
         	<div class="naver-customize">
         		<span style="font-weight:bolder;float:left;clear:right;">
         		<img src="<c:url value='/resources/img/naver.png' />"  style="width:90px;height:90px;"/>
@@ -232,6 +251,11 @@
         	  $(this).css('background','rgb(224, 224, 224)');
         	  $(this).css('color','black');
 			});
+          
+          $('.apple-customize').click(function(){
+   		   		$('#appleid-signin').trigger("click");
+   		});
+          
           
           
           
@@ -361,7 +385,7 @@ $(window).bind("pageshow", function(event) {
 	var naverLogin = new naver.LoginWithNaverId(
 		{
 			clientId: "0PgcZhDTwaod8UwQsoKX",
-			callbackUrl: "https://coksabu.com/loginCallBackNaver",
+			callbackUrl: "https://m.coksabu.com/loginCallBackNaver",
 			isPopup: false, /* 팝업을 통한 연동처리 여부 */
 			loginButton: {color: "green", type: 2, height: 120} /* 로그인 버튼의 타입을 지정 */
 		}
@@ -375,6 +399,29 @@ $(window).bind("pageshow", function(event) {
 	  	  location.href = naverLogin.generateAuthorizeUrl();
 		});
 	
+	
+	 var currentUrlApple = window.location.href;
+     var currentUrlApple = window.location.href;
+	     var callbackUrlApple = '';
+	     if(currentUrlApple.indexOf("www.coksabu.com") != -1){
+	     	callbackUrlApple = "https://www.coksabu.com/loginCallBackApple";
+	     }else if(currentUrlApple.indexOf("m.coksabu.com") != -1){
+	     	callbackUrlApple = "https://m.coksabu.com/loginCallBackApple";
+	     }else{
+	     	callbackUrlApple = "https://coksabu.com/loginCallBackApple";
+	     	}
+	
+  	 var state = "<c:out value="${state}" />";
+	 var client_nonce = "<c:out value="${client_nonce}" />";
+     
+	 AppleID.auth.init({
+         clientId : 'com.coksabu.coksabu',
+         scope : 'name email',
+         redirectURI :callbackUrlApple,
+         state : state,
+         nonce : client_nonce,
+     });
+	 
       </script>
 </body>
 </html>

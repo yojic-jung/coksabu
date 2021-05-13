@@ -1,10 +1,12 @@
 package com.coksabu.yojic.lesson.admin.service;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.coksabu.yojic.lesson.admin.dao.AdminDao;
 import com.coksabu.yojic.lesson.admin.model.DelWaiting;
 import com.coksabu.yojic.lesson.admin.model.NotificationLight;
+import com.coksabu.yojic.lesson.admin.model.UnivCertiUpdate;
+import com.coksabu.yojic.lesson.admin.model.UnivCertiUpdateDB;
 import com.coksabu.yojic.lesson.board.model.LessonCardDB;
 import com.coksabu.yojic.lesson.board.model.PurchaseHistory;
 
@@ -104,6 +108,45 @@ public class AdminAdditionService {
 		adminDao.removeDelWaitingList(id);
 		
 		return adminDao.deleteLesson(postId);
+	}
+	
+	@Transactional(rollbackFor= {Exception.class})
+	public String updateUnivCertiImg(UnivCertiUpdate univCertiUpdate, String certi, String path) throws IllegalStateException, IOException {
+		File file = new File(path+"/"+univCertiUpdate.getAgoCertiImg());
+		file.delete();
+		
+		Random random = new Random();
+		long currentTime = System.currentTimeMillis();
+		int randomValue = random.nextInt(50);
+		
+		if(certi.equals("univ")) {
+			UnivCertiUpdateDB univCertiUpdateDB = new UnivCertiUpdateDB();
+			
+			String fileName= Long.toString(currentTime) + "_"+randomValue+"_"+univCertiUpdate.getCertifyimg2().getOriginalFilename();
+			
+			univCertiUpdateDB.setEmail(univCertiUpdate.getEmail());
+			univCertiUpdateDB.setCertifyimg2(fileName);
+			
+			File file2 = new File(path , fileName);
+			univCertiUpdate.getCertifyimg2().transferTo(file2);
+			
+			adminDao.updateUnivCertiImg(univCertiUpdateDB);
+		}else if(certi.equals("academy")) {
+			UnivCertiUpdateDB univCertiUpdateDB = new UnivCertiUpdateDB();
+			
+			String fileName= Long.toString(currentTime) + "_"+randomValue+"_"+univCertiUpdate.getCertifyimg3().getOriginalFilename();
+			
+			univCertiUpdateDB.setEmail(univCertiUpdate.getEmail());
+			univCertiUpdateDB.setCertifyimg3(fileName);
+			
+			File file2 = new File(path , fileName);
+			univCertiUpdate.getCertifyimg3().transferTo(file2);
+			
+			adminDao.updateAcademyCertiImg(univCertiUpdateDB);
+		}
+		
+		
+		return "";
 	}
 	
 }

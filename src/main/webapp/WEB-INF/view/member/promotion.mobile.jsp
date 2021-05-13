@@ -25,11 +25,11 @@ word-break:keep-all;
 	padding:20px;
 }
 .prmtCode{
-width:80%;
+width:100%;
 border-radius:10px;
 border:1px solid dimgray;
-padding:15px;
-font-size:30px;
+padding:20px;
+font-size:40px;
 margin:50px 0px 50px 0px;
 }
 
@@ -41,14 +41,16 @@ margin:50px 0px 50px 0px;
 	font-size:30px;
 }
 .btn{
+			-webkit-appearance:none;
 			margin-top:40px;
 			margin-right:50px;
-			padding:10px; 
+			padding:20px; 
         	background:dimgray;
         	color:white;
         	border-radius:10px;
         	border:none;
-        	font-size:30px;
+        	font-size:40px;
+        	
 }
 
 </style>
@@ -61,34 +63,34 @@ margin:50px 0px 50px 0px;
 <form method='post'  onSubmit='return CheckForm(this)'>
 <div class='content'>
 <div class='current'></div>
-<div style='font-size:30px; width:80%; margin:auto;padding-bottom:20px;text-align:center'>
-<div style="padding-bottom:30px;line-height:150%;">현재 진행중인 선생님 수수료 무료 프로모션은<br/> 회원가입 날짜로부터 2개월간 적용됩니다.<br/>sns광고(인스타,페이스북, 웹 광고)를 보고 가입하신 선생님은<br/>프로모션 코드에 COKSABU<br/>전단지 및 포스터를 보고 가입하신 선생님은 <br/>LESSON 이라고 적어주시면 수수료 무료 2개월이 적용됩니다.</div>
-<input class='prmtCode' type='text' placeholder='프로모션 코드 및 쿠폰을 등록 해주세요.' name='code'/>
+<div style='font-size:35px; width:80%; margin:auto;padding-bottom:20px;text-align:center'>
+<div style="padding-bottom:30px;line-height:150%;">현재 진행중인 프로모션이 없습니다.</div>
+<input class='prmtCode' type='text' placeholder='프로모션 코드 및 쿠폰을 등록 해주세요.' name='code' readonly/>
 <input type='submit' class='btn' value='등록하기'/>  
 </div>
 </div>
 </form>
 
-<div style="width:90%;margin:40px auto 0px auto;font-family:JejuGothic;">
+<div style="width:90%;margin:80px auto 0px auto;font-family:JejuGothic;">
 	<c:if test="${promotion != null }">
-	<div style="padding-left:20px;font-size:35px;">나의 프로모션 "이용내역"</div>
+	<div style="padding-left:20px;font-size:35px;">나의 프로모션 "<span style="color:orange">이용내역</span>"</div>
 		<table style="border-spacing:20px;color:dimgray;font-size:30px;line-height:150%;">
 			<tr>
 				<td style="border-bottom:2px solid black;" colspan="4"></td>
 			</tr>
-			<tr style="color:black;">
-				<td style="width:100px;">프로모션</td><td>프로모션 내용</td><td style="width:100px;">시작날짜</td><td style="width:100px;">종료날짜</td>
+			<tr style="color:black;text-align:center;">
+				<td>프로모션</td><td>프로모션 내용</td><td>기간</td>
 			</tr>
 			<tr>
-				<td style="border-bottom:1px solid lightgray;" colspan="4"></td>
+				<td style="border-bottom:1px solid lightgray;" colspan="3"></td>
 			</tr>
 			<tr>
-				<td>${promotion.title }</td><td>${promotion.content}</td><td>${promotion.startDateS}</td><td>${promotion.endDateS}</td>
+				<td style="text-align:center;">${promotion.title }</td><td>${promotion.content}</td><td style="text-align:center;">${promotion.startDateS}<br/>~<br/>${promotion.endDateS}</td>
 			</tr>			
 		</table>
 	</c:if>
 </div>
-
+<div style="height:400px;"></div>
  <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
         <script>
         $(document).ready(function(){

@@ -44,7 +44,7 @@
 	#name{
 			color:dimgray;
 			font-size:14px;
-			font-family:'malgun-gothic';
+			font-family: 'Apple SD Gothic Neo','Malgun Gothic';
 			margin-bottom:10px;
 	}
 	
@@ -53,14 +53,14 @@
 			color: black;
 			font-weight:bolder;
 			margin-bottom:10px;
-			font-family:'malgun-gothic';
+			font-family: 'Apple SD Gothic Neo','Malgun Gothic';
 	}
 	
 	#subcate{
 			font-size:16px;
 			color: black;	
 			font-weight:bolder;			
-			font-family:'malgun-gothic';
+			font-family: 'Apple SD Gothic Neo','Malgun Gothic';
 			margin-bottom:10px;
 			width:198px;
 			overflow:hidden;
@@ -70,7 +70,7 @@
 	
 	#locale{
 			font-size:15px;
-			font-family:'malgun-gothic';
+			font-family: 'Apple SD Gothic Neo','Malgun Gothic';
 			color:gray;
 			margin-bottom:10px;
 			width:198px;
@@ -81,7 +81,7 @@
 	
 	#price{
 		font-size:14px;
-		font-family:'malgun-gothic';
+		font-family: 'Apple SD Gothic Neo','Malgun Gothic';
 		color:gray;
 		margin-bottom:10px;
 	}

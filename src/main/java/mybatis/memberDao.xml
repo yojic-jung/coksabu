@@ -34,6 +34,10 @@
 		insert into members (email, password, name, nickname, birth, phone, logindate, signupdate, membership, enabled, authority, human_status, fail_count, fail_time, imgpath, push) values (#{email}, #{password}, #{name}, #{name}, #{birth}, #{phone}, now(), now(), 0, 1, 'user', 0, 0, 0, 'pro.png', 'ON')
 	</insert>
 	
+	<insert id="preUserSignUp" parameterType="com.coksabu.yojic.lesson.member.model.MemberInfo" >
+		insert into members (email, password, name, nickname, birth, phone, logindate, signupdate, membership, enabled, authority, human_status, fail_count, fail_time, imgpath, push) values (#{email}, #{password}, #{name}, #{name}, #{birth}, #{phone}, now(), now(), 0, 1, 'pre-user', 0, 0, 0, 'pro.png', 'ON')
+	</insert>
+	
 	<insert id="naverSignUp" parameterType="com.coksabu.yojic.lesson.member.model.MemberInfo" >
 		insert into members (email, password, name, nickname, birth, phone, logindate, signupdate, membership, enabled, authority, human_status, fail_count, fail_time, imgpath, push) values (#{email}, #{password}, #{name}, #{name}, #{birth}, #{phone}, now(), now(), 0, 1, 'user', 0, 0, 0, 'pro.png', 'ON')
 	</insert>
@@ -55,8 +59,8 @@
 	</select>
 	
 	<insert id="writeProfile" parameterType="com.coksabu.yojic.lesson.member.model.TeacherDB" >
-		insert into profile (email, imgpath, locales, universe, univsub, universer, career, sexual, academy, academyd, nation, nationy, toeic, tofle, teps, hsk, jpt, singular, certify) values 
-		(#{email}, #{imgPath}, #{locales}, #{universe}, #{univsub}, #{universer}, #{career}, #{sexual}, #{academy}, #{academyd}, #{nation}, #{nationy}, #{toeic}, #{tofle}, #{teps}, #{hsk}, #{jpt}, #{singular}, 0)
+		insert into profile (email, imgpath, locales, universe, univsub, universer, career, sexual, passType, academy, academyd, nation, nationy, toeic, tofle, teps, hsk, jpt, singular, certify) values 
+		(#{email}, #{imgPath}, #{locales}, #{universe}, #{univsub}, #{universer}, #{career}, #{sexual}, #{passType}, #{academy}, #{academyd}, #{nation}, #{nationy}, #{toeic}, #{tofle}, #{teps}, #{hsk}, #{jpt}, #{singular}, 0)
 	</insert>
 	
 	<update id="updateMembersImgpath"  parameterType="String">
@@ -66,7 +70,7 @@
 	
 	<update id="updateProfile"  parameterType="com.coksabu.yojic.lesson.member.model.TeacherDB">
 		update profile as A, members as B set A.imgpath=#{imgPath}, A.locales=#{locales}, A.sexual=#{sexual}, A.universe=#{universe}, 
-		A.univsub=#{univsub}, A.universer=#{universer}, A.career=#{career} , A.academy=#{academy}, A.academyd = #{academyd},
+		A.univsub=#{univsub}, A.universer=#{universer}, A.career=#{career}, A.passType=#{passType}, A.academy=#{academy}, A.academyd = #{academyd},
 		A.nation=#{nation}, A.nationy=#{nationy}, A.toeic=#{toeic}, A.tofle=#{tofle}, A.teps=#{teps}, A.hsk=#{hsk}, A.jpt=#{jpt}, 
 		 A.singular=#{singular}, B.imgpath=#{imgPath} where A.email=#{email} and B.email=#{email}
 	</update>
@@ -82,7 +86,7 @@
 	</select>
 
 	<select id="takeTeacherDB" resultType="com.coksabu.yojic.lesson.member.model.TeacherDB" >
-		select imgpath, locales, universe, universer, career, univsub, sexual, academy, academyd,
+		select imgpath, locales, universe, universer, career, univsub, sexual, passType, academy, academyd,
 		nation, nationy, toeic, tofle, teps, hsk, jpt, singular, certify from profile where email=#{email}
 	</select>
 	
@@ -99,7 +103,7 @@
 	</update>
 	
 	<select id="tekeCertify" resultType="com.coksabu.yojic.lesson.member.model.CertifyDB">
-		select email, certify, certifyimg1, certifyimg2, certifyimg3 from profile where email=#{email}
+		select email, certify, certifyimg1, certifyimg2, certifyimg3, denyreason from profile where email=#{email}
 	</select>
 	
 	<select id="readMemberInfo" resultType="com.coksabu.yojic.lesson.member.model.MemberInfo" >
@@ -251,4 +255,15 @@
 		select count(*) from promotion where email=#{email} and (code='COKSABU' or code='LESSON')
 	</select>
 	
+	<select id="takeAuthority" resultType="String">
+		select authority from members where email=#{email}
+	</select>
+	
+	<update id="updateMemberforPreUser" parameterType="com.coksabu.yojic.lesson.member.model.MemberInfo">
+		update members set name=#{name}, nickname=#{name}, birth=#{birth}, phone=#{phone}, authority='user' where email=#{email}
+	</update>
+	
+	<select id="takeRollAndPassword" resultType="com.coksabu.yojic.lesson.member.model.MemberInfo">
+		select authority, password from members where email=#{email}
+	</select>
 </mapper>

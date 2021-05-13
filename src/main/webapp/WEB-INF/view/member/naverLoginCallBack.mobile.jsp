@@ -35,7 +35,7 @@
 		var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "0PgcZhDTwaod8UwQsoKX",
-				callbackUrl: "https://coksabu.com/loginCallBackNaver",
+				callbackUrl: "https://m.coksabu.com/loginCallBackNaver",
 				isPopup: false,
 				callbackHandle: true
 				/* callback 페이지가 분리되었을 경우에 callback 페이지에서는 callback처리를 해줄수 있도록 설정합니다. */
@@ -99,16 +99,12 @@
 			    		       },
 			    		  success:function(data){
 			    			  console.log(data.status)
-			    			  if(data=='phoneDuplicate'){
+			    			  if(data.status=='phoneDuplicate'){
 			    				  alert("이미 가입 정보가 있습니다. 다른 sns로그인 또는 이메일 비밀번호를 직접 입력하여 로그인 해주세요.")
-			    				  return;
+			    				  window.location.href="./login";
 			    			  }else if(data.status=="success"){
-			    				  deleteCookie("userInputEmail");
-			    				  setCookie("userInputEmail", email, 180);
 			    				  window.location.replace("./naverSignupSuccess")
 			    			  }else{
-			    				  deleteCookie("userInputEmail");
-			    				  setCookie("userInputEmail", email, 168);
 			    				  window.location.replace("./")
 			    			  }
 			    		  }
@@ -117,24 +113,12 @@
 					
 				} else {
 					console.log("callback 처리에 실패하였습니다.");
+					alert("죄송합니다. 서버 오류로 로그인에 실패하였습니다. 다시 시도해주시기 바랍니다.\n지속적으로 로그인에 실패하실  주소창에 coksabu.com 을 입력하여 접속 후 다시 시도해주시기 바랍니다.");
+					 window.history.back();
 				}
 			});
 		});
 		
-		
-		function setCookie(cookieName, value, exdays){
-	        var exdate = new Date();
-	        exdate.setDate(exdate.getDate() + exdays);
-	        var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
-	        document.cookie = cookieName + "=" + cookieValue;
-	    }
-	     
-	    function deleteCookie(cookieName){
-	        var expireDate = new Date();
-	        expireDate.setDate(expireDate.getDate() - 1);
-	        document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
-	    }
-	     
 	</script>
 </body>
 </html>

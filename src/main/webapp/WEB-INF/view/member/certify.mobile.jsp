@@ -88,13 +88,20 @@ padding:20px;
 			       프로필에 대학원을 기재하신 경우 대학원 재학/졸업 증명서를 꼭 첨부하여주시기 바랍니다.
 			</div>
 				
+			
+			<c:if test="${cerDB.denyReason!=null}">
+				<div style="font-size:50px;margin:60px 0px 30px 0px;text-align:center;color: #980000;">반려사유</div>
+				<div style="font-size:40px;margin:auto; width:90%;color: #980000;">${cerDB.denyReason}</div>
+			</c:if>
+			
+			
 			<form id="create_form" method="post" enctype="multipart/form-data" onSubmit="return CheckForm(this)">
 			
 			<input type="text" value="${email}" style="display:none" />
 			
 			<table style="font-size:40px; width:90%;margin:50px auto 0px auto;border-spacing:40px;text-align:center;">
 				<tr>
-					<td>신분증</td>
+					<td style="line-height:140%;">신분증<br/><span style="font-size:35px;">(이미지는 10MB이하 파일로 등록해주세요.)</span></td>
 				</tr>
 				<tr>
 					<td style="position:relative">
@@ -104,7 +111,7 @@ padding:20px;
 					<img id="imgplus1" src="<c:url value="/resources/images/imgplus.png" />"  />
 					</div>
 					<div id="input-div1">
-					<input name="certifyimg1" class="multi1" type="file" accept="image/*" onchange="check1(this);loadFile1(event);" />
+					<input name="certifyimg1" class="multi1" type="file" accept="image/*" onchange="check1(this);loadFile1(event);" /><br/>
 					</div>
 					</td>
 				</tr>
@@ -169,7 +176,12 @@ $(document).ready(function(){
 	 
 	 if(status=="success"){
 		 alert("본인인증 신청을 완료하셨습니다. 완료까지 1-2일 정도 걸릴 수 있습니다.");
-		 window.location.href="/tutorpage";
+		 if(getRequestParam().cok_tutorial == "first_certi"){
+			 window.location.href="/tutorpage?cok_tutorial=tutorial_success";
+		 }else{
+			 window.location.href="/tutorpage";
+		 }
+		 
 	 }else if(status=="fail"){
 		 alert("신청이 올바르게 되지 않았습니다. 다시 신청해주시기 바랍니다.");
 		 window.location.href="/tutorpage";
@@ -310,10 +322,11 @@ var loadFile2 = function(event) {
            	// file[0].size 는 파일 용량 정보입니다.
            	if(file[0].size > 1024*1024*10){
            		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
-           		  alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+           		   alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. "); 
            		$('.multi1').remove();
            	   	$('#input-div1').append('<input name="certifyimg1" class="multi1" type="file" accept="image/*" onchange="check1(this);loadFile1(event);" />');
-           		  return false;
+           	
+           	   	return false;
            	}
             }            
          
@@ -336,7 +349,7 @@ var loadFile2 = function(event) {
            	// file[0].size 는 파일 용량 정보입니다.
            	if(file[0].size > 1024*1024*10){
            		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
-           		  alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+           		 alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
            		$('.multi3').remove();
              	$('#input-div3').append('<input name="certifyimg3" class="multi3" type="file" accept="image/*" onchange="check3(this);loadFile3(event);" />');
            		  return false;
@@ -368,7 +381,15 @@ $(window).bind("pageshow", function(event) {
 		$('#spinner').hide();
 });
 
-	
+function getRequestParam(){
+    var url = document.location.href;
+    var qs = url.substring(url.indexOf('?') + 1).split('&');
+    for(var i = 0, result = {}; i < qs.length; i++){
+        qs[i] = qs[i].split('=');
+        result[qs[i][0]] = decodeURIComponent(qs[i][1]);
+    }
+    return result;
+}		
 </script>
 </body>
 </html>

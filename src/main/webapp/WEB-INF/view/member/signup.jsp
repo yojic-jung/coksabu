@@ -71,16 +71,21 @@
   		 .naver-customize{
   		 width:350px;
 	 background-image:url(<c:url value="/resources/img/naverbackground.png" />);
-	font-family:Gothic;font-size:15px;color:white;border-radius:10px; padding:10px;font-weight:bolder;
-	line-height:200%;
-	margin:0px 10px;cursor:pointer;
+	font-family: 'Apple SD Gothic Neo','Malgun Gothic';font-size:15px;color:white;border-radius:10px; padding:5px;font-weight:bolder;line-height:250%;
+	margin:10px;cursor:pointer;
 	text-align:center;
 	}
-	
+	.apple-customize{
+	width:350px;text-align:center;
+	background:black;
+	font-family: 'Apple SD Gothic Neo','Malgun Gothic';font-size:15px;color:white;border-radius:10px; font-weight:bolder;
+	margin:20px 10px;cursor:pointer;border:1px solid black;
+	}
     </style>
   <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-413632618"></script>
+<script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -147,11 +152,17 @@
     </div>  
     
       <input style="color:white; background:rgb(94, 94, 94); font-size:15px; 
-      padding:15px;border-radius:10px; width:350px;margin:60px 10px 40px 10px" type="submit" value="동의하고 가입하기"/>
+      padding:15px;border-radius:10px; width:350px;margin:60px 10px 20px 10px" type="submit" value="동의하고 가입하기"/>
     </form:form>  
     <div >
+    
+    <div id="appleid-signin" data-color="black" data-border="true" data-type="sign in" style="width:350px;height:45px;margin:10px 0px 20px 10px;cursor:pointer;display:none;"></div>
+    <div class="apple-customize">
+       			<img src="<c:url value='/resources/img/appleLogo.png' />"  style="vertical-align: middle;width:32px;height:45px;"/>
+        		Sign in with Apple
+    </div>
         	<div class="naver-customize">
-        		<span style="font-weight:bolder;float:left;clear:right;margin:0px 10px">
+        		<span style="font-weight:bolder;float:left;clear:right;">
         		<img src="<c:url value='/resources/img/naver.png' />"  style="width:40px;height:40px;"/>
         		</span>
         		네이버 아이디로 가입하기
@@ -184,7 +195,35 @@
         	  $(this).css('background','rgb(115, 115, 117)');
           },function(){
         	  $(this).css('background','rgb(209, 209, 209)');
-        	  });        	  
+        	  });     
+          
+          $('.apple-customize').click(function(){
+   		   $('#appleid-signin').trigger("click");
+   		});
+          
+             var currentUrlApple = window.location.href;
+    	     var callbackUrlApple = '';
+    	     if(currentUrlApple.indexOf("www.coksabu.com") != -1){
+    	     	callbackUrlApple = "https://www.coksabu.com/loginCallBackApple";
+    	     }else if(currentUrlApple.indexOf("m.coksabu.com") != -1){
+    	     	callbackUrlApple = "https://m.coksabu.com/loginCallBackApple";
+    	     }else{
+  	     	callbackUrlApple = "https://coksabu.com/loginCallBackApple";
+  	     	}
+    	     
+    	  	 var state = "<c:out value="${state}" />";
+       	 var client_nonce = "<c:out value="${client_nonce}" />";
+       	 AppleID.auth.init({
+    	         clientId : 'com.coksabu.coksabu',
+    	         scope : 'name email',
+    	         redirectURI : callbackUrlApple,
+    	         state : state,
+    	         nonce : client_nonce,
+    	     });
+          
+       	 
+         
+          
           })
       
      
@@ -283,12 +322,21 @@ function check(re, what, message) {
     what.focus();
     //return false;
 }
-      
-      
+
+
+var currentUrl = window.location.href;
+var callbackUrl = '';
+if(currentUrl.indexOf("www.coksabu.com") != -1){
+	  callbackUrl = "https://www.coksabu.com/loginCallBackNaver";
+}else{
+	  callbackUrl = "https://coksabu.com/loginCallBackNaver";
+}
+
+
 var naverLogin = new naver.LoginWithNaverId(
 	  		{
 	  			clientId: "0PgcZhDTwaod8UwQsoKX",
-	  			callbackUrl: "https://coksabu.com/loginCallBackNaver",
+	  			callbackUrl: callbackUrl,
 	  			isPopup: false, /* 팝업을 통한 연동처리 여부 */
 	  			loginButton: {color: "green", type: 3, height: 170} /* 로그인 버튼의 타입을 지정 */
 	  		}

@@ -192,7 +192,6 @@ public class ListService {
 			case "14":return "이과수학";
 			case "15":return "문과수학";
 			case "16":return "고등수학";
-			case "17":return "수학논술";
 			case "18":return "수학경시";
 			
 			case "21":return "외국어";
@@ -210,7 +209,6 @@ public class ListService {
 			case "33":return "중등국어";
 			case "34":return "고등국어";
 			case "35":return "수능국어";
-			case "36":return "국어논술";
 			
 			case "41":return "사회";
 			case "42":return "초등사회";
@@ -244,6 +242,7 @@ public class ListService {
 			
 			case "61":return "예체능";
 			case "62":return "미술";
+			case "63":return "음악";
 			
 			case "622":return "유아미술";
 			case "623":return "초등미술";
@@ -251,14 +250,22 @@ public class ListService {
 			case "625":return "고등미술";
 			case "626":return "성인미술";
 			
-			case "63":return "음악";
+			case "632":return "악기";
+			case "633":return "성악";
+			case "634":return "국악";
+			
 			case "64":return "체육";
 			
 			
 			
-			case "71":return "자소서/입시";
+			case "71":return "입시(자소서/논술/면접)";
 			case "72":return "자소서첨삭";
 			case "73":return "입시컨설팅";
+			case "74":return "면접";
+			case "75":return "수학논술";
+			case "76":return "인문논술";
+			case "77":return "국어논술";
+			case "78":return "과학논술";
 	}
 		return "";
 	}

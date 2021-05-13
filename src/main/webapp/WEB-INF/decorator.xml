@@ -3,6 +3,7 @@
 <!-- default directory 설정 -->
 <decorators defaultdir="/WEB-INF/view">
 
+
 	<!-- sample -->
 	<decorator name="sampleLayout" page="lessonking_decorator.jsp">
 		<pattern>/boarder*</pattern>
@@ -10,6 +11,7 @@
 		<pattern>/lessonapply*</pattern>
 		<pattern>/companyInfo*</pattern>
 		<pattern>/useGuide*</pattern>
+		<pattern>/tutorUseGuide*</pattern>
 		<pattern>/customer*</pattern>
 		<pattern>/qna*</pattern>
 		<pattern>/myqna*</pattern>

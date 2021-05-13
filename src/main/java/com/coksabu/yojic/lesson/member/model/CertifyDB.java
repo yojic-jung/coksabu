@@ -16,6 +16,8 @@ public class CertifyDB {
 	private String certifyimg2;
 	private String certifyimg3;
 	
+	private String denyReason;
+	
 	private Date certifydate;
 	
 	//기본생성자 없이 불러오면 no such method 익셉션
@@ -105,6 +107,14 @@ public class CertifyDB {
 	}
 	public String getCertifyimg3() {
 		return certifyimg3;
+	}
+	
+	public void setDenyReason(String denyReason) {
+		this.denyReason=denyReason;
+	}
+	
+	public String getDenyReason() {
+		return denyReason;
 	}
 	
 	

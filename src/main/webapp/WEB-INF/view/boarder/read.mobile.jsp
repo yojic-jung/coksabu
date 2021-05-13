@@ -77,7 +77,7 @@
 		width:100%;
 	}
 	
-	.locale{
+	.passType, .locale{
 		padding:10px;color:dimgray;font-size:35px;
 		line-height:50px;word-break:keep-all;
 	}
@@ -231,7 +231,7 @@
  	        		var name = 'output'+(i+1);
  	        		var path = ctx+'/resources/mediaImg/'+img[i];
  	        		
- 	        		$('.img-div').append('<img id="'+name+'" style="width:100%; height:600px;" src=""/>');
+ 	        		$('.img-div').append('<img id="'+name+'" style="width:100%; " src=""/>');
  	        		var nameId = "#"+name;
  	        		$(nameId).attr('src',path);
  	        	}
@@ -263,7 +263,7 @@
 			<div class="title" style="line-height:150%;">${lesson.title}</div>
 			<div class="subcate">
 			</div>
-				
+			
 		
 				
 		  <div style="display:none; color:gray; ">
@@ -320,17 +320,26 @@
 					</table>
 				</div>
 		
-		<div style="margin:20px 0px;padding:10px;font-size:30px;line-height:200%;">콕사부 안내 : 제공하는 수업 외에도 &#39;상담 하기&#39;를 통해 채팅창에서 새로운 수업을 작성하여 거래할 수 있습니다.</div>
+		<div style="margin:20px 0px;padding:10px;font-size:35px;line-height:200%;font-weight:bolder;">콕사부 안내 : 수업횟수, 수업시간을 변경하여 수업을 듣고 싶은 경우 채팅창에서 선생님과 협의 후 수업조건을 변경하여 안전거래 할 수 있습니다.</div>
 		
 			
                 <div>
                 <div class="subtitle">선생님 정보</div>
+                <c:if test="${pro.certify == 1}"> 
+                	<div style="margin:60px 0px;font-size:35px;text-align:center;font-family:NanumBarunGothic;">
+                		<span style="color:orange;font-weight:bold">본인인증</span> 및 <span style="color:orange;font-weight:bold">학력인증</span>이 <span style="color:orange;font-weight:bold">완료</span> 된 선생님입니다.
+                	</div>
+            	</c:if>
+               	 <c:if test="${lesson.priNegotiation == 'yes'}">
+               	 	<div style="margin-bottom:100px;font-size:35px;text-align:center;font-family:NanumBarunGothic;">	
+               	 		협의 후 수업조건에 따라 <span style="color:orange;font-weight:bold">가격 협의 가능</span> 합니다.
+               	 	</div>
+               	 </c:if>
                 <div style="text-align:center;margin-top:40px;font-size:35px;">
 					<img style="width:400px; height:400px;border-radius:200px;" src="<c:url value="/img/profileImg/${pro.imgPath}" />" alt="선생님 프로필 이미지"/><br/>
 				<br/>${pro.nickname}(${pro.birth}, ${pro.sexual})
 				</div>
                 
-                <c:if test="${pro.certify == 1}"> <div style="margin-top:30px;color:orange; text-align:center;font-size:30px;">본인인증완료 &nbsp; &nbsp; 학력인증완료 </div></c:if>
                 <br/>
                 <div style="width:90%; margin:auto;font-size:30px;line-height:230%">
                <span class="info" style="margin-right:20px;">대학교</span>${pro.universe} ${pro.univsub} (${pro.universer}) <br/>
@@ -345,7 +354,10 @@
             	<c:if test="${pro.jpt!=null}"><span class="info" style="margin-right:10px;">JPT</span>${pro.jpt}점</c:if>
             	</div>
             	
-            	
+            	<c:if test="${pro.passType!='--선택--'}">
+            	<div class="subtitle" style="margin:150px 0px 20px 0px;">대학 합격유형 </div>
+            	<div class="passType">${pro.passType}</div>
+            	</c:if>
             	
             	<div class="subtitle" style="margin:150px 0px 20px 0px;">과외가능 지역 </div>
 				<div class="locale"></div>		
@@ -411,7 +423,7 @@
 					<tr>
 						<td>
 							<c:if test="${!empty lesson.title}">
-								<button class="cunsult">상담 하기</button>
+								<button class="cunsult">채팅 상담</button>
 							</c:if>
 						</td>
 						<td>

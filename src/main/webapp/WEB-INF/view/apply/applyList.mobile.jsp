@@ -45,14 +45,14 @@
 	#name{
 			color: #4C4C4C;
 			font-size:20px;
-			font-family:'malgun-gothic';
+			font-family: 'Apple SD Gothic Neo','Malgun Gothic';
 			margin-bottom:15px;
 	}
 	
 	#grade{
 			font-size:30px;
 			color: #4C4C4C;
-			font-family:'malgun-gothic';
+			font-family: 'Apple SD Gothic Neo','Malgun Gothic';
 			font-weight:bolder;
 			margin-bottom:15px;
 	}
@@ -63,7 +63,7 @@
 			line-height:30px;
 			color: #4C4C4C;	
 			font-weight:bolder;			
-			font-family:'malgun-gothic';
+			font-family: 'Apple SD Gothic Neo','Malgun Gothic';
 			overflow:hidden;
 			white-space:nowrap;
 			text-overflow:ellipsis;
@@ -71,7 +71,7 @@
 	
 	#locale{
 			font-size:25px;
-			font-family:'malgun-gothic';
+			font-family: 'Apple SD Gothic Neo','Malgun Gothic';
 			color:#4C4C4C;
 			margin-bottom:15px;
 			overflow:hidden;
@@ -81,7 +81,7 @@
 	
 	#price{
 		font-size:20px;
-		font-family:'malgun-gothic';
+		font-family: 'Apple SD Gothic Neo','Malgun Gothic';
 		color:#4C4C4C;
 		margin-bottom:15px;
 	}

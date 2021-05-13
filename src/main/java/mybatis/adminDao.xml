@@ -7,15 +7,15 @@
 <mapper namespace="com.coksabu.yojic.lesson.admin.dao.AdminDao">
 
 	<select id="imgList" resultType="com.coksabu.yojic.lesson.admin.model.ImgList" >
-		select A.name, A.birth, B.email, B.certifyimg1, B.certifyimg2, B.certifyimg3, B.universe, B.univsub,  B.academy, B.academyd from members as A, profile as B where A.email=B.email and B.certify=3 order by B.certifydate asc limit 2
+		select A.name, A.birth, B.email, B.certifyimg1, B.certifyimg2, B.certifyimg3, B.universe, B.univsub,  B.academy, B.academyd from members as A, profile as B where A.email=B.email and B.certify=3 order by B.certifydate asc limit 1
 	</select>
 	
 	<update id="inspectComplete" >
-		update members as A, profile as B set A.membership=1, B.certify=1, B.certifydate=now() where A.email=#{email} and A.email=B.email
+		update members as A, profile as B set A.membership=1, B.certify=1, B.certifydate=now(), B.denyReason=null where A.email=#{email} and A.email=B.email
 	</update>
 	
 	<update id="inspectFail" >
-		update profile set certify=2, certifydate=now() where email=#{email}
+		update profile set certify=2, denyreason=#{denyReason}, certifydate=now() where email=#{email}
 	</update>
 	
 	<select id="certifyCount" resultType="Integer">
@@ -279,7 +279,7 @@
 	</select>
 	
 	<select id="takePushForOneTarget" resultType="com.coksabu.yojic.lesson.fcm.util.TokenInfo">
-		select device, token from members where email=#{email}
+		select device, token,phone,name from members where email=#{email}
 	</select>
 	
 	

@@ -98,7 +98,73 @@
 	.locale3{
 	display:none;font-size:13px; color:gray; padding:7px;width:210px;
 	}
-   
+   .tutorial-first-back{
+			display:none;
+			width:100%;
+			height:100%;
+			background:black;
+			opacity:0.3;
+			position:fixed;
+			top:0px;
+			left:0px;
+			z-index:90;
+			
+		}
+
+		.tutorial-first{
+			width:320px;
+			font-family: 'JejuGothic';
+			z-index:100;
+			position:fixed;top:50%;left:50%;transform: translate(-50%, -50%);
+			display:none;
+			padding:0px;
+			background-image:url(/resources/img/firecracker.png);
+			background-repeat : no-repeat;
+        	background-size : cover;
+			text-align:center;
+			border-radius:20px;
+			font-size:18px;
+		}
+		
+		
+		.tutorial-para{
+		text-align:center;
+		padding-top:30px;
+		line-height:180%;
+		background:white;
+		border-radius:20px 20px 120px 120px;
+		}
+		.tutorial-first-title{
+			color: #002266;
+			font-size:18px;
+			margin-bottom:30px;
+			font-weight:bold;
+		}
+		
+		.tutorial-btn{
+			margin:30px auto 10px auto;
+			padding:10px;
+			cursor:pointer;
+			background:white;
+			color:#002266;
+			border-radius:20px;
+			width:220px;
+			font-weight:bolder;
+		}
+		
+        .tutorial-close{
+			cursor:pointer;
+		}
+		
+		.tutorial-close-div{
+			margin-top:30px;
+			text-align:right;
+			color:white;
+			font-size:14px;
+			padding:5px;
+		}
+		
+          
     </style>
 
 </head>
@@ -143,7 +209,7 @@ window.location="./applynologin";
             <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="사회" /> 사회</label></td></tr>
             <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="과학" /> 과학</label></td></tr>
             <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="예체능" /> 예체능</label></td></tr>
-            <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="자소서/입시" /> 자소서/입시</label></td></tr>
+            <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="입시(자소서/논술/면접)" /> 입시(자소서/논술/면접)</label></td></tr>
             </table>
             <br/>
             <span class="btn1">다음단계</span>
@@ -169,7 +235,6 @@ window.location="./applynologin";
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="고등수학" /> 고등수학</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="문과수학" /> 문과수학</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="이과수학" /> 이과수학</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="수학논술" /> 수학논술</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="수학경시" /> 수학경시</label></td></tr>
             </table>
             <br/>
@@ -221,7 +286,6 @@ window.location="./applynologin";
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="중등국어" /> 중등국어</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="고등국어" /> 고등국어</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="수능국어" /> 수능국어</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="국어논술" /> 국어논술</label></td></tr>
             </table>
             <br/>
             <span class="btn2">다음단계</span><span class="prev2">이전단계</span>
@@ -289,7 +353,15 @@ window.location="./applynologin";
             <br/>
             <table class="catetable">
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="미술" /> 미술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="유아미술" /> 유아미술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="초등미술" /> 초등미술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="중등미술" /> 중등미술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="고등미술" /> 고등미술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="성인미술" /> 성인미술</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="음악" /> 음악</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="악기" /> 악기</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="성악" /> 성악</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="국악" /> 국악</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="체육" /> 체육</label></td></tr>
             </table>
             <br/>
@@ -311,6 +383,11 @@ window.location="./applynologin";
             <table class="catetable">
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="자소서첨삭" /> 자소서첨삭</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="입시컨설팅" /> 입시컨설팅</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="면접" /> 면접</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="수학논술" /> 수학논술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="인문논술" /> 인문논술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="국어논술" /> 국어논술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="과학논술" /> 과학논술</label></td></tr>
             </table>
             <br/>
             <span class="btn2">다음단계</span><span class="prev2">이전단계</span>
@@ -851,6 +928,20 @@ window.location="./applynologin";
             </div>
             </div>
             </div>
+            
+    <div class="tutorial-first-back"></div>
+    <div class="tutorial-first">
+    	<div class="tutorial-para">
+    		<div class="tutorial-first-title">수업요청서 작성을 통해<br/>수업 가능한 선생님들의<br/>지원서를 받아볼 수 있습니다.</div>
+    	</div>
+    	<div>
+    		<div class="tutorial-btn">
+    			요청서 작성하기
+    		</div>
+    	</div>
+    	<div class="tutorial-close-div"><span class="tutorial-close">[닫기x]</span></div>
+    </div>
+            
            </section>
            
         <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
@@ -999,9 +1090,59 @@ window.location="./applynologin";
 	    }
 	});
 	
- });
- </script>
-</body>
-</html>
+	$('.tutorial-btn').click(function(){
+	 		$('.tutorial-first').remove();
+	   		$('.tutorial-first-back').remove();
+ 	});
+	
+	$('.tutorial-close').click(function(){
+		   $('.tutorial-first').remove();
+    	   $('.tutorial-first-back').remove();
+    	   SetCookie('tutorial','end')
+	});
+	
+});
+ 
+ 
+if(getRequestParam().cok_tutorial=="first_student"){
+	   if(GetCookie("tutorial")!="end"){
+		   $('.tutorial-first').toggle(500);
+	 	   $('.tutorial-first-back').show();
+	   }
+	   
+}
+ 
+function getRequestParam(){
+	    var url = document.location.href;
+	    var qs = url.substring(url.indexOf('?') + 1).split('&');
+	    for(var i = 0, result = {}; i < qs.length; i++){
+	        qs[i] = qs[i].split('=');
+	        result[qs[i][0]] = decodeURIComponent(qs[i][1]);
+	    }
+	    return result;
+}
+
+function SetCookie(sName, sValue){
+		var date = new Date();
+		date.setTime(date.getTime() + (1*24*60*60*1000));
+		document.cookie = sName + "=" + escape(sValue)+";expires="+date.toGMTString();
+}
+	
+function GetCookie(sName){
+		/*저장되어있는 쿠키 정보 불러오기
+		오픈 페이지에서 부여하는 쿠키의 이름 및 값을 aCookie라는 변수에 저장.
+		여기서는 test_cookie=1이란 값이 저장 */
+		var aCookie = document.cookie.split("; ");
+		//검색을 원하는 쿠키명(test_cookie)과 저장되어 있는 쿠키의 이름이 일치하는지 확인
+		for(var i=0; i<aCookie.length; i++){
+			var aCrumb = aCookie[i].split("=");
+			if(sName == aCrumb[0]){
+				return unescape(aCrumb[1]);
+			}
+		}
+		return null;
+}
+
+</script>
 </body>
 </html>

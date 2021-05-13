@@ -11,6 +11,7 @@
 <title><decorator:title /></title>
 <style>
 body{
+	font-family:'Apple SD Gothic Neo','Malgun Gothic';
 	-webkit-touch-callout: none;
 }
 </style>
@@ -20,6 +21,7 @@ body{
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+  gtag('config', 'G-4EM47WXQJ0');
   gtag('config', 'AW-413632618');
 </script>
 <!-- Facebook Pixel Code -->

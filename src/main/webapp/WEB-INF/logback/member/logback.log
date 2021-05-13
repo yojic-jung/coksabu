@@ -1,43 +1,21 @@
-WARN  17:48:04.351 [http-bio-8080-exec-44 MemberController.java:103] main - warn 멤버 로그
-WARN  17:48:04.510 [http-bio-8080-exec-49 MemberController.java:103] main - warn 멤버 로그
-WARN  18:07:01.454 [http-bio-8080-exec-65 MemberController.java:103] main - warn 멤버 로그
-WARN  15:12:45.616 [http-bio-8080-exec-47 MemberController.java:92] main - none
-WARN  15:12:59.677 [http-bio-8080-exec-50 MemberController.java:92] main - 메세지 카운트 세션 상태 : none
-WARN  15:14:33.981 [http-bio-8080-exec-55 MemberController.java:92] main - 메세지 카운트 세션 상태 : null
-WARN  15:15:03.276 [http-bio-8080-exec-46 MemberController.java:92] main - 메세지 카운트 세션 상태 : none
-WARN  15:15:08.929 [http-bio-8080-exec-48 MemberController.java:92] main - 메세지 카운트 세션 상태 : null
-WARN  15:15:16.137 [http-bio-8080-exec-56 MemberController.java:92] main - 메세지 카운트 세션 상태 : none
-WARN  15:17:24.036 [http-bio-8080-exec-62 MemberController.java:92] main - 메세지 카운트 세션 상태 : none
-WARN  15:17:42.341 [http-bio-8080-exec-62 MemberController.java:92] main - 메세지 카운트 세션 상태 : null
-WARN  15:17:57.785 [http-bio-8080-exec-62 MemberController.java:92] main - 메세지 카운트 세션 상태 : none
-WARN  15:18:01.368 [http-bio-8080-exec-62 MemberController.java:92] main - 메세지 카운트 세션 상태 : none
-WARN  17:42:35.138 [http-bio-8080-exec-48 MemberController.java:133] main - ZHl3bHI6ZHl3bHI6NmZjOTkxMmI4ZTRjYTUyNjc1YTkwNDUwYTcxZDhlOGI
-WARN  17:42:35.516 [http-bio-8080-exec-53 MemberController.java:133] main - ZHl3bHI6ZHl3bHI6NmZjOTkxMmI4ZTRjYTUyNjc1YTkwNDUwYTcxZDhlOGI
-WARN  18:07:22.090 [http-bio-8080-exec-65 MemberController.java:993] naverLogin - 반복문 password : AAAANv2
-WARN  18:07:22.090 [http-bio-8080-exec-65 MemberController.java:993] naverLogin - 반복문 password : AAAANv2k4
-WARN  18:07:22.090 [http-bio-8080-exec-65 MemberController.java:993] naverLogin - 반복문 password : AAAANv2k4h5
-WARN  18:07:22.090 [http-bio-8080-exec-65 MemberController.java:993] naverLogin - 반복문 password : AAAANv2k4h5x8
-WARN  18:07:22.090 [http-bio-8080-exec-65 MemberController.java:995] naverLogin - 최종 password : AAAANv2k4h5x8
-WARN  18:07:50.740 [http-bio-8080-exec-67 MemberController.java:993] naverLogin - 반복문 password : AAAANv5
-WARN  18:07:50.740 [http-bio-8080-exec-67 MemberController.java:993] naverLogin - 반복문 password : AAAANv5k6
-WARN  18:07:50.740 [http-bio-8080-exec-67 MemberController.java:993] naverLogin - 반복문 password : AAAANv5k6x1
-WARN  18:07:50.740 [http-bio-8080-exec-67 MemberController.java:993] naverLogin - 반복문 password : AAAANv5k6x1u1
-WARN  18:07:50.741 [http-bio-8080-exec-67 MemberController.java:995] naverLogin - 최종 password : AAAANv5k6x1u1
-WARN  18:09:04.500 [http-bio-8080-exec-76 MemberController.java:993] naverLogin - 반복문 password : AAAANd8
-WARN  18:09:04.500 [http-bio-8080-exec-76 MemberController.java:993] naverLogin - 반복문 password : AAAANd8y6
-WARN  18:09:04.501 [http-bio-8080-exec-76 MemberController.java:993] naverLogin - 반복문 password : AAAANd8y6w4
-WARN  18:09:04.501 [http-bio-8080-exec-76 MemberController.java:993] naverLogin - 반복문 password : AAAANd8y6w4l0
-WARN  18:09:04.501 [http-bio-8080-exec-76 MemberController.java:995] naverLogin - 최종 password : AAAANd8y6w4l0
-WARN  18:09:04.522 [http-bio-8080-exec-76 MemberController.java:1035] naverLogin - ZHl3bHI3NEBuYXZlci5jb206MTYzMDc0NjU0NDUxOTpjOTFiMGExM2E4MzkwMmFhNTY5Nzg3OGQ1NTZkMjQ5MQ=
-WARN  21:44:00.835 [http-bio-8080-exec-130 MemberController.java:994] naverLogin - 반복문 password : AAAAN3Al_Bzb1w-LHJAjSlt9Muwdn0AjxmsEzj8bbevQ77sQsNjzL2rtt3tCXYlU1hrAzgtyjwnlvEJdLZzvB6YeUOcz2
-WARN  21:44:00.835 [http-bio-8080-exec-130 MemberController.java:994] naverLogin - 반복문 password : AAAAN3Al_Bzb1w-LHJAjSlt9Muwdn0AjxmsEzj8bbevQ77sQsNjzL2rtt3tCXYlU1hrAzgtyjwnlvEJdLZzvB6YeUOcz2p0
-WARN  21:44:00.835 [http-bio-8080-exec-130 MemberController.java:994] naverLogin - 반복문 password : AAAAN3Al_Bzb1w-LHJAjSlt9Muwdn0AjxmsEzj8bbevQ77sQsNjzL2rtt3tCXYlU1hrAzgtyjwnlvEJdLZzvB6YeUOcz2p0p3
-WARN  21:44:00.836 [http-bio-8080-exec-130 MemberController.java:994] naverLogin - 반복문 password : AAAAN3Al_Bzb1w-LHJAjSlt9Muwdn0AjxmsEzj8bbevQ77sQsNjzL2rtt3tCXYlU1hrAzgtyjwnlvEJdLZzvB6YeUOcz2p0p3n9
-WARN  21:44:00.836 [http-bio-8080-exec-130 MemberController.java:994] naverLogin - 반복문 password : AAAAN3Al_Bzb1w-LHJAjSlt9Muwdn0AjxmsEzj8bbevQ77sQsNjzL2rtt3tCXYlU1hrAzgtyjwnlvEJdLZzvB6YeUOcz2p0p3n9c6
-WARN  21:44:00.836 [http-bio-8080-exec-130 MemberController.java:996] naverLogin - 최종 password : AAAAN3Al_Bzb1w-LHJAjSlt9Muwdn0AjxmsEzj8bbevQ77sQsNjzL2rtt3tCXYlU1hrAzgtyjwnlvEJdLZzvB6YeUOcz2p0p3n9c6
-WARN  21:46:48.720 [http-bio-8080-exec-138 MemberController.java:995] naverLogin - 반복문 password : AAAAN3Al_Bzb1w-LHJAjSlt9Muwdn0AjxmsEzj8bbevQ77sQsNjzL2rtt3tCXYlU1hrAzgtyjwnlvEJdLZzvB6YeUOca9
-WARN  21:46:48.720 [http-bio-8080-exec-138 MemberController.java:995] naverLogin - 반복문 password : AAAAN3Al_Bzb1w-LHJAjSlt9Muwdn0AjxmsEzj8bbevQ77sQsNjzL2rtt3tCXYlU1hrAzgtyjwnlvEJdLZzvB6YeUOca9j8
-WARN  21:46:48.720 [http-bio-8080-exec-138 MemberController.java:995] naverLogin - 반복문 password : AAAAN3Al_Bzb1w-LHJAjSlt9Muwdn0AjxmsEzj8bbevQ77sQsNjzL2rtt3tCXYlU1hrAzgtyjwnlvEJdLZzvB6YeUOca9j8u5
-WARN  21:46:48.720 [http-bio-8080-exec-138 MemberController.java:995] naverLogin - 반복문 password : AAAAN3Al_Bzb1w-LHJAjSlt9Muwdn0AjxmsEzj8bbevQ77sQsNjzL2rtt3tCXYlU1hrAzgtyjwnlvEJdLZzvB6YeUOca9j8u5o2
-WARN  21:46:48.720 [http-bio-8080-exec-138 MemberController.java:995] naverLogin - 반복문 password : AAAAN3Al_Bzb1w-LHJAjSlt9Muwdn0AjxmsEzj8bbevQ77sQsNjzL2rtt3tCXYlU1hrAzgtyjwnlvEJdLZzvB6YeUOca9j8u5o2j9
-WARN  21:46:48.720 [http-bio-8080-exec-138 MemberController.java:997] naverLogin - 최종 password : AAAAN3Al_Bzb1w-LHJAjSlt9Muwdn0AjxmsEzj8bbevQ77sQsNjzL2rtt3tCXYlU1hrAzgtyjwnlvEJdLZzvB6YeUOca9j8u5o2j9
+WARN  10:51:41.616 [http-bio-8080-exec-1 MemberController.java:159] main - nonce : 0d67da8e-b2a8-491b-92f6-8580b586a744
+WARN  10:51:41.628 [http-bio-8080-exec-1 MemberController.java:160] main - state : fk3iqtmhe115tah3sghqmu3n7p
+WARN  14:03:43.033 [http-bio-8080-exec-21 MemberController.java:159] main - nonce : c74ac731-325a-41d2-9425-13317a9d3cd4
+WARN  14:03:43.034 [http-bio-8080-exec-21 MemberController.java:160] main - state : 8a205kfekbr60398ppgm6vv3sq
+WARN  14:03:44.549 [http-bio-8080-exec-25 MemberController.java:159] main - nonce : 29b0331b-290c-421f-aa83-ad8d10acfff5
+WARN  14:03:44.550 [http-bio-8080-exec-25 MemberController.java:160] main - state : kc3tu9nha15s9vr4fhchbsrvsj
+WARN  14:03:45.409 [http-bio-8080-exec-28 MemberController.java:159] main - nonce : bffe37a8-c0fa-4e26-b79f-75d825b29c05
+WARN  14:03:45.411 [http-bio-8080-exec-28 MemberController.java:160] main - state : 27s343kevn6ijc3b4sfq3vg6q5
+WARN  23:39:33.939 [http-bio-8080-exec-16 MemberController.java:1099] secession - 회원탈퇴신청 이메일 : dywlr735@gmail.com
+WARN  23:40:07.472 [http-bio-8080-exec-20 MemberController.java:1099] secession - 회원탈퇴신청 이메일 : dywlr735@gmail.com
+WARN  23:40:50.048 [http-bio-8080-exec-22 MemberController.java:1099] secession - 회원탈퇴신청 이메일 : dywlr735@gmail.com
+WARN  23:40:55.704 [http-bio-8080-exec-22 MemberController.java:1099] secession - 회원탈퇴신청 이메일 : dywlr735@gmail.com
+WARN  23:41:19.912 [http-bio-8080-exec-25 MemberController.java:1099] secession - 회원탈퇴신청 이메일 : dywlr735@gmail.com
+WARN  23:42:09.465 [http-bio-8080-exec-25 MemberController.java:1100] secession - 회원탈퇴신청 이메일 : dywlr735@gmail.com
+WARN  23:43:11.672 [http-bio-8080-exec-33 MemberController.java:1100] secession - 회원탈퇴신청 이메일 : dywlr735@gmail.com
+WARN  23:43:46.201 [http-bio-8080-exec-34 MemberController.java:1100] secession - 회원탈퇴신청 이메일 : dywlr735@gmail.com
+WARN  23:44:48.743 [http-bio-8080-exec-41 MemberController.java:1100] secession - 회원탈퇴신청 이메일 : dywlr735@gmail.com
+WARN  23:45:27.264 [http-bio-8080-exec-40 MemberController.java:1100] secession - 회원탈퇴신청 이메일 : dywlr735@gmail.com
+WARN  23:45:45.800 [http-bio-8080-exec-37 MemberController.java:1100] secession - 회원탈퇴신청 이메일 : dywlr735@gmail.com
+WARN  23:46:27.514 [http-bio-8080-exec-40 MemberController.java:1100] secession - 회원탈퇴신청 이메일 : dywlr735@gmail.com
+WARN  23:48:08.080 [http-bio-8080-exec-52 MemberController.java:1100] secession - 회원탈퇴신청 이메일 : dywlr735@gmail.com

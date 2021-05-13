@@ -23,7 +23,14 @@
     
     function connect() {
     	//파라미터 이름, 순서 바뀌면 안됨 , afterConnectionClosed메서드에서 참조함
-        var socket = new SockJS("https://m.coksabu.com/hello?chatroom_id="+chatroom_id+"&username="+sender);
+    	var currentUrl = window.location.href;
+    	if(currentUrl.indexOf("www.coksabu.com")!=-1){
+    		  var socket = new SockJS("https://www.coksabu.com/hello?chatroom_id="+chatroom_id+"&username="+sender);
+    	}else if(currentUrl.indexOf("m.coksabu.com")!=-1){
+    		  var socket = new SockJS("https://m.coksabu.com/hello?chatroom_id="+chatroom_id+"&username="+sender);
+    	}else{
+    		  var socket = new SockJS("https://coksabu.com/hello?chatroom_id="+chatroom_id+"&username="+sender);
+    	}
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function(frame) {
             stompClient.subscribe('/queue/message-'+chatroom_id, function(greeting){

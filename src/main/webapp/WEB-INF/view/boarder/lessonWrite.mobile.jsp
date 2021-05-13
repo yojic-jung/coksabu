@@ -247,6 +247,32 @@
 input[type="checkbox"]{
 	width:20px;height:20px;
 }
+
+.pri-neg-able{
+      	border-bottom-left-radius:10px;
+      	border-top-left-radius:10px;
+      }
+      .pri-neg-disable{
+      	border-bottom-right-radius:10px;
+      	border-top-right-radius:10px;
+      }
+	.pri-neg-able, .pri-neg-disable{
+		display:inline-block;
+		border:1px solid gray;
+		background:#F6F6F6;
+		width:40%;
+		padding:20px;
+		cursor:pointer;
+	}
+	.radio-back{
+		background: #F29661;
+		color:white;
+	}
+
+	.negotiation-possible, .negotiation-notpossible{
+		display:none;
+	}
+	
     </style>
 <title>수업 만들기</title>
 </head>
@@ -283,7 +309,7 @@ input[type="checkbox"]{
                             <option>사회</option>
                             <option>과학</option>
                             <option>예체능</option>
-                            <option>자소서/입시</option>
+                            <option>입시(자소서/논술/면접)</option>
                           </select>
                         </div>
                         
@@ -302,7 +328,6 @@ input[type="checkbox"]{
                      	 	 			<option>고등수학</option>
                       	   	  			<option>문과수학</option>
                           	  			<option>이과수학</option>
-                          	  			<option>수학논술</option>
                           	  			<option>수학경시</option>
                         			</select>
                         			</td>
@@ -314,7 +339,6 @@ input[type="checkbox"]{
                      	 	 			<option>고등수학</option>
                       	   	  			<option>문과수학</option>
                           	  			<option>이과수학</option>
-                          	  			<option>수학논술</option>
                           	  			<option>수학경시</option>
                         			</select>
                         			</td>
@@ -326,7 +350,6 @@ input[type="checkbox"]{
                       	   	  			<option>문과수학</option>
                      	     			<option>고등수학</option>
                           	  			<option>이과수학</option>
-                          	  			<option>수학논술</option>
                           	  			<option>수학경시</option>
                         			</select>
                         			</td>
@@ -378,7 +401,6 @@ input[type="checkbox"]{
                         	  		<option>중등국어</option>
                      	 	  		<option>고등국어</option>
                       	   	  		<option>수능국어</option>
-                     	      		<option>국어논술</option>
                         		</select>
                         		</td>
                         		<td>
@@ -388,7 +410,6 @@ input[type="checkbox"]{
                         	  		<option>중등국어</option>
                      	 	  		<option>고등국어</option>
                       	   	  		<option>수능국어</option>
-                     	      		<option>국어논술</option>
                         		</select>
                         		</td>
                         		<td>
@@ -398,7 +419,6 @@ input[type="checkbox"]{
                         	  		<option>중등국어</option>
                      	 	  		<option>고등국어</option>
                       	   	  		<option>수능국어</option>
-                     	      		<option>국어논술</option>
                         		</select>
                         		</td>
                         		</tr>
@@ -512,39 +532,50 @@ input[type="checkbox"]{
                         		<td>
                         		<select>
                         	  		<option>미술</option>
-                        	  		<option>음악</option>
-                     	 	  		<option>체육</option>
-                     	 	  		<option>유아미술</option>
+                        	  		<option>유아미술</option>
                      	 	  		<option>초등미술</option>
                      	 	  		<option>중등미술</option>
                      	 	  		<option>고등미술</option>
                      	 	  		<option>성인미술</option>
+                        	  		<option>음악</option>
+                        	  		<option>악기</option>
+                        	  		<option>성악</option>
+                        	  		<option>국악</option>
+                     	 	  		<option>체육</option>
+                     	 	  		
                         		</select>
                         		</td>
                         		<td>
                         		<select>
                         	  		<option value="nonevalue">선택없음</option>
                         	  		<option>미술</option>
-                        	  		<option>음악</option>
-                     	 	  		<option>체육</option>
-                     	 	  		<option>유아미술</option>
+                        	  		<option>유아미술</option>
                      	 	  		<option>초등미술</option>
                      	 	  		<option>중등미술</option>
                      	 	  		<option>고등미술</option>
                      	 	  		<option>성인미술</option>
+                        	  		<option>음악</option>
+                        	  		<option>악기</option>
+                        	  		<option>성악</option>
+                        	  		<option>국악</option>
+                     	 	  		<option>체육</option>
+                     	 	  		
                         		</select>
                         		</td>
                         		<td>
                         		<select>
                         	  		<option value="nonevalue">선택없음</option>
                         	  		<option>미술</option>
-                        	  		<option>음악</option>
-                     	 	  		<option>체육</option>
-                     	 	  		<option>유아미술</option>
+                        	  		<option>유아미술</option>
                      	 	  		<option>초등미술</option>
                      	 	  		<option>중등미술</option>
                      	 	  		<option>고등미술</option>
                      	 	  		<option>성인미술</option>
+                        	  		<option>음악</option>
+                        	  		<option>악기</option>
+                        	  		<option>성악</option>
+                        	  		<option>국악</option>
+                     	 	  		<option>체육</option>
                         		</select>
                         		</td>
                         		</tr>
@@ -553,6 +584,11 @@ input[type="checkbox"]{
                         		<select>
                         	  		<option>자소서첨삭</option>
                         	  		<option>입시컨설팅</option>
+                        	  		<option>면접</option>
+                        	  		<option>수학논술</option>
+                        	  		<option>인문논술</option>
+                        	  		<option>국어논술</option>
+                        	  		<option>과학논술</option>
                         		</select>
                         		</td>
                         		<td>
@@ -560,6 +596,11 @@ input[type="checkbox"]{
                         	  		<option value="nonevalue">선택없음</option>
                         	  		<option>자소서첨삭</option>
                         	  		<option>입시컨설팅</option>
+                        	  		<option>면접</option>
+                        	  		<option>수학논술</option>
+                        	  		<option>인문논술</option>
+                        	  		<option>국어논술</option>
+                        	  		<option>과학논술</option>
                         		</select>
                         		</td>
                         		<td>
@@ -567,6 +608,11 @@ input[type="checkbox"]{
                         	  		<option value="nonevalue">선택없음</option>
                         	  		<option>자소서첨삭</option>
                         	  		<option>입시컨설팅</option>
+                        	  		<option>면접</option>
+                        	  		<option>수학논술</option>
+                        	  		<option>인문논술</option>
+                        	  		<option>국어논술</option>
+                        	  		<option>과학논술</option>
                         		</select>
                         		</td>
                         		</tr>
@@ -663,7 +709,12 @@ input[type="checkbox"]{
                         			</td>
                         		</tr>
                         	</table>
+                        	<div style="font-size:40px;text-align:center;margin-top:100px;">
+                        		<label><div class="pri-neg-able"><input type="radio" class="negotiation-possible" name="priNegotiation" value="yes"/>가격협의 가능</div></label><label><div class="pri-neg-disable"><input type="radio" class="negotiation-notpossible" name="priNegotiation" value="no"/>가격협의 불가</div></label>
+                        	</div>
+                        	<div style="text-align:center;font-size:30px;color:dimgray;">협의가능 여부를 선택해주세요.</div>
                         </div>
+                        	
                         </div>
                         
                       <br/>
@@ -753,8 +804,9 @@ input[type="checkbox"]{
                     <br/><br/>
                     <span style="font-size:35px;color:gray;">
                     이미지는 최대 4장까지 업로드 가능합니다.<br/>
-                     이미지 취소를 원할 경우 해당 이미지를 클릭하면 됩니다.
-                     </span><br/>
+                     이미지 취소를 원할 경우 해당 이미지를 클릭하세요.
+                     </span>
+                     <div style="color:gray;font-size:35px;">(이미지는 10MB이하 파일로 등록해주세요.)</div>
                     </div>
                     <div class="img-div">
                     
@@ -775,7 +827,7 @@ input[type="checkbox"]{
                   <div class="teacher-intr" id="teacher-intr" >
                   <div>콕사부 정책</div>
                    <div style="font-size:25px; line-height:130%;margin:20px auto;;border:1px solid black; padding:10px;">
-                   콕사부의 중개 수수료는 20%이며 이를 제외한 80%는 선생님에게 전달됩니다.<br/>(수수료는 수수료 이벤트와  같은 경우에 한시적으로 달라질 수 있음.)<br/>서비스의 안전한 거래를 위하여 판매금을 서비스가 종료된 날짜를 기준으로 1-3일 후에 입금됨을 알립니다.<br/>입금 받을 계좌는 [마이페이지] -> [내 계정 정보 수정하기] 페이지에서 등록 할 수 있습니다.
+                    안전거래를 통해 거래가 이루어진 경우 수업료의 5%가 안전결제 서비스 사용료로 부과됩니다.<br/>(직거래시 안전결제 서비스 사용료는 부과되지 않음.)<br/>서비스의 안전한 거래를 위하여 판매금을 서비스가 종료된 날짜를 기준으로 1-3일 후에 입금됨을 알립니다.<br/>입금 받을 계좌는 [마이페이지] -> [내 계정 정보 수정하기] 페이지에서 등록 할 수 있습니다.
                   </div>
 				   <br/>
                   <div>취소 및 환불규정</div>
@@ -859,7 +911,17 @@ input[type="checkbox"]{
                   });
                   
                   $('.menu td:first').trigger('click');
-
+                  
+                  
+                  $('.negotiation-possible').click(function(){
+                	  $('.pri-neg-disable').removeClass('radio-back');
+                	  $('.pri-neg-able').addClass('radio-back');
+                  });
+                  
+				  $('.negotiation-notpossible').click(function(){
+					  $('.pri-neg-able').removeClass('radio-back');
+					  $('.pri-neg-disable').addClass('radio-back');
+                  });
                   
                   
                   $('.btn1').click(function(){
@@ -888,6 +950,8 @@ input[type="checkbox"]{
                     	  alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업3의 가격을 수정해주세요.")
 	                  }else if(subcate2 != 0 && $('#opt2price3').val() < 10000){
 	                	  alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업3의 가격을 수정해주세요.")
+	                  }else if(!$('input[name="priNegotiation"]').is(':checked')){
+	                	  alert("'가격협의가능' 및 '가격협의불가' 중 하나를 선택해주세요. ")
 	                  }else{
                     	 $('.menu td').eq(1).trigger('click');
                      }
@@ -911,8 +975,8 @@ input[type="checkbox"]{
                          	alert("수업 가능 요일을 체크해주세요.");
                      	 }else if($('input:checkbox[name="gawe"]:checked').length == 0){
                          	alert("개인과외, 화상과외 가능여부를 체크해주세요.");
-                     	 }else if(lessonIntr.value.length<100){
-                           alert('수업소개글을 최소 100글자 이상 작성해주세요.');
+                     	 }else if(lessonIntr.value.length<30){
+                           alert('수업소개글을 최소 30글자 이상 작성해주세요.');
                          }else if(lessonIntr.value.length>500){
                             alert('수업소개글은 최대 500글자 미만입니다.');
                           }else{
@@ -924,9 +988,9 @@ input[type="checkbox"]{
                 	  var careerDesc = document.getElementById('careerDesc');
                 	  if(careerDesc.value.length==0){
                           alert('선생님소개를 작성해주세요.');
-                        }else if(careerDesc.value.length<100){
-                          alert('선생님소개란을 최소 100글자 이상 작성해주세요.');
-                        }else if(careerDesc.value.length<100){
+                        }else if(careerDesc.value.length<30){
+                          alert('선생님소개란을 최소 30글자 이상 작성해주세요.');
+                        }else if(careerDesc.value.length>500){
                           alert('선생님소개는 최대 500글자 미만입니다.');
                         }else{
                         	$('.menu td').eq(4).trigger('click');
@@ -1246,6 +1310,7 @@ input[type="checkbox"]{
                           return false;
                    }
                    
+                   
                    if(subcate1 != 0 && !check2(re2, opt1price3, "제공수업2의 가격을 숫자만 포함하여 입력해주세요.")){
                 	   $('.menu td:first').trigger('click');
                        return false;
@@ -1279,6 +1344,11 @@ input[type="checkbox"]{
                      return false;
                    }
                    
+                   if(!$('input[name="priNegotiation"]').is(':checked')){
+                    	  alert("'가격협의가능' 및 '가격협의불가' 중 하나를 선택해주세요. ")
+                    	  $('.menu td:first').trigger('click');
+                        return false;
+                      }
                    
                   
                   if($('#represent').val()==''){
@@ -1305,8 +1375,8 @@ input[type="checkbox"]{
                	  }
                  
                    
-                  if(lessonIntr.value.length<100){
-                     alert('[수업정보]페이지의 수업소개글을 최소100글자 이상 작성해주세요.');
+                  if(lessonIntr.value.length<30){
+                     alert('[수업정보]페이지의 수업소개글을 최소30글자 이상 작성해주세요.');
                      $('.menu td').eq(2).trigger('click');
                      return false;
                    }
@@ -1315,8 +1385,8 @@ input[type="checkbox"]{
                   	$('.menu td').eq(2).trigger('click');
                       return false;
                     }
-                  if(careerDesc.value.length<100){
-                      alert('[선생님소개]페이지의 선생님소개를 최소 100글자 이상 작성해주세요.');
+                  if(careerDesc.value.length<30){
+                      alert('[선생님소개]페이지의 선생님소개를 최소 30글자 이상 작성해주세요.');
                   	$('.menu td').eq(3).trigger('click');
                       return false;
                     }

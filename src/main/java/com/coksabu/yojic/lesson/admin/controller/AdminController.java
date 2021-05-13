@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.coksabu.yojic.lesson.admin.model.DelWaiting;
@@ -85,9 +86,9 @@ public class AdminController {
 		return "redirect:admininspect";
 	}
 	
-	
-	@RequestMapping("adminCertifyFail")
-	public String certifyFail(HttpSession session, HttpServletRequest request) {
+	@ResponseBody
+	@RequestMapping(value="adminCertifyFail", method=RequestMethod.POST)
+	public String certifyFail(@RequestParam("denyReason") String denyReason, HttpSession session, HttpServletRequest request) {
 		
 		String email1 = (String)session.getAttribute("email");
 		//관리자만 수정할수 있게끔, url요청으로 임의적으로 수정되지 않기 위해
@@ -96,11 +97,11 @@ public class AdminController {
 			String configLocation = "classpath:applicationContext.xml";
 			AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
 			AdminService adminService = ctx.getBean("adminService", AdminService.class );
-			adminService.inspectFail(email);
+			adminService.inspectFail(email,denyReason);
 			ctx.close();
 		}
 		
-		return "redirect:admininspect";
+		return "success";
 	}
 	
 	@RequestMapping(value="listqna", method=RequestMethod.GET)

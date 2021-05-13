@@ -1,5 +1,7 @@
 package com.coksabu.yojic.lesson.member.service;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,5 +80,42 @@ public class CheckAndInsertService {
 			return map;
 		}
 	}
+	
+	
+	@Transactional(rollbackFor= {Exception.class})
+	public HashMap<String, String> socialLogin(String email){
+		HashMap<String, String> map = new  HashMap<String, String>();
+		int emailCheck = memberDao.checkEmail(email);
+		if(emailCheck==0) {
+			MemberInfo memberInfo = new MemberInfo();
+			memberInfo.setEmail(email);
+			memberInfo.setBirth("000000");
+			memberInfo.setName("미인증회원");
+			memberInfo.setPhone("00000000000");
+			
+			SecureRandom random = new SecureRandom();
+			String password = new BigInteger(130, random).toString(32);
+			String encodPassword=passwordEncoder.encode(password);
+			
+			memberInfo.setPassword(encodPassword);
+			memberDao.preUserSignUp(memberInfo);
+			map.put("status", "signUp");
+			map.put("authority", "pre-user");
+			map.put("password", encodPassword);
+			return map;
+		}else {
+			//수정필요 만약 apple이메일이 naver로 되어있는 경우, naver로 가입한 아이디가 있을시 naver로 로그인 처리되는 문제
+			MemberInfo memberInfo = memberDao.takeRollAndPassword(email);
+			map.put("status", "goLogin");
+			map.put("password", memberInfo.getPassword());
+			map.put("authority", memberInfo.getAuthority());
+			return map;
+		}
+	}
+	@Transactional(rollbackFor= {Exception.class})
+	public String takeAuthority(String email){
+		return memberDao.takeAuthority(email);
+	}
+	
 	
 }

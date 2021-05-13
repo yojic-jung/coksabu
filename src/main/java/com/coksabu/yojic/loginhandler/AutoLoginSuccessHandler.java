@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -50,6 +51,11 @@ public class AutoLoginSuccessHandler implements AuthenticationSuccessHandler  {
 				messageStatus="exist";
 			}
 			
+			Cookie cookie = new Cookie("userInputEmail",email);
+	        cookie.setPath("/");
+	        cookie.setMaxAge(14515200);
+	        response.addCookie(cookie);
+	        
 			session.setAttribute("messageStatus", messageStatus);
 		}else {
 			session.setAttribute("email", null);
@@ -57,6 +63,10 @@ public class AutoLoginSuccessHandler implements AuthenticationSuccessHandler  {
 		
 		
 		logger.warn("오토로그인 잘 작동함");
+		
+        
+       
+		
 		
 		String uri = request.getRequestURI();
 		if(uri!=null) {

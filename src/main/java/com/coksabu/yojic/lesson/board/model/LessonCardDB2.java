@@ -40,6 +40,8 @@ public class LessonCardDB2 {
 	private String trial;
 	private int visible;
 	
+	private String priNegotiation;
+	
 	public int getId() {
 		return id;
 	}
@@ -244,5 +246,12 @@ public class LessonCardDB2 {
 	}
 	public int getVisible() {
 		return visible;
+	}
+	
+	public void setPriNegotiation(String priNegotiation) {
+		this.priNegotiation=priNegotiation;
+	}
+	public String getPriNegotiation() {
+		return priNegotiation;
 	}
 }

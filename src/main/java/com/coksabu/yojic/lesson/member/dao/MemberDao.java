@@ -29,6 +29,8 @@ public interface MemberDao {
 	
 	public int signUp(MemberInfo memberInfo); 
 	
+	public int preUserSignUp(MemberInfo memberInfo); 
+	
 	public int naverSignUp(MemberInfo memberInfo); 
 	
 	public int updateNaverPassword(MemberInfo mem);
@@ -141,6 +143,10 @@ public interface MemberDao {
 	
 	public int myCommissionPromotionCount(String email);
 	
+	public String takeAuthority(String email);
 	
+	public int updateMemberforPreUser(MemberInfo mem);
+	
+	public MemberInfo takeRollAndPassword(String email);
 	
 }

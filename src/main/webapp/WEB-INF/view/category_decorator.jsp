@@ -12,16 +12,15 @@
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap&subset=korean" rel="stylesheet">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
-  
 <style>
  @font-face { font-family: 'JejuGothic'; 
       src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 
-
+ 
         * { margin:0px; padding:0px; box-sizing: border-box;}
         body {
             margin: 0px;
             padding: 0px;
-            font-family:'Malgun Gothic' ;
+            font-family: 'Apple SD Gothic Neo','Malgun Gothic';
             -webkit-text-size-adjust:100%;
             -webkit-touch-callout: none;
           }
@@ -125,7 +124,7 @@ opacity:0.1;
 		font-size:60px; padding:50px;
 		border-bottom:4px solid white;
 		color:orange;
-		font-family:'Malgun Gothic';
+		font-family:'Apple SD Gothic Neo','Malgun Gothic';
 		font-weight:bold;
 	}
 	.m-menu-content{
@@ -133,7 +132,7 @@ opacity:0.1;
 		font-size:40px;
 		 padding:50px;
 		border-bottom:1px solid gray;
-		font-family:'Malgun Gothic';
+		font-family:'Apple SD Gothic Neo','Malgun Gothic';
 	}
 	
 	.m-menu-href{
@@ -169,7 +168,7 @@ padding:0px;
 padding:0px;
 text-align:center;
 font-size:28px;
-width:25%;
+width:20%;
 
 boarder-spacing:0px;
 }
@@ -188,6 +187,7 @@ color:#A6A6A6;
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+  gtag('config', 'G-4EM47WXQJ0');
   gtag('config', 'AW-413632618');
 </script>
 
@@ -261,12 +261,14 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 				<table class="bottom-table">
 					<tr>
 						<td><a href="./"><img class="bottom-img" src="<c:url value="/resources/img/home.png" />"  alt="home"/></a></td>
+						<td><a href="./apply"><img class="bottom-img" src="<c:url value="/resources/img/applyui.png" />"  alt="apply"/></a></td>
 						<td><a href="./category"><img class="bottom-img" src="<c:url value="/resources/img/cate2.png" />"  alt="cate"/></a></td>
 						<td><a href="./message"><img class="bottom-img" src="<c:url value="/resources/img/message.png" />"  alt="message"/></a></td>
 						<td><a href="./myroom"><img class="bottom-img" src="<c:url value="/resources/img/my.png" />"  alt="my"/></a></td>
 					</tr>
 					<tr>
 					<td><a href="./">홈</a></td>
+					<td><a href="./apply">수업요청</a></td>
 					<td><a href="./category" style="color:orange">카테고리</a></td>
 					<td><a href="./message" class="m-message-notify">메시지</a></td>
 					<td><a href="./myroom">마이페이지</a></td>

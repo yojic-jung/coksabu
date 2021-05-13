@@ -10,15 +10,13 @@
   <title>회원가입, 콕사부</title>
     <meta name="description" content="네이버 아이디로 로그인" />
     <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
 
         * { margin:0px; padding:0px; box-sizing: border-box;}
         body {
             margin: 0px;
             padding: 0px;
-            display:none;
+            
           }
           
 	</style>
@@ -32,13 +30,20 @@
 				window.location="./";
 			</script>
 		</sec:authorize>
-
+    <img id="spinner" src="<c:url value='/resources/img/spinner.svg' />" style="position:fixed; left:50%; transform:translate(-50%, -50%);top:50%; z-index:99;"/>
 <script>
-
+		var currentUrl = window.location.href;
+		var callbackUrl = '';
+		if(currentUrl.indexOf("www.coksabu.com") != -1){
+			  callbackUrl = "https://www.coksabu.com/loginCallBackNaver";
+		}else{
+			  callbackUrl = "https://coksabu.com/loginCallBackNaver";
+		}
+		
 		var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "0PgcZhDTwaod8UwQsoKX",
-				callbackUrl: "https://coksabu.com/loginCallBackNaver",
+				callbackUrl: callbackUrl,
 				isPopup: false,
 				callbackHandle: true
 				/* callback 페이지가 분리되었을 경우에 callback 페이지에서는 callback처리를 해줄수 있도록 설정합니다. */
@@ -46,10 +51,11 @@
 		);
 		/* (3) 네아로 로그인 정보를 초기화하기 위하여 init을 호출 */
 		naverLogin.init();
-		
+
 		/* (4) Callback의 처리. 정상적으로 Callback 처리가 완료될 경우 main page로 redirect(또는 Popup close) */
 		window.addEventListener('load', function () {
 			naverLogin.getLoginStatus(function (status) {
+				console.log(naverLogin);
 				if (status) {
 					/* (5) 필수적으로 받아야하는 프로필 정보가 있다면 callback처리 시점에 체크 */
 					var email = naverLogin.user.getEmail();
@@ -88,28 +94,26 @@
 						naverLogin.reprompt();
 						return;
 					}
+					
+					console.log("네이버 로그인")
 					var token = naverLogin.accessToken+"";
 					var fake = token.split(".");
 					var fakeToken= fake[1]+"";
 					$.ajax({
 						  url:'/naverLogin',
 			    		  type:'post',
-			    		  data: {email:email, phone:mobile, name:name, birth:birthyear+birthday, naverToken: fakeToken},
+			    		  data: {email:email, phone:mobile, name:name, birth:birthyear+birthday, naverToken: fakeToken },
 			    		  error:function(request,status,error){
 			    		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			    		       },
 			    		  success:function(data){
 			    			  console.log(data.status)
 			    			  if(data.status=='phoneDuplicate'){
-			    				  alert("이미 가입 정보가 있습니다. 다른 sns로그인 또는 이메일 비밀번호를 직접 입력하여 로그인 해주세요.")
-			    				  return;
+			    				  alert("이미 가입 정보가 있습니다. 다른 sns로그인 또는 이메일 비밀번호를 직접 입력하여 로그인 해주세요.");
+			    				  window.location.href="./login";
 			    			  }else if(data.status=="success"){
-			    				  deleteCookie("userInputEmail");
-			    				  setCookie("userInputEmail", email, 180);
 			    				  window.location.replace("./naverSignupSuccess")
 			    			  }else{
-			    				  deleteCookie("userInputEmail");
-			    				  setCookie("userInputEmail", email, 168);
 			    				  window.location.replace("./")
 			    			  }
 			    		  }
@@ -118,25 +122,13 @@
 					
 				} else {
 					console.log("callback 처리에 실패하였습니다.");
+					alert("죄송합니다. 서버 오류로 로그인에 실패하였습니다. 다시 시도해주시기 바랍니다.\n지속적으로 로그인에 실패하실  주소창에 coksabu.com 을 입력하여 접속 후 다시 시도해주시기 바랍니다.");
+					 window.history.back();
 				}
 			});
 		});
 		
 		
-		function setCookie(cookieName, value, exdays){
-	        var exdate = new Date();
-	        exdate.setDate(exdate.getDate() + exdays);
-	        var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
-	        document.cookie = cookieName + "=" + cookieValue;
-	    }
-	     
-	    function deleteCookie(cookieName){
-	        var expireDate = new Date();
-	        expireDate.setDate(expireDate.getDate() - 1);
-	        document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
-	    }
-	     
-	    
 	</script>
 </body>
 </html>

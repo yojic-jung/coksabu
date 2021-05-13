@@ -23,7 +23,7 @@
 <script>
   gtag('event', 'conversion', {'send_to': 'AW-413632618/Emm8CI67sfkBEOqQnsUB'});
 </script>
-    <!-- Facebook Pixel Code -->
+<!-- Facebook Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -36,15 +36,18 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '2787801881458923');
 fbq('track', 'CompleteRegistration', {currency: "KRW", value: 1.00});
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
-/></noscript>
 <!-- End Facebook Pixel Code -->
 </head>
 <body>
+<img id="spinner" src="<c:url value='/resources/img/spinner.svg' />" style="position:fixed; left:50%; transform:translate(-50%, -50%);top:50%; z-index:99;"/>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
+/></noscript>
 <script>
-alert("감사합니다. 정상적으로 회원가입 되셨습니다.")
-window.location.href="./"
+setTimeout(function(){
+	alert("감사합니다. 정상적으로 회원가입 되셨습니다.");
+	window.location.href="./?cok_tutorial=first_user";
+},1000);
 </script>
 </body>
 </html>

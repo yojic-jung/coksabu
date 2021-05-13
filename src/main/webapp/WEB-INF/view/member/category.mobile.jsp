@@ -34,19 +34,19 @@ width:100%;margin:auto
 	border-bottom:3px solid black;
 } 
 .subheading{
-	padding:50px 0px 50px 70px;
+	width:90%;
+	margin:50px auto;
 	color:black;
-	font-size:30px;
+	font-size:40px;
 	font-weight:bolder;
-	border-top:1px solid gray;
 }
 
 .cate-btn{
-	padding:20px 60px; 
+	padding:20px 80px; 
 	border-radius:10px;
 	color:white;
 	background-color:orange;
-	font-size:30px;
+	font-size:40px;
 }
  </style>
 
@@ -59,8 +59,8 @@ width:100%;margin:auto
 
 
 <div class="subheading">수업목록</div>
-	<div style="width:100%;padding:90px 20px;">
-	<table class="img-ui" style="border-spacing:70px 0px;text-align:center; font-size:25px;font-weight:bolder">
+	<div style="width:100%;padding:50px 20px;">
+	<table class="img-ui" style="border-spacing:70px 0px;text-align:center; font-size:35px;font-weight:bolder">
 		<tr>
 			<td><a href="./boarder?main=11&subject=11"><img src="<c:url value="/resources/images/ui1m.png" />" style="width:100%; height:120px;" alt="1"/></a></td>
 			<td><a href="./boarder?main=21&subject=21"><img src="<c:url value="/resources/images/ui2m.png" />" style="width:100%; height:120px;" alt="1"/></a></td>
@@ -78,15 +78,15 @@ width:100%;margin:auto
 		</tr>
 		<tr>
 			<td><a href="./boarder?main=51&subject=51"><img src="<c:url value="/resources/images/ui5m.png" />" style="width:100%; height:120px;" alt="1"/></a></td>
-			<td><a href="./boarder?main=61&subject=62"><img src="<c:url value="/resources/images/ui6m.png" />" style="width:100%; height:120px;" alt="1"/></a></td>
+			<td><a href="./boarder?main=61&subject=61"><img src="<c:url value="/resources/images/ui6m.png" />" style="width:100%; height:120px;" alt="1"/></a></td>
 			<td><a href="./boarder?main=61&subject=64"><img src="<c:url value="/resources/images/ui7m.png" />" style="width:100%; height:120px;" alt="1"/></a></td>
 			<td><a href="./boarder?main=71&subject=71"><img src="<c:url value="/resources/images/ui8m.png" />" style="width:100%; height:120px;" alt="1"/></a></td>
 		</tr>
 		<tr>
 			<td><a href="./boarder?main=51&subject=51"><div>과 학</div></a></td>
-			<td><a href="./boarder?main=61&subject=62"><div>예 능</div></a></td>
+			<td><a href="./boarder?main=61&subject=61"><div>음악/미술</div></a></td>
 			<td><a href="./boarder?main=61&subject=64"><div>체 육</div></a></td>
-			<td><a href="./boarder?main=71&subject=71"><div>자소서/입시</div></a></td>
+			<td><a href="./boarder?main=71&subject=71"><div>자소서/<br/>논술/면접</div></a></td>
 		</tr>
 	</table>
 </div>
@@ -95,9 +95,9 @@ width:100%;margin:auto
 
 <div class="subheading" >
 수업 요청하기<br/>
-<div style="text-align:center;padding:50px;">
-<a href="./lessonapply" style="text-decoration:none;"><span class="cate-btn">수업 요청 하기</span></a><br/>
-<div style="text-align:center;margin:30px 0px 50px 0px; color:gray;">원하는 수업이 가능한 선생님의 지원서를 받아 보세요.</div>
+<div style="text-align:center;">
+<div style="margin:100px 0px 50px 0px;"><a href="./apply" style="text-decoration:none;"><span class="cate-btn">수업 요청 하기</span></a></div>
+<div style="margin:60px 0px; color:gray;text-align:center;">원하는 수업이 가능한 선생님의 지원서를 받아 보세요.</div>
 </div>
 </div>
 

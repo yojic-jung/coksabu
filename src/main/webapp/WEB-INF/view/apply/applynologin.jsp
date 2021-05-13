@@ -168,7 +168,7 @@ window.location="./apply";
             <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="사회" /> 사회</label></td></tr>
             <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="과학" /> 과학</label></td></tr>
             <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="예체능" /> 예체능</label></td></tr>
-            <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="자소서/입시" /> 자소서/입시</label></td></tr>
+            <tr class="cate"><td><label style="cursor:pointer"><input type="radio" name="cate" value="입시(자소서/논술/면접)" /> 입시(자소서/논술/면접)</label></td></tr>
             </table>
             <br/>
             <span class="btn1">다음단계</span>
@@ -194,7 +194,6 @@ window.location="./apply";
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="고등수학" /> 고등수학</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="문과수학" /> 문과수학</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="이과수학" /> 이과수학</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="수학논술" /> 수학논술</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="수학경시" /> 수학경시</label></td></tr>
             </table>
             <br/>
@@ -246,7 +245,6 @@ window.location="./apply";
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="중등국어" /> 중등국어</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="고등국어" /> 고등국어</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="수능국어" /> 수능국어</label></td></tr>
-            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="국어논술" /> 국어논술</label></td></tr>
             </table>
             <br/>
             <span class="btn2">다음단계</span><span class="prev2">이전단계</span>
@@ -314,7 +312,15 @@ window.location="./apply";
             <br/>
             <table class="catetable">
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="미술" /> 미술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="유아미술" /> 유아미술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="초등미술" /> 초등미술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="중등미술" /> 중등미술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="고등미술" /> 고등미술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="성인미술" /> 성인미술</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="음악" /> 음악</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="악기" /> 악기</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="성악" /> 성악</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="국악" /> 국악</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="체육" /> 체육</label></td></tr>
             </table>
             <br/>
@@ -336,6 +342,11 @@ window.location="./apply";
             <table class="catetable">
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="자소서첨삭" /> 자소서첨삭</label></td></tr>
             <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="입시컨설팅" /> 입시컨설팅</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="면접" /> 면접</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="수학논술" /> 수학논술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="인문논술" /> 인문논술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="국어논술" /> 국어논술</label></td></tr>
+            <tr><td><label style="cursor:pointer"><input type="checkbox" class="subcate" value="과학논술" /> 과학논술</label></td></tr>
             </table>
             <br/>
             <span class="btn2">다음단계</span><span class="prev2">이전단계</span>

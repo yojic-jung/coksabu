@@ -11,14 +11,7 @@
     <meta name="description" content="회원가입 페이지" />
     <meta charset="utf-8">
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-413632618"></script>
-<script>
 
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'AW-413632618');
-</script>
 <!-- Event snippet for 가입 conversion page -->
 <script>
   gtag('event', 'conversion', {'send_to': 'AW-413632618/Emm8CI67sfkBEOqQnsUB'});
@@ -36,15 +29,26 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '2787801881458923');
 fbq('track', 'CompleteRegistration', {currency: "KRW", value: 1.00});
 </script>
+<!-- End Facebook Pixel Code -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-413632618"></script>
+<script>
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-413632618');
+</script>
+</head>
+<body>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 /></noscript>
-<!-- End Facebook Pixel Code -->
-</head>
-<body>
 <script>
-alert("감사합니다. 정상적으로 회원가입 되셨습니다.")
-window.location.href="./"
+setTimeout(function(){
+	alert("감사합니다. 정상적으로 회원가입 되셨습니다.")
+	window.location.href="./?cok_tutorial=first_user"
+},1000);
+
 </script>
 </body>
 </html>

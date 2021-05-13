@@ -410,19 +410,12 @@ public class DealController extends DeviceSwitcherController {
 		DealSaleService saleService = ctx.getBean("dealSaleService", DealSaleService.class );
 		String email = (String)session.getAttribute("email");
 		
-		//프로필이 없는 회원의 경우
-		if(saleService.confirmProfileCount(email)==0) {
-			ctx.close();
-			model.addAttribute("none", "none");
-			return forward("deal/mySalesList");
-		}else {
-			List<PurchaseHistory> list = saleService.mySaleList(email);
-			ctx.close();
-			request.setAttribute("listModel", list);
-			model.addAttribute("size", list.size());
-			return forward("deal/mySalesList");
-		}
-	}
+		List<PurchaseHistory> list = saleService.mySaleList(email);
+		ctx.close();
+		request.setAttribute("listModel", list);
+		model.addAttribute("size", list.size());
+		return forward("deal/mySalesList");
+	}	
 	
 	//테스트완료
 	@RequestMapping(value="proposalsell", method=RequestMethod.GET)

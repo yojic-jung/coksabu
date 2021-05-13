@@ -1,12 +1,22 @@
 package com.coksabu.yojic.lesson.member.controller;
 
 import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.net.URLDecoder;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.SecureRandom;
+import java.security.interfaces.RSAPublicKey;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Base64.Decoder;
 import java.util.Base64.Encoder;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
+import java.util.UUID;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -28,6 +39,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.bouncycastle.asn1.pkcs.PrivateKeyInfo;
+import org.bouncycastle.openssl.PEMParser;
+import org.bouncycastle.openssl.jcajce.JcaPEMKeyConverter;
 import org.json.JSONException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -36,6 +50,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -81,9 +96,25 @@ import com.coksabu.yojic.lesson.member.service.ReadProfileService;
 import com.coksabu.yojic.lesson.member.service.TokenRegisterService;
 import com.coksabu.yojic.lesson.member.service.UnivSearchService;
 import com.coksabu.yojic.lesson.member.service.WriteProfileService;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nimbusds.jose.JOSEException;
+import com.nimbusds.jose.JWSVerifier;
+import com.nimbusds.jose.crypto.RSASSAVerifier;
+import com.nimbusds.jose.jwk.JWK;
+import com.nimbusds.jose.jwk.RSAKey;
+import com.nimbusds.jwt.JWTClaimsSet;
+import com.nimbusds.jwt.SignedJWT;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.Certification;
 import com.siot.IamportRestClient.response.IamportResponse;
+
+import http.communication.HttpClientUtils;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import social.login.apple.model.Key;
+import social.login.apple.model.Keys;
 
 @Controller
 public class MemberController extends DeviceSwitcherController {
@@ -120,11 +151,32 @@ public class MemberController extends DeviceSwitcherController {
 			
 			session.setAttribute("messageStatus", messageStatus);
 		}
-		
+		//애플로 로그인의 nonce값
+		//애플로 로그인 state값
+		String state = new BigInteger(130, new SecureRandom()).toString(32);
 		ctx.close();
 		model.addAttribute("list", list);
 		model.addAttribute("status", status);
+		model.addAttribute("client_nonce", "75dbac00-b326-42fa-86b4-dde6b38c7201");
+		model.addAttribute("state", state);
 		return forward("main/index");
+	}
+	
+	
+	//테스트 완료
+	@RequestMapping("accessDenied")
+	public String accessDenied(HttpSession session, Model model){
+		String email = (String)session.getAttribute("email");
+		String configLocation = "classpath:applicationContext.xml";
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
+		CheckAndInsertService checkAndInsertService = ctx.getBean("checkAndInsertService", CheckAndInsertService.class );
+		String authority = checkAndInsertService.takeAuthority(email);
+		ctx.close();
+		model.addAttribute("iamport", "imp48047014");
+		model.addAttribute("merchant_uid", "ORD20180131-0000011");
+		model.addAttribute("authority", authority);
+		
+		return forward("main/accessDenied");
 	}
 	
 	
@@ -132,6 +184,14 @@ public class MemberController extends DeviceSwitcherController {
 	@RequestMapping("useGuide")
 	public String useGuide() throws Exception{
 		return forward("main/useGuide");
+	}
+	
+	
+	//테스트 완료
+	@RequestMapping("tutorUseGuide")
+	public String tutorUseGuide() throws Exception{
+		
+		return forward("main/tutorUseGuide");
 	}
 		
 		
@@ -201,6 +261,7 @@ public class MemberController extends DeviceSwitcherController {
 		String email = (String)jsonObj.get("email");
 		String token = (String)jsonObj.get("token");
 		String change = (String)jsonObj.get("emailTokenChange");
+		email= email.replaceAll("\"", "");
 		logger.warn(email);
 		logger.warn(token);
 		logger.warn(token);
@@ -224,9 +285,9 @@ public class MemberController extends DeviceSwitcherController {
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
 				configLocation);
 		MemberService memberSerivce = ctx.getBean("memberService", MemberService.class);
-		String name = memberSerivce.takeName((String)session.getAttribute("email"));
+		String nickName = memberSerivce.takeNickName((String)session.getAttribute("email"));
 		ctx.close();
-		model.addAttribute("name", name);
+		model.addAttribute("nickName", nickName);
 		return forward("member/myroom");
 	}
 	
@@ -261,7 +322,11 @@ public class MemberController extends DeviceSwitcherController {
 
 	//테스트 완료
 	@RequestMapping(value="signup", method=RequestMethod.GET)
-	public String signUp(MemberInfo mem, Model model) {	
+	public String signUp(MemberInfo mem, HttpSession session, Model model) {	
+		//애플로 로그인 state값
+		String state = new BigInteger(130, new SecureRandom()).toString(32);
+		model.addAttribute("client_nonce", "75dbac00-b326-42fa-86b4-dde6b38c7201");
+		model.addAttribute("state", state);
 		model.addAttribute("iamport", "imp48047014");
 		model.addAttribute("merchant_uid", "ORD20180131-0000011");
 		return forward("member/signup");
@@ -285,6 +350,54 @@ public class MemberController extends DeviceSwitcherController {
 		map.put("phone", cer.getResponse().getPhone());
 		
 		return map;
+	}
+	
+	@ResponseBody	
+	@RequestMapping(value="idCertifyOnlyPreUser/{imp_uid}", method=RequestMethod.POST)
+	public Object certificationsPreUser(@PathVariable String imp_uid, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		IamportClient iam = new IamportClient("2626730431329357", "jm37bnUp381Ov6hQjE8fXJZry3Tj53NopRwAeq0hz1548nVr14HYNGqmKjGPntdMlJnzanRKpXOykK0m");
+		IamportResponse<Certification> cer = iam.certificationByImpUid(imp_uid);
+		
+		SimpleDateFormat date = new SimpleDateFormat("yyMMdd");
+		
+		Certification cer1 = cer.getResponse();
+		cer1.getPhone();
+		MemberInfo mem = new MemberInfo();
+		String email = (String)session.getAttribute("email");
+		mem.setEmail(email);
+		System.out.println(email);
+		mem.setName( cer.getResponse().getName());
+		mem.setBirth(date.format(cer.getResponse().getBirth()));
+		mem.setPhone(cer.getResponse().getPhone());
+		HashMap<String, String> map = new HashMap<>();
+		String configLocation = "classpath:applicationContext.xml";
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
+				configLocation);
+		MemberService memberSerivce = ctx.getBean("memberService", MemberService.class);
+		HashMap<String, String> memStatus = memberSerivce.updateMemberforPreUser(mem);
+		String status = memStatus.get("status");
+		map.put("status", status);
+		ctx.close();
+		if(status.equals("success")) {
+			SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority("user");
+			List<SimpleGrantedAuthority> collection = new ArrayList<>();
+			collection.add(simpleGrantedAuthority);
+			UserDetails customUserDetails = new User(email,memStatus.get("password"), collection);
+			
+		    Authentication authentication = new UsernamePasswordAuthenticationToken(customUserDetails,memStatus.get("password"), customUserDetails.getAuthorities());
+
+		    SecurityContext securityContext = SecurityContextHolder.getContext();
+		    securityContext.setAuthentication(authentication);
+		    session = request.getSession(true);
+		    session.setAttribute("email", mem.getEmail());
+		    session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+		}
+		
+	    
+	    
+		return map;
+		
 	}
 	
 	//테스트 완료
@@ -356,7 +469,13 @@ public class MemberController extends DeviceSwitcherController {
 	        cookie.setHttpOnly(true);
 	        cookie.setMaxAge(14515200);
 	        
+	        Cookie cookie2 = new Cookie("userInputEmail",mem.getEmail());
+	        cookie2.setPath("/");
+	        cookie2.setMaxAge(14515200);
+	        
 	        response.addCookie(cookie);
+	        response.addCookie(cookie2);
+	        
 		    return forward("member/signupSuccess");
 		}
 	}
@@ -364,9 +483,13 @@ public class MemberController extends DeviceSwitcherController {
 	
 	//테스트 완료
 	@RequestMapping(value="login")
-	public String login(HttpSession session, HttpServletRequest request) {
+	public String login(HttpSession session, HttpServletRequest request, Model model) {
 		String referer = (String)request.getHeader("REFERER");
 		session.setAttribute("referer", referer);
+		//애플로 로그인 state값
+		String state = new BigInteger(130, new SecureRandom()).toString(32);
+		model.addAttribute("client_nonce", "75dbac00-b326-42fa-86b4-dde6b38c7201");
+		model.addAttribute("state", state);
 		return forward("member/login");
 	}
 	
@@ -422,8 +545,6 @@ public class MemberController extends DeviceSwitcherController {
 		ReadProfileService readProfileService = ctx.getBean("readProfileService", ReadProfileService.class );
 		String email = (String)session.getAttribute("email");
 		
-		
-		
 		TeacherDB pro = readProfileService.takeTeacherDB(email);
 		model.addAttribute("pro", pro);
 		ctx.close();
@@ -435,7 +556,7 @@ public class MemberController extends DeviceSwitcherController {
 	
 
 	//테스트완료
-	@RequestMapping(value = "profile",method=RequestMethod.POST)
+	@RequestMapping(value="profile",method=RequestMethod.POST)
 	public String profile2(TeacherInfo tea, Model model, HttpServletRequest request) throws IllegalStateException, IOException {
 	
 		String configLocation = "classpath:applicationContext.xml";
@@ -448,6 +569,13 @@ public class MemberController extends DeviceSwitcherController {
 		writeProfileService.writeProfile(tdb, path);
 		ctx.close();
 	
+		String firstProfile = request.getParameter("cok_tutorial");
+		if(firstProfile!=null) {
+			if(firstProfile.equals("first_profile")) {
+				return "redirect:/tutorpage?cok_tutorial=first_lesson";
+			}
+		}
+		
 		return "redirect:/tutorpage";
 	}
 	
@@ -611,7 +739,7 @@ public class MemberController extends DeviceSwitcherController {
 		
 	}
 	
-	
+	/* 프로모션 일단 없앰
 	//수정필요
 	@RequestMapping(value="promotion", method=RequestMethod.GET)
 	public String promotionpage(HttpSession session, Model model) {
@@ -642,7 +770,7 @@ public class MemberController extends DeviceSwitcherController {
 		
 		return forward("member/promotionSuccess");
 	}
-	
+	*/
 	
 	//수정필요
 	@RequestMapping("private")
@@ -734,15 +862,17 @@ public class MemberController extends DeviceSwitcherController {
 		String email = (String)session.getAttribute("email");
 		mem.setEmail(email);
 		int status = memberSerivce.updateNickName(mem, email);
+		String nickName = memberSerivce.takeNickName(email);
+		ctx.close();
+		model.addAttribute("nickName", nickName);
 		if(status==-1) {
-			String nickName = memberSerivce.takeNickName(email);
-			ctx.close();
-			model.addAttribute("nickName", nickName);
 			model.addAttribute("status", "existPurchase");
-			return forward("member/nicknameUpdate");
+		}else {
+			model.addAttribute("status", "success");
 		}
 		ctx.close();
-		return "redirect:/usersetting";
+		
+		return forward("member/nicknameUpdate");
 	}
 	
 	//테스트 완료
@@ -966,6 +1096,15 @@ public class MemberController extends DeviceSwitcherController {
 		//javax.mail.Transport.send() 이용 }
 	}
 	
+	@ResponseBody	
+	@RequestMapping(value="secessionApply")
+	public String secession(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		
+		logger.warn("회원탈퇴신청 이메일 : "+(String)session.getAttribute("email"));
+		
+		return "success";
+	}
+	
 	//수정필요
 	@RequestMapping(value = "/privateData") 
 	public String privateData(){
@@ -1013,13 +1152,8 @@ public class MemberController extends DeviceSwitcherController {
 		
 		
 		//보안을 위해 비밀번호  암호화
-		String password = mem.getNaverToken();
-		Random random = new Random();
-		for(int i=0; i<5; i++) {
-			password = password+(char)((Math.random() * 26) + 97)+random.nextInt(10);
-			logger.warn("반복문 password : "+password);
-		}
-		logger.warn("최종 password : "+password);
+		SecureRandom random = new SecureRandom();
+		String password = new BigInteger(130, random).toString(32);
 		
 		mem.setPassword(password);
 		HashMap<String,String> status = checkAndInsertService.naverLogin(mem);
@@ -1058,16 +1192,245 @@ public class MemberController extends DeviceSwitcherController {
 	        byte[] encodedBytes = encoder.encode(targetBytes);
 	        String rememberCookie = new String(encodedBytes);
 	        String rememberMeCookie = rememberCookie.replace("=", "");
+	        
 	        Cookie cookie = new Cookie("remember-me",rememberMeCookie);
 	        cookie.setPath("/");
 	        cookie.setHttpOnly(true);
 	        cookie.setMaxAge(14515200);
+
+	        Cookie cookie2 = new Cookie("userInputEmail",mem.getEmail());
+	        cookie2.setPath("/");
+	        cookie2.setMaxAge(14515200);
 	        
 	        response.addCookie(cookie);
+	        response.addCookie(cookie2);
 	        
 	        map.put("status", status.get("status"));
 			return map;
 		}
 	}
+	
+	@RequestMapping(value="loginCallBackApple")
+	public String appleLoginCallBack(@RequestBody String apple_data, HttpServletRequest request, Model model, HttpSession session, HttpServletResponse response) throws java.text.ParseException, JsonParseException, JsonMappingException, IOException, JOSEException, ParseException  {	
+		String[] datas = apple_data.split("[&]");
+		String code = "";
+		String id_token = "";
+		for(String data : datas ) {
+			if(data.contains("code=")) {
+				code = data.replace("code=", "");
+			}
+			if(data.contains("id_token=")) {
+				id_token = data.replace("id_token=", "");
+			}
+		}
+		
+		SignedJWT signedJWT = SignedJWT.parse(id_token);
+		JWTClaimsSet payload = signedJWT.getJWTClaimsSet();
+		
+		String publicKeys = HttpClientUtils.doGet("https://appleid.apple.com/auth/keys");
+        ObjectMapper objectMapper = new ObjectMapper();
+        Keys keys = objectMapper.readValue(publicKeys, Keys.class);
+        
+        boolean signature=false;
+        for (Key key : keys.getKeys()) {
+        	 RSAKey rsaKey = (RSAKey) JWK.parse(objectMapper.writeValueAsString(key));
+             RSAPublicKey publicKey = rsaKey.toRSAPublicKey();
+             JWSVerifier verifier = new RSASSAVerifier(publicKey);
+             if (signedJWT.verify(verifier)) {
+            	 signature=true;
+             }
+        }
+        
+        if(signature == false) {
+        	model.addAttribute("appleCerity", "fail");
+        	logger.warn("복호화실패 오류");
+        	return forward("member/appleLoginCallBack");
+        }
+        
+        Date currentTime = new Date(System.currentTimeMillis());
+       
+        String aud = payload.getAudience().get(0);
+        String iss = payload.getIssuer();
+        String nonce =(String)payload.getClaim("nonce");
+        if (!currentTime.before(payload.getExpirationTime())) {
+        	model.addAttribute("appleCerity", "fail");
+        	 logger.warn("토큰만료 오류");
+        	return forward("member/appleLoginCallBack");
+        }
+        if (!aud.equals("com.coksabu.coksabu")) {
+        	model.addAttribute("appleCerity", "fail");
+        	logger.warn("aud 오류");
+        	return forward("member/appleLoginCallBack");
+        }
+        if (!iss.contains("https://appleid.apple.com")) {
+        	model.addAttribute("appleCerity", "fail");
+        	logger.warn("iss 오류");
+        	return forward("member/appleLoginCallBack");
+        }
+        if (!nonce.equals("75dbac00-b326-42fa-86b4-dde6b38c7201")) {
+        	model.addAttribute("appleCerity", "fail");
+        	logger.warn("nonce 오류");
+        	return forward("member/appleLoginCallBack");
+        }
+        
+        //client_secret생성 
+        ClassPathResource resource = new ClassPathResource("AuthKey_6GLL8F2426.p8");
+        String privateKey = new String(Files.readAllBytes(Paths.get(resource.getURI())));
+        Reader pemReader = new StringReader(privateKey);
+        PEMParser pemParser = new PEMParser(pemReader);
+        JcaPEMKeyConverter converter = new JcaPEMKeyConverter();
+        PrivateKeyInfo object = (PrivateKeyInfo) pemParser.readObject();
+        
+       
+        Date expirationDate = Date.from(LocalDateTime.now().plusDays(30).atZone(ZoneId.systemDefault()).toInstant());
+        String clientSecret = Jwts.builder()
+                   .setHeaderParam("kid", "6GLL8F2426")
+                   .setHeaderParam("alg", "ES256")
+                   .setIssuer("6GR3L5NV8P")
+                   .setIssuedAt(new Date(System.currentTimeMillis()))
+                   .setExpiration(expirationDate)
+                   .setAudience("https://appleid.apple.com")
+                   .setSubject("com.coksabu.coksabu")
+                   .signWith(SignatureAlgorithm.ES256, converter.getPrivateKey(object))
+                   .compact();
+                
+        
+        Map<String, String> tokenRequest = new HashMap<>();
+
+        StringBuffer now_url =request.getRequestURL();
+        String current_url = now_url.toString();
+        String redirect_url="";
+        if(current_url.contains("www.coksabu")) {
+        	redirect_url="https://www.coksabu.com/loginCallBackApple";
+        }else if(current_url.contains("m.coksabu")) {
+        	redirect_url="https://m.coksabu.com/loginCallBackApple";
+        }else {
+        	redirect_url="https://coksabu.com/loginCallBackApple";
+        }
+        tokenRequest.put("client_id", "com.coksabu.coksabu");
+        tokenRequest.put("client_secret", clientSecret);
+        tokenRequest.put("code", code);
+        tokenRequest.put("grant_type", "authorization_code");
+        tokenRequest.put("redirect_uri", redirect_url);
+
+        String apple_response = HttpClientUtils.doPost("https://appleid.apple.com/auth/token", tokenRequest);
+        JSONParser parser = new JSONParser();
+        Object obj = parser.parse(apple_response);
+        JSONObject jsonObj = (JSONObject) obj;
+        String valid_id_token = (String) jsonObj.get("id_token");
+        String[] valid_id_tokens = valid_id_token.split("[.]");
+        Decoder decoder = Base64.getDecoder(); 
+        byte[] decodedBytes = decoder.decode(valid_id_tokens[1]);
+        String payLoad = new String(decodedBytes);
+        Object obj2 = parser.parse(payLoad);
+        JSONObject jsonObj2 = (JSONObject) obj2;
+        String apple_email2 = (String) jsonObj2.get("email");
+        //로그인 및 회원가입 처리 시작
+        String configLocation = "classpath:applicationContext.xml";
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
+				configLocation);
+		CheckAndInsertService checkAndInsertService = ctx.getBean("checkAndInsertService", CheckAndInsertService.class );
+		HashMap<String,String> status = checkAndInsertService.socialLogin(apple_email2);
+        ctx.close();
+        
+        SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(status.get("authority"));
+		List<SimpleGrantedAuthority> collection = new ArrayList<>();
+		collection.add(simpleGrantedAuthority);
+		UserDetails customUserDetails = new User(apple_email2, status.get("password"), collection);
+		
+	    Authentication authentication = new UsernamePasswordAuthenticationToken(customUserDetails, status.get("password"), customUserDetails.getAuthorities());
+
+	    SecurityContext securityContext = SecurityContextHolder.getContext();
+	    securityContext.setAuthentication(authentication);
+	    session = request.getSession(true);
+	    session.setAttribute("email", apple_email2);
+	    session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+		
+	    long tokenValidityTime = 14515200000L;
+		long millis = System.currentTimeMillis()+tokenValidityTime;
+		
+		String target = apple_email2 + ":" + millis + ":" +org.apache.commons.codec.digest.DigestUtils.md5Hex(apple_email2 + ":" + millis + ":"+status.get("password") + ":" + "wmoskey");
+	    byte[] targetBytes = target.getBytes();
+        // Base64 인코딩 ///////////////////////////////////////////////////
+        Encoder encoder = Base64.getEncoder();
+        
+        // Encoder#encode(byte[] src) :: 바이트배열로 반환
+        byte[] encodedBytes = encoder.encode(targetBytes);
+        String rememberCookie = new String(encodedBytes);
+        String rememberMeCookie = rememberCookie.replace("=", "");
+        Cookie cookie = new Cookie("remember-me",rememberMeCookie);
+        cookie.setPath("/");
+        cookie.setHttpOnly(true);
+        cookie.setMaxAge(14515200);
+        
+        Cookie cookie2 = new Cookie("userInputEmail",apple_email2);
+        cookie2.setPath("/");
+        cookie2.setMaxAge(14515200);
+        
+        response.addCookie(cookie);
+        response.addCookie(cookie2);
+        
+        model.addAttribute("status", status.get("status"));
+		
+        return forward("member/appleLoginCallBack");
+	}
+
+	/*
+	public void go1(String id_token) throws java.text.ParseException, JsonParseException, JsonMappingException, IOException, NoSuchAlgorithmException, InvalidKeySpecException, ParseException {
+        String[] tokens = id_token.split("[.]");
+        Decoder decoder = Base64.getDecoder(); 
+        byte[] decodedBytes = decoder.decode(tokens[0]);
+        String header = new String(decodedBytes);
+        JSONParser parser = new JSONParser();
+        Object obj = parser.parse(header);
+        JSONObject jsonObj = (JSONObject) obj;
+
+        String kid = (String) jsonObj.get("kid");
+        String alg = (String) jsonObj.get("alg");
+        
+		String publicKeys = HttpClientUtils.doGet("https://appleid.apple.com/auth/keys");
+        ObjectMapper objectMapper = new ObjectMapper();
+        Keys keys = objectMapper.readValue(publicKeys, Keys.class);
+        for (Key key : keys.getKeys()) {
+        	if(kid.equals(key.getKid()) && alg.equals(key.getAlg()) ) {
+        		
+        		byte[] nBytes = Base64.getUrlDecoder().decode(key.getN());
+                byte[] eBytes = Base64.getUrlDecoder().decode(key.getE());
+
+                BigInteger n = new BigInteger(1, nBytes);
+                BigInteger e = new BigInteger(1, eBytes);
+
+                RSAPublicKeySpec publicKeySpec = new RSAPublicKeySpec(n, e);
+                KeyFactory keyFactory = KeyFactory.getInstance(key.getKty());
+                PublicKey publicKey = keyFactory.generatePublic(publicKeySpec);
+                Claims claims = Jwts.parser().setSigningKey(publicKey).parseClaimsJws(id_token).getBody();
+                System.out.println(claims.getId());
+                System.out.println(claims.getIssuer());
+                System.out.println(claims.getSubject());
+                System.out.println(claims.getAudience());
+                System.out.println(claims.get("email"));
+        	}
+
+        }
+	}
+	
+	
+public void go2(String id_token) throws java.text.ParseException, JsonParseException, JsonMappingException, IOException, JOSEException {
+		SignedJWT signedJWT = SignedJWT.parse(id_token);
+		String publicKeys = HttpClientUtils.doGet("https://appleid.apple.com/auth/keys");
+        ObjectMapper objectMapper = new ObjectMapper();
+        Keys keys = objectMapper.readValue(publicKeys, Keys.class);
+        for (Key key : keys.getKeys()) {
+        	 RSAKey rsaKey = (RSAKey) JWK.parse(objectMapper.writeValueAsString(key));
+             RSAPublicKey publicKey = rsaKey.toRSAPublicKey();
+             JWSVerifier verifier = new RSASSAVerifier(publicKey);
+
+             if (signedJWT.verify(verifier)) {
+            	 System.out.println("복호화 성공");
+             }
+
+        }
+	}
+ */
 	
 }

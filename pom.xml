@@ -204,6 +204,37 @@
 			<artifactId>okhttp</artifactId>
 			<version>3.3.1</version>
 		</dependency>
+		
+		
+		<!-- 카카오 알림톡 연동 의존설정 여기부터 -->
+		
+		<!-- https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-scalars -->
+		<dependency>
+    		<groupId>com.squareup.retrofit2</groupId>
+    		<artifactId>converter-scalars</artifactId>
+    		<version>2.9.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/logging-interceptor -->
+		<dependency>
+   			 <groupId>com.squareup.okhttp3</groupId>
+    			<artifactId>logging-interceptor</artifactId>
+    		<version>4.3.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.ini4j/ini4j -->
+		<dependency>
+  			  <groupId>org.ini4j</groupId>
+  			  <artifactId>ini4j</artifactId>
+  			  <version>0.5.4</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib -->
+		<dependency>
+   			 <groupId>org.jetbrains.kotlin</groupId>
+    		<artifactId>kotlin-stdlib</artifactId>
+    		<version>1.2.71</version>
+		</dependency>
+		
+		
+		<!-- 카카오 알림톡 연동 의존설정  여기까지 -->
 
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
@@ -277,14 +308,32 @@
 <version>7.0</version>
 </dependency>
 	
-	
-	
-	<!-- naver xss 크로스 사이트 스크립트 방지 filter-->	
-	<dependency> 
-		<groupId>com.navercorp.lucy</groupId> 
-		<artifactId>lucy-xss-servlet</artifactId> 
-		<version>2.0.0</version> 
-	</dependency>
+<!-- naver xss 크로스 사이트 스크립트 방지 filter-->	
+<dependency> 
+	<groupId>com.navercorp.lucy</groupId> 
+	<artifactId>lucy-xss-servlet</artifactId> 
+	<version>2.0.0</version> 
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.nimbusds/nimbus-jose-jwt -->
+<dependency>
+    <groupId>com.nimbusds</groupId>
+    <artifactId>nimbus-jose-jwt</artifactId>
+    <version>8.4</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+<dependency>
+    <groupId>io.jsonwebtoken</groupId>
+    <artifactId>jjwt</artifactId>
+    <version>0.9.1</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk16 -->
+<dependency>
+    <groupId>org.bouncycastle</groupId>
+    <artifactId>bcpkix-jdk15on</artifactId>
+    <version>1.50</version>
+</dependency>
+
 
 </dependencies>
 

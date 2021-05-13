@@ -21,7 +21,7 @@
         body {
             margin: 0px;
             padding: 0px;
-            font-family:'Malgun Gothic' ;
+            font-family: 'Apple SD Gothic Neo','Malgun Gothic';
             -webkit-text-size-adjust:100%;
             -webkit-touch-callout: none;
           }
@@ -86,7 +86,7 @@ padding:0px;
 padding:0px;
 text-align:center;
 font-size:28px;
-width:25%;
+width:20%;
 
 boarder-spacing:0px;
 }
@@ -115,7 +115,14 @@ var stompClient = null;
 
 function connect() {
 	//파라미터 이름, 순서 바뀌면 안됨 , afterConnectionClosed메서드에서 참조함
-    var socket = new SockJS("https://m.coksabu.com/chatmemberlist");
+	var currentUrl = window.location.href;
+	if(currentUrl.indexOf("www.coksabu.com")!=-1){
+		 var socket = new SockJS("https://coksabu.com/chatmemberlist");
+	}else if(currentUrl.indexOf("m.coksabu.com")!=-1){
+		 var socket = new SockJS("https://coksabu.com/chatmemberlist");
+	}else{
+		 var socket = new SockJS("https://coksabu.com/chatmemberlist");
+	}
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function(frame) {
         stompClient.subscribe('/queue/chatlist-'+email, function(greeting){
@@ -211,12 +218,14 @@ $(document).ready(function(){
 				<table class="bottom-table">
 					<tr>
 						<td><a href="./"><img class="bottom-img" src="<c:url value="/resources/img/home.png" />"  alt="home"/></a></td>
+						<td><a href="./apply"><img class="bottom-img" src="<c:url value="/resources/img/applyui.png" />"  alt="apply"/></a></td>
 						<td><a href="./category"><img class="bottom-img" src="<c:url value="/resources/img/cate.png" />"  alt="cate"/></a></td>
 						<td><a href="./message"><img class="bottom-img" src="<c:url value="/resources/img/message2.png" />"  alt="message"/></a></td>
 						<td><a href="./myroom"><img class="bottom-img" src="<c:url value="/resources/img/my.png" />"  alt="my"/></a></td>
 					</tr>
 					<tr>
 					<td><a href="./">홈</a></td>
+					<td><a href="./apply">수업요청</a></td>
 					<td><a href="./category">카테고리</a></td>
 					<td><a href="./message" style="color:orange" class="m-message-notify">메시지</a></td>
 					<td><a href="./myroom">마이페이지</a></td>

@@ -20,7 +20,7 @@
         body {
             margin: 0px;
             padding: 0px;
-            font-family:'Malgun Gothic' ;
+            font-family: 'Apple SD Gothic Neo','Malgun Gothic';
             -webkit-text-size-adjust:100%;
             -webkit-touch-callout: none;
           }
@@ -131,7 +131,15 @@ var stompClient = null;
 
 function connect() {
 	//파라미터 이름, 순서 바뀌면 안됨 , afterConnectionClosed메서드에서 참조함
-    var socket = new SockJS("https://coksabu.com/chatmemberlist");
+	var currentUrl = window.location.href;
+	if(currentUrl.indexOf("www.coksabu.com")!=-1){
+		 var socket = new SockJS("https://coksabu.com/chatmemberlist");
+	}else if(currentUrl.indexOf("m.coksabu.com")!=-1){
+		 var socket = new SockJS("https://coksabu.com/chatmemberlist");
+	}else{
+		 var socket = new SockJS("https://coksabu.com/chatmemberlist");
+	}
+   
     stompClient = Stomp.over(socket);
     stompClient.connect({}, function(frame) {
         stompClient.subscribe('/queue/chatlist-'+email, function(greeting){

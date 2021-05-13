@@ -23,7 +23,7 @@
 body {
      margin: 0px;
      padding: 0px;
-     font-family:'Malgun Gothic' ;
+     font-family: 'Apple SD Gothic Neo','Malgun Gothic';
      -webkit-text-size-adjust:100%;
 }
           
@@ -69,14 +69,15 @@ body {
 
 <div style="padding-bottom:200px;">
 <div class="big-title">마이페이지</div>
-<div class="headline">안녕하세요! ${name}님 </div>
+<div class="headline">안녕하세요! ${nickName}님 </div>
 <div class="subheading">내 계정 <a href="./usersetting" style="text-decoration:underline">정보수정하기</a></div>
-<div class="subheading"><a href="./promotion">프로모션 및 쿠폰 등록</a></div>
+<div class="subheading"><a href="./nicknameUpdate">닉네임 변경하기</a></div>
 <div class="headline">고객메뉴</div>
 <div class="subheading"><a href="./purchaselist">&gt; 구매목록</a></div>
 <div class="subheading"><a href="./mypage">&gt; 수업요청내역</a></div>
 <div class="subheading"><a href="./wishlist">&gt; 장바구니</a></div>
 <div class="headline">튜터메뉴</div>
+<div class="subheading"><a href="./tutorUseGuide">&gt; 선생님 이용안내</a></div>
 <div class="subheading"><a href="./tutorpage">&gt; 프로필/수업 관리</a></div>
 <div class="subheading"><a href="./saleslist">&gt; 판매목록</a></div>
 </div>

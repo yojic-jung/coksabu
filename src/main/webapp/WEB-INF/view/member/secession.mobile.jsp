@@ -32,15 +32,33 @@ padding-bottom:100px;
   </style>
 </head>
 <body>
-<div class="main-title"><a href="/" style="color:dimgray;">홈으로 가기</a></div>
+<div class="main-title"><a href="/" style="color:dimgray;font-size:50px;">홈으로 가기</a></div>
+<div class="secession" style="font-size:40px;text-align:center;text-decoration:underline;cursor:pointer;">탈퇴요청하기</div>
+<!-- 
 <div style="text-align:center;line-height:180%;font-size:30px;">
 	회원탈퇴를 원하시는 경우 고객센터 02-959-1176으로<br/>운영시간(평일 10:00 ~ 17:00) 에 연락주시기 바랍니다.
 </div>
+ -->
  <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
         <script>
           $(document).ready(function(){
         	  $('.m-jbMenu').append("회원 탈퇴");
-        	  
+        	  $('.secession').click(function(){
+        		  var con = confirm("회원을 탈퇴하시겠습니까??")
+        		  if(con==true){
+        			  $.ajax({
+            			  url:'./secessionApply',
+            			  type:'get',
+            			  error:function(error){
+            				  alert("처리가 제대로 되지 않았습니다.\n 다시 시도 해주세요."+error);
+            			  },
+            			  success:function(data){
+            				  window.location.href="./j_spring_security_logout"
+            			  }
+            		  });
+        		  }
+        		 
+        	  });
         	  
           });
           </script>

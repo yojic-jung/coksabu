@@ -4,6 +4,7 @@ import java.io.IOException;
 
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -50,8 +51,6 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		int humanStatus = loginCheckService.updateLoginTime(email);
 		
 		
-		logger.warn("로그인 잘 작동함");
-		
 		//메세지 카운
 		MemberService memberService = ctx.getBean("memberService", MemberService.class );
 		int messageCount = memberService.takeUnreadMessageCount(authentication.getName());
@@ -65,6 +64,11 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		
 		session.setAttribute("messageStatus", messageStatus);
 		
+		Cookie cookie = new Cookie("userInputEmail",email);
+        cookie.setPath("/");
+        cookie.setMaxAge(14515200);
+        response.addCookie(cookie);
+        
 		if(humanStatus==1) {
 			ctx.close();
 			 redirectStratgy.sendRedirect(request, response, "/passwordsetting");

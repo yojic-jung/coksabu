@@ -39,6 +39,8 @@ public class LessonCard {
 	private String gawe;
 	private String trial;
 	
+	private String priNegotiation;
+	
 	public int getId() {
 		return id;
 	}
@@ -241,4 +243,10 @@ public class LessonCard {
 		return trial;
 	}
 	
+	public void setPriNegotiation(String priNegotiation) {
+		this.priNegotiation=priNegotiation;
+	}
+	public String getPriNegotiation() {
+		return priNegotiation;
+	}
 }

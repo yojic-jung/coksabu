@@ -11,6 +11,7 @@ import com.coksabu.yojic.lesson.admin.model.OrderStatusRecord;
 import com.coksabu.yojic.lesson.admin.model.RefundComplete;
 import com.coksabu.yojic.lesson.admin.model.RefundSearch;
 import com.coksabu.yojic.lesson.admin.model.TranSearch;
+import com.coksabu.yojic.lesson.admin.model.UnivCertiUpdateDB;
 import com.coksabu.yojic.lesson.board.model.LessonCardDB;
 import com.coksabu.yojic.lesson.board.model.PurchaseHistory;
 import com.coksabu.yojic.lesson.chat.model.ChatPurchase;
@@ -26,7 +27,7 @@ public interface AdminDao {
 	
 	public void inspectComplete(String email);
 	
-	public void inspectFail(String email);
+	public void inspectFail(HashMap<String, String> map);
 	
 	public int certifyCount();
 	
@@ -150,6 +151,10 @@ public interface AdminDao {
 	public List<Integer> takeChatCount(List<String> item);
 	
 	public TokenInfo takePushForOneTarget(String email);
+	
+	public void updateUnivCertiImg(UnivCertiUpdateDB univCertiUpdateDB);
+	
+	public void updateAcademyCertiImg(UnivCertiUpdateDB univCertiUpdateDB);
 	
 	
 	public String takeProfileImage(String email);

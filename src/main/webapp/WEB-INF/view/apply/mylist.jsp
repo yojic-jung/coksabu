@@ -23,7 +23,7 @@
         #name{
 			color:dimgray;
 			font-size:14px;
-			font-family:'malgun-gothic';
+			font-family: 'Apple SD Gothic Neo','Malgun Gothic';
 			margin-bottom:10px;
 		}
 	
@@ -32,13 +32,13 @@
 			color:dimgray;
 			font-weight:bolder;
 			margin-bottom:10px;
-			font-family:'malgun-gothic';
+			font-family: 'Apple SD Gothic Neo','Malgun Gothic';
 		}
 	
 		#subcate{
 			font-size:15px;
 			color:dimgray;
-			font-family:'malgun-gothic';
+			font-family: 'Apple SD Gothic Neo','Malgun Gothic';
 			margin-bottom:10px;
 			font-weight:bolder;
 			
@@ -53,7 +53,7 @@
 	
 	#locale{
 			font-size:14px;
-			font-family:'malgun-gothic';
+			font-family: 'Apple SD Gothic Neo','Malgun Gothic';
 			color:gray;
 			margin-bottom:10px;
 			width:198px;
@@ -64,7 +64,7 @@
 	
 	#price{
 		font-size:14px;
-		font-family:'malgun-gothic';
+		font-family: 'Apple SD Gothic Neo','Malgun Gothic';
 		color:gray;
 		margin-bottom:10px;
 	}
@@ -106,6 +106,63 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 .recom-table img{
 width:350px;
 }
+
+	.tutorial-first-back{
+			display:none;
+			width:100%;
+			height:100%;
+			background:black;
+			opacity:0.3;
+			position:fixed;
+			top:0px;
+			left:0px;
+			z-index:90;
+			
+		}
+
+		.tutorial-first{
+			width:320px;
+			font-family: 'JejuGothic';
+			z-index:100;
+			position:fixed;top:50%;left:50%;transform: translate(-50%, -50%);
+			display:none;
+			padding:0px;
+			background-image:url(/resources/img/firecracker.png);
+			background-repeat : no-repeat;
+        	background-size : cover;
+			text-align:center;
+			border-radius:20px;
+			
+		}
+		
+		
+		.tutorial-para{
+		text-align:center;
+		padding-top:30px;
+		line-height:180%;
+		background:white;
+		border-radius:20px 20px 120px 120px;
+		font-size:16px;
+		}
+		.tutorial-first-title{
+			color: #002266;
+			font-size:18px;
+			margin-bottom:30px;
+			font-weight:bold;
+		}
+		
+		.tutorial-btn{
+			margin:40px auto 30px auto;
+			padding:10px;
+			cursor:pointer;
+			background:white;
+			color:#002266;
+			border-radius:20px;
+			width:220px;
+			font-weight:bolder;
+		}
+		
+
 </style>
 </head>
 <body>
@@ -249,6 +306,24 @@ width:350px;
  
  </div>
 
+<div class="tutorial-first-back"></div>
+<div class="tutorial-first">
+    	<div class="tutorial-para">
+    		<div class="tutorial-first-title">
+    			'선생님 요청서 보기' 버튼을<br/>
+    			클릭하면 선생님 지원내역을<br/>
+    			확인할 수 있습니다.<br/>
+    		</div>
+    		<div>
+    			서비스 사용에 보다 자세한 설명은<br/>
+    			이용가이드를 통해서도 참조 가능합니다.
+    		</div>
+    	</div>
+    		<div class="tutorial-btn">
+    			튜토리얼 종료하기
+    		</div>
+    	
+</div>           
 
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <script src="resources/colorbox-master/colorbox-master/jquery.colorbox.js"></script>
@@ -266,21 +341,65 @@ width:350px;
 	      }
 	    });
 	  
+	  $('.delete').click(function(){
+		    var confirmflag = confirm("해당하는 수업요청을 삭제하시겠습까?");
+
+		    if(confirmflag){
+				return true;
+		       //확인 버튼 클릭 true 
+		    }else{
+				return false;
+		      //취소 버튼 클릭 false
+		    }
+		});
+	  
+	  $('.tutorial-btn').click(function(){
+	   		$('.tutorial-first').remove();
+   		$('.tutorial-first-back').remove();
+   		SetCookie('tutorial','end')
+		});
 
   });
   
   
-  $('.delete').click(function(){
-    var confirmflag = confirm("해당하는 수업요청을 삭제하시겠습까?");
 
-    if(confirmflag){
-		return true;
-       //확인 버튼 클릭 true 
-    }else{
-		return false;
-      //취소 버튼 클릭 false
-    }
-});
+  
+  
+  
+  if(getRequestParam().cok_tutorial== "first_student"){
+  	   if(GetCookie("tutorial")!="end"){
+  		   $('.tutorial-first').toggle(500);
+  	 	   $('.tutorial-first-back').show();
+  	   }
+     }
+  
+  function getRequestParam(){
+	    var url = document.location.href;
+	    var qs = url.substring(url.indexOf('?') + 1).split('&');
+	    for(var i = 0, result = {}; i < qs.length; i++){
+	        qs[i] = qs[i].split('=');
+	        result[qs[i][0]] = decodeURIComponent(qs[i][1]);
+	    }
+	    return result;
+	}
+  
+  function SetCookie(sName, sValue){
+	   		var date = new Date();
+	   		date.setTime(date.getTime() + (1*24*60*60*1000));
+	   		document.cookie = sName + "=" + escape(sValue)+";expires="+date.toGMTString();
+	   }
+  
+  function GetCookie(sName){
+			var aCookie = document.cookie.split("; ");
+			//검색을 원하는 쿠키명(test_cookie)과 저장되어 있는 쿠키의 이름이 일치하는지 확인
+			for(var i=0; i<aCookie.length; i++){
+				var aCrumb = aCookie[i].split("=");
+				if(sName == aCrumb[0]){
+					return unescape(aCrumb[1]);
+				}
+			}
+			return null;
+	   }	
 </script>
 </body>
 </html>

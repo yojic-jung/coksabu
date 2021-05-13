@@ -13,6 +13,16 @@
    	<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
    	<link rel="canonical" href="https://coksabu.com/boardread?postId=171">
     <style>
+    		
+    	  @font-face {
+ font-family: 'NanumBarunGothic';
+ font-style: normal;
+ font-weight: 400;
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+ src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+}
+
+
           .top-ul a {
             text-decoration:none;
             color :black
@@ -215,7 +225,7 @@
  	        		var name = 'output'+(i+1);
  	        		var path = ctx+'/resources/mediaImg/'+img[i];
  	        		
- 	        		$('.img-div').append('<img id="'+name+'" style="width:600px; height:500px;" src=""/>');
+ 	        		$('.img-div').append('<img id="'+name+'" style="width:600px;" src=""/>');
  	        		var nameId = "#"+name;
  	        		$(nameId).attr('src',path);
  	        	}
@@ -246,13 +256,21 @@
                 <div style="text-align:center;">
                 	<img style="width:600px; height:500px;" src="<c:url value="/img/representImg/${lesson.represent}" />"  alt="수업대표이미지"/>
                 </div>
-                <div style="margin:30px; line-height:180%">
+                <div style="margin:80px; line-height:180%">
+                <c:if test="${pro.certify == 1}">
+	                <div style="font-size:17px;text-align:center;font-family:NanumBarunGothic;"> 
+                		${pro.nickname} 선생님은 <span style="color:orange;font-weight:bold">본인인증</span> 및 <span style="color:orange;font-weight:bold">학력인증</span>이 <span style="color:orange;font-weight:bold">완료</span> 된 선생님입니다.
+    	            </div>
+                </c:if>
+               	 <c:if test="${lesson.priNegotiation == 'yes'}">
+               		<div style="font-size:17px;margin:20px 0px;text-align:center;font-family:NanumBarunGothic;"> 
+               	 		상담 후 학생의 수업방식, 수업조건에 따라 <span style="color:orange;font-weight:bold">가격 협의 가능</span> 합니다.
+                	</div>
+                </c:if>
                 <br/>
                 <br/>
                 
                 <div class="subtitle">선생님 정보</div>
-                <br/>
-                <div style="color:orange; "> <c:if test="${pro.certify == 1}">본인인증완료 &nbsp; &nbsp; 학력인증완료 </c:if></div>
                 <br/>
                <span class="info" style="margin-right:20px;">대학교</span>${pro.universe} ${pro.univsub} (${pro.universer}) <br/>
                <span class="info" style="margin-right:20px;">경력</span><c:if test="${pro.career!=0}">${pro.career}년이상</c:if><c:if test="${pro.career==0}">1년미만</c:if><br/>
@@ -267,6 +285,11 @@
             	<br/>
             	<br/>
             	<br/>
+            	<c:if test="${pro.passType!='--선택--'}">
+            	<div class="subtitle">대학 합격유형 </div>
+            	<div style="font-size:17px;font-weight:normal;font-family:NanumBarunGothic;margin:20px 0px 70px 0px;">${pro.passType}</div>
+            	</c:if>
+            	
             		
             	<div class="subtitle">선생님 소개</div>
             	<br/>
@@ -394,11 +417,11 @@
 					</table>
 				</div>
 				
-				<div style="margin:15px 0px;padding:10px;">콕사부 안내 : 제공하는 수업 외에도  &#39;상담 하기&#39;를 통해 채팅창에서 새로운 수업을 작성하여 거래할 수 있습니다.</div>
+				<div style="margin:15px 0px;padding:10px;line-height:180%;">콕사부 안내 : 수업횟수, 수업시간을 변경하여 수업을 듣고 싶은 경우 채팅창에서 선생님과 협의 후 수업조건을 변경하여 안전거래 할 수 있습니다.</div>
 				
 				<div class="button">
 				<c:if test="${!empty lesson.title}">
-					<button class="cunsult">상담 하기</button> &nbsp;&nbsp;
+					<button class="cunsult">채팅 상담</button> &nbsp;&nbsp;
 				</c:if>	
 					<c:if test="${lesson.visible==1}">
 					<button class="purchase lessonPurchase">구매 하기</button>

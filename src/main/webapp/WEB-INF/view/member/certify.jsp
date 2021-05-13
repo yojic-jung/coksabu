@@ -58,6 +58,12 @@ padding:20px;
 			       프로필에 대학원을 기재하신 경우<br/>대학원 재학/졸업 증명서를 꼭 첨부하여주시기 바랍니다.
 			</div>
 				
+				
+			<c:if test="${cerDB.denyReason!=null}">
+				<div style="font-size:20px;margin:30px 0px 10px 0px;text-align:center;color: #980000;">반려사유</div>
+				<div style="margin:auto; width:400px;color: #980000;">${cerDB.denyReason}</div>
+			</c:if>
+			
 			<form id="create_form" method="post" enctype="multipart/form-data" onSubmit="return CheckForm(this)">
 			
 			<input type="text" value="${email}" style="display:none" />
@@ -129,8 +135,14 @@ $(document).ready(function(){
 	 
 	 if(status=="success"){
 		 alert("본인인증 신청을 완료하셨습니다. 완료까지 1-2일 정도 걸릴 수 있습니다.");
-		 opener.location.reload();
-		 window.close();
+		 if(getRequestParam().cok_tutorial == "last_step"){
+			 opener.sendFromOpener("tutorial_success");
+			 window.close();
+		 }else{
+			 opener.location.reload();
+			 window.close();
+		 }
+		 
 	 }else if(status=="fail"){
 		 alert("신청이 올바르게 되지 않았습니다. 다시 신청해주시기 바랍니다.");
 		 opener.location.reload();
@@ -321,7 +333,17 @@ function CheckForm(memberInfo){
 	}
    }
 	
+function getRequestParam(){
+	    var url = document.location.href;
+	    var qs = url.substring(url.indexOf('?') + 1).split('&');
+	    for(var i = 0, result = {}; i < qs.length; i++){
+	        qs[i] = qs[i].split('=');
+	        result[qs[i][0]] = decodeURIComponent(qs[i][1]);
+	    }
+	    return result;
+	}	
 	
+
 	
 	  </script>
 </body>

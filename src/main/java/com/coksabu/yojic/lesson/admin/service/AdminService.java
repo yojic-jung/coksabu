@@ -1,6 +1,7 @@
 package com.coksabu.yojic.lesson.admin.service;
 
 import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -49,17 +50,26 @@ public class AdminService {
 		TokenInfo tokenInfo = adminDao.takePushForOneTarget(email);
 		
 		if(tokenInfo != null) {
+			logger.info("푸시알림 및 알림톡 정상 ");
 			pushAsyncMethod.pushNotification(tokenInfo.getDevice(), tokenInfo.getToken(), "본인학력 인증완료", "본인학력인증을 완료하였습니다. 수업이 정상적으로 노출이 됩니다.", "https://m.coksabu.com/tutorpage");
+			pushAsyncMethod.tutorCertifySuccesAlimtalk(tokenInfo.getName(), tokenInfo.getPhone());
 		}
 	}
 	
-	public void inspectFail(String email) {
-		adminDao.inspectFail(email);
+	public void inspectFail(String email, String denyReason) {
+		
+		HashMap<String, String> map= new HashMap<>();
+		map.put("email", email);
+		map.put("denyReason", denyReason);
+		
+		adminDao.inspectFail(map);
 		
 		TokenInfo tokenInfo = adminDao.takePushForOneTarget(email);
 		
 		if(tokenInfo != null) {
+			//쓰레드가 별개로 2개 작동함
 			pushAsyncMethod.pushNotification(tokenInfo.getDevice(), tokenInfo.getToken(), "본인학력 인증실패", "본인학력인증을 다시 해주세요. 프로필에서 본인 학력인증 이미지를 다시 확인해주세요.", "https://m.coksabu.com/tutorpage");
+			pushAsyncMethod.tutorCertifyFaiilAlimtalk(tokenInfo.getName(), tokenInfo.getPhone());
 		}
 	}
 	public int certifyCount() {

@@ -22,7 +22,7 @@
 body {
      margin: 0px;
      padding: 0px;
-     font-family:'Malgun Gothic' ;
+     font-family: 'Apple SD Gothic Neo','Malgun Gothic';
      -webkit-text-size-adjust:100%;
 }
           
@@ -70,14 +70,16 @@ float:right;clear:right;font-weight:bolder;font-family:'Do Hyeon';
 <div style="padding-bottom:500px;">
 <div class="big-title">마이페이지</div>
 <a href="./usersetting"><div class="subheading">내 계정 정보수정하기 <span class="connect-sign">&gt;</span></div></a>
-<a href="./promotion"><div class="subheading">프로모션 및 쿠폰 등록 <span class="connect-sign" >&gt;</span></div></a>
+<a href="./nicknameUpdate"><div class="subheading">닉네임 변경하기 <span class="connect-sign" >&gt;</span></div></a>
 <div class="headline">고객메뉴</div>
 <a href="./purchaselist"><div class="subheading">구매목록 <span class="connect-sign" >&gt;</span></div></a>
 <a href="./mypage"><div class="subheading">수업요청내역 <span class="connect-sign" >&gt;</span></div></a>
 <a href="./wishlist"><div class="subheading">장바구니 <span class="connect-sign" >&gt;</span></div></a>
 <div class="headline">튜터메뉴</div>
+<a href="./tutorUseGuide"><div class="subheading">선생님 이용안내 <span class="connect-sign" >&gt;</span></div></a>
 <a href="./tutorpage"><div class="subheading">프로필/수업 관리 <span class="connect-sign" >&gt;</span></div></a>
 <a href="./saleslist"><div class="subheading">판매목록 <span class="connect-sign" >&gt;</span></div></a>
+
 
 
 </div>

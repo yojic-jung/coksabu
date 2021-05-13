@@ -1,6 +1,7 @@
 package com.coksabu.yojic.lesson.member.service;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +40,9 @@ public class PromotionService {
 			}else {
 				prmt.setTitle("수수료 무료");
 				prmt.setContent("고객님의 과외 수수료를 회원가입 날짜를 기준으로 2개월 동안 무료로 적용합니다. 종료날짜 이전에 결제된 모든 거래에 대해 적용됩니다.");
-				prmt.setStartDate(memberDao.takeSignUpDate(prmt.getEmail()));
+				Date startDate = memberDao.takeSignUpDate(prmt.getEmail());
+				System.out.println("사인업데이트: "+startDate);
+				prmt.setStartDate(startDate);
 				memberDao.registerMyPromotion(prmt);
 				return "success";
 			}

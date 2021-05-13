@@ -61,7 +61,7 @@
           	padding:20px;
           }
           .first{
-          	font-family:'Malgun Gothic';
+          	font-family: 'Apple SD Gothic Neo','Malgun Gothic';
           	font-size:30px;
           }
            .second{

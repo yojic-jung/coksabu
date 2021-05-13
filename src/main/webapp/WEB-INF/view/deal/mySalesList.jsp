@@ -69,14 +69,6 @@ border:1px solid gray; padding:5px 30px;cursor:pointer;font-size:15px;
         <script src="resources/jquery-number-master/jquery.number.min.js"></script>
         <script>
           $(document).ready(function(){
-        	  
-        	  var none = "<c:out value="${none}" />"
-        	  
-        	  if(none=='none'){
-        		  alert('프로필과 수업을 모두 작성해주세요.')
-        		  window.location='./tutorpage';
-        	  }
-        	  
         	  $('.tutor3').css('color','orange');
         	  
         	  

@@ -77,15 +77,15 @@ width:100%;margin:auto
 		</tr>
 		<tr>
 			<td><a href="./boarder?main=51&subject=51"><img src="<c:url value="/resources/images/ui5m.png" />" style="width:100%; height:120px;" alt="1"/></a></td>
-			<td><a href="./boarder?main=61&subject=62"><img src="<c:url value="/resources/images/ui6m.png" />" style="width:100%; height:120px;" alt="1"/></a></td>
+			<td><a href="./boarder?main=61&subject=61"><img src="<c:url value="/resources/images/ui6m.png" />" style="width:100%; height:120px;" alt="1"/></a></td>
 			<td><a href="./boarder?main=61&subject=64"><img src="<c:url value="/resources/images/ui7m.png" />" style="width:100%; height:120px;" alt="1"/></a></td>
 			<td><a href="./boarder?main=71&subject=71"><img src="<c:url value="/resources/images/ui8m.png" />" style="width:100%; height:120px;" alt="1"/></a></td>
 		</tr>
 		<tr>
 			<td><a href="./boarder?main=51&subject=51"><div>과 학</div></a></td>
-			<td><a href="./boarder?main=61&subject=62"><div>예 능</div></a></td>
+			<td><a href="./boarder?main=61&subject=61"><div>음악/미술</div></a></td>
 			<td><a href="./boarder?main=61&subject=64"><div>체 육</div></a></td>
-			<td><a href="./boarder?main=71&subject=71"><div>자소서/입시</div></a></td>
+			<td><a href="./boarder?main=71&subject=71"><div>자소서/논술/면접</div></a></td>
 		</tr>
 	</table>
 </div>

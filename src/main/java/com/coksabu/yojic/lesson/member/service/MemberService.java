@@ -62,6 +62,28 @@ public class MemberService {
 		
 	}
 	
+	
+	public HashMap<String, String> updateMemberforPreUser(MemberInfo member) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		if(memberDao.checkPhone(member.getPhone())!=0){
+			map.put("status", "phoneDuplicate");
+			return map;
+		}
+		
+		MemberInfo authorityAndRoll = memberDao.takeRollAndPassword(member.getEmail());
+		if(authorityAndRoll.getAuthority().equals("pre-user")) {
+			memberDao.updateMemberforPreUser(member);
+			map.put("status", "success");
+			map.put("password", authorityAndRoll.getPassword());
+			return map;
+		}else {
+			map.put("status", "not-preuser");
+			return map;
+		}
+		
+	}
+
+	
 	//통과
 	@Transactional(rollbackFor= {Exception.class})
 	public int updatePassword(Password password) {

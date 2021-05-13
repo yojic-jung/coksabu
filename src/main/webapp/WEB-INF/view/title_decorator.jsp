@@ -15,12 +15,11 @@
 <style>
  @font-face { font-family: 'JejuGothic'; 
       src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 
-
         * { margin:0px; padding:0px; box-sizing: border-box;}
         body {
             margin: 0px;
             padding: 0px;
-            font-family:'Malgun Gothic' ;
+            font-family:'Apple SD Gothic Neo','Malgun Gothic' ;
             -webkit-text-size-adjust:100%;
             -webkit-touch-callout: none;
           }
@@ -74,6 +73,7 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
+  gtag('config', 'G-4EM47WXQJ0');
   gtag('config', 'AW-413632618');
 </script>
 <decorator:head />

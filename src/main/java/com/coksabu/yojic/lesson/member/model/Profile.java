@@ -16,6 +16,7 @@ public class Profile {
 	private String univsub;
 	private String universer;
 	private String career;
+	private String passType;
 	private String academy;
 	private String academyd;
 	private String nation;
@@ -129,6 +130,14 @@ public class Profile {
 	
 	public String getCareer() {
 		return career;
+	}
+	
+	public void setPassType(String passType) {
+		this.passType=passType;
+	}
+	
+	public String getPassType() {
+		return passType;
 	}
 	
 	public void setAcademy(String academy) {

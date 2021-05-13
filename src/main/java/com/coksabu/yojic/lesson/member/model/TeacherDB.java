@@ -14,6 +14,7 @@ public class TeacherDB {
 	private String career;
 	private String univsub;
 	//추가입력
+	private String passType;
 	private String academy;
 	private String academyd;
 	private String nation;
@@ -37,6 +38,7 @@ public class TeacherDB {
 		this.univsub = tea.getUnivsub();
 		this.sexual = tea.getSexual();
 		
+		this.passType=tea.getPassType();
 		this.academy=tea.getAcademy();
 		this.academyd=tea.getAcademyd();
 		this.nation=tea.getNation();
@@ -150,6 +152,12 @@ public class TeacherDB {
 	}
 	
 	
+	public void setPassType(String passType) {
+		this.passType=passType;
+	}
+	public String getPassType() {
+		return passType;
+	}
 	
 	public void setAcademy(String academy) {
 		this.academy=academy;

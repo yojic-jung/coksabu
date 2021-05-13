@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,445 +14,38 @@
 <meta property="og:description" content="내가 찾던 수업을 만나는 곳, 콕사부입니다.">
 <meta property="og:image" content="https://www.coksabu.com/resources/images/logo.png">
 <meta property="og:url" content="https://www.coksabu.com">
- 
+<meta name="facebook-domain-verification" content="p4cmwcul9alesb9w73uj30zly7m99z" />
  <!-- 뷰포트 화면깨지면 없애주기  -->
-   <meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width">
+<meta name="naver-site-verification" content="09c0582232b10c99588e1c356cb1c1d08d7c28e0" />
+<meta name="google-site-verification" content="p08VIDL4nCSNtPHj4o5tkE5_kxA34KzlSkwzGyOTTzk" />
 
-   <meta name="naver-site-verification" content="09c0582232b10c99588e1c356cb1c1d08d7c28e0" />
-    <meta name="google-site-verification" content="p08VIDL4nCSNtPHj4o5tkE5_kxA34KzlSkwzGyOTTzk" />
+    <link rel="canonical" href="http://www.coksabu.com">
     
-     <link rel="canonical" href="http://www.coksabu.com">
-    <link rel="stylesheet" type="text/css" href= "<c:url value="/resources/slick/slick.css" />" >
-  <link rel="stylesheet" type="text/css" href= "<c:url value="/resources/slick/slick-theme.css" />">
-  <link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
+    <c:set var="today" value="<%=new java.util.Date()%>" />
+	<c:set var="date"><fmt:formatDate value="${today}" pattern="yyMMddHHmm" /></c:set>
+    
+    <link rel="stylesheet" type="text/css" href= "<c:url value="/resources/slick/slick.css" />">
+    <link rel="stylesheet" type="text/css" href= "<c:url value="/resources/slick/slick-theme.css" />">
+    <link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
     <link rel="shortcut icon" href= "/favicon.ico" />
-    <style>
-     @font-face { font-family: 'JejuGothic'; 
-      src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 
+    <link rel="stylesheet" type="text/css" href= "<c:url value="/resources/css/index.min.css?date=${date}"/>">
 
-        * { margin:0px; padding:0px; box-sizing: border-box;}
-        body {
-            margin: 0px;
-            padding: 0px;
-            font-family:'Malgun Gothic' ;
-            
-          }
-          .jbMenu {
-            z-index:3;
-            display: inline-block;
-            background-color: white;
-            padding: 0px;
-            width: 100%;
-            min-width:550px;
-            border-bottom : solid 2px black;
-
-          }
-          .top-title{
-            float:left;
-            height:100%;
-            border-right : 2px solid black;
-            text-align:center;
-          }
-          .jbMenu > ul {
-            margin:12px 0px 0px 0px;
-            padding: 0px;
-            list-style:none;
-            float:right;
-          }
-          .jbMenu li{
-            display :inline;
-            margin-right:20px;
-          }
-          
-         .top-ul a {
-            text-decoration:none;
-            color :black
-          }
-          .jbFixed {
-            position: fixed;
-            top: 0px;
-          }
-          
- .foot{
-      width:100%;
-      clear:left;
-    }
-    
-    .foot-align{
-      
-      margin:auto;
-      width:1000px;
-      min-width:1000px;
-    }
-
-    .foot-align>div{
-      float:left;
-      margin:20px;
-    }
-    .foot p{
-      font-size:12px;
-      line-height:150%;
-      text-decoration:none;
-    }
-    .foot-cate a, .foot-company a{
-    text-decoration:none;
-    color:black;
-    
-    }
-          .top-ul a {
-            text-decoration:none;
-            color :black
-          }
-          .jbFixed {
-            position: fixed;
-            top: 0px;
-          }
-          #inner-fade{
-            z-index:1;
-          }
-          .main-search{
-            position:absolute;
-            left:50%; 
-            transform:translateX(-50%);
-            top:280px;
-            z-index: 2;
-            min-width:600px;
-          }
-          .main-search>p{
-            color:white;
-            font-size:40px;
-            font-family: 'JejuGothic';
-            margin-bottom:20px;
-          }
-          .main-input{
-            float:left;
-            width:520px;
-            height:60px;
-            border: 2px solid #7db9d1;
-      -webkit-border-top-left-radius:15px;
-      -webkit-border-bottom-left-radius:15px;
-      -moz-border-top-left-radius:15px;
-      -moz-border-bottom-left-radius:15px;
-      border-top-left-radius:15px;
-      border-bottom-left-radius:15px;
-           margin-right:0px;
-           font-size:20px;
-          text-indent:1em;
-        }
-        .search-button{
-          width:80px;
-            -webkit-height:60px;
-            -moz-height:60px;
-          height:60px;
-          font-size:20px;
-          background-color:#7db9d1;
-          color:white;
-          border: 2px solid #7db9d1;
-          -webkit-border-top-right-radius:15px;
-          -moz-border-bottom-right-radius:15px;
-          border-top-right-radius:15px;
-          border-bottom-right-radius:15px;
-          margin-left:0px;
-          padding:0px;
-         }
-         
-         
-        .fadeImg{height:350px}
-        .fade-content{
-        	color:white;
-        	font-size:35px;
-        	width:600px;
-        	margin:auto;
-        	font-weight:bolder;
-        	text-align:right;
-        	 position:absolute;
-            left:50%; 
-            transform:translateX(-50%);
-            top:80px;
-            z-index: 3;
-        }
-        
-        
-        .category{
-          text-align:center;
-          margin-top:40px;
-          border-spacing:0;
-          margin-right:auto;
-          margin-left:auto;
-          min-width:1000px;
-        }
-        .categoryTr{
-          background-color:#F2F2F2;
-        }
-        .category td{
-          font-family: 'JejuGothic';
-          font-size:17px;
-          padding:20px 35px;;
-          margin:0px;
-        }
-        .category td>a{
-          text-decoration:none;
-          color:black;
-        }
-        .cateTitle{
-          margin-left:15%;
-          padding:0px;
-          font-family: 'JejuGothic';
-          font-size:20px;
-        }
-        .cateTitle > b{
-          font-size:28px;
-        }
-        .white{
-          background-color:white;
-          border:2px solid black;
-        }
-        .dispno{
-          display:none;
-        }
-        .dispyes{
-          display:block;
-        }
-
-		.frame1{
-		 	float:left;
-		  	margin:0px 40px;
-			width:130px;
-			padding:5px;
-		}
-        .frame-cate{
-          padding:10px;
-          font-family:'JejuGothic';
-          font-size:18px;
-        }
-
-        .frame1 div{
-          font-family:'JejuGothic';
-          font-size:15px;
-          line-height: 250%;
-          padding-left:10px;
-        }
-        
-        .frame1 a{
-        	text-decoration:none;
-        	color: black;
-        }
-
-        .slider {
-        width: 70%;
-        margin: 20px auto 80px auto;
-    }
-
-    .slick-slide {
-      margin: 0px 20px;
-    }
-
-    .slick-slide img {
-      width: 100%;
-    }
-
-    .slick-prev:before,
-    .slick-next:before {
-      color: black;
-    }
-
-
-    .slick-slide {
-      transition: all ease-in-out .3s;
-    }
-    
-    #menu > table{
-    	text-align:center;
-    	border-spacing:20px;
-    }
-
-    .menu-td{
-    	border-radius:5px;
-    	color:white;
-    	background: green;
-    	padding:6px;
-    }
-    
-    .menu-td a{
-    	color:white;
-    	text-decoration:none;
-    }
-    
-	#categories{
-		font-family:'JejuGothic';
-		font-weight:bold;
-		font-size:16px;
-		color:Grey;
-		padding:5px;
-	}
-
-	#name{
-		font-family: 'JejuGothic';
-		font-weight:bold;
-		font-size:14px;
-		padding:5px;
-		color:black;
-	}
-	
-	#universe{
-		font-family: 'JejuGothic';
-		font-weight:bold;
-		color: DimGrey;
-		font-size:14px;
-		padding:5px;
-	}
-	#title{
-		font-family:'JejuGothic';
-		font-weight:900;
-		color: black;
-		font-size: 18px;
-		margin-top:7px;
-		padding:5px;
-	}
-
-	#price{
-		font-family:Arial;
-		font-weight:bold;
-		font-size:16px;
-		padding:5px;
-		margin-top:5px;
-		color: black;
-	}
-	.list td{
-		border-bottom:1px solid gray;
-	} 
-	#pst:hover{
-		box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
-	}
-    </style>
-    
-    <!-- Facebook Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2787801881458923');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Facebook Pixel Code -->
-    
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-413632618"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-413632618');
-</script>
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
     <script src="<c:url value="/resources/js/jquery.innerfade.js"/>"></script>
     <script src= "<c:url value="/resources/slick/slick.js" />" type="text/javascript" charset="utf-8"></script>
-   <script src="resources/colorbox-master/colorbox-master/jquery.colorbox.js"></script>
-    <script>
-       $(document).ready(function(){
-
-    	   
-    	   
-        var jbOffset = $( '.jbMenu' ).offset(); //상단메뉴 좌표 가져오는 코드
-            $( window ).scroll( function() {        
-              if ( $( document ).scrollTop() > jbOffset.top ) { //scrollTop() 요청한 스크롤바의 수직위치 반환
-                $( '.jbMenu' ).addClass( 'jbFixed' );
-              }
-              else {
-                $( '.jbMenu' ).removeClass( 'jbFixed' );
-              }
-            });
-
-        
-        
-        $('.fadeImg').css('width',$(document).width());
-        
-            $("#inner-fade").innerfade({
-                animationtype:'fade',
-                speed:750,
-                timeout:8000,
-                type:'sequence',
-                containerheight:'350px'
-            });
-
-            $('.categoryTr>td').mouseenter(function(){
-              $('.white').removeClass();
-              $(this).addClass('white');
-              
-            })
-        
-            $('.categoryTr>td').mouseenter(function(){
-              var tdIndex = $(this).index();
-              $('.dispyes').removeClass('dispyes').addClass('dispno');
-              $('.cont').eq(tdIndex).removeClass('dispno');
-              $('.cont').eq(tdIndex).addClass('dispyes');
-            })
-
-            $('.categoryTr>td:first').trigger('mouseenter');
-
-            $(".vertical-center-4").slick({
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 1
-      });
-    
-      $(".vertical").slick({
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 1
-      });
-      $(".vertical2").slick({
-          infinite: true,
-          slidesToShow: 4,
-          slidesToScroll: 1
-        });
-      $(".regular").slick({
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll:1 
-      });
-      
-      $(".regular2").slick({
-          infinite: true,
-          slidesToShow: 4,
-          slidesToScroll:1 
-        });
-      
-      $(".center").slick({
-        infinite: true,
-        slidesToShow: 4,
-        slidesToScroll: 1
-      });
-      
-      $('.main-input').colorbox({
-          inline:true,
-          overlayOpacity:0.5,
-          onOpen:function(){
-          },
-        });
-      
-      $('.frame1 div').hover(function(){
-    	  $(this).css('background','rgb(211, 211, 211)');
-      },function(){
-    	  $(this).css('background','white');
-      })
-      
-
-      
-      
-       });
-    </script>
+    <script src="resources/colorbox-master/colorbox-master/jquery.colorbox.js"></script>
 </head>
 <body>
 <div>
+  
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
+/></noscript>
   <header>
  <div class="jbMenu">
                 <div class="top-title"><a href="./"><img src="<c:url value="/resources/images/logo.png" />" alt="로고" /></a></div>
@@ -482,7 +76,7 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
             <table>
             
             <tr>
-            <td class="menu-td"><a href="./boarder?main=11&subject=11" >수학</a></td><td class="menu-td"><a href="./boarder?main=21&subject=21">외국어</a></td><td class="menu-td"><a href="./boarder?main=31&subject=31">국어</a></td><td class="menu-td"><a href="./boarder?main=41&subject=41">사회</a></td><td class="menu-td"> <a href="./boarder?main=51&subject=51">과학</a> </td><td class="menu-td"><a href="./boarder?main=61&subject=61">예체능</a></td><td class="menu-td"><a href="./boarder?main=71&subject=71">자소서/입시</a></td>
+            <td class="menu-td"><a href="./boarder?main=11&subject=11" >수학</a></td><td class="menu-td"><a href="./boarder?main=21&subject=21">외국어</a></td><td class="menu-td"><a href="./boarder?main=31&subject=31">국어</a></td><td class="menu-td"><a href="./boarder?main=41&subject=41">사회</a></td><td class="menu-td"> <a href="./boarder?main=51&subject=51">과학</a> </td><td class="menu-td"><a href="./boarder?main=61&subject=61">예체능</a></td><td class="menu-td"><a href="./boarder?main=71&subject=71">입시(자소서/논술/면접)</a></td>
             </tr>
             
             <tr>
@@ -494,24 +88,24 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
             </tr>
             
             <tr>
-            <td class="menu-td"><a href="./boarder?main=11&subject=14">고등수학</a></td><td class="menu-td"><a href="./boarder?main=21&subject=24">고등영어</a></td><td class="menu-td"><a href="./boarder?main=31&subject=34">고등국어</a></td><td class="menu-td"><a href="./boarder?main=41&subject=44">고등사회</a></td><td class="menu-td"><a href="./boarder?main=51&subject=54">고등과학</a></td><td class="menu-td"><a href="./boarder?main=61&subject=64">체육</a></td><td></td>
+            <td class="menu-td"><a href="./boarder?main=11&subject=14">고등수학</a></td><td class="menu-td"><a href="./boarder?main=21&subject=24">고등영어</a></td><td class="menu-td"><a href="./boarder?main=31&subject=34">고등국어</a></td><td class="menu-td"><a href="./boarder?main=41&subject=44">고등사회</a></td><td class="menu-td"><a href="./boarder?main=51&subject=54">고등과학</a></td><td class="menu-td"><a href="./boarder?main=61&subject=64">체육</a></td><td class="menu-td"><a href="./boarder?main=71&subject=74">면접</a></td>
             </tr>
             
             <tr>
-            <td class="menu-td"><a href="./boarder?main=11&subject=15">이과수학</a></td><td class="menu-td"><a href="./boarder?main=21&subject=25">수능영어</a></td><td class="menu-td"><a href="./boarder?main=31&subject=35">수능국어</a></td><td class="menu-td"><a href="./boarder?main=41&subject=451">사회탐구</a></td><td class="menu-td"><a href="./boarder?main=51&subject=55">물리</a></td><td></td><td></td>
+            <td class="menu-td"><a href="./boarder?main=11&subject=15">이과수학</a></td><td class="menu-td"><a href="./boarder?main=21&subject=25">수능영어</a></td><td class="menu-td"><a href="./boarder?main=31&subject=35">수능국어</a></td><td class="menu-td"><a href="./boarder?main=41&subject=451">사회탐구</a></td><td class="menu-td"><a href="./boarder?main=51&subject=55">물리</a></td><td></td><td class="menu-td"><a href="./boarder?main=71&subject=75">수학논술</a></td>
             </tr>
             
             <tr>
-            <td class="menu-td"><a href="./boarder?main=11&subject=16">문과수학</a></td><td class="menu-td"><a href="./boarder?main=21&subject=26">영어회화</a></td><td class="menu-td"><a href="./boarder?main=31&subject=36">국어논술</a></td><td class="menu-td"><a href="./boarder?main=41&subject=46">한국사</a></td><td class="menu-td"><a href="./boarder?main=51&subject=56">생명과학</a></td><td></td><td></td>
+            <td class="menu-td"><a href="./boarder?main=11&subject=16">문과수학</a></td><td class="menu-td"><a href="./boarder?main=21&subject=26">영어회화</a></td><td></td><td class="menu-td"><a href="./boarder?main=41&subject=46">한국사</a></td><td class="menu-td"><a href="./boarder?main=51&subject=56">생명과학</a></td><td></td><td class="menu-td"><a href="./boarder?main=71&subject=76">인문논술</a></td>
             </tr>
             
             
             <tr>
-            <td class="menu-td"><a href="./boarder?main=11&subject=17">수학논술</a></td><td class="menu-td"><a href="./boarder?main=21&subject=27">toeic/tofle/teps</a></td> <td></td> <td></td><td class="menu-td"><a href="./boarder?main=51&subject=57">지구과학</a></td><td></td><td></td>
+            <td class="menu-td"><a href="./boarder?main=11&subject=18">수학경시</a></td><td class="menu-td"><a href="./boarder?main=21&subject=27">toeic/tofle/teps</a></td> <td></td> <td></td><td class="menu-td"><a href="./boarder?main=51&subject=57">지구과학</a></td><td></td><td class="menu-td"><a href="./boarder?main=71&subject=77">국어논술</a></td>
             </tr>
             
             <tr>
-            <td class="menu-td"><a href="./boarder?main=11&subject=18">수학경시</a></td><td class="menu-td"><a href="./boarder?main=21&subject=28">일본어</a></td><td></td><td></td><td class="menu-td"><a href="/boarder?main=51&subject=58">화학</a></td><td></td><td></td>
+            <td></td><td class="menu-td"><a href="./boarder?main=21&subject=28">일본어</a></td><td></td><td></td><td class="menu-td"><a href="/boarder?main=51&subject=58">화학</a></td><td></td><td class="menu-td"><a href="./boarder?main=71&subject=78">과학논술</a></td>
             </tr>
 
             <tr>
@@ -532,7 +126,7 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
         <ul id="inner-fade">
             <li>
             	<img class="fadeImg" src="<c:url value="/resources/img/main5.png" />"  alt="메인이미지3"/>
-            	<div class="fade-content" style="text-align:center;">지금 가입하면 <br/>선생님 "과외수수료 2개월 무료"</div>
+            	<div class="fade-content" style="text-align:center;">콕사부의 안전거래 시스템으로<br/>안전하게 거래하세요.</div>
             </li>
             <li>
             	<img class="fadeImg" src="<c:url value="/resources/img/main1.png" />"  alt="메인이미지1"/>
@@ -558,7 +152,7 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
           <td><a href="./boarder?main=41&subject=41">사회</a></td>
           <td><a href="./boarder?main=51&subject=51">과학</a></td>
           <td><a href="./boarder?main=61&subject=61">예체능</a></td>
-          <td><a href="./boarder?main=71&subject=71">자소서/입시</a></td>
+          <td><a href="./boarder?main=71&subject=71">입시(자소서/논술/면접)</a></td>
         </tr>
         </table>
       </nav>
@@ -572,7 +166,6 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
                     <a href="./boarder?main=11&subject=14"><div>이과수학</div></a>
                     <a href="./boarder?main=11&subject=15"><div>문과수학</div></a>
                     <a href="./boarder?main=11&subject=16"><div>고등수학</div></a>
-                    <a href="./boarder?main=11&subject=17"><div>수학논술</div></a>
                     <a href="./boarder?main=11&subject=18"><div>수학경시</div></a>              
                 </div>
                 <div style="font-family:'JejuGothic'; font-size:20px;margin-top:20px;width:600px">&nbsp;&nbsp;&nbsp;&nbsp;인기 추천 수업</div>
@@ -666,7 +259,6 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
                         <a href="./boarder?main=31&subject=33"><div>중등국어</div></a>
                         <a href="./boarder?main=31&subject=34"><div>고등국어</div></a>
                         <a href="./boarder?main=31&subject=35"><div>수능국어</div></a>
-                        <a href="./boarder?main=31&subject=36"><div>국어논술</div></a>
                 </div>
                 <div style="font-family:'JejuGothic'; font-size:20px;margin-top:20px;width:600px">&nbsp;&nbsp;&nbsp;&nbsp;인기 추천 수업</div>
                 
@@ -844,6 +436,11 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
                   <hr/>
                 		<a href="./boarder?main=71&subject=72"><div>자소서첨삭</div></a>
                         <a href="./boarder?main=71&subject=73"><div>입시컨설팅</div></a>
+                        <a href="./boarder?main=71&subject=74"><div>면접</div></a>
+                        <a href="./boarder?main=71&subject=75"><div>수학논술</div></a>
+                        <a href="./boarder?main=71&subject=76"><div>인문논술</div></a>
+                        <a href="./boarder?main=71&subject=77"><div>국어논술</div></a>
+                        <a href="./boarder?main=71&subject=78"><div>과학논술</div></a>
                 </div>
                 <div style="font-family:'JejuGothic'; font-size:20px;margin-top:20px;width:600px">&nbsp;&nbsp;&nbsp;&nbsp;인기 추천 수업</div>
                 
@@ -888,7 +485,6 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
             <div><a href="./boarder?main=11&subject=13" ><img src="<c:url value="/resources/img/middlemath.png" />" alt="중등수학"></a></div>
             <div><a href="./boarder?main=11&subject=12" ><img src="<c:url value="/resources/img/elementmath.png" />" alt="초등수학"></a></div>
             <div><a href="./boarder?main=11&subject=18" ><img src="<c:url value="/resources/img/math6.png" />" alt="수학경시"></a></div>
-            <div><a href="./boarder?main=11&subject=17" ><img src="<c:url value="/resources/img/mathlogic.png" />" alt="수학논술"></a></div>
         </section> 
 
         <div class="cateTitle"><p>나에게 맞는 <b>외국어</b> 수업을 찾고 싶다면</p></div>
@@ -909,7 +505,6 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
             <div><a href="./boarder?main=31&subject=34" ><img src="<c:url value="/resources/img/kor3.png" />" alt="고등국어" /></a></div>
             <div><a href="./boarder?main=31&subject=33" ><img src="<c:url value="/resources/img/kor2.png" />" alt="중등국어" /></a></div>
             <div><a href="./boarder?main=31&subject=32" ><img src="<c:url value="/resources/img/kor1.png" />" alt="초등국어" /></a></div>
-            <div><a href="./boarder?main=31&subject=36" ><img src="<c:url value="/resources/img/kor5.png" />" alt="국어논술" /></a></div>
           </section>
 
           <div class="cateTitle"><p><b>사회</b> 선생님을 찾아보세요.</p></div>
@@ -940,7 +535,133 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
             <div><a href="./boarder?main=61&subject=63" ><img src="<c:url value="/resources/img/musics.png" />"  alt="음악"/></a></div>
             <div><a href="./boarder?main=61&subject=64" ><img src="<c:url value="/resources/img/sport.png" />"  alt="체육"/></a></div>
           </section>
-           <footer>
+          
+          
+    <!-- pc프로모트 코드 -->	
+    <div class="cok-intro-back"></div>      
+    <div class="cok-intro">
+		<div class="intro-title">
+			<b>
+			<span class="intro-close1">[하루동안 열지않음 X]</span>
+			<span class="intro-close2">[닫기 X]</span>
+			</b>
+		</div>
+		<div class="intro-content">
+			<div style="width:90%;margin:10px auto 30px auto;font-size:20px;line-height:140%;">콕사부에 대해 알아보고<br/>과외수업을 진행해보세요.</div>
+			<div style="text-align:center;"><img style="width:90%;" src="<c:url value="/resources/img/people.png" />"  alt=""/></div>
+			<div class="intro-text">
+				<div class="teach-intro">선생님으로 알아보기</div>
+				<div class="student-intro">학생/학부모님으로 알아보기</div>
+			</div>
+			<div class="teach-text1">
+				<div style="text-align:center;margin:10px;"><img style="width:100%;" src="<c:url value="/resources/img/threeclass.png" />"  alt=""/></div>
+				<div style="width:80%;margin:10px auto;">
+				콕사부 선생님은 최대 3개의 수업을 무료로 만들어 홍보 할 수 있습니다.
+				</div>
+				<div class="teach-next1">다음 알아보기</div>		
+			</div>
+			<div class="teach-text2">
+				<div style="text-align:center;margin:10px;"><img style="width:30%;" src="<c:url value="/resources/img/notification.png" />"  alt=""/></div>
+				<div style="width:80%;margin:10px auto;">
+				앱을 통해 학생의 과외 요청에 실시간 알림을 제공 받을수도 있습니다.
+				</div>
+				<div class="teach-next2">다음 알아보기</div>		
+			</div>
+			<div class="teach-text3">
+				<div style="text-align:center;margin:10px;"><img style="width:40%;" src="<c:url value="/resources/img/gawerespond.png" />"  alt=""/></div>
+				<div style="width:80%;margin:10px auto;">
+				물론, 학생의 과외요청서에 대해 무료로 지원서를 제출할 수 있습니다.
+				</div>
+				<div class="teach-next3">다음 알아보기</div>		
+			</div>
+			
+			<div class="teach-text4">
+				<div style="width:80%;margin:10px auto;">
+				콕사부는 선생님들이 중개수수료와 유료 이용료 없이 과외를 구할 수 있도록 하였습니다.<br/>
+				콕사부에서 자유롭게 과외활동을 해보세요.
+				</div>
+				<div class="teach-next4 teach-end">콕사부 홈페이지 더보기</div>
+				
+				<div class="apple-customize" style="display:none;">
+        				<img src="<c:url value='/resources/img/appleLogo.png' />"  style="vertical-align: middle;width:28px;height:40px;"/>
+        				Sign in with Apple
+        		</div>
+				
+				<div class="naver-customize" style="height:42px;padding:0px;">
+        				<img src="<c:url value='/resources/img/naver.png' />"  style="vertical-align: middle;width:40px;height:40px;"/>
+        			네이버로 로그인
+        		</div>
+        		<div style="display:none;">
+        			<div id="naverIdLogin"></div>
+        		</div>
+			</div>
+			
+			<div class="student-text1">
+				<div style="text-align:center;margin:10px;"><img style="width:100%;" src="<c:url value="/resources/img/threeclass.png" />"  alt=""/></div>
+				<div style="width:80%;margin:30px auto;">
+				수업목록을 통해 구체적인 선생님 정보와 수업정보를 알 수 있으며,<br/>
+				성별, 경력, 과외가능위치 등 상세검색을 통해 원하는 선생님을 찾을 수 있습니다.
+				</div>
+				<div class="student-next1">다음 알아보기</div>		
+			</div>
+			<div class="student-text2">
+				<div style="text-align:center;margin:10px;"><img style="width:100%;" src="<c:url value="/resources/img/gaweapplication.png" />"  alt=""/></div>
+				<div style="width:80%;margin:30px auto;">
+				선생님을 직접 찾지 않더라고 과외요청서를 작성하면,<br/> 
+				수업 가능한 선생님의 지원서를 받아 볼 수 있습니다.
+				</div>
+				<div class="student-next2">다음 알아보기</div>		
+			</div>
+			<div class="student-text3">
+				<div style="text-align:center;margin:10px;"><img style="width:30%;" src="<c:url value="/resources/img/chat.png" />"  alt=""/></div>
+				<div style="width:80%;margin:30px auto;">
+				채팅을 통하여 안전하게 상담 또한 진행 할 수 있으니,<br/>
+				지금 콕사부를 통해 과외선생님을 만나보세요!
+				</div>
+				<div class="student-next3 student-end">콕사부 홈페이지 더보기</div>
+				
+				<div class="apple-customize" style="display:none;">
+        				<img src="<c:url value='/resources/img/appleLogo.png' />"  style="vertical-align: middle;width:28px;height:40px;"/>
+        				Sign in with Apple
+        		</div>
+				<div id="appleid-signin" data-color="black" data-border="true" data-type="sign in" style="width:80%;height:45px;margin:auto;cursor:pointer;display:none;"></div>
+				
+				<div class="naver-customize" style="height:42px;padding:0px;">
+        				<img src="<c:url value='/resources/img/naver.png' />"  style="vertical-align: middle;width:40px;height:40px;"/>
+        			네이버로 로그인
+        		</div>
+				<div style="display:none;">
+        			<div id="naverIdLogin"></div>
+        		</div>
+			</div>
+		</div>
+	</div> 
+    
+          
+    <div class="tutorial-first-back"></div>
+    <div class="tutorial-first">
+    	<div class="tutorial-para">
+    	<div class="tutorial-first-title">튜토리얼 안내를 통해<br/>쉽고 빠르게 시작해보세요</div>
+    	<div class="tutorial-first-content">
+    	친절한 사용 설명과 함께  쉽고 빠르게<br/>
+    	 콕사부 서비스를 사용할 수 있습니다</div>
+    	</div>
+    	<br/>
+    	<div>
+    	
+    	<a href="./apply?cok_tutorial=first_student" style="color:orange;text-decoration:none;">
+    		<div class="tutorial-btn-st">학생/학부모 튜토리얼</div>
+    	</a>
+    	<a href="./profile?cok_tutorial=first_profile" style="color:orange;text-decoration:none;">
+    		<div class="tutorial-btn-te">선생님 회원 튜토리얼</div>
+    	</a>
+    	
+    	</div>
+    	<div class="tutorial-close-div"><span class="tutorial-close">[닫기x]</span></div>
+    </div>      
+    
+           
+    	<footer>
           <div class="foot">
             <hr/>
             <div class="foot-align">
@@ -949,10 +670,10 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
             </div>
             <div>
               <p>상호 : 콕사부 <br/>
-                대표자 : 정요직<br/> 
-                개인정보보호담당자 :정요직<br/> 
+                대표자 : 정요직<br/>
+                개인정보보호담당자 :정요직<br/>
                 주소 : 서울특별시 동대문구 휘경동 183-368. 104호<br/>
-                TEL. 02-959-1176<br/> 
+                TEL. 02-959-1176<br/>
                   사업자 등록번호 : 654-19-01069 <br/>
 		통신판매업 신고 : 2019-서울동대문-0997호<br/>
                   EMAIL. dywlr74@naver.com<br/>
@@ -962,7 +683,7 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
             <div class="foot-cate">
                 <p>
                   <b>카테고리</b><br/>
-                  <a href="./boarder?main=11&subject=11"> 수학</a><br/> 
+                  <a href="./boarder?main=11&subject=11"> 수학</a><br/>
 	              <a href="./boarder?main=21&subject=21">외국어</a><br/>
                   <a href="./boarder?main=31&subject=31">국어</a><br/>
                   <a href="./boarder?main=41&subject=41">사회</a><br/>
@@ -975,12 +696,12 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
                 <p>
                  <a href="./companyInfo"> 회사소개</a><br/>
                  <a href="./customer" style="text-decoration:none; color:black;"> 자주하는 질문</a><br/>
-                 <a href="./qna" style="text-decoration:none; color:black;"> 고객문의</a><br/> 
+                 <a href="./qna" style="text-decoration:none; color:black;"> 고객문의</a><br/>
                  <a href="./privateData" style="text-decoration:none; color:black;">개인정보처리방침</a><br/>
                  <a href="./service" style="text-decoration:none; color:black;">이용약관</a>
                 </p>
               </div>
-            
+
             <div>
               <p>
               
@@ -996,6 +717,42 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
           </div>
         </footer>
        </div>
+       <script src="<c:url value="resources/js/index.min.js?date=${date}" />"></script>
+       
+       <sec:authorize access="isAuthenticated()">
+       <script>
+       function getRequestParam(){
+    	    var url = document.location.href;
+    	    var qs = url.substring(url.indexOf('?') + 1).split('&');
+    	    for(var i = 0, result = {}; i < qs.length; i++){
+    	        qs[i] = qs[i].split('=');
+    	        result[qs[i][0]] = decodeURIComponent(qs[i][1]);
+    	    }
+    	    return result;
+    	}
+       
+      //튜토리얼 코드
+      if(getRequestParam().cok_tutorial=="first_user"){
+    	   if(GetCookie("tutorial")!="end"){
+    		   $('.tutorial-first').toggle(500);
+         	   $('.tutorial-first-back').show();
+    	   }
+       }
+      
+      
+       $(document).ready(function(){
+    	   
+    	   $('.tutorial-close').click(function(){
+    		   $('.tutorial-first').remove();
+         	   $('.tutorial-first-back').remove();
+         	   SetCookie('tutorial','end')
+    		});
+    	   
+       });
+       </script>
+       </sec:authorize>
+       
+        
        <%
        session=request.getSession();
        String messageStatus = (String)session.getAttribute("messageStatus");
@@ -1007,5 +764,47 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
        <%
        }
        %>
+       
+       <sec:authorize access="!isAuthenticated()">
+       	<script>
+        // 쿠키설정
+        var strReturn;
+        //아래에 정의되어 있는 GetCookie()라는 함수를 호출하여 현재 쿠키값이 있는지 확인
+        strReturn = GetCookie('promoteCookie');
+        //만약 쿠키가 없다면 starPop()함수를 호출하여 오픈 창으로 이벤트 페이지 실행
+        if(strReturn == null || strReturn == '0'){
+        	startPromote();
+        }
+       
+        
+        var currentUrlApple = window.location.href;
+        var callbackUrlApple = '';
+        
+        if(currentUrlApple.indexOf("www.coksabu.com") != -1){
+        	callbackUrlApple = "https://www.coksabu.com/loginCallBackApple";
+        }else{
+        	callbackUrlApple = "https://coksabu.com/loginCallBackApple";
+        }
+        
+        var state = "<c:out value="${state}" />";
+        var client_nonce = "<c:out value="${client_nonce}" />";
+        AppleID.auth.init({
+            clientId : 'com.coksabu.coksabu',
+            scope : 'name email',
+            redirectURI : callbackUrlApple,
+            state : state,
+            nonce : client_nonce,
+        });
+        
+        $(document).ready(function(){
+     	   
+     	   $('.apple-customize').click(function(){
+     		   $('#appleid-signin').trigger("click");
+     		});
+     	   
+        });
+       	</script>
+       </sec:authorize>
+       
 </body>
 </html>

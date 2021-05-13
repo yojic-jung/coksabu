@@ -41,7 +41,7 @@
 		<td colspan="4" style="border-bottom:1px solid gray;"></td>
 	</tr>
 	<tr>
-	<td style="width:24%">수업시작일</td><td style="width:24%">수업종료일</td><td style="width:24%">수업시수</td><td style="width:24%">선생님 닉네임</td>
+	<td style="width:24%">수업시작일</td><td style="width:24%">수업종료일</td><td style="width:24%">수업시수</td><td style="width:24%">선생님 이름</td>
 	</tr>
 	<tr>
 		<td colspan="4" style="border-bottom:1px solid gray;"></td>
@@ -50,7 +50,7 @@
 	<td>${pur.startDateS}</td>
 	<td>${pur.endDateS}</td>
 	<td>${pur.price1}<br/>회당 ${pur.price2} 수업</td>
-	<td>${pur.sellerNickname}</td>
+	<td>${pur.sellerName}</td>
 	</tr>
 </table>
 

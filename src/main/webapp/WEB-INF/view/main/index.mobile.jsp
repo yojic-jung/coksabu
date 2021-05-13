@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,337 +16,99 @@
 <meta property="og:image" content="https://www.coksabu.com/resources/images/logo.png">
 <meta property="og:url" content="https://www.coksabu.com">
 <meta name="viewport" content="user-scalable=no" />
+<meta name="facebook-domain-verification" content="p4cmwcul9alesb9w73uj30zly7m99z" />
+ 
+<c:set var="today" value="<%=new java.util.Date()%>" />
+<c:set var="date"><fmt:formatDate value="${today}" pattern="yyMMddHHmm" /></c:set>
+
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
-  <link rel="canonical" href="https://coksabu.com/">
-   <style>
-   @charset "utf-8";
-   @font-face{
-   font-family:'JejuGothic';
-   src:url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype')
-   }
+<link rel="canonical" href="https://coksabu.com/">
+<link rel="stylesheet" href= "<c:url value="/resources/css/indexM.min.css?date=${date}" />"/>
    
-   *{
-   margin:0;
-   padding:0;
-   box-sizing:border-box;
-   }
-   
-   body{margin:0;
-  		 padding:0;
-   		font-family:'Malgun Gothic' ;
-   		-webkit-text-size-adjust:100%;
-  		 -webkit-touch-callout: none;
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-413632618"></script>
+ <script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
+<style>
+		.tutorial-first-back{
+			display:none;
+			width:100%;
+			height:100%;
+			background:black;
+			opacity:0.3;
+			position:fixed;
+			top:0px;
+			left:0px;
+			z-index:90;
 		}
 
-   
-   .m-jbMenu{background:white;width:100%;padding:30px;font-size:80px;
-   position:fixed;
-   top:0px;
-   font-family:'Do Hyeon';
-   border-bottom:1px solid gray;z-index:3}
-   
-   .m-btn{width:50px;height:50px;
-   position:absolute;right:0;top:0;z-index:1;
-   cursor:pointer;display:inline-block;
-   transition:all .4s;box-sizing:border-box;position:relative;
-   width:60px;height:44px}
-   
-   .m-btn span{display:inline-block;
-   transition:all .4s;box-sizing:border-box;
-   position:absolute;left:0;width:100%;height:7px;
-   background:orange;border-radius:4px}
-   
-   .m-btn span:nth-of-type(1)
-   {top:0;left:10px}
-   
-   .m-btn span:nth-of-type(2){
-   top:20px;left:10px}
-   
-   .m-btn span:nth-of-type(3){
-   bottom:0;left:10px}
-   
-   .m-close{width:100px;
-   position:absolute;right:10px;
-   top:30px;z-index:1;padding:5px;
-   border-radius:10px;
-   background:orange;
-   color:white;font-size:70px;
-   font-weight:bold } 
-   
-   #m-menu{width:70%;height:100%;
-   position:fixed;top:0;left:-71%;
-   z-index:10;border-right:1px solid #c9c9c9;
-   background-color:rgb(46,46,46);
-   color:white;text-align:center;
-   transition:All 0.2s ease;-webkit-transition:All 0.2s ease;
-   -moz-transition:All 0.2s ease;-o-transition:All 0.2s ease
-  }
-  
-  #m-menu2{width:30%;height:100%;position:fixed;top:0;left:-100%;
-   z-index:10;border-right:1px solid #c9c9c9;
-   background-color:lightgray;color:white;text-align:center;
-   transition:All 0.2s ease;-webkit-transition:All 0.2s ease;
-   -moz-transition:All 0.2s ease;-o-transition:All 0.2s ease;opacity:0.1}
-   
-   .m-menu-title{font-size:60px;padding:50px;
-   border-bottom:4px solid white;color:orange;
-   font-family:'Malgun Gothic';font-weight:bold}
-   
-   .m-menu-content{text-align:left;font-size:40px;
-   padding:50px;border-bottom:1px solid gray;
-   font-family:'Malgun Gothic'}
-   
-   .m-menu-href{font-size:40px;color:white;text-decoration:none}
-   
-   .m-title{position:absolute;left:50%;transform:translateX(-50%);color:orange	}
-   .m-foot{width:100%;font-size:24px}
-   
-   .m-foot-align{width:100%;text-align:center;
-   line-height:150%;text-decoration:none}
-   
-   .foot-cate a,.foot-company a{text-decoration:none;color:black}
-   
-   .fadeImg{width:100%;height:400px }  
-   
-   .fade-content{
-        	color:white;
-        	font-size:45px;
-        	line-height:150%;
-        	width:90%;
-        	text-align:center;
-        	margin:auto;
-        	font-weight:bolder;
-        	 position:absolute;
-            left:50%; 
-            transform:translateX(-50%);
-            top:100px;
-            z-index: 3;
-        }
-        
-   #inner-fade{z-index:1}
-   
-   .img-ui{width:95%;margin:auto}
-   
-     .bottom-cate{
-	width: 100%;
-	padding:20px 20px 80px 20px;
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	background:white;
-	border:4px solid gray;
-	z-index:10;
-}
-.bottom-table{
-boarder-spacing:0px;
-width:100%;
-padding:0px;
-
-}
-.bottom-table td{
-padding:0px;
-text-align:center;
-font-size:28px;
-width:25%;
-
-boarder-spacing:0px;
-}
-.bottom-img{
-width:60%;
-height:70px;
-padding:0px;
-}
-.bottom-table a{
-text-decoration:none;
-color:#A6A6A6;
-}
-
-.img-ui{
-width:100%;margin:auto
-}
-
-.img-ui td{
-	width:25%;
-}
-.img-ui a{
-	text-decoration:none;
-	color:black;
-}
-
-.list{
-    	width:90%;
-    	margin:auto;
-    	border-spacing:0px 80px;
-    }
-.list td{
-	padding-bottom:20px;
-	border-bottom:1px solid gray;
-}
-
-.list a{
-	text-decoration:none;
-}
-#pst{
-		vertical-align:top;padding:0px; width:100%;
-		position: relative
-	}
-
-	#categories{
-		width:100%; 
-		font-family:'JejuGothic';
-		font-weight:bold;
-		font-size:30px;
-		padding:10px 60px;
-		color:Grey;
-		overflow:hidden;
-		white-space:nowrap;
-		text-overflow:ellipsis;
-	}
-
-    #name{
-		font-family:'JejuGothic';
-		font-weight:bold;
-		font-size:30px;
-		color: DimGrey;
-		padding:10px 20px;
-	}
-	
-	#title{
-		font-family:'JejuGothic';
-		font-weight:bold;
-		color: black;
-		font-size: 30px;
-		padding:10px 20px;
-	}
-	#universe{
-		font-family:'JejuGothic';
-		font-weight:bold;
-		color: dimgray;
-		font-size: 30px;
-		padding:10px 20px;
-	}
-#profile{
-	width:150px; height:150px; border-radius:75px;border:5px solid orange;
-}
-#price{
-		font-family:Arial;
-		font-weight:bold;
-		font-size:30px;
-		margin-top:5px;
-		padding:10px 20px;
-		color:black;
-}
-
-.cok-intro{
-	background:white;
-	width:90%;height:90%;font-size:60px;
-	line-height:180%;
-	font-family:Malgun-Gothic;
-	border-radius:30px;
-	color:#002266;
-	z-index:100;
-	position:fixed;top:50%;left:50%;transform: translate(-50%, -50%);
-	border:5px solid lightgray;
-	display:none;
-}
-
-.intro-title{
-text-align:center;font-family:'Do Hyeon';color: white;font-size:40px;padding:20px;
-border-bottom:2px solid lightgray;text-align:right;
-}
-
-.intro-close1{
-font-size:50px;padding-right:30px;
-color:dimgray;
-}
-
-.intro-close2{
-float:right;clear:right;font-size:50px;padding-right:30px;
-color:dimgray;
-}
-
-.intro-content{
-border-radius:30px;font-weight:bolder;
-width:90%;
-}
-.intro-text{
-width:90%;
-z-index:101;
-border:5px solid gray;
-border-radius:30px;
-background:white;
-position:fixed;top:50%;left:50%;transform: translate(-50%, -50%);
-padding:50px 0px;
-}
-.teach-intro{
-font-size:40px;text-align:center;
-width:80%;padding:15px;color:white; background:#002266;
-margin:auto;
-border-radius:80px;
-}
-.student-intro{
-font-size:40px;text-align:center;
-width:80%;padding:15px;color: #002266; background:white;border:5px solid #002266;
-margin:60px auto 0px auto;
-border-radius:80px;
-}
-.teach-text1, .teach-text2, .teach-text3, .student-text1, .student-text2, .student-text3{
-	display:none;
-	font-size:50px;
-	line-height:160%;
-	width:90%;
-z-index:101;
-border:5px solid gray;
-border-radius:30px;
-background:white;
-position:fixed;top:50%;left:50%;transform: translate(-50%, -50%);
-padding:50px 20px;
-}
-.teach-next1, .teach-next2, .teach-next3, .student-next1, .student-next2, .student-next3{
-font-size:40px;text-align:center;
-width:80%;padding:15px;color:white; background:#002266;
-margin:80px auto;
-border-radius:80px;
-}
-
-
-.naver-customize{
+		.tutorial-first{
+			line-height:200%;
+			width:80%;font-size:40px;
+			font-family: 'JejuGothic';
+			border-radius:20px;
+			color: black;;
+			z-index:100;
+			position:fixed;top:50%;left:50%;transform: translate(-50%, -50%);
+			display:none;
+			padding:0px;
+			background-image:url(/resources/img/firecracker.png);
+			background-repeat : no-repeat;
+        	background-size : cover;
+			text-align:center;
+		}
+		
+		
+		.tutorial-para{
+		background:white;
+		border-radius:20px 20px 150px 150px;
+		text-align:center;
+		padding:30px 0px;
+		}
+		.tutorial-first-title{
+			color:orange;
+			font-size:50px;
+			margin-bottom:30px;
+			
+		}
+		
+		.tutorial-btn-st, .tutorial-btn-te{
+			margin:40px auto;
+			padding:10px;
+			cursor:pointer;
+			background:white;
+			color:orange;
+			border-radius:20px;
+			width:80%;
+			display:inline-block;
+		}
+		
+		.tutorial-close{
+			cursor:pointer;
+		}
+		
+		.tutorial-close-div{
+			margin-top:50px;
+			text-align:right;
+			color:white;
+			font-size:30px;
+			padding:10px;
+		}
+		.apple-customize{
 	width:80%;text-align:center;
-	 background-image:url(<c:url value="/resources/img/naverbackground.png" />);
-	font-family:Gothic;font-size:40px;color:white;border-radius:80px; padding:15px;font-weight:bolder;
-	margin:20px auto;line-height:200%:
+	background:black;
+	font-family: 'Apple SD Gothic Neo','Malgun Gothic';font-size:45px;color:white;border-radius:10px; font-weight:bolder;
+	margin:20px auto 60px auto;cursor:pointer;height:104px;border:1px solid black;
+	display:none;
 	}
-   </style>
-   <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
-   <!-- Facebook Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2787801881458923');
-fbq('track', 'PageView');
-</script>
+		
+	</style>
+
+</head>
+<body>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 /></noscript>
-<!-- End Facebook Pixel Code -->
-
-   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-413632618"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-413632618');
-</script>
-</head>
-<body>
 <header class="m-header">
   
     <div class="m-jbMenu">
@@ -383,7 +146,8 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 
   	</header>
   	 	
-  	
+  	 	<!-- 모바일 프로모트 코드 -->	
+  	 <div class="cok-intro-back"></div>      
   	<div class="cok-intro">
 		<div class="intro-title">
 			<span class="intro-close1">[하루동안 열지않음 X]</span>
@@ -391,7 +155,7 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 			<span class="intro-close2">[닫기 X]</span>
 		</div>
 		<div class="intro-content">
-			<div style="width:90%;margin:100px auto 100px auto;font-size:65px;">콕사부에 대해 알아보고<br/>과외수업을 진행해보세요.</div>
+			<div style="width:90%;margin:70px auto 100px auto;font-size:55px;">콕사부에 대해 알아보고<br/>과외수업을 진행해보세요.</div>
 			<div style="text-align:center;"><img style="width:100%;" src="<c:url value="/resources/img/people.png" />"  alt=""/></div>
 			<div class="intro-text">
 				<div class="teach-intro">선생님으로 알아보기</div>
@@ -416,12 +180,32 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 				<div style="width:80%;margin:30px auto;">
 				물론, 학생의 과외요청서에 대해 무료로 지원서를 제출할 수 있습니다.
 				</div>
-				<div class="teach-next3 teach-end">콕사부 홈페이지 더보기</div>
+				<div class="teach-next3">다음 알아보기</div>		
+			</div>
+			
+			<div class="teach-text4">
+				<div style="width:80%;margin:30px auto;">
+				콕사부는 선생님들이 중개수수료와 유료 이용료 없이 과외를 구할 수 있도록 하였습니다.<br/>
+				콕사부에서 자유롭게 과외활동을 해보세요.
+				</div>
+				<div class="teach-next4 teach-end">콕사부 홈페이지 더보기</div>
+				
+				<div id="appleid-signin" data-color="black" data-border="true" data-type="sign in" style="display:none;"></div>
+        
+        		<div class="apple-customize">
+        		<table style="width:100%;">
+        			<tr>
+        				<td><img src="<c:url value='/resources/img/appleLogo.png' />"  style="vertical-align: middle;width:71px;height:100px;"/></td>
+        				<td style="text-align:center;">Sign in with Apple</td>
+        			</tr>
+        		</table>
+        		</div>
+        
 				<div class="naver-customize">
         			<span style="font-weight:bolder;float:left;clear:right;">
         				<img src="<c:url value='/resources/img/naver.png' />"  style="width:80px;height:80px;"/>
         			</span>
-        			네이버 아이디로 로그인
+        			네이버로 로그인
         		</div>
         		<div style="display:none;">
         			<div id="naverIdLogin"></div>
@@ -452,6 +236,15 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 				</div>
 				<div class="student-next3 student-end">콕사부 홈페이지 더보기</div>
 				
+				<div class="apple-customize">
+        		<table style="width:100%;">
+        			<tr>
+        				<td><img src="<c:url value='/resources/img/appleLogo.png' />"  style="vertical-align: middle;width:71px;height:100px;"/></td>
+        				<td style="text-align:center;">Sign in with Apple</td>
+        			</tr>
+        		</table>
+        		</div>
+				
 				<div class="naver-customize">
         			<span style="font-weight:bolder;float:left;clear:right;">
         				<img src="<c:url value='/resources/img/naver.png' />"  style="width:80px;height:80px;"/>
@@ -474,7 +267,7 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
             
             <li>
             	<img class="fadeImg" src="<c:url value="/resources/img/main1.png" />"  alt="메인이미지1"/>
-            	<div class="fade-content" style="text-align:center;">지금 가입하면<br/>선생님 "과외 수수료 2개월 무료"</div>
+            	<div class="fade-content" style="text-align:center;">콕사부의 안전거래 시스템으로<br/>안전하게 거래하세요.</div>
             </li>
             <li>
             	<img class="fadeImg" src="<c:url value="/resources/img/main2.png" />"  alt="메인이미지2"/>
@@ -512,15 +305,15 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 		</tr>
 		<tr>
 			<td><a href="./boarder?main=51&subject=51"><img src="<c:url value="/resources/images/ui5m.png" />" style="width:100%; height:120px;" alt="1"/></a></td>
-			<td><a href="./boarder?main=61&subject=62"><img src="<c:url value="/resources/images/ui6m.png" />" style="width:100%; height:120px;" alt="1"/></a></td>
+			<td><a href="./boarder?main=61&subject=61"><img src="<c:url value="/resources/images/ui6m.png" />" style="width:100%; height:120px;" alt="1"/></a></td>
 			<td><a href="./boarder?main=61&subject=64"><img src="<c:url value="/resources/images/ui7m.png" />" style="width:100%; height:120px;" alt="1"/></a></td>
 			<td><a href="./boarder?main=71&subject=71"><img src="<c:url value="/resources/images/ui8m.png" />" style="width:100%; height:120px;" alt="1"/></a></td>
 		</tr>
 		<tr>
 			<td><a href="./boarder?main=51&subject=51"><div>과 학</div></a></td>
-			<td><a href="./boarder?main=61&subject=62"><div>예 능</div></a></td>
+			<td><a href="./boarder?main=61&subject=61"><div>음악/미술</div></a></td>
 			<td><a href="./boarder?main=61&subject=64"><div>체 육</div></a></td>
-			<td><a href="./boarder?main=71&subject=71"><div>자소서/<br/>입시</div></a></td>
+			<td><a href="./boarder?main=71&subject=71"><div>자소서/<br/>논술/면접</div></a></td>
 		</tr>
 	</table>
 </div>
@@ -564,6 +357,30 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
     <img src="<c:url value="/resources/img/Spin-1s-124px.svg" />"  style="margin-top:50%;"/>
 </div>
 
+
+<div class="tutorial-first-back"></div>
+    <div class="tutorial-first">
+    	<div class="tutorial-para">
+    	<div class="tutorial-first-title">튜토리얼 안내를 통해<br/>쉽고 빠르게 시작해보세요</div>
+    	<div class="tutorial-first-content">
+    	친절한 사용 설명과 함께  쉽고 빠르게<br/>
+    	 콕사부 서비스를 사용할 수 있습니다</div>
+    	</div>
+    	<br/>
+    	<div>
+    	
+    	<a href="./apply?cok_tutorial=first_student" style="color:orange;text-decoration:none;">
+    		<div class="tutorial-btn-st">학생/학부모 튜토리얼</div>
+    	</a>
+    	<a href="./profile?cok_tutorial=first_profile" style="color:orange;text-decoration:none;">
+    		<div class="tutorial-btn-te">선생님 회원 튜토리얼</div>
+    	</a>
+    	
+    	</div>
+    	<div class="tutorial-close-div"><span class="tutorial-close">[닫기x]</span></div>
+</div> 
+
+ <div id="appleid-signin" data-color="black" data-border="true" data-type="sign in" style="width:10px; height:5px;display:none;"></div>
  <footer class="m-footer">
           <div class="m-foot">
             <hr/>
@@ -590,12 +407,14 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 				<table class="bottom-table">
 					<tr>
 						<td><a href="./"><img class="bottom-img" src="<c:url value="/resources/img/home2.png" />"  alt="home"/></a></td>
+						<td><a href="./apply"><img class="bottom-img" src="<c:url value="/resources/img/applyui.png" />"  alt="apply"/></a></td>
 						<td><a href="./category"><img class="bottom-img" src="<c:url value="/resources/img/cate.png" />"  alt="cate"/></a></td>
 						<td><a href="./message"><img class="bottom-img" src="<c:url value="/resources/img/message.png" />"  alt="message"/></a></td>
 						<td><a href="./myroom"><img class="bottom-img" src="<c:url value="/resources/img/my.png" />"  alt="my"/></a></td>
 					</tr>
 					<tr>
 					<td><a href="./" style="color:orange">홈</a></td>
+					<td><a href="./apply">수업요청</a></td>
 					<td><a href="./category">카테고리</a></td>
 					<td><a href="./message" class="m-message-notify">메시지</a></td>
 					<td><a href="./myroom">마이페이지</a></td>
@@ -603,211 +422,43 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 				</table>
 			</div>		
         </footer>
-  <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+  	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
     <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
     <script src="<c:url value="/resources/js/jquery.innerfade.js"/>"></script>
-    <script>
-
-    function getParameterByName(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                results = regex.exec(location.search);
-        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
+    <script src="<c:url value="resources/js/indexM.min.js?date=${date}" />" ></script>
     
-    var param = getParameterByName("inform");
-
-
     
-    // 쿠키설정
-    var strReturn;
-    //아래에 정의되어 있는 GetCookie()라는 함수를 호출하여 현재 쿠키값이 있는지 확인
-    strReturn = GetCookie('promoteCookie');
-    //만약 쿠키가 없다면 starPop()함수를 호출하여 오픈 창으로 이벤트 페이지 실행
-    if(strReturn == null || strReturn == '0'){
-    	startPromote();
-    }
- 
-  	
-  	function GetCookie(sName){
-  		/*저장되어있는 쿠키 정보 불러오기
-  		오픈 페이지에서 부여하는 쿠키의 이름 및 값을 aCookie라는 변수에 저장.
-  		여기서는 test_cookie=1이란 값이 저장 */
-  		var aCookie = document.cookie.split("; ");
-  		//검색을 원하는 쿠키명(test_cookie)과 저장되어 있는 쿠키의 이름이 일치하는지 확인
-  		for(var i=0; i<aCookie.length; i++){
-  			var aCrumb = aCookie[i].split("=");
-  			if(sName == aCrumb[0]){
-  				return unescape(aCrumb[1]);
-  			}
-  		}
-  		return null;
-  	}
-  	//쿠키가 없을 경우 오픈창을 띄우는 스크립트 
-  	function startPromote(){
-  		if(param =="user"){
-  			$('.cok-intro').show();
-  		}
-  	}
-  	
-  	function SetCookie(sName, sValue){
-  		var date = new Date();
-        date.setTime(date.getTime() + (1*24*60*60*1000));
-		document.cookie = sName + "=" + escape(sValue)+";expires="+date.toGMTString();
-	}
-    
-    $(document).on("click","a",function(event){
-    	var broswerInfo = navigator.userAgent;
-    	//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
-    	if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
-    		event.preventDefault();
-            linkLocation = this.href;
-            $('.m-page-transit').fadeIn(100);
-            setTimeout(function(){redirectPage()}, 100);
-    	}
-    });
-    
-    function redirectPage() {
-             window.location = linkLocation;
-    }
-    $(document).ready(function(){
-            
-            
-            
-                $('.fadeImg').css('width',$(document).width());
-                
-                $("#inner-fade").innerfade({
-                    animationtype:'fade',
-                    speed:750,
-                    timeout:8000,
-                    type:'sequence',
-                    containerheight:'400px'
-                });
-            
-            
-            
-    	});
-    
-
-    
-    	$(".intro-close1").click(function() { 
-    		$('.cok-intro').remove();
-    		SetCookie('promoteCookie','1');
-		});
-    
-    	$(".intro-close2").click(function() { 
-    		$('.cok-intro').remove();
-		});
-    	
-    	
-    	
-    	$(".teach-intro").click(function() { 
-    		$('.intro-text').hide();
-    		$('.teach-text1').show();
-		});
-    	
-    	$(".teach-next1").click(function() { 
-    		$('.teach-text1').hide();
-    		$('.teach-text2').show();
-		});
-    	
-    	$(".teach-next2").click(function() { 
-    		$('.teach-text2').hide();
-    		$('.teach-text3').show();
-		});
-    	
-    	$(".teach-end").click(function() { 
-    		$('.cok-intro').remove();
-		});
-    	
-    	
-    	$(".student-intro").click(function() { 
-    		$('.intro-text').hide();
-    		$('.student-text1').show();
-		});
-    	
-    	$(".student-next1").click(function() { 
-    		$('.student-text1').hide();
-    		$('.student-text2').show();
-		});
-    	
-    	$(".student-next2").click(function() { 
-    		$('.student-text2').hide();
-    		$('.student-text3').show();
-		});
-    	
-    	$(".student-end").click(function() { 
-    		$('.cok-intro').remove();
-		});
-    	
-    	
-    	$(".m-btn").click(function() { 
-    		$("#m-menu").animate({
-    			left:"0px"
-    		},100, function(){
+    <sec:authorize access="isAuthenticated()">
+       <script>
+       function getRequestParam(){
+   	    var url = document.location.href;
+   	    var qs = url.substring(url.indexOf('?') + 1).split('&');
+   	    for(var i = 0, result = {}; i < qs.length; i++){
+   	        qs[i] = qs[i].split('=');
+   	        result[qs[i][0]] = decodeURIComponent(qs[i][1]);
+   	    }
+   	    return result;
+   	}
+       
+     	//튜토리얼 코드
+        if(getRequestParam().cok_tutorial=="first_user"){
+    	   if(GetCookie("tutorial")!="end"){
+    		   $('.tutorial-first').toggle(500);
+         	   $('.tutorial-first-back').show();
+    	   }
+       }
+     
+       $(document).ready(function(){
+    	   $('.tutorial-close').click(function(){
+    		   $('.tutorial-first').remove();
+         	   $('.tutorial-first-back').remove();
+         	   SetCookie('tutorial','end')
     		});
-
-    		$("#m-menu2").animate({
-    			left:"70%"
-    		},100, function(){
-    		})
-    	});
-
-    	$(".m-close").click(function() { 
-    		$("#m-menu").animate({
-    			left:"-71%"
-    		},100, function(){
-
-    		});
-
-    		$("#m-menu2").animate({
-    			left:"-70%"
-    		},100, function(){
-    		})
-    	});
-
-    	$("#m-menu2").click(function() { 
-    		$("#m-menu").animate({
-    			left:"-71%"
-    		},100, function(){
-
-    		});
-
-    		$("#m-menu2").animate({
-    			left:"-70%"
-    		},100, function(){
-    		})
-    	});
-    	
-    	$(window).bind("pageshow", function(event) {
-    		var broswerInfo = navigator.userAgent;
-    		//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
-    		if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
-    			$('.m-page-transit').fadeOut(200);
-    		}else{
-    			$('.m-page-transit').hide();
-    		}
-    	    
-    	});
-    	
-    	  var naverLogin = new naver.LoginWithNaverId(
-      	  		{
-      	  			clientId: "0PgcZhDTwaod8UwQsoKX",
-      	  			callbackUrl: "https://coksabu.com/loginCallBackNaver",
-      	  			isPopup: false, /* 팝업을 통한 연동처리 여부 */
-      	  			loginButton: {color: "green", type: 3, height: 170} /* 로그인 버튼의 타입을 지정 */
-      	  		}
-      	  	);
-      	  	
-      	  	/* 설정정보를 초기화하고 연동을 준비 */
-      	  	naverLogin.init();
-      	  	
-      	  	$(document).on("click",".naver-customize",function(event){
-      	  	  naverLogin.init(); 
-      	  	  location.href = naverLogin.generateAuthorizeUrl();
-      		});
-    	</script>
-    	
+       });
+       </script>
+       </sec:authorize>
+       
+       
     	 <%
        session=request.getSession();
        String messageStatus = (String)session.getAttribute("messageStatus");
@@ -819,5 +470,41 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
        <%
        }
        %>
+       
+       <sec:authorize access="!isAuthenticated()">
+       	<script>
+        
+        // 쿠키설정
+        var strReturn;
+        //아래에 정의되어 있는 GetCookie()라는 함수를 호출하여 현재 쿠키값이 있는지 확인
+        strReturn = GetCookie('promoteCookie');
+        //만약 쿠키가 없다면 starPop()함수를 호출하여 오픈 창으로 이벤트 페이지 실행
+        
+        if(strReturn == null || strReturn == '0'){
+        	startPromote();
+        }
+        
+        
+    	
+        var state = "<c:out value="${state}" />";
+        var client_nonce = "<c:out value="${client_nonce}" />";
+        console.log(client_nonce)
+        AppleID.auth.init({
+            clientId : 'com.coksabu.coksabu',
+            scope : 'name email',
+            redirectURI : 'https://m.coksabu.com/loginCallBackApple',
+            state : state,
+            nonce : client_nonce,
+        });
+        
+        $(document).ready(function(){
+      	   
+      	   $('.apple-customize').click(function(){
+      		   $('#appleid-signin').trigger("click");
+      		});
+      	   
+         });
+       	</script>
+       </sec:authorize>
    </body>
 </html>

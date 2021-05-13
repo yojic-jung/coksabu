@@ -88,7 +88,10 @@ margin:20px;
         	
         	var status = "<c:out value="${status}" />";
         	if(status=="existPurchase"){
-        		alert("구매 또는 판매한 내역이 있는 회원의 경우, 닉네임 변경시 상대방이 거래내역을 찾기 힘들 수 있어 닉네임 변경을 할 수 없습니다.")
+        		alert("구매 또는 판매한 내역이 있는 회원의 경우, 닉네임 변경시 상대방이 거래내역을 찾기 힘들 수 있어 닉네임 변경을 할 수 없습니다.");
+        	}else if(status=="success"){
+        		alert("닉네임을 성공적으로 변경하였습니다.");
+        		window.location.href="./myroom";
         	}
         	
         });

@@ -62,7 +62,7 @@
           	border:0.5px solid gray;
           }
           .first{
-          	font-family:'Malgun Gothic';
+          	font-family: 'Apple SD Gothic Neo','Malgun Gothic';
           	font-size:12px;
           }
            .second{

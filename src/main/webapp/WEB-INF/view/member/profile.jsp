@@ -115,9 +115,14 @@
 		}
         
         .pro-table2 td:nth-child(even){
-        width:140px;
+        	width:140px;
 		}  
 
+		#passType{
+			padding:5px;
+            font-size:15px;
+		}
+		
 		.pro-table3 {
           width:450px;
           margin-bottom:80px;
@@ -135,6 +140,76 @@
             display:inline-block;
             font-size:15px;
           }
+          
+    .tutorial-first-back{
+			display:none;
+			width:100%;
+			height:100%;
+			background:black;
+			opacity:0.3;
+			position:fixed;
+			top:0px;
+			left:0px;
+			z-index:90;
+			
+		}
+
+		.tutorial-first{
+			width:320px;
+			font-family: 'JejuGothic';
+			z-index:100;
+			position:fixed;top:50%;left:50%;transform: translate(-50%, -50%);
+			display:none;
+			padding:0px;
+			background-image:url(/resources/img/firecracker.png);
+			background-repeat : no-repeat;
+        	background-size : cover;
+			text-align:center;
+			border-radius:20px;
+			font-size:18px;
+		}
+		
+		
+		.tutorial-para{
+		text-align:center;
+		padding-top:30px;
+		line-height:180%;
+		background:white;
+		border-radius:20px 20px 120px 120px;
+		}
+		.tutorial-first-title{
+			color: #002266;
+			font-size:20px;
+			margin-bottom:30px;
+			font-weight:bold;
+		}
+		
+		.tutorial-btn{
+			margin:30px auto 10px auto;
+			padding:10px;
+			cursor:pointer;
+			background:white;
+			color:#002266;
+			border-radius:20px;
+			width:220px;
+			font-weight:bolder;
+			display:inline-block;
+		}
+		
+        .tutorial-close{
+			cursor:pointer;
+		}
+		
+		.tutorial-close-div{
+			margin-top:30px;
+			text-align:right;
+			color:white;
+			font-size:14px;
+			padding:5px;
+		}
+		
+          
+          
     .foot{
       width:100%;
     }
@@ -183,6 +258,7 @@
     var career = "<c:out value="${pro.career}" />";
     var sexual = "<c:out value="${pro.sexual}" />";
     
+    var passType = "<c:out value="${pro.passType}" />";
     var academy = "<c:out value="${pro.academy}" />";
     var academyd = "<c:out value="${pro.academyd}" />";
     var nation = "<c:out value="${pro.nation}" />";
@@ -210,6 +286,7 @@
     		 $('.sexual2').trigger('click');
     	 }
     	 
+    	$('#passType').val(passType).attr("selected",true);	 
     	$('#academy').val(academy);
      	$('#academyd').val(academyd);
      	$('#nation').val(nation);
@@ -671,6 +748,21 @@
                     		<td colspan="4" style="font-size:18px;">추가입력(선택)</td>
                     	</tr>
                     	<tr>
+                    		<td style="line-height:150%;">대입<br/>합격유형</td>
+                    		<td colspan="3">
+                    			<select id="passType" name="passType">
+                    				<option value="--선택--">--선택--</option>
+                    				<option value="학생부교과">학생부교과</option>
+                    				<option value="학생부종합(구: 입학사정관제)">학생부종합(구: 입학사정관제)</option>
+                    				<option value="논술">논술</option>
+                    				<option value="실기실적우수자(특기자 전형)">실기실적우수자(특기자 전형)</option>
+                    				<option value="적성">적성</option>
+                    				<option value="정시">정시</option>
+                    				<option value="기타">기타</option>
+                    			</select>
+                    		</td>
+                    	</tr>
+                    	<tr>
                     		<td>대학원</td>
                     		<td><input type="text" id="academy" name="academy" /></td>
                     		<td>학과</td>
@@ -731,14 +823,6 @@
                     </table>
                    
                    	
-                   	
-                   	 
-                   	
-                   	
-                   	
-                   	
-                   	
-                   	
                       <div style="text-align:center;">
                       <input style="color:white; background:rgb(105, 104, 104); font-size:15px; 
                       padding:15px;border-radius:10px; width:350px;margin:20px 0px;" type="submit" value="프로필 설정 완료"/>
@@ -747,7 +831,23 @@
                     </div>
                 </div>
             </div>
-        </section>
+            
+	<div class="tutorial-first-back"></div>
+    <div class="tutorial-first">
+    	<div class="tutorial-para">
+    		<div class="tutorial-first-title">수업을 홍보하기 위해서<br/>프로필을 작성해야합니다.</div>
+    		<div>
+    		1분 만에 나를 홍보하는<br/>프로필을 작성해보세요.
+    		</div>
+    	</div>
+    	<div>
+    		<div class="tutorial-btn">
+    			작성하기
+    		</div>
+    	</div>
+    	<div class="tutorial-close-div"><span class="tutorial-close">[닫기x]</span></div>
+    </div>
+    </section>
        
             
 
@@ -799,20 +899,34 @@
              
          });
          
-         $(document).on("click", ".x-btn", function(){
-         
-             var btnIndex = $(".x-btn").index(this);
-             $('.my-locale').eq(btnIndex).remove();
-             $('.my-btn').eq(btnIndex).remove();
-         });
-         
          
          $("#imgplus").click(function(){
         		$('#img').trigger("click");
-        	});
+         });
+         
+         $('.tutorial-btn').click(function(){
+        	 	$('.tutorial-first').remove();
+       	   		$('.tutorial-first-back').remove();
+         });
+         
+         
+         $('.tutorial-close').click(function(){
+  		   $('.tutorial-first').remove();
+       	   $('.tutorial-first-back').remove();
+       	   SetCookie('tutorial','end')
+  	   	});
          
      });
     
+ 	 
+ 	 $(document).on("click", ".x-btn", function(){
+         
+         var btnIndex = $(".x-btn").index(this);
+         $('.my-locale').eq(btnIndex).remove();
+         $('.my-btn').eq(btnIndex).remove();
+     });
+ 	 
+ 	 
        function CheckForm(memberInfo){
    		 
     	   var form = memberInfo;
@@ -840,20 +954,16 @@
                 }
             }
             
-           
             
-            var ti1 = /^[ㄱ-ㅎ |ㅏ-ㅣ |가-힣|a-z|A-Z|1-10 |() ]{1,15}$/
-            if(!check2(ti1, form.univid, "대학명을 입력해주세요.15글자 미만")) {
-  	           return false;
-  	       }
+            if($('input[name="universe"]').val().length >=15 || $('input[name="universe"]').val().length <= 1 ){
+            	alert('대학명은 2글자 이상 15글자 미만으로 입력해주세요.');
+            	return false;
+            }
+            if($('input[name="univsub"]').val().length>=15 || $('input[name="univsub"]').val().length <= 1 ){
+            	alert('대학 학과는 2글자 이상  15글자 미만으로 입력해주세요.');
+            	return false;
+            }
             
-            var ti2 = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|a-z|A-Z|1-10|() ]{1,10}$/
-            
-           
-            
-            if(!check2(ti2, form.univsub, "학과명을 입력해주세요. (10글자 미만)")) {
-     	           return false;
-     	       }
             
             if($('input[name="academy"]').val().length >=15 ){
             	alert('대학원명은 15글자 미만으로 입력해주세요.');
@@ -901,10 +1011,13 @@
             	return false;
             }
             
-            var a = window.name;
-       		if(a=='child')
-            opener.parent.location = opener.parent.location;
+            
+       		
        }
+       
+       
+       
+       
        var loadFile = function(event) {
    	    var reader = new FileReader();
    	    reader.onload = function(){
@@ -951,6 +1064,82 @@
         	 document.getElementsByName("img")[0].value = ""; 
          }
     }            
+    
+    
+    document.addEventListener( 'DOMContentLoaded', function() {
+        var inputImg = document.getElementById( 'img' );
+
+        inputImg.addEventListener( 'change', function( e ) {
+            var fileSize = getFileSize( inputImg );
+
+            if( fileSize > -1 ) {
+                document.getElementById( 'fileSize' ).innerHTML = ( fileSize / 1024 ).toFixed( 2 ) + ' KB';
+    		}else
+                alert("파일 사이즈는 10MB이하로 사용해주세요.")
+        	}, false );
+    }, false );
+
+    function getFileSize( inputFile ) {
+        var files = inputFile.files;
+
+        if( !files ) {
+            //for IE
+            try {
+                var fs = new ActiveXObject( 'Scripting.FileSystemObject' );
+                var file = fs.getFile( inputFile.value );
+                return file.size;
+            } catch( ex ) {
+                return -1;
+            }
+
+        } else if( files.length > 0 ) {
+            //for rest of the world
+            return files[ 0 ].size;
+        }
+    }
+    
+    
+    
+    function getRequestParam(){
+	    var url = document.location.href;
+	    var qs = url.substring(url.indexOf('?') + 1).split('&');
+	    for(var i = 0, result = {}; i < qs.length; i++){
+	        qs[i] = qs[i].split('=');
+	        result[qs[i][0]] = decodeURIComponent(qs[i][1]);
+	    }
+	    return result;
+	}
+   
+   if(getRequestParam().cok_tutorial=="first_profile"){
+	   if(GetCookie("tutorial")!="end"){
+		   $('.tutorial-first').toggle(500);
+	 	   $('.tutorial-first-back').show();
+	   }
+	   
+   }
+   
+   
+   function SetCookie(sName, sValue){
+		var date = new Date();
+		date.setTime(date.getTime() + (1*24*60*60*1000));
+		document.cookie = sName + "=" + escape(sValue)+";expires="+date.toGMTString();
+	}
+	
+	function GetCookie(sName){
+		/*저장되어있는 쿠키 정보 불러오기
+		오픈 페이지에서 부여하는 쿠키의 이름 및 값을 aCookie라는 변수에 저장.
+		여기서는 test_cookie=1이란 값이 저장 */
+		var aCookie = document.cookie.split("; ");
+		//검색을 원하는 쿠키명(test_cookie)과 저장되어 있는 쿠키의 이름이 일치하는지 확인
+		for(var i=0; i<aCookie.length; i++){
+			var aCrumb = aCookie[i].split("=");
+			if(sName == aCrumb[0]){
+				return unescape(aCrumb[1]);
+			}
+		}
+		return null;
+	}	
+    
       </script>
 </body>
 </html>

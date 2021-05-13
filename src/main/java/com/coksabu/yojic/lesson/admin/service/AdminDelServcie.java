@@ -1,7 +1,7 @@
 package com.coksabu.yojic.lesson.admin.service;
 
 import java.io.File;
-import java.util.HashMap;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,28 +36,25 @@ public class AdminDelServcie {
 					File file = new File(path+"/representImg/"+rep);
 					file.delete();
 				}
-				
 			}
 		}
-		
 		List<CertifyDB> certifyImg= adminDao.takeCertifyImg(email);
 		for(CertifyDB cer : certifyImg) {
-			String cer1 = cer.getCertifyimg1();
-			String cer2 = cer.getCertifyimg2();
-			String cer3 = cer.getCertifyimg3();
-			if(cer1 !=null) {
-				File file = new File(path+"/certifyImg/"+cer1);
-				file.delete();
+			if(cer!=null) {
+				if(cer.getCertifyimg1() !=null) {
+					File file = new File(path+"/certifyImg/"+cer.getCertifyimg1());
+					file.delete();
+				}
+				if(cer.getCertifyimg2() !=null) {
+					File file = new File(path+"/certifyImg/"+cer.getCertifyimg2());
+					file.delete();
+				}
+				if(cer.getCertifyimg3() !=null) {
+					File file = new File(path+"/certifyImg/"+cer.getCertifyimg3());
+					file.delete();
+				}
 			}
-			if(cer2 !=null) {
-				File file = new File(path+"/certifyImg/"+cer2);
-				file.delete();
-			}
-			if(cer3 !=null) {
-				File file = new File(path+"/certifyImg/"+cer3);
-				file.delete();
-			}
-			
+				
 		}
 		
 		List<String> mediaImg= adminDao.takeMediaImg(email);
@@ -69,16 +66,13 @@ public class AdminDelServcie {
 						File file = new File(path+"/mediaImg/"+img);
 						file.delete();
 					}
-				
 				}
 			}
 		}
-		
 		List<Integer> chatRoomId = adminDao.takeChatRoomId(email);
 		if(!chatRoomId.isEmpty()) {
 			adminDao.delChatRoomById(chatRoomId);
 		}
-		
 		
 		return "success";
 	}

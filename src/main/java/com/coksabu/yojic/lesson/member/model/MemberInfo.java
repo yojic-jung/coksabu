@@ -10,6 +10,7 @@ public class MemberInfo {
 	private String nickname;
 	private String birth;
 	private String phone;
+	private String authority;
 	
 	private String naverToken;
 	
@@ -57,6 +58,13 @@ public class MemberInfo {
 	}
 	public void setPhone(String phone) {
 		this.phone=phone;
+	}
+	
+	public String getAuthority() {
+		return authority;
+	}
+	public void setAuthority(String authority) {
+		this.authority=authority;
 	}
 	
 	public String getNaverToken() {

@@ -46,6 +46,8 @@ public class LessonCardDB {
 	private String trial;
 	private int visible;
 	
+	private String priNegotiation;
+	
 	public LessonCardDB() {
 		
 	}
@@ -93,6 +95,8 @@ public class LessonCardDB {
 		this.day = card.getDay();
 		this.gawe=card.getGawe();
 		this.trial=card.getTrial();
+		
+		this.priNegotiation=card.getPriNegotiation();
 		
 		Random random1 = new Random();
 		long currentTime1 = System.currentTimeMillis();
@@ -365,4 +369,10 @@ public class LessonCardDB {
 		return visible;
 	}
 	
+	public void setPriNegotiation(String priNegotiation) {
+		this.priNegotiation=priNegotiation;
+	}
+	public String getPriNegotiation() {
+		return priNegotiation;
+	}
 }

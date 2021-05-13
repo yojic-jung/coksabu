@@ -98,7 +98,22 @@ window.location="./";
 			var email2 = $(this).find('span').text();
 			var b = confirm('반려하시겠습니까?');
   		  	if(b){
-  				  window.location="./adminCertifyFail?email="+email2;
+  		  		  var denyReason = prompt("반려사유를 적어주세요.","");
+  				  $.ajax({
+					  url:'./adminCertifyFail?email='+email2,
+		    		  type:'post',
+		    		  data : { "denyReason" : denyReason},
+		    		  error:function(request,status,error){
+		    		        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		    		       },
+		    		  success:function(data){
+		    			  if(data=='success'){
+		    				  alert('정상적으로 반려되었습니다. ')
+		    				  window.location.reload(); 
+		    			  }
+		    		  	}
+  					});
+  				
   		 	 }else{
   				  return false;  
   		  	}	

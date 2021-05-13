@@ -36,15 +36,14 @@ s.parentNode.insertBefore(t,s)}(window, document,'script',
 fbq('init', '2787801881458923');
 fbq('track', 'CompleteRegistration', {currency: "KRW", value: 1.00});
 </script>
+</head>
+<body>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 /></noscript>
-<!-- End Facebook Pixel Code -->
-</head>
-<body>
 <script>
 alert("감사합니다. 정상적으로 회원가입 되셨습니다.")
-window.location.href="./"
+window.location.href="./?cok_tutorial=first_user"
 </script>
 </body>
 </html>

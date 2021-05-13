@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +25,7 @@
         color:white;
     }
     .border-cate{
-        width:580px;
+        width:640px;
         margin: auto;
     }
     .main-cate a{
@@ -39,7 +40,7 @@
         padding:15px;
     }
     .lower-cate{
-        width:580px;
+        width:640px;
         margin: auto;
         border : 1px solid black;
         border-top:none;
@@ -157,6 +158,64 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 	.pagemove-table td{
 		border:0.5px solid gray;
 	}
+	
+	
+	
+	.tutorial-first-back{
+			display:none;
+			width:100%;
+			height:100%;
+			background:black;
+			opacity:0.3;
+			position:fixed;
+			top:0px;
+			left:0px;
+			z-index:90;
+			
+		}
+
+		.tutorial-first{
+			width:320px;
+			font-family: 'JejuGothic';
+			z-index:100;
+			position:fixed;top:50%;left:50%;transform: translate(-50%, -50%);
+			display:none;
+			padding:0px;
+			background-image:url(/resources/img/firecracker.png);
+			background-repeat : no-repeat;
+        	background-size : cover;
+			text-align:center;
+			border-radius:20px;
+			
+		}
+		
+		
+		.tutorial-para{
+		text-align:center;
+		padding-top:30px;
+		line-height:180%;
+		background:white;
+		border-radius:20px 20px 120px 120px;
+		font-size:16px;
+		}
+		.tutorial-first-title{
+			color: #002266;
+			font-size:18px;
+			margin-bottom:30px;
+			font-weight:bold;
+		}
+		
+		.tutorial-btn{
+			margin:40px auto 30px auto;
+			padding:10px;
+			cursor:pointer;
+			background:white;
+			color:#002266;
+			border-radius:20px;
+			width:220px;
+			font-weight:bolder;
+		}
+		
     </style>
   <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
@@ -213,8 +272,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
             
             var main = "<c:out value="${main}" />";
             var subject = "<c:out value="${subject}" />";
-            
-            if(subject=="수학" |subject=="외국어" |subject=="국어" |subject=="사회" |subject=="과학" |subject=="예체능" |subject=="자소서/입시" ){
+            if(subject=="수학" |subject=="외국어" |subject=="국어" |subject=="사회" |subject=="과학" |subject=="예체능" |subject=="입시(자소서/논술/면접)" ){
             	subject ="전체";
             }
            
@@ -292,7 +350,7 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                     <li><a href="./boarder?main=41&subject=41">사회</a></li>
                     <li><a href="./boarder?main=51&subject=51">과학</a></li>
                     <li><a href="./boarder?main=61&subject=61">예체능</a></li>
-                    <li><a href="./boarder?main=71&subject=71">자소서/입시</a></li>
+                    <li><a href="./boarder?main=71&subject=71">입시(자소서/논술/면접)</a></li>
                 </ul>
                 </div>
                 <hr style="border : solid 2px orange" />
@@ -304,7 +362,6 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                     <li><a href="./boarder?main=11&subject=14">이과수학</a></li>
                     <li><a href="./boarder?main=11&subject=15">문과수학</a></li>
                     <li><a href="./boarder?main=11&subject=16">고등수학</a></li>
-                    <li><a href="./boarder?main=11&subject=17">수학논술</a></li>
                     <li><a href="./boarder?main=11&subject=18">수학경시</a></li>                    
                  </ul>
                  <ul class="subcate dispno">
@@ -325,7 +382,6 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                         <li><a href="./boarder?main=31&subject=33">중등국어</a></li>
                         <li><a href="./boarder?main=31&subject=34">고등국어</a></li>
                         <li><a href="./boarder?main=31&subject=35">수능국어</a></li>
-                        <li><a href="./boarder?main=31&subject=36">국어논술</a></li>
                 </ul>
                 <ul class="subcate dispno">
                         <li><a href="./boarder?main=41&subject=41">전체</a></li>
@@ -362,18 +418,27 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
                 <ul class="subcate dispno">
                 		<li><a href="./boarder?main=61&subject=61">전체</a></li>
                         <li><a href="./boarder?main=61&subject=62">미술</a></li>
-                        <li><a href="./boarder?main=61&subject=63">음악</a></li>
-                        <li><a href="./boarder?main=61&subject=64">체육</a></li>
                         <li><a href="./boarder?main=61&subject=622">유아미술</a></li>
                         <li><a href="./boarder?main=61&subject=623">초등미술</a></li>
                         <li><a href="./boarder?main=61&subject=624">중등미술</a></li>
                         <li><a href="./boarder?main=61&subject=625">고등미술</a></li>
-                        <li><a href="./boarder?main=61&subject=626">성인미술</a></li>
+                         <li><a href="./boarder?main=61&subject=626">성인미술</a></li>
+                        <li><a href="./boarder?main=61&subject=63">음악</a></li>
+                        <li><a href="./boarder?main=61&subject=632">악기</a></li>
+                        <li><a href="./boarder?main=61&subject=633">성악</a></li>
+                        <li><a href="./boarder?main=61&subject=634">국악</a></li>
+                        <li><a href="./boarder?main=61&subject=64">체육</a></li>
+                       
                 </ul>
                 <ul class="subcate dispno">
                 		<li><a href="./boarder?main=71&subject=71">전체</a></li>
                         <li><a href="./boarder?main=71&subject=72">자소서첨삭</a></li>
                         <li><a href="./boarder?main=71&subject=73">입시컨설팅</a></li>
+                        <li><a href="./boarder?main=71&subject=74">면접</a></li>
+                        <li><a href="./boarder?main=71&subject=75">수학논술</a></li>
+                        <li><a href="./boarder?main=71&subject=76">인문논술</a></li>
+                        <li><a href="./boarder?main=71&subject=77">국어논술</a></li>
+                        <li><a href="./boarder?main=71&subject=78">과학논술</a></li>
                 </ul>
             </div>
         </nav>
@@ -895,7 +960,68 @@ box-shadow:0px 0px 4px 4px LightGoldenRodYellow;
 </c:choose>
 </div>       
 </div>       
-
-
+<div class="tutorial-first-back"></div>
+<div class="tutorial-first">
+    	<div class="tutorial-para">
+    		<div class="tutorial-first-title">
+    			지역, 과목, 경력, 성별 등의<br/>
+    			상세검색 조건을 통해<br/>
+    			원하는 선생님을 찾아보세요.<br/>
+    		</div>
+    		<div>
+    			서비스 사용에 보다 자세한 설명은<br/>
+    			이용가이드를 통해서도 참조 가능합니다.
+    		</div>
+    	</div>
+    		<div class="tutorial-btn">
+    			튜토리얼 종료하기
+    		</div>
+    	
+</div> 
+ <sec:authorize access="isAuthenticated()">
+<script>
+       $(document).ready(function(){
+    	   if(getRequestParam().cok_tutorial== "first_student"){
+        	   if(GetCookie("tutorial")!="end"){
+        		   $('.tutorial-first').toggle(500);
+        	 	   $('.tutorial-first-back').show();
+        	   }
+           }
+   			$('.tutorial-btn').click(function(){
+   		   		$('.tutorial-first').remove();
+       	   		$('.tutorial-first-back').remove();
+       	   		SetCookie('tutorial','end')
+   			});
+       })
+       
+       function getRequestParam(){
+    	    var url = document.location.href;
+    	    var qs = url.substring(url.indexOf('?') + 1).split('&');
+    	    for(var i = 0, result = {}; i < qs.length; i++){
+    	        qs[i] = qs[i].split('=');
+    	        result[qs[i][0]] = decodeURIComponent(qs[i][1]);
+    	    }
+    	    return result;
+    	}
+       
+       function SetCookie(sName, sValue){
+   	   		var date = new Date();
+   	   		date.setTime(date.getTime() + (1*24*60*60*1000));
+   	   		document.cookie = sName + "=" + escape(sValue)+";expires="+date.toGMTString();
+   	   }
+       
+       function GetCookie(sName){
+   			var aCookie = document.cookie.split("; ");
+   			//검색을 원하는 쿠키명(test_cookie)과 저장되어 있는 쿠키의 이름이 일치하는지 확인
+   			for(var i=0; i<aCookie.length; i++){
+   				var aCrumb = aCookie[i].split("=");
+   				if(sName == aCrumb[0]){
+   					return unescape(aCrumb[1]);
+   				}
+   			}
+   			return null;
+   	   }	
+       </script>
+</sec:authorize>
 </body>
 </html>

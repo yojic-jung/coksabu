@@ -23,6 +23,7 @@
 }
 
 body {
+	font-family:'Apple SD Gothic Neo','Malgun Gothic';
      margin: 0px;
  	 padding: 0px;
      -webkit-text-size-adjust:100%;
@@ -117,7 +118,7 @@ padding:0px;
 padding:0px;
 text-align:center;
 font-size:28px;
-width:25%;
+width:20%;
 
 boarder-spacing:0px;
 }
@@ -136,7 +137,7 @@ color:#A6A6A6;
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
+  gtag('config', 'G-4EM47WXQJ0');
   gtag('config', 'AW-413632618');
 </script>
 <!-- Facebook Pixel Code -->
@@ -202,12 +203,14 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 				<table class="bottom-table">
 					<tr>
 						<td><a href="./"><img class="bottom-img" src="<c:url value="/resources/img/home.png" />"  alt="home"/></a></td>
+						<td><a href="./apply"><img class="bottom-img" src="<c:url value="/resources/img/applyui.png" />"  alt="apply"/></a></td>
 						<td><a href="./category"><img class="bottom-img" src="<c:url value="/resources/img/cate.png" />"  alt="cate"/></a></td>
 						<td><a href="./message"><img class="bottom-img" src="<c:url value="/resources/img/message.png" />"  alt="message"/></a></td>
 						<td><a href="./myroom"><img class="bottom-img" src="<c:url value="/resources/img/my2.png" />"  alt="my"/></a></td>
 					</tr>
 					<tr>
 					<td><a href="./">홈</a></td>
+					<td><a href="./apply">수업요청</a></td>
 					<td><a href="./category">카테고리</a></td>
 					<td><a href="./message" class="m-message-notify">메시지</a></td>
 					<td><a href="./myroom" style="color:orange">마이페이지</a></td>

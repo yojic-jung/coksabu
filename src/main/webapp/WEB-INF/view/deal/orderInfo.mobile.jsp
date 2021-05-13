@@ -45,13 +45,13 @@ body{
 		<td colspan="3" style="border-bottom:1px solid gray;"></td>
 	</tr>
 	<tr>
-	<td>선생님 닉네임</td><td>수업시작일</td><td>수업종료일</td>
+	<td>선생님 이름</td><td>수업시작일</td><td>수업종료일</td>
 	</tr>
 	<tr>
 		<td colspan="3" style="border-bottom:1px solid gray;"></td>
 	</tr>
 	<tr>
-	<td>${pur.sellerNickname}</td><td>${pur.startDateS}</td><td>${pur.endDateS}</td>
+	<td>${pur.sellerName}</td><td>${pur.startDateS}</td><td>${pur.endDateS}</td>
 	</tr>
 </table>
 

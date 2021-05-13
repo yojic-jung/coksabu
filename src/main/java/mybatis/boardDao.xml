@@ -19,14 +19,14 @@
 	</select>
 	
 	<insert id="write" parameterType="com.coksabu.yojic.lesson.board.model.LessonCardDB" >
-		insert into lesson (cate, subcate, represent, title, lesson, description, contentimg, careerDB, subcate0, price1, price2, price3, subcate1, opt1price1, opt1price2, opt1price3, subcate2, opt2price1, opt2price2, opt2price3, email, postingdate, readcount, day, gawe, trial, visible) 
+		insert into lesson (cate, subcate, represent, title, lesson, description, contentimg, careerDB, subcate0, price1, price2, price3, prinegotiation,subcate1, opt1price1, opt1price2, opt1price3, subcate2, opt2price1, opt2price2, opt2price3, email, postingdate, readcount, day, gawe, trial, visible) 
 		values (#{cate}, #{subCate}, #{represent}, #{title}, #{lesson}, #{description}, #{contentimg}, 
-		#{careerDB}, #{subCate0},#{price1}, #{price2},#{price3}, #{subCate1},#{opt1price1}, #{opt1price2},#{opt1price3},#{subCate2},#{opt2price1}, #{opt2price2},#{opt2price3}, #{email}, #{postingdate}, #{readCount}, #{day}, #{gawe}, #{trial}, 1)
+		#{careerDB}, #{subCate0},#{price1}, #{price2},#{price3}, #{priNegotiation}, #{subCate1},#{opt1price1}, #{opt1price2},#{opt1price3},#{subCate2},#{opt2price1}, #{opt2price2},#{opt2price3}, #{email}, #{postingdate}, #{readCount}, #{day}, #{gawe}, #{trial}, 1)
 	</insert>
 
 	<update id="update" parameterType="com.coksabu.yojic.lesson.board.model.LessonCardDB" >
-		update lesson set represent=#{represent}, title=#{title}, lesson=#{lesson}, 
-		subcate0=#{subCate0}, price1=#{price1}, price2=#{price2}, price3=#{price3}, 
+		update lesson set represent=#{represent}, title=#{title}, lesson=#{lesson}, subcate=#{subCate},
+		subcate0=#{subCate0}, price1=#{price1}, price2=#{price2}, price3=#{price3}, priNegotiation=#{priNegotiation},
 		subcate1=#{subCate1}, opt1price1=#{opt1price1}, opt1price2=#{opt1price2}, opt1price3=#{opt1price3},
 		subcate2=#{subCate2}, opt2price1=#{opt2price1}, opt2price2=#{opt2price2}, opt2price3=#{opt2price3},
 		description=#{description}, careerDB=#{careerDB}, day=#{day}, gawe=#{gawe}, trial=#{trial}, contentimg=#{contentimg} where id=#{id}
@@ -45,7 +45,7 @@
 	</select>
 	<!-- 수정 -->
 	<select id="read" resultType="com.coksabu.yojic.lesson.board.model.LessonCardDB2" >
-		select cate, subcate, title, lesson, description, careerdb, email, id, trial, subcate0, price1, price2, price3, subcate1, opt1price1, opt1price2, opt1price3, subcate2, opt2price1, opt2price2, opt2price3, represent, day, gawe, contentimg from lesson where id=#{id} and email=#{email}
+		select cate, subcate, title, lesson, description, careerdb, email, id, trial, subcate0, price1, price2, price3, priNegotiation, subcate1, opt1price1, opt1price2, opt1price3, subcate2, opt2price1, opt2price2, opt2price3, represent, day, gawe, contentimg from lesson where id=#{id} and email=#{email}
 	</select>
 	
 	<delete id="deleteLesson" >
@@ -96,7 +96,7 @@
 	<select id="countSubject" resultType="int">
 		select count(*) from members as A, lesson as B 
 		<choose>
-   		    <when test = 'subject!=null and (subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("자소서/입시"))' >
+   		    <when test = 'subject!=null and (subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("입시(자소서/논술/면접)"))' >
 			 where A.membership=1 and B.visible=1 and B.cate=#{subject} and A.email=B.email
 			 </when>
 			 <otherwise>
@@ -109,7 +109,7 @@
 		select A.nickname, A.email, A.birth, B.imgpath, B.universe, B.univsub, B.academy, B.academyd, B.sexual, B.career, C.subcate, C.represent, C.title, C.subcate0, C.price1, C.price3, C.subcate1, C.opt1price3 , C.subcate2, C.opt2price3 ,C.id, C.readcount
 		from members as A, profile as B, lesson as C where A.email=B.email and B.email=C.email and A.membership=1 and C.visible=1
 		<choose>
-			<when test = 'subject!=null and (subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("자소서/입시"))' >
+			<when test = 'subject!=null and (subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("입시(자소서/논술/면접)"))' >
 			 and C.cate=#{subject} order by readcount desc limit #{firstRow}, #{endRow}
 			 </when>
 			 <otherwise>
@@ -122,7 +122,7 @@
 		select A.nickname, A.email, A.birth, B.imgpath, B.universe, B.univsub,  B.academy, B.academyd, B.sexual, B.career, C.title, C.subcate0, C.price1, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3 , C.id
 		from members as A, profile as B, lesson as C where A.email=B.email and B.email=C.email and A.membership=1 and C.visible=1
 		<choose>
-			<when test = 'subject!=null and (subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("자소서/입시"))' >
+			<when test = 'subject!=null and (subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("입시(자소서/논술/면접)"))' >
 			 and C.cate=#{subject} order by postingdate desc limit 10
 			 </when>
 			 <otherwise>
@@ -135,7 +135,7 @@
 		select count(*) from lesson as A, profile as B, members as C where C.membership=1 and A.visible=1 and B.locales like concat('%',#{locale},'%') and B.career>=#{career}
 		 and B.sexual like concat('%',#{sexual},'%') and A.email = B.email and C.email = B.email
 		<choose>
-   		    <when test = '(subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("자소서/입시"))' >
+   		    <when test = '(subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("입시(자소서/논술/면접)"))' >
 			   and A.cate=#{subject} 
 			 </when>
 			 <otherwise>
@@ -150,31 +150,31 @@
 		from members as A, profile as B, lesson as C where A.email=B.email and B.email=C.email and A.membership=1 and C.visible=1 and B.locales like concat('%',#{locale},'%') and B.career>=#{career} 
 		 and B.sexual like concat('%',#{sexual},'%')
 		<choose>
-   		    <when test = 'array.equals("id") and (subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("자소서/입시"))' >
+   		    <when test = 'array.equals("id") and (subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("입시(자소서/논술/면접)"))' >
 			 	and C.cate=#{subject}  order by id desc limit #{firstRow}, #{endRow}
 			 </when>
 			 
-			 <when test = 'array.equals("readcount") and (subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("자소서/입시"))' >
+			 <when test = 'array.equals("readcount") and (subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("입시(자소서/논술/면접)"))' >
 			 	and C.cate=#{subject}  order by readcount desc limit #{firstRow}, #{endRow}
 			 </when>
 			 
-			 <when test = 'array.equals("id") and !(subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("자소서/입시"))' >
+			 <when test = 'array.equals("id") and !(subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("입시(자소서/논술/면접)"))' >
 			 	and C.subcate like concat('%',#{subject},'%')  order by id desc limit #{firstRow}, #{endRow}
 			 </when>
 			 
-			 <when test = 'array.equals("readcount") and !(subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("자소서/입시"))' >
+			 <when test = 'array.equals("readcount") and !(subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("입시(자소서/논술/면접)"))' >
 			 	and C.subcate like concat('%',#{subject},'%')  order by readcount desc limit #{firstRow}, #{endRow}
 			 </when>
 		</choose>
 	</select>
 	
 	<select id="readProfilePost" resultType="com.coksabu.yojic.lesson.member.model.Profile">
-		select A.email, A.name, A.nickname, A.birth, B.imgpath, B.locales, B.universe, B.univsub, B.universer, B.career, B.sexual, B.academy, B.academyd, B.nation, B.nationy, B.toeic, B.tofle, B.teps, B.hsk, B.jpt, B.singular, B.certify
+		select A.email, A.name, A.nickname, A.birth, B.imgpath, B.locales, B.universe, B.univsub, B.universer, B.career, B.sexual, B.passType, B.academy, B.academyd, B.nation, B.nationy, B.toeic, B.tofle, B.teps, B.hsk, B.jpt, B.singular, B.certify
 		from members as A, profile as B where A.email = #{email} and B.email=#{email}
 	</select>
 	<!-- 수정 -->
 	<select id="readLessonPost" resultType="com.coksabu.yojic.lesson.board.model.LessonCardDB2">
-		select cate, subcate, represent, title, lesson, description, contentimg, careerDB, subcate0, price1, price2, price3, subcate1, opt1price1, opt1price2, opt1price3, subcate2, opt2price1, opt2price2, opt2price3, postingdate, readcount, day, gawe, trial, visible from lesson where id=#{id}
+		select cate, subcate, represent, title, lesson, description, contentimg, careerDB, subcate0, price1, price2, price3, priNegotiation, subcate1, opt1price1, opt1price2, opt1price3, subcate2, opt2price1, opt2price2, opt2price3, postingdate, readcount, day, gawe, trial, visible from lesson where id=#{id}
 	</select>
 	
 	<select id="listMain" resultType="com.coksabu.yojic.lesson.board.model.PostView">
@@ -204,7 +204,7 @@
 		union all
 		(select A.nickname, A.email, A.birth, B.imgpath, B.universe, B.univsub,  B.academy, B.academyd, B.sexual, B.career , C.subcate, C.represent, C.title, C.subcate0, C.price3, C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id, C.readcount
 		from members as A, profile as B, lesson as C where A.email = B.email and B.email=C.email and A.membership=1 and C.visible=1
-		and cate='자소서/입시' order by C.readcount desc limit 3) 
+		and cate='입시(자소서/논술/면접)' order by C.readcount desc limit 3) 
 	</select>
 	
 	<select id="purchaseRead" resultType="com.coksabu.yojic.lesson.board.model.PurchaseRead">
