@@ -29,8 +29,10 @@
     <link rel="stylesheet" type="text/css" href= "<c:url value="/resources/slick/slick-theme.css" />">
     <link rel="stylesheet" href= "<c:url value="/resources/colorbox.css" />" />
     <link rel="shortcut icon" href= "/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href= "<c:url value="/resources/css/index.min.css?date=${date}"/>">
-
+    <link rel="stylesheet" type="text/css" href= "<c:url value="/resources/css/index.css?date=${date}"/>">
+	<link rel="stylesheet" type="text/css" href= "<c:url value="/resources/css/commonHeader.css?date=${date}"/>">
+	<link rel="stylesheet" type="text/css" href= "<c:url value="/resources/css/commonFooter.css?date=${date}"/>">
+	
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-413632618"></script>
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
@@ -39,6 +41,11 @@
     <script src="<c:url value="/resources/js/jquery.innerfade.js"/>"></script>
     <script src= "<c:url value="/resources/slick/slick.js" />" type="text/javascript" charset="utf-8"></script>
     <script src="resources/colorbox-master/colorbox-master/jquery.colorbox.js"></script>
+    <style>
+    	.hide{
+    		display:none;
+    	}
+    </style>
 </head>
 <body>
 <div>
@@ -46,78 +53,195 @@
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 /></noscript>
-  <header>
- <div class="jbMenu">
-                <div class="top-title"><a href="./"><img src="<c:url value="/resources/images/logo.png" />" alt="로고" /></a></div>
-                
-            <sec:authorize access="!isAuthenticated()">
-                <ul class="top-ul">
-                    <li><a href="./boarder?main=11&subject=11">수업목록</a></li>
-                    <li><a href="./lessonapply">수업요청</a></li>
-                    <!-- 주석 지우기 <li><a href="./applylist">요청목록</a></li> -->
-                    <li><a href="./login">로그인</a></li>
-                    <li><a href="./signup">회원가입</a></li>
-                </ul>
-             </sec:authorize>
-             <sec:authorize access="isAuthenticated()">
-                <ul class="top-ul">
-                    <li><a href="./boarder?main=11&subject=11">수업목록</a></li>
-                    <!-- 주석 지우기 <li><a href="./applylist">요청목록</a></li> -->
-                    <li><a href="./lessonapply">수업요청</a></li>
-                    <li><a href="./myroom">마이페이지</a></li>
-                    <li><a href="./message" class="message-notify">메세지</a></li>
-                    <li><a href="<c:url value='j_spring_security_logout' />">로그아웃</a></li>
-                </ul>
-              </sec:authorize>
-          </div>
-          
-           <div style="display:none; font-size:15px; color:gray; ">
-            <div id="menu" >
-            <table>
-            
-            <tr>
-            <td class="menu-td"><a href="./boarder?main=11&subject=11" >수학</a></td><td class="menu-td"><a href="./boarder?main=21&subject=21">외국어</a></td><td class="menu-td"><a href="./boarder?main=31&subject=31">국어</a></td><td class="menu-td"><a href="./boarder?main=41&subject=41">사회</a></td><td class="menu-td"> <a href="./boarder?main=51&subject=51">과학</a> </td><td class="menu-td"><a href="./boarder?main=61&subject=61">예체능</a></td><td class="menu-td"><a href="./boarder?main=71&subject=71">입시(자소서/논술/면접)</a></td>
-            </tr>
-            
-            <tr>
-            <td class="menu-td"><a href="./boarder?main=11&subject=12">초등수학</a></td><td class="menu-td"><a href="./boarder?main=21&subject=22">초등영어</a></td><td class="menu-td"><a href="./boarder?main=31&subject=32">초등국어</a></td><td class="menu-td"><a href="./boarder?main=41&subject=42">초등사회</a></td><td class="menu-td"><a href="./boarder?main=51&subject=52">초등과학</a></td><td class="menu-td"><a href="./boarder?main=61&subject=62">미술</a></td><td class="menu-td"><a href="./boarder?main=71&subject=72">자소서첨삭</a></td>
-            </tr>
-            
-            <tr>
-            <td class="menu-td"><a href="./boarder?main=11&subject=13">중등수학</a></td><td class="menu-td"><a href="./boarder?main=21&subject=23">중등영어</a></td><td class="menu-td"><a href="./boarder?main=31&subject=33">중등국어</a></td><td class="menu-td"><a href="./boarder?main=41&subject=43">중등사회</a></td><td class="menu-td"><a href="./boarder?main=51&subject=53">중등과학</a></td><td class="menu-td"><a href="./boarder?main=61&subject=63">음악</a></td><td class="menu-td"><a href="./boarder?main=71&subject=73">입시컨설팅</a></td>
-            </tr>
-            
-            <tr>
-            <td class="menu-td"><a href="./boarder?main=11&subject=14">고등수학</a></td><td class="menu-td"><a href="./boarder?main=21&subject=24">고등영어</a></td><td class="menu-td"><a href="./boarder?main=31&subject=34">고등국어</a></td><td class="menu-td"><a href="./boarder?main=41&subject=44">고등사회</a></td><td class="menu-td"><a href="./boarder?main=51&subject=54">고등과학</a></td><td class="menu-td"><a href="./boarder?main=61&subject=64">체육</a></td><td class="menu-td"><a href="./boarder?main=71&subject=74">면접</a></td>
-            </tr>
-            
-            <tr>
-            <td class="menu-td"><a href="./boarder?main=11&subject=15">이과수학</a></td><td class="menu-td"><a href="./boarder?main=21&subject=25">수능영어</a></td><td class="menu-td"><a href="./boarder?main=31&subject=35">수능국어</a></td><td class="menu-td"><a href="./boarder?main=41&subject=451">사회탐구</a></td><td class="menu-td"><a href="./boarder?main=51&subject=55">물리</a></td><td></td><td class="menu-td"><a href="./boarder?main=71&subject=75">수학논술</a></td>
-            </tr>
-            
-            <tr>
-            <td class="menu-td"><a href="./boarder?main=11&subject=16">문과수학</a></td><td class="menu-td"><a href="./boarder?main=21&subject=26">영어회화</a></td><td></td><td class="menu-td"><a href="./boarder?main=41&subject=46">한국사</a></td><td class="menu-td"><a href="./boarder?main=51&subject=56">생명과학</a></td><td></td><td class="menu-td"><a href="./boarder?main=71&subject=76">인문논술</a></td>
-            </tr>
-            
-            
-            <tr>
-            <td class="menu-td"><a href="./boarder?main=11&subject=18">수학경시</a></td><td class="menu-td"><a href="./boarder?main=21&subject=27">toeic/tofle/teps</a></td> <td></td> <td></td><td class="menu-td"><a href="./boarder?main=51&subject=57">지구과학</a></td><td></td><td class="menu-td"><a href="./boarder?main=71&subject=77">국어논술</a></td>
-            </tr>
-            
-            <tr>
-            <td></td><td class="menu-td"><a href="./boarder?main=21&subject=28">일본어</a></td><td></td><td></td><td class="menu-td"><a href="/boarder?main=51&subject=58">화학</a></td><td></td><td class="menu-td"><a href="./boarder?main=71&subject=78">과학논술</a></td>
-            </tr>
+<%@ include file="/WEB-INF/view/include/pcHeader.jsp" %>
+	<div style="display: none; font-size: 15px; color: gray;">
+		<div id="menu">
+			<table>
 
-            <tr>
-			<td></td><td class="menu-td"><a href="./boarder?main=21&subject=29">중국어</a></td><td></td><td></td><td></td><td></td><td></td>
-            </tr>
-            
-            </table>
+				<tr>
+					<td class="menu-td">
+						<a href="./boarder?main=11&subject=11">수학</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=21&subject=21">외국어</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=31&subject=31">국어</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=41&subject=41">사회</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=51&subject=51">과학</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=61&subject=61">예체능</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=71&subject=71">자소서/입시</a>
+					</td>
+				</tr>
 
-            </div>
-            </div>
-          
-  </header>
+				<tr>
+					<td class="menu-td">
+						<a href="./boarder?main=11&subject=12">초등수학</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=21&subject=22">초등영어</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=31&subject=32">초등국어</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=41&subject=42">초등사회</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=51&subject=52">초등과학</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=61&subject=62">미술</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=71&subject=72">자소서첨삭</a>
+					</td>
+				</tr>
+
+				<tr>
+					<td class="menu-td">
+						<a href="./boarder?main=11&subject=13">중등수학</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=21&subject=23">중등영어</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=31&subject=33">중등국어</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=41&subject=43">중등사회</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=51&subject=53">중등과학</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=61&subject=63">음악</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=71&subject=73">입시컨설팅</a>
+					</td>
+				</tr>
+
+				<tr>
+					<td class="menu-td">
+						<a href="./boarder?main=11&subject=14">고등수학</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=21&subject=24">고등영어</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=31&subject=34">고등국어</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=41&subject=44">고등사회</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=51&subject=54">고등과학</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=61&subject=64">체육</a>
+					</td>
+					<td></td>
+				</tr>
+
+				<tr>
+					<td class="menu-td">
+						<a href="./boarder?main=11&subject=15">이과수학</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=21&subject=25">수능영어</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=31&subject=35">수능국어</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=41&subject=451">사회탐구</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=51&subject=55">물리</a>
+					</td>
+					<td></td>
+					<td></td>
+				</tr>
+
+				<tr>
+					<td class="menu-td">
+						<a href="./boarder?main=11&subject=16">문과수학</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=21&subject=26">영어회화</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=31&subject=36">국어논술</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=41&subject=46">한국사</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=51&subject=56">생명과학</a>
+					</td>
+					<td></td>
+					<td></td>
+				</tr>
+
+
+				<tr>
+					<td class="menu-td">
+						<a href="./boarder?main=11&subject=17">수학논술</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=21&subject=27">toeic/tofle/teps</a>
+					</td>
+					<td></td>
+					<td></td>
+					<td class="menu-td">
+						<a href="./boarder?main=51&subject=57">지구과학</a>
+					</td>
+					<td></td>
+					<td></td>
+				</tr>
+
+				<tr>
+					<td class="menu-td">
+						<a href="./boarder?main=11&subject=18">수학경시</a>
+					</td>
+					<td class="menu-td">
+						<a href="./boarder?main=21&subject=28">일본어</a>
+					</td>
+					<td></td>
+					<td></td>
+					<td class="menu-td">
+						<a href="/boarder?main=51&subject=58">화학</a>
+					</td>
+					<td></td>
+					<td></td>
+				</tr>
+
+				<tr>
+					<td></td>
+					<td class="menu-td">
+						<a href="./boarder?main=21&subject=29">중국어</a>
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+
+			</table>
+
+		</div>
+	</div>
+
           <div class="main-search">
                 <input type="text" class="main-input" href="#menu" placeholder="원하시는 수업을 찾아보세요..."/>
                 <button class="search-button">검색</button>
@@ -152,7 +276,7 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
           <td><a href="./boarder?main=41&subject=41">사회</a></td>
           <td><a href="./boarder?main=51&subject=51">과학</a></td>
           <td><a href="./boarder?main=61&subject=61">예체능</a></td>
-          <td><a href="./boarder?main=71&subject=71">입시(자소서/논술/면접)</a></td>
+          <td><a href="./boarder?main=71&subject=71">자소서/입시</a></td>
         </tr>
         </table>
       </nav>
@@ -166,6 +290,7 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
                     <a href="./boarder?main=11&subject=14"><div>이과수학</div></a>
                     <a href="./boarder?main=11&subject=15"><div>문과수학</div></a>
                     <a href="./boarder?main=11&subject=16"><div>고등수학</div></a>
+                    <a href="./boarder?main=11&subject=17"><div>수학논술</div></a>
                     <a href="./boarder?main=11&subject=18"><div>수학경시</div></a>              
                 </div>
                 <div style="font-family:'JejuGothic'; font-size:20px;margin-top:20px;width:600px">&nbsp;&nbsp;&nbsp;&nbsp;인기 추천 수업</div>
@@ -175,7 +300,10 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 						<tr style="width:100%;">
 							<td>
 							<a href="<c:url value="./boardread?postId=${post.id}"/>">
-							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;">
+							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;position:relative">
+							<c:if test="${post.certify==1}">
+								<span style="padding:4px;font-size:12px;color:white;background:orange;border-radius:10px;position:absolute;font-family:'JejuGothic';">인증완료</span>
+							</c:if>
 							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="수업대표이미지"/>
 							</div>
 							</a>
@@ -225,7 +353,10 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 						<tr style="width:100%;">
 							<td>
 							<a href="<c:url value="./boardread?postId=${post.id}"/>">
-							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;">
+							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;position:relative">
+							<c:if test="${post.certify==1}">
+								<span style="padding:4px;font-size:12px;color:white;background:orange;border-radius:10px;position:absolute;font-family:'JejuGothic';">인증완료</span>
+							</c:if>
 							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="수업대표이미지"/>
 							</div>
 							</a>
@@ -259,6 +390,7 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
                         <a href="./boarder?main=31&subject=33"><div>중등국어</div></a>
                         <a href="./boarder?main=31&subject=34"><div>고등국어</div></a>
                         <a href="./boarder?main=31&subject=35"><div>수능국어</div></a>
+                        <a href="./boarder?main=31&subject=36"><div>국어논술</div></a>
                 </div>
                 <div style="font-family:'JejuGothic'; font-size:20px;margin-top:20px;width:600px">&nbsp;&nbsp;&nbsp;&nbsp;인기 추천 수업</div>
                 
@@ -268,7 +400,10 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 						<tr style="width:100%;">
 							<td>
 							<a href="<c:url value="./boardread?postId=${post.id}"/>">
-							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;">
+							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;position:relative">
+							<c:if test="${post.certify==1}">
+								<span style="padding:4px;font-size:12px;color:white;background:orange;border-radius:10px;position:absolute;font-family:'JejuGothic';">인증완료</span>
+							</c:if>
 							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="수업대표이미지"/>
 							</div>
 							</a>
@@ -313,7 +448,10 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 						<tr style="width:100%;">
 							<td>
 							<a href="<c:url value="./boardread?postId=${post.id}"/>">
-							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;">
+							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;position:relative">
+							<c:if test="${post.certify==1}">
+								<span style="padding:4px;font-size:12px;color:white;background:orange;border-radius:10px;position:absolute;font-family:'JejuGothic';">인증완료</span>
+							</c:if>
 							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="수업대표이미지"/>
 							</div>
 							</a>
@@ -360,7 +498,10 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 						<tr style="width:100%;">
 							<td>
 							<a href="<c:url value="./boardread?postId=${post.id}"/>">
-							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;">
+							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;position:relative">
+							<c:if test="${post.certify==1}">
+								<span style="padding:4px;font-size:12px;color:white;background:orange;border-radius:10px;position:absolute;font-family:'JejuGothic';">인증완료</span>
+							</c:if>
 							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="수업대표이미지"/>
 							</div>
 							</a>
@@ -404,7 +545,10 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 					<tr style="width:100%;">
 							<td>
 							<a href="<c:url value="./boardread?postId=${post.id}"/>">
-							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;">
+							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;position:relative">
+							<c:if test="${post.certify==1}">
+								<span style="padding:4px;font-size:12px;color:white;background:orange;border-radius:10px;position:absolute;font-family:'JejuGothic';">인증완료</span>
+							</c:if>
 							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="수업대표이미지"/>
 							</div>
 							</a>
@@ -436,11 +580,6 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
                   <hr/>
                 		<a href="./boarder?main=71&subject=72"><div>자소서첨삭</div></a>
                         <a href="./boarder?main=71&subject=73"><div>입시컨설팅</div></a>
-                        <a href="./boarder?main=71&subject=74"><div>면접</div></a>
-                        <a href="./boarder?main=71&subject=75"><div>수학논술</div></a>
-                        <a href="./boarder?main=71&subject=76"><div>인문논술</div></a>
-                        <a href="./boarder?main=71&subject=77"><div>국어논술</div></a>
-                        <a href="./boarder?main=71&subject=78"><div>과학논술</div></a>
                 </div>
                 <div style="font-family:'JejuGothic'; font-size:20px;margin-top:20px;width:600px">&nbsp;&nbsp;&nbsp;&nbsp;인기 추천 수업</div>
                 
@@ -450,7 +589,10 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 					<tr style="width:100%;">
 							<td>
 							<a href="<c:url value="./boardread?postId=${post.id}"/>">
-							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;">
+							<div id="pst" style="vertical-align:top;padding:0px; margin:20px 10px;position:relative">
+							<c:if test="${post.certify==1}">
+								<span style="padding:4px;font-size:12px;color:white;background:orange;border-radius:10px;position:absolute;font-family:'JejuGothic';">인증완료</span>
+							</c:if>
 							<img src="<c:url value='/img/representImg/${post.represent}' />" style="width:180px; height:180px; magin-top:0px;border-radius:20px;" alt="수업대표이미지"/>
 							</div>
 							</a>
@@ -485,6 +627,7 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
             <div><a href="./boarder?main=11&subject=13" ><img src="<c:url value="/resources/img/middlemath.png" />" alt="중등수학"></a></div>
             <div><a href="./boarder?main=11&subject=12" ><img src="<c:url value="/resources/img/elementmath.png" />" alt="초등수학"></a></div>
             <div><a href="./boarder?main=11&subject=18" ><img src="<c:url value="/resources/img/math6.png" />" alt="수학경시"></a></div>
+            <div><a href="./boarder?main=11&subject=17" ><img src="<c:url value="/resources/img/mathlogic.png" />" alt="수학논술"></a></div>
         </section> 
 
         <div class="cateTitle"><p>나에게 맞는 <b>외국어</b> 수업을 찾고 싶다면</p></div>
@@ -505,6 +648,7 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
             <div><a href="./boarder?main=31&subject=34" ><img src="<c:url value="/resources/img/kor3.png" />" alt="고등국어" /></a></div>
             <div><a href="./boarder?main=31&subject=33" ><img src="<c:url value="/resources/img/kor2.png" />" alt="중등국어" /></a></div>
             <div><a href="./boarder?main=31&subject=32" ><img src="<c:url value="/resources/img/kor1.png" />" alt="초등국어" /></a></div>
+            <div><a href="./boarder?main=31&subject=36" ><img src="<c:url value="/resources/img/kor5.png" />" alt="국어논술" /></a></div>
           </section>
 
           <div class="cateTitle"><p><b>사회</b> 선생님을 찾아보세요.</p></div>
@@ -548,7 +692,7 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 		</div>
 		<div class="intro-content">
 			<div style="width:90%;margin:10px auto 30px auto;font-size:20px;line-height:140%;">콕사부에 대해 알아보고<br/>과외수업을 진행해보세요.</div>
-			<div style="text-align:center;"><img style="width:90%;" src="<c:url value="/resources/img/people.png" />"  alt=""/></div>
+			<div style="text-align:center;"><img style="width:80%;" src="<c:url value="/resources/img/people.png" />"  alt=""/></div>
 			<div class="intro-text">
 				<div class="teach-intro">선생님으로 알아보기</div>
 				<div class="student-intro">학생/학부모님으로 알아보기</div>
@@ -587,8 +731,8 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
         				Sign in with Apple
         		</div>
 				
-				<div class="naver-customize" style="height:42px;padding:0px;">
-        				<img src="<c:url value='/resources/img/naver.png' />"  style="vertical-align: middle;width:40px;height:40px;"/>
+				<div class="naver-customize">
+        				<img src="<c:url value='/resources/img/naver.png' />"  style="vertical-align: middle;width:30px;height:30px;"/>
         			네이버로 로그인
         		</div>
         		<div style="display:none;">
@@ -626,8 +770,8 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
         		</div>
 				<div id="appleid-signin" data-color="black" data-border="true" data-type="sign in" style="width:80%;height:45px;margin:auto;cursor:pointer;display:none;"></div>
 				
-				<div class="naver-customize" style="height:42px;padding:0px;">
-        				<img src="<c:url value='/resources/img/naver.png' />"  style="vertical-align: middle;width:40px;height:40px;"/>
+				<div class="naver-customize">
+        				<img src="<c:url value='/resources/img/naver.png' />"  style="vertical-align: middle;width:30px;height:30px;"/>
         			네이버로 로그인
         		</div>
 				<div style="display:none;">
@@ -659,66 +803,10 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
     	</div>
     	<div class="tutorial-close-div"><span class="tutorial-close">[닫기x]</span></div>
     </div>      
-    
-           
-    	<footer>
-          <div class="foot">
-            <hr/>
-            <div class="foot-align">
-            <div>
-              <a href="./"><img src="<c:url value="/resources/images/logo.png" />" alt="로고"/></a>
-            </div>
-            <div>
-              <p>상호 : 콕사부 <br/>
-                대표자 : 정요직<br/>
-                개인정보보호담당자 :정요직<br/>
-                주소 : 서울특별시 동대문구 휘경동 183-368. 104호<br/>
-                TEL. 02-959-1176<br/>
-                  사업자 등록번호 : 654-19-01069 <br/>
-		통신판매업 신고 : 2019-서울동대문-0997호<br/>
-                  EMAIL. dywlr74@naver.com<br/>
-                  Copyright(c) 콕사부. All Rights Reserved.<br/>
-                </p>
-            </div>
-            <div class="foot-cate">
-                <p>
-                  <b>카테고리</b><br/>
-                  <a href="./boarder?main=11&subject=11"> 수학</a><br/>
-	              <a href="./boarder?main=21&subject=21">외국어</a><br/>
-                  <a href="./boarder?main=31&subject=31">국어</a><br/>
-                  <a href="./boarder?main=41&subject=41">사회</a><br/>
-                  <a href="./boarder?main=51&subject=51">과학</a><br/>
-                  <a href="./boarder?main=61&subject=61">예체능</a><br/>
-                  <a href="./boarder?main=71&subject=71">입시/자소서</a><br/>
-                </p>
-              </div>
-            <div class="foot-company">
-                <p>
-                 <a href="./companyInfo"> 회사소개</a><br/>
-                 <a href="./customer" style="text-decoration:none; color:black;"> 자주하는 질문</a><br/>
-                 <a href="./qna" style="text-decoration:none; color:black;"> 고객문의</a><br/>
-                 <a href="./privateData" style="text-decoration:none; color:black;">개인정보처리방침</a><br/>
-                 <a href="./service" style="text-decoration:none; color:black;">이용약관</a>
-                </p>
-              </div>
 
-            <div>
-              <p>
-              
-               <a href="./qna" style="text-decoration:none;font-weight:bolder; color:black;"> 고객센터</a><br/>
-                02-959-1176<br/>
-                평일 10:00 ~ 17:00 <br/> 
-                (점심 13:00 ~ 14:00)
-              </p>
-            </div>
-            <div style="clear:left; text-align:center;font-size:11px;">콕사부는 통신판매중개자이며 통신판매의 당사자가 아닙니다.<br/>
-따라서 개별 판매자가 등록하여 판매한 모든 상품에 대한 거래 정보 및 거래에 대한 책임은 각 판매자가 부담하고, 이에 대하여 콕사부는 일체 책임지지 않습니다.</div>
-          </div>
-          </div>
-        </footer>
+			<%@ include file="/WEB-INF/view/include/pcFooter.jsp" %>
        </div>
        <script src="<c:url value="resources/js/index.min.js?date=${date}" />"></script>
-       
        <sec:authorize access="isAuthenticated()">
        <script>
        function getRequestParam(){
@@ -773,7 +861,7 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
         strReturn = GetCookie('promoteCookie');
         //만약 쿠키가 없다면 starPop()함수를 호출하여 오픈 창으로 이벤트 페이지 실행
         if(strReturn == null || strReturn == '0'){
-        	startPromote();
+	       	startPromote();
         }
        
         

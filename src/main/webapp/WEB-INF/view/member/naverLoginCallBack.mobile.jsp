@@ -105,7 +105,13 @@
 			    			  }else if(data.status=="success"){
 			    				  window.location.replace("./naverSignupSuccess")
 			    			  }else{
-			    				  window.location.replace("./")
+			    					if(data.targetUrl!=null){
+			    						 var redirectUrl = data.targetUrl;
+			    						 redirectUrl = redirectUrl.replace("&amp;","&");
+			    						 window.location.href = redirectUrl;
+			    					}else{
+			    						 window.location.replace("./")
+			    					}
 			    			  }
 			    		  }
 			    	  });

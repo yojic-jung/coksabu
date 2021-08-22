@@ -72,6 +72,7 @@ public class MemberService {
 		
 		MemberInfo authorityAndRoll = memberDao.takeRollAndPassword(member.getEmail());
 		if(authorityAndRoll.getAuthority().equals("pre-user")) {
+			member.setNickname(member.getName().substring(0, 1)+"사부");
 			memberDao.updateMemberforPreUser(member);
 			map.put("status", "success");
 			map.put("password", authorityAndRoll.getPassword());
@@ -183,4 +184,16 @@ public class MemberService {
 		
 		return memberDao.updateNickName(mem);
 	}
+	
+	public String secessionApply(String email) {
+		int a = memberDao.insepectSecession(email);
+		if(a==0) {
+			memberDao.addSecessoinList(email);
+			return "success";
+		}else {
+			return "alreadyExist";
+		}
+		
+	}
+	
 }

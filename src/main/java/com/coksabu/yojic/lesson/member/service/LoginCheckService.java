@@ -18,21 +18,13 @@ public class LoginCheckService {
 	
 	@Transactional(rollbackFor= {Exception.class})
 	public int updateLoginTime(String email) {
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("date",new Date());
-		System.out.println("자바 데이트 값 : "+new Date());
-		map.put("email",email);
-		memberDao.updateLoginTime(map);
+		memberDao.updateLoginTime(email);
 		
 		return memberDao.takeHumanStatus(email);
 	}	
 	
 	public void updateLoginTime2(String email) {
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("date",new Date());
-		System.out.println("자바 데이트 값 : "+new Date());
-		map.put("email",email);
-		memberDao.updateLoginTime(map);
+		memberDao.updateLoginTime(email);
 	}
 	
 	public boolean emailCheck(String email) {

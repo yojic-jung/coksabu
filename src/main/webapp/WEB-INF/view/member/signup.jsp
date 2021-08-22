@@ -80,6 +80,7 @@
 	background:black;
 	font-family: 'Apple SD Gothic Neo','Malgun Gothic';font-size:15px;color:white;border-radius:10px; font-weight:bolder;
 	margin:20px 10px;cursor:pointer;border:1px solid black;
+	display:none;
 	}
     </style>
   <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>

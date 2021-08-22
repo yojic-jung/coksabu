@@ -40,18 +40,20 @@ window.location="./";
 		</tr>
 
 		<tr>
-		<td><a href="./admininspect">본인/학력 인증 검사</a>
-		<c:if test="${notify.certifyCount!=0}"><span style="display:inline-block;vertical-align:top;width:10px;height:10px;border-radius:5px;background:red;"></span></c:if>
-		</td>
-		<td><a href="./adminDelWaiting">삭제요청 리스트</a>
-		<c:if test="${notify.delLessonCount!=0}"><span style="display:inline-block;vertical-align:top;width:10px;height:10px;border-radius:5px;background:red;"></span></c:if>
-		</td>
-		<td><a href="./listqna">고객문의 Q&A 리스트</a>
-		<c:if test="${notify.qnaCount!=0}"><span style="display:inline-block;vertical-align:top;width:10px;height:10px;border-radius:5px;background:red;"></span></c:if>
-		</td>
-		
+			<td><a href="./admininspect">본인/학력 인증 검사</a>
+			<c:if test="${notify.certifyCount!=0}"><span style="display:inline-block;vertical-align:top;width:10px;height:10px;border-radius:5px;background:red;"></span></c:if>
+			</td>
+			<td><a href="./adminDelWaiting">삭제요청 리스트</a>
+			<c:if test="${notify.delLessonCount!=0}"><span style="display:inline-block;vertical-align:top;width:10px;height:10px;border-radius:5px;background:red;"></span></c:if>
+			</td>
+			<td><a href="./listqna">고객문의 Q&A 리스트</a>
+			<c:if test="${notify.qnaCount!=0}"><span style="display:inline-block;vertical-align:top;width:10px;height:10px;border-radius:5px;background:red;"></span></c:if>
+			</td>
 		</tr>
 		
+		<tr>
+			<td><a href="./adminSecessionList">회원탈퇴요청</a></td>
+		</tr>
 		
 		<tr>
 			<td colspan="3" style="padding-top:50px;">-일반거래-</td>
@@ -94,7 +96,7 @@ window.location="./";
 		<td colspan="3" style="padding-top:50px;">-고객정보 검색-</td>
 		</tr>
 		<tr>
-		<td>이름,핸드폰번호로 검색</td><td>이메일로 검색</td><td></td>
+		<td>이름,핸드폰번호로 검색</td><td>이메일로 검색</td><td><a href="./adminCertiTest">선생님 인증 이미지 내역</a></td>
 		</tr>
 	</table>
 </div>

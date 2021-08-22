@@ -40,13 +40,14 @@ public class AdminService {
 	
 	private static final  Logger logger = LoggerFactory.getLogger(AdminService.class);
 	
-	public List<ImgList> imgList() {
+	public ImgList imgList() {
 		return adminDao.imgList();
 	}
+	
 	public void inspectComplete(String email) {
-		
-		adminDao.inspectComplete(email);
-		
+		System.out.println(email);
+		int a = adminDao.inspectComplete(email);
+		System.out.println(a);
 		TokenInfo tokenInfo = adminDao.takePushForOneTarget(email);
 		
 		if(tokenInfo != null) {
@@ -63,7 +64,6 @@ public class AdminService {
 		map.put("denyReason", denyReason);
 		
 		adminDao.inspectFail(map);
-		
 		TokenInfo tokenInfo = adminDao.takePushForOneTarget(email);
 		
 		if(tokenInfo != null) {

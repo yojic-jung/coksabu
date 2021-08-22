@@ -658,7 +658,6 @@
                     </div>
                     
                      <div>
-                        <br/><br/><br/>
                         	제목<br/>
                         <span style="color:gray; font-size:18px;">제목을 30글자 미만으로 적어주세요.(<span class="title-length">0</span>/30)</span><br/>
                         <input name="title" type="text" id="lesson-title" style="margin-top:10px;width:570px;
@@ -787,16 +786,23 @@
           	  
           	  if(error == "error"){
           		  alert("수업은 최대 3개까지만 등록 가능합니다.")
-          		  window.close();
+          	  }else if(error == "notPer1"){
+          		  alert("입시(자소서/논술/면접) 영역을 제외한 다른 영역에서는 수업횟수를 한달 4,8,12회에서 선택해주세요.");
+          		  window.history.back();
           	  }
+          	  
+          	  var ipsiOpts = '<option class="onlyIpsi">3회분</option><option class="onlyIpsi">2회분</option><option class="onlyIpsi">1회분</option>'
           	  $('.service-cate').change(function(){
-          		  if($('.service-cate>option:selected').index()!=0){
+          		  if($('.service-cate>option:selected').index()!=0 && $('.service-cate>option:selected').index()!=7){
+          			$('.onlyIpsi').remove();
           			$('.service-table').show();
+          		  }else if($('.service-cate>option:selected').index()==7){
+          			$('.service-table').show();
+          			$('.price-standard').append(ipsiOpts);
           		  }else{
           			$('.service-table').hide();
           		  }
-          		  	
-          	  })
+          	  });
           	  
               $('.teacher-intr').each(function(idx, item){
                     if(idx !=0){

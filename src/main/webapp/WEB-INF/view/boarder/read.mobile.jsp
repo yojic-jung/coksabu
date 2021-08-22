@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +14,6 @@
 <link rel="canonical" href="https://coksabu.com/boardread?postId=171">
 <style>
 @charset "UTF-8";
-  body{
-		line-height:200%;
-    }
 
     
     .m-fixed{
@@ -326,13 +324,13 @@
                 <div>
                 <div class="subtitle">선생님 정보</div>
                 <c:if test="${pro.certify == 1}"> 
-                	<div style="margin:60px 0px;font-size:35px;text-align:center;font-family:NanumBarunGothic;">
+                	<div style="margin:60px 0px 0px 0px;font-size:35px;text-align:center;font-family:NanumBarunGothic;">
                 		<span style="color:orange;font-weight:bold">본인인증</span> 및 <span style="color:orange;font-weight:bold">학력인증</span>이 <span style="color:orange;font-weight:bold">완료</span> 된 선생님입니다.
                 	</div>
             	</c:if>
                	 <c:if test="${lesson.priNegotiation == 'yes'}">
-               	 	<div style="margin-bottom:100px;font-size:35px;text-align:center;font-family:NanumBarunGothic;">	
-               	 		협의 후 수업조건에 따라 <span style="color:orange;font-weight:bold">가격 협의 가능</span> 합니다.
+               	 	<div style="margin:60px 0px 100px 0px;font-size:35px;text-align:center;font-family:NanumBarunGothic;">	
+               	 		협의 후 수업조건에 따라 <span style="color:#3C5A9A;font-weight:bold">가격 협의 가능</span> 합니다.
                	 	</div>
                	 </c:if>
                 <div style="text-align:center;margin-top:40px;font-size:35px;">
@@ -387,6 +385,18 @@
             	<div class="subtitle">미디어</div>
             	<div class="img-div">
             	</div>
+            	
+            	<c:if test="${pro.certify==1}">
+            		<div class="subtitle">학력인증 이미지</div>
+            		<div>
+            			<img style="width:50%;" src="resources/certifyImg/${pro.certifyimg2}"/>
+            			
+            			<c:if test="${not empty pro.certifyimg3}">
+            				<img style="width:50%;" src="resources/certifyImg/${pro.certifyimg3}"/>
+            			</c:if>
+            		</div>
+            	</c:if>
+            	<br/>
 <div>
 
 <div class="subtitle" >취소 및 환불 규정</div>

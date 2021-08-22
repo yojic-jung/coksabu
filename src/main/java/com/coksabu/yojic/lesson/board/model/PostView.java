@@ -6,6 +6,8 @@ public class PostView {
 	private int id;
 	private String email;
 	private String phone;
+	private int certify;
+	
 	private String represent;
 	private String name;
 	private String nickname;
@@ -64,6 +66,13 @@ public class PostView {
 	}
 	public String getPhone() {
 		return phone;
+	}
+	
+	public void setCertify(int certify) {
+		this.certify=certify;
+	}
+	public int getCertify() {
+		return certify;
 	}
 	
 	public void setRepresent(String represent) {

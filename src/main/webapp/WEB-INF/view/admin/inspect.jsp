@@ -21,7 +21,16 @@ body{
 	margin:50px 0px 70px 0px;
 }
 .btn{
-padding:10px; color:black; text-decoration:none;
+padding:10px; color:white; text-decoration:none;
+width:100px;
+}
+.certify{
+	background:orange;
+	cursor:pointer;
+}
+.fail{
+	background:dimgray;
+	cursor:pointer;
 }
 </style>
 </head>
@@ -42,40 +51,47 @@ window.location="./";
 </div>
 
 <br/><br/>
-
-<table style="border-spacing:20px;text-align:center;font-size:15px;font-weight:bolder;">
-	<c:forEach var="imglist" items="${list}" >
+<form method="post" enctype="multipart/form-data" >
+<input type="text" name="email" value="${imgList.email}" style="display:none;"/>
+<table style="border-spacing:20px;text-align:center;font-size:15px;font-weight:bolder;width:95%;margin-bottom:200px;">
 	<tr>
-		<td>${imglist.name}(${imglist.birth})</td>
-		<td>${imglist.universe},${imglist.univsub}</td>
+		<td>${imgList.name}(${imgList.birth})</td>
+		<td>${imgList.universe},${imgList.univsub}</td>
 		<td>
-			<c:if test="${imglist.academy!=null && imglist.academy!=''}">
-				${imglist.academy}<br/>
-				${imglist.academyd}
+			<c:if test="${imgList.academy!=null && imgList.academy!=''}">
+				${imgList.academy}<br/>
+				${imgList.academyd}
 			</c:if>
 		</td>
 	</tr>
 	<tr>
-		<td style="padding-bottom:50px;">
-			<img src="<c:url value='/resources/certifyImg/${imglist.certifyimg1}' />" style="width:300px; height:150px; magin-top:0px;"/><br/>
+		<td style=";width:28%;">
+			<img src="<c:url value='/resources/certifyImg/${imgList.certifyimg1}' />" style="width:100%; magin-top:0px;"/><br/>
 		</td>
-		<td style="padding-bottom:50px;">
-			<img src="<c:url value='/resources/certifyImg/${imglist.certifyimg2}' />" style="width:180px; height:230px; magin-top:0px;"/><br/>
+		<td style="width:28%;">
+			<img src="<c:url value='/resources/certifyImg/${imgList.certifyimg2}' />" style="width:100%;magin-top:0px;"/><br/>
 		</td>
-		<td style="padding-bottom:50px;">
-			<c:if test="${imglist.academy!=null && imglist.academy!='' && imglist.certifyimg3 != null}">
-			<img src="<c:url value='/resources/certifyImg/${imglist.certifyimg3}' />" style="width:180px; height:230px; magin-top:0px;"/><br/>
+		<td style="width:28%;">
+			<c:if test="${imgList.academy!=null && imgList.academy!='' && imgList.certifyimg3 != null}">
+			<img src="<c:url value='/resources/certifyImg/${imgList.certifyimg3}' />" style="width:100%;magin-top:0px;"/><br/>
 			</c:if>
 		</td>
 		<td>
-			<button class="btn certify">인증완료<span style="display:none">${imglist.email}</span></button>
-			<br/><br/>
-			<button class="btn fail" >반려<span style="display:none">${imglist.email}</span></button>
+			<span class="btn certify">인증완료</span>
+			<br/><br/><br/>
+			<span class="btn fail" >반려</span>
 		</td>
 	</tr>
-	</c:forEach>
+	<tr>
+		<td><input name="certifyimg1" type="file"  accept="image/*" /></td>
+		<td><input name="certifyimg2" type="file"  accept="image/*" /></td>
+		<td><input name="certifyimg3" type="file"  accept="image/*" /></td>
+	</tr>
+	<tr>
+		<td colspan="3"><input type="submit" value="이미지 수정하기" style="padding:10px;width:150px;font-size:15px;margin-top:20px;" /></td>
+	</tr>
 </table>
-
+</form>
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <script>
 	$(document).ready(function(){
@@ -84,23 +100,23 @@ window.location="./";
 		});
 		
 		
+		
+		 var email = "<c:out value="${imgList.email}" />";
 		$('.certify').click(function(){
-		var email = $(this).find('span').text();
 			var a = confirm('인증완료 하시겠습니까?');
   			if(a){
-  			  window.location="./complete?email="+email;
+  			  location.href = "./complete?email="+email;
   		  	}else{
   				  return false;  
   		  }
 		})
 		
 		$('.fail').click(function(){
-			var email2 = $(this).find('span').text();
 			var b = confirm('반려하시겠습니까?');
   		  	if(b){
   		  		  var denyReason = prompt("반려사유를 적어주세요.","");
   				  $.ajax({
-					  url:'./adminCertifyFail?email='+email2,
+					  url:'./adminCertifyFail?email='+email,
 		    		  type:'post',
 		    		  data : { "denyReason" : denyReason},
 		    		  error:function(request,status,error){

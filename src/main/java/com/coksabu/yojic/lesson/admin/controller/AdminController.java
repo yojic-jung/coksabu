@@ -1,5 +1,6 @@
 package com.coksabu.yojic.lesson.admin.controller;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ import com.coksabu.yojic.lesson.admin.model.OrderStatusRecord;
 import com.coksabu.yojic.lesson.admin.model.QnaList;
 import com.coksabu.yojic.lesson.admin.model.RefundComplete;
 import com.coksabu.yojic.lesson.admin.model.RefundSearch;
+import com.coksabu.yojic.lesson.admin.model.SecessionList;
 import com.coksabu.yojic.lesson.admin.model.TranSearch;
 import com.coksabu.yojic.lesson.admin.service.AdminAdditionService;
 import com.coksabu.yojic.lesson.admin.service.AdminDelServcie;
@@ -32,7 +34,10 @@ import com.coksabu.yojic.lesson.admin.service.AdminService;
 import com.coksabu.yojic.lesson.board.model.PurchaseHistory;
 import com.coksabu.yojic.lesson.chat.model.ChatPurchase;
 import com.coksabu.yojic.lesson.deal.model.RefundContent;
+import com.coksabu.yojic.lesson.member.model.Certify;
+import com.coksabu.yojic.lesson.member.model.CertifyDB;
 import com.coksabu.yojic.lesson.member.model.Qna;
+import com.coksabu.yojic.lesson.member.service.CertifyService;
 
 @Controller
 public class AdminController {
@@ -60,13 +65,30 @@ public class AdminController {
 		String configLocation = "classpath:applicationContext.xml";
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
 		AdminService adminService = ctx.getBean("adminService", AdminService.class );
-		List<ImgList> list = adminService.imgList();
+		ImgList imgList = adminService.imgList();
 		int count = adminService.certifyCount();
 		ctx.close();
-		model.addAttribute("list", list);
+		model.addAttribute("imgList", imgList);
 		model.addAttribute("count", count);
 		return "admin/inspect";
 	}
+	
+	@RequestMapping(value="admininspect", method=RequestMethod.POST)
+	public String admininspect(Certify certify, HttpServletRequest request, Model model) throws IllegalStateException, IOException {
+		String configLocation = "classpath:applicationContext.xml";
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
+		CertifyService certifyService = ctx.getBean("certifyService", CertifyService.class);
+		
+		String path = request.getServletContext().getRealPath("resources/theme/certifyImg");
+		
+		CertifyDB cerDB = new CertifyDB(certify, path);
+		
+		int a = certifyService.certify(cerDB, path);
+		ctx.close();
+		
+		return "redirect:admininspect";
+	}
+	
 	
 	
 	@RequestMapping("complete")
@@ -79,6 +101,7 @@ public class AdminController {
 			String configLocation = "classpath:applicationContext.xml";
 			AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
 			AdminService adminService = ctx.getBean("adminService", AdminService.class );
+			System.out.println(email);
 			adminService.inspectComplete(email);
 			ctx.close();
 		}
@@ -680,5 +703,32 @@ public class AdminController {
 			model.addAttribute("status", status);
 		}
 			return "admin/adminDelUserAKA";
+	}
+	
+	@RequestMapping("adminSecessionList")
+	public String adminSecessionList(Model model) {
+		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
+		AdminAdditionService adminAddService = ctx.getBean(AdminAdditionService.class);
+		List<SecessionList> secessionList = adminAddService.adminSecessionList();
+		ctx.close();
+		
+		for(SecessionList secession: secessionList) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+			secession.setLoginDateS(sdf.format(secession.getLoginDate()));
+			secession.setSecessionapplydateS(sdf.format(secession.getSecessionapplydate()));
+		}
+		
+		model.addAttribute("secessionList", secessionList);
+		return "admin/adminSecessionList";
+	}
+	
+	@RequestMapping("adminCertiTest")
+	public String adminCertiTest(Model model) {
+		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
+		AdminAdditionService adminAddService = ctx.getBean(AdminAdditionService.class);
+		List<ImgList> imgList = adminAddService.adminCertiTest();
+		ctx.close();
+		model.addAttribute("imgList", imgList);
+		return "admin/certiTest";
 	}
 }

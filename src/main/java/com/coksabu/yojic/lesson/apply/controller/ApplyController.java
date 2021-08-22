@@ -16,6 +16,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.mobile.device.Device;
+import org.springframework.mobile.device.DeviceUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -39,13 +41,13 @@ import com.coksabu.yojic.lesson.apply.service.MyApplyListService;
 import com.coksabu.yojic.lesson.apply.service.TeacherApplyService;
 import com.coksabu.yojic.lesson.member.model.MemberInfo;
 import com.coksabu.yojic.lesson.member.service.CheckAndInsertService;
+import com.coksabu.yojic.loginhandler.LoginCommonFunction;
 
 @Controller
 public class ApplyController extends DeviceSwitcherController{
 	
 	private static final  Logger logger = LoggerFactory.getLogger(ApplyController.class);
-	
-	
+ 	
 	//테스트 완료
 	@RequestMapping(value="lessonapply", method = RequestMethod.GET)
 	public String lessonApply() {
@@ -181,50 +183,28 @@ public class ApplyController extends DeviceSwitcherController{
 			teacherApplyService.sendPushNotificationTarget(locale,applyWithSign.getCate(), link);
 			ctx.close();
 			
+			String email = applyWithSign.getEmail();
+			LoginCommonFunction loginCommonFunction = new LoginCommonFunction();
 			
-			//자동 로그인 처리
-			SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority("user");
-			List<SimpleGrantedAuthority> collection = new ArrayList<>();
-			collection.add(simpleGrantedAuthority);
+			HashMap<String, Object> loginMap = loginCommonFunction.loginCommonMethod(email, false, false);
+			HashMap<String, Object> loginMap2 = loginCommonFunction.makeRememberMeCookie(email, signupMap.get("password"), "user");
 			
-			String encryptedPass = signupMap.get("password");
-			UserDetails customUserDetails = new User(applyWithSign.getEmail(), encryptedPass, collection);
+			Cookie cookie = (Cookie)loginMap.get("cookie");
 			
-		    Authentication authentication = new UsernamePasswordAuthenticationToken(customUserDetails, encryptedPass, customUserDetails.getAuthorities());
-
-		    SecurityContext securityContext = SecurityContextHolder.getContext();
-		    securityContext.setAuthentication(authentication);
-		    session = request.getSession(true);
-		    session.setAttribute("email", applyWithSign.getEmail());
-		    session.setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
+			response.addCookie(cookie);
+			
+	        session = request.getSession(true);
+		    session.setAttribute("email", email);
+		    session.setAttribute("SPRING_SECURITY_CONTEXT", (SecurityContext)loginMap2.get("securityContext"));
 		    
+		    Cookie rememberMeCookie = (Cookie)loginMap2.get("rememberMeCookie");
 		    
-		    long tokenValidityTime = 14515200000L;
-			long millis = System.currentTimeMillis()+tokenValidityTime;
-			
-			String target = applyWithSign.getEmail() + ":" + millis + ":" +org.apache.commons.codec.digest.DigestUtils.md5Hex(applyWithSign.getEmail() + ":" + millis + ":"+encryptedPass + ":" + "wmoskey");
-		    byte[] targetBytes = target.getBytes();
-	        // Base64 인코딩 ///////////////////////////////////////////////////
-	        Encoder encoder = Base64.getEncoder();
-	        
-	        // Encoder#encode(byte[] src) :: 바이트배열로 반환
-	        byte[] encodedBytes = encoder.encode(targetBytes);
-	        
-	        String rememberCookie = new String(encodedBytes);
-	        String rememberMeCookie = rememberCookie.replace("=", "");
-	        
-	        Cookie cookie = new Cookie("remember-me",rememberMeCookie);
-	        cookie.setPath("/");
-	        cookie.setHttpOnly(true);
-	        cookie.setMaxAge(14515200);
-	        
-	        Cookie cookie2 = new Cookie("userInputEmail",applyWithSign.getEmail());
-	        cookie2.setPath("/");
-	        cookie2.setMaxAge(14515200);
-	        
-	        response.addCookie(cookie);
-	        response.addCookie(cookie2);
-			
+		    //pc 모바일 리멤버미 구분
+		    Device device = DeviceUtils.getCurrentDevice(request);
+		    if(device.isMobile() || device.isTablet()) {
+		    	response.addCookie(rememberMeCookie);
+		    }
+		    
 			return "redirect:applysuccess";
 		}
 		

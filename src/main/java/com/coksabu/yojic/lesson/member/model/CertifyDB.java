@@ -29,11 +29,13 @@ public class CertifyDB {
 		this.email = cer.getEmail();
 		
 		Random random = new Random();
-		long currentTime = System.currentTimeMillis();
-		int randomValue = random.nextInt(50);
 		
+		long currentTime;
+		int randomValue;
 		if(!cer.getCertifyimg1().getOriginalFilename().equals("")) {
-		String fileName = Long.toString(currentTime) + "_"+randomValue+"_"+cer.getCertifyimg1().getOriginalFilename();
+			currentTime = System.currentTimeMillis();
+			randomValue = random.nextInt(100);
+		String fileName = Long.toString(currentTime) + "_"+randomValue+"_a_"+cer.getCertifyimg1().getOriginalFilename();
 		
 		File file = new File(path , fileName);
 		cer.getCertifyimg1().transferTo(file);
@@ -42,7 +44,9 @@ public class CertifyDB {
 		
 		
 		if(!cer.getCertifyimg2().getOriginalFilename().equals("")) {
-			String fileName = Long.toString(currentTime) + "_"+randomValue+"_"+cer.getCertifyimg2().getOriginalFilename();
+			currentTime = System.currentTimeMillis();
+			randomValue = random.nextInt(100);
+			String fileName = Long.toString(currentTime) + "_"+randomValue+"_b_"+cer.getCertifyimg2().getOriginalFilename();
 			
 			File file = new File(path , fileName);
 			cer.getCertifyimg2().transferTo(file);
@@ -51,7 +55,9 @@ public class CertifyDB {
 		
 		
 		if(!cer.getCertifyimg3().getOriginalFilename().equals("")) {
-			String fileName = Long.toString(currentTime) + "_"+randomValue+"_"+cer.getCertifyimg3().getOriginalFilename();
+			currentTime = System.currentTimeMillis();
+			randomValue = random.nextInt(100);
+			String fileName = Long.toString(currentTime) + "_"+randomValue+"_c_"+cer.getCertifyimg3().getOriginalFilename();
 			
 			File file = new File(path , fileName);
 			cer.getCertifyimg3().transferTo(file);

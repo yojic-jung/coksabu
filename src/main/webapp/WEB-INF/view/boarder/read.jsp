@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -264,7 +265,7 @@
                 </c:if>
                	 <c:if test="${lesson.priNegotiation == 'yes'}">
                		<div style="font-size:17px;margin:20px 0px;text-align:center;font-family:NanumBarunGothic;"> 
-               	 		상담 후 학생의 수업방식, 수업조건에 따라 <span style="color:orange;font-weight:bold">가격 협의 가능</span> 합니다.
+               	 		상담 후 학생의 수업방식, 수업조건에 따라 <span style="color:#3C5A9A;font-weight:bold">가격 협의 가능</span> 합니다.
                 	</div>
                 </c:if>
                 <br/>
@@ -334,13 +335,27 @@
 				
 				<br/>
 				
-			
-				
+				<c:if test="${pro.certify==1}">
+					<div class="subtitle">학력인증 이미지</div>
+	            	<div>
+	            		<img style="width:50%;" src="resources/certifyImg/${pro.certifyimg2}"/>
+	            			
+	            		<c:if test="${not empty pro.certifyimg3}">
+	            			<img style="width:50%;" src="resources/certifyImg/${pro.certifyimg3}"/>
+	            		</c:if>
+	            	</div>
+            	</c:if>	
+            	
+            	<br/>
             	
             	<div class="subtitle">미디어</div>
             	<div class="img-div">
             	</div>
+            	
             	<br/>
+            	
+            	
+            	
 <div>
 
 <div class="subtitle" >취소 및 환불 규정</div>

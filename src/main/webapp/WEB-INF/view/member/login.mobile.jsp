@@ -15,6 +15,7 @@
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap&subset=korean" rel="stylesheet">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href= "<c:url value="/resources/css/commonHeader.css?v=2"/>">
 <style>
  @font-face { font-family: 'JejuGothic'; 
       src: url(<c:url value="/resources/JejuGothic-Regular.ttf" />) format('truetype'); } 
@@ -28,31 +29,6 @@
             -webkit-touch-callout: none;
           }
       
-   .m-jbMenu{
-          background:white;
-          width:100%;
-          padding:30px; 
-          font-size:80px;
-          font-family:'Do Hyeon'; 
-          border-bottom:1px solid gray; 
-          position:fixed;
- 		  top:0px;
-          z-index:99;
-          text-align:center;
-}
-          
-.m-title{
-	   	 color:orange;
-	   	 text-decoration: none;
-	}
-	
-	.m-back{	
-	   	 position:absolute;
-	   	 left:0%; 
-	   	 color:#A6A6A6;
-	   	 padding:0px 50px;
-	}
-	
 	.naver-customize{
 	 background-image:url(<c:url value="/resources/img/naverbackground.png" />);
 	font-family: 'Apple SD Gothic Neo','Malgun Gothic';font-size:40px;color:white;border-radius:10px; padding:20px;
@@ -202,15 +178,8 @@ $(document).ready(function(){
 
 </head>
 <body>
-<header class="m-header">
-  
-    <div class="m-jbMenu">
-    <span class="m-back">&lt;</span>
- 		<a href="./" class="m-title">콕사부</a>
- 	</div>
-</header>
+<%@ include file="/WEB-INF/view/include/mHeader2.jsp" %>
 
-<div class="m-fix-background" style="height:160px"></div>
 
     <sec:authorize access="isAuthenticated()">
 		<script>

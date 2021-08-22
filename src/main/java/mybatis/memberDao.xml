@@ -31,15 +31,15 @@
 	</update>
 	
 	<insert id="signUp" parameterType="com.coksabu.yojic.lesson.member.model.MemberInfo" >
-		insert into members (email, password, name, nickname, birth, phone, logindate, signupdate, membership, enabled, authority, human_status, fail_count, fail_time, imgpath, push) values (#{email}, #{password}, #{name}, #{name}, #{birth}, #{phone}, now(), now(), 0, 1, 'user', 0, 0, 0, 'pro.png', 'ON')
+		insert into members (email, password, name, nickname, birth, phone, logindate, signupdate, membership, enabled, authority, human_status, fail_count, fail_time, imgpath, push) values (#{email}, #{password}, #{name}, #{nickname}, #{birth}, #{phone}, now(), now(), 0, 1, 'user', 0, 0, 0, 'pro.png', 'ON')
 	</insert>
 	
 	<insert id="preUserSignUp" parameterType="com.coksabu.yojic.lesson.member.model.MemberInfo" >
-		insert into members (email, password, name, nickname, birth, phone, logindate, signupdate, membership, enabled, authority, human_status, fail_count, fail_time, imgpath, push) values (#{email}, #{password}, #{name}, #{name}, #{birth}, #{phone}, now(), now(), 0, 1, 'pre-user', 0, 0, 0, 'pro.png', 'ON')
+		insert into members (email, password, name, nickname, birth, phone, logindate, signupdate, membership, enabled, authority, human_status, fail_count, fail_time, imgpath, push) values (#{email}, #{password}, #{name}, #{nickname}, #{birth}, #{phone}, now(), now(), 0, 1, 'pre-user', 0, 0, 0, 'pro.png', 'ON')
 	</insert>
 	
 	<insert id="naverSignUp" parameterType="com.coksabu.yojic.lesson.member.model.MemberInfo" >
-		insert into members (email, password, name, nickname, birth, phone, logindate, signupdate, membership, enabled, authority, human_status, fail_count, fail_time, imgpath, push) values (#{email}, #{password}, #{name}, #{name}, #{birth}, #{phone}, now(), now(), 0, 1, 'user', 0, 0, 0, 'pro.png', 'ON')
+		insert into members (email, password, name, nickname, birth, phone, logindate, signupdate, membership, enabled, authority, human_status, fail_count, fail_time, imgpath, push) values (#{email}, #{password}, #{name}, #{nickname}, #{birth}, #{phone}, now(), now(), 0, 1, 'user', 0, 0, 0, 'pro.png', 'ON')
 	</insert>
 	
 	<update id="updateNaverPassword" parameterType="com.coksabu.yojic.lesson.member.model.MemberInfo">
@@ -156,7 +156,7 @@
 	</select>
 	
 	<update id="updateLoginTime" >
-		update members set logindate=#{date}, fail_count=0, fail_time=0 where email=#{email}
+		update members set logindate=now(), fail_count=0, fail_time=0 where email=#{email}
 	</update>
 	
 	<insert id="insertApplyCount">
@@ -260,10 +260,19 @@
 	</select>
 	
 	<update id="updateMemberforPreUser" parameterType="com.coksabu.yojic.lesson.member.model.MemberInfo">
-		update members set name=#{name}, nickname=#{name}, birth=#{birth}, phone=#{phone}, authority='user' where email=#{email}
+		update members set name=#{name}, nickname=#{nickname}, birth=#{birth}, phone=#{phone}, authority='user' where email=#{email}
 	</update>
 	
 	<select id="takeRollAndPassword" resultType="com.coksabu.yojic.lesson.member.model.MemberInfo">
 		select authority, password from members where email=#{email}
 	</select>
+	
+	<select id="insepectSecession" resultType="Integer">
+		select count(*) from secessionlist where email=#{email}
+	</select>
+	
+	<insert id="addSecessoinList">
+		insert into secessionlist (email, secessionapplydate) values (#{email}, now() )
+	</insert>
+	
 </mapper>

@@ -115,7 +115,9 @@ padding:20px;
 					</td>
 				</tr>
 			</table>
-    	        
+    	    <div style="width:80%;margin:auto;line-height:150%;">
+    	    	※ 대학 및 대학원 인증 이미지는 선생님의 수업을 열람하는 학생들이 볼 수 있도록 공개가 됩니다.<br/>(이름과 학력사항을 제외한 정보는 마스킹 처리됩니다. )
+    	    </div>    
 			<div style="text-align:center;margin:40px auto;" class="submit-div">
 				<input type="submit" class="certi" value="보내기" />
    			</div>
@@ -129,6 +131,8 @@ var ctx = "<c:out value="${pageContext.request.contextPath}" />";
 var certifyimg1 = "<c:out value="${cerDB.certifyimg1}" />";
 var certifyimg2 = "<c:out value="${cerDB.certifyimg2}" />";
 var certifyimg3 = "<c:out value="${cerDB.certifyimg3}" />";
+
+var certify = "<c:out value="${cerDB.certify}" />";
 
 $(document).ready(function(){
 	 var status = "<c:out value="${status}" />";
@@ -150,14 +154,10 @@ $(document).ready(function(){
 	 }
 	 
 	 
-	 var certify = "<c:out value="${cerDB.certify}" />";
+	 
 	 
 	 if(certify==1){
-		 $('.certi').remove();
-		 $('#imgplus1').remove();
-		 $('#imgplus2').remove();
-		 $('#imgplus3').remove();
-		 $(".submit-div").text("인증이 완료되었습니다.")
+		 $('.certi').val("재인증 하기");
 	 }
 	 
 	
@@ -331,7 +331,15 @@ function CheckForm(memberInfo){
 		return false;
 		}
 	}
-   }
+	
+	if(certify==1){
+		var a = confirm("회원님은 이미 인증이 완료되었습니다.\n재인증을 하는 경우 인증하는 동안 수업 노출이 제한됩니다.\n재인증 하시겠습니까?");
+		if(a != true){
+			return false;
+		}
+	}
+	
+}
 	
 function getRequestParam(){
 	    var url = document.location.href;

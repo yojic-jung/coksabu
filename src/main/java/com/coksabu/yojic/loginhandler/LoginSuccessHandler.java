@@ -1,7 +1,7 @@
 package com.coksabu.yojic.loginhandler;
 
 import java.io.IOException;
-
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -11,8 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
@@ -21,10 +19,6 @@ import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.coksabu.yojic.lesson.member.controller.MemberController;
-import com.coksabu.yojic.lesson.member.service.LoginCheckService;
-import com.coksabu.yojic.lesson.member.service.MemberService;
 
 //테스트 완료
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
@@ -44,36 +38,21 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     	HttpSession session = request.getSession(true);
     	String email = authentication.getName();
     	session.setAttribute("email", email);
-    	String configLocation = "classpath:applicationContext.xml";
-		AbstractApplicationContext ctx = new GenericXmlApplicationContext(
-				configLocation);
-		LoginCheckService loginCheckService = ctx.getBean("loginCheckService", LoginCheckService.class );
-		int humanStatus = loginCheckService.updateLoginTime(email);
-		
-		
-		//메세지 카운
-		MemberService memberService = ctx.getBean("memberService", MemberService.class );
-		int messageCount = memberService.takeUnreadMessageCount(authentication.getName());
-		
-		String messageStatus;
-		if(messageCount==0) {
-			messageStatus="none";
-		}else {
-			messageStatus="exist";
-		}
-		
+    	
+    	LoginCommonFunction loginCommonFunction = new LoginCommonFunction();
+    	HashMap<String, Object> map = loginCommonFunction.loginCommonMethod(email, true, false);
+    	String messageStatus= (String)map.get("messageStatus");
+		String humanStatus = (String)map.get("humanStatus");
+		Cookie cookie = (Cookie)map.get("cookie");
+    	
+    	
 		session.setAttribute("messageStatus", messageStatus);
 		
-		Cookie cookie = new Cookie("userInputEmail",email);
-        cookie.setPath("/");
-        cookie.setMaxAge(14515200);
         response.addCookie(cookie);
         
-		if(humanStatus==1) {
-			ctx.close();
+		if(humanStatus.equals("human_user")) {
 			 redirectStratgy.sendRedirect(request, response, "/passwordsetting");
 		}else {
-			ctx.close();
 	    	 resultRedirectStrategy(request, response, authentication);
 		}
     	

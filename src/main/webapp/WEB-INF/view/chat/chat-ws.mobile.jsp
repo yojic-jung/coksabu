@@ -356,22 +356,6 @@ font-size:20px;color:gray; margin:10px 10px 0px 10px ;float:right;
 </head>
 <body>
 
-<header class="m-header">
-   <div class="m-jbMenu">
-    <span class="m-back">&lt;</span>
-   </div>
-   <div style="background:white;padding:20px 0px 0px 0px">
-   		<div class="purchase purchase-title" >
-		거래 제안서 작성
-		</div>
-	</div>
-	<div style="background:white;padding:20px 0px 0px 0px">
-		<div class="purchase-exist purchase-box purchase-title">
-		거래 제안서 보기
-		</div>
-	</div>
-</header>
-
 <div class="chat" style="padding-top:20px;">
 
 

@@ -47,8 +47,8 @@ padding-bottom:100px;
         	  $('.pc-left').find('a').eq(2).css('color','orange');
         	  
         	  $('.secession').click(function(){
-        		  var con = confirm("회원을 탈퇴하시겠습니까??")
-        		  if(con==true){
+        		  var prmt = prompt("회원탈퇴를 신청하는 경우 아래칸에  따움표 없이 '회원탈퇴'  라고 적어주시기 바랍니다.");
+        		  if(prmt=='회원탈퇴'){
         			  $.ajax({
             			  url:'./secessionApply',
             			  type:'get',
@@ -56,7 +56,8 @@ padding-bottom:100px;
             				  alert("처리가 제대로 되지 않았습니다.\n 다시 시도 해주세요."+error);
             			  },
             			  success:function(data){
-            				  window.location.href="./j_spring_security_logout"
+            					  alert("회원탈퇴를 신청하였습니다. 탈퇴를 취소하고 싶으신 경우 2주 이내에 재로그인해 주시기 바랍니다.")
+            					  window.location.href="./j_spring_security_logout"
             			  }
             		  });
         		  }

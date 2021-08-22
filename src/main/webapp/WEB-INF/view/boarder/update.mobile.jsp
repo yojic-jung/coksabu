@@ -305,6 +305,9 @@
 		display:none;
 	}
 	
+	.onlyIpsi{
+		display:none;
+	}
 	
 </style>
 <title>수업 수정</title>
@@ -673,6 +676,9 @@
                         				<option>한달 12회</option>
                         				<option>한달 8회</option>
                         				<option>한달 4회 </option>
+                        				<option class="onlyIpsi">3회분</option>
+                        				<option class="onlyIpsi">2회분</option>
+                        				<option class="onlyIpsi">1회분</option>
                      				</select>
                         			</td>
                         			<td>
@@ -680,6 +686,9 @@
                         				<option>한달 12회</option>
                         				<option>한달 8회</option>
                         				<option>한달 4회 </option>
+                        				<option class="onlyIpsi">3회분</option>
+                        				<option class="onlyIpsi">2회분</option>
+                        				<option class="onlyIpsi">1회분</option>
                      				</select>
                         			</td>
                         			<td>
@@ -687,6 +696,9 @@
                         				<option>한달 12회</option>
                         				<option>한달 8회</option>
                         				<option>한달 4회 </option>
+                        				<option class="onlyIpsi">3회분</option>
+                        				<option class="onlyIpsi">2회분</option>
+                        				<option class="onlyIpsi">1회분</option>
                      				</select>
                         			</td>
                         		</tr>
@@ -917,6 +929,13 @@
         <script src="resources/jquery-number-master/jquery.number.min.js"></script>    
             <script>
             $(document).ready(function(){
+            	var error = "<c:out value="${error}" />";
+          	  
+            	if(error == "notPer1"){
+            		 alert("입시(자소서/논술/면접) 영역을 제외한 다른 영역에서는 수업횟수를 한달 4,8,12회에서 선택해주세요.");
+            		 window.history.back();
+            	}
+            	
             	
             	$('.m-jbMenu').append("수정하기");
             	
@@ -998,8 +1017,8 @@
                          	alert("수업 가능 요일을 체크해주세요.");
                      	 }else if($('input:checkbox[name="gawe"]:checked').length == 0){
                          	alert("개인과외, 화상과외 가능여부를 체크해주세요.");
-                     	 }else if(lessonIntr.value.length<100){
-                           alert('수업소개글을 최소 100글자 이상 작성해주세요.');
+                     	 }else if(lessonIntr.value.length<30){
+                           alert('수업소개글을 최소 30글자 이상 작성해주세요.');
                          }else if(lessonIntr.value.length>500){
                             alert('수업소개글은 최대 500글자 미만입니다.');
                           }else{
@@ -1011,8 +1030,8 @@
                	  var careerDesc = document.getElementById('careerDesc');
                	  if(careerDesc.value.length==0){
                          alert('선생님소개를 작성해주세요.');
-                       }else if(careerDesc.value.length<100){
-                         alert('선생님소개란을 최소 100글자 이상 적어주세요.');
+                       }else if(careerDesc.value.length<30){
+                         alert('선생님소개란을 최소 30글자 이상 적어주세요.');
                        }else if(careerDesc.value.length>500){
                          alert('선생님소개는 최대 500글자 미만입니다.');
                        }else{
@@ -1076,6 +1095,13 @@
                        $('select[name=subCate2]').each(function(index, item){
                     	   $(this).val(subcate2).prop("selected", true);
                        });
+                       
+                        if(opIdx==7){
+                     		$('.onlyIpsi').show();
+                     	}else{
+                    		$('.onlyIpsi').remove();
+                    	}
+                       
                    }
                    
                      

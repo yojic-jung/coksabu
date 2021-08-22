@@ -72,6 +72,7 @@
 	background:black;
 	font-family: 'Apple SD Gothic Neo','Malgun Gothic';font-size:15px;color:white;border-radius:10px; font-weight:bolder;
 	margin:20px auto;cursor:pointer;border:1px solid black;
+	display:none;
 	}
     </style>
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
@@ -171,7 +172,7 @@ $(document).ready(function(){
             </div>
             <label><input type="checkbox" id="emailSave" /> 이메일 기억하기</label><br/>
             <div style="display:none">
-            <input id="remember_me" name ="remember-me" type="checkbox" checked/>Remember me<br/>
+            <input id="remember_me" name ="remember-me" type="checkbox"/>Remember me<br/>
 			</div>
             <input style="padding:10px;font-size:15px; width:350px; background-color:rgb(68, 68, 68); 
             color : white; border:none; border-radius:5px; margin-top:20px;cursor:pointer;"
@@ -225,29 +226,31 @@ $(document).ready(function(){
     		});
     	  	
     	  	$(document).ready(function(){
-    	  	 
+    	  		var broswerInfo = navigator.userAgent;
+    	  		//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+    	  		if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+    	  			$("#remember_me").attr("checked", true);
+    	  		}
     	  		
-    	     var currentUrlApple = window.location.href;
-       	     var callbackUrlApple = '';
-       	     if(currentUrlApple.indexOf("www.coksabu.com") != -1){
-       	     	callbackUrlApple = "https://www.coksabu.com/loginCallBackApple";
-       	     }else if(currentUrlApple.indexOf("m.coksabu.com") != -1){
-       	     	callbackUrlApple = "https://m.coksabu.com/loginCallBackApple";
-       	     }else{
-     	     	callbackUrlApple = "https://coksabu.com/loginCallBackApple";
-     	     }
-       	     
-       	     
-       	     
-       	  	 var state = "<c:out value="${state}" />";
-          	 var client_nonce = "<c:out value="${client_nonce}" />";
-          	 AppleID.auth.init({
-       	         clientId : 'com.coksabu.coksabu',
-       	         scope : 'name email',
-       	         redirectURI : callbackUrlApple,
-       	         state : state,
-       	         nonce : client_nonce,
-       	     });
+	    	     var currentUrlApple = window.location.href;
+	       	     var callbackUrlApple = '';
+	       	     if(currentUrlApple.indexOf("www.coksabu.com") != -1){
+	       	     	callbackUrlApple = "https://www.coksabu.com/loginCallBackApple";
+	       	     }else if(currentUrlApple.indexOf("m.coksabu.com") != -1){
+	       	     	callbackUrlApple = "https://m.coksabu.com/loginCallBackApple";
+	       	     }else{
+	     	     	callbackUrlApple = "https://coksabu.com/loginCallBackApple";
+	     	     }
+	       	     
+	       	  	 var state = "<c:out value="${state}" />";
+	          	 var client_nonce = "<c:out value="${client_nonce}" />";
+	          	 AppleID.auth.init({
+	       	         clientId : 'com.coksabu.coksabu',
+	       	         scope : 'name email',
+	       	         redirectURI : callbackUrlApple,
+	       	         state : state,
+	       	         nonce : client_nonce,
+	       	     });
     	  	})  	
     	  	 
     	     	  	

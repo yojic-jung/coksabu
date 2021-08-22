@@ -12,7 +12,7 @@ import com.coksabu.yojic.lesson.fcm.util.TokenInfo;
 
 @Repository
 public interface ApplyDao {
-
+	
 	public String takeApplyEmail(int applyId);
 	
 	public int apply(ApplyForm apply);

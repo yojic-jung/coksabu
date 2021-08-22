@@ -91,7 +91,7 @@ public interface MemberDao {
 	
 	public String takeEmail(EmailInfo info);
 	
-	public void updateLoginTime(HashMap<String, Object> map);
+	public void updateLoginTime(String email);
 	
 	public void insertApplyCount(String email);
 	
@@ -149,4 +149,7 @@ public interface MemberDao {
 	
 	public MemberInfo takeRollAndPassword(String email);
 	
+	public int insepectSecession(String email);
+	
+	public void addSecessoinList(String email);
 }

@@ -3,8 +3,9 @@
 <!-- default directory 설정 -->
 <decorators defaultdir="/WEB-INF/view">
 
+	<!-- 메인페이지는 데코레이터 적용 없이 따로 구현됨 -->
 
-	<!-- sample -->
+
 	<decorator name="sampleLayout" page="lessonking_decorator.jsp">
 		<pattern>/boarder*</pattern>
 		<pattern>/applylist*</pattern>

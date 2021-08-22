@@ -29,6 +29,7 @@ public class CheckAndInsertService {
 			if(phoneCheck==0) {
 				String encodPassword=passwordEncoder.encode(memberInfo.getPassword());
 				memberInfo.setPassword(encodPassword);
+				memberInfo.setNickname(memberInfo.getName().substring(0, 1)+"사부");
 				memberDao.signUp(memberInfo);
 				map.put("password", encodPassword);
 				map.put("signupStatus", "success");
@@ -62,6 +63,7 @@ public class CheckAndInsertService {
 				memberInfo.setBirth(memberInfo.getBirth().replace("-","").substring(2));
 				String encodePassword=passwordEncoder.encode(memberInfo.getPassword());
 				memberInfo.setPassword(encodePassword);
+				memberInfo.setNickname(memberInfo.getName().substring(0, 1)+"사부");
 				memberDao.naverSignUp(memberInfo);
 				
 				map.put("status", "success");
@@ -75,6 +77,7 @@ public class CheckAndInsertService {
 		//네이버 아이디가 있는경우
 		}else {
 			String encryptedPW = memberDao.takeEncryptedPW(memberInfo.getEmail());
+			
 			map.put("status", "goLogin");
 			map.put("password", encryptedPW);
 			return map;
@@ -91,6 +94,7 @@ public class CheckAndInsertService {
 			memberInfo.setEmail(email);
 			memberInfo.setBirth("000000");
 			memberInfo.setName("미인증회원");
+			memberInfo.setNickname("미인증회원");
 			memberInfo.setPhone("00000000000");
 			
 			SecureRandom random = new SecureRandom();

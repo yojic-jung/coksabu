@@ -55,13 +55,13 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 <script>
 $(document).ready(function(){
 	 var appleCerity = "<c:out value="${appleCerity}" />";
-	 console.log(appleCerity);
 	 if(appleCerity=='fail'){
 		 alert("로그인 인증에 실패하였습니다.\n다시 로그인 시도해주시기 바랍니다.");
 		 window.location.href="./login";
 	 }
 	 
-	var status = "<c:out value="${status}" />"
+	var status = "<c:out value="${status}" />";
+	var targetUrl = "<c:out value="${targetUrl}" />";
 
 	if(status=='signUp'){
 		fbq('track', 'CompleteRegistration', {currency: "KRW", value: 1.00});
@@ -71,7 +71,14 @@ $(document).ready(function(){
 			window.location.href="./?cok_tutorial=first_user";
 		},1000);
 	}else if(status=='goLogin'){
-	  	window.location='./';
+			  if(targetUrl!=null && targetUrl!=""){
+				  var redirectUrl = targetUrl;
+				  redirectUrl = redirectUrl.replace("&amp;","&");
+				  console.log(redirectUrl);
+				  window.location.href = redirectUrl;
+			  }else{
+				  window.location.replace("./")
+			  }
 	}
 });
 </script>

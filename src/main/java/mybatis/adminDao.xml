@@ -283,7 +283,9 @@
 	</select>
 	
 	
-	
+	<select id="adminSecessionList" resultType="com.coksabu.yojic.lesson.admin.model.SecessionList">
+		select A.email, A.logindate, B.secessionapplydate from members as A, secessionlist as B where A.email=B.email
+	</select>
 	
 	
 	
@@ -312,5 +314,10 @@
 		delete from chat_member_status where roomnumber = #{item}
 		</foreach>
 	</delete>
+	
+	<select id="takeAllCertify" resultType="com.coksabu.yojic.lesson.admin.model.ImgList">
+		select email, certifyimg1,certifyimg2, certifyimg3 from profile where certifyimg1 is not null;
+	</select>
+	
 	
 </mapper>

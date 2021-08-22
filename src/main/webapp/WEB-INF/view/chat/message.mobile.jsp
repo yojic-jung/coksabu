@@ -39,67 +39,7 @@
         	padding:10px 20px;
         	border-radius:15px;
         }
-        .m-jbMenu{
-          background:white;
-          width:100%;
-          padding:30px; 
-          font-size:80px;
-          font-family:'Do Hyeon'; 
-          border-bottom:1px solid gray; 
-          position:fixed;
- 		  top:0px;
-          z-index:99;
-          text-align:center;
-}
-          
-.m-title{
-	   	 color:orange;
-	   	 text-decoration: none;
-	}
-	
-	.m-back{	
-	   	 position:absolute;
-	   	 left:0%; 
-	   	 color:#A6A6A6;
-	   	 padding:0px 50px;
-	}
 		
-
-.bottom-cate{
-	width: 100%;
-	padding:20px 20px 80px 20px;
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	background:white;
-	border:4px solid gray;
-	z-index:10;
-}
-
-.bottom-table{
-boarder-spacing:0px;
-width:100%;
-padding:0px;
-
-}
-.bottom-table td{
-padding:0px;
-text-align:center;
-font-size:28px;
-width:20%;
-
-boarder-spacing:0px;
-}
-.bottom-img{
-width:60%;
-height:70px;
-padding:0px;
-}
-.bottom-table a{
-text-decoration:none;
-color:#A6A6A6;
-}
-      
 </style>
 </head>
 <body>
@@ -166,15 +106,7 @@ $(document).ready(function(){
 
 
 </script>
-<header class="m-header">
-  
-    <div class="m-jbMenu">
-    <span class="m-back">&lt;</span>
- 		<a href="./" class="m-title">콕사부</a>
- 	</div>
- 	
-</header>
-<div class="m-fix-background" style="height:160px"></div>
+
 <div class="pc-tutor" style="background:rgb(46, 46, 46); color:rgb(219, 218, 218); font-size:14px;">
                 <div class="menu-title"></div>
             </div>
@@ -214,24 +146,6 @@ $(document).ready(function(){
 
 </div>
 <div style="height:500px;"></div>
-<div class="bottom-cate">
-				<table class="bottom-table">
-					<tr>
-						<td><a href="./"><img class="bottom-img" src="<c:url value="/resources/img/home.png" />"  alt="home"/></a></td>
-						<td><a href="./apply"><img class="bottom-img" src="<c:url value="/resources/img/applyui.png" />"  alt="apply"/></a></td>
-						<td><a href="./category"><img class="bottom-img" src="<c:url value="/resources/img/cate.png" />"  alt="cate"/></a></td>
-						<td><a href="./message"><img class="bottom-img" src="<c:url value="/resources/img/message2.png" />"  alt="message"/></a></td>
-						<td><a href="./myroom"><img class="bottom-img" src="<c:url value="/resources/img/my.png" />"  alt="my"/></a></td>
-					</tr>
-					<tr>
-					<td><a href="./">홈</a></td>
-					<td><a href="./apply">수업요청</a></td>
-					<td><a href="./category">카테고리</a></td>
-					<td><a href="./message" style="color:orange" class="m-message-notify">메시지</a></td>
-					<td><a href="./myroom">마이페이지</a></td>
-					</tr>
-				</table>
-</div>
 <script>
 var linkLocation="";
 $(document).on("click","a",function(event){

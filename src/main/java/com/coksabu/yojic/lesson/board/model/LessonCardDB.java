@@ -100,7 +100,7 @@ public class LessonCardDB {
 		
 		Random random1 = new Random();
 		long currentTime1 = System.currentTimeMillis();
-		int randomValue1 = random1.nextInt(50);
+		int randomValue1 = random1.nextInt(100);
 		if(card.getRepresent().getOriginalFilename().equals("")) {
 			this.represent="pro.png";
 		}else {
@@ -117,11 +117,11 @@ public class LessonCardDB {
 		for(int i=0; i<card.getContentimg().length; i++) {
 			Random random = new Random();
 			long currentTime = System.currentTimeMillis();
-			int randomValue = random.nextInt(50);
+			int randomValue = random.nextInt(100);
 			
 			if(!card.getContentimg()[i].getOriginalFilename().equals("")) {
 				start++;
-				String identity = Long.toString(currentTime) + "_"+randomValue+"_"+card.getContentimg()[i].getOriginalFilename();
+				String identity = Long.toString(currentTime) + "_"+randomValue+"_"+i+"_"+card.getContentimg()[i].getOriginalFilename();
 				
 				File file = new File(path+"/mediaImg" , identity);
 				card.getContentimg()[i].transferTo(file);

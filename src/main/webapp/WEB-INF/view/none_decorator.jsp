@@ -45,51 +45,9 @@ src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 
 </head>
 <body>
-<div class="m-page-transit" style="text-align:center;width:100%;position:fixed;left:0px;top:0px;background: white; height:100%;z-index:10;">
-    <img src="<c:url value="/resources/img/Spin-1s-124px.svg" />"  style="margin-top:50%;"/>
-</div>
-
+	<c:if test="${currentDevice.mobile}">
+			<jsp:include page="/WEB-INF/view/include/mPageTransit.jsp"/>
+	</c:if>
 <decorator:body />
-
-  <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-    <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-    <script src="https://spin.js.org/spin.js"></script>
-<script src="resources/colorbox-master/colorbox-master/jquery.colorbox.js"></script>
-<script>
-var linkLocation="";
-$(document).on("click","a",function(event){
-	//datepicker에서는 효과 미적용
-	if($(this).hasClass("ui-corner-all")){
-		return;
-	}
-	var broswerInfo = navigator.userAgent;
-	//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
-	if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
-		event.preventDefault();
-        linkLocation = this.href;
-        if($(this).attr("href")!="#"){
-        	$('.m-page-transit').fadeIn(100);
-            setTimeout(function(){redirectPage()}, 100);
-        }
-	}
-});
-
-
-    function redirectPage() {
-        window.location = linkLocation;
-    }
-
-    $(window).bind("pageshow", function(event) {
-    	var broswerInfo = navigator.userAgent;
-		//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
-		if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
-			$('.m-page-transit').fadeOut(100);
-		}else{
-			$('.m-page-transit').hide();
-		}
-    	if ( event.originalEvent && event.originalEvent.persisted) {// BFCahe
-       	}
-    });
-</script>
 </body>
 </html>

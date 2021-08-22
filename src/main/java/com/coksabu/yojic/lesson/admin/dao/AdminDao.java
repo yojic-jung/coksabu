@@ -10,6 +10,7 @@ import com.coksabu.yojic.lesson.admin.model.ImgList;
 import com.coksabu.yojic.lesson.admin.model.OrderStatusRecord;
 import com.coksabu.yojic.lesson.admin.model.RefundComplete;
 import com.coksabu.yojic.lesson.admin.model.RefundSearch;
+import com.coksabu.yojic.lesson.admin.model.SecessionList;
 import com.coksabu.yojic.lesson.admin.model.TranSearch;
 import com.coksabu.yojic.lesson.admin.model.UnivCertiUpdateDB;
 import com.coksabu.yojic.lesson.board.model.LessonCardDB;
@@ -23,9 +24,9 @@ import com.coksabu.yojic.lesson.member.model.Qna;
 @Repository
 public interface AdminDao {
 	
-	public List<ImgList> imgList();
+	public ImgList imgList();
 	
-	public void inspectComplete(String email);
+	public int inspectComplete(String email);
 	
 	public void inspectFail(HashMap<String, String> map);
 	
@@ -156,6 +157,9 @@ public interface AdminDao {
 	
 	public void updateAcademyCertiImg(UnivCertiUpdateDB univCertiUpdateDB);
 	
+	public List<SecessionList> adminSecessionList();
+	
+	public List<ImgList> takeAllCertify();
 	
 	public String takeProfileImage(String email);
 	public List<String> takeRepresentImg(String email);

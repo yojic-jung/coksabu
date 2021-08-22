@@ -1,6 +1,7 @@
 package com.coksabu.yojic.lesson.member.model;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class Profile {
 	private String email;
@@ -29,8 +30,13 @@ public class Profile {
 	private String singular;
 	private int certify;
 	
+	private String certifyimg2;
+	private String certifyimg3;
+	
 	private String lasttime;
 	private int unReadCount;
+	
+	private Date signupDate;
 	
 	public String getEmail() {
 		return email;
@@ -78,14 +84,12 @@ public class Profile {
 		return nickname;
 	}
 	
-	
 	public String getSexual() {
 		return sexual;
 	}
 	public void setSexua(String sexual) {
 		this.sexual=sexual;
 	}
-	
 	
 	public void setImgPath(String imgPath) {
 		this.imgPath = imgPath;
@@ -231,4 +235,24 @@ public class Profile {
 		return unReadCount;
 	}
 	
+	public void setCertifyimg2(String certifyimg2) {
+		this.certifyimg2= certifyimg2;
+	}
+	public String getCertifyimg2() {
+		return certifyimg2;
+	}
+	
+	public void setCertifyimg3(String certifyimg3) {
+		this.certifyimg3= certifyimg3;
+	}
+	public String getCertifyimg3() {
+		return certifyimg3;
+	}
+	
+	public void setSignupDate(Date signupDate) {
+		this.signupDate= signupDate;
+	}
+	public Date getSignupDate() {
+		return signupDate;
+	}
 }

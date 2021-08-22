@@ -1,44 +1,93 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page trimDirectiveWhitespaces="true" %>
-<%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
-<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <title><decorator:title /></title>
+<c:set var="today" value="<%=new java.util.Date()%>" />
+<c:set var="date">
+	<fmt:formatDate value="${today}" pattern="yyMMddHHmm" />
+</c:set>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/commonHeader.css?date=${date}"/>">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/commonFooter.css?date=${date}"/>">
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-413632618"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-4EM47WXQJ0');
-  gtag('config', 'AW-413632618');
+	window.dataLayer = window.dataLayer || [];
+	function gtag() {
+		dataLayer.push(arguments);
+	}
+	gtag('js', new Date());
+	gtag('config', 'G-4EM47WXQJ0');
+	gtag('config', 'AW-413632618');
 </script>
 
 <!-- Facebook Pixel Code -->
 <script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2787801881458923');
-fbq('track', 'PageView');
+	!function(f, b, e, v, n, t, s) {
+		if (f.fbq)
+			return;
+		n = f.fbq = function() {
+			n.callMethod ? n.callMethod.apply(n, arguments) : n.queue
+					.push(arguments)
+		};
+		if (!f._fbq)
+			f._fbq = n;
+		n.push = n;
+		n.loaded = !0;
+		n.version = '2.0';
+		n.queue = [];
+		t = b.createElement(e);
+		t.async = !0;
+		t.src = v;
+		s = b.getElementsByTagName(e)[0];
+		s.parentNode.insertBefore(t, s)
+	}(window, document, 'script',
+			'https://connect.facebook.net/en_US/fbevents.js');
+	fbq('init', '2787801881458923');
+	fbq('track', 'PageView');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
-/></noscript>
+<noscript>
+	<img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1" />
+</noscript>
 <!-- End Facebook Pixel Code -->
 <decorator:head />
 </head>
 <body>
-<decorator:body />
+	<c:choose>
+		<c:when test="${currentDevice.mobile}">
+			<%@ include file="/WEB-INF/view/include/mHeader2.jsp"%>
+		</c:when>
+		<c:otherwise>
+			<%@ include file="/WEB-INF/view/include/pcHeader.jsp"%>
+		</c:otherwise>
+	</c:choose>
+	
+	<decorator:body />
+	<c:choose>
+		<c:when test="${currentDevice.mobile}">
+			<%@ include file="/WEB-INF/view/include/mFooter2.jsp"%>
+		</c:when>
+		<c:otherwise>
+			<%@ include file="/WEB-INF/view/include/pcFooter.jsp"%>
+		</c:otherwise>
+	</c:choose>
+	<script>
+		$(document).ready(function() {
+			var filter = "win16|win32|win64|mac|macintel";
 
-        
+			if (navigator.platform) {
+				if (0 > filter.indexOf(navigator.platform.toLowerCase())) {
+					//모바일에서는 푸터 메인화면 뺴고 모두 안보임
+					$('#botMessage').attr('src', '/resources/img/message2.png');
+					$('#botMessageStr').css('color', 'orange')
+				} 
+			}
+		});
+	</script>
 </body>
 </html>

@@ -123,6 +123,7 @@
 	background:black;
 	font-family: 'Apple SD Gothic Neo','Malgun Gothic';font-size:45px;color:white;border-radius:10px; font-weight:bolder;
 	margin:20px auto 60px auto;cursor:pointer;height:104px;border:1px solid black;
+	display:none;
 	}
 	
     </style>

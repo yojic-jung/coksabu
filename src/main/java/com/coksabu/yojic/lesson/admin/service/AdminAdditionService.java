@@ -14,7 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.coksabu.yojic.lesson.admin.dao.AdminDao;
 import com.coksabu.yojic.lesson.admin.model.DelWaiting;
+import com.coksabu.yojic.lesson.admin.model.ImgList;
 import com.coksabu.yojic.lesson.admin.model.NotificationLight;
+import com.coksabu.yojic.lesson.admin.model.SecessionList;
 import com.coksabu.yojic.lesson.admin.model.UnivCertiUpdate;
 import com.coksabu.yojic.lesson.admin.model.UnivCertiUpdateDB;
 import com.coksabu.yojic.lesson.board.model.LessonCardDB;
@@ -147,6 +149,14 @@ public class AdminAdditionService {
 		
 		
 		return "";
+	}
+	
+	public List<SecessionList> adminSecessionList() {
+		return adminDao.adminSecessionList();
+	}
+	
+	public List<ImgList> adminCertiTest(){
+		return adminDao.takeAllCertify();
 	}
 	
 }

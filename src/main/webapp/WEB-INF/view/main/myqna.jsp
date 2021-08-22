@@ -40,6 +40,9 @@
         padding:40px;
       	 border:1px solid rgb(180, 179, 179);
  }
+ 
+ .list{width:100%;}
+ 
   .pagemove{
     	width:200px;
     	margin:auto;
@@ -61,7 +64,6 @@
  margin:0px;
  font-size:15px;
  color:gray;
- width:500px;
  line-height:180%;
  }
  
@@ -69,7 +71,6 @@
  padding:10px;
  color: orange;
  font-size:15px;
- width:500px;
  line-height:180%;
  }
  
@@ -109,7 +110,7 @@
 	<c:forEach var="post" items="${list.list}">
 	<tr>	
 	<td>
-	<div style="widht:400px; text-align:right;font-size:12px;">${post.dateJ}</div>
+	<div style="text-align:right;font-size:12px;">${post.dateJ}</div>
 	<div id="title" >질문. ${post.title }</div>
 	<div id="content">내용. ${post.content}</div>
 	<c:if test="${post.answer != null}">

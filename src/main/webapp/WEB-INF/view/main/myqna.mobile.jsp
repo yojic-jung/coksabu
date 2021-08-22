@@ -18,7 +18,7 @@
 @charset "utf-8";
 
 .div-title{
-width:1000px;margin:auto;padding:50px 0 50px 10px;
+width:100%;margin:auto;padding:50px 0 50px 10px;
 font-family:'JejuGothic';color:rgb(97,96,96)}
 
 .first{padding:120px;font-size:35px;
@@ -35,7 +35,7 @@ background-position:center center;
 
 .right{font-size:20px;width:80%;margin:auto;padding:40px;
 border:1px solid rgb(180,179,179)}
-
+.list{width:100%;}
 .first-q,.second-q,.third-q,.fourth-q{
 cursor:pointer;padding:10px;border:1px solid black}
 

@@ -60,10 +60,29 @@ public class BoardController extends DeviceSwitcherController  {
 	//테스트 완료
 	@RequestMapping(value="lessonWrite", method=RequestMethod.POST)
 	public String write2(LessonCard card, Model model, HttpSession session, HttpServletRequest request) throws IllegalStateException, IOException {
+		//입시 카테고리 제외하고 수업 1회, 2회, 3회 기준 안되게끔 막기 
+		if(card.getCate().contains("입시")==false ){
+			if(card.getPrice1().contains("1회분") || card.getOpt1price1().contains("1회분") || card.getOpt2price1().contains("1회분")) {
+				model.addAttribute("error", "notPer1");
+				return forward("boarder/lessonWrite");
+			}
+			if(card.getPrice1().contains("2회분") || card.getOpt1price1().contains("2회분") || card.getOpt2price1().contains("2회분")) {
+				model.addAttribute("error", "notPer1");
+				return forward("boarder/lessonWrite");
+			}
+			if(card.getPrice1().contains("3회분") || card.getOpt1price1().contains("3회분") || card.getOpt2price1().contains("3회분")) {
+				model.addAttribute("error", "notPer1");
+				return forward("boarder/lessonWrite");
+			}
+		}				
+		
 		String configLocation = "classpath:applicationContext.xml";
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
 		WriteLessonService writeService = ctx.getBean("writeLessonService", WriteLessonService.class );
 		String path = request.getServletContext().getRealPath("resources/theme");
+		
+		
+		
 		logger.info(path+"경로");
 		LessonCardDB lsc = new LessonCardDB(card, path);
 		lsc.setCareerDB(card.getYcareer());
@@ -258,6 +277,22 @@ public class BoardController extends DeviceSwitcherController  {
 	//테스트 완료
 	@RequestMapping(value="update", method = RequestMethod.POST)
 	public String update2(LessonCard card, HttpServletRequest request, Model model) throws IllegalStateException, IOException {
+		//입시 카테고리 제외하고 수업 1회, 2회, 3회 기준 안되게끔 막기 
+		if(card.getCate().contains("입시")==false ){
+			if(card.getPrice1().contains("1회분") || card.getOpt1price1().contains("1회분") || card.getOpt2price1().contains("1회분")) {
+				model.addAttribute("error", "notPer1");
+				return forward("boarder/update");
+			}
+			if(card.getPrice1().contains("2회분") || card.getOpt1price1().contains("2회분") || card.getOpt2price1().contains("2회분")) {
+				model.addAttribute("error", "notPer1");
+				return forward("boarder/update");
+			}
+			if(card.getPrice1().contains("3회분") || card.getOpt1price1().contains("3회분") || card.getOpt2price1().contains("3회분")) {
+				model.addAttribute("error", "notPer1");
+				return forward("boarder/update");
+			}
+		}						
+		
 		String configLocation = "classpath:applicationContext.xml";
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
 		WriteLessonService writeService = ctx.getBean("writeLessonService", WriteLessonService.class );
