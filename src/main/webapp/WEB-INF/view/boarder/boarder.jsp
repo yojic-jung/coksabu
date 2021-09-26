@@ -17,7 +17,14 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/slick/slick-theme.css" />">
 <link rel="canonical" href="https://coksabu.com/boarder?main=11&subject=11">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/include/pcLessonCard.css?v=2"/>">
+
 <style>
+@font-face {
+	font-family: 'JejuGothic';
+	src: url(/resources/JejuGothic-Regular.ttf) format('truetype');
+}
+
 .white {
 	background: lightgray;
 	color: white;
@@ -86,56 +93,12 @@
 	margin-right: 30px;
 }
 
-#categories {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	font-size: 16px;
-	color: Grey;
-	padding: 5px;
-}
-
-#name {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	font-size: 14px;
-	padding: 5px;
-	color: black;
-}
-
-#universe {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	color: DimGrey;
-	font-size: 14px;
-	padding: 5px;
-}
-
-#title {
-	font-family: 'JejuGothic';
-	font-weight: 900;
-	color: black;
-	font-size: 18px;
-	margin-top: 7px;
-	padding: 5px;
-}
-
-#price {
-	font-family: Arial;
-	font-weight: bold;
-	font-size: 16px;
-	padding: 5px;
-	margin-top: 5px;
-	color: black;
-}
-
 .list td {
 	line-height: 200%;
-	padding-bottom: 15px;
-	border-bottom: 1px solid gray;
 }
 
-#pst:hover {
-	box-shadow: 0px 0px 4px 4px LightGoldenRodYellow;
+.price-detail>div {
+	line-height: 150%;
 }
 
 .right {
@@ -246,123 +209,113 @@
 </style>
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<script src="resources/js/include/lessonCard.js?v=1"></script>
 <script>
-	$(document).ready(
-			function() {
+	$(document).ready(function() {
 
-				$('.main-cate>li').mouseenter(function() {
-					$('.main-cate a').css('color', 'black');
-					var trIndex = $(this).index();
-					$('.subcate').hide();
-					$('.subcate').eq(trIndex).show();
-					$('.white').removeClass();
-					$(this).addClass('white');
-					$(this).find('a').css('color', 'white');
-				});
+		$('.main-cate>li').mouseenter(function() {
+			$('.main-cate a').css('color', 'black');
+			var trIndex = $(this).index();
+			$('.subcate').hide();
+			$('.subcate').eq(trIndex).show();
+			$('.white').removeClass();
+			$(this).addClass('white');
+			$(this).find('a').css('color', 'white');
+		});
 
-				$('nav').hover(function() {
-				}, function() {
-					if (main != null) {
-						$('.main-cate li').each(function() {
-							if ($(this).find('a').text() == main) {
-								idx = $(this).index();
-								$(this).trigger('mouseenter');
-							}
-						});
-					}
-				})
-
-				$('.locale-main').change(function() {
-					$(".disp").removeClass('disp');
-					$('.locale').hide();
-					var opIndex = $('.locale-main>option:selected').index();
-					$('.locale').attr('name', '');
-					if (opIndex == 0) {
-						$('.locale').attr('name', '');
-						$('.locale').hide();
-					} else {
-
-						$('.locale').eq(opIndex - 1).addClass("disp").show();
-						$('.locale').eq(opIndex - 1).attr('name', 'locale2');
-					}
-				});
-
-				var main = "<c:out value="${main}" />";
-				var subject = "<c:out value="${subject}" />";
-				if (subject == "수학" | subject == "외국어" | subject == "국어"
-						| subject == "사회" | subject == "과학" | subject == "예체능"
-						| subject == "입시(자소서/논술/면접)") {
-					subject = "전체";
-				}
-
-				var idx = "";
+		$('nav').hover(function() {}, function() {
+			if (main != null) {
 				$('.main-cate li').each(function() {
 					if ($(this).find('a').text() == main) {
 						idx = $(this).index();
 						$(this).trigger('mouseenter');
 					}
 				});
+			}
+		})
 
-				$('.subcate').eq(idx).each(function() {
-					$(this).find('a').each(function() {
-						if ($(this).text() == subject) {
-							$(this).css('font-weight', 'bolder');
-						}
-					})
-				});
+		$('.locale-main').change(function() {
+			$(".disp").removeClass('disp');
+			$('.locale').hide();
+			var opIndex = $('.locale-main>option:selected').index();
+			$('.locale').attr('name', '');
+			if (opIndex == 0) {
+				$('.locale').attr('name', '');
+				$('.locale').hide();
+			} else {
 
-				var locale1 = "<c:out value="${form.locale1}" />";
-				var locale2 = "<c:out value="${form.locale2}" />";
-				var career = "<c:out value="${form.career}" />";
-				var sexual = "<c:out value="${form.sexual}" />";
-				var array = "<c:out value="${form.array}" />";
+				$('.locale').eq(opIndex - 1).addClass("disp").show();
+				$('.locale').eq(opIndex - 1).attr('name', 'locale2');
+			}
+		});
 
-				//폼값 검색 없이 들어온 경우를 위해 
-				$('.sexual1').trigger('click');
+		var main = "<c:out value="${main}" />";
+		var subject = "<c:out value="${subject}" />";
+		if (subject == "수학" | subject == "외국어" | subject == "국어" | subject == "사회" | subject == "과학" | subject == "예체능" | subject == "입시(자소서/논술/면접)") {
+			subject = "전체";
+		}
 
-				//폼값 검색 했을때(예외. 지역전체로 검색한 경우 까지 포함됨)
-				if (locale1 != "") {
-					$('.locale-main').val(locale1).attr("selected", true);
-					var lidx;
-					$('.locale-main>option').each(function() {
-						if ($(this).text() == locale1) {
-							lidx = $(this).index()
-						}
-					});
-					if (lidx != 0) {
-						$('.locale').eq(lidx - 1).show()
-								.attr('name', 'locale2');
-						$('.locale').eq(lidx - 1).val(locale2).attr("selected",
-								true);
-					}
+		var idx = "";
+		$('.main-cate li').each(function() {
+			if ($(this).find('a').text() == main) {
+				idx = $(this).index();
+				$(this).trigger('mouseenter');
+			}
+		});
 
+		$('.subcate').eq(idx).each(function() {
+			$(this).find('a').each(function() {
+				if ($(this).text() == subject) {
+					$(this).css('font-weight', 'bolder');
 				}
-				if (career != "") {
-					$('#career').val(career).attr('selected', true);
-				}
-				if ($('.sexual1').val() == sexual) {
-					$('.sexual1').val(sexual).trigger('click');
-				} else if ($('.sexual2').val() == sexual) {
-					$('.sexual2').val(sexual).trigger('click');
-				} else if ($('.sexual3').val() == sexual) {
-					$('.sexual3').val(sexual).trigger('click');
-				}
+			})
+		});
 
-				if (array != "") {
-					$('#array').val(array).attr('selected', true);
-				}
+		var locale1 = "<c:out value="${form.locale1}" />";
+		var locale2 = "<c:out value="${form.locale2}" />";
+		var career = "<c:out value="${form.career}" />";
+		var sexual = "<c:out value="${form.sexual}" />";
+		var array = "<c:out value="${form.array}" />";
 
-				$('.page-a').click(
-						function() {
-							var href = $(this).attr("href");
-							href = href + "&locale1P="
-									+ encodeURIComponent(locale1)
-									+ "&locale2P="
-									+ encodeURIComponent(locale2) + "&sexualP="
-									+ encodeURIComponent(sexual);
-							$(this).prop('href', href);
-						});
+		//폼값 검색 없이 들어온 경우를 위해 
+		$('.sexual1').trigger('click');
+
+		//폼값 검색 했을때(예외. 지역전체로 검색한 경우 까지 포함됨)
+		if (locale1 != "") {
+			$('.locale-main').val(locale1).attr("selected", true);
+			var lidx;
+			$('.locale-main>option').each(function() {
+				if ($(this).text() == locale1) {
+					lidx = $(this).index()
+				}
 			});
+			if (lidx != 0) {
+				$('.locale').eq(lidx - 1).show().attr('name', 'locale2');
+				$('.locale').eq(lidx - 1).val(locale2).attr("selected", true);
+			}
+
+		}
+		if (career != "") {
+			$('#career').val(career).attr('selected', true);
+		}
+		if ($('.sexual1').val() == sexual) {
+			$('.sexual1').val(sexual).trigger('click');
+		} else if ($('.sexual2').val() == sexual) {
+			$('.sexual2').val(sexual).trigger('click');
+		} else if ($('.sexual3').val() == sexual) {
+			$('.sexual3').val(sexual).trigger('click');
+		}
+
+		if (array != "") {
+			$('#array').val(array).attr('selected', true);
+		}
+
+		$('.page-a').click(function() {
+			var href = $(this).attr("href");
+			href = href + "&locale1P=" + encodeURIComponent(locale1) + "&locale2P=" + encodeURIComponent(locale2) + "&sexualP=" + encodeURIComponent(sexual);
+			$(this).prop('href', href);
+		});
+	});
 </script>
 </head>
 <body>
@@ -471,7 +424,9 @@
 	<div>
 		<form method="post">
 			<div style="width: 1030px; margin: 20px auto; font-size: 25px; line-height: 150%">
-				콕사부에서 원하는 선생님을 찾아보세요.<br /> 내 주변에서 찾기&nbsp;&nbsp;
+				콕사부에서 원하는 선생님을 찾아보세요.
+				<br />
+				내 주변에서 찾기&nbsp;&nbsp;
 				<select class="locale-main" name="locale1" style="font-size: 15px; color: gray; padding: 5px;">
 					<option value="">지역전체</option>
 					<option>서울</option>
@@ -843,7 +798,19 @@
 					<option value="7">7년이상</option>
 					<option value="10">10년이상</option>
 				</select>
-				&nbsp;&nbsp;&nbsp; 성별&nbsp;&nbsp; <label style="cursor: pointer"><input type="radio" name="sexual" class="sexual1" value="">무관</label>&nbsp; <label style="cursor: pointer"><input type="radio" name="sexual" class="sexual2" value="남">남</label>&nbsp; <label style="cursor: pointer"><input type="radio" name="sexual" class="sexual3" value="여">여</label>&nbsp; &nbsp;&nbsp;&nbsp; 정렬
+				&nbsp;&nbsp;&nbsp; 성별&nbsp;&nbsp;
+				<label style="cursor: pointer">
+					<input type="radio" name="sexual" class="sexual1" value="">무관
+				</label>
+				&nbsp;
+				<label style="cursor: pointer">
+					<input type="radio" name="sexual" class="sexual2" value="남">남
+				</label>
+				&nbsp;
+				<label style="cursor: pointer">
+					<input type="radio" name="sexual" class="sexual3" value="여">여
+				</label>
+				&nbsp; &nbsp;&nbsp;&nbsp; 정렬
 				<select id="array" name="array">
 					<option value="readcount">조회수</option>
 					<option value="id">최신순</option>
@@ -860,7 +827,9 @@
 					<table border="0" class="list" style="margin-top: 50px; font-size: 20px;">
 						<tr>
 							<td colspan="4" style="min-height: 300px;">
-								해당 요청에 대한 수업이 없습니다.<br />더욱 다양한 선생님들을 모시도록 하겠습니다.
+								해당 요청에 대한 수업이 없습니다.
+								<br />
+								더욱 다양한 선생님들을 모시도록 하겠습니다.
 							</td>
 						</tr>
 					</table>
@@ -868,44 +837,7 @@
 				<c:otherwise>
 					<table border="0" class="list">
 						<c:forEach var="post" items="${listModel.list}">
-							<tr style="width: 100%;">
-								<td>
-									<a href="<c:url value="./boardread?postId=${post.id}"/>">
-										<div id="pst" style="vertical-align: top; padding: 0px; margin: 20px 10px; position: relative">
-											<c:if test="${post.certify==1}">
-												<span style="padding: 4px; font-size: 12px; color: white; background: orange; border-radius: 10px; position: absolute; font-family: 'JejuGothic';">인증완료</span>
-											</c:if>
-											<img src="<c:url value='/img/representImg/${post.represent}' />" style="width: 180px; height: 180px; magin-top: 0px; border-radius: 20px;" alt="수업대표이미지" />
-										</div>
-									</a>
-								</td>
-								<td style="vertical-align: top; padding-top: 30px; width: 100%;">
-									<a href="<c:url value="./boardread?postId=${post.id}"/>" style="text-decoration: none;">
-										<div id="categories">${post.subcate}</div>
-										<div id="name">
-											${post.nickname}(${post.birth}, ${post.sexual})&nbsp;&nbsp;경력
-											<c:if test="${post.career!=0}">${post.career}년</c:if>
-											<c:if test="${post.career==0}">1년미만</c:if>
-										</div>
-
-										<c:choose>
-											<c:when test="${post.academy ne '' and post.academy != null}">
-												<div id="universe">${post.academy} ${post.academyd}</div>
-											</c:when>
-											<c:otherwise>
-												<div id="universe">${post.universe} ${post.univsub}</div>
-											</c:otherwise>
-										</c:choose>
-
-										<div id="title">${post.title}</div>
-										<div id="price">${post.subCate0}
-											${post.price3}원
-											<c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if>
-											<c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if>
-										</div>
-									</a>
-								</td>
-							</tr>
+							<%@ include file="/WEB-INF/view/include/pcLessonCard.jsp"%>
 						</c:forEach>
 
 					</table>
@@ -924,12 +856,13 @@
 								<c:set var="query" value="postId=${post.id}" />
 
 								<a href="<c:url value="./boardread?${query}"/>" style="text-decoration: none; color: black;">
-									<div class="title-content" style="font-size: 13px; font-family: 'JejuGothic'; margin-bottom: 10px; text-indent: 15px">${post.title}</div>
-									<img class="newTeacher-img" src="<c:url value='/img/profileImg/${post.imgpath}' />" style="border-radius: 10px; width: 50px; height: 70px; magin-top: 0px; float: left;" />
+									<div class="title-content" style="font-size: 13px; font-family: 'JejuGothic'; margin-bottom: 10px; text-indent: 15px">${post.title}</div> <img class="newTeacher-img" src="<c:url value='/img/profileImg/${post.imgpath}' />" style="border-radius: 10px; width: 50px; height: 70px; magin-top: 0px; float: left;" />
 								</a>
 
 								<div class="right-content">${post.nickname}(${post.birth},
-									${post.sexual})<br /> 경력
+									${post.sexual})
+									<br />
+									경력
 									<c:if test="${post.career!=0}">${post.career}년</c:if>
 									<c:if test="${post.career==0}">1년미만</c:if>
 									<br />
@@ -941,10 +874,16 @@
 			${post.universe} ${post.univsub}
 		</c:otherwise>
 									</c:choose>
-									<br /> ${post.subCate0}&nbsp;${post.price3}원<br />
+									<br />
+									${post.subCate0}&nbsp;${post.price3}원
+									<br />
 									<c:if test="${post.subCate1 !='nonevalue' }">${post.subCate1} ${post.opt1price3}원<br />
 									</c:if>
 									<c:if test="${post.subCate2!='nonevalue' }">${post.subCate2} ${post.opt2price3}원<br />
+									</c:if>
+									<c:if test="${post.subCate3 !='nonevalue' }">${post.subCate3} ${post.opt3price3}원<br />
+									</c:if>
+									<c:if test="${post.subCate4!='nonevalue' }">${post.subCate4} ${post.opt4price3}원<br />
 									</c:if>
 								</div>
 							</div>
@@ -1003,10 +942,17 @@
 	<div class="tutorial-first">
 		<div class="tutorial-para">
 			<div class="tutorial-first-title">
-				지역, 과목, 경력, 성별 등의<br /> 상세검색 조건을 통해<br /> 원하는 선생님을 찾아보세요.<br />
+				지역, 과목, 경력, 성별 등의
+				<br />
+				상세검색 조건을 통해
+				<br />
+				원하는 선생님을 찾아보세요.
+				<br />
 			</div>
 			<div>
-				서비스 사용에 보다 자세한 설명은<br /> 이용가이드를 통해서도 참조 가능합니다.
+				서비스 사용에 보다 자세한 설명은
+				<br />
+				이용가이드를 통해서도 참조 가능합니다.
 			</div>
 		</div>
 		<div class="tutorial-btn">튜토리얼 종료하기</div>
@@ -1041,8 +987,7 @@
 			function SetCookie(sName, sValue) {
 				var date = new Date();
 				date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
-				document.cookie = sName + "=" + escape(sValue) + ";expires="
-						+ date.toGMTString();
+				document.cookie = sName + "=" + escape(sValue) + ";expires=" + date.toGMTString();
 			}
 
 			function GetCookie(sName) {

@@ -9,7 +9,12 @@
 <meta charset="utf-8">
 <meta name="description" content="선생님 프로필 및 수업정보" />
 <link rel="stylesheet" href="<c:url value="/resources/colorbox.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/include/pcLessonCard.css?v=2"/>">
 <style>
+@font-face {
+	font-family: 'JejuGothic';
+	src: url(/resources/JejuGothic-Regular.ttf) format('truetype');
+}
 body {
 	background: rgb(233, 232, 232);
 }
@@ -136,51 +141,6 @@ body {
 	font-size: 12px;
 }
 
-#categories {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	font-size: 16px;
-	color: Grey;
-	padding: 5px;
-}
-
-#name {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	font-size: 14px;
-	padding: 5px;
-	color: black;
-}
-
-#universe {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	color: DimGrey;
-	font-size: 14px;
-	padding: 5px;
-}
-
-#title {
-	font-family: 'JejuGothic';
-	font-weight: 900;
-	color: black;
-	font-size: 18px;
-	margin-top: 7px;
-	padding: 5px;
-}
-
-#price {
-	font-family: Arial;
-	font-weight: bold;
-	font-size: 16px;
-	padding: 5px;
-	margin-top: 5px;
-	color: black;
-}
-
-.list td {
-	border-bottom: 1px solid gray;
-}
 
 .foot {
 	width: 100%;
@@ -267,36 +227,8 @@ body {
 							<div style="min-height: 300px;">
 
 								<table class="list">
-									<c:forEach var="lesson" items="${list}">
-										<tr style="width: 100%;">
-											<td>
-												<a href="<c:url value="./boardread?postId=${lesson.id}"/>">
-													<div id="pst" style="vertical-align: top; padding: 0px; margin: 20px 10px;">
-														<c:if test="${pro.certify==1}">
-															<span style="padding: 4px; font-size: 12px; color: white; background: orange; border-radius: 10px; position: absolute; font-family: 'JejuGothic';">인증완료</span>
-														</c:if>
-														<img src="<c:url value='/img/representImg/${lesson.represent}' />" style="width: 180px; height: 180px; magin-top: 0px; border-radius: 20px;" alt="수업대표이미지" />
-													</div>
-												</a>
-											</td>
-											<td style="vertical-align: top; padding-top: 30px; width: 100%;">
-												<a href="<c:url value="./boardread?postId=${lesson.id}"/>" style="text-decoration: none;">
-													<div id="categories">${lesson.subcate}</div>
-													<div id="name">
-														${lesson.nickname}(${lesson.birth}, ${lesson.sexual})&nbsp;&nbsp;경력
-														<c:if test="${lesson.career!=0}">${lesson.career}년</c:if>
-														<c:if test="${post.lesson==0}">1년미만</c:if>
-													</div>
-													<div id="universe">${lesson.universe} ${lesson.univsub}</div>
-													<div id="title">${lesson.title}</div>
-													<div id="price">${lesson.subCate0}
-														${lesson.price3}원
-														<c:if test="${lesson.subCate1 !='nonevalue' }">/ ${lesson.subCate1} ${lesson.opt1price3}원</c:if>
-														<c:if test="${lesson.subCate2!='nonevalue' }">/ ${lesson.subCate2} ${lesson.opt2price3}원</c:if>
-													</div>
-												</a>
-											</td>
-										</tr>
+									<c:forEach var="post" items="${list}">
+										<%@ include file="/WEB-INF/view/include/pcLessonCard.jsp"%>
 									</c:forEach>
 								</table>
 
@@ -315,6 +247,7 @@ body {
 	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 	<script src="resources/colorbox-master/colorbox-master/jquery.colorbox.js"></script>
 	<script src="resources/jquery-number-master/jquery.number.min.js"></script>
+	<script src="resources/js/include/lessonCard.js"></script>
 	<script>
 		$(document).ready(function() {
 

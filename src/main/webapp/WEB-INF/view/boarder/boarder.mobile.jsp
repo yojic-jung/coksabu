@@ -17,7 +17,14 @@
 <link rel="canonical" href="https://coksabu.com/boarder?main=11&subject=11">
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Do+Hyeon&display=swap&subset=korean" rel="stylesheet">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/include/mLessonCard.css?v=5"/>">
+
+
 <style>
+@font-face {
+	font-family: 'JejuGothic';
+	src: url(/resources/JejuGothic-Regular.ttf) format('truetype');
+}
 html, body {
 	height: 100%;
 }
@@ -286,13 +293,10 @@ html, body {
 .list {
 	width: 90%;
 	margin: auto;
-	border-spacing: 0px 80px;
 }
 
 .list td {
-	line-height: 200%;
 	padding-bottom: 20px;
-	border-bottom: 1px solid gray;
 }
 
 .list a {
@@ -300,57 +304,6 @@ html, body {
 	color: black;
 }
 
-#pst {
-	vertical-align: top;
-	padding: 0px;
-	width: 100%;
-	position: relative
-}
-
-#categories {
-	width: 100%;
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	font-size: 30px;
-	padding: 10px 60px;
-	color: Grey;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-
-#name {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	font-size: 30px;
-	color: DimGrey;
-	padding: 10px 20px;
-}
-
-#title {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	color: black;
-	font-size: 30px;
-	padding: 10px 20px;
-}
-
-#universe {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	color: dimgray;
-	font-size: 30px;
-	padding: 10px 20px;
-}
-
-#price {
-	font-family: Arial;
-	font-weight: bold;
-	font-size: 30px;
-	margin-top: 5px;
-	padding: 10px 20px;
-	color: black;
-}
 
 .right {
 	float: left;
@@ -462,7 +415,9 @@ html, body {
 
 	<div style="padding: 50px 0px 30px 50px; background: rgb(238, 238, 238); padding-bottom: 60px;">
 		<div style="margin: 0px 0px 60px 0px; font-size: 40px; font-family: JejuGothic;">원하시는 수업을 찾아보세요.</div>
-		<span class="m-cate-btn">카테고리</span> <span class="m-locale-btn">지역:전체</span> <span class="m-filter-btn">상세검색</span>
+		<span class="m-cate-btn">카테고리</span>
+		<span class="m-locale-btn">지역:전체</span>
+		<span class="m-filter-btn">상세검색</span>
 	</div>
 
 	<div class="m-all-cate">
@@ -1017,7 +972,18 @@ html, body {
 						<tr>
 							<td>성별</td>
 							<td>
-								<label style="cursor: pointer; margin: 20px;"><input type="radio" name="sexual" class="sexual1" value="">무관</label>&nbsp; <label style="cursor: pointermargin:20px;"><input type="radio" name="sexual" class="sexual2" value="남">남</label>&nbsp; <label style="cursor: pointer"><input type="radio" name="sexual" class="sexual3" value="여">여</label>&nbsp;
+								<label style="cursor: pointer; margin: 20px;">
+									<input type="radio" name="sexual" class="sexual1" value="">무관
+								</label>
+								&nbsp;
+								<label style="cursor: pointermargin:20px;">
+									<input type="radio" name="sexual" class="sexual2" value="남">남
+								</label>
+								&nbsp;
+								<label style="cursor: pointer">
+									<input type="radio" name="sexual" class="sexual3" value="여">여
+								</label>
+								&nbsp;
 
 							</td>
 						</tr>
@@ -1411,7 +1377,9 @@ html, body {
 					<table class="list">
 						<tr>
 							<td colspan="4" style="padding: 40px; font-size: 40px;">
-								해당 요청에 대한 수업이 없습니다. <br>더욱 다양한 선생님들을 모시도록 하겠습니다.
+								해당 요청에 대한 수업이 없습니다.
+								<br>
+								더욱 다양한 선생님들을 모시도록 하겠습니다.
 							</td>
 						</tr>
 					</table>
@@ -1419,41 +1387,7 @@ html, body {
 				<c:otherwise>
 					<table class="list">
 						<c:forEach var="post" items="${listModel.list}">
-							<tr>
-								<td style="width: 30%; position: relative">
-									<a href="./boardread?postId=${post.id}">
-										<c:if test="${post.certify==1}">
-											<span style="padding: 5px; font-size: 24px; color: white; background: orange; border-radius: 10px; position: absolute; font-family: 'JejuGothic';">인증완료</span>
-										</c:if>
-										<img src="<c:url value='/img/representImg/${post.represent}' />" style="width: 100%; height: 250px; border-radius: 20px;" /><br />
-									</a>
-								</td>
-								<td>
-									<a href="./boardread?postId=${post.id}">
-										<div>
-											<div id="title">${post.title}</div>
-											<div id="name">${post.nickname}(${post.birth},
-												${post.sexual})&nbsp;&nbsp;경력
-												<c:if test="${post.career!=0}">${post.career}년</c:if>
-												<c:if test="${post.career==0}">1년미만</c:if>
-											</div>
-											<c:choose>
-												<c:when test="${post.academy ne '' and post.academy != null}">
-													<div id="universe">${post.academy} ${post.academyd}</div>
-												</c:when>
-												<c:otherwise>
-													<div id="universe">${post.universe} ${post.univsub}</div>
-												</c:otherwise>
-											</c:choose>
-											<div id="price">
-												${post.subCate0} ${post.price3}원
-												<c:if test="${post.subCate1 !='nonevalue' }">/ ${post.subCate1} ${post.opt1price3}원</c:if>
-												<c:if test="${post.subCate2!='nonevalue' }">/ ${post.subCate2} ${post.opt2price3}원</c:if>
-											</div>
-										</div>
-									</a>
-								</td>
-							</tr>
+							<%@ include file="/WEB-INF/view/include/mLessonCard.jsp"%>
 						</c:forEach>
 
 					</table>
@@ -1498,10 +1432,17 @@ html, body {
 	<div class="tutorial-first">
 		<div class="tutorial-para">
 			<div class="tutorial-first-title">
-				지역, 과목, 경력, 성별 등의<br /> 상세검색 조건을 통해<br /> 원하는 선생님을 찾아보세요.<br />
+				지역, 과목, 경력, 성별 등의
+				<br />
+				상세검색 조건을 통해
+				<br />
+				원하는 선생님을 찾아보세요.
+				<br />
 			</div>
 			<div>
-				서비스 사용에 보다 자세한 설명은<br /> 이용가이드를 통해서도 참조 가능합니다.
+				서비스 사용에 보다 자세한 설명은
+				<br />
+				이용가이드를 통해서도 참조 가능합니다.
 			</div>
 		</div>
 		<div class="tutorial-btn">튜토리얼 종료하기</div>
@@ -1510,6 +1451,7 @@ html, body {
 
 	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 	<script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+	<script src="resources/js/include/lessonCard.js"></script>
 	<script>
 		$(window).bind("pageshow", function(event) {
 			if (event.originalEvent && event.originalEvent.persisted) {// BFCahe
@@ -1520,292 +1462,237 @@ html, body {
 			}
 		});
 
-		$(document).ready(
-				function() {
+		$(document).ready(function() {
 
-					$(".m-cate-btn").click(function() {
-						$(".m-all-cate").animate({
-							right : "0%"
-						}, 100, function() {
-						});
+			$(".m-cate-btn").click(function() {
+				$(".m-all-cate").animate({
+					right : "0%"
+				}, 100, function() {});
 
-					});
+			});
 
-					$(".m-close-btn").click(function() {
-						$(".m-all-cate").animate({
-							right : "-101%"
-						}, 100, function() {
+			$(".m-close-btn").click(function() {
+				$(".m-all-cate").animate({
+					right : "-101%"
+				}, 100, function() {
 
-						});
-
-						$(this).animate({
-							right : "-100%"
-						}, 100, function() {
-						})
-					});
-
-					$('#m-cate li').click(function() {
-						var index = $(this).index();
-						$('.subcate').hide();
-						$('.subcate').eq(index).show();
-					});
-
-					////////////////
-
-					$(".m-locale-btn").click(function() {
-						$(".m-all-locale").animate({
-							right : "0%"
-						}, 100, function() {
-						});
-					});
-
-					$(".m-locale-close-btn").click(function() {
-						$(".m-all-locale").animate({
-							right : "-101%"
-						}, 100, function() {
-
-						});
-					});
-
-					var mLocaleH = $('#m-locale').height();
-					$('#m-locale li').click(
-							function() {
-								var index = $(this).index();
-								$('.sub-locale').hide();
-								$('.sub-locale').eq(index).show();
-
-								$('#m-locale').css('height', mLocaleH);
-								if ($('#m-locale').height() > $('.sub-locale')
-										.eq(index).height()) {
-									$('.sub-locale').eq(index).css('height',
-											mLocaleH);
-								} else {
-									$('#m-locale')
-											.css(
-													'height',
-													$('.sub-locale').eq(index)
-															.height());
-								}
-							});
-
-					$('.sub-locale a').click(
-							function() {
-								var localeIdx = $(this).parents('ul').index();
-								var subLocale = $('#m-locale li').eq(localeIdx)
-										.text();
-
-								if ($(this).text() == '지역전체') {
-									$('.locale-main').val("");
-									$('.locale').attr('name', '');
-								} else if (subLocale == '서울전체'
-										|| subLocale == '경기전체'
-										|| subLocale == '인천전체'
-										|| subLocale == '강원전체'
-										|| subLocale == '대전전체'
-										|| subLocale == '세종전체'
-										|| subLocale == '충남전체'
-										|| subLocale == '충북전체'
-										|| subLocale == '부산전체'
-										|| subLocale == '울산전체'
-										|| subLocale == '경남전체'
-										|| subLocale == '경북전체'
-										|| subLocale == '대구전체'
-										|| subLocale == '전남전체'
-										|| subLocale == '전북전체'
-										|| subLocale == '제주전체') {
-
-									$('.locale-main').val(
-											$('#m-locale li').eq(localeIdx)
-													.text()).attr("selected",
-											true)
-									$("select[name='locale2']").val("");
-
-								} else {
-									$('.locale-main').val(
-											$('#m-locale li').eq(localeIdx)
-													.text()).change();
-									$("select[name='locale2']").val(
-											$(this).text()).change();
-								}
-								$('.submit-btn').trigger('click');
-							});
-
-					///////
-
-					$(".m-filter-btn").click(function() {
-						$(".m-all-filter").animate({
-							right : "0%"
-						}, 100, function() {
-						});
-					});
-
-					$(".m-filter-close-btn").click(function() {
-						$(".m-all-filter").animate({
-							right : "-101%"
-						}, 100, function() {
-
-						});
-					});
-
-					$('.filter-search').click(function() {
-						$('.submit-btn').trigger('click');
-					})
-
-					$('.locale-main').change(
-							function() {
-								$(".disp").removeClass('disp');
-								$('.locale').hide();
-								var opIndex = $('.locale-main>option:selected')
-										.index();
-								$('.locale').attr('name', '');
-								if (opIndex == 0) {
-									$('.locale').attr('name', '');
-									$('.locale').hide();
-								} else {
-
-									$('.locale').eq(opIndex - 1).addClass(
-											"disp").show();
-									$('.locale').eq(opIndex - 1).attr('name',
-											'locale2');
-								}
-							});
-
-					var main = "<c:out value="${main}" />";
-					var subject = "<c:out value="${subject}" />";
-
-					if (subject == "수학" | subject == "외국어" | subject == "국어"
-							| subject == "사회" | subject == "과학"
-							| subject == "예체능" | subject == "입시(자소서/논술/면접)") {
-						subject = "전체";
-					}
-
-					$('.m-cate-btn').text(main + ":" + subject);
-
-					$('#m-cate li').each(function() {
-						if ($(this).text() == main) {
-
-						}
-					});
-
-					$('#m-sub-cate').trigger('click');
-
-					var idx = "";
-					$('#m-cate li').each(function() {
-						if ($(this).text() == main) {
-							idx = $(this).index();
-							$(this).trigger('click');
-						}
-					});
-
-					$('.subcate').eq(idx).each(function() {
-						$(this).find('a').each(function() {
-							if ($(this).text() == subject) {
-								$(this).css('font-weight', 'bolder');
-							}
-						})
-					});
-
-					var locale1 = "<c:out value="${form.locale1}" />";
-					var locale2 = "<c:out value="${form.locale2}" />";
-					var career = "<c:out value="${form.career}" />";
-					var sexual = "<c:out value="${form.sexual}" />";
-					var array = "<c:out value="${form.array}" />";
-
-					var idxL = "";
-					$('#m-locale li').each(function() {
-						if ($(this).text() == locale1) {
-							idxL = $(this).index();
-							$(this).trigger('click');
-						}
-						if (locale1 === "") {
-							$('#m-locale li').eq(0).trigger('click');
-						}
-					});
-
-					$('.sub-locale').eq(idxL).find('li').each(
-							function() {
-								$(this).find('a').each(
-										function() {
-											if ($(this).text() == locale2) {
-												$(this).css('font-weight',
-														'bolder');
-											}
-											if (locale2 == "") {
-												$(this).parents('ul')
-														.find('li').eq(0).css(
-																'font-weight',
-																'bolder');
-											}
-										})
-							});
-
-					//폼값 검색 없이 들어온 경우를 위해 
-					$('.sexual1').trigger('click');
-
-					//폼값 검색 했을때(예외. 지역전체로 검색한 경우 까지 포함됨)
-					if (locale1 != "") {
-
-						$('.locale-main').val(locale1).attr("selected", true);
-						var lidx;
-						$('.locale-main>option').each(function() {
-							if ($(this).text() == locale1) {
-								lidx = $(this).index()
-							}
-						});
-						//지역전체가 아닌경우
-						if (lidx != 0) {
-
-							$('.m-locale-btn').text(locale1 + ":" + locale2);
-
-							$('.locale').eq(lidx - 1).show().attr('name',
-									'locale2');
-							$('.locale').eq(lidx - 1).val(locale2).attr(
-									"selected", true);
-						}
-					}
-
-					if (career != "") {
-						$('#career').val(career).attr('selected', true);
-					}
-					if ($('.sexual1').val() == sexual) {
-						$('.sexual1').val(sexual).trigger('click');
-					} else if ($('.sexual2').val() == sexual) {
-						$('.sexual2').val(sexual).trigger('click');
-					} else if ($('.sexual3').val() == sexual) {
-						$('.sexual3').val(sexual).trigger('click');
-					}
-
-					if (array != "") {
-						$('#array').val(array).attr('selected', true);
-					}
-
-					var jbOffset = $('.m-jbMenu').offset(); //상단메뉴 좌표 가져오는 코드
-					$(window).scroll(function() {
-						if ($(document).scrollTop() > jbOffset.top) { //scrollTop() 요청한 스크롤바의 수직위치 반환
-							$('.m-jbMenu').addClass('m-jbFixed');
-						} else {
-							$('.m-jbMenu').removeClass('m-jbFixed');
-						}
-					});
-
-					$('.page-a').click(
-							function() {
-								var href = $(this).attr("href");
-								href = href + "&locale1P="
-										+ encodeURIComponent(locale1)
-										+ "&locale2P="
-										+ encodeURIComponent(locale2)
-										+ "&sexualP="
-										+ encodeURIComponent(sexual);
-								$(this).prop('href', href);
-							});
-
-					$('.tutorial-btn').click(function() {
-						$('.tutorial-first').remove();
-						$('.tutorial-first-back').remove();
-						SetCookie('tutorial', 'end')
-					});
 				});
+
+				$(this).animate({
+					right : "-100%"
+				}, 100, function() {})
+			});
+
+			$('#m-cate li').click(function() {
+				var index = $(this).index();
+				$('.subcate').hide();
+				$('.subcate').eq(index).show();
+			});
+
+			////////////////
+
+			$(".m-locale-btn").click(function() {
+				$(".m-all-locale").animate({
+					right : "0%"
+				}, 100, function() {});
+			});
+
+			$(".m-locale-close-btn").click(function() {
+				$(".m-all-locale").animate({
+					right : "-101%"
+				}, 100, function() {
+
+				});
+			});
+
+			var mLocaleH = $('#m-locale').height();
+			$('#m-locale li').click(function() {
+				var index = $(this).index();
+				$('.sub-locale').hide();
+				$('.sub-locale').eq(index).show();
+
+				$('#m-locale').css('height', mLocaleH);
+				if ($('#m-locale').height() > $('.sub-locale').eq(index).height()) {
+					$('.sub-locale').eq(index).css('height', mLocaleH);
+				} else {
+					$('#m-locale').css('height', $('.sub-locale').eq(index).height());
+				}
+			});
+
+			$('.sub-locale a').click(function() {
+				var localeIdx = $(this).parents('ul').index();
+				var subLocale = $('#m-locale li').eq(localeIdx).text();
+
+				if ($(this).text() == '지역전체') {
+					$('.locale-main').val("");
+					$('.locale').attr('name', '');
+				} else if (subLocale == '서울전체' || subLocale == '경기전체' || subLocale == '인천전체' || subLocale == '강원전체' || subLocale == '대전전체' || subLocale == '세종전체' || subLocale == '충남전체' || subLocale == '충북전체' || subLocale == '부산전체' || subLocale == '울산전체' || subLocale == '경남전체' || subLocale == '경북전체' || subLocale == '대구전체' || subLocale == '전남전체' || subLocale == '전북전체' || subLocale == '제주전체') {
+
+					$('.locale-main').val($('#m-locale li').eq(localeIdx).text()).attr("selected", true)
+					$("select[name='locale2']").val("");
+
+				} else {
+					$('.locale-main').val($('#m-locale li').eq(localeIdx).text()).change();
+					$("select[name='locale2']").val($(this).text()).change();
+				}
+				$('.submit-btn').trigger('click');
+			});
+
+			///////
+
+			$(".m-filter-btn").click(function() {
+				$(".m-all-filter").animate({
+					right : "0%"
+				}, 100, function() {});
+			});
+
+			$(".m-filter-close-btn").click(function() {
+				$(".m-all-filter").animate({
+					right : "-101%"
+				}, 100, function() {
+
+				});
+			});
+
+			$('.filter-search').click(function() {
+				$('.submit-btn').trigger('click');
+			})
+
+			$('.locale-main').change(function() {
+				$(".disp").removeClass('disp');
+				$('.locale').hide();
+				var opIndex = $('.locale-main>option:selected').index();
+				$('.locale').attr('name', '');
+				if (opIndex == 0) {
+					$('.locale').attr('name', '');
+					$('.locale').hide();
+				} else {
+
+					$('.locale').eq(opIndex - 1).addClass("disp").show();
+					$('.locale').eq(opIndex - 1).attr('name', 'locale2');
+				}
+			});
+
+			var main = "<c:out value="${main}" />";
+			var subject = "<c:out value="${subject}" />";
+
+			if (subject == "수학" | subject == "외국어" | subject == "국어" | subject == "사회" | subject == "과학" | subject == "예체능" | subject == "입시(자소서/논술/면접)") {
+				subject = "전체";
+			}
+
+			$('.m-cate-btn').text(main + ":" + subject);
+
+			$('#m-cate li').each(function() {
+				if ($(this).text() == main) {
+
+				}
+			});
+
+			$('#m-sub-cate').trigger('click');
+
+			var idx = "";
+			$('#m-cate li').each(function() {
+				if ($(this).text() == main) {
+					idx = $(this).index();
+					$(this).trigger('click');
+				}
+			});
+
+			$('.subcate').eq(idx).each(function() {
+				$(this).find('a').each(function() {
+					if ($(this).text() == subject) {
+						$(this).css('font-weight', 'bolder');
+					}
+				})
+			});
+
+			var locale1 = "<c:out value="${form.locale1}" />";
+			var locale2 = "<c:out value="${form.locale2}" />";
+			var career = "<c:out value="${form.career}" />";
+			var sexual = "<c:out value="${form.sexual}" />";
+			var array = "<c:out value="${form.array}" />";
+
+			var idxL = "";
+			$('#m-locale li').each(function() {
+				if ($(this).text() == locale1) {
+					idxL = $(this).index();
+					$(this).trigger('click');
+				}
+				if (locale1 === "") {
+					$('#m-locale li').eq(0).trigger('click');
+				}
+			});
+
+			$('.sub-locale').eq(idxL).find('li').each(function() {
+				$(this).find('a').each(function() {
+					if ($(this).text() == locale2) {
+						$(this).css('font-weight', 'bolder');
+					}
+					if (locale2 == "") {
+						$(this).parents('ul').find('li').eq(0).css('font-weight', 'bolder');
+					}
+				})
+			});
+
+			//폼값 검색 없이 들어온 경우를 위해 
+			$('.sexual1').trigger('click');
+
+			//폼값 검색 했을때(예외. 지역전체로 검색한 경우 까지 포함됨)
+			if (locale1 != "") {
+
+				$('.locale-main').val(locale1).attr("selected", true);
+				var lidx;
+				$('.locale-main>option').each(function() {
+					if ($(this).text() == locale1) {
+						lidx = $(this).index()
+					}
+				});
+				//지역전체가 아닌경우
+				if (lidx != 0) {
+
+					$('.m-locale-btn').text(locale1 + ":" + locale2);
+
+					$('.locale').eq(lidx - 1).show().attr('name', 'locale2');
+					$('.locale').eq(lidx - 1).val(locale2).attr("selected", true);
+				}
+			}
+
+			if (career != "") {
+				$('#career').val(career).attr('selected', true);
+			}
+			if ($('.sexual1').val() == sexual) {
+				$('.sexual1').val(sexual).trigger('click');
+			} else if ($('.sexual2').val() == sexual) {
+				$('.sexual2').val(sexual).trigger('click');
+			} else if ($('.sexual3').val() == sexual) {
+				$('.sexual3').val(sexual).trigger('click');
+			}
+
+			if (array != "") {
+				$('#array').val(array).attr('selected', true);
+			}
+
+			var jbOffset = $('.m-jbMenu').offset(); //상단메뉴 좌표 가져오는 코드
+			$(window).scroll(function() {
+				if ($(document).scrollTop() > jbOffset.top) { //scrollTop() 요청한 스크롤바의 수직위치 반환
+					$('.m-jbMenu').addClass('m-jbFixed');
+				} else {
+					$('.m-jbMenu').removeClass('m-jbFixed');
+				}
+			});
+
+			$('.page-a').click(function() {
+				var href = $(this).attr("href");
+				href = href + "&locale1P=" + encodeURIComponent(locale1) + "&locale2P=" + encodeURIComponent(locale2) + "&sexualP=" + encodeURIComponent(sexual);
+				$(this).prop('href', href);
+			});
+
+			$('.tutorial-btn').click(function() {
+				$('.tutorial-first').remove();
+				$('.tutorial-first-back').remove();
+				SetCookie('tutorial', 'end')
+			});
+		});
 
 		if (getRequestParam().cok_tutorial == "first_student") {
 			if (GetCookie("tutorial") != "end") {
@@ -1827,8 +1714,7 @@ html, body {
 		function SetCookie(sName, sValue) {
 			var date = new Date();
 			date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
-			document.cookie = sName + "=" + escape(sValue) + ";expires="
-					+ date.toGMTString();
+			document.cookie = sName + "=" + escape(sValue) + ";expires=" + date.toGMTString();
 		}
 
 		function GetCookie(sName) {

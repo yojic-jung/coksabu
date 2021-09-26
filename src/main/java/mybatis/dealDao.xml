@@ -70,7 +70,16 @@
 	
 	<select id="myWishList" resultType="com.coksabu.yojic.lesson.board.model.PostView">
 		<foreach collection="list" item="item" separator="union all">
-		(select A.nickname, A.birth, B.universe, B.univsub, B.academy, B.academyd, B.sexual, B.career, B.imgpath, C.cate, C.subcate, C.represent, C.title, C.subcate0, C.price3,  C.subcate1, C.opt1price3, C.subcate2, C.opt2price3, C.id
+		(select 
+		A.nickname, A.birth, B.universe, 
+		B.univsub, B.academy, B.academyd, B.sexual, B.career, B.imgpath, B.certify,
+		C.cate, C.subcate, C.represent, C.title, 
+		C.subcate0, C.price1, C.price2, C.price3, 
+		C.subcate1, C.opt1price1, C.opt1price2, C.opt1price3, 
+		C.subcate2, C.opt2price1, C.opt2price2, C.opt2price3,
+		C.subcate3, C.opt3price1, C.opt3price2, C.opt3price3,
+		C.subcate4, C.opt4price1, C.opt4price2, C.opt4price3,
+		C.prinegotiation, C.visible, C.id
 		from members as A, profile as B, lesson as C where A.email = B.email and B.email=C.email and C.id=#{item})
 		</foreach>
 	</select>

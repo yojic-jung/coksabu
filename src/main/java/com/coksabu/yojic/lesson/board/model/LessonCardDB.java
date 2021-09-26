@@ -26,20 +26,35 @@ public class LessonCardDB {
 	
 	private String careerDB;
 	
+	private String cate0;
 	private String subCate0;
 	private String price1;
 	private String price2;
 	private String price3;
 	
+	private String cate1;
 	private String subCate1;
 	private String opt1price1;
 	private String opt1price2;
 	private String opt1price3;
 	
+	private String cate2;
 	private String subCate2;
 	private String opt2price1;
 	private String opt2price2;
 	private String opt2price3;
+	
+	private String cate3;
+	private String subCate3;
+	private String opt3price1;
+	private String opt3price2;
+	private String opt3price3;
+	
+	private String cate4;
+	private String subCate4;
+	private String opt4price1;
+	private String opt4price2;
+	private String opt4price3;
 	
 	private String day;
 	private String gawe;
@@ -55,42 +70,83 @@ public class LessonCardDB {
 	public LessonCardDB(LessonCard card, String path) throws IllegalStateException, IOException {
 		this.id = card.getId();
 		this.email = card.getEmail();
-		this.cate=card.getCate();
 		
-		String a = card.getSubCate0();
+		String cateString = card.getCate0();
+		if(!card.getCate1().equals("nonevalue")) {
+			cateString= cateString.concat(","+card.getCate1());
+		}
+		if(!card.getCate2().equals("nonevalue")) {
+			cateString= cateString.concat(","+card.getCate2());
+		}
+		if(!card.getCate3().equals("nonevalue")) {
+			cateString= cateString.concat(","+card.getCate1());
+		}
+		if(!card.getCate4().equals("nonevalue")) {
+			cateString= cateString.concat(","+card.getCate4());
+		}
 		
+		if(card.getSubCate1()==null) {
+			card.setSubCate1("nonevalue");
+		}
+		if(card.getSubCate2()==null) {
+			card.setSubCate2("nonevalue");
+		}
+		if(card.getSubCate3()==null) {
+			card.setSubCate3("nonevalue");
+		}
+		if(card.getSubCate4()==null) {
+			card.setSubCate4("nonevalue");
+		}
+		String subCateString = card.getSubCate0();
 		if(!card.getSubCate1().equals("nonevalue")) {
-			a= a.concat(","+card.getSubCate1());
-		}else {
-			
+			subCateString= subCateString.concat(","+card.getSubCate1());
 		}
-		
 		if(!card.getSubCate2().equals("nonevalue")) {
-			a= a.concat(","+card.getSubCate2());
-		}else {
-			
+			subCateString= subCateString.concat(","+card.getSubCate2());
+		}
+		if(!card.getSubCate3().equals("nonevalue")) {
+			subCateString= subCateString.concat(","+card.getSubCate1());
+		}
+		if(!card.getSubCate4().equals("nonevalue")) {
+			subCateString= subCateString.concat(","+card.getSubCate4());
 		}
 		
-		this.subCate=a;
+		
+		this.cate=cateString;
+		this.subCate=subCateString;
 		this.title = card.getTitle();
 		this.lesson=card.getLesson();
 		this.description = card.getDescription();
 		
+		this.cate0 = card.getCate0();
 		this.subCate0=card.getSubCate0();
 		this.price1=card.getPrice1();
 		this.price2=card.getPrice2();
 		this.price3=card.getPrice3();
 		
+		this.cate1 = card.getCate1();
 		this.subCate1=card.getSubCate1();
 		this.opt1price1=card.getOpt1price1();
 		this.opt1price2=card.getOpt1price2();
 		this.opt1price3=card.getOpt1price3();
 		
+		this.cate2 = card.getCate2();
 		this.subCate2=card.getSubCate2();
 		this.opt2price1=card.getOpt2price1();
 		this.opt2price2=card.getOpt2price2();
 		this.opt2price3=card.getOpt2price3();
 		
+		this.cate3 = card.getCate3();
+		this.subCate3=card.getSubCate3();
+		this.opt3price1=card.getOpt3price1();
+		this.opt3price2=card.getOpt3price2();
+		this.opt3price3=card.getOpt3price3();
+		
+		this.cate4 = card.getCate4();
+		this.subCate4=card.getSubCate4();
+		this.opt4price1=card.getOpt4price1();
+		this.opt4price2=card.getOpt4price2();
+		this.opt4price3=card.getOpt4price3();
 		
 		this.day = card.getDay();
 		this.gawe=card.getGawe();
@@ -155,6 +211,12 @@ public class LessonCardDB {
 		return careerDB;
 	}
 	
+	public void setCate0(String cate0) {
+		this.cate0=cate0;
+	}
+	public String getCate0() {
+		return cate0;
+	}
 	public void setSubCate0(String subCate0) {
 		this.subCate0=subCate0;
 	}
@@ -183,6 +245,12 @@ public class LessonCardDB {
 	}
 	
 	
+	public void setCate1(String cate1) {
+		this.cate1=cate1;
+	}
+	public String getCate1() {
+		return cate1;
+	}
 	public void setSubCate1(String subCate1) {
 		this.subCate1=subCate1;
 	}
@@ -211,6 +279,12 @@ public class LessonCardDB {
 	}
 	
 	
+	public void setCate2(String cate2) {
+		this.cate2=cate2;
+	}
+	public String getCate2() {
+		return cate2;
+	}
 	public void setSubCate2(String subCate2) {
 		this.subCate2=subCate2;
 	}
@@ -237,6 +311,77 @@ public class LessonCardDB {
 	public String getOpt2price3() {
 		return opt2price3;
 	}
+	
+	
+	
+	
+	public void setCate3(String cate3) {
+		this.cate3=cate3;
+	}
+	public String getCate3() {
+		return cate3;
+	}
+	public void setSubCate3(String subCate3) {
+		this.subCate3=subCate3;
+	}
+	public String getSubCate3() {
+		return subCate3;
+	}
+	public void setOpt3price1(String opt3price1) {
+		this.opt3price1=opt3price1;
+	}
+	public String getOpt3price1() {
+		return opt3price1;
+	}
+	
+	public void setOpt3price2(String opt3price2) {
+		this.opt3price2=opt3price2;
+	}
+	public String getOpt3price2() {
+		return opt3price2;
+	}
+	
+	public void setOpt3price3(String opt3price3) {
+		this.opt3price3=opt3price3;
+	}
+	public String getOpt3price3() {
+		return opt3price3;
+	}
+	
+
+	public void setCate4(String cate4) {
+		this.cate4=cate4;
+	}
+	public String getCate4() {
+		return cate4;
+	}
+	public void setSubCate4(String subCate4) {
+		this.subCate4=subCate4;
+	}
+	public String getSubCate4() {
+		return subCate4;
+	}
+	public void setOpt4price1(String opt4price1) {
+		this.opt4price1=opt4price1;
+	}
+	public String getOpt4price1() {
+		return opt4price1;
+	}
+	
+	public void setOpt4price2(String opt4price2) {
+		this.opt4price2=opt4price2;
+	}
+	public String getOpt4price2() {
+		return opt4price2;
+	}
+	
+	public void setOpt4price3(String opt4price3) {
+		this.opt4price3=opt4price3;
+	}
+	public String getOpt4price3() {
+		return opt4price3;
+	}
+	
 	
 	public void setEmail(String email) {
 		this.email=email;

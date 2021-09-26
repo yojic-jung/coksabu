@@ -82,14 +82,14 @@ min-height:200px;
 	
 		<div class="subtile">서비스 안내</div>
 		<div style="font-size:17px;">
-		<div style="color:orange;font-weight:bolder;padding:30px 0px 20px 0px;">&#9312; &nbsp; 최대 3개의 수업 홍보 가능</div>
+		<div style="color:orange;font-weight:bolder;padding:30px 0px 20px 0px;">&#9312; &nbsp; 최대 5개 과목의 수업 홍보 가능</div>
 		<br/>
 		<img class="find" src="<c:url value="/resources/img/makeclassway1.png" />"  alt="수업찾기1"/>
 		<img class="find" src="<c:url value="/resources/img/makeclassway2.png" />"  alt="수업찾기2"/>
 		<img class="find" src="<c:url value="/resources/img/makeclassway3.png" />"  alt="수업찾기3"/>
 		<br/>
 		프로필을 작성한 후 선생님은 수업을 작성할 수 있습니다.<br/>
-		수업은 총 3개까지 만들수 있으며 수업이 노출되기 위해서는 '본인인증'과 '학력인증'은 필수 입니다.<br/>
+		수업 과목은 총 5개까지 만들수 있으며 수업이 노출되기 위해서는 '본인인증'과 '학력인증'은 필수 입니다.<br/>
 		'본인인증'과 '학력인증'을 하지 않아도 수업을 만들수는 있지만, 노출이 되지 않습니다.<br/>
 		따라서 '인증'을 하시게되면 수업이 노출되며 판매할 수 있습니다.<br/>
 		수업 내용에는 수업 과목, 수업횟수, 회당 수업시간, 수업내용, 선생님 소개 등의 내용이 포함되며<br/>

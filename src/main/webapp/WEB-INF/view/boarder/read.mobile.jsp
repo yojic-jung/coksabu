@@ -301,15 +301,41 @@
 							</label>
 							</td>
 						</tr>
-							
 						</c:if>
+						
 						<c:if test="${lesson.subCate2 != 'nonevalue'}">
 						<tr>
 							<td>
 							<label>
-							<div class="highlight" style="border-bottom-right-radius:20px;border-bottom-left-radius:20px;">
+							<div class="highlight">
 							<div class="price-sub"><input type="radio" name="subCate" value="third" style="width:30px; height:30px;" /> ${lesson.subCate2} &nbsp; ${lesson.opt2price3}원</div>
-							<div class="price-content">수업횟수 : ${lesson.opt2price1}<br/>회당 수업시간 : ${lesson.opt2price2}</div>
+							<div class="price-content" style="border-bottom:1px solid dimgray;">수업횟수 : ${lesson.opt2price1}<br/>회당 수업시간 : ${lesson.opt2price2}</div>
+							</div>
+							</label>
+							</td>
+						</tr>
+						</c:if>
+						
+						<c:if test="${lesson.subCate3 != 'nonevalue'}">
+						<tr>
+							<td>
+							<label>
+							<div class="highlight">
+							<div class="price-sub"><input type="radio" name="subCate" value="fourth" style="width:30px; height:30px;" /> ${lesson.subCate3} &nbsp; ${lesson.opt3price3}원</div>
+							<div class="price-content" style="border-bottom:1px solid dimgray;">수업횟수 : ${lesson.opt3price1}<br/>회당 수업시간 : ${lesson.opt3price2}</div>						
+							</div>
+							</label>
+							</td>
+						</tr>
+						</c:if>
+						
+						<c:if test="${lesson.subCate4 != 'nonevalue'}">
+						<tr>
+							<td>
+							<label>
+							<div class="highlight" style="border-bottom-right-radius:20px;border-bottom-left-radius:20px;">
+							<div class="price-sub"><input type="radio" name="subCate" value="fifth" style="width:30px; height:30px;" /> ${lesson.subCate4} &nbsp; ${lesson.opt4price3}원</div>
+							<div class="price-content" style="border-bottom:1px solid dimgray;">수업횟수 : ${lesson.opt4price1}<br/>회당 수업시간 : ${lesson.opt4price2}</div>						
 							</div>
 							</label>
 							</td>

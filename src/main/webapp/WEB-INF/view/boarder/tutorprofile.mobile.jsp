@@ -11,6 +11,7 @@
 <meta name="viewport" content="user-scalable=yes" />
 <link rel="stylesheet" href="<c:url value="/resources/colorbox.css" />" />
 <link rel="canonical" href="https://coksabu.com/tutorprofile?id=8&root=chat">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/include/mLessonCard.css?v=4"/>">
 <style>
 .top-ul a {
 	text-decoration: none;
@@ -134,12 +135,10 @@
 .list {
 	width: 100%;
 	margin: auto;
-	border-spacing: 0px 80px;
 }
 
 .list td {
 	padding-bottom: 20px;
-	border-bottom: 1px solid gray;
 }
 
 .list a {
@@ -147,63 +146,12 @@
 	color: black;
 }
 
-#pst {
-	vertical-align: top;
-	padding: 0px;
-	width: 100%;
-	position: relative
-}
-
-#categories {
-	width: 100%;
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	font-size: 30px;
-	padding: 10px 60px;
-	color: Grey;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-
-#name {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	font-size: 30px;
-	color: DimGrey;
-	padding: 10px 20px;
-}
-
-#title {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	color: black;
-	font-size: 30px;
-	padding: 10px 20px;
-}
-
-#universe {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	color: dimgray;
-	font-size: 30px;
-	padding: 10px 20px;
-}
 
 #profile {
 	width: 150px;
 	height: 150px;
 	border-radius: 75px;
 	border: 5px solid orange;
-}
-
-#price {
-	font-family: Arial;
-	font-weight: bold;
-	font-size: 30px;
-	margin-top: 5px;
-	padding: 10px 20px;
-	color: black;
 }
 
 .foot {
@@ -291,35 +239,8 @@
 
 								<table class="list">
 
-									<c:forEach var="lesson" items="${list}">
-										<tr>
-											<td style="width: 30%;">
-												<a href="./boardread?postId=${lesson.id}" style="text-decoration: none;">
-													<c:if test="${pro.certify==1}">
-														<span style="padding: 5px; font-size: 24px; color: white; background: orange; border-radius: 10px; position: absolute; font-family: 'JejuGothic';">인증완료</span>
-													</c:if>
-													<img src="<c:url value='/img/representImg/${lesson.represent}' />" style="width: 100%; height: 250px; border-radius: 20px;" /><br />
-												</a>
-											</td>
-											<td>
-												<a href="./boardread?postId=${lesson.id}" style="text-decoration: none;">
-													<div>
-														<div id="title">${lesson.title}</div>
-														<div id="name">${lesson.nickname}(${lesson.birth},
-															${lesson.sexual})&nbsp;&nbsp;경력
-															<c:if test="${lesson.career!=0}">${lesson.career}년</c:if>
-															<c:if test="${lesson.career==0}">1년미만</c:if>
-														</div>
-														<div id="universe">${lesson.universe} ${lesson.univsub}</div>
-														<div id="price">
-															${lesson.subCate0} ${lesson.price3}원
-															<c:if test="${lesson.subCate1 !='nonevalue' }">/ ${lesson.subCate1} ${lesson.opt1price3}원</c:if>
-															<c:if test="${lesson.subCate2!='nonevalue' }">/ ${lesson.subCate2} ${lesson.opt2price3}원</c:if>
-														</div>
-													</div>
-												</a>
-											</td>
-										</tr>
+									<c:forEach var="post" items="${list}">
+										<%@ include file="/WEB-INF/view/include/mLessonCard.jsp"%>
 									</c:forEach>
 
 								</table>
@@ -340,6 +261,7 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 	<script src="resources/colorbox-master/colorbox-master/jquery.colorbox.js"></script>
 	<script src="resources/jquery-number-master/jquery.number.min.js"></script>
+	<script src="resources/js/include/lessonCard.js"></script>
 	<script>
 		$(document).ready(function() {
 

@@ -9,23 +9,21 @@
 <meta name="description" content="선생님 프로필 및 수업정보" />
 <link rel="stylesheet" href="<c:url value="/resources/colorbox.css" />" />
 <link rel="canonical" href="https://coksabu.com/tutorpage">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/include/mLessonCard.css?v=4"/>">
 <style>
 @charset "UTF-8";
+@font-face {
+	font-family: 'JejuGothic';
+	src: url(< c : url value = "/resources/JejuGothic-Regular.ttf"/ >)
+		format('truetype');
+}
 
 .top-ul a {
 	text-decoration: none;
 	color: black
 }
 
-.update, .delete {
-	border-radius: 50px;
-	border: 3px solid #EF904F;
-	color: #EF904F;
-	text-decoration: none;
-	padding: 15px;
-	cursor: pointer;
-	margin-right: 30px;
-}
+
 
 .lesson-make2 {
 	background: rgb(224, 223, 223);
@@ -232,58 +230,6 @@
 	color: black;
 }
 
-#pst {
-	vertical-align: top;
-	padding: 0px;
-	width: 100%;
-	position: relative
-}
-
-#categories {
-	width: 100%;
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	font-size: 30px;
-	padding: 10px 60px;
-	color: Grey;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-
-#name {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	font-size: 30px;
-	color: DimGrey;
-	padding: 10px 20px;
-}
-
-#title {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	color: black;
-	font-size: 30px;
-	padding: 10px 20px;
-}
-
-#universe {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	color: dimgray;
-	font-size: 30px;
-	padding: 10px 20px;
-}
-
-#price {
-	font-family: Arial;
-	font-weight: bold;
-	font-size: 30px;
-	margin-top: 5px;
-	padding: 10px 20px;
-	color: black;
-}
-
 .foot {
 	width: 100%;
 }
@@ -318,11 +264,8 @@
 						<div class="div-title">프로필</div>
 						<div style="width: 90%; background: white; border: 3px solid dimgray; border-radius: 10px; margin: auto; padding: 40px; text-align: center;">
 							<div style="margin-top: 30px; font-size: 30px;">
-								프로필을 작성하지 않으셨습니다.
-								<a href="./profile" style="text-decoration: none; color: black;">
-									<b>"프로필"</b>
-								</a>
-								을 작성해주세요.
+								프로필을 작성하지 않으셨습니다. <a href="./profile" style="text-decoration: none; color: black;"> <b>"프로필"</b>
+								</a> 을 작성해주세요.
 							</div>
 							<a href="./profile" style="text-decoration: none;">
 								<div style="font-size: 40px; width: 90%; margin: 80px auto 30px auto; border-radius: 50px; padding: 30px; background: #EF904F; color: white;">
@@ -365,7 +308,7 @@
 							</table>
 							<div style="color: #FFBB00; font-size: 40px; text-align: center;">
 								<c:if test="${pro.certify==0}">
-									<b>본인/학력인증을 해주세요.<br />미인증시 상위노출에 제한이 있으며,<br/>지원서 발송에 제한이 있습니다.
+									<b>본인/학력인증을 해주세요.<br />미인증시 상위노출에 제한이 있으며,<br />지원서 발송에 제한이 있습니다.
 									</b>
 								</c:if>
 								<c:if test="${pro.certify==1}">
@@ -385,21 +328,17 @@
 							<div class="certify" style="width: 90%; margin: 50px auto; cursor: pointer; border-radius: 50px; padding: 30px; background: #EF904F; color: white;">
 								<b> 본인/학력 인증하기 </b>
 							</div>
-						</a>
-
-						<a href="./profile" style="text-decoration: none; color: black">
+						</a> <a href="./profile" style="text-decoration: none; color: black">
 							<div class="profile" style="width: 90%; margin: 50px auto; border-radius: 50px; padding: 30px; background: #EF904F; color: white;">
 								<b> 프로필 수정하기 </b>
 							</div>
-						</a>
-
-						<a href="./lessonWrite" style="text-decoration: none; color: black">
+						</a> 
 							<div class="lesson-make lesson-permit" style="text-align: center; width: 90%; margin: 50px auto; border-radius: 50px; padding: 30px; background: #EF904F; color: white;">
 								<b> 수업 만들기 </b>
 							</div>
-						</a>
+						
 					</div>
-					<div class="div-title" style="margin-top: 100px;">수업 목록 (${size}/3)</div>
+					<div class="div-title" style="margin-top: 100px;">수업 목록 (${size}/1)</div>
 					<div style="width: 90%; background: white;; border: 1px solid lightgray; border-radius: 10px; margin: auto; padding: 40px;">
 
 						<c:if test="${size != 0}">
@@ -407,64 +346,8 @@
 
 								<table style="border-spacing: 0px 40px; width: 100%">
 
-									<c:forEach var="lesson" items="${list}">
-										<tr>
-											<td colspan="2" style="position: relative;">
-												<c:if test="${lesson.visible==0 }">
-													<div style="position: absolute; top: 100px; z-index: 3; font-weight: bolder; line-height: 150%; font-size: 30px; color: #FF5E00">
-														판매중단,<br /> 삭제요청된 수업으로 진행중인 거래가 있는지 확인 후 삭제 처리됩니다.
-													</div>
-												</c:if>
-											</td>
-										</tr>
-										<c:choose>
-											<c:when test="${lesson.visible!=0 }">
-												<tr>
-											</c:when>
-											<c:otherwise>
-												<tr style="opacity: 0.2;">
-											</c:otherwise>
-										</c:choose>
-										<td style="width: 30%;">
-											<a href="./boardread?postId=${lesson.id}" style="text-decoration: none;">
-												<c:if test="${pro.certify==1}">
-													<span style="padding: 5px; font-size: 24px; color: white; background: orange; border-radius: 10px; position: absolute; font-family: 'JejuGothic';">인증완료</span>
-												</c:if>
-												<img src="<c:url value='/img/representImg/${lesson.represent}' />" style="width: 100%; height: 250px; border-radius: 20px;" /><br />
-											</a>
-										</td>
-										<td>
-											<a href="./boardread?postId=${lesson.id}" style="text-decoration: none;">
-												<div>
-													<div id="title">${lesson.title}</div>
-													<div id="name">${lesson.nickname}(${lesson.birth},
-														${lesson.sexual})&nbsp;&nbsp;경력
-														<c:if test="${lesson.career!=0}">${lesson.career}년</c:if>
-														<c:if test="${lesson.career==0}">1년미만</c:if>
-													</div>
-													<div id="universe">${lesson.universe} ${lesson.univsub}</div>
-													<div id="price">
-														${lesson.subCate0} ${lesson.price3}원
-														<c:if test="${lesson.subCate1 !='nonevalue' }">/ ${lesson.subCate1} ${lesson.opt1price3}원</c:if>
-														<c:if test="${lesson.subCate2!='nonevalue' }">/ ${lesson.subCate2} ${lesson.opt2price3}원</c:if>
-													</div>
-												</div>
-											</a>
-										</td>
-										</tr>
-
-										<tr>
-											<td colspan="2" style="border-bottom: 1px solid gray;">
-												<c:if test="${lesson.visible==1 }">
-													<div style="font-size: 30px; margin: 30px auto 100px auto; padding: 0px; text-align: center;">
-														<span class="update">수정하기<input type="text" class="idval" style="display: none;" value="${lesson.id}"></span>
-														<a class="delete-a" href="./deletelesson?id=${lesson.id} " style="text-decoration: none;">
-															<span class="delete">삭제하기</span>
-														</a>
-													</div>
-												</c:if>
-											</td>
-										</tr>
+									<c:forEach var="post" items="${list}">
+										<%@ include file="/WEB-INF/view/include/mLessonCard.jsp"%>
 									</c:forEach>
 
 								</table>
@@ -483,7 +366,9 @@
 			<div class="tutorial-para">
 				<div class="tutorial-first-title">이제, 나의 수업을 만들어보세요.</div>
 				<div>
-					입력양식에 따라 차근차근<br />나의 수업을 채워 넣어보세요.
+					입력양식에 따라 차근차근
+					<br />
+					나의 수업을 채워 넣어보세요.
 				</div>
 			</div>
 			<div>
@@ -499,7 +384,15 @@
 		<div class="tutorial-certi">
 			<div class="tutorial-para">
 				<div class="tutorial-first-title">
-					마지막 단계,<br /> 본인/학력인증을 완료하면<br />수업이 정상적으로 노출되며<br />학생의 과외요청에<br />알림을 받을 수 있습니다.
+					마지막 단계,
+					<br />
+					본인/학력인증을 완료하면
+					<br />
+					수업이 정상적으로 노출되며
+					<br />
+					학생의 과외요청에
+					<br />
+					알림을 받을 수 있습니다.
 				</div>
 			</div>
 			<div>
@@ -517,7 +410,11 @@
 			<div class="tutorial-para">
 				<div class="tutorial-first-title">모든 단계를 완료하였습니다.</div>
 				<div>
-					본인학력인증 검수 후<br />인증이 완료되면<br />모든 서비스가 적용됩니다.
+					본인학력인증 검수 후
+					<br />
+					인증이 완료되면
+					<br />
+					모든 서비스가 적용됩니다.
 				</div>
 			</div>
 			<div>
@@ -531,6 +428,7 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 	<script src="resources/colorbox-master/colorbox-master/jquery.colorbox.js"></script>
 	<script src="resources/jquery-number-master/jquery.number.min.js"></script>
+	<script src="resources/js/include/lessonCard.js"></script>
 	<script>
 		$(document).ready(function() {
 
@@ -539,7 +437,7 @@
 			var error = "<c:out value="${error}" />";
 
 			if (error == "error") {
-				alert("수업은 최대 3개까지만 등록 가능합니다.")
+				alert("수업은 1개만 등록 가능합니다.")
 			}
 
 			var delError = "<c:out value="${delError}" />";
@@ -548,14 +446,24 @@
 				alert("삭제 처리가 되지 않았습니다. 새로고침 후에 다시 시도해 주시기 바랍니다.");
 			}
 
-			$('.update').click(function() {
+			var lessonSize = "<c:out value="${size}" />";
+
+			$('.lesson-make').click(function() {
+				if(lessonSize>=1){
+					alert("수업은 1개만 등록이 가능합니다.");
+					return false;
+				}
+				window.location = './lessonWrite';
+			});
+			
+			$('.tutor-update').click(function() {
 				var updateUrl = './update?id=' + $(this).find('.idval').val();
 				window.location = updateUrl;
 			});
 
 			var email = "<c:out value="${email}" />";
 
-			$('.delete-a').click(function() {
+			$('.tutor-delete-a').click(function() {
 				var confirmflag = prompt("해당하는 수업을 삭제하시려면 \'삭제\' 라고 입력해주세요");
 
 				if (confirmflag == '삭제') {
@@ -620,8 +528,7 @@
 		function SetCookie(sName, sValue) {
 			var date = new Date();
 			date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
-			document.cookie = sName + "=" + escape(sValue) + ";expires="
-					+ date.toGMTString();
+			document.cookie = sName + "=" + escape(sValue) + ";expires=" + date.toGMTString();
 		}
 
 		function GetCookie(sName) {

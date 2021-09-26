@@ -11,6 +11,7 @@ import com.coksabu.yojic.lesson.admin.model.OrderStatusRecord;
 import com.coksabu.yojic.lesson.admin.model.RefundComplete;
 import com.coksabu.yojic.lesson.admin.model.RefundSearch;
 import com.coksabu.yojic.lesson.admin.model.SecessionList;
+import com.coksabu.yojic.lesson.admin.model.SubCateListEndRemove;
 import com.coksabu.yojic.lesson.admin.model.TranSearch;
 import com.coksabu.yojic.lesson.admin.model.UnivCertiUpdateDB;
 import com.coksabu.yojic.lesson.board.model.LessonCardDB;
@@ -23,6 +24,14 @@ import com.coksabu.yojic.lesson.member.model.Qna;
 
 @Repository
 public interface AdminDao {
+	
+	public void putCate0(HashMap<String, Object> map);
+	
+	public void putCate1(HashMap<String, Object> map);
+	
+	public void putCate2(HashMap<String, Object> map);
+	
+	public List<SubCateListEndRemove> takeSubCateListEndRemove();
 	
 	public ImgList imgList();
 	

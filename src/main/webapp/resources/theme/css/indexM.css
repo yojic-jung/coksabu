@@ -66,59 +66,14 @@ body {
 .list {
 	width: 90%;
 	margin: auto;
-	border-spacing: 0px 80px;
 }
 
 .list td {
 	padding-bottom: 20px;
-	border-bottom: 1px solid gray;
 }
 
 .list a {
 	text-decoration: none;
-}
-
-#pst {
-	vertical-align: top;
-	padding: 0px;
-	width: 100%;
-	position: relative
-}
-
-#categories {
-	width: 100%;
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	font-size: 30px;
-	padding: 10px 60px;
-	color: Grey;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-
-#name {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	font-size: 30px;
-	color: DimGrey;
-	padding: 10px 20px;
-}
-
-#title {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	color: black;
-	font-size: 30px;
-	padding: 10px 20px;
-}
-
-#universe {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	color: dimgray;
-	font-size: 30px;
-	padding: 10px 20px;
 }
 
 #profile {
@@ -126,15 +81,6 @@ body {
 	height: 150px;
 	border-radius: 75px;
 	border: 5px solid orange;
-}
-
-#price {
-	font-family: Arial;
-	font-weight: bold;
-	font-size: 30px;
-	margin-top: 5px;
-	padding: 10px 20px;
-	color: black;
 }
 
 .cok-intro {

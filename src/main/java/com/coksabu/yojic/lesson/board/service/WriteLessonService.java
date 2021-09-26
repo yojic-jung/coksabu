@@ -25,17 +25,23 @@ public class WriteLessonService {
 	@Transactional(rollbackFor= {Exception.class})
 	public int write(LessonCardDB card) {
 		
-		if(boardDao.countLesson(card) >= 3) {
+		if(boardDao.countLesson(card) >= 1) {
 			return 0;
 		}
 		card.setPostingdate(new Date());
 		card.setReadCount(0);
 		
-		if(card.getSubCate1().equals("nonevalue")) {
+		if(card.getCate1().equals("nonevalue")) {
 			card.setOpt1price3("0");
 		}
-		if(card.getSubCate2().equals("nonevalue")) {
+		if(card.getCate2().equals("nonevalue")) {
 			card.setOpt2price3("0");
+		}
+		if(card.getCate3().equals("nonevalue")) {
+			card.setOpt3price3("0");
+		}
+		if(card.getCate4().equals("nonevalue")) {
+			card.setOpt4price3("0");
 		}
 		return boardDao.write(card);	
 						
@@ -80,7 +86,13 @@ public class WriteLessonService {
 			if(card.getSubCate2().equals("nonevalue")) {
 				card.setOpt2price3("0");
 			}
-					
+			if(card.getSubCate3().equals("nonevalue")) {
+				card.setOpt3price3("0");
+			}
+			if(card.getSubCate4().equals("nonevalue")) {
+				card.setOpt4price3("0");
+			}
+			
 			if(represent.equals("pro.png")) {
 				return boardDao.update(card);
 			}else {

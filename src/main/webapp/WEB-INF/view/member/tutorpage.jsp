@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,20 +8,15 @@
 <meta charset="utf-8">
 <meta name="description" content="선생님 프로필 및 수업정보" />
 <link rel="stylesheet" href="<c:url value="/resources/colorbox.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/include/pcLessonCard.css?v=2"/>">
 <style>
+@font-face {
+	font-family: 'JejuGothic';
+	src: url(/resources/JejuGothic-Regular.ttf) format('truetype');
+}
 .top-ul a {
 	text-decoration: none;
 	color: black
-}
-
-.update, .delete {
-	border-radius: 5px;
-	border: 1px solid gray;
-	background: gray;
-	color: white;
-	text-decoration: none;
-	padding: 3px;
-	cursor: pointer;
 }
 
 .lesson-make2 {
@@ -146,48 +140,6 @@
 	font-size: 12px;
 }
 
-#categories {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	font-size: 16px;
-	color: Grey;
-	padding: 5px;
-}
-
-#name {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	font-size: 14px;
-	padding: 5px;
-	color: black;
-}
-
-#universe {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	color: DimGrey;
-	font-size: 14px;
-	padding: 5px;
-}
-
-#title {
-	font-family: 'JejuGothic';
-	font-weight: 900;
-	color: black;
-	font-size: 18px;
-	margin-top: 7px;
-	padding: 5px;
-}
-
-#price {
-	font-family: Arial;
-	font-weight: bold;
-	font-size: 16px;
-	padding: 5px;
-	margin-top: 5px;
-	color: black;
-}
-
 .tutorial-first-back {
 	display: none;
 	width: 100%;
@@ -277,10 +229,6 @@
 	line-height: 150%;
 	text-decoration: none;
 }
-
-#pst:hover {
-	box-shadow: 0px 0px 4px 4px LightGoldenRodYellow;
-}
 </style>
 
 
@@ -295,11 +243,8 @@
 				<div class="div-title">프로필</div>
 				<div style="width: 800px; background: white; margin: auto; padding: 20px; text-align: center;">
 					<div style="margin-top: 30px;">
-						프로필을 작성하지 않으셨습니다.
-						<a href="./profile" style="text-decoration: none; color: black;">
-							<b>"프로필"</b>
-						</a>
-						을 작성해주세요.
+						프로필을 작성하지 않으셨습니다. <a href="./profile" style="text-decoration: none; color: black;"> <b>"프로필"</b>
+						</a> 을 작성해주세요.
 					</div>
 					<div style="text-align: center; padding: 30px">
 						<a href="./profile" style="text-decoration: none;">
@@ -342,7 +287,7 @@
 							<b style="color: orange">본인 학력 인증을 해주세요.&nbsp;&nbsp;</b>
 						</c:if>
 						<c:if test="${pro.certify==1}">
-							<b style="color: rgb(212, 210, 77)">본인인증완료&nbsp;&nbsp;학력인증완료&nbsp;&nbsp;</b>
+							<b style="color:#F4C60B">본인인증완료&nbsp;&nbsp;학력인증완료&nbsp;&nbsp;</b>
 						</c:if>
 						<c:if test="${pro.certify==2}">
 							<b><span style="color: #FF3636">&quot;인증 실패&quot;</span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;</b>
@@ -350,10 +295,11 @@
 						<c:if test="${pro.certify==3}">
 							<b><span style="color: orange">&quot;심사 중&quot;</span> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;</b>
 						</c:if>
-						<span class="certify" style="cursor: pointer; border-radius: 3px; padding: 5px; border: 1px solid rgb(117, 116, 116); background: dimgray; color: white;"> <b> 본인/학력 인증 </b>
-						</span> &nbsp;&nbsp;
-						<a href="./profile" style="text-decoration: none; color: black">
-							<span class="profile" style="border-radius: 3px; padding: 5px; border: 1px solid rgb(117, 116, 116); background: dimgray; color: white;"> <b> 프로필 수정하기 </b>
+						<span class="certify" style="cursor: pointer; border-radius: 15px; padding: 8px 10px; background: #EF904F; color: white;">
+							<b> 본인/학력 인증 </b>
+						</span>
+						&nbsp;&nbsp; <a href="./profile" style="text-decoration: none; color: black"> <span class="profile" style="border-radius: 15px; padding: 8px 10px; background: #EF904F; color: white;">
+								<b> 프로필 수정하기 </b>
 							</span>
 						</a>
 
@@ -373,12 +319,11 @@
 						</c:if>
 					</div>
 				</div>
-				<div class="div-title">수업 목록 (${size}/3)</div>
+				<div class="div-title">수업 목록 (${size}/1)</div>
 				<div style="width: 800px; background: white; margin: auto; padding: 20px;">
 					<div class="lesson-make lesson-permit" href="#lesson" style="margin: auto; width: 690px; border: 1px dashed gray; cursor: pointer">
 						<div style="text-align: center; margin: 15px auto; font-size: 20px; color: rgb(158, 158, 158)">
-
-							<b> <span style="font-size: 13px;">수업은 최대 3개까지 만들기가 가능합니다.</span> <br /> +<br /> 수업 만들기
+							<b> <span style="font-size: 13px;">수업을 만들어 학생들과 만나보세요.</span> <br /><span style="font-size:30px;font-weight:bold;">+</span><br /> 수업 만들기
 							</b>
 						</div>
 					</div>
@@ -387,65 +332,10 @@
 
 							<table class="list" style="border-spacing: 0px 15px;">
 
-								<c:forEach var="lesson" items="${list}">
-									<tr>
-										<td colspan="2">
-											<c:if test="${lesson.visible==0 }">
-												<div style="position: relative;">
-													<span style="position: absolute; z-index: 3; left: 30px; top: 80px; font-weight: bolder; line-height: 180%; color: #FF5E00"> 판매중단,<br /> 삭제요청된 수업으로 진행중인 거래가 있는지 확인후 삭제 처리됩니다.
-													</span>
-											</c:if>
-										</td>
-									</tr>
-									<c:choose>
-										<c:when test="${lesson.visible!=0 }">
-											<tr>
-										</c:when>
-										<c:otherwise>
-											<tr style="opacity: 0.2;">
-										</c:otherwise>
-									</c:choose>
-									<td>
-										<a href="<c:url value="./boardread?postId=${lesson.id}"/>">
-											<div id="pst" style="vertical-align: top; padding: 0px; margin: 20px 10px;">
-												<c:if test="${pro.certify==1}">
-													<span style="padding: 4px; font-size: 12px; color: white; background: orange; border-radius: 10px; position: absolute; font-family: 'JejuGothic';">인증완료</span>
-												</c:if>
-												<img src="<c:url value='/img/representImg/${lesson.represent}' />" style="width: 180px; height: 180px; magin-top: 0px; border-radius: 20px;" alt="수업대표이미지" />
-											</div>
-										</a>
-									</td>
-									<td style="vertical-align: top; padding-top: 30px; width: 100%;">
-										<a href="<c:url value="./boardread?postId=${lesson.id}"/>" style="text-decoration: none;">
-											<div id="categories">${lesson.subcate}</div>
-											<div id="name">
-												${lesson.nickname}(${lesson.birth}, ${lesson.sexual})&nbsp;&nbsp;경력
-												<c:if test="${lesson.career!=0}">${lesson.career}년</c:if>
-												<c:if test="${post.lesson==0}">1년미만</c:if>
-											</div>
-											<div id="universe">${lesson.universe}${lesson.univsub}</div>
-											<div id="title">${lesson.title}</div>
-											<div id="price">${lesson.subCate0}
-												${lesson.price3}원
-												<c:if test="${lesson.subCate1 !='nonevalue' }">/ ${lesson.subCate1} ${lesson.opt1price3}원</c:if>
-												<c:if test="${lesson.subCate2!='nonevalue' }">/ ${lesson.subCate2} ${lesson.opt2price3}원</c:if>
-											</div>
-										</a>
-									</td>
-									</tr>
-									<tr>
-										<td colspan="2" style="padding-bottom: 20px; border-bottom: 1px solid gray; text-align: right;">
-											<c:if test="${lesson.visible==1 }">
-												<div style="font-size: 12px; padding: 0px;">
-													<span class="update">수정하기<input type="text" class="idval" style="display: none;" value="${lesson.id}"></span>
-													<a class="delete-a" href="./deletelesson?id=${lesson.id} " style="text-decoration: none;">
-														<span class="delete">삭제하기</span>
-													</a>
-												</div>
-											</c:if>
-										</td>
-									</tr>
+								<c:forEach var="post" items="${list}">
+									<%@ include file="/WEB-INF/view/include/pcLessonCard.jsp"%>
 								</c:forEach>
+
 
 							</table>
 
@@ -460,7 +350,9 @@
 			<div class="tutorial-para">
 				<div class="tutorial-first-title">이제, 나의 수업을 만들어보세요.</div>
 				<div>
-					입력양식에 따라 차근차근<br />나의 수업을 채워 넣어보세요.
+					입력양식에 따라 차근차근
+					<br />
+					나의 수업을 채워 넣어보세요.
 				</div>
 			</div>
 			<div>
@@ -476,7 +368,15 @@
 		<div class="tutorial-certi">
 			<div class="tutorial-para">
 				<div class="tutorial-first-title">
-					마지막 단계,<br /> 본인/학력인증을 완료하면<br />수업이 정상적으로 노출되며<br />학생의 과외요청에<br />알림을 받을 수 있습니다.
+					마지막 단계,
+					<br />
+					본인/학력인증을 완료하면
+					<br />
+					수업이 정상적으로 노출되며
+					<br />
+					학생의 과외요청에
+					<br />
+					알림을 받을 수 있습니다.
 				</div>
 			</div>
 			<div>
@@ -492,7 +392,11 @@
 			<div class="tutorial-para">
 				<div class="tutorial-first-title">모든 단계를 완료하였습니다.</div>
 				<div>
-					본인학력인증 검수 후<br />인증이 완료되면<br />모든 서비스가 적용됩니다.
+					본인학력인증 검수 후
+					<br />
+					인증이 완료되면
+					<br />
+					모든 서비스가 적용됩니다.
 				</div>
 			</div>
 			<div>
@@ -505,90 +409,91 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 	<script src="resources/colorbox-master/colorbox-master/jquery.colorbox.js"></script>
 	<script src="resources/jquery-number-master/jquery.number.min.js"></script>
+	<script src="resources/js/include/lessonCard.js"></script>
 	<script>
-		$(document)
-				.ready(
-						function() {
+		$(document).ready(function() {
 
-							$('.tutor2').css('color', 'orange');
+			$('.tutor2').css('color', 'orange');
 
-							var error = "<c:out value="${error}" />";
+			var error = "<c:out value="${error}" />";
 
-							if (error == "error") {
-								alert("수업은 최대 3개까지만 등록 가능합니다.")
-							}
+			if (error == "error") {
+				alert("수업은 1개만 등록 가능합니다.")
+			}
 
-							var delError = "<c:out value="${delError}" />";
+			var delError = "<c:out value="${delError}" />";
 
-							if (delError == "delError") {
-								alert("삭제 처리가 되지 않았습니다. 새로고침 후에 다시 시도해 주시기 바랍니다.");
-							}
+			if (delError == "delError") {
+				alert("삭제 처리가 되지 않았습니다. 새로고침 후에 다시 시도해 주시기 바랍니다.");
+			}
+			
+			var lessonSize = "<c:out value="${size}" />";
 
-							$('.lesson-make').hover(function() {
-								$(this).addClass('lesson-make2');
-							}, function() {
-								$(this).removeClass('lesson-make2');
-							});
+			$('.lesson-make').hover(function() {
+				$(this).addClass('lesson-make2');
+			}, function() {
+				$(this).removeClass('lesson-make2');
+			});
 
-							$('.lesson-make').click(function() {
-								window.location = './lessonWrite';
-							});
+			$('.lesson-make').click(function() {
+				
+				if(lessonSize>=1){
+					alert("수업은 1개만 등록이 가능합니다.");
+					return false;
+				}
+				
+				window.location = './lessonWrite';
+			});
 
-							$('.update').click(
-									function() {
-										var updateUrl = './update?id='
-												+ $(this).find('.idval').val();
-										window.location = updateUrl;
-									});
+			var email = "<c:out value="${email}" />";
 
-							var email = "<c:out value="${email}" />";
+			$('.certify').click(function() {
+				var url = './certify?email=' + email;
+				window.open(url, '', 'width=600, height=600');
+			});
 
-							$('.certify').click(function() {
-								var url = './certify?email=' + email;
-								window.open(url, '', 'width=600, height=600');
-							});
+			$('.tutorpage-update').click(function() {
+				var updateUrl = './update?id=' + $(this).find('.idval').val();
+				window.location = updateUrl;
+			});
 
-							$('.delete-a')
-									.click(
-											function() {
-												var confirmflag = prompt("해당하는 수업을 삭제하시려면 \'삭제\' 라고 입력해주세요");
+			$('.tutorpage-delete').click(function() {
+				debugger;
+				var confirmflag = prompt("해당하는 수업을 삭제하시려면 \'삭제\' 라고 입력해주세요");
 
-												if (confirmflag == '삭제') {
-													return true;
-													//확인 버튼 클릭 true 
-												} else {
-													return false;
-													//취소 버튼 클릭 false
-												}
-											});
+				if (confirmflag == '삭제') {
+					return true;
+					// 확인 버튼 클릭 true
+				} else {
+					return false;
+					// 취소 버튼 클릭 false
+				}
+			});
 
-							$('.tutorial-close').click(function() {
-								$('.tutorial-first').hide();
-								$('.tutorial-first-back').hide();
-								SetCookie('tutorial', 'end')
-							});
+			$('.tutorial-close').click(function() {
+				$('.tutorial-first').hide();
+				$('.tutorial-first-back').hide();
+				SetCookie('tutorial', 'end')
+			});
 
-							$('.tutorial-close-certi').click(function() {
-								$('.tutorial-certi').hide();
-								$('.tutorial-first-back').hide();
-								SetCookie('tutorial', 'end')
-							});
+			$('.tutorial-close-certi').click(function() {
+				$('.tutorial-certi').hide();
+				$('.tutorial-first-back').hide();
+				SetCookie('tutorial', 'end')
+			});
 
-							$('.tutorial-btn-certi').click(
-									function() {
-										$('.tutorial-certi').hide();
-										$('.tutorial-first-back').hide();
-										var url = './certify?email=' + email
-												+ '&cok_tutorial=last_step';
-										window.open(url, '',
-												'width=600, height=600');
-									});
+			$('.tutorial-btn-certi').click(function() {
+				$('.tutorial-certi').hide();
+				$('.tutorial-first-back').hide();
+				var url = './certify?email=' + email + '&cok_tutorial=last_step';
+				window.open(url, '', 'width=600, height=600');
+			});
 
-							$('.tutorial-end').click(function() {
-								window.location.reload();
-							});
+			$('.tutorial-end').click(function() {
+				window.location.reload();
+			});
 
-						});
+		});
 
 		function getRequestParam() {
 			var url = document.location.href;
@@ -625,8 +530,7 @@
 		function SetCookie(sName, sValue) {
 			var date = new Date();
 			date.setTime(date.getTime() + (1 * 24 * 60 * 60 * 1000));
-			document.cookie = sName + "=" + escape(sValue) + ";expires="
-					+ date.toGMTString();
+			document.cookie = sName + "=" + escape(sValue) + ";expires=" + date.toGMTString();
 		}
 
 		function GetCookie(sName) {

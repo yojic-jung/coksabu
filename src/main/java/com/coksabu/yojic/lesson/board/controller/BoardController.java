@@ -61,6 +61,7 @@ public class BoardController extends DeviceSwitcherController  {
 	@RequestMapping(value="lessonWrite", method=RequestMethod.POST)
 	public String write2(LessonCard card, Model model, HttpSession session, HttpServletRequest request) throws IllegalStateException, IOException {
 		//입시 카테고리 제외하고 수업 1회, 2회, 3회 기준 안되게끔 막기 
+		/*
 		if(card.getCate().contains("입시")==false ){
 			if(card.getPrice1().contains("1회분") || card.getOpt1price1().contains("1회분") || card.getOpt2price1().contains("1회분")) {
 				model.addAttribute("error", "notPer1");
@@ -75,13 +76,12 @@ public class BoardController extends DeviceSwitcherController  {
 				return forward("boarder/lessonWrite");
 			}
 		}				
+		*/
 		
 		String configLocation = "classpath:applicationContext.xml";
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
 		WriteLessonService writeService = ctx.getBean("writeLessonService", WriteLessonService.class );
 		String path = request.getServletContext().getRealPath("resources/theme");
-		
-		
 		
 		logger.info(path+"경로");
 		LessonCardDB lsc = new LessonCardDB(card, path);
@@ -243,7 +243,12 @@ public class BoardController extends DeviceSwitcherController  {
 			if(lessonPost.getOpt2price3()!=null && !lessonPost.getOpt2price3().equals("")) {
 				lessonPost.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(lessonPost.getOpt2price3())));
 			}
-			
+			if(lessonPost.getOpt3price3()!=null && !lessonPost.getOpt3price3().equals("")) {
+				lessonPost.setOpt3price3(NumberFormat.getInstance().format(Integer.parseInt(lessonPost.getOpt3price3())));
+			}
+			if(lessonPost.getOpt4price3()!=null && !lessonPost.getOpt4price3().equals("")) {
+				lessonPost.setOpt4price3(NumberFormat.getInstance().format(Integer.parseInt(lessonPost.getOpt4price3())));
+			}
 			model.addAttribute("tutorEmail",tutorEmail);
 			
 			model.addAttribute("postId",id);
@@ -277,28 +282,31 @@ public class BoardController extends DeviceSwitcherController  {
 	//테스트 완료
 	@RequestMapping(value="update", method = RequestMethod.POST)
 	public String update2(LessonCard card, HttpServletRequest request, Model model) throws IllegalStateException, IOException {
-		//입시 카테고리 제외하고 수업 1회, 2회, 3회 기준 안되게끔 막기 
-		if(card.getCate().contains("입시")==false ){
-			if(card.getPrice1().contains("1회분") || card.getOpt1price1().contains("1회분") || card.getOpt2price1().contains("1회분")) {
-				model.addAttribute("error", "notPer1");
-				return forward("boarder/update");
-			}
-			if(card.getPrice1().contains("2회분") || card.getOpt1price1().contains("2회분") || card.getOpt2price1().contains("2회분")) {
-				model.addAttribute("error", "notPer1");
-				return forward("boarder/update");
-			}
-			if(card.getPrice1().contains("3회분") || card.getOpt1price1().contains("3회분") || card.getOpt2price1().contains("3회분")) {
-				model.addAttribute("error", "notPer1");
-				return forward("boarder/update");
-			}
-		}						
-		
 		String configLocation = "classpath:applicationContext.xml";
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
 		WriteLessonService writeService = ctx.getBean("writeLessonService", WriteLessonService.class );
 		
 		String path = request.getServletContext().getRealPath("resources/theme");
 		LessonCardDB lsc = new LessonCardDB(card, path);
+		
+		//입시 카테고리 제외하고 수업 1회, 2회, 3회 기준 안되게끔 막기 
+		if(lsc.getCate().contains("입시")==false ){
+			if(card.getPrice1().contains("1회분") || card.getOpt1price1().contains("1회분") || card.getOpt2price1().contains("1회분") || card.getOpt3price1().contains("1회분") || card.getOpt4price1().contains("1회분")) {
+				model.addAttribute("error", "notPer1");
+				ctx.close();
+				return forward("boarder/update");
+			}
+			if(card.getPrice1().contains("2회분") || card.getOpt1price1().contains("2회분") || card.getOpt2price1().contains("2회분")  || card.getOpt3price1().contains("2회분") || card.getOpt4price1().contains("2회분")) {
+				model.addAttribute("error", "notPer1");
+				ctx.close();
+				return forward("boarder/update");
+			}
+			if(card.getPrice1().contains("3회분") || card.getOpt1price1().contains("3회분") || card.getOpt2price1().contains("3회분") || card.getOpt3price1().contains("3회분") || card.getOpt4price1().contains("3회분")) {
+				model.addAttribute("error", "notPer1");
+				ctx.close();
+				return forward("boarder/update");
+			}
+		}	
 		lsc.setCareerDB(card.getYcareer());
 		int update = writeService.update(lsc, path);
 		if(update !=0) {
@@ -357,22 +365,39 @@ public class BoardController extends DeviceSwitcherController  {
 		
 		if(subcate.equals("first")) {
 			purchaseRead.setPrice3(NumberFormat.getInstance().format(Integer.parseInt(purchaseRead.getPrice3())));
+			purchaseRead.setPubCate(purchaseRead.getCate0());
 			purchaseRead.setPubSubcate(purchaseRead.getSubCate0());
 			purchaseRead.setPubprice1(purchaseRead.getPrice1());
 			purchaseRead.setPubprice2(purchaseRead.getPrice2());
 			purchaseRead.setPubprice3(purchaseRead.getPrice3());
 		}else if(subcate.equals("second")) {
 			purchaseRead.setOpt1price3(NumberFormat.getInstance().format(Integer.parseInt(purchaseRead.getOpt1price3())));
+			purchaseRead.setPubCate(purchaseRead.getCate1());
 			purchaseRead.setPubSubcate(purchaseRead.getSubCate1());
 			purchaseRead.setPubprice1(purchaseRead.getOpt1price1());
 			purchaseRead.setPubprice2(purchaseRead.getOpt1price2());
 			purchaseRead.setPubprice3(purchaseRead.getOpt1price3());
 		}else if(subcate.equals("third")) {
 			purchaseRead.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(purchaseRead.getOpt2price3())));
+			purchaseRead.setPubCate(purchaseRead.getCate2());
 			purchaseRead.setPubSubcate(purchaseRead.getSubCate2());
 			purchaseRead.setPubprice1(purchaseRead.getOpt2price1());
 			purchaseRead.setPubprice2(purchaseRead.getOpt2price2());
 			purchaseRead.setPubprice3(purchaseRead.getOpt2price3());
+		}else if(subcate.equals("fourth")) {
+			purchaseRead.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(purchaseRead.getOpt3price3())));
+			purchaseRead.setPubCate(purchaseRead.getCate3());
+			purchaseRead.setPubSubcate(purchaseRead.getSubCate3());
+			purchaseRead.setPubprice1(purchaseRead.getOpt3price1());
+			purchaseRead.setPubprice2(purchaseRead.getOpt3price2());
+			purchaseRead.setPubprice3(purchaseRead.getOpt3price3());
+		}else if(subcate.equals("fifth")) {
+			purchaseRead.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(purchaseRead.getOpt4price3())));
+			purchaseRead.setPubCate(purchaseRead.getCate4());
+			purchaseRead.setPubSubcate(purchaseRead.getSubCate4());
+			purchaseRead.setPubprice1(purchaseRead.getOpt4price1());
+			purchaseRead.setPubprice2(purchaseRead.getOpt4price2());
+			purchaseRead.setPubprice3(purchaseRead.getOpt4price3());
 		}
 		String phone = purchaseService.phone((String)session.getAttribute("email"));
 		ctx.close();
@@ -457,8 +482,18 @@ public class BoardController extends DeviceSwitcherController  {
 			for(Iterator<PostView> itr = list.iterator(); itr.hasNext();) {
 				PostView post = itr.next();
 				post.setPrice3(NumberFormat.getInstance().format(Integer.parseInt(post.getPrice3())));
-				post.setOpt1price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt1price3())));
-				post.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt2price3())));
+				if(post.getOpt1price3()!=null && !post.getOpt1price3().equals("")) {
+					post.setOpt1price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt1price3())));
+				}
+				if(post.getOpt2price3()!=null && !post.getOpt2price3().equals("")) {
+					post.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt2price3())));
+				}
+				if(post.getOpt3price3()!=null && !post.getOpt3price3().equals("")) {
+					post.setOpt3price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt3price3())));
+				}
+				if(post.getOpt4price3()!=null && !post.getOpt4price3().equals("")) {
+					post.setOpt4price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt4price3())));
+				}
 			}
 			ctx.close();
 			model.addAttribute("list", list);

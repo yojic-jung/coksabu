@@ -16,33 +16,6 @@ body {
 	word-break: keep-all;
 }
 
-.foot {
-	width: 100%;
-	clear: left;
-}
-
-.foot-align {
-	margin: auto;
-	width: 1000px;
-	min-width: 1000px;
-}
-
-.foot-align>div {
-	float: left;
-	margin: 20px;
-}
-
-.foot p {
-	font-size: 12px;
-	line-height: 150%;
-	text-decoration: none;
-}
-
-.foot-cate a, .foot-company a {
-	text-decoration: none;
-	color: black;
-}
-
 #inner-fade {
 	z-index: 1;
 }
@@ -234,48 +207,6 @@ body {
 	padding: 5px;
 }
 
-#name {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	font-size: 14px;
-	padding: 5px;
-	color: black;
-}
-
-#universe {
-	font-family: 'JejuGothic';
-	font-weight: bold;
-	color: DimGrey;
-	font-size: 14px;
-	padding: 5px;
-}
-
-#title {
-	font-family: 'JejuGothic';
-	font-weight: 900;
-	color: black;
-	font-size: 18px;
-	margin-top: 7px;
-	padding: 5px;
-}
-
-#price {
-	font-family: Arial;
-	font-weight: bold;
-	font-size: 16px;
-	padding: 5px;
-	margin-top: 5px;
-	color: black;
-}
-
-.list td {
-	border-bottom: 1px solid gray;
-}
-
-#pst:hover {
-	box-shadow: 0px 0px 4px 4px LightGoldenRodYellow;
-}
-
 .cok-intro {
 	background: white;
 	width: 30%;
@@ -444,6 +375,7 @@ body {
 	margin: 20px auto;
 	cursor: pointer;
 	height: 42px;
+	line-height: 42px;
 }
 
 .tutorial-first-back {

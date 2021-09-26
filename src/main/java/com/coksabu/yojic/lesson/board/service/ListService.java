@@ -59,6 +59,7 @@ public class ListService {
 			map4.put("endRow", endRow-firstRow+1);
 			map4.put("array", array);
 			
+			
 			List<PostView> postList = boardDao.listPost(map4);
 			List<PostView> postNewList = boardDao.listNewPost(map4);
 			
@@ -66,8 +67,18 @@ public class ListService {
 			for(Iterator<PostView> itr = postList.iterator(); itr.hasNext();) {
 				PostView post = itr.next();
 				post.setPrice3(NumberFormat.getInstance().format(Integer.parseInt(post.getPrice3())));
-				post.setOpt1price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt1price3())));
-				post.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt2price3())));
+				if(post.getOpt1price3()!=null && !post.getOpt1price3().equals("")) {
+					post.setOpt1price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt1price3())));
+				}
+				if(post.getOpt2price3()!=null && !post.getOpt2price3().equals("")) {
+					post.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt2price3())));
+				}
+				if(post.getOpt3price3()!=null && !post.getOpt3price3().equals("")) {
+					post.setOpt3price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt3price3())));
+				}
+				if(post.getOpt4price3()!=null && !post.getOpt4price3().equals("")) {
+					post.setOpt4price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt4price3())));
+				}
 			}
 			
 			for(Iterator<PostView> itr = postNewList.iterator(); itr.hasNext();) {
@@ -78,6 +89,12 @@ public class ListService {
 				}
 				if(post.getOpt2price3()!=null && !post.getOpt2price3().equals("")) {
 					post.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt2price3())));
+				}
+				if(post.getOpt3price3()!=null && !post.getOpt3price3().equals("")) {
+					post.setOpt3price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt3price3())));
+				}
+				if(post.getOpt4price3()!=null && !post.getOpt4price3().equals("")) {
+					post.setOpt4price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt4price3())));
 				}
 			}
 			
@@ -152,12 +169,35 @@ public class ListService {
 			for(Iterator<PostView> itr = postList.iterator(); itr.hasNext();) {
 				PostView post = itr.next();
 				post.setPrice3(NumberFormat.getInstance().format(Integer.parseInt(post.getPrice3())));
-				post.setOpt1price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt1price3())));
-				post.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt2price3())));
+				if(post.getOpt1price3()!=null && !post.getOpt1price3().equals("")) {
+					post.setOpt1price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt1price3())));
+				}
+				if(post.getOpt2price3()!=null && !post.getOpt2price3().equals("")) {
+					post.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt2price3())));
+				}
+				if(post.getOpt3price3()!=null && !post.getOpt3price3().equals("")) {
+					post.setOpt3price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt3price3())));
+				}
+				if(post.getOpt4price3()!=null && !post.getOpt4price3().equals("")) {
+					post.setOpt4price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt4price3())));
+				}
 			}
+			
 			for(Iterator<PostView> itr = postNewList.iterator(); itr.hasNext();) {
 				PostView post = itr.next();
 				post.setPrice3(NumberFormat.getInstance().format(Integer.parseInt(post.getPrice3())));
+				if(post.getOpt1price3()!=null && !post.getOpt1price3().equals("")) {
+					post.setOpt1price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt1price3())));
+				}
+				if(post.getOpt2price3()!=null && !post.getOpt2price3().equals("")) {
+					post.setOpt2price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt2price3())));
+				}
+				if(post.getOpt3price3()!=null && !post.getOpt3price3().equals("")) {
+					post.setOpt3price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt3price3())));
+				}
+				if(post.getOpt4price3()!=null && !post.getOpt4price3().equals("")) {
+					post.setOpt4price3(NumberFormat.getInstance().format(Integer.parseInt(post.getOpt4price3())));
+				}
 			}
 			
 			

@@ -6,6 +6,23 @@
 
 <mapper namespace="com.coksabu.yojic.lesson.admin.dao.AdminDao">
 
+
+	<update id="putCate0" >
+		update lesson set cate0=#{cate} where id=#{id}
+	</update>
+	
+	<update id="putCate1" >
+		update lesson set cate1=#{cate} where id=#{id}
+	</update>
+	
+	<update id="putCate2" >
+		update lesson set cate2=#{cate} where id=#{id}
+	</update>
+	
+	<select id="takeSubCateListEndRemove" resultType="com.coksabu.yojic.lesson.admin.model.SubCateListEndRemove" >
+		select id, cate, subcate0, subcate1, subcate2 from lesson where cate3 is null
+	</select>
+
 	<select id="imgList" resultType="com.coksabu.yojic.lesson.admin.model.ImgList" >
 		select A.name, A.birth, B.email, B.certifyimg1, B.certifyimg2, B.certifyimg3, B.universe, B.univsub,  B.academy, B.academyd from members as A, profile as B where A.email=B.email and B.certify=3 order by B.certifydate asc limit 1
 	</select>
