@@ -289,6 +289,7 @@ public class BoardController extends DeviceSwitcherController  {
 		String path = request.getServletContext().getRealPath("resources/theme");
 		LessonCardDB lsc = new LessonCardDB(card, path);
 		
+		/*
 		//입시 카테고리 제외하고 수업 1회, 2회, 3회 기준 안되게끔 막기 
 		if(lsc.getCate().contains("입시")==false ){
 			if(card.getPrice1().contains("1회분") || card.getOpt1price1().contains("1회분") || card.getOpt2price1().contains("1회분") || card.getOpt3price1().contains("1회분") || card.getOpt4price1().contains("1회분")) {
@@ -306,7 +307,9 @@ public class BoardController extends DeviceSwitcherController  {
 				ctx.close();
 				return forward("boarder/update");
 			}
-		}	
+		}
+		*/
+		
 		lsc.setCareerDB(card.getYcareer());
 		int update = writeService.update(lsc, path);
 		if(update !=0) {

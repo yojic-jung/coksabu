@@ -40,11 +40,23 @@ $(document).ready(function(){
 		$('.pri-neg-able').removeClass('radio-back');
 		$('.pri-neg-disable').addClass('radio-back');
 	});
+	
+	$('.service-add').click(function(){
+		var opt3TrCss  = $('.opt3-tr').css('display');
+		var opt4TrCss  = $('.opt4-tr').css('display');
+		if(opt4TrCss!='none'){
+			alert('수업은 최대 5과목까지 등록 가능합니다.');
+		}
+		if(opt3TrCss!='none'){
+			$('.opt4-tr').show();
+		}
+		$('.opt3-tr').show();
+	});
 
 	/* 서비스 탭 메뉴 컨텐츠 validation */
 	$('.btn1').click(function() {
 		var re2 = /^[0-9]{1,}$/;
-		var price = document.getElementById('price3');
+		var price3 = document.getElementById('price3');
 		var opt1price3 = document.getElementById('opt1price3');
 		var opt2price3 = document.getElementById('opt2price3');
 		var opt3price3 = document.getElementById('opt3price3');
@@ -57,11 +69,11 @@ $(document).ready(function(){
 		if (opIdx2 == 0) {
 			alert('제공하는 서비스를 선택해주세요.');
 		}
-		else if (!check2(re2, price, "제공수업1의 가격을 숫자만 포함하여 입력해주세요.")) {
+		else if (!check2(re2, price3, "제공수업1의 가격을 숫자만 포함하여 입력해주세요.")) {
 			
-		} else if ($('#price').val() > 2000000) {
+		} else if ($('#price3').val() > 2000000) {
 			alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업1의 가격을 수정해주세요.")
-		} else if ($('#price').val() < 10000) {
+		} else if ($('#price3').val() < 10000) {
 			alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업1의 가격을 수정해주세요.");
 		}
 		
@@ -91,14 +103,10 @@ $(document).ready(function(){
 			alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업5의 가격을 수정해주세요.")
 		} else if (cate4 != 0 && $('#opt4price3').val() < 10000) {
 			alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업5의 가격을 수정해주세요.")
-		}
-		
-		else if (!$('input[name="priNegotiation"]').is(':checked')) {
-			alert("'가격협의가능' 및 '가격협의불가' 중 하나를 선택해주세요. ")
-		} else {
+		}else {
 			$('.menu td').eq(1).trigger('click');
 		}
-	})
+	});
 
 	
 	/* 수업제목 탭 메뉴 내용 validation */
@@ -466,6 +474,8 @@ $('.price-pri3').keyup(function() {
 
 function checkLesson(member) {
 
+	var currentUrl = window.location.href;
+	
 	var re1 = /^.{1,30}$/;
 	var re2 = /^[0-9]{1,}$/;
 
@@ -476,7 +486,7 @@ function checkLesson(member) {
 	var price = document.getElementById('price');
 	var careerDesc = document.getElementById('careerDesc');
 
-	var price = document.getElementById('price');
+	var price3 = document.getElementById('price3');
 	var opt1price3 = document.getElementById('opt1price3');
 	var opt2price3 = document.getElementById('opt2price3');
 	var opt3price3 = document.getElementById('opt3price3');
@@ -495,18 +505,18 @@ function checkLesson(member) {
 		return false;
 	}
 
-	if (!check2(re2, price, "제공수업1의 가격을 숫자만 포함하여 입력해주세요.")) {
+	if (!check2(re2, price3, "제공수업1의 가격을 숫자만 포함하여 입력해주세요.")) {
 		$('.menu td:first').trigger('click');
 		return false;
 	}
 
-	if ($('#price').val() > 2000000) {
+	if ($('#price3').val() > 2000000) {
 		alert("수업가격은 최대 200만원을 넘을 수 없습니다. \n 제공수업1의 가격을 수정해주세요.")
 		$('.menu td:first').trigger('click');
 		return false;
 	}
 
-	if ($('#price').val() < 10000) {
+	if ($('#price3').val() < 10000) {
 		alert("수업가격은 최소 1만원을 이상입니다. \n 제공수업1의 가격을 수정해주세요.");
 		$('.menu td:first').trigger('click');
 		return false;
@@ -581,11 +591,10 @@ function checkLesson(member) {
 	
 	if (!$('input[name="priNegotiation"]').is(':checked')) {
 		alert("'가격협의가능' 및 '가격협의불가' 중 하나를 선택해주세요. ")
-		$('.menu td:first').trigger('click');
 		return false;
 	}
-
-	if ($('#represent').val() == '') {
+	
+	if ( ($('#represent').val() == '') && (currentUrl.indexOf('lessonWrite') > 0) ) {
 		alert("수업 대표 이미지를 등록해주세요.");
 		$('.menu td').eq(1).trigger('click');
 		return false;

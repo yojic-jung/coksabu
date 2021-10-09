@@ -20,7 +20,7 @@
 	</update>
 	
 	<select id="takeSubCateListEndRemove" resultType="com.coksabu.yojic.lesson.admin.model.SubCateListEndRemove" >
-		select id, cate, subcate0, subcate1, subcate2 from lesson where cate3 is null
+		select id, cate, subcate0, subcate1, subcate2 from lesson where subcate3 = 'nonevalue'
 	</select>
 
 	<select id="imgList" resultType="com.coksabu.yojic.lesson.admin.model.ImgList" >

@@ -9,7 +9,8 @@
 	<td colspan="2">
 		<c:if test="${post.visible==0 }">
 			<div style="position: relative;">
-				<span style="position: absolute; z-index: 3; left: 30px; top: 80px; font-weight: bolder; line-height: 180%; color: #FF5E00"> 판매중단, <br /> <c:choose>
+				<span style="position: absolute; z-index: 3; left: 30px; top: 80px; font-weight: bolder; line-height: 180%; color: #FF5E00"> 판매중단, <br /> 
+					<c:choose>
 						<c:when test="${fn:contains(uri, 'tutorpage')}">
 							삭제요청된 수업으로 진행중인 거래가 있는지 확인후 삭제 처리됩니다.
 						</c:when>

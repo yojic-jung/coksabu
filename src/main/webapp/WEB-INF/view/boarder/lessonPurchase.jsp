@@ -128,7 +128,7 @@
 		<div class="title">
 		<span style="font-size:20px;font-family:'JejuGothic'">${purchase.title }</span><br/>
 		<br/>
-		<span style="font-size:12px;font-family:'JejuGothic'">${purchase.cate }(${purchase.pubSubcate })</span><br/>
+		<span style="font-size:12px;font-family:'JejuGothic'">${purchase.pubCate }(${purchase.pubSubcate })</span><br/>
 		</div>
 		
 		
@@ -219,7 +219,7 @@
 
 <div style="display:none;">
 <input type="text" name="title" value="${purchase.title}" />
-<input type="text" name="cate" value="${purchase.cate}" />
+<input type="text" name="cate" value="${purchase.pubCate}" />
 <input type="text" name="subcateIdx" value="${subcateIdx}" />
 <input type="text" name="subcate" value="${purchase.pubSubcate}" />
 <input type="text" name="price1" value="${purchase.pubprice1}" />
