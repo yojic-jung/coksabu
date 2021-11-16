@@ -47,9 +47,11 @@
 <script src="resources/js/include/lessonCard.js"></script>
 
 <style>
+
 .hide {
 	display: none;
 }
+
 </style>
 </head>
 <body>
