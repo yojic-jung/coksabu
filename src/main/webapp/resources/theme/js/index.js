@@ -32,14 +32,12 @@ fbq('track', 'PageView');
 
         
         
-        $('.fadeImg').css('width',$(document).width());
-        
             $("#inner-fade").innerfade({
                 animationtype:'fade',
                 speed:750,
                 timeout:8000,
                 type:'sequence',
-                containerheight:'350px'
+                containerheight:'600px'
             });
 
             $('.categoryTr>td').mouseenter(function(){
