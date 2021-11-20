@@ -48,16 +48,18 @@
 
 <style>
 html, body{ 
+width:100%;
 height: 100%;
 }
 .hide {
 	display: none;
 }
 .main-login {
-	width: 400px;
 	margin: auto;
 	font-weight: bolder;
 	text-align: center;
+	cursor:pointer;
+	padding-top:70px;
 }
 .fade-div1 {
 	background:rgb(251,248,243);
@@ -81,35 +83,48 @@ height: 100%;
 	top: 10%;
 	left:45%;
 	width:35%;
+	min-width:500px;
 }
 .contents-ui{
 	position: absolute;
 	top: 10%;
 	left:45%;
 	width:40%;
-}
-.school-img{
-	position: absolute;
-	top: 50%;
-	left:50%;
-	width:10%;
+	min-width:500px;
 }
 .cok-img{
 	position: absolute;
 	top: 15%;
 	left:20%;
-	width:5%;
+	width:80px;
 	animation: target_updown 2s; 
  	animation-iteration-count: infinite;
 }
 
 .social-img{
 	position: absolute;
+	width:80px;
 	top: 25%;
 	left:20%;
-	width:5%;
 	opacity:0.5;
 }
+.main-link{
+font-size:20px;color:white;padding:10px 30px;border-radius:10px;background:orange;
+}
+.main-link:hover{
+color:orange;background:white;border:2px solid orange;
+}
+
+@media (max-width:1100px){
+	.fade-content {font-size:25px;}
+}
+@media (min-width:1100px){
+	.fade-content {font-size:30px;}
+}
+@media (min-width:1200px){
+	.fade-content {font-size:35px;}
+}
+
 @keyframes target_updown {
 
  0% { top: 15%;}
@@ -335,13 +350,15 @@ height: 100%;
 					당신이 찾는
 					<br />
 					 사부를 만나보세요
-					 <div class="main-login" style="cursor:pointer;padding-top:70px;text-align:center;"><span style="font-size:20px;color:white;padding:10px 30px;border-radius:10px;background:orange;">수업목록</span></div>
+					 <div class="main-login"><a href="./applynologin" style="text-decoration:none;"><span class="main-link">사부 만나기</span></a></div>
 					</div>
 					
 				</div>
 			</li>
+			
 			<li>
 				<div class="fade-div2">
+					<img src="<c:url value="/resources/images/verifyTeacher.png" />" class="fade-img" />
 					<img src="<c:url value="/resources/images/cok.png" />" class="cok-img" />
 					<img src="<c:url value="/resources/images/cok-people.png" />" class="social-img" />
 					<div class="fade-content">
@@ -350,14 +367,13 @@ height: 100%;
 					거래부터 환불까지
 					<br />
 					"안전거래 과외플랫폼"
-					<div class="main-login" style="cursor:pointer;padding-top:70px;text-align:center;"><span style="font-size:20px;color:white;padding:10px 30px;border-radius:10px;background:orange;">수업목록</span></div>
+					<div class="main-login"><a href="./boarder?main=11&subject=11" style="text-decoration:none;"><span class="main-link">수업목록</span></a></div>
 					</div>
 				</div>
 			</li>
 			<li>
 				<div class="fade-div3">
-					<img src="<c:url value="/resources/images/contents-ui.png" />" class="contents-ui" />
-					<img src="<c:url value="/resources/images/school.png" />" class="school-img" />
+					<img src="<c:url value="/resources/images/contentsUi.png" />" class="contents-ui" />
 					<img src="<c:url value="/resources/images/cok.png" />" class="cok-img" />
 					<img src="<c:url value="/resources/images/cok-people.png" />" class="social-img" />
 					<div class="fade-content">
@@ -366,7 +382,7 @@ height: 100%;
 					우리학교 기출문제도
 					<br />
 					다운 받을 수 있어요
-					<div class="main-login" style="cursor:pointer;padding-top:70px;text-align:center;"><span style="font-size:20px;color:white;padding:10px 30px;border-radius:10px;background:orange;">수업목록</span></div>
+					<div class="main-login"><span class="main-link">컨텐츠자료실</span></div>
 					</div>
 				</div>
 			</li>

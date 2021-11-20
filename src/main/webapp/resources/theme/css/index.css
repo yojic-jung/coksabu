@@ -79,7 +79,7 @@ body {
 
 .fade-content {
 	font-size: 35px;
-	width: 400px;
+	width: 600px;
 	margin: auto;
 	font-weight: bolder;
 	text-align: center;
@@ -369,7 +369,6 @@ body {
 .naver-customize {
 	width: 80%;
 	text-align: center;
-	background-image: url(/resources/img/naverbackground.png);
 	font-family: 'Apple SD Gothic Neo', 'Malgun Gothic';
 	font-size: 18px;
 	color: white;
@@ -379,6 +378,7 @@ body {
 	cursor: pointer;
 	height: 42px;
 	line-height: 42px;
+	background:rgb(28,200,0);
 }
 
 .tutorial-first-back {
