@@ -47,22 +47,106 @@
 <script src="resources/js/include/lessonCard.js"></script>
 
 <style>
-
+html, body{ 
+width:100%;
+height: 100%;
+}
 .hide {
 	display: none;
 }
+.main-login {
+	margin: auto;
+	font-weight: bolder;
+	text-align: center;
+	cursor:pointer;
+	padding-top:70px;
+}
+.fade-div1 {
+	background:rgb(251,248,243);
+	height: 100%;
+	width: 100%;
+}
 
+.fade-div2 {
+	background:rgb(251,248,243);
+	height: 100%;
+	width: 100%;
+}
+
+.fade-div3 {
+	background:rgb(251,248,243);
+	height: 100%;
+	width: 100%;
+}
+.fade-img{
+	position: absolute;
+	top: 10%;
+	left:45%;
+	width:35%;
+	min-width:500px;
+}
+.contents-ui{
+	position: absolute;
+	top: 10%;
+	left:45%;
+	width:40%;
+	min-width:500px;
+}
+.cok-img{
+	position: absolute;
+	top: 15%;
+	left:20%;
+	width:80px;
+	animation: target_updown 2s; 
+ 	animation-iteration-count: infinite;
+}
+
+.social-img{
+	position: absolute;
+	width:80px;
+	top: 25%;
+	left:20%;
+	opacity:0.5;
+}
+.main-link{
+font-size:20px;color:white;padding:10px 30px;border-radius:10px;background:orange;
+}
+.main-link:hover{
+color:orange;background:white;border:2px solid orange;
+}
+
+@media (max-width:1100px){
+	.fade-content {font-size:25px;}
+}
+@media (min-width:1100px){
+	.fade-content {font-size:30px;}
+}
+@media (min-width:1200px){
+	.fade-content {font-size:35px;}
+}
+
+@keyframes target_updown {
+
+ 0% { top: 15%;}
+
+ 50% { top: 20%; }
+
+ 100% { top: 15%;}
+
+}
 </style>
 </head>
 <body>
-	<div>
+	<div style="height:100%;">
 
 		<noscript>
 			<img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1" />
 		</noscript>
 		<%@ include file="/WEB-INF/view/include/pcHeader.jsp"%>
+<!-- 
 		<div style="display: none; font-size: 15px; color: gray;">
 			<div id="menu">
+
 				<table>
 
 					<tr>
@@ -253,26 +337,55 @@
 			<input type="text" class="main-input" href="#menu" placeholder="원하시는 수업을 찾아보세요..." />
 			<button class="search-button">검색</button>
 		</div>
-
+-->
 		<ul id="inner-fade">
-			<li><img class="fadeImg" src="<c:url value="/resources/img/main5.png" />" alt="메인이미지3" />
-				<div class="fade-content" style="text-align: center;">
-					콕사부의 안전거래 시스템으로
+			<li>
+				<div class="fade-div1">
+					<img src="<c:url value="/resources/images/main-phone.png" />" class="fade-img" />
+					<img src="<c:url value="/resources/images/cok.png" />" class="cok-img" />
+					<img src="<c:url value="/resources/images/cok-people.png" />" class="social-img" />
+					<div class="fade-content" style="text-align: center;">
+					콕콕콕!
 					<br />
-					안전하게 거래하세요.
-				</div></li>
-			<li><img class="fadeImg" src="<c:url value="/resources/img/main1.png" />" alt="메인이미지1" />
-				<div class="fade-content">
-					모바일 어플 다운받고
+					당신이 찾는
 					<br />
-					실시간 과외 알림 받으세요
-				</div></li>
-			<li><img class="fadeImg" src="<c:url value="/resources/img/main2.png" />" alt="메인이미지2" />
-				<div class="fade-content">
-					콕사부의 사부님과
+					 사부를 만나보세요
+					 <div class="main-login"><a href="./applynologin" style="text-decoration:none;"><span class="main-link">사부 만나기</span></a></div>
+					</div>
+					
+				</div>
+			</li>
+			
+			<li>
+				<div class="fade-div2">
+					<img src="<c:url value="/resources/images/verifyTeacher.png" />" class="fade-img" />
+					<img src="<c:url value="/resources/images/cok.png" />" class="cok-img" />
+					<img src="<c:url value="/resources/images/cok-people.png" />" class="social-img" />
+					<div class="fade-content">
+					검증된 선생님과 매칭
 					<br />
-					내게 맞는 과외를 진행 해보세요.
-				</div></li>
+					거래부터 환불까지
+					<br />
+					"안전거래 과외플랫폼"
+					<div class="main-login"><a href="./boarder?main=11&subject=11" style="text-decoration:none;"><span class="main-link">수업목록</span></a></div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="fade-div3">
+					<img src="<c:url value="/resources/images/contentsUi.png" />" class="contents-ui" />
+					<img src="<c:url value="/resources/images/cok.png" />" class="cok-img" />
+					<img src="<c:url value="/resources/images/cok-people.png" />" class="social-img" />
+					<div class="fade-content">
+					컨텐츠 자료실에서
+					<br />
+					우리학교 기출문제도
+					<br />
+					다운 받을 수 있어요
+					<div class="main-login"><span class="main-link">컨텐츠자료실</span></div>
+					</div>
+				</div>
+			</li>
 		</ul>
 
 		<div style="text-align: center; font-family: 'JejuGothic'; padding: 30px; background: #F6F6F6">
@@ -804,7 +917,7 @@
 				state : state,
 				nonce : client_nonce,
 			});
-			
+
 			$(document).ready(function() {
 				$('.apple-customize').click(function() {
 					$('#appleid-signin').trigger("click");
