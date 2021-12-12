@@ -61,23 +61,16 @@ height: 100%;
 	cursor:pointer;
 	padding-top:70px;
 }
-.fade-div1 {
-	background:rgb(251,248,243);
+.show-div{
 	height: 100%;
 	width: 100%;
+		background:rgb(251,248,243);
 }
 
-.fade-div2 {
-	background:rgb(251,248,243);
-	height: 100%;
-	width: 100%;
+.fade-div2, .fade-div3 {
+	display:none;
 }
 
-.fade-div3 {
-	background:rgb(251,248,243);
-	height: 100%;
-	width: 100%;
-}
 .fade-img{
 	position: absolute;
 	top: 10%;
@@ -338,8 +331,7 @@ color:orange;background:white;border:2px solid orange;
 			<button class="search-button">검색</button>
 		</div>
 -->
-		<ul id="inner-fade">
-			<li>
+				<div class="show-div"></div>
 				<div class="fade-div1">
 					<img src="<c:url value="/resources/images/main-phone.png" />" class="fade-img" />
 					<img src="<c:url value="/resources/images/cok.png" />" class="cok-img" />
@@ -352,11 +344,8 @@ color:orange;background:white;border:2px solid orange;
 					 사부를 만나보세요
 					 <div class="main-login"><a href="./applynologin" style="text-decoration:none;"><span class="main-link">사부 만나기</span></a></div>
 					</div>
-					
 				</div>
-			</li>
 			
-			<li>
 				<div class="fade-div2">
 					<img src="<c:url value="/resources/images/verifyTeacher.png" />" class="fade-img" />
 					<img src="<c:url value="/resources/images/cok.png" />" class="cok-img" />
@@ -370,8 +359,7 @@ color:orange;background:white;border:2px solid orange;
 					<div class="main-login"><a href="./boarder?main=11&subject=11" style="text-decoration:none;"><span class="main-link">수업목록</span></a></div>
 					</div>
 				</div>
-			</li>
-			<li>
+				
 				<div class="fade-div3">
 					<img src="<c:url value="/resources/images/contentsUi.png" />" class="contents-ui" />
 					<img src="<c:url value="/resources/images/cok.png" />" class="cok-img" />
@@ -385,8 +373,6 @@ color:orange;background:white;border:2px solid orange;
 					<div class="main-login"><span class="main-link">컨텐츠자료실</span></div>
 					</div>
 				</div>
-			</li>
-		</ul>
 
 		<div style="text-align: center; font-family: 'JejuGothic'; padding: 30px; background: #F6F6F6">
 			<div style="margin-bottom: 30px;">콕사부 서비스 내용이 궁금하신가요??</div>
@@ -926,5 +912,21 @@ color:orange;background:white;border:2px solid orange;
 		</script>
 	</sec:authorize>
 
+<script>
+var fadeIdx =1;
+setInterval(function(){
+	if(fadeIdx==1){
+		$('.fade-div2').fadeIn(1000);
+		$('.fade-div1').fadeOut(1000);
+		fadeIdx += 1;
+	}else if(fadeIdx==2){
+		$('.fade-div1').fadeIn(1000);
+		$('.fade-div2').fadeOut(1000);
+		fadeIdx = 1;
+	}
+	
+	
+}, 8000)
+</script>
 </body>
 </html>
