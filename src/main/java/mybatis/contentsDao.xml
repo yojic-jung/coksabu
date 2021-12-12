@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.coksabu.yojic.lesson.contents.dao.ContentsDao">
+	
+	<select id="takeContentsMenu" resultType="com.coksabu.yojic.lesson.contents.model.KichulContents" >
+		select * from contentsmenu;
+	</select>
+	
+	<select id="countKichulContents" resultType="Integer" >
+		select count(1) from kichulcontents where contents=#{contents}
+	</select>
+	
+	
+	<insert id="insertKichulContents" parameterType="com.coksabu.yojic.lesson.contents.model.KichulContents">
+		insert into kichulcontents (city, district, school, year, grade, semester, term, subject, contents, createtime) 
+		values (#{city}, #{district}, #{school}, #{year}, #{grade}, #{semester}, #{term}, #{subject}, #{contents}, now())
+	</insert>
+	
+</mapper>

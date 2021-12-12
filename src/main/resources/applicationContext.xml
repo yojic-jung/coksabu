@@ -39,6 +39,7 @@
 				<value>classpath:/mybatis/dealDao.xml</value>
 				<value>classpath:/mybatis/cronDao.xml</value>
 				<value>classpath:/mybatis/chatDao.xml</value>
+				<value>classpath:/mybatis/contentsDao.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -82,6 +83,11 @@
 	
 	<bean id="cronDao" class="org.mybatis.spring.mapper.MapperFactoryBean" >
 		<property name="mapperInterface" value="com.coksabu.yojic.lesson.cron.dao.CronDao" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean id="contentsDao" class="org.mybatis.spring.mapper.MapperFactoryBean" >
+		<property name="mapperInterface" value="com.coksabu.yojic.lesson.contents.dao.ContentsDao" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 	
