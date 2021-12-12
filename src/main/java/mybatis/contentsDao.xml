@@ -11,13 +11,17 @@
 	</select>
 	
 	<select id="countKichulContents" resultType="Integer" >
-		select count(1) from kichulcontents where contents=#{contents}
+		select count(1) from kichulcontents where contents_name =#{contentsNamd}
 	</select>
 	
 	
 	<insert id="insertKichulContents" parameterType="com.coksabu.yojic.lesson.contents.model.KichulContents">
-		insert into kichulcontents (city, district, school, year, grade, semester, term, subject, contents, createtime) 
-		values (#{city}, #{district}, #{school}, #{year}, #{grade}, #{semester}, #{term}, #{subject}, #{contents}, now())
+		insert into kichulcontents (
+		contents_name, year, city, district, school, grade, semester, term, subject, extension,
+		img_work_stts, state_work_stts, ans_exist_stts, orgin_extension, temp_test_stts, svc_possible, create_time, update_time) 
+		values 
+		(#{contentsName}, #{year}, #{city}, #{district}, #{school}, #{grade}, #{semester}, #{term}, #{subject}, #{extension},
+		#{imgWorkStts}, #{stateWorkStts}, #{ansExistStts}, #{orginExtension}, #{tempTestStts}, #{svcPossible}, now(), now())
 	</insert>
 	
 </mapper>
