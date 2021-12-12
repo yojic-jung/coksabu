@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.coksabu.yojic.lesson.contents.dao.ContentsDao;
 import com.coksabu.yojic.lesson.contents.model.KichulContents;
@@ -22,6 +23,7 @@ public class ContentsService {
 		return contentsMenu;
 	}
 	
+	@Transactional(rollbackFor = Exception.class)
 	public HashMap<String, Object> insertKichulContents(KichulContents contents, String path) throws IllegalStateException, IOException {
 		HashMap<String, Object> map = new HashMap<>();
 		
@@ -50,7 +52,7 @@ public class ContentsService {
 			File file = new File(path+"/kichul-contents" , originName);
 			
 			contents.getContentsFile().transferTo(file);
-			contents.setContents(file.getName());
+			contents.setContentsName(file.getName());
 			
 			contentsDao.insertKichulContents(contents);
 			

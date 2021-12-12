@@ -828,7 +828,7 @@ color:orange;background:white;border:2px solid orange;
 
 		<%@ include file="/WEB-INF/view/include/pcFooter.jsp"%>
 	</div>
-	<script src="<c:url value="resources/js/index.min.js?date=${date}" />"></script>
+	<script src="<c:url value="resources/js/index.js?date=${date}" />"></script>
 	<sec:authorize access="isAuthenticated()">
 		<script>
 			function getRequestParam() {
@@ -912,21 +912,5 @@ color:orange;background:white;border:2px solid orange;
 		</script>
 	</sec:authorize>
 
-<script>
-var fadeIdx =1;
-setInterval(function(){
-	if(fadeIdx==1){
-		$('.fade-div2').fadeIn(1000);
-		$('.fade-div1').fadeOut(1000);
-		fadeIdx += 1;
-	}else if(fadeIdx==2){
-		$('.fade-div1').fadeIn(1000);
-		$('.fade-div2').fadeOut(1000);
-		fadeIdx = 1;
-	}
-	
-	
-}, 8000)
-</script>
 </body>
 </html>

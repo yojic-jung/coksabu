@@ -33,10 +33,6 @@ public class ContentsController {
 		List<KichulContents> contentsMenu = contentsService.takeContentsMenu();
 		ctx.close();
 		model.addAttribute("contentsMenu", contentsMenu);
-		if(contentsMenu.get(0).getCity().equals(contentsMenu.get(1).getCity())){
-			System.out.println(contentsMenu.get(0).getCity().equals(contentsMenu.get(1).getCity()));
-			
-		}
 		return "contents/contentsMenu";
 	}
 	
