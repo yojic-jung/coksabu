@@ -194,8 +194,11 @@
 		from 
 		 members as A, profile as B, lesson as C where A.email=B.email and B.email=C.email and A.membership=1 and C.visible=1
 		<choose>
-			<when test = 'subject!=null and (subject.equals("수학") or subject.equals("외국어") or subject.equals("국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("입시(자소서/논술/면접)"))' >
+			<when test = 'subject!=null and (subject.equals("수학") or subject.equals("외국어") or subject.equals("사회") or subject.equals("과학") or subject.equals("예체능") or subject.equals("입시(자소서/논술/면접)"))' >
 			 and C.cate like concat('%',#{subject},'%') order by A.membership desc, C.postingdate desc limit 10
+			 </when>
+			 <when test = 'subject.equals("국어")' >
+			 and C.subcate like concat('%',#{subject},'%') and C.subcate not like concat('%','중국어','%') order by A.membership desc, C.readcount desc limit #{firstRow}, #{endRow}
 			 </when>
 			 <otherwise>
 			 and C.subcate like concat('%',#{subject},'%') order by A.membership desc, C.postingdate desc limit 10
