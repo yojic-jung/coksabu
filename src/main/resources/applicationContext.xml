@@ -3,7 +3,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans   
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context 
@@ -20,9 +19,9 @@
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl"
-			value="jdbc:mysql://localhost/coksabu?characterEncoding=utf8&amp;allowMultiQueries=true" />
-		<property name="user" value="dywlr" />
-		<property name="password" value="1111" />
+			value="jdbc:mysql://coksabumariadb.cppobulgbd5h.ap-northeast-2.rds.amazonaws.com/dywlr74?characterEncoding=utf8&amp;allowMultiQueries=true" />
+		<property name="user" value="dywlr74" />
+		<property name="password" value="gresuc787!" />
 		<property name="idleConnectionTestPeriod" value="60" />
     	<property name="preferredTestQuery" value="SELECT 1" />
     	<property name="testConnectionOnCheckin" value="true" />
@@ -40,7 +39,6 @@
 				<value>classpath:/mybatis/dealDao.xml</value>
 				<value>classpath:/mybatis/cronDao.xml</value>
 				<value>classpath:/mybatis/chatDao.xml</value>
-				<value>classpath:/mybatis/contentsDao.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -87,16 +85,7 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 	
-	<bean id="contentsDao" class="org.mybatis.spring.mapper.MapperFactoryBean" >
-		<property name="mapperInterface" value="com.coksabu.yojic.lesson.contents.dao.ContentsDao" />
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-	</bean>
 	
-	<!-- redis 빈 설정 -->
-	<bean id="jedisConnectionFactory"
-		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" p:usePool="true"  p:hostName="localhost" p:port="6379" p:password="abcd1234"/>
-
-	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate" p:connectionFactory-ref="jedisConnectionFactory" />
 	
 	<context:component-scan base-package="com.coksabu.yojic.lesson" />	
 		
