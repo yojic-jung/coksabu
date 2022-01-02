@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.coksabu.yojic.lesson.chat.dao.ChatDao;
-import com.coksabu.yojic.lesson.chat.model.Message;
+import com.coksabu.yojic.lesson.chat.model.ChatMessage;
 import com.coksabu.yojic.lesson.chat.model.MyRoom;
 import com.coksabu.yojic.lesson.fcm.util.PushAsyncMethod;
 import com.coksabu.yojic.lesson.fcm.util.TokenInfo;
@@ -115,11 +115,10 @@ public class ChattingService {
 	}
 	
 	@Transactional(rollbackFor= {Exception.class})
-	public String insertMessage(Message mes, String mesForPush) throws FirebaseMessagingException, IOException {
+	public String insertMessage(ChatMessage mes, String mesForPush) throws FirebaseMessagingException, IOException {
 		chatDao.updateLastTime(mes.getChatroom_id());
 		
 		String status = chatDao.takeChatMemberStatus(mes);
-		
 		//메세지 읽음 상태
 		if(status.equals("ON")) {
 			chatDao.insertChatMessageRead(mes);
@@ -143,13 +142,13 @@ public class ChattingService {
 	}
 	
 	
-	public List<Message> takeMyChat(String id, String email) {
+	public List<ChatMessage> takeMyChat(String id, String email) {
 		HashMap<String, String> map = new HashMap<>();
 		map.put("chatroom_id", id);
 		map.put("email", email);
 		chatDao.changeReadOrNot(map);
 		int chatroom_id = Integer.parseInt(id);
-		List<Message> mesList = chatDao.takeMessage(chatroom_id);
+		List<ChatMessage> mesList = chatDao.takeMessage(chatroom_id);
 		return mesList;
 	}
 	
@@ -177,7 +176,7 @@ public class ChattingService {
 		return chatDao.takeReceiverEmail(id2);
 	}
 	
-	public Message takeMessage(Message mes) {
+	public ChatMessage takeMessage(ChatMessage mes) {
 		logger.info(String.valueOf(mes.getChatroom_id()));
 		String email = chatDao.takeChatEmail(mes.getChatroom_id());
 		email = email.replace(mes.getMessage_sender(), "").replace(",","").trim();

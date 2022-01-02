@@ -27,7 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.coksabu.yojic.DeviceSwitcher.DeviceSwitcherController;
 import com.coksabu.yojic.lesson.apply.service.MyApplyListService;
 import com.coksabu.yojic.lesson.chat.model.ChatDeal;
-import com.coksabu.yojic.lesson.chat.model.Message;
+import com.coksabu.yojic.lesson.chat.model.ChatMessage;
 import com.coksabu.yojic.lesson.chat.model.MyRoom;
 import com.coksabu.yojic.lesson.chat.service.ChatDealService;
 import com.coksabu.yojic.lesson.chat.service.ChattingService;
@@ -132,15 +132,15 @@ public class ChatAppController extends DeviceSwitcherController {
 			model.addAttribute("chatroom_id",roomNum);
 			model.addAttribute("count",0);
 		}else {//대화방이 있는 경우
-			List<Message> mesList = chattingService.takeMyChat(String.valueOf(chatroom_id), email);
+			List<ChatMessage> mesList = chattingService.takeMyChat(String.valueOf(chatroom_id), email);
 			String messageStatus = chattingService.unReadMessageStatus(email);
 			
 			
 			//빨간불 변경사항 알려주기 위해서
 			session.setAttribute("messageStatus", messageStatus);
 			
-			for(Iterator<Message> itr = mesList.iterator(); itr.hasNext();) {
-				Message msg = itr.next();
+			for(Iterator<ChatMessage> itr = mesList.iterator(); itr.hasNext();) {
+				ChatMessage msg = itr.next();
 				SimpleDateFormat format1 = new SimpleDateFormat ( "MM/dd HH:mm");
 		        String time1 = format1.format(msg.getMessage_time());
 				msg.setMessage_time2(time1);
@@ -177,7 +177,7 @@ public class ChatAppController extends DeviceSwitcherController {
 		String id = request.getParameter("id");
 		
 		//대화방이 있는 경우
-		List<Message> mesList = chattingService.takeMyChat(id, email);
+		List<ChatMessage> mesList = chattingService.takeMyChat(id, email);
 		String receiver = chattingService.takeReceiver(id);
 		String messageStatus = chattingService.unReadMessageStatus(email);
 		
@@ -192,8 +192,8 @@ public class ChatAppController extends DeviceSwitcherController {
 		
 		receiver=receiver.replace(email, "").replace(",", "").trim();
 		String receiverName = chattingService.takeNickname(receiver);
-		for(Iterator<Message> itr = mesList.iterator(); itr.hasNext();) {
-			Message msg = itr.next();
+		for(Iterator<ChatMessage> itr = mesList.iterator(); itr.hasNext();) {
+			ChatMessage msg = itr.next();
 			SimpleDateFormat format1 = new SimpleDateFormat ( "MM/dd HH:mm");
 		    String time1 = format1.format(msg.getMessage_time());
 			msg.setMessage_time2(time1);

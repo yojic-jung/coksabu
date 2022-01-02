@@ -6,49 +6,56 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.data.redis.listener.ChannelTopic;
+import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.coksabu.yojic.lesson.chat.model.Greeting;
-import com.coksabu.yojic.lesson.chat.model.Message;
+import com.coksabu.yojic.lesson.chat.model.ChatMessage;
 import com.coksabu.yojic.lesson.chat.service.ChattingService;
 import com.google.firebase.messaging.FirebaseMessagingException;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Repository
 @RestController
 public class GreetingController {
 
-	@Autowired
-	private SimpMessagingTemplate simpMessagingTemplate;
+	private final RedisPublisher redisPublisher;
+	private final RedisMessageListenerContainer redisMessageListener;
+	 private final RedisSubscriber redisSubscriber;
     
 	private static final  Logger logger = LoggerFactory.getLogger(GreetingController.class);
 	
+	/*
     @MessageMapping("/hello")
     @SendTo("/topic/greetings")
     public Greeting greeting(@Header("atytopic") String topic, @Headers Map<String, Object> headers) {
         return new Greeting("I am a msg from SubscribeMapping('/hello').");
     }
-
+	 */
+	
     @MessageMapping("/newconnect")
-    public void newConnect(Message message, @Header("atytopic") String topic, @Header("name") String chatroom_id) {
+    public void newConnect(ChatMessage message, @Header("name") String chatroom_id) {
     	//실제 message_receiver와 관계없음, 상대방 연결접속완료를 알려주기위한 용도
     	//안읽음 메세지 읽음처리해주기 위해서
     	message.setMessage_receiver("연결접속완료");
-    	this.simpMessagingTemplate.convertAndSend("/queue/message-"+chatroom_id,message);
+    	message.setMessage_type("createRoom");
+    	ChannelTopic topic = new ChannelTopic("/queue/message-"+chatroom_id);
+    	message.setTopic(topic.getTopic());
+    	//구독
+    	redisMessageListener.addMessageListener(redisSubscriber,topic);
+    	redisPublisher.publish(topic,message);
     }
  
     @MessageMapping("/message")
-    public void handleSubscribe(Message message, @Header("name") String chatroom_id,
+    public void handleSubscribe(ChatMessage message, @Header("name") String chatroom_id,
     	@Headers Map<String, Object> headers,
     	@Header("simpSessionId") String sessionId) throws FirebaseMessagingException, IOException {
     	 String configLocation = "classpath:applicationContext.xml";
@@ -72,6 +79,7 @@ public class GreetingController {
           		
          String time1 = format1.format(message.getMessage_time());
          message.setMessage_time2(time1);
+         message.setMessage_type("chat");
          if(status.equals("ON")) {
         	  message.setMessage_read2("");
         	  ctx.close();
@@ -80,13 +88,19 @@ public class GreetingController {
         	  int unReadCount = chattingService.takeUnReadCount(message.getMessage_sender(), message.getMessage_receiver());
         	  message.setUnReadCount(unReadCount);
         	  ctx.close();
-        	  this.simpMessagingTemplate.convertAndSend("/queue/chatlist-"+message.getMessage_receiver() ,message);
+        	  
+        	  ChannelTopic topic = new ChannelTopic("/queue/chatlist-"+message.getMessage_receiver());
+        	  message.setTopic(topic.getTopic());
+        	  redisPublisher.publish(topic,message);
          }
-    	 this.simpMessagingTemplate.convertAndSend("/queue/message-"+chatroom_id,message);
+         
+         ChannelTopic topic = new ChannelTopic("/queue/message-"+chatroom_id);
+         message.setTopic(topic.getTopic());
+         redisPublisher.publish(topic,message);
     }
     
     
-    public void chatdeal(Message message, @Header("name") String name) throws FirebaseMessagingException, IOException {
+    public void chatdeal(ChatMessage message, @Header("name") String name) throws FirebaseMessagingException, IOException {
     	  String configLocation = "classpath:applicationContext.xml";
   		 AbstractApplicationContext ctx = new GenericXmlApplicationContext(
   				configLocation);
@@ -110,16 +124,18 @@ public class GreetingController {
           		
           String time1 = format1.format(message.getMessage_time());
           message.setMessage_time2(time1);
-          
-    	 this.simpMessagingTemplate.convertAndSend("/queue/message-"+name,message);
+          ChannelTopic topic = new ChannelTopic("/queue/message-"+name);
+          message.setTopic(topic.getTopic());
+          redisPublisher.publish(topic,message);
     }
 
    
+    /*
     @RequestMapping(value="/send", method = RequestMethod.GET)
     public Greeting send() {
         return new Greeting("I am a msg from SubscribeMapping('/send').");
     }
-
+     */
     
     public static String ConvertInputValue(String message){
         message = message.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;")

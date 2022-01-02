@@ -38,20 +38,20 @@
 		insert into chat_room (user, lasttime) values (#{user}, now())
 	</insert>
 	
-	<insert id="insertChatMessageRead" parameterType="com.coksabu.yojic.lesson.chat.model.Message" >
+	<insert id="insertChatMessageRead" parameterType="com.coksabu.yojic.lesson.chat.model.ChatMessage" >
 		insert into message (chatroom_id, message_content, message_sender, message_receiver, message_time, message_read) values (#{chatroom_id}, #{message_content}, #{message_sender}, #{message_receiver}, now(), 0)
 	</insert>
 	
-	<insert id="insertChatMessageReadNot" parameterType="com.coksabu.yojic.lesson.chat.model.Message" >
+	<insert id="insertChatMessageReadNot" parameterType="com.coksabu.yojic.lesson.chat.model.ChatMessage" >
 		insert into message (chatroom_id, message_content, message_sender, message_receiver, message_time, message_read) values (#{chatroom_id}, #{message_content}, #{message_sender}, #{message_receiver}, now(), 1)
 	</insert>
 	
-	<select id="takeChatMemberStatus" parameterType="com.coksabu.yojic.lesson.chat.model.Message" resultType="String" >
+	<select id="takeChatMemberStatus" parameterType="com.coksabu.yojic.lesson.chat.model.ChatMessage" resultType="String" >
 		select status from chat_member_status where roomnumber=#{chatroom_id} and user=#{message_receiver}
 	</select>
 	
 	
-	<select id="takeMessage" resultType="com.coksabu.yojic.lesson.chat.model.Message" >
+	<select id="takeMessage" resultType="com.coksabu.yojic.lesson.chat.model.ChatMessage" >
 		select chatroom_id, message_content, message_sender, message_receiver, message_time, message_read from message where chatroom_id=#{chatroom_id} order by message_id asc
 	</select>
 	
