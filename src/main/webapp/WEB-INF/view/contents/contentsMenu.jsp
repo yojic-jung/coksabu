@@ -170,14 +170,14 @@
 					<td>
 						<select id=imgWorkStts name="imgWorkStts">
 							<option>--선택--</option>
-							<option value="0">미작업</option>
+							<option value="0" selected>미작업</option>
 							<option value="1">작업완료</option>
 						</select>
 					</td>
 					<td>
 						<select id=stateWorkStts name="stateWorkStts">
 							<option>--선택--</option>
-							<option value="0">미수정</option>
+							<option value="0" selected>미수정</option>
 							<option value="1">수정완료</option>
 						</select>
 					</td>
@@ -185,13 +185,13 @@
 						<select id=ansExistStts name="ansExistStts">
 							<option>--선택--</option>
 							<option value="0">정답 미포함</option>
-							<option value="1">정답 포함</option>
+							<option value="1" selected>정답 포함</option>
 						</select>
 					</td>
 					<td>
 						<select id=orginExtension name="orginExtension">
 							<option>--선택--</option>
-							<option>hwp</option>
+							<option selected>hwp</option>
 							<option>pdf</option>
 						</select>
 					</td>
@@ -257,18 +257,74 @@
 				alert("파일명이 서로 다릅니다. 다시한번 확인하여 업로드 해주시기 바랍니다.");
 			}
 
+			$("#contentsFile").change(function(){
+				var filevalue = $("#contentsFile").val().split("\\");
+				var fileField = filevalue[filevalue.length-1].split(" ");
+				
+				$("#year").val(fileField[0])
+				$("#city").val(fileField[1])
+				$("#district").val(fileField[2])
+				$('#district').change(); 
+				$('#school').val(fileField[3])
+				$("#grade").val(fileField[4].split("-")[0]+"학년");
+				$("#semester").val(fileField[4].split("-")[1]+"학기");
+				$("#term").val(fileField[5])
+				
+				var fileNameVal = fileField[6].split(".");
+				$("#subject").val(fileNameVal[0])
+				$("#extension").val(fileNameVal[1]);
+			});
 		});
 
 		function check() {
+			/*
+			$("#year").val(fileField[0])
+			$("#city").val(fileField[1])
+			$("#district").val(fileField[2])
+			$('#district').change(); 
+			$('#school').val(fileField[3])
+			$("#grade").val(fileField[4].split("-")[0]+"학년");
+			$("#semester").val(fileField[4].split("-")[1]+"학기");
+			$("#term").val(fileField[5])
+			$("#subject").val(fileNameVal[0])
+			*/
 			if ($('#contentsFile').val() == "") {
 				alert("파일을 업로드 해주세요.");
+				return false;
+			}
+			if ($('#year').val() == null) {
+				alert("년도를 선택해주세요");
+				return false;
+			}
+			if ($('#city').val() == null) {
+				alert("지역을 선택해주세요.");
+				return false;
+			}
+			if ($('#district').val() == null) {
+				alert("지역구를 선택해주세요.");
 				return false;
 			}
 			if ($('#school').val() == null) {
 				alert("학교를 선택하세요.");
 				return false;
 			}
-			if ($('#subject').val() == "선택") {
+			if ($('#district').val() == null) {
+				alert("지역구를 선택해주세요.");
+				return false;
+			}
+			if ($('#grade').val() == null) {
+				alert("학년을 선택해주세요.");
+				return false;
+			}
+			if ($('#semester').val() == null) {
+				alert("학기를 선택해주세요.");
+				return false;
+			}
+			if ($('#term').val() == null) {
+				alert("중간/기말 여부를 선택해주세요.");
+				return false;
+			}
+			if ($('#subject').val() == null) {
 				alert("과목을 선택하세요.");
 				return false;
 			}
@@ -303,10 +359,6 @@
 				return false;
 			}
 			
-			var filevalue = $("#contentsFile").val().split("\\");
-			var extensionVal = filevalue[filevalue.length-1].split(".");
-			var extension = extensionVal[extensionVal.length-1];
-			$("#extension").val(extension);
 		}
 	</script>
 </body>

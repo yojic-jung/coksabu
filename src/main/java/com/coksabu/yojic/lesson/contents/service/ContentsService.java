@@ -36,6 +36,7 @@ public class ContentsService {
 		}
 		
 		
+		
 		String contentsName=contents.getYear()+" "+contents.getCity()+" "+contents.getDistrict()+" "+contents.getSchool()+" "
 				+contents.getGrade().substring(0,1)+"-"+contents.getSemester().substring(0,1)+" "+contents.getTerm()+" " + contents.getSubject();
 		
@@ -49,7 +50,9 @@ public class ContentsService {
 		
 		
 		if(isCorrectFileName) {
-			File file = new File(path+"/kichul-contents" , originName);
+			//파일 경로 형식은  /kichul-contents/2020년/서울시/강남구/1학년/1학기/중간
+			File file = new File(path+"/kichul-contents/"+contents.getYear()+"/"+contents.getCity()+"/"+contents.getDistrict()+"/"
+					+contents.getGrade()+"/"+contents.getSemester()+"/"+contents.getTerm() , originName);
 			
 			contents.getContentsFile().transferTo(file);
 			contents.setContentsName(file.getName());
