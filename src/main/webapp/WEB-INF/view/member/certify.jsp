@@ -49,9 +49,19 @@ padding:20px;
         	width:80%;position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);
         	line-height:180%;
         }
+        .hide{display:none;}
 </style>
 </head>
 <body>
+
+<div id="img-convert" class="hide" style="text-align: center; width: 100%; position: fixed; left: 0px; top: 0px; background: rgb(255, 255, 255, .5); height: 100%; z-index: 10;">
+	<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; font-family: 'JejuGothic'; font-size: 12px; font-weight: bold;">
+		<img src="<c:url value='/resources/img/Gear-0.2s-200px.svg?a=2' /> " />
+		<div>이미지 파일을 변환중입니다...</div>
+		<div>잠시만 기다려주세요....</div>
+	</div>
+</div>
+
 <div class="title1">본인/학력인증</div>
 			<div style="font-size:15px;text-align:center;color:orange;margin:20px 0px;line-height:150%;">
 				신분증의 주민등록번호 뒷자리는 반드시 가려주시기 바랍니다.<br/>
@@ -80,7 +90,7 @@ padding:20px;
 					<img id="imgplus1" src="<c:url value="/resources/images/imgplus.png" />"  />
 					</div>
 					<div id="input-div1">
-					<input name="certifyimg1" class="multi1" type="file" accept="image/*" onchange="check1(this);loadFile1(event);" />
+					<input name="certifyimg1" class="multi1" id="multi1" type="file" accept="image/*" onchange="check1(this);loadFile1(event);" />
 					</div>
 					</td>
 				</tr>
@@ -95,7 +105,7 @@ padding:20px;
 					<img id="imgplus2" src="<c:url value="/resources/images/imgplus.png" />"  />
 					</div>
 					<div id="input-div2">
-					<input name="certifyimg2" class="multi2" type="file" accept="image/*" onchange="check2(this);loadFile2(event);" />
+					<input name="certifyimg2" class="multi2" id="multi2" type="file" accept="image/*" onchange="check2(this);loadFile2(event);" />
 					</div>
 					</td>
 				</tr>
@@ -110,7 +120,7 @@ padding:20px;
 					<img id="imgplus3" src="<c:url value="/resources/images/imgplus.png" />"  />
 					</div>
 					<div id="input-div3">
-					<input name="certifyimg3" class="multi3" type="file" accept="image/*" onchange="check3(this);loadFile3(event);" />
+					<input name="certifyimg3" class="multi3" id="multi3" type="file" accept="image/*" onchange="check3(this);loadFile3(event);" />
 					</div>
 					</td>
 				</tr>
@@ -125,6 +135,7 @@ padding:20px;
    		</form>
 
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script src="<c:url value="resources/js/heic2any.js"  />"></script>
 <script>
 var ctx = "<c:out value="${pageContext.request.contextPath}" />";
 
@@ -197,9 +208,9 @@ $(document).on('change','.multi1',function(){
 	var filetype = filepoint.toLowerCase();
      // 확장자가 이미지 파일이면 체크를 위해 임시로 로딩합니다.
  
-	if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp'){
+	if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp' || filetype=='heic'){
     }else{
-   	 alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
+   	 alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp/heic)');
    	$('.multi1').remove();
    	$('#input-div1').append('<input name="certifyimg1" class="multi1" type="file" accept="image/*" onchange="check1(this);loadFile1(event);" />');
    	 return false;
@@ -214,9 +225,9 @@ $(document).on('change','.multi2',function(){
 	var filetype = filepoint.toLowerCase();
      // 확장자가 이미지 파일이면 체크를 위해 임시로 로딩합니다.
  
-	 if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp'){
+	 if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp' || filetype=='heic'){
      }else{
-    	 alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
+    	 alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp/heic)');
     	$('.multi2').remove();
     	$('#input-div2').append('<input name="certifyimg2" class="multi2" type="file" accept="image/*" onchange="check2(this);loadFile2(event);" />');
     	 return false;
@@ -231,9 +242,9 @@ $(document).on('change','.multi3',function(){
 	var filetype = filepoint.toLowerCase();
      // 확장자가 이미지 파일이면 체크를 위해 임시로 로딩합니다.
  
-     if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp'){
+     if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp' || filetype=='heic'){
      }else{
-    	alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
+    	alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp/heic)');
     	$('.multi3').remove();
     	$('#input-div3').append('<input name="certifyimg3" class="multi3" type="file" accept="image/*" onchange="check3(this);loadFile3(event);" />');
     	 return false;
@@ -243,35 +254,147 @@ $(document).on('change','.multi3',function(){
 
 
 var loadFile1 = function(event) {
-	    var reader = new FileReader();
-	    reader.onload = function(){
-	      var output = document.getElementById('output1');
-	      output.src = reader.result;
-	    };
-	    $(".output-content1").remove();
-	    reader.readAsDataURL(event.target.files[0]);
-    };   
+    var fileName = $('#multi1').val();
+    var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);   
+    if(fileNameExt == "heic") {
+ 	  $('#img-convert').removeClass('hide');
+       var blob = $('#multi1')[0].files[0]; 
+       heic2any({
+            blob: blob,
+            toType: "image/jpg",
+        }).then(function (resultBlob) {
+                var url = URL.createObjectURL(resultBlob);
+                let fileInputElement = $('#multi1')[0];
+                let container = new DataTransfer();
+                let file = new File([resultBlob], "heic"+".jpg",{type:"image/jpeg", lastModified:new Date().getTime()});
+                container.items.add(file);
 
+                fileInputElement.files = container.files;
+
+                const fileElement = fileInputElement.files;
+                const reader = new FileReader()
+                
+                
+        	   	   reader.onload = function(fileElement){
+	           	   	   const previewImage = document.getElementById("output1")
+	                   previewImage.src = fileElement.target.result;
+        	   	   }
+        	   	   
+        	   	   reader.readAsDataURL( $('#multi1')[0].files[0] );
+        	   	   $('#img-convert').addClass('hide');
+        	   	   $(".output-content1").remove();
+            }).catch(function (x) {
+                console.log(x.code);
+                console.log(x.message);
+                $('#img-convert').addClass('hide');
+            });
+        
+  }else{
+	var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('output1');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+    $(".output-content1").remove();
+  }
+}
+    
+    
+    
 var loadFile2 = function(event) {
-  	 var reader = new FileReader();
-  	 reader.onload = function(){
-  	     var output = document.getElementById('output2');
-  	     output.src = reader.result;
-  	 };
-  	 $(".output-content2").remove();
-  	 reader.readAsDataURL(event.target.files[0]);
-     }; 
+    var fileName = $('#multi2').val();
+    var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);   
+    if(fileNameExt == "heic") {
+ 	  $('#img-convert').removeClass('hide');
+       var blob = $('#multi2')[0].files[0]; 
+       heic2any({
+            blob: blob,
+            toType: "image/jpg",
+        }).then(function (resultBlob) {
+                var url = URL.createObjectURL(resultBlob);
+                let fileInputElement = $('#multi2')[0];
+                let container = new DataTransfer();
+                let file = new File([resultBlob], "heic"+".jpg",{type:"image/jpeg", lastModified:new Date().getTime()});
+                container.items.add(file);
+
+                fileInputElement.files = container.files;
+
+                const fileElement = fileInputElement.files;
+                const reader = new FileReader()
+                
+                
+        	   	   reader.onload = function(fileElement){
+	           	   	   const previewImage = document.getElementById("output2")
+	                   previewImage.src = fileElement.target.result;
+        	   	   }
+        	   	   
+        	   	   reader.readAsDataURL( $('#multi2')[0].files[0] );
+        	   	   $('#img-convert').addClass('hide');
+        	   	   $(".output-content2").remove();
+            }).catch(function (x) {
+                console.log(x.code);
+                console.log(x.message);
+                $('#img-convert').addClass('hide');
+            });
+        
+  }else{
+	var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('output2');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+    $(".output-content2").remove();
+  }
+} 
     
  var loadFile3 = function(event) {
-  	    var reader = new FileReader();
-  	    reader.onload = function(){
-  	      var output = document.getElementById('output3');
-  	      output.src = reader.result;
-  	    };
-  	  $(".output-content3").remove();
-  	    reader.readAsDataURL(event.target.files[0]);
-        };   
-        
+	    var fileName = $('#multi3').val();
+	    var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);   
+	    if(fileNameExt == "heic") {
+	 	  $('#img-convert').removeClass('hide');
+	       var blob = $('#multi3')[0].files[0]; 
+	       heic2any({
+	            blob: blob,
+	            toType: "image/jpg",
+	        }).then(function (resultBlob) {
+	                var url = URL.createObjectURL(resultBlob);
+	                let fileInputElement = $('#multi3')[0];
+	                let container = new DataTransfer();
+	                let file = new File([resultBlob], "heic"+".jpg",{type:"image/jpeg", lastModified:new Date().getTime()});
+	                container.items.add(file);
+
+	                fileInputElement.files = container.files;
+
+	                const fileElement = fileInputElement.files;
+	                const reader = new FileReader()
+	                
+	                
+	        	   	   reader.onload = function(fileElement){
+		           	   	   const previewImage = document.getElementById("output3")
+		                   previewImage.src = fileElement.target.result;
+	        	   	   }
+	        	   	   
+	        	   	   reader.readAsDataURL( $('#multi3')[0].files[0] );
+	        	   	   $('#img-convert').addClass('hide');
+	        	   	   $(".output-content3").remove();
+	            }).catch(function (x) {
+	                console.log(x.code);
+	                console.log(x.message);
+	                $('#img-convert').addClass('hide');
+	            });
+	        
+	  }else{
+		var reader = new FileReader();
+	    reader.onload = function(){
+	      var output = document.getElementById('output3');
+	      output.src = reader.result;
+	    };
+	    reader.readAsDataURL(event.target.files[0]);
+	    $(".output-content3").remove();
+	  }
+	} 
 
         function check1(obj){
      	   var file = obj.files;
@@ -281,7 +404,7 @@ var loadFile2 = function(event) {
           		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
           		  alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
           		$('.multi1').remove();
-          	   	$('#input-div1').append('<input name="certifyimg1" class="multi1" type="file" accept="image/*" onchange="check1(this);loadFile1(event);" />');
+          	   	$('#input-div1').append('<input name="certifyimg1" class="multi1" id="multi1" type="file" accept="image/*" onchange="check1(this);loadFile1(event);" />');
           		  return false;
           	}
            }            
@@ -294,7 +417,7 @@ var loadFile2 = function(event) {
           		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
           		  alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
           		$('.multi2').remove();
-            	$('#input-div2').append('<input name="certifyimg2" class="multi2" type="file" accept="image/*" onchange="check2(this);loadFile2(event);" />');
+            	$('#input-div2').append('<input name="certifyimg2" class="multi2" id="multi2" type="file" accept="image/*" onchange="check2(this);loadFile2(event);" />');
           		  return false;
           	}
           }    
@@ -307,7 +430,7 @@ var loadFile2 = function(event) {
           		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
           		  alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
           		$('.multi3').remove();
-            	$('#input-div3').append('<input name="certifyimg3" class="multi3" type="file" accept="image/*" onchange="check3(this);loadFile3(event);" />');
+            	$('#input-div3').append('<input name="certifyimg3" class="multi3" id="multi3" type="file" accept="image/*" onchange="check3(this);loadFile3(event);" />');
           		  return false;
           	}
            }    

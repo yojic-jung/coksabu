@@ -4,6 +4,15 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:set var="uri" value="${pageContext.request.requestURI}" />
+
+<div id="img-convert" class="hide" style="text-align: center; width: 100%; position: fixed; left: 0px; top: 0px; background: rgb(255, 255, 255, .5); height: 100%; z-index: 10;">
+	<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; font-family: 'JejuGothic'; font-size: 12px; font-weight: bold;">
+		<img src="<c:url value='/resources/img/Gear-0.2s-200px.svg?a=2' /> " />
+		<div>이미지 파일을 변환중입니다...</div>
+		<div>잠시만 기다려주세요....</div>
+	</div>
+</div>
+
 <!-- 수업만들기, 수업 수정하기 -->
 
 <form:form commandName="card" method="post" enctype="multipart/form-data" onSubmit="return checkLesson(this)">
@@ -14,9 +23,11 @@
 	<!-- 선생님 소개 -->
 	<div class="teacher-intr">
 		<div style="margin-top: 20px; line-height: 180%;">
-			수업은 최대 5과목까지 등록 가능합니다.<br /> 많은 수업을 등록 할수록 선생님의 수업이 많은 학생들에게 노출될 가능성이 높습니다!
+			수업은 최대 5과목까지 등록 가능합니다.
+			<br />
+			많은 수업을 등록 할수록 선생님의 수업이 많은 학생들에게 노출될 가능성이 높습니다!
 
-			<table class="lesson-table" style="border-spacing: 20px 30px; margin:30px auto 100px auto;">
+			<table class="lesson-table" style="border-spacing: 20px 30px; margin: 30px auto 100px auto;">
 				<tr>
 					<td style="font-size: 15px; color: orange; font-weight: bold;">제공수업1(필수)</td>
 				</tr>
@@ -139,8 +150,7 @@
 						</select>
 					</td>
 					<td>
-						<input name="price3" style="text-align: right; padding: 7px; width: 130px; font-size: 15px;" class="price-pri1" type="text" id="price3" placeholder="숫자만 입력" value="${lesson.price3}" />
-						원
+						<input name="price3" style="text-align: right; padding: 7px; width: 130px; font-size: 15px;" class="price-pri1" type="text" id="price3" placeholder="숫자만 입력" value="${lesson.price3}" /> 원
 					</td>
 				</tr>
 
@@ -267,8 +277,7 @@
 						</select>
 					</td>
 					<td>
-						<input name="opt1price3" value="${lesson.opt1price3}" style="text-align: right;; padding: 7px; width: 130px; font-size: 15px;" class="price-pri1" type="text" id="opt1price3" placeholder="숫자만 입력" />
-						원
+						<input name="opt1price3" value="${lesson.opt1price3}" style="text-align: right;; padding: 7px; width: 130px; font-size: 15px;" class="price-pri1" type="text" id="opt1price3" placeholder="숫자만 입력" /> 원
 					</td>
 				</tr>
 
@@ -380,28 +389,28 @@
 				</tr>
 
 				<tr>
-				<td>
-					<select name="opt2price1" class="price-standard2" style="font-size: 15px; padding: 7px; height: 40px;">
-						<option>한달 12회</option>
-						<option>한달 8회</option>
-						<option>한달 4회</option>
-					</select>
-				</td>
-				<td>
-					<select name="opt2price2" class="price-time" style="font-size: 15px; padding: 7px; height: 40px; width: 130px;">
-						<option>60분</option>
-						<option>90분</option>
-						<option>2시간</option>
-						<option>2시간 30분</option>
-						<option>3시간</option>
-						<option>4시간</option>
-					</select>
-				</td>
-				<td>
-					<input name="opt2price3" value="${lesson.opt2price3}" style="text-align: right;; padding: 7px; width: 130px; font-size: 15px;" class="price-pri1" type="text" id="opt2price3" placeholder="숫자만 입력" />
-					원
-				</td>
-				</tr><tr class="opt3-tr">
+					<td>
+						<select name="opt2price1" class="price-standard2" style="font-size: 15px; padding: 7px; height: 40px;">
+							<option>한달 12회</option>
+							<option>한달 8회</option>
+							<option>한달 4회</option>
+						</select>
+					</td>
+					<td>
+						<select name="opt2price2" class="price-time" style="font-size: 15px; padding: 7px; height: 40px; width: 130px;">
+							<option>60분</option>
+							<option>90분</option>
+							<option>2시간</option>
+							<option>2시간 30분</option>
+							<option>3시간</option>
+							<option>4시간</option>
+						</select>
+					</td>
+					<td>
+						<input name="opt2price3" value="${lesson.opt2price3}" style="text-align: right;; padding: 7px; width: 130px; font-size: 15px;" class="price-pri1" type="text" id="opt2price3" placeholder="숫자만 입력" /> 원
+					</td>
+				</tr>
+				<tr class="opt3-tr">
 					<td style="font-size: 15px; color: orange; font-weight: bold;">제공수업4(선택)</td>
 				</tr>
 				<tr class="opt3-tr">
@@ -524,8 +533,7 @@
 						</select>
 					</td>
 					<td>
-						<input name="opt3price3" value="${lesson.opt3price3}" style="text-align: right;; padding: 7px; width: 130px; font-size: 15px;" class="price-pri1" type="text" id="opt3price3" placeholder="숫자만 입력" />
-						원
+						<input name="opt3price3" value="${lesson.opt3price3}" style="text-align: right;; padding: 7px; width: 130px; font-size: 15px;" class="price-pri1" type="text" id="opt3price3" placeholder="숫자만 입력" /> 원
 					</td>
 				</tr>
 
@@ -653,13 +661,12 @@
 						</select>
 					</td>
 					<td>
-						<input name="opt4price3" value="${lesson.opt4price3}" style="text-align: right;; padding: 7px; width: 130px; font-size: 15px;" class="price-pri1" type="text" id="opt4price3" placeholder="숫자만 입력" />
-						원
+						<input name="opt4price3" value="${lesson.opt4price3}" style="text-align: right;; padding: 7px; width: 130px; font-size: 15px;" class="price-pri1" type="text" id="opt4price3" placeholder="숫자만 입력" /> 원
 					</td>
 				</tr>
 				<tr>
 					<td colspan="3">
-						<div style="text-align: right; margin-top:50px;">
+						<div style="text-align: right; margin-top: 50px;">
 							<div>
 								<span class="service-add" style="font-weight: bold; padding: 10px; border-radius: 10px; background: orange; font-size: 15px; color: white; cursor: pointer;">수업추가등록</span>
 							</div>
@@ -679,7 +686,10 @@
 	<!-- 선생님 -->
 	<div class="teacher-intr">
 		<div>
-			수업 대표 이미지<br /> <span style="color: gray; font-size: 18px; margin: 15px 0px 15px 0px;">수업을 대표하는 이미지나 선생님 사진을 넣어주세요.</span> <br />
+			수업 대표 이미지
+			<br />
+			<span style="color: gray; font-size: 18px; margin: 15px 0px 15px 0px;">수업을 대표하는 이미지나 선생님 사진을 넣어주세요.</span>
+			<br />
 			<c:choose>
 				<c:when test="${fn:contains(uri, 'update')}">
 					<img id="output" style="width: 240px; height: 240px;" src="<c:url value="/img/representImg/${lesson.represent}" />" alt="수업대표이미지" />
@@ -699,11 +709,15 @@
 
 		<div>
 
-			제목 <br /> <span style="color: gray; font-size: 18px;"> 제목을 30글자 미만으로 적어주세요.( <span class="title-length">0</span> /30)
-			</span> <br />
+			제목
+			<br />
+			<span style="color: gray; font-size: 18px;"> 제목을 30글자 미만으로 적어주세요.( <span class="title-length">0</span> /30)
+			</span>
+			<br />
 			<input name="title" type="text" id="lesson-title" style="margin-top: 10px; width: 570px; padding: 7px; font-size: 18px;" placeholder="수업제목을 30자 내외로 적어주세요." value="${lesson.title}" />
 		</div>
-		<br /> <br />
+		<br />
+		<br />
 		<div class="btn-div">
 			<span class="prev2 btn">이전단계</span> <span class="btn2 btn">다음단계</span>
 		</div>
@@ -711,23 +725,51 @@
 
 	<!-- 수업 소개 -->
 	<div class="teacher-intr">
-		수업 가능 요일 <br /> <span style="color: gray; font-size: 18px; margin-top: 10px;"> <label style="cursor: pointer"> <input type="checkbox" name="day" value="월" /> 월
-		</label> &nbsp; <label style="cursor: pointer"> <input type="checkbox" name="day" value="화" /> 화
-		</label> &nbsp; <label style="cursor: pointer"> <input type="checkbox" name="day" value="수" /> 수
-		</label> &nbsp; <label style="cursor: pointer"> <input type="checkbox" name="day" value="목" /> 목
-		</label> &nbsp; <label style="cursor: pointer"> <input type="checkbox" name="day" value="금" /> 금
-		</label> &nbsp; <label style="cursor: pointer"> <input type="checkbox" name="day" value="토" /> 토
-		</label> &nbsp; <label style="cursor: pointer"> <input type="checkbox" name="day" value="일" /> 일
-		</label>
-		</span> <br /> <br /> 수업 형태 <br /> <span style="color: gray; font-size: 18px; margin-top: 10px;"> <label style="cursor: pointer"> <input type="checkbox" name="gawe" value="개인 과외 가능" /> 개인 과외 가능
-		</label> &nbsp; <label style="cursor: pointer"> <input type="checkbox" name="gawe" value="화상 과외 가능" /> 화상 과외 가능
-		</label>
-		</span> <br /> <br /> 시범수업 <br /> <span style="color: gray; font-size: 18px; margin-top: 10px;"> <label style="cursor: pointer"> <input type="checkbox" name="trial" class="free" value="시범수업 무료" /> 시범수업 무료
-		</label>
-		</span> <br /> <br /> 수업 소개 <br /> <span style="color: gray; font-size: 18px; margin-top: 10px"> 수업 형태나 학습목표, 커리큘럼에 대해 자세히 적어주세요.( <span class="lesson-length">0</span> /500)
+		수업 가능 요일
+		<br />
+		<span style="color: gray; font-size: 18px; margin-top: 10px;"> <label style="cursor: pointer">
+				<input type="checkbox" name="day" value="월" /> 월
+			</label> &nbsp; <label style="cursor: pointer">
+				<input type="checkbox" name="day" value="화" /> 화
+			</label> &nbsp; <label style="cursor: pointer">
+				<input type="checkbox" name="day" value="수" /> 수
+			</label> &nbsp; <label style="cursor: pointer">
+				<input type="checkbox" name="day" value="목" /> 목
+			</label> &nbsp; <label style="cursor: pointer">
+				<input type="checkbox" name="day" value="금" /> 금
+			</label> &nbsp; <label style="cursor: pointer">
+				<input type="checkbox" name="day" value="토" /> 토
+			</label> &nbsp; <label style="cursor: pointer">
+				<input type="checkbox" name="day" value="일" /> 일
+			</label>
+		</span>
+		<br />
+		<br />
+		수업 형태
+		<br />
+		<span style="color: gray; font-size: 18px; margin-top: 10px;"> <label style="cursor: pointer">
+				<input type="checkbox" name="gawe" value="개인 과외 가능" /> 개인 과외 가능
+			</label> &nbsp; <label style="cursor: pointer">
+				<input type="checkbox" name="gawe" value="화상 과외 가능" /> 화상 과외 가능
+			</label>
+		</span>
+		<br />
+		<br />
+		시범수업
+		<br />
+		<span style="color: gray; font-size: 18px; margin-top: 10px;"> <label style="cursor: pointer">
+				<input type="checkbox" name="trial" class="free" value="시범수업 무료" /> 시범수업 무료
+			</label>
+		</span>
+		<br />
+		<br />
+		수업 소개
+		<br />
+		<span style="color: gray; font-size: 18px; margin-top: 10px"> 수업 형태나 학습목표, 커리큘럼에 대해 자세히 적어주세요.( <span class="lesson-length">0</span> /500)
 		</span>
 		<textarea name="lesson" id="lesson-intr" rows="10" cols="75" style="font-size: 15px; padding: 5px; line-height: 160%; overflow-y: scroll; margin-top: 10px;">${lesson.lesson}</textarea>
-		<br /> <br />
+		<br />
+		<br />
 		<div class="btn-div">
 			<span class="prev3 btn">이전단계</span> <span class="btn3 btn">다음단계</span>
 		</div>
@@ -735,14 +777,22 @@
 
 	<!-- 경력사항 -->
 	<div class="teacher-intr">
-		선생님 경력<br /> <span style="color: gray; font-size: 18px;">경력이 없으신 경우 생략가능합니다.</span><br />
+		선생님 경력
+		<br />
+		<span style="color: gray; font-size: 18px;">경력이 없으신 경우 생략가능합니다.</span>
+		<br />
 		<div class="career" id="career"></div>
 		<div style="width: 600px; margin: 10px auto; text-align: right;"></div>
 		<div class="career-box"></div>
-		<br /> 선생님 소개<br /> <span style="color: gray; font-size: 18px; margin-top: 10px">선생님의 지도성향이나 학습방식, 경력 등을 자세하게 서술해주세요.(<span class="teach-length">0</span>/500)
-		</span><br />
+		<br />
+		선생님 소개
+		<br />
+		<span style="color: gray; font-size: 18px; margin-top: 10px">선생님의 지도성향이나 학습방식, 경력 등을 자세하게 서술해주세요.(<span class="teach-length">0</span>/500)
+		</span>
+		<br />
 		<textarea id="careerDesc" name="description" rows="10" cols="75" style="font-size: 15px; padding: 5px; line-height: 140%; overflow-y: scroll; margin-top: 10px;">${lesson.description}</textarea>
-		<br /> <br />
+		<br />
+		<br />
 		<div class="btn-div">
 			<span class="prev4 btn">이전단계</span> <span class="btn4 btn">다음단계</span>
 		</div>
@@ -752,18 +802,22 @@
 	<div class="teacher-intr" id="teacher-intr">
 		<div style="text-align: center; font-family: 'JejuGothic'; font-size: 16px;">수업과 관련된 이미지를 등록하여 수업을 홍보해보세요. (선택)</div>
 		<div style="text-align: center; margin: 30px;">
-			<span class="img-add">이미지 추가</span> <br /> <br /> <span style="font-size: 12px; color: gray;"> 이미지는 최대 4장까지 업로드 가능합니다<br />. 이미지 취소를 원할 경우 해당 이미지를 클릭하면 됩니다.
-			</span><br />
+			<span class="img-add">이미지 추가</span>
+			<br />
+			<br />
+			<span style="font-size: 12px; color: gray;"> 이미지는 최대 4장까지 업로드 가능합니다.<br />이미지 취소를 원할 경우 해당 이미지를 클릭하면 됩니다.
+			</span>
+			<br />
 		</div>
 
 
 		<div class="img-div"></div>
 
 		<div class="uploadDiv">
-			<input name="contentimg" type="file" class="multi1" accept="image/*" onchange="check1(this);loadFile1(event);" />
-			<input name="contentimg" type="file" class="multi2" accept="image/*" onchange="check22(this);loadFile2(event)" />
-			<input name="contentimg" type="file" class="multi3" accept="image/*" onchange="check3(this);loadFile3(event)" />
-			<input name="contentimg" type="file" class="multi4" accept="image/*" onchange="check4(this);loadFile4(event)" />
+			<input name="contentimg" type="file" class="multi1" id="multi1" accept="image/*" onchange="check1(this);loadFile1(event);" /> 
+			<input name="contentimg" type="file" class="multi2" id="multi2" accept="image/*" onchange="check22(this);loadFile2(event)" /> 
+			<input name="contentimg" type="file" class="multi3" id="multi3" accept="image/*" onchange="check3(this);loadFile3(event)" /> 
+			<input name="contentimg" type="file" class="multi4" id="multi4" accept="image/*" onchange="check4(this);loadFile4(event)" />
 		</div>
 
 		<div>
@@ -784,24 +838,59 @@
 	<div class="teacher-intr" id="teacher-intr">
 		<div>콕사부 정책</div>
 		<div style="font-size: 15px; line-height: 130%; margin: 20px auto;; border: 1px solid black; padding: 10px;">
-			안전거래를 통해 거래가 이루어진 경우 수업료의 5%가 안전결제 서비스 사용료로 부과됩니다.<br />(직거래시 안전결제 서비스 사용료는 부과되지 않음.)<br />서비스의 안전한 거래를 위하여 판매금을 서비스가 종료된 날짜를 기준으로 1-3일 후에 입금됨을 알립니다.<br />입금 받을 계좌는 [마이페이지] -> [내 계정 정보 수정하기] 페이지에서 등록 할 수 있습니다.
+			안전거래를 통해 거래가 이루어진 경우 수업료의 5%가 안전결제 서비스 사용료로 부과됩니다.
+			<br />
+			(직거래시 안전결제 서비스 사용료는 부과되지 않음.)
+			<br />
+			서비스의 안전한 거래를 위하여 판매금을 서비스가 종료된 날짜를 기준으로 1-3일 후에 입금됨을 알립니다.
+			<br />
+			입금 받을 계좌는 [마이페이지] -> [내 계정 정보 수정하기] 페이지에서 등록 할 수 있습니다.
 		</div>
 		<div>취소 및 환불규정</div>
 		<div style="overflow: scroll; font-size: 15px; line-height: 130%; margin: 20px auto; height: 240px; border: 1px solid black; padding: 10px;">
-			가. 수업 환불기준 원칙<br /> 학원의 설립/운영 및 과외교습에 관한 법률 제 18조(교습비 등의 반환 등)<br /> - 학원설립, 운영자, 교습자 및 개인과외교습자는 학습자가 수강을 계속할 수 없는 경우 또는 학원의 등록말소, 교습소 폐지 등으로 교습을 계속할 수 없는 경우에는 학습자로부터 받은 교습비를 반환하는 등 학습자를 보호하기 위하여 필요한 조치를 하여야 한다.<br /> <br /> 1. 수업을 제공할 수 없거나, 수업 장소를 제공할 수 없게 된 날 : 이미 납부한 수업비 등을 일한 계산한 금액 환불<br /> <br /> 2. 수업기간이 1개월 이내의 경우<br /> - 수업 시작전 : 이미 납부한 수업비 전액 환불<br /> - 총 수업 시간의 1/3 경과전 : 이미 납부한 수업비의 2/3에 해당액 환불<br /> - 총 수업 시간의 1/2 경과전 : 이미 납부한 수업비용의 1/2에 해당액 환불<br /> - 총 수업시간의 1/2 경과후 : 반환하지 않음<br /> <br /> 3.수업 기간이 1개월을 초과하는 경우<br /> - 수업 시작전 : 이미 납부한 수업비 전액 환불<br /> - 수업 시작후 : 반환사유가 발생한 당해 월의 반환 대상 수업비(수업비 징수기간이 1개월 이내인 경우에 따라 산출된 수강료를 말한다)와 나머지 월의 수업비 전액을 합산한 금액 환불 * 총 수업 시간의 수업비 징수기간 중의 총수업시간을 말하며, 반환 금액의 산정은 반환 사유가 발생한 날까지 경과 된 수업시간을 기준으로 함<br />
+			가. 수업 환불기준 원칙
+			<br />
+			학원의 설립/운영 및 과외교습에 관한 법률 제 18조(교습비 등의 반환 등)
+			<br />
+			- 학원설립, 운영자, 교습자 및 개인과외교습자는 학습자가 수강을 계속할 수 없는 경우 또는 학원의 등록말소, 교습소 폐지 등으로 교습을 계속할 수 없는 경우에는 학습자로부터 받은 교습비를 반환하는 등 학습자를 보호하기 위하여 필요한 조치를 하여야 한다.
+			<br />
+			<br />
+			1. 수업을 제공할 수 없거나, 수업 장소를 제공할 수 없게 된 날 : 이미 납부한 수업비 등을 일한 계산한 금액 환불
+			<br />
+			<br />
+			2. 수업기간이 1개월 이내의 경우
+			<br />
+			- 수업 시작전 : 이미 납부한 수업비 전액 환불
+			<br />
+			- 총 수업 시간의 1/3 경과전 : 이미 납부한 수업비의 2/3에 해당액 환불
+			<br />
+			- 총 수업 시간의 1/2 경과전 : 이미 납부한 수업비용의 1/2에 해당액 환불
+			<br />
+			- 총 수업시간의 1/2 경과후 : 반환하지 않음
+			<br />
+			<br />
+			3.수업 기간이 1개월을 초과하는 경우
+			<br />
+			- 수업 시작전 : 이미 납부한 수업비 전액 환불
+			<br />
+			- 수업 시작후 : 반환사유가 발생한 당해 월의 반환 대상 수업비(수업비 징수기간이 1개월 이내인 경우에 따라 산출된 수강료를 말한다)와 나머지 월의 수업비 전액을 합산한 금액 환불 * 총 수업 시간의 수업비 징수기간 중의 총수업시간을 말하며, 반환 금액의 산정은 반환 사유가 발생한 날까지 경과 된 수업시간을 기준으로 함
+			<br />
 		</div>
 		<br />
 
 
 		<div class="service-table">
 			<div style="font-size: 15px; text-align: center; margin: 40px 0 80px 0;">
-				<label><div class="pri-neg-able">
-						<input type="radio" class="negotiation-possible" name="priNegotiation" value="yes">
-						수업협의 가능
-					</div></label><label><div class="pri-neg-disable">
-						<input type="radio" class="negotiation-notpossible" name="priNegotiation" value="no">
-						수업협의 불가
-					</div></label>
+				<label>
+					<div class="pri-neg-able">
+						<input type="radio" class="negotiation-possible" name="priNegotiation" value="yes"> 수업협의 가능
+					</div>
+				</label>
+				<label>
+					<div class="pri-neg-disable">
+						<input type="radio" class="negotiation-notpossible" name="priNegotiation" value="no"> 수업협의 불가
+					</div>
+				</label>
 			</div>
 		</div>
 

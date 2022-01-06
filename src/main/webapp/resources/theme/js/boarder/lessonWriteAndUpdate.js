@@ -641,49 +641,230 @@ function checkLesson(member) {
 }
 
 var loadFile = function(event) {
+	var fileName = $('#represent').val();
+    var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);   
+    if(fileNameExt == "heic") {
+ 	  $('#img-convert').removeClass('hide');
+       var blob = $('#represent')[0].files[0]; 
+       heic2any({
+            blob: blob,
+            toType: "image/jpg",
+        }).then(function (resultBlob) {
+                var url = URL.createObjectURL(resultBlob);
+                let fileInputElement = $('#represent')[0];
+                let container = new DataTransfer();
+                let file = new File([resultBlob], "heic"+".jpg",{type:"image/jpeg", lastModified:new Date().getTime()});
+                container.items.add(file);
+
+                fileInputElement.files = container.files;
+
+                const fileElement = fileInputElement.files;
+                const reader = new FileReader()
+                
+                
+        	   	   reader.onload = function(fileElement){
+	           	   	   const previewImage = document.getElementById("output")
+	                   previewImage.src = fileElement.target.result;
+        	   	   }
+        	   	   
+        	   	   reader.readAsDataURL( $('#represent')[0].files[0] );
+        	   	   $('#img-convert').addClass('hide');
+            }).catch(function (x) {
+                console.log(x.code);
+                console.log(x.message);
+                $('#img-convert').addClass('hide');
+            });
+        
+  }else{
 	var reader = new FileReader();
-	reader.onload = function() {
-		var output = document.getElementById('output');
-		output.src = reader.result;
-	};
-	reader.readAsDataURL(event.target.files[0]);
-};
+    reader.onload = function(){
+      var output = document.getElementById('output');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+}
 
 var loadFile1 = function(event) {
+	var fileName = $('#multi1').val();
+    var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);   
+    if(fileNameExt == "heic") {
+ 	  $('#img-convert').removeClass('hide');
+       var blob = $('#represent')[0].files[0]; 
+       heic2any({
+            blob: blob,
+            toType: "image/jpg",
+        }).then(function (resultBlob) {
+                var url = URL.createObjectURL(resultBlob);
+                let fileInputElement = $('#multi1')[0];
+                let container = new DataTransfer();
+                let file = new File([resultBlob], "heic"+".jpg",{type:"image/jpeg", lastModified:new Date().getTime()});
+                container.items.add(file);
+
+                fileInputElement.files = container.files;
+
+                const fileElement = fileInputElement.files;
+                const reader = new FileReader()
+                
+                
+        	   	   reader.onload = function(fileElement){
+	           	   	   const previewImage = document.getElementById("output1")
+	                   previewImage.src = fileElement.target.result;
+        	   	   }
+        	   	   
+        	   	   reader.readAsDataURL( $('#multi1')[0].files[0] );
+        	   	   $('#img-convert').addClass('hide');
+            }).catch(function (x) {
+                console.log(x.code);
+                console.log(x.message);
+                $('#img-convert').addClass('hide');
+            });
+        
+  }else{
 	var reader = new FileReader();
-	reader.onload = function() {
-		var output = document.getElementById('output1');
-		output.src = reader.result;
-	};
-	reader.readAsDataURL(event.target.files[0]);
-};
+    reader.onload = function(){
+      var output = document.getElementById('output1');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+}
 
 var loadFile2 = function(event) {
+	var fileName = $('#multi2').val();
+    var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);   
+    if(fileNameExt == "heic") {
+ 	  $('#img-convert').removeClass('hide');
+       var blob = $('#multi2')[0].files[0]; 
+       heic2any({
+            blob: blob,
+            toType: "image/jpg",
+        }).then(function (resultBlob) {
+                var url = URL.createObjectURL(resultBlob);
+                let fileInputElement = $('#multi2')[0];
+                let container = new DataTransfer();
+                let file = new File([resultBlob], "heic"+".jpg",{type:"image/jpeg", lastModified:new Date().getTime()});
+                container.items.add(file);
+
+                fileInputElement.files = container.files;
+
+                const fileElement = fileInputElement.files;
+                const reader = new FileReader()
+                
+                
+        	   	   reader.onload = function(fileElement){
+	           	   	   const previewImage = document.getElementById("output2")
+	                   previewImage.src = fileElement.target.result;
+        	   	   }
+        	   	   
+        	   	   reader.readAsDataURL( $('#multi2')[0].files[0] );
+        	   	   $('#img-convert').addClass('hide');
+            }).catch(function (x) {
+                console.log(x.code);
+                console.log(x.message);
+                $('#img-convert').addClass('hide');
+            });
+        
+  }else{
 	var reader = new FileReader();
-	reader.onload = function() {
-		var output = document.getElementById('output2');
-		output.src = reader.result;
-	};
-	reader.readAsDataURL(event.target.files[0]);
-};
+    reader.onload = function(){
+      var output = document.getElementById('output2');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+}
 
 var loadFile3 = function(event) {
+	var fileName = $('#multi3').val();
+    var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);   
+    if(fileNameExt == "heic") {
+ 	  $('#img-convert').removeClass('hide');
+       var blob = $('#multi3')[0].files[0]; 
+       heic2any({
+            blob: blob,
+            toType: "image/jpg",
+        }).then(function (resultBlob) {
+                var url = URL.createObjectURL(resultBlob);
+                let fileInputElement = $('#multi3')[0];
+                let container = new DataTransfer();
+                let file = new File([resultBlob], "heic"+".jpg",{type:"image/jpeg", lastModified:new Date().getTime()});
+                container.items.add(file);
+
+                fileInputElement.files = container.files;
+
+                const fileElement = fileInputElement.files;
+                const reader = new FileReader()
+                
+                
+        	   	   reader.onload = function(fileElement){
+	           	   	   const previewImage = document.getElementById("output3")
+	                   previewImage.src = fileElement.target.result;
+        	   	   }
+        	   	   
+        	   	   reader.readAsDataURL( $('#multi3')[0].files[0] );
+        	   	   $('#img-convert').addClass('hide');
+            }).catch(function (x) {
+                console.log(x.code);
+                console.log(x.message);
+                $('#img-convert').addClass('hide');
+            });
+        
+  }else{
 	var reader = new FileReader();
-	reader.onload = function() {
-		var output = document.getElementById('output3');
-		output.src = reader.result;
-	};
-	reader.readAsDataURL(event.target.files[0]);
-};
+    reader.onload = function(){
+      var output = document.getElementById('output3');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+}
+
 
 var loadFile4 = function(event) {
+	var fileName = $('#multi4').val();
+    var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);   
+    if(fileNameExt == "heic") {
+ 	  $('#img-convert').removeClass('hide');
+       var blob = $('#multi4')[0].files[0]; 
+       heic2any({
+            blob: blob,
+            toType: "image/jpg",
+        }).then(function (resultBlob) {
+                var url = URL.createObjectURL(resultBlob);
+                let fileInputElement = $('#multi4')[0];
+                let container = new DataTransfer();
+                let file = new File([resultBlob], "heic"+".jpg",{type:"image/jpeg", lastModified:new Date().getTime()});
+                container.items.add(file);
+
+                fileInputElement.files = container.files;
+
+                const fileElement = fileInputElement.files;
+                const reader = new FileReader()
+                
+                
+        	   	   reader.onload = function(fileElement){
+	           	   	   const previewImage = document.getElementById("output4")
+	                   previewImage.src = fileElement.target.result;
+        	   	   }
+        	   	   
+        	   	   reader.readAsDataURL( $('#multi4')[0].files[0] );
+        	   	   $('#img-convert').addClass('hide');
+            }).catch(function (x) {
+                console.log(x.code);
+                console.log(x.message);
+                $('#img-convert').addClass('hide');
+            });
+        
+  }else{
 	var reader = new FileReader();
-	reader.onload = function() {
-		var output = document.getElementById('output4');
-		output.src = reader.result;
-	};
-	reader.readAsDataURL(event.target.files[0]);
-};
+    reader.onload = function(){
+      var output = document.getElementById('output4');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+}
 
 function check2(re, what, message) {
 	if (re.test(what.value)) {
@@ -700,7 +881,7 @@ function check(obj) {
 	// file[0].size 는 파일 용량 정보입니다.
 	if (file[0].size > 1024 * 1024 * 10) {
 		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
-		alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+		alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.");
 		document.getElementsByName("represent")[0].value = "";
 		return false;
 	}
@@ -708,8 +889,8 @@ function check(obj) {
 	var filepoint = obj.value.substring(pathpoint + 1, obj.length);
 	var filetype = filepoint.toLowerCase();
 	// 확장자가 이미지 파일이면 체크를 위해 임시로 로딩합니다.
-	if (filetype == 'jpg' || filetype == 'gif' || filetype == 'png' || filetype == 'jpeg' || filetype == 'bmp') {} else {
-		alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
+	if (filetype == 'jpg' || filetype == 'gif' || filetype == 'png' || filetype == 'jpeg' || filetype == 'bmp' || filetype == 'heic') {} else {
+		alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp/heic)');
 		document.getElementsByName("represent")[0].value = "";
 		return false;
 	}
@@ -730,8 +911,8 @@ function check1(obj) {
 	var filepoint = obj.value.substring(pathpoint + 1, obj.length);
 	var filetype = filepoint.toLowerCase();
 	// 확장자가 이미지 파일이면 체크를 위해 임시로 로딩합니다.
-	if (filetype == 'jpg' || filetype == 'gif' || filetype == 'png' || filetype == 'jpeg' || filetype == 'bmp') {} else {
-		alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
+	if (filetype == 'jpg' || filetype == 'gif' || filetype == 'png' || filetype == 'jpeg' || filetype == 'bmp' || filetype == 'heic') {} else {
+		alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp/heic)');
 		$("#output1").trigger('click');
 		return false;
 	}
@@ -753,8 +934,8 @@ function check22(obj) {
 	var filepoint = obj.value.substring(pathpoint + 1, obj.length);
 	var filetype = filepoint.toLowerCase();
 	// 확장자가 이미지 파일이면 체크를 위해 임시로 로딩합니다.
-	if (filetype == 'jpg' || filetype == 'gif' || filetype == 'png' || filetype == 'jpeg' || filetype == 'bmp') {} else {
-		alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
+	if (filetype == 'jpg' || filetype == 'gif' || filetype == 'png' || filetype == 'jpeg' || filetype == 'bmp' || filetype == 'heic') {} else {
+		alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp/heic)');
 		$("#output2").trigger('click');
 		return false;
 	}
@@ -776,8 +957,8 @@ function check3(obj) {
 	var filepoint = obj.value.substring(pathpoint + 1, obj.length);
 	var filetype = filepoint.toLowerCase();
 	// 확장자가 이미지 파일이면 체크를 위해 임시로 로딩합니다.
-	if (filetype == 'jpg' || filetype == 'gif' || filetype == 'png' || filetype == 'jpeg' || filetype == 'bmp') {} else {
-		alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
+	if (filetype == 'jpg' || filetype == 'gif' || filetype == 'png' || filetype == 'jpeg' || filetype == 'bmp' || filetype == 'heic') {} else {
+		alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp/heic)');
 		$("#output3").trigger('click');
 		return false;
 	}
@@ -799,8 +980,8 @@ function check4(obj) {
 	var filepoint = obj.value.substring(pathpoint + 1, obj.length);
 	var filetype = filepoint.toLowerCase();
 	// 확장자가 이미지 파일이면 체크를 위해 임시로 로딩합니다.
-	if (filetype == 'jpg' || filetype == 'gif' || filetype == 'png' || filetype == 'jpeg' || filetype == 'bmp') {} else {
-		alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
+	if (filetype == 'jpg' || filetype == 'gif' || filetype == 'png' || filetype == 'jpeg' || filetype == 'bmp' || filetype == 'heic') {} else {
+		alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp/heic)');
 		$("#output4").trigger('click');
 		return false;
 	}

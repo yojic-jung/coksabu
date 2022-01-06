@@ -275,6 +275,7 @@ body {
 .opt3-tr, .opt4-tr{
 	display:none;
 }
+.hide{display:none;}
 </style>
 <title>수업 만들기</title>
 </head>
@@ -302,6 +303,7 @@ body {
 	<div style="height: 100px;"></div>
 	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 	<script src="resources/jquery-number-master/jquery.number.min.js"></script>
+	<script src="<c:url value="resources/js/heic2any.js"  />"></script>
 	<script src="<c:url value="resources/js/boarder/lessonWriteAndUpdate.js?v=2" />"></script>
 	<script>
 		$(document)

@@ -1,240 +1,264 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <title>프로필 튜터페이지 콕사부</title>
-  <meta name="description" content="선생님 프로필 설정하기" />
-    <meta charset="utf-8">
-    <style>
-    
-    .profile-title{
-    background:rgb(63, 63, 61);
-    color:white;
-    padding:35px;
-    font-size:35px;
-    text-align:center;
-    }
-    #img{
-    	display:none;
-    }
-     #imgplus{
-        	width:50px;height:50px;
-        	backgroud:white;
-        	border-radius:15px;
-        	border:2px solid lightgray;
-        	cursor:pointer;
-        	position:relative;
-        	top:-70px;
-        }
-          .mypage{
-              list-style:none;
-              padding:20px;
-          }
-        .mypage>li{
-            font-family: 'JejuGothic';
-            padding:20px;
-            display:inline;
-        }
-        .login-form{
-              min-height:410px;
-              width:600px;
-              margin:20px auto;
-              font-size:15px;
-          }
-          .login-logo{
-            width:200px;
-            margin:auto;
-            margin-bottom: 20px;
-          }
-          .service-cate{
-              border-spacing:0px;
-          }
-          .service-cate td:first-child{
-            width:110px;
-          }
-          .service-cate td{
-            padding:10px;
-            border-bottom:1px solid black;
-            line-height:200%;
-            background:rgb(241, 239, 239);
-            font-size:14px;
-          }
-          .locale-main{
-            width:80px; color:gray;font-size:15px; padding :5px;  
-        }
-          .locale{
-            color:gray;font-size:15px; padding : 5px;  
-          }
-          .locale-btn{
-              padding:4px;
+<meta name="description" content="선생님 프로필 설정하기" />
+<meta charset="utf-8">
+<style>
+.profile-title {
+	background: rgb(63, 63, 61);
+	color: white;
+	padding: 35px;
+	font-size: 35px;
+	text-align: center;
+}
 
-          }
-         
-          .locale-box{
-           width:400px;padding:10px; margin-top:20px; border:1px solid gray;
-           line-height:30px;
-          }
-          
-          .pro-table {
-          width:450px;
-          margin-top:80px;
-          border-spacing:10px 30px;
-          font-size:18px;
-          color:gray;
-          font-family: 'JejuGothic';
-          }
-          
-          .pro-table td:first-child{
-          	width:80px;
-          }
-          
-          .pro-table2{
-          width:480px;
-          margin-top:80px;
-          font-size:15px;
-          border-spacing:10px 30px;
-          color:gray;
-          font-family: 'JejuGothic';
-          }
-          
-           .pro-table2 input{
-           width:120px;
-           padding:5px;
-           font-size:15px;
-           }
-		
-		.pro-table2 td:first-child{
-			width:70px;
-		}
-		
-		.pro-table2 td:nth-child(4n+3){
-			width:40px;
-		}
-        
-        .pro-table2 td:nth-child(even){
-        	width:140px;
-		}  
+#img {
+	display: none;
+}
 
-		#passType{
-			padding:5px;
-            font-size:15px;
-		}
-		
-		.pro-table3 {
-          width:450px;
-          margin-bottom:80px;
-          border-spacing:10px 30px;
-          font-size:15px;
-          color:gray;
-          font-family: 'JejuGothic';
-          }
+#imgplus {
+	width: 50px;
+	height: 50px;
+	backgroud: white;
+	border-radius: 15px;
+	border: 2px solid lightgray;
+	cursor: pointer;
+	position: relative;
+	top: -70px;
+}
 
-          .disp{
-              /* 지표클래스 */
-          }
-          .my-btn{
-            margin:5px;
-            display:inline-block;
-            font-size:15px;
-          }
-          
-    .tutorial-first-back{
-			display:none;
-			width:100%;
-			height:100%;
-			background:black;
-			opacity:0.3;
-			position:fixed;
-			top:0px;
-			left:0px;
-			z-index:90;
-			
-		}
+.mypage {
+	list-style: none;
+	padding: 20px;
+}
 
-		.tutorial-first{
-			width:320px;
-			font-family: 'JejuGothic';
-			z-index:100;
-			position:fixed;top:50%;left:50%;transform: translate(-50%, -50%);
-			display:none;
-			padding:0px;
-			background-image:url(/resources/img/firecracker.png);
-			background-repeat : no-repeat;
-        	background-size : cover;
-			text-align:center;
-			border-radius:20px;
-			font-size:18px;
-		}
-		
-		
-		.tutorial-para{
-		text-align:center;
-		padding-top:30px;
-		line-height:180%;
-		background:white;
-		border-radius:20px 20px 120px 120px;
-		}
-		.tutorial-first-title{
-			color: #002266;
-			font-size:20px;
-			margin-bottom:30px;
-			font-weight:bold;
-		}
-		
-		.tutorial-btn{
-			margin:30px auto 10px auto;
-			padding:10px;
-			cursor:pointer;
-			background:white;
-			color:#002266;
-			border-radius:20px;
-			width:220px;
-			font-weight:bolder;
-			display:inline-block;
-		}
-		
-        .tutorial-close{
-			cursor:pointer;
-		}
-		
-		.tutorial-close-div{
-			margin-top:30px;
-			text-align:right;
-			color:white;
-			font-size:14px;
-			padding:5px;
-		}
-		
-          
-          
-    .foot{
-      width:100%;
-    }
-    
-    .foot-align{
-      margin:auto;
-      width:1000px;
-      min-width:1000px;
-    }
+.mypage>li {
+	font-family: 'JejuGothic';
+	padding: 20px;
+	display: inline;
+}
 
-    .foot-align>div{
-      float:left;
-      margin:20px;
-    }
-    .foot p{
-      font-size:12px;
-      line-height:150%;
-      text-decoration:none;
-    }
-    </style>
-    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+.login-form {
+	min-height: 410px;
+	width: 600px;
+	margin: 20px auto;
+	font-size: 15px;
+}
 
+.login-logo {
+	width: 200px;
+	margin: auto;
+	margin-bottom: 20px;
+}
+
+.service-cate {
+	border-spacing: 0px;
+}
+
+.service-cate td:first-child {
+	width: 110px;
+}
+
+.service-cate td {
+	padding: 10px;
+	border-bottom: 1px solid black;
+	line-height: 200%;
+	background: rgb(241, 239, 239);
+	font-size: 14px;
+}
+
+.locale-main {
+	width: 80px;
+	color: gray;
+	font-size: 15px;
+	padding: 5px;
+}
+
+.locale {
+	color: gray;
+	font-size: 15px;
+	padding: 5px;
+}
+
+.locale-btn {
+	padding: 4px;
+}
+
+.locale-box {
+	width: 400px;
+	padding: 10px;
+	margin-top: 20px;
+	border: 1px solid gray;
+	line-height: 30px;
+}
+
+.pro-table {
+	width: 450px;
+	margin-top: 80px;
+	border-spacing: 10px 30px;
+	font-size: 18px;
+	color: gray;
+	font-family: 'JejuGothic';
+}
+
+.pro-table td:first-child {
+	width: 80px;
+}
+
+.pro-table2 {
+	width: 480px;
+	margin-top: 80px;
+	font-size: 15px;
+	border-spacing: 10px 30px;
+	color: gray;
+	font-family: 'JejuGothic';
+}
+
+.pro-table2 input {
+	width: 120px;
+	padding: 5px;
+	font-size: 15px;
+}
+
+.pro-table2 td:first-child {
+	width: 70px;
+}
+
+.pro-table2 td:nth-child(4n+3) {
+	width: 40px;
+}
+
+.pro-table2 td:nth-child(even) {
+	width: 140px;
+}
+
+#passType {
+	padding: 5px;
+	font-size: 15px;
+}
+
+.pro-table3 {
+	width: 450px;
+	margin-bottom: 80px;
+	border-spacing: 10px 30px;
+	font-size: 15px;
+	color: gray;
+	font-family: 'JejuGothic';
+}
+
+.disp {
+	/* 지표클래스 */
+	
+}
+
+.my-btn {
+	margin: 5px;
+	display: inline-block;
+	font-size: 15px;
+}
+
+.tutorial-first-back {
+	display: none;
+	width: 100%;
+	height: 100%;
+	background: black;
+	opacity: 0.3;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	z-index: 90;
+}
+
+.tutorial-first {
+	width: 320px;
+	font-family: 'JejuGothic';
+	z-index: 100;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: none;
+	padding: 0px;
+	background-image: url(/resources/img/firecracker.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	text-align: center;
+	border-radius: 20px;
+	font-size: 18px;
+}
+
+.tutorial-para {
+	text-align: center;
+	padding-top: 30px;
+	line-height: 180%;
+	background: white;
+	border-radius: 20px 20px 120px 120px;
+}
+
+.tutorial-first-title {
+	color: #002266;
+	font-size: 20px;
+	margin-bottom: 30px;
+	font-weight: bold;
+}
+
+.tutorial-btn {
+	margin: 30px auto 10px auto;
+	padding: 10px;
+	cursor: pointer;
+	background: white;
+	color: #002266;
+	border-radius: 20px;
+	width: 220px;
+	font-weight: bolder;
+	display: inline-block;
+}
+
+.tutorial-close {
+	cursor: pointer;
+}
+
+.tutorial-close-div {
+	margin-top: 30px;
+	text-align: right;
+	color: white;
+	font-size: 14px;
+	padding: 5px;
+}
+
+.foot {
+	width: 100%;
+}
+
+.foot-align {
+	margin: auto;
+	width: 1000px;
+	min-width: 1000px;
+}
+
+.foot-align>div {
+	float: left;
+	margin: 20px;
+}
+
+.foot p {
+	font-size: 12px;
+	line-height: 150%;
+	text-decoration: none;
+}
+
+.hide{display:none}
+</style>
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<script src="<c:url value="resources/js/heic2any.js"  />"></script>
 </head>
 <body>
-<script>
+	<script>
 	
 	
     var loc = "<c:out value="${locale}" />"
@@ -305,553 +329,628 @@
     });
 
 		</script>
-        <section>
-        <div class="profile-title">
-      	  	<a href="./tutorpage" style="color:white;text-decoration:none;"><span style="float:left;clear:right;font-size:21px;">&lt;뒤로가기</span></a>
-      		 프로필 작성
-        </div>
-            <div style="background:rgb(233, 232, 232); padding:10px; min-height: 500px;">
-                <div class="login-form" style="background:white; padding:20px 50px ">
-                    <div style="margin:auto;width:500px;">
-                    <form:form class="teacher2-submit" method="post" commandName="profile" name="profile" enctype="multipart/form-data" onSubmit="return CheckForm(this)">
-                        
-                    <input name="email" id="email" type="hidden" value="${email}" />
-                   
-                    <div style="color:gray;font-family: 'JejuGothic';font-size:18px; margin-top:40px; ">프로필 설정</div>
-                    
-                    <div style="margin:50px 0px 40px 0px;text-align:center;">
-                    <c:if test="${pro.imgPath == null}" >
-                    	<img id="output" style="width:300px; height:300px;border-radius:150px;margin-bottom:10px;" 
-                                src="<c:url value="/resources/images/pro.png"  />"  alt="프로필 대체"/>
-                    </c:if>
-                    <c:if test="${pro.imgPath != null }">
-                        <img id="output" style="width:300px; height:300px;border-radius:150px;margin-bottom:10px" 
-                                src="<c:url value="/img/profileImg/${pro.imgPath}" />"  alt="프로필 아미지"/>
-                   	</c:if>
-                   	<br/>
-                   	<div style="width:260px; margin:auto;text-align:right;">
-						<img id="imgplus" src="<c:url value="/resources/images/imgplus.png" />"  />
-					</div>
-                        <br/>
-                        <span class="file-wrapper">
-                        <input type="file" name="img" id="img" accept="image/*" onchange="check(this);loadFile(event);" />
-						</span>
-                    </div>
-                    
-                    <div style="color:gray; font-size:18px;font-family:'JejuGothic'; margin:100px 0px 20px 0px;">서비스 가능지역(최대 5개)</div>
-                    <div>
-                        <select class="locale-main">
-                            <option>선택</option>
-                            <option>서울</option>
-                            <option>경기</option>
-                            <option>인천</option>
-                            <option>강원</option>
-                            <option>대전</option>
-                            <option>세종</option>
-                            <option>충남</option>
-                            <option>충북</option>
-                            <option>부산</option>
-                            <option>울산</option>
-                            <option>경남</option>
-                            <option>경북</option>
-                            <option>대구</option>
-                            <option>광주</option>
-                            <option>전남</option>
-                            <option>전북</option>
-                            <option>제주</option>
-                        </select>
-                
-                        <select class="locale" style="display:none;">
-                                <option>강남</option>
-                                <option>강동</option>
-                                <option>강북</option>
-                                <option>강서</option>
-                                <option>관악</option>
-                                <option>광진</option>
-                                <option>구로</option>
-                                <option>금천</option>
-                                <option>노원</option>
-                                <option>도봉</option>
-                                <option>동대문</option>
-                                <option>동작</option>
-                                <option>마포</option>
-                                <option>서대문</option>
-                                <option>서초</option>
-                                <option>성동</option>
-                                <option>성북</option>
-                                <option>송파</option>
-                                <option>양천</option>
-                                <option>영등포</option>
-                                <option>용산</option>
-                                <option>은평</option>
-                                <option>종로</option>
-                                <option>중구</option>
-                                <option>중랑구</option>
-                        </select>
-                        <select class="locale" style="display:none;">
-                                <option>가평</option>
-                                <option>고양시 덕양구</option>
-                                <option>고양시 일산동구</option>
-                                <option>고양시 일산서구</option>
-                                <option>과천시</option>
-                                <option>광명시</option>
-                                <option>광주시</option>
-                                <option>구리시</option>
-                                <option>군포시</option>
-                                <option>김포시</option>
-                                <option>남양주시</option>
-                                <option>동두천시</option>
-                                <option>부천시</option>
-                                <option>성남시 분당구</option>
-                                <option>성남시 수정구</option>
-                                <option>성남시 중원구</option>
-                                <option>수원시 권선구</option>
-                                <option>수원시 영통구</option>
-                                <option>수원시 장안구</option>
-                                <option>수원시 팔달구</option>
-                                <option>시흥시</option>
-                                <option>안산시 단원구</option>
-                                <option>안산시 상록구</option>
-                                <option>안성시</option>
-                                <option>안양시 동안구</option>
-                                <option>안양시 만안구</option>
-                                <option>양주시</option>
-                                <option>양평군</option>
-                                <option>여주시</option>
-                                <option>연천구</option>
-                                <option>오산시</option>
-                                <option>용인시 기흥구</option>
-                                <option>용인시 수지구</option>
-                                <option>용인시 처인구</option>
-                                <option>의왕시</option>
-                                <option>의정부시</option>
-                                <option>이천시</option>
-                                <option>파주시</option>
-                                <option>평택시</option>
-                                <option>포천시</option>
-                                <option>하남시</option>
-                                <option>화성시</option>
-                        </select>
-                        
-                        <select class="locale" style="display:none;">
-                                <option>강화군</option>
-                                <option>계양구</option>
-                                <option>남동구</option>
-                                <option>동구</option>
-                                <option>미추홀구</option>
-                                <option>부평구</option>
-                                <option>서구</option>
-                                <option>연수구</option>
-                                <option>옹진군</option>
-                                <option>중구</option>
-                        </select>
-                        
-                        <select class="locale" style="display:none;">
-                                <option>강릉</option>
-                                <option>고성</option>
-                                <option>동해</option>
-                                <option>삼척</option>
-                                <option>속초</option>
-                                
-                                <option>양구</option>
-                                <option>양양</option>
-                                <option>영월</option>
-                                <option>원주</option>
-                                <option>인제</option>
-                                
-                                <option>정선</option>
-                                <option>철원</option>
-                                <option>춘천</option>
-                                <option>태백</option>
-                                <option>평창</option>
-                                
-                                <option>홍천</option>
-                                <option>화천</option>
-                                <option>횡성</option>
-                        </select>
-                        
-                        <select class="locale" style="display:none;">
-                                <option>대덕구</option>
-                                <option>동구</option>
-                                <option>서구</option>
-                                <option>유성구</option>
-                                <option>중구</option>
-                        </select>
-                        
-                        <select class="locale" style="display:none;">
-                                <option>세종</option>
-                        </select>
-                        
-                        <select class="locale" style="display:none;">
-                                <option>계룡</option>
-                                <option>공주</option>
-                                <option>금산</option>
-                                <option>논산</option>
-                                <option>당진</option>
-                                
-                                <option>보령</option>
-                                <option>부여</option>
-                                <option>서산</option>
-                                <option>서천</option>
-                                <option>아산</option>
-                                <option>예산</option>
-                                
-                                <option>천안시 동남구</option>
-                                <option>천안시 서북구</option>
-                                <option>청양군</option>
-                                <option>태안군</option>
-                                <option>홍성군</option>
-                        </select>
-                        
-                        <select class="locale" style="display:none;">
-                                <option>괴산군</option>
-                                <option>단양군</option>
-                                <option>보은군</option>
-                                <option>영동군</option>
-                                <option>옥천군</option>
-                                
-                                <option>음성군</option>
-                                <option>제천시</option>
-                                <option>증평군</option>
-                                <option>진천군</option>
-                                <option>청주시 상당구</option>
-                                <option>청주시 서원구</option>
-                                
-                                <option>청주시 청원구</option>
-                                <option>청주시 흥덕구</option>
-                                <option>층주시</option>
-                        </select>
-                        
-                        <select class="locale" style="display:none;">
-                                <option>강서구</option>
-                                <option>금정구</option>
-                                <option>기장구</option>
-                                <option>남구</option>
-                                <option>동구</option>
-                                
-                                <option>동래구</option>
-                                <option>부산진구</option>
-                                <option>북구</option>
-                                <option>사상구</option>
-                                <option>사하구</option>
-                                <option>서구</option>
-                                
-                                <option>수영구</option>
-                                <option>연제구</option>
-                                <option>영도구</option>
-                                <option>중구</option>
-                                <option>해운대구</option>
-                        </select>
-                        
-                        <select class="locale" style="display:none;">
-                                <option>남구</option>
-                                <option>동구</option>
-                                <option>북구</option>
-                                <option>울주군</option>
-                                <option>중구</option>
-                        </select>
-                        
-                        <select class="locale" style="display:none;">
-                                <option>거제시</option>
-                                <option>거창군</option>
-                                <option>고성군</option>
-                                <option>김해시</option>
-                                <option>남해군</option>
-                                
-                                <option>밀양시</option>
-                                <option>사천시</option>
-                                <option>산청군</option>
-                                <option>양산시</option>
-                                <option>의령군</option>
-                                <option>진주시</option>
-                                
-                                <option>창녕군</option>
-                                <option>창원시 마산합포구</option>
-                                <option>창원시 마산회원구</option>
-                                <option>창원시 성산구</option>
-                                <option>창원시 의창구</option>
-                                <option>창원시 진해구</option>
-                                
-                                <option>통영시</option>
-                                <option>하동군</option>
-                                <option>함안군</option>
-                                <option>함양군</option>
-                                <option>합천군</option>
-                        </select>
-                        
-                        <select class="locale" style="display:none;">
-                                <option>경산시</option>
-                                <option>경주시</option>
-                                <option>고령군</option>
-                                <option>구미시</option>
-                                <option>군위군</option>
-                                
-                                <option>김천시</option>
-                                <option>문경시</option>
-                                <option>봉화군</option>
-                                <option>상주시</option>
-                                <option>성주군</option>
-                                <option>안동시</option>
-                                
-                                <option>영덕군</option>
-                                <option>영양군</option>
-                                <option>영주시</option>
-                                <option>영천시</option>
-                                <option>예천군</option>
-                                <option>울릉군</option>
-                                
-                                <option>울진군</option>
-                                <option>의성군</option>
-                                <option>청도군</option>
-                                <option>청송군</option>
-                                <option>칠곡군</option>
-                                <option>포항시 남구</option>
-                                
-                                <option>포항시 북구</option>
-                        </select>
-                        
-                        <select class="locale" style="display:none;">
-                                <option>남구</option>
-                                <option>달서구</option>
-                                <option>달성군</option>
-                                <option>동구</option>
-                                <option>북구</option>
-                                
-                                <option>서구</option>
-                                <option>수성구</option>
-                                <option>중구</option>
-                        </select>
-                        
-                        <select class="locale" style="display:none;">
-                                <option>광산구</option>
-                                <option>남구</option>
-                                <option>동구</option>
-                                <option>북구</option>
-                                <option>서구</option>
-                        </select>
-                        
-                        <select class="locale" style="display:none;">
-                                <option>강진군</option>
-                                <option>고흥군</option>
-                                <option>곡성군</option>
-                                <option>광양시</option>
-                                <option>구례군</option>
-                                
-                                <option>나주시</option>
-                                <option>담양군</option>
-                                <option>목포시</option>
-                                <option>무안군</option>
-                                <option>보성군</option>
-                                <option>순천시</option>
-                                
-                                <option>신안군</option>
-                                <option>여수시</option>
-                                <option>영광군</option>
-                                <option>영암군</option>
-                                <option>완도군</option>
-                                <option>장성군</option>
-                                
-                                <option>장흥군</option>
-                                <option>진도군</option>
-                                <option>함평군</option>
-                                <option>해남군</option>
-                                <option>화순군</option>
-                        </select>
-                        
-                        <select class="locale" style="display:none;">
-                                <option>고창군</option>
-                                <option>군산시</option>
-                                <option>김제시</option>
-                                <option>남원시</option>
-                                <option>무주군</option>
-                                
-                                <option>부안군</option>
-                                <option>순창군</option>
-                                <option>완주군</option>
-                                <option>익산시</option>
-                                <option>임실군</option>
-                                <option>장수군</option>
-                                
-                                <option>전주시 덕진구</option>
-                                <option>전주시 완산구</option>
-                                <option>정읍시</option>
-                                <option>진안군</option>
-                        </select>
-                        
-                        <select class="locale" style="display:none;">
-                                <option>서귀포시</option>
-                                <option>제주시</option>
-                        </select>
-                        
-                        <input type="button" class="locale-btn" value="추가"/><br/>
-                        <div class="locale-box" style=" "></div> 
-                    </div>
-                     
-                    <table class="pro-table">
-                     <tr>
-                     	<td>성별</td>
-                     	<td>
-                     		<label style="cursor:pointer"><input type="radio" name="sexual" class="sexual1" value="남">남</label>&nbsp;&nbsp;
-            				<label style="cursor:pointer"><input type="radio" name="sexual" class="sexual2" value="여">여</label>&nbsp;
-                     	</td>
-                     </tr>
-                     <tr>
-                     	<td>대학</td>
-                     	<td>
-                     		<input style="width:180px;padding:5px;font-size:15px;" name="universe" type="text" id="univid" onclick="openIdChk()"/>
-							<input type="button" value="대학검색"  style="font-size:15px;padding:5px;" onclick="openIdChk()"/> 
-                     	</td>
-                     </tr>
-                     <tr>
-                     	<td colspan="2" style="color: black;font-size:15px;">
-                     		<c:if test="${pro.universe!=null}">
-							대학/학과를 수정하시는 경우 <span style="color:orange">본인/학력인증</span> 다시 해주시기 바랍니다.
-							</c:if>
-                     	</td>
-                     </tr>
-                     <tr>
-                     	 <td>학과</td>
-                	     <td>
-                	     	  <input style="width:150px;font-size:15px;padding:5px;" type="text" id="univsub" name="univsub" />
-                	     </td>
-                     </tr>
-                     <tr>
-                     	 <td>재학유무</td>
-                	     <td>
-                	     	<select style="font-size:15px;padding:5px; color:gray;font-family: 'JejuGothic'; padding:5px" name="universer" id="universer">
-    						<option>재학</option>
-    						<option>휴학</option>
-    						<option>중퇴</option>
-    						<option>자퇴</option>
-    						<option>졸업</option>
-    						</select>
-                	     </td>
-                     </tr>
-                     <tr>
-                     	 <td>과외경력</td>
-                	     <td>
-                	     	<select name="career" id="career" style=" padding:5px;font-size:15px;color:gray;font-family: 'JejuGothic'; padding:5px" >
-    	    					<option value="0">1년미만</option>
-                    			<option value="1">1년이상</option>
-	                    		<option value="2">2년이상</option>
-	                    		<option value="3">3년이상</option>
-                    			<option value="5">5년이상</option>
-                    			<option value="7">7년이상</option>
-                    			<option value="10">10년이상</option>		
-    						</select>
-                	     </td>
-                     </tr>
-                   </table>
-                     
-                    <table class="pro-table2">
-                    	<tr>
-                    		<td colspan="4" style="font-size:18px;">추가입력(선택)</td>
-                    	</tr>
-                    	<tr>
-                    		<td style="line-height:150%;">대입<br/>합격유형</td>
-                    		<td colspan="3">
-                    			<select id="passType" name="passType">
-                    				<option value="--선택--">--선택--</option>
-                    				<option value="학생부교과">학생부교과</option>
-                    				<option value="학생부종합(구: 입학사정관제)">학생부종합(구: 입학사정관제)</option>
-                    				<option value="논술">논술</option>
-                    				<option value="실기실적우수자(특기자 전형)">실기실적우수자(특기자 전형)</option>
-                    				<option value="적성">적성</option>
-                    				<option value="정시">정시</option>
-                    				<option value="기타">기타</option>
-                    			</select>
-                    		</td>
-                    	</tr>
-                    	<tr>
-                    		<td>대학원</td>
-                    		<td><input type="text" id="academy" name="academy" /></td>
-                    		<td>학과</td>
-                    		<td><input type="text" name="academyd" id="academyd"  /></td>
-                    		
-                    	</tr>
-                    	<c:if test="${pro.universe!=null}">
-							<tr><td  colspan="4"  style="color: black;font-size:15px;">
-							대학원/학과를 수정하시는 경우 <span style="color:orange">본인/학력인증</span> 다시 해주시기 바랍니다.
-							</td></tr>
-						</c:if>
-                    	
-                    	<tr>
-                    		<td>유학국가</td>
-                    		<td><input type="text" name="nation" id="nation"/></td>
-                    		<td>기간</td>
-                    		<td><input type="number" name="nationy" style="width:80px;" id="nationy"/>년</td>
-                    	</tr>
-                    	<tr>
-                    		<td colspan="4" ><br/>어학점수</td>
-                    	</tr>
-                    	<tr>
-                    		<td>토익</td>
-                    		<td><input type="number" name="toeic" id="toeic" style="width:80px;"/>점</td>
-                    		<td>HSK</td>
-                    		<td><input type="number" name="hsk" id="hsk"  style="width:80px;"/>급</td>
-                    	</tr>
-                    	<tr>
-                    		<td>텝스</td>
-                    		<td><input type="number" name="teps" id="teps" style="width:80px;"/>점</td>
-                    		<td>JPT</td>
-                    		<td><input type="number" id="jpt" name="jpt" style="width:80px;"/>점</td>
-                    	</tr>
-                    	<tr>
-                    		<td>토플</td>
-                    		<td colspan="3"><input type="number" name="tofle" id="tofle" style="width:80px;"/>점</td>
-                    	</tr>
-                    </table>
-                    
-                    <table class="pro-table3">
-                    	<tr>
-                    		<td colspan="3">특이사항</td>
-                    	</tr>
-                    	<tr>
-                    		<td><label style="cursor:pointer"><input type="checkbox" name="singular" id="singular" value="학원강사경력" />학원강사경력</label></td>
-                    		<td><label style="cursor:pointer"><input type="checkbox" name="singular" id="singular" value="특목고 졸업"/>특목고 졸업</label></td>
-                    		<td><label style="cursor:pointer"><input type="checkbox" name="singular" id="singular" value="외고 졸업"/>외고 졸업</label></td>
-                    	</tr>
-                    	<tr>
-                    		<td><label style="cursor:pointer"><input type="checkbox" name="singular" id="singular" value="영어경시대회"/>영어경시대회</label> </td>
-                    		<td><label style="cursor:pointer"><input type="checkbox" name="singular" id="singular" value="과학경시대회"/>과학경시대회</label></td>
-                    		<td><label style="cursor:pointer"><input type="checkbox" name="singular" id="singular" value="예술고 졸업"/>예술고 졸업</label></td>
-                    	</tr>
-                    	<tr>
-                    		<td><label style="cursor:pointer"><input type="checkbox" name="singular" id="singular" value="수학경시대회"/>수학경시대회 </label></td>
-                    		<td><label style="cursor:pointer"><input type="checkbox" name="singular" id="singular" value="논술대회"/>논술대회 </label></td>
-                    	</tr>
-                    </table>
-                   
-                   	
-                      <div style="text-align:center;">
-                      <input style="color:white; background:rgb(105, 104, 104); font-size:15px; 
-                      padding:15px;border-radius:10px; width:350px;margin:20px 0px;" type="submit" value="프로필 설정 완료"/>
-                    	</div>
-                    </form:form>    
-                    </div>
-                </div>
-            </div>
-            
-	<div class="tutorial-first-back"></div>
-    <div class="tutorial-first">
-    	<div class="tutorial-para">
-    		<div class="tutorial-first-title">수업을 홍보하기 위해서<br/>프로필을 작성해야합니다.</div>
-    		<div>
-    		1분 만에 나를 홍보하는<br/>프로필을 작성해보세요.
-    		</div>
-    	</div>
-    	<div>
-    		<div class="tutorial-btn">
-    			작성하기
-    		</div>
-    	</div>
-    	<div class="tutorial-close-div"><span class="tutorial-close">[닫기x]</span></div>
-    </div>
-    </section>
-       
-            
+	<section>
+	
+		<div id="img-convert" class="hide" style="text-align: center; width: 100%; position: fixed; left: 0px; top: 0px; background:rgb(255, 255, 255, .5); height: 100%; z-index: 10;">
+			<div style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);width:300px;font-family:'JejuGothic';font-size:12px;font-weight:bold;">
+				<img src="<c:url value='/resources/img/Gear-0.2s-200px.svg?a=2' /> " />
+				<div>이미지 파일을 변환중입니다...</div>
+				<div>잠시만 기다려주세요....</div>
+			</div>
+		</div>
+		
+		<div class="profile-title">
+			<a href="./tutorpage" style="color: white; text-decoration: none;"><span style="float: left; clear: right; font-size: 21px;">&lt;뒤로가기</span></a> 프로필 작성
+		</div>
+		<div style="background: rgb(233, 232, 232); padding: 10px; min-height: 500px;">
+			<div class="login-form" style="background: white; padding: 20px 50px">
+				<div style="margin: auto; width: 500px;">
+					<form:form class="teacher2-submit" method="post" commandName="profile" name="profile" enctype="multipart/form-data" onSubmit="return CheckForm(this)">
 
-    <script>
+						<input name="email" id="email" type="hidden" value="${email}" />
+
+						<div style="color: gray; font-family: 'JejuGothic'; font-size: 18px; margin-top: 40px;">프로필 설정</div>
+
+						<div style="margin: 50px 0px 40px 0px; text-align: center;">
+							<c:if test="${pro.imgPath == null}">
+								<img id="output" style="width: 300px; height: 300px; border-radius: 150px; margin-bottom: 10px;" src="<c:url value="/resources/images/pro.png"  />" alt="프로필 대체" />
+							</c:if>
+							<c:if test="${pro.imgPath != null }">
+								<img id="output" style="width: 300px; height: 300px; border-radius: 150px; margin-bottom: 10px" src="<c:url value="/img/profileImg/${pro.imgPath}" />" alt="프로필 아미지" />
+							</c:if>
+							<br />
+							<div style="width: 260px; margin: auto; text-align: right;">
+								<img id="imgplus" src="<c:url value="/resources/images/imgplus.png" />" />
+							</div>
+							<br />
+							<span class="file-wrapper"> <input type="file" name="img" id="img" accept="image/*" onchange="check(this);loadFile(event);" />
+							</span>
+						</div>
+
+						<div style="color: gray; font-size: 18px; font-family: 'JejuGothic'; margin: 100px 0px 20px 0px;">서비스 가능지역(최대 5개)</div>
+						<div>
+							<select class="locale-main">
+								<option>선택</option>
+								<option>서울</option>
+								<option>경기</option>
+								<option>인천</option>
+								<option>강원</option>
+								<option>대전</option>
+								<option>세종</option>
+								<option>충남</option>
+								<option>충북</option>
+								<option>부산</option>
+								<option>울산</option>
+								<option>경남</option>
+								<option>경북</option>
+								<option>대구</option>
+								<option>광주</option>
+								<option>전남</option>
+								<option>전북</option>
+								<option>제주</option>
+							</select>
+
+							<select class="locale" style="display: none;">
+								<option>강남</option>
+								<option>강동</option>
+								<option>강북</option>
+								<option>강서</option>
+								<option>관악</option>
+								<option>광진</option>
+								<option>구로</option>
+								<option>금천</option>
+								<option>노원</option>
+								<option>도봉</option>
+								<option>동대문</option>
+								<option>동작</option>
+								<option>마포</option>
+								<option>서대문</option>
+								<option>서초</option>
+								<option>성동</option>
+								<option>성북</option>
+								<option>송파</option>
+								<option>양천</option>
+								<option>영등포</option>
+								<option>용산</option>
+								<option>은평</option>
+								<option>종로</option>
+								<option>중구</option>
+								<option>중랑구</option>
+							</select>
+							<select class="locale" style="display: none;">
+								<option>가평</option>
+								<option>고양시 덕양구</option>
+								<option>고양시 일산동구</option>
+								<option>고양시 일산서구</option>
+								<option>과천시</option>
+								<option>광명시</option>
+								<option>광주시</option>
+								<option>구리시</option>
+								<option>군포시</option>
+								<option>김포시</option>
+								<option>남양주시</option>
+								<option>동두천시</option>
+								<option>부천시</option>
+								<option>성남시 분당구</option>
+								<option>성남시 수정구</option>
+								<option>성남시 중원구</option>
+								<option>수원시 권선구</option>
+								<option>수원시 영통구</option>
+								<option>수원시 장안구</option>
+								<option>수원시 팔달구</option>
+								<option>시흥시</option>
+								<option>안산시 단원구</option>
+								<option>안산시 상록구</option>
+								<option>안성시</option>
+								<option>안양시 동안구</option>
+								<option>안양시 만안구</option>
+								<option>양주시</option>
+								<option>양평군</option>
+								<option>여주시</option>
+								<option>연천구</option>
+								<option>오산시</option>
+								<option>용인시 기흥구</option>
+								<option>용인시 수지구</option>
+								<option>용인시 처인구</option>
+								<option>의왕시</option>
+								<option>의정부시</option>
+								<option>이천시</option>
+								<option>파주시</option>
+								<option>평택시</option>
+								<option>포천시</option>
+								<option>하남시</option>
+								<option>화성시</option>
+							</select>
+
+							<select class="locale" style="display: none;">
+								<option>강화군</option>
+								<option>계양구</option>
+								<option>남동구</option>
+								<option>동구</option>
+								<option>미추홀구</option>
+								<option>부평구</option>
+								<option>서구</option>
+								<option>연수구</option>
+								<option>옹진군</option>
+								<option>중구</option>
+							</select>
+
+							<select class="locale" style="display: none;">
+								<option>강릉</option>
+								<option>고성</option>
+								<option>동해</option>
+								<option>삼척</option>
+								<option>속초</option>
+
+								<option>양구</option>
+								<option>양양</option>
+								<option>영월</option>
+								<option>원주</option>
+								<option>인제</option>
+
+								<option>정선</option>
+								<option>철원</option>
+								<option>춘천</option>
+								<option>태백</option>
+								<option>평창</option>
+
+								<option>홍천</option>
+								<option>화천</option>
+								<option>횡성</option>
+							</select>
+
+							<select class="locale" style="display: none;">
+								<option>대덕구</option>
+								<option>동구</option>
+								<option>서구</option>
+								<option>유성구</option>
+								<option>중구</option>
+							</select>
+
+							<select class="locale" style="display: none;">
+								<option>세종</option>
+							</select>
+
+							<select class="locale" style="display: none;">
+								<option>계룡</option>
+								<option>공주</option>
+								<option>금산</option>
+								<option>논산</option>
+								<option>당진</option>
+
+								<option>보령</option>
+								<option>부여</option>
+								<option>서산</option>
+								<option>서천</option>
+								<option>아산</option>
+								<option>예산</option>
+
+								<option>천안시 동남구</option>
+								<option>천안시 서북구</option>
+								<option>청양군</option>
+								<option>태안군</option>
+								<option>홍성군</option>
+							</select>
+
+							<select class="locale" style="display: none;">
+								<option>괴산군</option>
+								<option>단양군</option>
+								<option>보은군</option>
+								<option>영동군</option>
+								<option>옥천군</option>
+
+								<option>음성군</option>
+								<option>제천시</option>
+								<option>증평군</option>
+								<option>진천군</option>
+								<option>청주시 상당구</option>
+								<option>청주시 서원구</option>
+
+								<option>청주시 청원구</option>
+								<option>청주시 흥덕구</option>
+								<option>층주시</option>
+							</select>
+
+							<select class="locale" style="display: none;">
+								<option>강서구</option>
+								<option>금정구</option>
+								<option>기장구</option>
+								<option>남구</option>
+								<option>동구</option>
+
+								<option>동래구</option>
+								<option>부산진구</option>
+								<option>북구</option>
+								<option>사상구</option>
+								<option>사하구</option>
+								<option>서구</option>
+
+								<option>수영구</option>
+								<option>연제구</option>
+								<option>영도구</option>
+								<option>중구</option>
+								<option>해운대구</option>
+							</select>
+
+							<select class="locale" style="display: none;">
+								<option>남구</option>
+								<option>동구</option>
+								<option>북구</option>
+								<option>울주군</option>
+								<option>중구</option>
+							</select>
+
+							<select class="locale" style="display: none;">
+								<option>거제시</option>
+								<option>거창군</option>
+								<option>고성군</option>
+								<option>김해시</option>
+								<option>남해군</option>
+
+								<option>밀양시</option>
+								<option>사천시</option>
+								<option>산청군</option>
+								<option>양산시</option>
+								<option>의령군</option>
+								<option>진주시</option>
+
+								<option>창녕군</option>
+								<option>창원시 마산합포구</option>
+								<option>창원시 마산회원구</option>
+								<option>창원시 성산구</option>
+								<option>창원시 의창구</option>
+								<option>창원시 진해구</option>
+
+								<option>통영시</option>
+								<option>하동군</option>
+								<option>함안군</option>
+								<option>함양군</option>
+								<option>합천군</option>
+							</select>
+
+							<select class="locale" style="display: none;">
+								<option>경산시</option>
+								<option>경주시</option>
+								<option>고령군</option>
+								<option>구미시</option>
+								<option>군위군</option>
+
+								<option>김천시</option>
+								<option>문경시</option>
+								<option>봉화군</option>
+								<option>상주시</option>
+								<option>성주군</option>
+								<option>안동시</option>
+
+								<option>영덕군</option>
+								<option>영양군</option>
+								<option>영주시</option>
+								<option>영천시</option>
+								<option>예천군</option>
+								<option>울릉군</option>
+
+								<option>울진군</option>
+								<option>의성군</option>
+								<option>청도군</option>
+								<option>청송군</option>
+								<option>칠곡군</option>
+								<option>포항시 남구</option>
+
+								<option>포항시 북구</option>
+							</select>
+
+							<select class="locale" style="display: none;">
+								<option>남구</option>
+								<option>달서구</option>
+								<option>달성군</option>
+								<option>동구</option>
+								<option>북구</option>
+
+								<option>서구</option>
+								<option>수성구</option>
+								<option>중구</option>
+							</select>
+
+							<select class="locale" style="display: none;">
+								<option>광산구</option>
+								<option>남구</option>
+								<option>동구</option>
+								<option>북구</option>
+								<option>서구</option>
+							</select>
+
+							<select class="locale" style="display: none;">
+								<option>강진군</option>
+								<option>고흥군</option>
+								<option>곡성군</option>
+								<option>광양시</option>
+								<option>구례군</option>
+
+								<option>나주시</option>
+								<option>담양군</option>
+								<option>목포시</option>
+								<option>무안군</option>
+								<option>보성군</option>
+								<option>순천시</option>
+
+								<option>신안군</option>
+								<option>여수시</option>
+								<option>영광군</option>
+								<option>영암군</option>
+								<option>완도군</option>
+								<option>장성군</option>
+
+								<option>장흥군</option>
+								<option>진도군</option>
+								<option>함평군</option>
+								<option>해남군</option>
+								<option>화순군</option>
+							</select>
+
+							<select class="locale" style="display: none;">
+								<option>고창군</option>
+								<option>군산시</option>
+								<option>김제시</option>
+								<option>남원시</option>
+								<option>무주군</option>
+
+								<option>부안군</option>
+								<option>순창군</option>
+								<option>완주군</option>
+								<option>익산시</option>
+								<option>임실군</option>
+								<option>장수군</option>
+
+								<option>전주시 덕진구</option>
+								<option>전주시 완산구</option>
+								<option>정읍시</option>
+								<option>진안군</option>
+							</select>
+
+							<select class="locale" style="display: none;">
+								<option>서귀포시</option>
+								<option>제주시</option>
+							</select>
+
+							<input type="button" class="locale-btn" value="추가" />
+							<br />
+							<div class="locale-box" style=""></div>
+						</div>
+
+						<table class="pro-table">
+							<tr>
+								<td>성별</td>
+								<td>
+									<label style="cursor: pointer">
+										<input type="radio" name="sexual" class="sexual1" value="남">남
+									</label>
+									&nbsp;&nbsp;
+									<label style="cursor: pointer">
+										<input type="radio" name="sexual" class="sexual2" value="여">여
+									</label>
+									&nbsp;
+								</td>
+							</tr>
+							<tr>
+								<td>대학</td>
+								<td>
+									<input style="width: 180px; padding: 5px; font-size: 15px;" name="universe" type="text" id="univid" onclick="openIdChk()" /> <input type="button" value="대학검색" style="font-size: 15px; padding: 5px;" onclick="openIdChk()" />
+								</td>
+							</tr>
+							<tr>
+								<td colspan="2" style="color: black; font-size: 15px;">
+									<c:if test="${pro.universe!=null}">
+							대학/학과를 수정하시는 경우 <span style="color: orange">본인/학력인증</span> 다시 해주시기 바랍니다.
+							</c:if>
+								</td>
+							</tr>
+							<tr>
+								<td>학과</td>
+								<td>
+									<input style="width: 150px; font-size: 15px; padding: 5px;" type="text" id="univsub" name="univsub" />
+								</td>
+							</tr>
+							<tr>
+								<td>재학유무</td>
+								<td>
+									<select style="font-size: 15px; padding: 5px; color: gray; font-family: 'JejuGothic'; padding: 5px" name="universer" id="universer">
+										<option>재학</option>
+										<option>휴학</option>
+										<option>중퇴</option>
+										<option>자퇴</option>
+										<option>졸업</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>과외경력</td>
+								<td>
+									<select name="career" id="career" style="padding: 5px; font-size: 15px; color: gray; font-family: 'JejuGothic'; padding: 5px">
+										<option value="0">1년미만</option>
+										<option value="1">1년이상</option>
+										<option value="2">2년이상</option>
+										<option value="3">3년이상</option>
+										<option value="5">5년이상</option>
+										<option value="7">7년이상</option>
+										<option value="10">10년이상</option>
+									</select>
+								</td>
+							</tr>
+						</table>
+
+						<table class="pro-table2">
+							<tr>
+								<td colspan="4" style="font-size: 18px;">추가입력(선택)</td>
+							</tr>
+							<tr>
+								<td style="line-height: 150%;">
+									대입
+									<br />
+									합격유형
+								</td>
+								<td colspan="3">
+									<select id="passType" name="passType">
+										<option value="--선택--">--선택--</option>
+										<option value="학생부교과">학생부교과</option>
+										<option value="학생부종합(구: 입학사정관제)">학생부종합(구: 입학사정관제)</option>
+										<option value="논술">논술</option>
+										<option value="실기실적우수자(특기자 전형)">실기실적우수자(특기자 전형)</option>
+										<option value="적성">적성</option>
+										<option value="정시">정시</option>
+										<option value="기타">기타</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>대학원</td>
+								<td>
+									<input type="text" id="academy" name="academy" />
+								</td>
+								<td>학과</td>
+								<td>
+									<input type="text" name="academyd" id="academyd" />
+								</td>
+
+							</tr>
+							<c:if test="${pro.universe!=null}">
+								<tr>
+									<td colspan="4" style="color: black; font-size: 15px;">
+										대학원/학과를 수정하시는 경우 <span style="color: orange">본인/학력인증</span> 다시 해주시기 바랍니다.
+									</td>
+								</tr>
+							</c:if>
+
+							<tr>
+								<td>유학국가</td>
+								<td>
+									<input type="text" name="nation" id="nation" />
+								</td>
+								<td>기간</td>
+								<td>
+									<input type="number" name="nationy" style="width: 80px;" id="nationy" />년
+								</td>
+							</tr>
+							<tr>
+								<td colspan="4">
+									<br />
+									어학점수
+								</td>
+							</tr>
+							<tr>
+								<td>토익</td>
+								<td>
+									<input type="number" name="toeic" id="toeic" style="width: 80px;" />점
+								</td>
+								<td>HSK</td>
+								<td>
+									<input type="number" name="hsk" id="hsk" style="width: 80px;" />급
+								</td>
+							</tr>
+							<tr>
+								<td>텝스</td>
+								<td>
+									<input type="number" name="teps" id="teps" style="width: 80px;" />점
+								</td>
+								<td>JPT</td>
+								<td>
+									<input type="number" id="jpt" name="jpt" style="width: 80px;" />점
+								</td>
+							</tr>
+							<tr>
+								<td>토플</td>
+								<td colspan="3">
+									<input type="number" name="tofle" id="tofle" style="width: 80px;" />점
+								</td>
+							</tr>
+						</table>
+
+						<table class="pro-table3">
+							<tr>
+								<td colspan="3">특이사항</td>
+							</tr>
+							<tr>
+								<td>
+									<label style="cursor: pointer">
+										<input type="checkbox" name="singular" id="singular" value="학원강사경력" />학원강사경력
+									</label>
+								</td>
+								<td>
+									<label style="cursor: pointer">
+										<input type="checkbox" name="singular" id="singular" value="특목고 졸업" />특목고 졸업
+									</label>
+								</td>
+								<td>
+									<label style="cursor: pointer">
+										<input type="checkbox" name="singular" id="singular" value="외고 졸업" />외고 졸업
+									</label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label style="cursor: pointer">
+										<input type="checkbox" name="singular" id="singular" value="영어경시대회" />영어경시대회
+									</label>
+								</td>
+								<td>
+									<label style="cursor: pointer">
+										<input type="checkbox" name="singular" id="singular" value="과학경시대회" />과학경시대회
+									</label>
+								</td>
+								<td>
+									<label style="cursor: pointer">
+										<input type="checkbox" name="singular" id="singular" value="예술고 졸업" />예술고 졸업
+									</label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<label style="cursor: pointer">
+										<input type="checkbox" name="singular" id="singular" value="수학경시대회" />수학경시대회
+									</label>
+								</td>
+								<td>
+									<label style="cursor: pointer">
+										<input type="checkbox" name="singular" id="singular" value="논술대회" />논술대회
+									</label>
+								</td>
+							</tr>
+						</table>
+
+
+						<div style="text-align: center;">
+							<input style="color: white; background: rgb(105, 104, 104); font-size: 15px; padding: 15px; border-radius: 10px; width: 350px; margin: 20px 0px;" type="submit" value="프로필 설정 완료" />
+						</div>
+					</form:form>
+				</div>
+			</div>
+		</div>
+
+		<div class="tutorial-first-back"></div>
+		<div class="tutorial-first">
+			<div class="tutorial-para">
+				<div class="tutorial-first-title">
+					수업을 홍보하기 위해서
+					<br />
+					프로필을 작성해야합니다.
+				</div>
+				<div>
+					1분 만에 나를 홍보하는
+					<br />
+					프로필을 작성해보세요.
+				</div>
+			</div>
+			<div>
+				<div class="tutorial-btn">작성하기</div>
+			</div>
+			<div class="tutorial-close-div">
+				<span class="tutorial-close">[닫기x]</span>
+			</div>
+		</div>
+	</section>
+
+
+
+	<script>
  	 $(document).ready(function(){
   		 
  		 
@@ -1019,14 +1118,51 @@
        
        
        var loadFile = function(event) {
-   	    var reader = new FileReader();
+    	   var fileName = $('#img').val();
+           var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);   
+           if(fileNameExt == "heic") {
+        	  $('#img-convert').removeClass('hide');
+              var blob = $('#img')[0].files[0]; 
+              heic2any({
+                   blob: blob,
+                   toType: "image/jpg",
+               }).then(function (resultBlob) {
+                       var url = URL.createObjectURL(resultBlob);
+                       let fileInputElement = $('#img')[0];
+                       let container = new DataTransfer();
+                       let file = new File([resultBlob], "heic"+".jpg",{type:"image/jpeg", lastModified:new Date().getTime()});
+                       container.items.add(file);
+
+                       fileInputElement.files = container.files;
+
+                       const fileElement = fileInputElement.files;
+                       const reader = new FileReader()
+                       
+                       
+	           	   	   reader.onload = function(fileElement){
+		           	   	   const previewImage = document.getElementById("output")
+		                   previewImage.src = fileElement.target.result;
+	           	   	   }
+	           	   	   
+	           	   	   reader.readAsDataURL( $('#img')[0].files[0] );
+	           	   	   $('#img-convert').addClass('hide');
+                   }).catch(function (x) {
+                       console.log(x.code);
+                       console.log(x.message);
+                       $('#img-convert').addClass('hide');
+                   });
+               
+   	  }else{
+   		var reader = new FileReader();
    	    reader.onload = function(){
    	      var output = document.getElementById('output');
    	      output.src = reader.result;
    	    };
    	    reader.readAsDataURL(event.target.files[0]);
-   	  };
-   	  
+   	  }
+    }
+       
+       
    	function check2(re, what, message) {
    	    if(re.test(what.value)) {
    	        return true;
@@ -1058,9 +1194,9 @@
     	var filepoint = obj.value.substring(pathpoint+1,obj.length);
     	var filetype = filepoint.toLowerCase();
          // 확장자가 이미지 파일이면 체크를 위해 임시로 로딩합니다.
-         if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp'){
+         if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp' || filetype=='heic'){
          }else{
-        	 alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
+        	 alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp/heic)');
         	 document.getElementsByName("img")[0].value = ""; 
          }
     }            

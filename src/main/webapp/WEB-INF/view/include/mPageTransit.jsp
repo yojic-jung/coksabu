@@ -6,8 +6,8 @@
 <meta charset="utf-8">
 </head>
 <body>
-	<div class="m-page-transit" style="text-align: center; width: 100%; position: fixed; left: 0px; top: 0px; background: white; height: 100%; z-index: 10;">
-		<img src="/resources/img/Spin-1s-124px.svg" style="margin-top: 50%;" />
+	<div class="m-page-transit" style="text-align: center; width: 100%; position: fixed; left: 0px; top: 0px; background: #a6a6a6;opacity:0.5; height: 100%; z-index: 10;">
+		<img src="/resources/img/Spinner-1s-130px.svg" style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);" />
 	</div>
 <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
@@ -30,7 +30,7 @@
 						}
 					});
 	
-	$(window).bind("pageshow", function(event) {
+	$(document).ready(function() {
 		var broswerInfo = navigator.userAgent;
 		if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
 			$('.m-page-transit').fadeOut(200);

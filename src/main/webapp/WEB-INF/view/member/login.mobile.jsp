@@ -50,18 +50,14 @@
 	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js"></script>
 	<script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
     <script>
-  $(window).bind("pageshow", function(event) {
-    	var broswerInfo = navigator.userAgent;
-    	//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
-    	if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
-    		$('.m-page-transit').fadeOut(200);
-    	}else{
-    		$('.m-page-transit').hide();
-    	}
-    });
- 
-  
 $(document).ready(function(){
+	var broswerInfo = navigator.userAgent;
+	if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+		$('.m-page-transit').fadeOut(200);
+	}else{
+		$('.m-page-transit').hide();
+	}
+	
 	 var ex = "<c:out value="${ERRORMSG}" />"
 	    if(ex !="")
 	    	alert(ex);
@@ -236,9 +232,9 @@ $(document).ready(function(){
   <div style="height:300px;"></div>
   <img id="spinner" src="<c:url value='/resources/img/spinner.svg' />" style="position:fixed; left:50%; transform:translate(-50%, -50%);top:50%; z-index:99;display:none;"/>
   
-<div class="m-page-transit" style="text-align:center;width:100%;position:fixed;left:0px;top:0px;background: white; height:100%;z-index:10;">
-    <img src="<c:url value="/resources/img/Spin-1s-124px.svg" />"  style="margin-top:50%;"/>
-</div>
+	<div class="m-page-transit" style="text-align: center; width: 100%; position: fixed; left: 0px; top: 0px; background: #a6a6a6;opacity:0.5; height: 100%; z-index: 10;">
+		<img src="/resources/img/Spinner-1s-130px.svg" style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);" />
+	</div>
 
       <script>
       var linkLocation="";

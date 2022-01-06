@@ -102,6 +102,23 @@ $(document).ready(function(){
       });
       
     connect();
+
+  //ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+	var broswerInfo = navigator.userAgent;
+	//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+	if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+		$('.m-page-transit').fadeOut(200);
+	}else{
+		$('.m-page-transit').hide();
+	}
+	if ( event.originalEvent && event.originalEvent.persisted) {// BFCahe
+    	window.location.reload();
+    	console.log("BF캐시 존재함")
+	}else if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+		//뒤로가기 이벤트 채팅 숫자 초기화 위해
+		window.location.reload();
+		console.log("캐시 존재함")
+	}else{}
 });
 
 
@@ -193,29 +210,11 @@ $(document).on("click","a",function(event){
     	}
     });
 
-$(window).bind("pageshow", function(event) {
-	//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
-	var broswerInfo = navigator.userAgent;
-	//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
-	if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
-		$('.m-page-transit').fadeOut(200);
-	}else{
-		$('.m-page-transit').hide();
-	}
-	if ( event.originalEvent && event.originalEvent.persisted) {// BFCahe
-    	window.location.reload();
-    	console.log("BF캐시 존재함")
-	}else if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
-		//뒤로가기 이벤트 채팅 숫자 초기화 위해
-		window.location.reload();
-		console.log("캐시 존재함")
-	}else{}
-});
 </script>
 
-<div class="m-page-transit" style="text-align:center;width:100%;position:fixed;left:0px;top:0px;background: white; height:100%;z-index:10;">
-    <img src="<c:url value="/resources/img/Spin-1s-124px.svg" />"  style="margin-top:50%;"/>
-</div>
+	<div class="m-page-transit" style="text-align: center; width: 100%; position: fixed; left: 0px; top: 0px; background: #a6a6a6;opacity:0.5; height: 100%; z-index: 10;">
+		<img src="/resources/img/Spinner-1s-130px.svg" style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);" />
+	</div>
 
        <%
        session=request.getSession();

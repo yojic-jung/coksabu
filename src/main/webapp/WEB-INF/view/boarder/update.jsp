@@ -293,7 +293,7 @@ body {
 	margin-right: 10px;
 	font-size: 12px;
 }
-
+.hide{display:none;}
 </style>
 <title>수업 수정</title>
 </head>
@@ -323,7 +323,8 @@ body {
 	<div style="height: 200px;"></div>
 	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 	<script src="resources/jquery-number-master/jquery.number.min.js"></script>
-	<script src="resources/js/boarder/lessonWriteAndUpdate.js?v=6"></script>
+	<script src="<c:url value="resources/js/heic2any.js"  />"></script>
+	<script src="resources/js/boarder/lessonWriteAndUpdate.js?v=10"></script>
 	<script>
 		$(document)
 				.ready(
