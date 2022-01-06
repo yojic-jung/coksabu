@@ -400,9 +400,9 @@ var loadFile2 = function(event) {
      	   var file = obj.files;
 
           	// file[0].size 는 파일 용량 정보입니다.
-          	if(file[0].size > 1024*1024*10){
+          	if(file[0].size > 1024*1024*20){
           		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
-          		  alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+          		  alert("첨부파일 사이즈는 20MB 이내로 등록 가능합니다. ");
           		$('.multi1').remove();
           	   	$('#input-div1').append('<input name="certifyimg1" class="multi1" id="multi1" type="file" accept="image/*" onchange="check1(this);loadFile1(event);" />');
           		  return false;
@@ -413,9 +413,9 @@ var loadFile2 = function(event) {
      	   var file = obj.files;
 
           	// file[0].size 는 파일 용량 정보입니다.
-          	if(file[0].size > 1024*1024*10){
+          	if(file[0].size > 1024*1024*20){
           		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
-          		  alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+          		  alert("첨부파일 사이즈는 20MB 이내로 등록 가능합니다. ");
           		$('.multi2').remove();
             	$('#input-div2').append('<input name="certifyimg2" class="multi2" id="multi2" type="file" accept="image/*" onchange="check2(this);loadFile2(event);" />');
           		  return false;
@@ -426,9 +426,9 @@ var loadFile2 = function(event) {
      	   var file = obj.files;
 
           	// file[0].size 는 파일 용량 정보입니다.
-          	if(file[0].size > 1024*1024*10){
+          	if(file[0].size > 1024*1024*20){
           		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
-          		  alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+          		  alert("첨부파일 사이즈는 20MB 이내로 등록 가능합니다. ");
           		$('.multi3').remove();
             	$('#input-div3').append('<input name="certifyimg3" class="multi3" id="multi3" type="file" accept="image/*" onchange="check3(this);loadFile3(event);" />');
           		  return false;

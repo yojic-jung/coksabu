@@ -213,7 +213,7 @@ $(document).on("click","a",function(event){
 </script>
 
 	<div class="m-page-transit" style="text-align: center; width: 100%; position: fixed; left: 0px; top: 0px; background: #a6a6a6;opacity:0.5; height: 100%; z-index: 10;">
-		<img src="/resources/img/Spinner-1s-130px.svg" style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);" />
+		<img src="<c:url value='/resources/img/Spinner-1s-130px.svg' />"  style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);" />
 	</div>
 
        <%

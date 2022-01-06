@@ -690,7 +690,7 @@ var loadFile1 = function(event) {
     var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);   
     if(fileNameExt == "heic") {
  	  $('#img-convert').removeClass('hide');
-       var blob = $('#represent')[0].files[0]; 
+       var blob = $('#multi1')[0].files[0]; 
        heic2any({
             blob: blob,
             toType: "image/jpg",
@@ -729,7 +729,6 @@ var loadFile1 = function(event) {
     reader.readAsDataURL(event.target.files[0]);
   }
 }
-
 var loadFile2 = function(event) {
 	var fileName = $('#multi2').val();
     var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);   
@@ -879,9 +878,9 @@ function check2(re, what, message) {
 function check(obj) {
 	var file = obj.files;
 	// file[0].size 는 파일 용량 정보입니다.
-	if (file[0].size > 1024 * 1024 * 10) {
+	if (file[0].size > 1024 * 1024 * 20) {
 		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
-		alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.");
+		alert("첨부파일 사이즈는 20MB 이내로 등록 가능합니다.");
 		document.getElementsByName("represent")[0].value = "";
 		return false;
 	}
@@ -900,9 +899,9 @@ function check1(obj) {
 	var file = obj.files;
 
 	// file[0].size 는 파일 용량 정보입니다.
-	if (file[0].size > 1024 * 1024 * 10) {
+	if (file[0].size > 1024 * 1024 * 20) {
 		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
-		alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+		alert("첨부파일 사이즈는 20MB 이내로 등록 가능합니다. ");
 		$("#output1").trigger('click');
 		return false;
 	}
@@ -923,9 +922,9 @@ function check22(obj) {
 	var file = obj.files;
 
 	// file[0].size 는 파일 용량 정보입니다.
-	if (file[0].size > 1024 * 1024 * 10) {
+	if (file[0].size > 1024 * 1024 * 20) {
 		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
-		alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+		alert("첨부파일 사이즈는 20MB 이내로 등록 가능합니다. ");
 		$("#output2").trigger('click');
 		return false;
 	}
@@ -946,9 +945,9 @@ function check3(obj) {
 	var file = obj.files;
 
 	// file[0].size 는 파일 용량 정보입니다.
-	if (file[0].size > 1024 * 1024 * 10) {
+	if (file[0].size > 1024 * 1024 * 20) {
 		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
-		alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+		alert("첨부파일 사이즈는 20MB 이내로 등록 가능합니다. ");
 		$("#output3").trigger('click');
 		return false;
 	}
@@ -969,9 +968,9 @@ function check4(obj) {
 	var file = obj.files;
 
 	// file[0].size 는 파일 용량 정보입니다.
-	if (file[0].size > 1024 * 1024 * 10) {
+	if (file[0].size > 1024 * 1024 * 20) {
 		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
-		alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+		alert("첨부파일 사이즈는 20MB 이내로 등록 가능합니다. ");
 		$("#output4").trigger('click');
 		return false;
 	}

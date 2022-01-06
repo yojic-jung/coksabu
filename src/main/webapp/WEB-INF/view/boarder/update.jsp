@@ -324,7 +324,7 @@ body {
 	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 	<script src="resources/jquery-number-master/jquery.number.min.js"></script>
 	<script src="<c:url value="resources/js/heic2any.js"  />"></script>
-	<script src="resources/js/boarder/lessonWriteAndUpdate.js?v=10"></script>
+	<script src="resources/js/boarder/lessonWriteAndUpdate.js?v=12"></script>
 	<script>
 		$(document)
 				.ready(
