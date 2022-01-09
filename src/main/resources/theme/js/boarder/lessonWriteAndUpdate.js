@@ -637,7 +637,9 @@ function checkLesson(member) {
 		$('.menu td').eq(3).trigger('click');
 		return false;
 	}
-
+	
+	dynLoadingEffect();
+	
 }
 
 var loadFile = function(event) {

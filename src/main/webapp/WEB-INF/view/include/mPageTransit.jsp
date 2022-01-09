@@ -31,6 +31,19 @@
 					});
 	
 	
+	//profile.mobile, certify.mobile, mLessonWriteAndUpdate
+	function dynLoadingEffect(){
+		var broswerInfo = navigator.userAgent;
+		//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+		if (broswerInfo.indexOf("APP_WISHROOM_IOS") > -1|| broswerInfo.indexOf("APP_WISHROOM_Android") > -1) {
+			$('.m-page-transit').fadeIn(100);
+		}
+	}
+		
+		
+
+	
+	
 	$(document).on("click",".actLoadingEv",function(event) {
 		var broswerInfo = navigator.userAgent;
 		//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용

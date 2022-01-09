@@ -294,9 +294,9 @@
         <section>
         
 <div id="img-convert" class="hide" style="text-align: center; width: 100%; position: fixed; left: 0px; top: 0px; background: rgb(255, 255, 255, .5); height: 100%; z-index: 10;">
-	<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50%; font-family: 'JejuGothic'; font-size: 35px; font-weight: bold;">
+	<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70%; font-family: 'JejuGothic'; font-size: 35px; font-weight: bold;">
 		<img src="<c:url value='/resources/img/Gear-0.2s-200px.svg?a=2' /> " />
-		<div>이미지 파일을 변환중입니다...</div>
+		<div>heic이미지를 jpg로 변환중입니다...</div>
 		<div>잠시만 기다려주세요....</div>
 	</div>
 </div>
@@ -864,7 +864,6 @@
                      </div>
                     </div> 
                       <input class="submit-btn" style="display:none;" type="submit" value="프로필 설정 완료"/>
-                     
                     </form:form>
                 </div>
             </div>
@@ -887,7 +886,6 @@
     </div>
 
     </section>
-       <img id="spinner" src="<c:url value='/resources/img/spinner.svg' />" style="position:fixed; left:50%; transform:translate(-50%, -50%);top:50%; z-index:99;display:none;"/>
 
     <script>
  	 $(document).ready(function(){
@@ -973,10 +971,6 @@
      });
  	 
  	 
- 	$(window).bind("pageshow", function(event) {
-    	$('#spinner').hide();
-	});
-    
        function CheckForm(memberInfo){
    		 
     	   var form = memberInfo;
@@ -1059,11 +1053,7 @@
             	return false;
             }
             
-            var broswerInfo = navigator.userAgent;
-     	     //ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
-     	     if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
-     	           $('#spinner').show();
-    	     }
+            dynLoadingEffect();
        }
 
        

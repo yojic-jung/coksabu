@@ -423,7 +423,7 @@ input[type="checkbox"] {
 	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 	<script src="resources/jquery-number-master/jquery.number.min.js"></script>
 	<script src="<c:url value="resources/js/heic2any.js"  />"></script>
-	<script src="<c:url value="resources/js/boarder/lessonWriteAndUpdate.js?v=2" />"></script>
+	<script src="<c:url value="resources/js/boarder/lessonWriteAndUpdate.js?v=3" />"></script>
 	<script>
 		$(document)
 				.ready(

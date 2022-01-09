@@ -86,9 +86,9 @@ padding:20px;
 <body>
 
 <div id="img-convert" class="hide" style="text-align: center; width: 100%; position: fixed; left: 0px; top: 0px; background: rgb(255, 255, 255, .5); height: 100%; z-index: 10;">
-	<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width:50%; font-family: 'JejuGothic'; font-size:35px; font-weight: bold;">
+	<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width:70%; font-family: 'JejuGothic'; font-size:35px; font-weight: bold;">
 		<img src="<c:url value='/resources/img/Gear-0.2s-200px.svg?a=2' /> " />
-		<div>이미지 파일을 변환중입니다...</div>
+		<div>heic이미지를 jpg로 변환중입니다...</div>
 		<div>잠시만 기다려주세요....</div>
 	</div>
 </div>
@@ -172,7 +172,6 @@ padding:20px;
    			</div>
    			
    		</form>
-   		<img id="spinner" src="<c:url value='/resources/img/spinner.svg' />" style="position:fixed; left:50%; transform:translate(-50%, -50%);top:50%; z-index:99;display:none;"/>
    		<div style="height:300px;"></div>
 
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
@@ -241,12 +240,6 @@ $("#imgplus3").click(function(){
 });
 
 $('.certi-btn').click(function(){
-	
-	var broswerInfo = navigator.userAgent;
-	//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
-	if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
-	            $('#spinner').show();
-    }
 	
 	$('.certi').trigger("click");
 });
@@ -509,14 +502,9 @@ function CheckForm(memberInfo){
 			return false;
 		}
 	}
-	
+	dynLoadingEffect();
 }
 	
-	
-$(window).bind("pageshow", function(event) {
-		$('#spinner').hide();
-});
-
 function getRequestParam(){
     var url = document.location.href;
     var qs = url.substring(url.indexOf('?') + 1).split('&');
