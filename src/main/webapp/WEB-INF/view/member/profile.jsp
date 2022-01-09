@@ -1183,9 +1183,9 @@
     	var file = obj.files;
 
     	// file[0].size 는 파일 용량 정보입니다.
-    	if(file[0].size > 1024*1024*10){
+    	if(file[0].size > 1024*1024*20){
     		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
-    		  alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+    		  alert("첨부파일 사이즈는 20MB 이내로 등록 가능합니다. ");
     		  document.getElementsByName("img")[0].value = ""; 
     		  return false;
     	}
@@ -1200,40 +1200,6 @@
         	 document.getElementsByName("img")[0].value = ""; 
          }
     }            
-    
-    
-    document.addEventListener( 'DOMContentLoaded', function() {
-        var inputImg = document.getElementById( 'img' );
-
-        inputImg.addEventListener( 'change', function( e ) {
-            var fileSize = getFileSize( inputImg );
-
-            if( fileSize > -1 ) {
-                document.getElementById( 'fileSize' ).innerHTML = ( fileSize / 1024 ).toFixed( 2 ) + ' KB';
-    		}else
-                alert("파일 사이즈는 10MB이하로 사용해주세요.")
-        	}, false );
-    }, false );
-
-    function getFileSize( inputFile ) {
-        var files = inputFile.files;
-
-        if( !files ) {
-            //for IE
-            try {
-                var fs = new ActiveXObject( 'Scripting.FileSystemObject' );
-                var file = fs.getFile( inputFile.value );
-                return file.size;
-            } catch( ex ) {
-                return -1;
-            }
-
-        } else if( files.length > 0 ) {
-            //for rest of the world
-            return files[ 0 ].size;
-        }
-    }
-    
     
     
     function getRequestParam(){

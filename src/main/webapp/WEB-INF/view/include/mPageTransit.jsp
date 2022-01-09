@@ -30,6 +30,20 @@
 						}
 					});
 	
+	
+	$(document).on("click",".actLoadingEv",function(event) {
+		var broswerInfo = navigator.userAgent;
+		//ios 웹뷰, 안드로이드 웹뷰일때만 효과적용
+		if (broswerInfo.indexOf("APP_WISHROOM_IOS") > -1|| broswerInfo.indexOf("APP_WISHROOM_Android") > -1) {
+			event.preventDefault();
+			linkLocation = this.href;
+			$('.m-page-transit').fadeIn(100);
+			setTimeout(function() {redirectPage() }, 100);
+		}
+	});
+	
+	
+	//새롭게 진입한 경우 pageshow 이벤트보다 빠르게 로딩바 제거하기 위해 
 	$(document).ready(function() {
 		var broswerInfo = navigator.userAgent;
 		if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
@@ -39,6 +53,18 @@
 		}
 	    
 	});
+	
+	
+	//뒤로가기로 들어온 경우 $(document).ready 이벤트가 실행되지 않음, ios 오류 해결
+	$(window).bind("pageshow", function(event) {
+		var broswerInfo = navigator.userAgent;
+		if(broswerInfo.indexOf("APP_WISHROOM_IOS")>-1 || broswerInfo.indexOf("APP_WISHROOM_Android")>-1){
+			$('.m-page-transit').fadeOut(200);
+		}else{
+			$('.m-page-transit').hide();
+		}
+	});
+	
 
 	  function redirectPage() {
           window.location = linkLocation;

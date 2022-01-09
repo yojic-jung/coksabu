@@ -218,10 +218,10 @@
       line-height:150%;
       text-decoration:none;
     }
-    
+    .hide{display:none}
     </style>
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-
+	<script src="<c:url value="resources/js/heic2any.js"  />"></script>
 </head>
 <body>
 <script>
@@ -292,6 +292,15 @@
 
 		</script>
         <section>
+        
+<div id="img-convert" class="hide" style="text-align: center; width: 100%; position: fixed; left: 0px; top: 0px; background: rgb(255, 255, 255, .5); height: 100%; z-index: 10;">
+	<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50%; font-family: 'JejuGothic'; font-size: 35px; font-weight: bold;">
+		<img src="<c:url value='/resources/img/Gear-0.2s-200px.svg?a=2' /> " />
+		<div>이미지 파일을 변환중입니다...</div>
+		<div>잠시만 기다려주세요....</div>
+	</div>
+</div>
+        
             <div style="padding:70px 0px 250px 0px; min-height: 500px;">
                 <div class="login-form" style="width:90%;margin:auto;">
                     <form:form class="teacher2-submit" method="post" commandName="profile" name="profile" enctype="multipart/form-data" onSubmit="return CheckForm(this)">
@@ -314,7 +323,7 @@
 						<img id="imgplus" src="<c:url value="/resources/images/imgplus.png" />"  />
 					</div>
                         <br/>
-                        <div style="color:gray;font-size:35px;">(이미지는 10MB이하 파일로 등록해주세요.)</div>
+                        <div style="color:gray;font-size:35px;">(이미지는 20MB이하 파일로 등록해주세요.)</div>
                         <span class="file-wrapper">
                         <input type="file" name="img" id="img" style="font-size:35px;width:50%; padding:20px;" accept="image/*" onchange="check(this);loadFile(event);" />
 						</span>
@@ -1061,13 +1070,49 @@
        
        
        var loadFile = function(event) {
-   	    var reader = new FileReader();
+    	   var fileName = $('#img').val();
+           var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);   
+           if(fileNameExt == "heic") {
+        	  $('#img-convert').removeClass('hide');
+              var blob = $('#img')[0].files[0]; 
+              heic2any({
+                   blob: blob,
+                   toType: "image/jpg",
+               }).then(function (resultBlob) {
+                       var url = URL.createObjectURL(resultBlob);
+                       let fileInputElement = $('#img')[0];
+                       let container = new DataTransfer();
+                       let file = new File([resultBlob], "heic"+".jpg",{type:"image/jpeg", lastModified:new Date().getTime()});
+                       container.items.add(file);
+
+                       fileInputElement.files = container.files;
+
+                       const fileElement = fileInputElement.files;
+                       const reader = new FileReader()
+                       
+                       
+	           	   	   reader.onload = function(fileElement){
+		           	   	   const previewImage = document.getElementById("output")
+		                   previewImage.src = fileElement.target.result;
+	           	   	   }
+	           	   	   
+	           	   	   reader.readAsDataURL( $('#img')[0].files[0] );
+	           	   	   $('#img-convert').addClass('hide');
+                   }).catch(function (x) {
+                       console.log(x.code);
+                       console.log(x.message);
+                       $('#img-convert').addClass('hide');
+                   });
+               
+   	  }else{
+   		var reader = new FileReader();
    	    reader.onload = function(){
    	      var output = document.getElementById('output');
    	      output.src = reader.result;
    	    };
    	    reader.readAsDataURL(event.target.files[0]);
-   	  };
+   	  }
+    }
    	  
    	function check2(re, what, message) {
    	    if(re.test(what.value)) {
@@ -1090,9 +1135,9 @@
     	var file = obj.files;
 
     	// file[0].size 는 파일 용량 정보입니다.
-    	if(file[0].size > 1024*1024*10){
+    	if(file[0].size > 1024*1024*20){
     		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
-    		  alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다. ");
+    		  alert("첨부파일 사이즈는 20MB 이내로 등록 가능합니다. ");
     		  document.getElementsByName("img")[0].value = ""; 
     		  return false;
     	}
@@ -1101,9 +1146,9 @@
     	var filepoint = obj.value.substring(pathpoint+1,obj.length);
     	var filetype = filepoint.toLowerCase();
          // 확장자가 이미지 파일이면 체크를 위해 임시로 로딩합니다.
-         if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp'){
+         if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' || filetype=='bmp' || filetype=='heic'){
          }else{
-        	 alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp)');
+        	 alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp/heic)');
         	 document.getElementsByName("img")[0].value = ""; 
          }
          

@@ -357,7 +357,7 @@ input[type="checkbox"] {
 .opt3-tr,.opt4-tr{
 	display:none;
 } 
-
+.hide{display:none;}
 </style>
 <title>수업 만들기</title>
 </head>
@@ -386,6 +386,7 @@ input[type="checkbox"] {
 	<div style="height: 200px;"></div>
 	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 	<script src="resources/jquery-number-master/jquery.number.min.js"></script>
+	<script src="<c:url value="resources/js/heic2any.js"  />"></script>
 	<script src="<c:url value="resources/js/boarder/lessonWriteAndUpdate.js?v=2" />"></script>
 	<script>
 		$(document)
@@ -421,7 +422,7 @@ input[type="checkbox"] {
 							$(this).remove();
 							$('.uploadDiv')
 									.append(
-											'<input name="contentimg" class="multi1" type="file" accept="image/*" onchange="check1(this);loadFile1(event);" />');
+											'<input name="contentimg" class="multi1" id="multi1" type="file" accept="image/*" onchange="check1(this);loadFile1(event);" />');
 						});
 
 		$(document)
@@ -433,7 +434,7 @@ input[type="checkbox"] {
 							$(this).remove();
 							$('.uploadDiv')
 									.append(
-											'<input name="contentimg" class="multi2" type="file" accept="image/*" onchange="check22(this);loadFile2(event);" />');
+											'<input name="contentimg" class="multi2" id="multi2" type="file" accept="image/*" onchange="check22(this);loadFile2(event);" />');
 						});
 
 		$(document)
@@ -445,7 +446,7 @@ input[type="checkbox"] {
 							$(this).remove();
 							$('.uploadDiv')
 									.append(
-											'<input name="contentimg" class="multi3" type="file" accept="image/*" onchange="check3(this);loadFile3(event);" />');
+											'<input name="contentimg" class="multi3" id="multi3" type="file" accept="image/*" onchange="check3(this);loadFile3(event);" />');
 						});
 
 		$(document)
@@ -457,7 +458,7 @@ input[type="checkbox"] {
 							$(this).remove();
 							$('.uploadDiv')
 									.append(
-											'<input name="contentimg" class="multi4" type="file" accept="image/*" onchange="check4(this);loadFile4(event);" />');
+											'<input name="contentimg" class="multi4" id="multi4" type="file" accept="image/*" onchange="check4(this);loadFile4(event);" />');
 						});
 
 		$(window).bind("pageshow", function(event) {

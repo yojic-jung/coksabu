@@ -458,7 +458,6 @@
 			});
 
 			$('.tutorpage-delete').click(function() {
-				debugger;
 				var confirmflag = prompt("해당하는 수업을 삭제하시려면 \'삭제\' 라고 입력해주세요");
 
 				if (confirmflag == '삭제') {

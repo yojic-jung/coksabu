@@ -4,6 +4,15 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:set var="uri" value="${pageContext.request.requestURI}" />
+
+<div id="img-convert" class="hide" style="text-align: center; width: 100%; position: fixed; left: 0px; top: 0px; background: rgb(255, 255, 255, .5); height: 100%; z-index: 10;">
+	<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50%; font-family: 'JejuGothic'; font-size: 35px; font-weight: bold;">
+		<img src="<c:url value='/resources/img/Gear-0.2s-200px.svg?a=2' /> " />
+		<div>이미지 파일을 변환중입니다...</div>
+		<div>잠시만 기다려주세요....</div>
+	</div>
+</div>
+
 <!-- 수업만들기, 수업 수정하기 -->
 
 <form:form commandName="card" method="post" enctype="multipart/form-data" onSubmit="return checkLesson(this)">
@@ -781,17 +790,17 @@
 		<div style="text-align: center; margin: 30px;">
 			<span class="img-add">이미지 추가</span> <br /> <br /> <span style="font-size: 35px; color: gray;"> 이미지는 최대 4장까지 업로드 가능합니다. <br /> 이미지 취소를 원할 경우 해당 이미지를 클릭하세요.
 			</span>
-			<div style="color: gray; font-size: 35px;">(이미지는 10MB이하 파일로 등록해주세요.)</div>
+			<div style="color: gray; font-size: 35px;">(이미지는 20MB이하 파일로 등록해주세요.)</div>
 		</div>
 
 
 		<div class="img-div"></div>
 
 		<div class="uploadDiv">
-			<input name="contentimg" type="file" class="multi1" accept="image/*" onchange="check1(this);loadFile1(event);" />
-			<input name="contentimg" type="file" class="multi2" accept="image/*" onchange="check22(this);loadFile2(event)" />
-			<input name="contentimg" type="file" class="multi3" accept="image/*" onchange="check3(this);loadFile3(event)" />
-			<input name="contentimg" type="file" class="multi4" accept="image/*" onchange="check4(this);loadFile4(event)" />
+			<input name="contentimg" type="file" class="multi1" id="multi1" accept="image/*" onchange="check1(this);loadFile1(event);" />
+			<input name="contentimg" type="file" class="multi2" id="multi2" accept="image/*" onchange="check22(this);loadFile2(event)" />
+			<input name="contentimg" type="file" class="multi3" id="multi3" accept="image/*" onchange="check3(this);loadFile3(event)" />
+			<input name="contentimg" type="file" class="multi4" id="multi4" accept="image/*" onchange="check4(this);loadFile4(event)" />
 		</div>
 
 		<div>
