@@ -95,7 +95,7 @@
 	<context:component-scan base-package="com.coksabu.yojic.lesson" />	
 	
 	<bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" 
-			p:usePool="true"  p:hostName="cok-redis.yieruy.ng.0001.apn2.cache.amazonaws.com" p:port="6379" />
+			p:usePool="true"  p:hostName="localhost" p:port="6379" p:password="abcd1234"/>
 	
 	<bean id="redisMessageListener" class="org.springframework.data.redis.listener.RedisMessageListenerContainer" p:connectionFactory-ref="jedisConnectionFactory" />
  

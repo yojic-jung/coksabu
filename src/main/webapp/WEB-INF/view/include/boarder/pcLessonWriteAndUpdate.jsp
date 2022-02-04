@@ -8,7 +8,7 @@
 <div id="img-convert" class="hide" style="text-align: center; width: 100%; position: fixed; left: 0px; top: 0px; background: rgb(255, 255, 255, .5); height: 100%; z-index: 10;">
 	<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; font-family: 'JejuGothic'; font-size: 12px; font-weight: bold;">
 		<img src="<c:url value='/resources/img/Gear-0.2s-200px.svg?a=2' /> " />
-		<div>이미지 파일을 변환중입니다...</div>
+		<div>heic이미지를 jpg로 변환중입니다...</div>
 		<div>잠시만 기다려주세요....</div>
 	</div>
 </div>
@@ -703,7 +703,7 @@
 				<img id="imgplus" src="<c:url value="/resources/images/imgplus.png" />" />
 			</div>
 
-			<input type="file" name="represent" id="represent" accept="image/*" onchange="check(this);loadFile(event)" />
+			<input type="file" name="represent" id="represent" accept="image/*" onchange="util_imgUpldCheck(this);util_imgUpldLoadFile(event);" data-output="output" />
 
 		</div>
 
@@ -814,10 +814,10 @@
 		<div class="img-div"></div>
 
 		<div class="uploadDiv">
-			<input name="contentimg" type="file" class="multi1" id="multi1" accept="image/*" onchange="check1(this);loadFile1(event);" /> 
-			<input name="contentimg" type="file" class="multi2" id="multi2" accept="image/*" onchange="check22(this);loadFile2(event)" /> 
-			<input name="contentimg" type="file" class="multi3" id="multi3" accept="image/*" onchange="check3(this);loadFile3(event)" /> 
-			<input name="contentimg" type="file" class="multi4" id="multi4" accept="image/*" onchange="check4(this);loadFile4(event)" />
+			<input name="contentimg" type="file" class="multi1" id="multi1" accept="image/*" onchange="util_imgUpldCheck(this);util_imgUpldLoadFile(event);" data-output="output1" data-click-event="ok" /> 
+			<input name="contentimg" type="file" class="multi2" id="multi2" accept="image/*" onchange="util_imgUpldCheck(this);util_imgUpldLoadFile(event);" data-output="output2" data-click-event="ok" /> 
+			<input name="contentimg" type="file" class="multi3" id="multi3" accept="image/*" onchange="util_imgUpldCheck(this);util_imgUpldLoadFile(event);" data-output="output3" data-click-event="ok" /> 
+			<input name="contentimg" type="file" class="multi4" id="multi4" accept="image/*" onchange="util_imgUpldCheck(this);util_imgUpldLoadFile(event);" data-output="output4" data-click-event="ok" />
 		</div>
 
 		<div>

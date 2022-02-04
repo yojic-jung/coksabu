@@ -429,36 +429,20 @@ $(document).on('click', '.img-add', function() {
 	}
 
 	if ($('.multi1').val() == '' && $('#output1').length == 0) {
-		$('.img-div').append('<img id="output1" style="width:180px;display:none;" src=""/>');
+		$('.img-div').append('<img id="output1" style="width:180px;display:none;" src="" onclick="util_imgDel(this)" data-input-tag="multi1" />');
 		$('.multi1').trigger('click');
 	} else if ($('.multi2').val() == '' && $('#output2').length == 0) {
-		$('.img-div').append('<img id="output2" style="width:180px;display:none;" src=""/>');
+		$('.img-div').append('<img id="output2" style="width:180px;display:none;" src="" onclick="util_imgDel(this)" data-input-tag="multi2" />');
 		$('.multi2').trigger('click');
 	} else if ($('.multi3').val() == '' && $('#output3').length == 0) {
-		$('.img-div').append('<img id="output3" style="width:180px;display:none;" src=""/>');
+		$('.img-div').append('<img id="output3" style="width:180px;display:none;" src="" onclick="util_imgDel(this)" data-input-tag="multi3" />');
 		$('.multi3').trigger('click');
 	} else if ($('.multi4').val() == '' && $('#output4').length == 0) {
-		$('.img-div').append('<img id="output4" style="width:180px;display:none;" src=""/>');
+		$('.img-div').append('<img id="output4" style="width:180px;display:none;" src="" onclick="util_imgDel(this)" data-input-tag="multi4" />');
 		$('.multi4').trigger('click');
 	}
 });
 
-
-$(document).on('change', '.multi1', function() {
-	$('#output1').css('display', '');
-});
-
-$(document).on('change', '.multi2', function() {
-	$('#output2').css('display', '');
-});
-
-$(document).on('change', '.multi3', function() {
-	$('#output3').css('display', '');
-});
-
-$(document).on('change', '.multi4', function() {
-	$('#output4').css('display', '');
-});
 
 
 $('.price-pri1').keyup(function() {
@@ -642,6 +626,60 @@ function checkLesson(member) {
 	
 }
 
+function check2(re, what, message) {
+	if (re.test(what.value)) {
+		return true;
+	}
+	alert(message);
+	what.value = "";
+	what.focus();
+	//return false;
+}
+
+
+function viewKorean(num) {
+	var hanA = new Array("", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구", "십");
+	var danA = new Array("", "십", "백", "천", "", "십", "백", "천", "", "십", "백", "천", "", "십", "백", "천");
+	var result = "";
+	for (i = 0; i < num.length; i++) {
+		str = "";
+		han = hanA[num.charAt(num.length - (i + 1))];
+		if (han != "")
+			str += han + danA[i];
+		if (i == 4)
+			str += "만";
+		if (i == 8)
+			str += "억";
+		if (i == 12)
+			str += "조";
+		result = str + result;
+	}
+	if (num != 0)
+		result = result + "원";
+	return result;
+}
+
+
+//모바일에서도 적용되면 지워도 되는지 판단
+/*
+
+$(document).on('change', '.multi1', function() {
+	$('#output1').css('display', '');
+});
+
+$(document).on('change', '.multi2', function() {
+	$('#output2').css('display', '');
+});
+
+$(document).on('change', '.multi3', function() {
+	$('#output3').css('display', '');
+});
+
+$(document).on('change', '.multi4', function() {
+	$('#output4').css('display', '');
+});
+
+
 var loadFile = function(event) {
 	var fileName = $('#represent').val();
     var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);   
@@ -686,7 +724,6 @@ var loadFile = function(event) {
     reader.readAsDataURL(event.target.files[0]);
   }
 }
-
 var loadFile1 = function(event) {
 	var fileName = $('#multi1').val();
     var fileNameExt = fileName.substr(fileName.lastIndexOf('.') + 1);   
@@ -867,36 +904,6 @@ var loadFile4 = function(event) {
   }
 }
 
-function check2(re, what, message) {
-	if (re.test(what.value)) {
-		return true;
-	}
-	alert(message);
-	what.value = "";
-	what.focus();
-	//return false;
-}
-
-function check(obj) {
-	var file = obj.files;
-	// file[0].size 는 파일 용량 정보입니다.
-	if (file[0].size > 1024 * 1024 * 20) {
-		// 용량 초과시 경고후 해당 파일의 용량도 보여줌
-		alert("첨부파일 사이즈는 20MB 이내로 등록 가능합니다.");
-		document.getElementsByName("represent")[0].value = "";
-		return false;
-	}
-	var pathpoint = obj.value.lastIndexOf('.');
-	var filepoint = obj.value.substring(pathpoint + 1, obj.length);
-	var filetype = filepoint.toLowerCase();
-	// 확장자가 이미지 파일이면 체크를 위해 임시로 로딩합니다.
-	if (filetype == 'jpg' || filetype == 'gif' || filetype == 'png' || filetype == 'jpeg' || filetype == 'bmp' || filetype == 'heic') {} else {
-		alert('이미지  파일만 등록해주십시오.(img/gif/png/jpeg/bmp/heic)');
-		document.getElementsByName("represent")[0].value = "";
-		return false;
-	}
-}
-
 function check1(obj) {
 	var file = obj.files;
 
@@ -988,25 +995,4 @@ function check4(obj) {
 	}
 
 }
-
-function viewKorean(num) {
-	var hanA = new Array("", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구", "십");
-	var danA = new Array("", "십", "백", "천", "", "십", "백", "천", "", "십", "백", "천", "", "십", "백", "천");
-	var result = "";
-	for (i = 0; i < num.length; i++) {
-		str = "";
-		han = hanA[num.charAt(num.length - (i + 1))];
-		if (han != "")
-			str += han + danA[i];
-		if (i == 4)
-			str += "만";
-		if (i == 8)
-			str += "억";
-		if (i == 12)
-			str += "조";
-		result = str + result;
-	}
-	if (num != 0)
-		result = result + "원";
-	return result;
-}
+*/
