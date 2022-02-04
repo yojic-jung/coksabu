@@ -1,18 +1,10 @@
 package com.coksabu.yojic.lesson.chat.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
-import com.coksabu.yojic.lesson.chat.util.UnixEpochDateTypeAdapter;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-public class ChatMessage implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 651235421598L;
-	
+public class Message {
 	int message_id;
 	int chatroom_id;
 	
@@ -26,10 +18,6 @@ public class ChatMessage implements Serializable {
 	String message_read2;
 	
 	int unReadCount;
-	
-	String message_type;
-	
-	String topic;
 	
 	public void setMessage_id(int message_id) {
 		this.message_id= message_id;
@@ -62,14 +50,8 @@ public class ChatMessage implements Serializable {
 	public void setUnReadCount(int unReadCount) {
 		this.unReadCount=unReadCount;
 	}
-	public void setMessage_type(String message_type) {
-		this.message_type=message_type;
-	}
 	
-	public void setTopic(String topic) {
-		this.topic=topic;
-	}
-
+	
 	public String getMessage_sender() {
 		return message_sender;
 	}
@@ -100,31 +82,11 @@ public class ChatMessage implements Serializable {
 	public int getUnReadCount() {
 		return unReadCount;
 	}
-	public String getMessage_type() {
-		return this.message_type;
-	}
-	public String getTopic() {
-		return this.topic;
-	}
-	
-	public static ChatMessage convertMessage(String source) {
-		ChatMessage message = new ChatMessage();
-		final Gson gson = new GsonBuilder()
-		        .registerTypeAdapter(Date.class, UnixEpochDateTypeAdapter.getUnixEpochDateTypeAdapter())
-		        .create();
-		message = gson.fromJson(source,  ChatMessage.class);
+		
+	public static Message convertMessage(String source) {
+		Message message = new Message();
+		Gson gson = new Gson();
+		message = gson.fromJson(source,  Message.class);
 		return message;
 	}
-	
-	@Override
-    public String toString() {
-        return String.format("ChatMessage{message_id='%s', chatroom_id='%s', message_sender='%s', message_receiver='%s', message_content='%s', "
-        		+ "message_time='%s', message_time2='%s', message_read='%s', message_read2='%s',"
-        		+ "unReadCount='%s', message_type='%s', message_type='%s'}"
-        		,
-        		message_id, chatroom_id, message_sender, message_receiver, message_content,
-        		message_time, message_time2, message_read, message_read2,
-        		unReadCount, message_type, message_type);
-    }
-	
 }

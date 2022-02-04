@@ -49,8 +49,7 @@
         setTimeout(function(){
       			  var message = {};
       			  message.message_sender = sender;
-      			  message.message_time = new Date();
-      			  //안읽음 메세지 읽음처리해주기 위해서
+      			//안읽음 메세지 읽음처리해주기 위해서
       			  stompClient.send("/app/newconnect", {atytopic:"message", name: chatroom_id}, JSON.stringify(message));
         },1000);
         	

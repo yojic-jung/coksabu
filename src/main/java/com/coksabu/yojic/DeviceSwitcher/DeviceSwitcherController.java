@@ -1,6 +1,7 @@
 package com.coksabu.yojic.DeviceSwitcher;
 import org.springframework.mobile.device.Device;
 
+
 import org.springframework.mobile.device.DeviceUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 
