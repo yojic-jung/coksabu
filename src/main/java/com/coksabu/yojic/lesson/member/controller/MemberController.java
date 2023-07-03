@@ -1027,8 +1027,6 @@ public class MemberController extends DeviceSwitcherController {
 		PassFind pass = new PassFind();
 		pass.setEmail((String)request.getParameter("email"));
 		pass.setPhone((String)request.getParameter("phone"));
-		System.out.println(pass.getEmail());
-		System.out.println(pass.getPhone());
 		String configLocation = "classpath:applicationContext.xml";
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
 		EmailPassFindService emailPassFindService = ctx.getBean("emailPassFindService", EmailPassFindService.class);
