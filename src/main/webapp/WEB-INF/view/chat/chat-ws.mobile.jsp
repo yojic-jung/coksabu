@@ -28,6 +28,8 @@
     		  var socket = new SockJS("https://www.coksabu.com/hello?chatroom_id="+chatroom_id+"&username="+sender);
     	}else if(currentUrl.indexOf("m.coksabu.com")!=-1){
     		  var socket = new SockJS("https://m.coksabu.com/hello?chatroom_id="+chatroom_id+"&username="+sender);
+    	}else if(currentUrl.indexOf("13.209.57.40")!=-1){
+ 			  var socket = new SockJS("http://13.209.57.40/hello?chatroom_id="+chatroom_id+"&username="+sender);
     	}else{
     		  var socket = new SockJS("https://coksabu.com/hello?chatroom_id="+chatroom_id+"&username="+sender);
     	}
@@ -48,8 +50,7 @@
         setTimeout(function(){
       			  var message = {};
       			  message.message_sender = sender;
-      			  message.message_time = new Date();
-      			  //안읽음 메세지 읽음처리해주기 위해서
+      			//안읽음 메세지 읽음처리해주기 위해서
       			  stompClient.send("/app/newconnect", {atytopic:"message", name: chatroom_id}, JSON.stringify(message));
         }, 1000)
         

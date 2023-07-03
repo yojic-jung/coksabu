@@ -65,6 +65,8 @@ body {
 				var socket = new SockJS("https://coksabu.com/chatmemberlist");
 			} else if (currentUrl.indexOf("m.coksabu.com") != -1) {
 				var socket = new SockJS("https://coksabu.com/chatmemberlist");
+			} else if(currentUrl.indexOf("13.209.57.40")!=-1){
+				 var socket = new SockJS("http://13.209.57.40/chatmemberlist");
 			} else {
 				var socket = new SockJS("https://coksabu.com/chatmemberlist");
 			}

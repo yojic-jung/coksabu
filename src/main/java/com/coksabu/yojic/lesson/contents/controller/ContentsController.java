@@ -50,7 +50,6 @@ public class ContentsController {
 		ContentsService contentsService = ctx.getBean("contentsService", ContentsService.class );
 		String path = request.getServletContext().getRealPath("resources/theme");
 		HashMap<String, Object> map = contentsService.insertKichulContents(contents, path);
-		System.out.println(path);
 		if(map.get("duplicate")!=null && map.get("duplicate").equals("duplicate")) {
 			List<KichulContents> contentsMenu = contentsService.takeContentsMenu();
 			ctx.close();
@@ -95,11 +94,6 @@ public class ContentsController {
 	
 	@RequestMapping(value="sngmoyeBuilder", method=RequestMethod.POST)
 	public String sngmoyeBuilder2(Sngmoye sngmoye) {
-		System.out.println(sngmoye.getYear()+"년");
-		System.out.println(sngmoye.getMonth()+"월");
-		System.out.println(sngmoye.getQuestionNumber()+"번");
-		System.out.println(sngmoye.getQuestionAnswer());
-		
 		return "contents/sngmoyeBuilder";
 	}
 	
@@ -107,12 +101,9 @@ public class ContentsController {
 	public ResponseEntity<?> summerimage(@RequestParam("file") MultipartFile img, HttpServletRequest request) throws IOException {
 		String path = request.getServletContext().getRealPath("resources/theme/summerimages");
 		Random random = new Random();
-		System.out.println(img.getOriginalFilename());
-		System.out.println(path);
 		long currentTime = System.currentTimeMillis();
 		int	randomValue = random.nextInt(100);
 		String fileName = Long.toString(currentTime) + "_"+randomValue+"_a_"+img.getOriginalFilename();
-		System.out.println(fileName);
 		File file = new File(path , fileName);
 		img.transferTo(file);
 		return ResponseEntity.ok().body("resources/summerimages/"+fileName);

@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.coksabu.yojic.lesson.chat.model.ChatDeal;
-import com.coksabu.yojic.lesson.chat.model.ChatMessage;
 import com.coksabu.yojic.lesson.chat.model.ChatPurchase;
+import com.coksabu.yojic.lesson.chat.model.Message;
 import com.coksabu.yojic.lesson.chat.model.MyRoom;
 import com.coksabu.yojic.lesson.fcm.util.TokenInfo;
 
@@ -28,13 +28,13 @@ public interface ChatDao {
 	
 	public int makeRoom(HashMap<String, Object> map);
 	
-	public void insertChatMessageRead(ChatMessage message);
+	public void insertChatMessageRead(Message message);
 	
-	public void insertChatMessageReadNot(ChatMessage message);
+	public void insertChatMessageReadNot(Message message);
 	
-	public String takeChatMemberStatus(ChatMessage message);
+	public String takeChatMemberStatus(Message message);
 	
-	public List<ChatMessage> takeMessage(int chatroom_id);
+	public List<Message> takeMessage(int chatroom_id);
 	
 	public List<MyRoom> takeMyRoom(String email); 
 	
