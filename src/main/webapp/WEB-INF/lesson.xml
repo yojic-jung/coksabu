@@ -55,7 +55,13 @@
 		<bean class="org.springframework.mobile.device.DeviceResolverHandlerInterceptor"></bean>
 	</mvc:interceptor>
 	
-
+	 <mvc:interceptor>
+        <mvc:mapping path="/**"/>
+		<bean class="org.springframework.mobile.device.switcher.SiteSwitcherHandlerInterceptor" factory-method="mDot">
+    	<constructor-arg index="0" type="java.lang.String" value="coksabu.com"/>
+    	<constructor-arg index="1" type="java.lang.Boolean" value="true"/>
+  		</bean>
+	</mvc:interceptor>
 	</mvc:interceptors>
 	
 	
@@ -75,5 +81,17 @@
 	</bean>	
 		
 	<task:annotation-driven executor="taskExecutor" />
+	
+	<!-- 레디스 -->
+	<bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager" 
+	      c:redis-operations-ref='redisTemplate'>
+        <property name="expires">
+            <map>
+                <entry key="sessionData" value="7200"></entry>
+                <entry key="portalData" value="7200"></entry>
+                <entry key="referenceData" value="86400"></entry>
+            </map>
+        </property>
+    </bean>
 	
 </beans>

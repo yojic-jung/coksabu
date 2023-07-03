@@ -120,11 +120,11 @@
     <input class="permit" id="password2" type="password" placeholder="비밀번호 확인" /><br/>
     
     
-    <form:input class="permit name" id="name" placeholder="이름" path="name" value="정요직"/>
+    <form:input class="permit name" id="name" placeholder="이름" path="name" value="${memberInfo.name}"/>
     <form:errors path="name" />
     
     
-    <form:input class="permit birth" id="birth"  placeholder="생년월일 ex)920123" path="birth" value="930727"/>
+    <form:input class="permit birth" id="birth"  placeholder="생년월일 ex)920123" path="birth" value="${memberInfo.birth}"/>
    	<form:errors path="birth" />
     <table style="border:1px solid rgb(209, 209, 209);width:350px;margin:10px;border-spacing:0px;border-radius:5px;">
     <tr>
@@ -138,7 +138,7 @@
     </tr>
     </table>
     
-    <form:input style="display:none;" class="phone" id="phone" placeholder="휴대폰 번호 (-)없이 " path="phone" value="01086491176"/>
+    <form:input style="display:none;" class="phone" id="phone" placeholder="휴대폰 번호 (-)없이 " path="phone" value=""/>
     <form:errors path="phone" />
     <br/>
     
@@ -306,6 +306,13 @@
 	    alert('약관에동의해 주세요');
 	    return false;
 	   }
+	   
+	   var chk2=form.U_checkAgreement2.checked;
+	   if(chk2==""){
+	    alert('휴대폰 인증을 해주시기 바랍니다.');
+	    return false;
+	   }
+	
 	}
 function check(re, what, message) {
     if(re.test(what.value)) {
