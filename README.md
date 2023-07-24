@@ -31,7 +31,7 @@
 #### 수업요청
 ①  홈에서 하단 메뉴바 [수업요청] 클릭   ->  ② 각 단계에 선택조건 맞게 클릭   ->   ③ 요청완료 확인  
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/e25c72a9-87a1-453e-b554-559c5f29e47f" width="180" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/yojic-jung/coksabu/assets/45252387/478c9bce-635b-4686-8b77-74bcadb6b90b" width="200" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://github.com/yojic-jung/coksabu/assets/45252387/3edb0f2f-b24a-4eb8-9233-89104ff7caf1" width="200" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/fa740c61-88d5-4f4a-9f83-1a73c31f04a4" width="200" >  
   
 * [관련 기능 mvc패턴 패키지](https://github.com/yojic-jung/coksabu/tree/master/src/main/java/com/coksabu/yojic/lesson/apply)  
