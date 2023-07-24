@@ -79,10 +79,6 @@ public class ContentsController {
 	
 	@RequestMapping(value="contentsBuild", method=RequestMethod.POST)
 	public String contentsBuilder1(Sngmoye sngmoye) {
-		System.out.println(sngmoye.getYear()+"년");
-		System.out.println(sngmoye.getMonth()+"월");
-		System.out.println(sngmoye.getQuestionNumber()+"번");
-		System.out.println(sngmoye.getQuestionAnswer());
 		
 		return "contents/builder";
 	}
@@ -94,6 +90,7 @@ public class ContentsController {
 	
 	@RequestMapping(value="sngmoyeBuilder", method=RequestMethod.POST)
 	public String sngmoyeBuilder2(Sngmoye sngmoye) {
+		
 		return "contents/sngmoyeBuilder";
 	}
 	
@@ -123,12 +120,10 @@ public class ContentsController {
 
         //크롬만 해결 다른 브라우저 테스트 필요
     	if ( header.indexOf( "MSIE" ) > -1 ) {
-    		System.out.println("1");
     		fileName = URLEncoder.encode( fileName, "UTF-8" ).replaceAll( "\\+", "%20" );
     	}
 
     	else if ( header.indexOf( "Trident" ) > -1 ) { 
-    		System.out.println("2");
     		fileName = URLEncoder.encode( fileName, "UTF-8" ).replaceAll( "\\+", "%20" );
     	}
 
@@ -136,16 +131,13 @@ public class ContentsController {
     		fileName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
     	}
     	else if ( header.indexOf( "Opera" ) > -1 ) {
-    		System.out.println("Opera");
     		fileName = "\"" + new String( fileName.getBytes( "UTF-8" ), "8859_1" ) + "\"";
     	}
 
     	else if ( header.indexOf( "Safari" ) > -1 ) {
-    		System.out.println("Safari");
     		fileName = "\"" + new String( fileName.getBytes( "UTF-8" ), "8859_1" ) + "\"";
     		fileName = URLDecoder.decode( fileName, java.nio.charset.StandardCharsets.UTF_8.toString() );
     	}else{
-    		System.out.println("header: "+header.toString());
     		fileName = "\"" + new String( fileName.getBytes( "UTF-8" ), "8859_1" ) + "\"";
     		fileName = URLDecoder.decode( fileName, java.nio.charset.StandardCharsets.UTF_8.toString() );
     	}

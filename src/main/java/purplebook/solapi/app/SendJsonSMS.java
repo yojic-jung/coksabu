@@ -2,7 +2,6 @@ package purplebook.solapi.app;
 
 import java.io.IOException;
 
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
@@ -36,7 +35,11 @@ public class SendJsonSMS {
             public void onResponse(Call<GroupModel> call, Response<GroupModel> response) {
                 // 성공 시 200이 출력됩니다.
                 if (response.isSuccessful()) {
+                    System.out.println("statusCode : " + response.code());
                     GroupModel body = response.body();
+                    System.out.println("groupId : " + body.getGroupId());
+                    System.out.println("status: " + body.getStatus());
+                    System.out.println("count: " + body.getCount().toString());
                 } else {
                     try {
                         System.out.println(response.errorBody().string());

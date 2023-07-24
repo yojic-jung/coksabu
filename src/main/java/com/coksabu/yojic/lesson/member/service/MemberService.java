@@ -174,9 +174,6 @@ public class MemberService {
 		int chatTranCount = memberDao.takeChatTranCount(email);
 		
 		int count = purchaseCount + chatTranCount;
-		System.out.println(purchaseCount);
-		System.out.println(chatTranCount);
-		System.out.println(count);
 		
 		if(count>0) {
 			return -1;

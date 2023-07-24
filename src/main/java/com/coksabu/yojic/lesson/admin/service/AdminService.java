@@ -45,9 +45,7 @@ public class AdminService {
 	}
 	
 	public void inspectComplete(String email) {
-		System.out.println(email);
 		int a = adminDao.inspectComplete(email);
-		System.out.println(a);
 		TokenInfo tokenInfo = adminDao.takePushForOneTarget(email);
 		
 		if(tokenInfo != null) {

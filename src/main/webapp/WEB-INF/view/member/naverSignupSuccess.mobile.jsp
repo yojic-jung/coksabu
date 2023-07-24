@@ -11,11 +11,6 @@
     <meta name="description" content="회원가입 페이지" />
     <meta charset="utf-8">
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
-
-<!-- Event snippet for 가입 conversion page -->
-<script>
-  gtag('event', 'conversion', {'send_to': 'AW-413632618/Emm8CI67sfkBEOqQnsUB'});
-</script>
 <!-- Facebook Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -30,16 +25,21 @@ fbq('init', '2787801881458923');
 fbq('track', 'CompleteRegistration', {currency: "KRW", value: 1.00});
 </script>
 <!-- End Facebook Pixel Code -->
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-413632618"></script>
 <script>
-
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'AW-413632618');
 </script>
+<!-- Event snippet for 가입 conversion page -->
+<script>
+  gtag('event', 'conversion', {'send_to': 'AW-413632618/Emm8CI67sfkBEOqQnsUB'});
+</script>
 </head>
 <body>
+<img id="spinner" src="<c:url value='/resources/img/spinner.svg' />" style="position:fixed; left:50%; transform:translate(-50%, -50%);top:50%; z-index:99;"/>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=2787801881458923&ev=PageView&noscript=1"
 /></noscript>

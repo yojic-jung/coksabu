@@ -109,7 +109,6 @@ public class AdminController {
 			String configLocation = "classpath:applicationContext.xml";
 			AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
 			AdminService adminService = ctx.getBean("adminService", AdminService.class);
-			System.out.println(email);
 			adminService.inspectComplete(email);
 			ctx.close();
 		}
@@ -671,8 +670,6 @@ public class AdminController {
 
 		int postId = Integer.parseInt((String) request.getParameter("postId"));
 		int id = Integer.parseInt((String) request.getParameter("id"));
-		System.out.println("찍힘 확인:" + postId);
-		System.out.println("찍힘 확인:" + id);
 		adminAddService.adminDelLesson(postId, id, path);
 		ctx.close();
 
@@ -691,7 +688,6 @@ public class AdminController {
 		if (admin.equals("dywlr74")) {
 			GenericXmlApplicationContext ctx = new GenericXmlApplicationContext("classpath:/applicationContext.xml");
 			AdminDelServcie adminDelServcie = ctx.getBean(AdminDelServcie.class);
-			System.out.println(request.getParameter("email") + "이메일 출력");
 			String status = adminDelServcie.delUser(request.getParameter("email"), path);
 			ctx.close();
 			model.addAttribute("status", status);

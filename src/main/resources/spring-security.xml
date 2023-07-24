@@ -79,13 +79,13 @@
 		<sec:csrf disabled = "true" /> 
 		
 		<sec:form-login 
-		login-page="/login"
-		login-processing-url="/loginprocess"
-		authentication-success-handler-ref="loginSuccessHandler"
-		authentication-failure-handler-ref="loginFailureHandler"
-		username-parameter="email" password-parameter="password"
+			login-page="/login"
+			login-processing-url="/loginprocess"
+			authentication-success-handler-ref="loginSuccessHandler"
+			authentication-failure-handler-ref="loginFailureHandler"
+			username-parameter="email" password-parameter="password"
 		/>
-		<sec:logout delete-cookies="JSESSIONID,remember-me" logout-url="/j_spring_security_logout" logout-success-url="/?cok_tutorial=first_user" invalidate-session="true"/>
+		<sec:logout delete-cookies="JSESSIONID,remember-me" logout-url="/j_spring_security_logout" logout-success-url="/" invalidate-session="true"/>
 		
 		<sec:remember-me key="wmoskey" token-validity-seconds="14515200" authentication-success-handler-ref="autoLoginSuccessHandler"/><!-- 24주 대략 6개월 -->
 		
