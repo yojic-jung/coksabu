@@ -21,7 +21,10 @@
 
 ## 주요기능
 #### * 로그인
-
+<img src="https://github.com/yojic-jung/coksabu/assets/45252387/0b8567a0-edb0-432d-a260-d98527796aa3" width="180" >  
+※로그인 권한 관리는 스프링 시큐리티를 통해 세션과 쿠키 방식으로 사용되며 sns(naver, apple)로그인 방식은 토큰을 받아 인증한 이후 세션과 쿠키를 생성함 
+[시큐리티 설정]:(https://github.com/yojic-jung/coksabu/blob/master/src/main/resources/spring-security.xml)
+[애플로 로그인 콜백](https://github.com/yojic-jung/coksabu/blob/master/src/main/java/com/coksabu/yojic/lesson/member/controller/MemberController.java#L1211) : 애플로 받은 사용자 json토큰 정보를 전자서명 과정을 거쳐 프로젝트에서 제공하는 세션 쿠키방식으로 커스터마이징 하여 로그인 처리하는 함수
 #### * 수업요청
 ①  홈에서 하단 메뉴바 [수업요청] 클릭   ->  ② 각 단계에 선택조건 맞게 클릭   ->   ③ 요청완료 확인  
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/e25c72a9-87a1-453e-b554-559c5f29e47f" width="180" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -36,7 +39,7 @@
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/45252387/118808b0-9b11-487d-9635-6e032ccb70d7" width="180" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/41fdd99f-1dae-4221-a076-9299c93faebf" width="180" >  
   
-* [소켓 통신 config](https://github.com/yojic-jung/coksabu/blob/master/src/main/java/com/coksabu/yojic/lesson/chat/socketconfig/WebSocketConfig.java)
+* [소켓 통신 config](https://github.com/yojic-jung/coksabu/blob/master/src/main/java/com/coksabu/yojic/lesson/chat/socketconfig/WebSocketConfig.java) : 소켓 설정 및 xss필터링 설정
 * [채팅 컨트롤러](https://github.com/yojic-jung/coksabu/blob/master/src/main/java/com/coksabu/yojic/lesson/chat/socketconfig/GreetingController.java)  
 <br/><br/>
 #### * 거래제안서 작성
