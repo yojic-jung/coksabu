@@ -10,7 +10,7 @@
 
 <br/>
 
-## Environments
+## ⚙ Environments
 <img src="https://img.shields.io/badge/amazonec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white"><img src="https://img.shields.io/badge/amazonrds-527FFF?style=for-the-badge&logo=amazonrds&logoColor=white"><img src="https://img.shields.io/badge/linux-FCC624?style=for-the-badge&logo=linux&logoColor=white">  
 
 <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=Java&logoColor=white"><img src="https://img.shields.io/badge/apachetomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=white"><img src="https://img.shields.io/badge/apachemaven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white"><img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"><img src="https://img.shields.io/badge/springsecurity-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white"><img src="https://img.shields.io/badge/mybaits-59666C?style=for-the-badge&logo=mybaits &logoColor=white">  
@@ -19,23 +19,24 @@
 
 <br/>
 
-## 주요기능
-#### * 로그인
+## 🖥 주요기능
+
+#### 로그인  
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/0b8567a0-edb0-432d-a260-d98527796aa3" width="180" >  
 
-※로그인 권한 관리는 스프링 시큐리티를 통해 세션과 쿠키 방식으로 사용되며 sns(naver, apple)로그인 방식은 토큰을 받아 인증한 이후 세션과 쿠키를 생성함  
-[시큐리티 설정]:(https://github.com/yojic-jung/coksabu/blob/master/src/main/resources/spring-security.xml)  
-[애플로 로그인 콜백](https://github.com/yojic-jung/coksabu/blob/master/src/main/java/com/coksabu/yojic/lesson/member/controller/MemberController.java#L1211) : 애플로 받은 사용자 json토큰 정보를 전자서명 과정을 거쳐 프로젝트에서 제공하는 세션 쿠키방식으로 커스터마이징 하여 로그인 처리하는 함수  
 
-#### * 수업요청
+* [시큐리티 설정](https://github.com/yojic-jung/coksabu/blob/master/src/main/resources/spring-security.xml) : 로그인 입력폼에 입력하여 들어오는 경우 적용됨  
+* [애플로 로그인](https://github.com/yojic-jung/coksabu/blob/master/src/main/java/com/coksabu/yojic/lesson/member/controller/MemberController.java#L1211) : 애플에서 받은 jwt 사용자 정보를 전자서명 과정을 거쳐 스프링시큐리티에서 제공하는 방식으로 세션, 쿠키 생성하여 로그인 처리  
+<br/><br/>
+#### 수업요청
 ①  홈에서 하단 메뉴바 [수업요청] 클릭   ->  ② 각 단계에 선택조건 맞게 클릭   ->   ③ 요청완료 확인  
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/e25c72a9-87a1-453e-b554-559c5f29e47f" width="180" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/yojic-jung/coksabu/assets/45252387/820a817d-05e8-4508-a42a-75d2775e4886" width="200" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/yojic-jung/coksabu/assets/45252387/fa740c61-88d5-4f4a-9f83-1a73c31f04a4" width="180" >  
+<img src="https://github.com/yojic-jung/coksabu/assets/45252387/478c9bce-635b-4686-8b77-74bcadb6b90b" width="200" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://github.com/yojic-jung/coksabu/assets/45252387/fa740c61-88d5-4f4a-9f83-1a73c31f04a4" width="200" >  
   
 * [관련 기능 mvc패턴 패키지](https://github.com/yojic-jung/coksabu/tree/master/src/main/java/com/coksabu/yojic/lesson/apply)  
 <br/><br/>
-#### * 수업목록 및 채팅
+#### 수업목록 및 채팅
 ①  홈에서 하단 메뉴바 [카테고리] 클릭   ->  ② 원하는 과목 및 수업 클릭   ->   ③ 채팅상담  
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/0eb593bd-3073-4091-9a4d-e75b0788d06c" width="180" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/45252387/118808b0-9b11-487d-9635-6e032ccb70d7" width="180" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -44,11 +45,11 @@
 * [소켓 통신 config](https://github.com/yojic-jung/coksabu/blob/master/src/main/java/com/coksabu/yojic/lesson/chat/socketconfig/WebSocketConfig.java) : 소켓 설정 및 xss필터링 설정
 * [채팅 컨트롤러](https://github.com/yojic-jung/coksabu/blob/master/src/main/java/com/coksabu/yojic/lesson/chat/socketconfig/GreetingController.java)  
 <br/><br/>
-#### * 거래제안서 작성
+#### 거래제안서 작성
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/c818ca01-44c7-4917-9468-fed05df1d32d" width="180" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/bf33a422-30f2-4410-aa06-ecebbc172cbd" width="180" >  
 <br/><br/>
-#### * 프로필 및 수업만들기
+#### 프로필 및 수업만들기
 ①  홈에서 하단 메뉴바 [마이페이지] 클릭   ->  ② 프로필 수정하기   ->   ③ 수업 만들기  
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/90eb5230-c061-4950-8af4-935ac0f8bd20" width="180" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/8a151dd1-fffc-415e-b5fd-72b9e811c428" width="180" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -57,7 +58,7 @@
 * [관련 기능 mvc패턴 패키지](https://github.com/yojic-jung/coksabu/tree/master/src/main/java/com/coksabu/yojic/lesson/member)  
 <br/><br/><br/>
 
-## 라이브러리
+## 📚 라이브러리
 * spring-security-web
 * mybatis
 * javax.mail
