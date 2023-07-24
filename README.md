@@ -28,16 +28,16 @@
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/820a817d-05e8-4508-a42a-75d2775e4886" width="180" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/fa740c61-88d5-4f4a-9f83-1a73c31f04a4" width="200" >  
   
-[수업요청 관련 기능 mvc패턴 패키지](https://github.com/yojic-jung/coksabu/tree/master/src/main/java/com/coksabu/yojic/lesson/apply)
+* [수업요청 관련 기능 mvc패턴 패키지](https://github.com/yojic-jung/coksabu/tree/master/src/main/java/com/coksabu/yojic/lesson/apply)  
 <br/><br/>
 #### * 수업목록 및 채팅
 ①  홈에서 하단 메뉴바 [카테고리] 클릭   ->  ② 원하는 과목 및 수업 클릭   ->   ③ 채팅상담  
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/0eb593bd-3073-4091-9a4d-e75b0788d06c" width="180" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/45252387/118808b0-9b11-487d-9635-6e032ccb70d7" width="180" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/yojic-jung/coksabu/assets/45252387/41fdd99f-1dae-4221-a076-9299c93faebf" width="200" >  
+<img src="https://github.com/yojic-jung/coksabu/assets/45252387/41fdd99f-1dae-4221-a076-9299c93faebf" width="180" >  
   
-[소켓 통신 config]([https://github.com/yojic-jung/coksabu/blob/master/src/main/java/com/coksabu/yojic/lesson/chat/socketconfig/GreetingController.java](https://github.com/yojic-jung/coksabu/blob/master/src/main/java/com/coksabu/yojic/lesson/chat/socketconfig/WebSocketConfig.java))
-[채팅 컨트롤러](https://github.com/yojic-jung/coksabu/blob/master/src/main/java/com/coksabu/yojic/lesson/chat/socketconfig/GreetingController.java)
+* [소켓 통신 config]([https://github.com/yojic-jung/coksabu/blob/master/src/main/java/com/coksabu/yojic/lesson/chat/socketconfig/GreetingController.java](https://github.com/yojic-jung/coksabu/blob/master/src/main/java/com/coksabu/yojic/lesson/chat/socketconfig/WebSocketConfig.java))  
+* [채팅 컨트롤러](https://github.com/yojic-jung/coksabu/blob/master/src/main/java/com/coksabu/yojic/lesson/chat/socketconfig/GreetingController.java)  
 <br/><br/>
 #### * 거래제안서 작성
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/c818ca01-44c7-4917-9468-fed05df1d32d" width="180" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -47,7 +47,7 @@
 ①  홈에서 하단 메뉴바 [마이페이지] 클릭   ->  ② 프로필 수정하기   ->   ③ 수업 만들기  
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/90eb5230-c061-4950-8af4-935ac0f8bd20" width="180" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/8a151dd1-fffc-415e-b5fd-72b9e811c428" width="180" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/yojic-jung/coksabu/assets/45252387/f7cd4e85-158f-4b22-93d5-e84a410cf288" width="180" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://github.com/yojic-jung/coksabu/assets/45252387/f7cd4e85-158f-4b22-93d5-e84a410cf288" width="200" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <br/><br/><br/>
 
 ## 라이브러리
