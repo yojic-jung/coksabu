@@ -213,7 +213,7 @@ body {
 }
 
 .multi1, .multi2, .multi3, .multi4 {
-display:none;
+	display: none;
 }
 
 .img-div {
@@ -305,19 +305,23 @@ display:none;
 	<script src="resources/jquery-number-master/jquery.number.min.js"></script>
 	<script src="<c:url value="resources/js/heic2any.js"  />"></script>
 	<script src="<c:url value="resources/js/boarder/lessonWriteAndUpdate.js?v=14" />"></script>
-	<script src="<c:url value="resources/js/cok_util.js?v=2"  />"></script>
 	<script>
-		$(document).ready(function() {
-				var error = "<c:out value="${error}" />";
-				if (error == "error") {
-					alert("수업은 1개만 등록 가능합니다.")
-					window.history.back();
-				} else if (error == "notPer1") {
-					alert("입시(자소서/논술/면접) 영역을 제외한 다른 영역에서는 수업횟수를 한달 4,8,12회에서 선택해주세요.");
-					window.history.back();
-				}
-		});
-/*
+		$(document)
+				.ready(
+						function() {
+
+							var error = "<c:out value="${error}" />";
+
+							if (error == "error") {
+								alert("수업은 1개만 등록 가능합니다.")
+								window.history.back();
+							} else if (error == "notPer1") {
+								alert("입시(자소서/논술/면접) 영역을 제외한 다른 영역에서는 수업횟수를 한달 4,8,12회에서 선택해주세요.");
+								window.history.back();
+							}
+
+						});
+
 		$(document)
 				.on(
 						'click',
@@ -327,7 +331,8 @@ display:none;
 							$('.multi1').remove();
 							$(this).remove();
 							$('.uploadDiv')
-									.append('<input name="contentimg" type="file" class="multi1" id="multi1" accept="image/*" onchange="util_imgUpldCheck(this);util_imgUpldLoadFile(event);" data-output="output1" data-click-event="ok" />');
+									.append(
+											'<input name="contentimg" class="multi1" type="file" accept="image/*" onchange="check1(this);loadFile1(event);" />');
 						});
 
 		$(document)
@@ -338,7 +343,8 @@ display:none;
 							$('.multi2').remove();
 							$(this).remove();
 							$('.uploadDiv')
-									.append('<input name="contentimg" type="file" class="multi2" id="multi2" accept="image/*" onchange="util_imgUpldCheck(this);util_imgUpldLoadFile(event);" data-output="output2" data-click-event="ok" />');
+									.append(
+											'<input name="contentimg" class="multi2" type="file" accept="image/*" onchange="check22(this);loadFile2(event);" />');
 						});
 
 		$(document)
@@ -350,7 +356,7 @@ display:none;
 							$(this).remove();
 							$('.uploadDiv')
 									.append(
-											'<input name="contentimg" type="file" class="multi3" id="multi3" accept="image/*" onchange="util_imgUpldCheck(this);util_imgUpldLoadFile(event);" data-output="output3" data-click-event="ok" />');
+											'<input name="contentimg" class="multi3" type="file" accept="image/*" onchange="check3(this);loadFile3(event);" />');
 						});
 
 		$(document)
@@ -362,9 +368,8 @@ display:none;
 							$(this).remove();
 							$('.uploadDiv')
 									.append(
-											'<input name="contentimg" type="file" class="multi4" id="multi4" accept="image/*" onchange="util_imgUpldCheck(this);util_imgUpldLoadFile(event);" data-output="output4" data-click-event="ok" />');
+											'<input name="contentimg" class="multi4" type="file" accept="image/*" onchange="check4(this);loadFile4(event);" />');
 						});
-	*/
 	</script>
 </body>
 </html>

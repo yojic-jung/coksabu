@@ -325,7 +325,6 @@ body {
 	<script src="resources/jquery-number-master/jquery.number.min.js"></script>
 	<script src="<c:url value="resources/js/heic2any.js"  />"></script>
 	<script src="resources/js/boarder/lessonWriteAndUpdate.js?v=12"></script>
-	<script src="<c:url value="resources/js/cok_util.js"  />"></script>
 	<script>
 		$(document)
 				.ready(
@@ -589,7 +588,7 @@ body {
 					$('.del-div4').remove();
 					$('#output4').trigger('click');
 				});
-/*
+
 		$(document)
 				.on(
 						'click',
@@ -601,7 +600,7 @@ body {
 								$(this).remove();
 								$('.uploadDiv')
 										.append(
-												'<input name="contentimg" type="file" class="multi1" id="multi1" accept="image/*" onchange="util_imgUpldCheck(this);util_imgUpldLoadFile(event);" data-output="output1" data-click-event="ok" />');
+												'<input name="contentimg" class="multi1" type="file" accept="image/*" onchange="check1(this);loadFile1(event)" />');
 							}
 						});
 
@@ -615,7 +614,7 @@ body {
 								$(this).remove();
 								$('.uploadDiv')
 										.append(
-												'<input name="contentimg" type="file" class="multi2" id="multi2" accept="image/*" onchange="util_imgUpldCheck(this);util_imgUpldLoadFile(event);" data-output="output2" data-click-event="ok" />');
+												'<input name="contentimg" class="multi2" type="file" accept="image/*" onchange="check22(this);loadFile2(event)" />');
 							}
 						});
 
@@ -629,7 +628,7 @@ body {
 								$(this).remove();
 								$('.uploadDiv')
 										.append(
-												'<input name="contentimg" type="file" class="multi3" id="multi3" accept="image/*" onchange="util_imgUpldCheck(this);util_imgUpldLoadFile(event);" data-output="output3" data-click-event="ok" />');
+												'<input name="contentimg" class="multi3" type="file" accept="image/*" onchange="check3(this);loadFile3(event)" />');
 							}
 						});
 
@@ -643,10 +642,9 @@ body {
 								$(this).remove();
 								$('.uploadDiv')
 										.append(
-												'<input name="contentimg" type="file" class="multi4" id="multi4" accept="image/*" onchange="util_imgUpldCheck(this);util_imgUpldLoadFile(event);" data-output="output4" data-click-event="ok" />');
+												'<input name="contentimg" class="multi4" type="file" accept="image/*" onchange="check4(this);loadFile4(event);" />');
 							}
 						});
-	*/
 	</script>
 </body>
 </html>

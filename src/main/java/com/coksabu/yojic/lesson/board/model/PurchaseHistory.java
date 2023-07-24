@@ -128,7 +128,6 @@ public class PurchaseHistory {
 	
 	public void setPostId(String postId) {
 		this.postId=postId;
-		System.out.println(this.postId+"세터함수");
 	}
 	public String getPostId() {
 		return postId;

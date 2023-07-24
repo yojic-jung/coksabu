@@ -81,7 +81,6 @@
 	<script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
     <script>
 $(document).ready(function(){
-	
 	 var ex = "<c:out value="${ERRORMSG}" />"
 	    if(ex !="")
 	    	alert(ex);
@@ -116,7 +115,11 @@ $(document).ready(function(){
 		   $('#appleid-signin').trigger("click");
 		});
     
-   
+    const urlParams = new URL(window.location.href).searchParams;
+	const email = urlParams.get('email');
+    const pass = urlParams.get('pass');
+    if(email!==null) document.getElementById('email').value=email;
+    if(pass!==null) document.getElementById('password').value=pass;
     
 });
     
@@ -163,9 +166,9 @@ $(document).ready(function(){
     <div class="login-main">
         <form id="login-box" method="post" action="./loginprocess">
             이메일<br/>
-            <input name="email" class="form-input email" type="text"/><br/>
+            <input id="email" name="email" class="form-input email" type="text"/><br/>
             비밀번호<br/>
-            <input name="password" class="form-input" type="password"/><br/>
+            <input id="password" name="password" class="form-input" type="password"/><br/>
             <div>
             <div id="emailPassFind"><a href="./emailPassFind">아이디/비밀번호 찾기</a></div>
             <div class="abc"><a href="./signup" style="float:right;">회원가입</a></div><br/>

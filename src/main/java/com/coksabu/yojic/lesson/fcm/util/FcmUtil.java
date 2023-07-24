@@ -169,7 +169,6 @@ public class FcmUtil {
                     /* IF THE PROBLEM WAS AN ERROR-RESPONSE PACKET RETURNED BY APPLE, GET IT */
                     ResponsePacket THEERRORRESPONSE = NOTIFICATION.getResponse();
                     if (THEERRORRESPONSE != null) {
-                        System.out.println(THEERRORRESPONSE.getMessage());
                     }
                 }
             }
@@ -211,7 +210,6 @@ public class FcmUtil {
                     /* IF THE PROBLEM WAS AN ERROR-RESPONSE PACKET RETURNED BY APPLE, GET IT */
                     ResponsePacket THEERRORRESPONSE = NOTIFICATION.getResponse();
                     if (THEERRORRESPONSE != null) {
-                        System.out.println(THEERRORRESPONSE.getMessage());
                     }
                 }
             }

@@ -172,6 +172,7 @@ padding:20px;
    			</div>
    			
    		</form>
+   		<img id="spinner" src="<c:url value='/resources/img/spinner.svg' />" style="position:fixed; left:50%; transform:translate(-50%, -50%);top:50%; z-index:99;display:none;"/>
    		<div style="height:300px;"></div>
 
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>

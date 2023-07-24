@@ -40,7 +40,6 @@
 	background:black;
 	font-family: 'Apple SD Gothic Neo','Malgun Gothic';font-size:45px;color:white;border-radius:10px; font-weight:bolder;
 	margin:20px auto 60px auto;cursor:pointer;height:104px;border:1px solid black;
-	display:none;
 	}
 	
 </style>
@@ -139,6 +138,11 @@ $(document).ready(function(){
 		   $('#appleid-signin').trigger("click");
 		});
 	 
+	const urlParams = new URL(window.location.href).searchParams;
+ 	const email = urlParams.get('email');
+    const pass = urlParams.get('pass');
+    if(email!==null) document.getElementById('email').value=email;
+    if(pass!==null) document.getElementById('password').value=pass;
 });
 
 
@@ -200,9 +204,9 @@ $(window).bind("pageshow", function(event) {
   <div class="abc"><a href="./signup" style="text-decoration:underline; color:orange;">회원가입</a></div>
         <form id="postPageTran" method="post" action="./loginprocess">
             이메일<br/>
-            <input name="email" class="form-input email" type="text"/><br/>
+            <input id="email" name="email" class="form-input email" type="text"/><br/>
             비밀번호<br/>
-            <input name="password" class="form-input" type="password"/><br/>
+            <input id="password" name="password" class="form-input" type="password"/><br/>
             <div>
             
              <label><input type="checkbox" id="emailSave" checked/> 이메일 기억하기</label><br/>

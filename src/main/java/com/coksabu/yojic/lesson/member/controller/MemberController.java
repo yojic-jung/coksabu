@@ -131,8 +131,6 @@ public class MemberController extends DeviceSwitcherController {
 				configLocation);
 		ReadPostService readPostService = ctx.getBean("readPostService", ReadPostService.class );
 		
-		System.out.println(session.getAttribute("email"));
-		
 		List<PostView> list = readPostService.listMain();
 		for(Iterator<PostView> itr = list.iterator(); itr.hasNext();) {
 			PostView post = itr.next();
@@ -380,7 +378,6 @@ public class MemberController extends DeviceSwitcherController {
 		MemberInfo mem = new MemberInfo();
 		String email = (String)session.getAttribute("email");
 		mem.setEmail(email);
-		System.out.println(email);
 		mem.setName( cer.getResponse().getName());
 		mem.setBirth(date.format(cer.getResponse().getBirth()));
 		mem.setPhone(cer.getResponse().getPhone());
@@ -1027,8 +1024,6 @@ public class MemberController extends DeviceSwitcherController {
 		PassFind pass = new PassFind();
 		pass.setEmail((String)request.getParameter("email"));
 		pass.setPhone((String)request.getParameter("phone"));
-		System.out.println(pass.getEmail());
-		System.out.println(pass.getPhone());
 		String configLocation = "classpath:applicationContext.xml";
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(configLocation);
 		EmailPassFindService emailPassFindService = ctx.getBean("emailPassFindService", EmailPassFindService.class);
@@ -1399,11 +1394,6 @@ public class MemberController extends DeviceSwitcherController {
                 KeyFactory keyFactory = KeyFactory.getInstance(key.getKty());
                 PublicKey publicKey = keyFactory.generatePublic(publicKeySpec);
                 Claims claims = Jwts.parser().setSigningKey(publicKey).parseClaimsJws(id_token).getBody();
-                System.out.println(claims.getId());
-                System.out.println(claims.getIssuer());
-                System.out.println(claims.getSubject());
-                System.out.println(claims.getAudience());
-                System.out.println(claims.get("email"));
         	}
 
         }

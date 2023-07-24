@@ -31,8 +31,6 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
     	
     	String username = request.getParameter(loginidname);
         
-        System.out.println(username);
-        
         String errormsg = null;
         
         if(exception instanceof BadCredentialsException) {

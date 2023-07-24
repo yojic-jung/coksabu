@@ -39,7 +39,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer im
 	private static final  Logger logger = LoggerFactory.getLogger(WebSocketConfig.class);
 	
     public void registerStompEndpoints(StompEndpointRegistry stompEndpointRegistry) {
-    	String[] origins = {"https://www.coksabu.com", "https://m.coksabu.com", "https://coksabu.com"};
+    	String[] origins = {"https://www.coksabu.com", "https://m.coksabu.com", "https://coksabu.com", "http://13.209.57.40"};
         stompEndpointRegistry.addEndpoint("/hello", "/chatmemberlist").setAllowedOrigins(origins).withSockJS()
         .setClientLibraryUrl("https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js");
     }
