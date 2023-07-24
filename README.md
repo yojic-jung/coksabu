@@ -22,7 +22,7 @@
 ## 🖥 주요기능
 
 #### 로그인  
-- 로그인 권한 관리는 스프링 시큐리티를 통해 관리되며 sns로그인(애플, 네이버)은 인증 후 세션, 쿠키 직접 생성  
+로그인 권한 관리는 스프링 시큐리티를 통해 관리되며 sns로그인(애플, 네이버)은 인증 후 세션, 쿠키 직접 생성  
 <img src="https://github.com/yojic-jung/coksabu/assets/45252387/0b8567a0-edb0-432d-a260-d98527796aa3" width="180" >
 
 * [애플로 로그인](https://github.com/yojic-jung/coksabu/blob/master/src/main/java/com/coksabu/yojic/lesson/member/controller/MemberController.java#L1208) : 애플에서 받은 jwt 사용자 정보를 전자서명 과정을 거쳐 스프링시큐리티에서 제공하는 방식으로 세션, 쿠키 생성하여 로그인 처리  
